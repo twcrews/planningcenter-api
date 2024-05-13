@@ -13,6 +13,9 @@ public class PlanningCenterApiServiceTests
 	private readonly HttpClient _client;
 	private readonly PlanningCenterApiService _subject;
 
+	private readonly Uri _collectionUri;
+	private readonly Uri _singletonUri;
+
 	public PlanningCenterApiServiceTests()
 	{
 		_handler = new();
@@ -24,13 +27,16 @@ public class PlanningCenterApiServiceTests
 
 		_handler.When("http://localhost/collection").Respond("application/json", Serialized.DummyRootCollectionObject);
 		_handler.When("http://localhost/singleton").Respond("application/json", Serialized.DummyRootSingleObject);
+
+		_collectionUri = new("collection", UriKind.Relative);
+		_singletonUri = new("singleton", UriKind.Relative);
 	}
 
 	[Fact]
 	public async void GetAllAsync_GetsExpectedObject()
 	{
 		PlanningCenterRootCollectionObject<DummyData> expected = Dummy.RootCollectionObject;
-		PlanningCenterRootCollectionObject<DummyData> actual = await _subject.GetAllAsync<DummyData>("collection");
+		PlanningCenterRootCollectionObject<DummyData> actual = await _subject.GetAllAsync<DummyData>(_collectionUri);
 
 		Assert.Equal(JsonSerializer.Serialize(expected), JsonSerializer.Serialize(actual));
 	}
@@ -39,7 +45,7 @@ public class PlanningCenterApiServiceTests
 	public async void GetAsync_GetsExpectedObject()
 	{
 		PlanningCenterRootSingletonObject<DummyData> expected = Dummy.RootSingleObject;
-		PlanningCenterRootSingletonObject<DummyData> actual = await _subject.GetAsync<DummyData>("singleton");
+		PlanningCenterRootSingletonObject<DummyData> actual = await _subject.GetAsync<DummyData>(_singletonUri);
 
 		Assert.Equal(JsonSerializer.Serialize(expected), JsonSerializer.Serialize(actual));
 	}
@@ -58,7 +64,7 @@ public class PlanningCenterApiServiceTests
 			.WithJsonContent(expectedPayload)
 			.Respond("application/json", Serialized.DummyRootCollectionObject);
 			
-		await _subject.PostAllAsync("collection", Dummy.Dummies);
+		await _subject.PostAllAsync(_collectionUri, Dummy.Dummies);
 
 		_handler.VerifyNoOutstandingExpectation();
 	}
@@ -67,7 +73,8 @@ public class PlanningCenterApiServiceTests
 	public async void PostAllAsync_GetsExpectedObject()
 	{
 		PlanningCenterRootCollectionObject<DummyData> expected = Dummy.RootCollectionObject;
-		PlanningCenterRootCollectionObject<DummyData> actual = await _subject.PostAllAsync<DummyData>("collection", [ new() 
+		PlanningCenterRootCollectionObject<DummyData> actual = await _subject.PostAllAsync<DummyData>(_collectionUri, [ 
+		new() 
 		{ 
 			IntAttribute = 0,
 			StringAttribute = "",
@@ -91,7 +98,7 @@ public class PlanningCenterApiServiceTests
 			.WithJsonContent(expectedPayload)
 			.Respond("application/json", Serialized.DummyRootSingleObject);
 			
-		await _subject.PostAsync("singleton", Dummy.Dummies.First());
+		await _subject.PostAsync(_singletonUri, Dummy.Dummies.First());
 
 		_handler.VerifyNoOutstandingExpectation();
 	}
@@ -100,7 +107,7 @@ public class PlanningCenterApiServiceTests
 	public async void PostAsync_GetsExpectedObject()
 	{
 		PlanningCenterRootSingletonObject<DummyData> expected = Dummy.RootSingleObject;
-		PlanningCenterRootSingletonObject<DummyData> actual = await _subject.PostAsync<DummyData>("singleton", new() 
+		PlanningCenterRootSingletonObject<DummyData> actual = await _subject.PostAsync<DummyData>(_singletonUri, new() 
 		{ 
 			IntAttribute = 0,
 			StringAttribute = "",
@@ -124,7 +131,7 @@ public class PlanningCenterApiServiceTests
 			.WithJsonContent(expectedPayload)
 			.Respond("application/json", Serialized.DummyRootSingleObject);
 			
-		await _subject.PatchAsync("singleton", Dummy.Dummies.First());
+		await _subject.PatchAsync(_singletonUri, Dummy.Dummies.First());
 
 		_handler.VerifyNoOutstandingExpectation();
 	}
@@ -133,7 +140,7 @@ public class PlanningCenterApiServiceTests
 	public async void PatchAsync_GetsExpectedObject()
 	{
 		PlanningCenterRootSingletonObject<DummyData> expected = Dummy.RootSingleObject;
-		PlanningCenterRootSingletonObject<DummyData> actual = await _subject.PatchAsync<DummyData>("singleton", new() 
+		PlanningCenterRootSingletonObject<DummyData> actual = await _subject.PatchAsync<DummyData>(_singletonUri, new() 
 		{ 
 			IntAttribute = 0,
 			StringAttribute = "",
@@ -149,7 +156,7 @@ public class PlanningCenterApiServiceTests
 		_handler.Expect(HttpMethod.Delete, "http://localhost/singleton")
 			.Respond(HttpStatusCode.NoContent);
 
-		await _subject.DeleteAsync("singleton");
+		await _subject.DeleteAsync(_singletonUri);
 		_handler.VerifyNoOutstandingExpectation();
 	}
 }

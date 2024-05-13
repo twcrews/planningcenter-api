@@ -1,4 +1,4 @@
-﻿using System.Text.Json.Serialization;
+using System.Text.Json.Serialization;
 
 namespace Cos.PlanningCenter.Api;
 
@@ -35,7 +35,7 @@ class PlanningCenterError
 	/// A string identifying the type of error as defined by Planning Center.
 	/// </summary>
 	[JsonPropertyName("code")]
-	public required string ErrorCode { get; init; }
+	public string? ErrorCode { get; init; }
 
 	/// <summary>
 	/// A message detailing the error.

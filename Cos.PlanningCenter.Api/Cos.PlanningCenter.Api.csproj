@@ -7,4 +7,29 @@
     <DefaultNamespace>Cos.PlanningCenter.Api</DefaultNamespace>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <PackageId>Cos.PlanningCenter.Api</PackageId>
+    <PackageVersion>1.0.0-preview.1</PackageVersion>
+    <Authors>Church of the Shepherd</Authors>
+    <Description>
+      A library containing basic models and services for interacting with the Planning Center API. In most cases, this
+      package should not be used directly. Instead, look for product-specific packages that depend on this package,
+      or consider authoring your own!
+    </Description>
+    <PackageProjectUrl>https://github.com/twcrews/cos-planningcenter-api</PackageProjectUrl>
+    <PackageIcon>icon.png</PackageIcon>
+    <RepositoryUrl>https://github.com/twcrews/cos-planningcenter-api.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>PlanningCenter;ChurchCenter;Church;REST;API</PackageTags>
+    <PackageReleaseNotes>
+      https://github.com/twcrews/cos-planningcenter-api/blob/master/CHANGELOG.md
+    </PackageReleaseNotes>
+    <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="icon.png" Pack="true" PackagePath="\" />
+    <None Include="..\README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
 </Project>

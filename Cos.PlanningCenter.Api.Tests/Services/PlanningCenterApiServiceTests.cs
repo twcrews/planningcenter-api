@@ -15,6 +15,8 @@ public class PlanningCenterApiServiceTests
 
 	private readonly Uri _collectionUri;
 	private readonly Uri _singletonUri;
+	private readonly Uri _errorUri;
+	private readonly Uri _emptyErrorUri;
 
 	public PlanningCenterApiServiceTests()
 	{
@@ -27,9 +29,14 @@ public class PlanningCenterApiServiceTests
 
 		_handler.When("http://localhost/collection").Respond("application/json", Serialized.DummyRootCollectionObject);
 		_handler.When("http://localhost/singleton").Respond("application/json", Serialized.DummyRootSingleObject);
+		_handler.When("http://localhost/error").Respond(
+			HttpStatusCode.Forbidden, "application/json", Serialized.DummyErrorObject);
+		_handler.When("http://localhost/emptyError").Respond(HttpStatusCode.Forbidden);
 
 		_collectionUri = new("collection", UriKind.Relative);
 		_singletonUri = new("singleton", UriKind.Relative);
+		_errorUri = new("error", UriKind.Relative);
+		_emptyErrorUri = new("emptyError", UriKind.Relative);
 	}
 
 	[Fact]
@@ -158,5 +165,45 @@ public class PlanningCenterApiServiceTests
 
 		await _subject.DeleteAsync(_singletonUri);
 		_handler.VerifyNoOutstandingExpectation();
+	}
+
+	[Fact]
+	public async Task ErrorResponseThrowsCorrectException()
+	{
+		try
+		{
+			await _subject.DeleteAsync(_errorUri);
+			Assert.Fail("No exception was thrown, but one was expected.");
+		}
+		catch (HttpRequestException exception)
+		{
+			Assert.Contains("403", exception.Message);
+			Assert.Contains("Forbidden", exception.Message);
+			Assert.Contains("You do not have access to this resource", exception.Message);
+			Assert.Contains("sample_error_code", exception.Message);
+			Assert.Contains("This is a sample description.", exception.Message);
+		}
+		catch
+		{
+			throw;
+		}
+	}
+
+	[Fact]
+	public async Task EmptyErrorResponseThrowsCorrectException()
+	{
+		try
+		{
+			await _subject.DeleteAsync(_emptyErrorUri);
+			Assert.Fail("No exception was thrown, but one was expected.");
+		}
+		catch (HttpRequestException exception)
+		{
+			Assert.Equal("The HTTP request failed (403 Forbidden).", exception.Message);
+		}
+		catch
+		{
+			throw;
+		}
 	}
 }

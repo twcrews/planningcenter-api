@@ -3,57 +3,69 @@ using Cos.PlanningCenter.Api.Models;
 
 namespace Cos.PlanningCenter.Api;
 
-public class PlanningCenterApiService<T>(HttpClient httpClient) where T : class
+public class PlanningCenterApiService(HttpClient httpClient)
 {
 	private readonly HttpClient _httpClient = httpClient;
 
-	public Task<PlanningCenterRootCollectionObject<T>> GetAllAsync(string path) => SendRequestAsync<PlanningCenterRootCollectionObject<T>>(new()
-	{
-		RequestUri = new(path),
-		Method = HttpMethod.Get
-	});
-
-	public Task<PlanningCenterRootSingletonObject<T>> GetAsync(string path) => SendRequestAsync<PlanningCenterRootSingletonObject<T>>(new()
-	{
-		RequestUri = new(path),
-		Method = HttpMethod.Get
-	});
-
-	public Task<PlanningCenterRootCollectionObject<T>> PostAllAsync(string path, T content)
+	public Task<PlanningCenterRootCollectionObject<T>> GetAllAsync<T>(string path) where T : class 
 		=> SendRequestAsync<PlanningCenterRootCollectionObject<T>>(new()
 		{
-			RequestUri = new(path),
-			Method = HttpMethod.Post,
-			Content = new StringContent(JsonSerializer.Serialize(content))
+			RequestUri = new(path, UriKind.RelativeOrAbsolute),
+			Method = HttpMethod.Get
 		});
 
-	public Task<PlanningCenterRootSingletonObject<T>> PostAsync(string path, T content)
+	public Task<PlanningCenterRootSingletonObject<T>> GetAsync<T>(string path) where T : class 
 		=> SendRequestAsync<PlanningCenterRootSingletonObject<T>>(new()
 		{
-			RequestUri = new(path),
-			Method = HttpMethod.Post,
-			Content = new StringContent(JsonSerializer.Serialize(content))
+			RequestUri = new(path, UriKind.RelativeOrAbsolute),
+			Method = HttpMethod.Get
 		});
 
-	public Task<PlanningCenterRootCollectionObject<T>> PatchAllAsync(string path, T content)
+	public Task<PlanningCenterRootCollectionObject<T>> PostAllAsync<T>(string path, IEnumerable<T> content) where T : class 
 		=> SendRequestAsync<PlanningCenterRootCollectionObject<T>>(new()
 		{
-			RequestUri = new(path),
-			Method = HttpMethod.Patch,
-			Content = new StringContent(JsonSerializer.Serialize(content))
+			RequestUri = new(path, UriKind.RelativeOrAbsolute),
+			Method = HttpMethod.Post,
+			Content = new StringContent(JsonSerializer.Serialize(new PlanningCenterRootCollectionObject<T>
+			{
+				Data = content.Select(d => new PlanningCenterDataObject<T>
+				{
+					Attributes = d
+				})
+			}))
 		});
 
-	public Task<PlanningCenterRootSingletonObject<T>> PatchAsync(string path, T content)
+	public Task<PlanningCenterRootSingletonObject<T>> PostAsync<T>(string path, T content) where T : class 
 		=> SendRequestAsync<PlanningCenterRootSingletonObject<T>>(new()
 		{
-			RequestUri = new(path),
+			RequestUri = new(path, UriKind.RelativeOrAbsolute),
+			Method = HttpMethod.Post,
+			Content = new StringContent(JsonSerializer.Serialize(new PlanningCenterRootSingletonObject<T>
+			{
+				Data = new PlanningCenterDataObject<T>
+				{
+					Attributes = content
+				}
+			}))
+		});
+
+	public Task<PlanningCenterRootSingletonObject<T>> PatchAsync<T>(string path, T content) where T : class 
+		=> SendRequestAsync<PlanningCenterRootSingletonObject<T>>(new()
+		{
+			RequestUri = new(path, UriKind.RelativeOrAbsolute),
 			Method = HttpMethod.Patch,
-			Content = new StringContent(JsonSerializer.Serialize(content))
+			Content = new StringContent(JsonSerializer.Serialize(new PlanningCenterRootSingletonObject<T>
+			{
+				Data = new PlanningCenterDataObject<T>
+				{
+					Attributes = content
+				}
+			}))
 		});
 
 	public Task DeleteAsync(string path) => _httpClient.SendAsync(new()
 	{
-		RequestUri = new(path),
+		RequestUri = new(path, UriKind.RelativeOrAbsolute),
 		Method = HttpMethod.Delete
 	});
 

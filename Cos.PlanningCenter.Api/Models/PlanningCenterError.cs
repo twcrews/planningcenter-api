@@ -1,4 +1,4 @@
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace Cos.PlanningCenter.Api;
 
@@ -42,4 +42,23 @@ class PlanningCenterError
 	/// </summary>
 	[JsonPropertyName("detail")]
 	public required string Details { get; init; }
+
+	/// <summary>
+	/// Metadata associated with the error.
+	/// </summary>
+	[JsonPropertyName("meta")]
+	public PlanningCenterErrorMetadata? Metadata { get; init; }
+}
+
+/// <summary>
+/// Represents metadata that may be included in a Planning Center API error response.
+/// </summary>
+class PlanningCenterErrorMetadata
+{
+	/// <summary>
+	/// A more specific description of the error.
+	/// </summary>
+	/// <value></value>
+	[JsonPropertyName("description")]
+	public string? Description { get; init; }
 }

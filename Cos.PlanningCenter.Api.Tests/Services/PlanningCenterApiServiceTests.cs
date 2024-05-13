@@ -33,7 +33,7 @@ public class PlanningCenterApiServiceTests
 	}
 
 	[Fact]
-	public async void GetAllAsync_GetsExpectedObject()
+	public async Task GetAllAsync_GetsExpectedObject()
 	{
 		PlanningCenterRootCollectionObject<DummyData> expected = Dummy.RootCollectionObject;
 		PlanningCenterRootCollectionObject<DummyData> actual = await _subject.GetAllAsync<DummyData>(_collectionUri);
@@ -42,7 +42,7 @@ public class PlanningCenterApiServiceTests
 	}
 
 	[Fact]
-	public async void GetAsync_GetsExpectedObject()
+	public async Task GetAsync_GetsExpectedObject()
 	{
 		PlanningCenterRootSingletonObject<DummyData> expected = Dummy.RootSingleObject;
 		PlanningCenterRootSingletonObject<DummyData> actual = await _subject.GetAsync<DummyData>(_singletonUri);
@@ -51,7 +51,7 @@ public class PlanningCenterApiServiceTests
 	}
 
 	[Fact]
-	public async void PostAllAsync_SendsExpectedObject()
+	public async Task PostAllAsync_SendsExpectedObject()
 	{
 		PlanningCenterRootCollectionObject<DummyData> expectedPayload = new()
 		{
@@ -70,7 +70,7 @@ public class PlanningCenterApiServiceTests
 	}
 
 	[Fact]
-	public async void PostAllAsync_GetsExpectedObject()
+	public async Task PostAllAsync_GetsExpectedObject()
 	{
 		PlanningCenterRootCollectionObject<DummyData> expected = Dummy.RootCollectionObject;
 		PlanningCenterRootCollectionObject<DummyData> actual = await _subject.PostAllAsync<DummyData>(_collectionUri, [ 
@@ -85,7 +85,7 @@ public class PlanningCenterApiServiceTests
 	}
 
 	[Fact]
-	public async void PostAsync_SendsExpectedObject()
+	public async Task PostAsync_SendsExpectedObject()
 	{
 		PlanningCenterRootSingletonObject<DummyData> expectedPayload = new()
 		{
@@ -104,7 +104,7 @@ public class PlanningCenterApiServiceTests
 	}
 
 	[Fact]
-	public async void PostAsync_GetsExpectedObject()
+	public async Task PostAsync_GetsExpectedObject()
 	{
 		PlanningCenterRootSingletonObject<DummyData> expected = Dummy.RootSingleObject;
 		PlanningCenterRootSingletonObject<DummyData> actual = await _subject.PostAsync<DummyData>(_singletonUri, new() 
@@ -118,7 +118,7 @@ public class PlanningCenterApiServiceTests
 	}
 
 	[Fact]
-	public async void PatchAsync_SendsExpectedObject()
+	public async Task PatchAsync_SendsExpectedObject()
 	{
 		PlanningCenterRootSingletonObject<DummyData> expectedPayload = new()
 		{
@@ -137,7 +137,7 @@ public class PlanningCenterApiServiceTests
 	}
 
 	[Fact]
-	public async void PatchAsync_GetsExpectedObject()
+	public async Task PatchAsync_GetsExpectedObject()
 	{
 		PlanningCenterRootSingletonObject<DummyData> expected = Dummy.RootSingleObject;
 		PlanningCenterRootSingletonObject<DummyData> actual = await _subject.PatchAsync<DummyData>(_singletonUri, new() 
@@ -151,7 +151,7 @@ public class PlanningCenterApiServiceTests
 	}
 
 	[Fact]
-	public async void DeleteAsync_UsesExpectedMethod()
+	public async Task DeleteAsync_UsesExpectedMethod()
 	{
 		_handler.Expect(HttpMethod.Delete, "http://localhost/singleton")
 			.Respond(HttpStatusCode.NoContent);

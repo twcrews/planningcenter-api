@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Cos.PlanningCenter.Api;
+namespace Cos.PlanningCenter.Api.Models;
 
 /// <summary>
 /// Represents an error response body from the Planning Center API.
@@ -35,11 +35,30 @@ class PlanningCenterError
 	/// A string identifying the type of error as defined by Planning Center.
 	/// </summary>
 	[JsonPropertyName("code")]
-	public required string ErrorCode { get; init; }
+	public string? ErrorCode { get; init; }
 
 	/// <summary>
 	/// A message detailing the error.
 	/// </summary>
 	[JsonPropertyName("detail")]
 	public required string Details { get; init; }
+
+	/// <summary>
+	/// Metadata associated with the error.
+	/// </summary>
+	[JsonPropertyName("meta")]
+	public PlanningCenterErrorMetadata? Metadata { get; init; }
+}
+
+/// <summary>
+/// Represents metadata that may be included in a Planning Center API error response.
+/// </summary>
+class PlanningCenterErrorMetadata
+{
+	/// <summary>
+	/// A more specific description of the error.
+	/// </summary>
+	/// <value></value>
+	[JsonPropertyName("description")]
+	public string? Description { get; init; }
 }

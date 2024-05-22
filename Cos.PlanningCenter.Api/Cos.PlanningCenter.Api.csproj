@@ -14,7 +14,7 @@
     <Authors>Church of the Shepherd</Authors>
     <Description>
       A library containing basic models and services for interacting with the Planning Center API. In most cases, this
-      package should not be used directly. Instead, look for product-specific packages that depend on this package,
+      library should not be used directly. Instead, look for product-specific libraries that depend on this package,
       or consider authoring your own!
     </Description>
     <PackageProjectUrl>https://github.com/twcrews/cos-planningcenter-api</PackageProjectUrl>
@@ -31,6 +31,15 @@
   <ItemGroup>
     <None Include="icon.png" Pack="true" PackagePath="\" />
     <None Include="..\README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="JsonApiFramework.Client" Version="2.10.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models/Resources/PlanningCenter/" />
+    <Folder Include="Models/Resources/Querying/" />
   </ItemGroup>
 
 </Project>

@@ -22,6 +22,7 @@
     <RepositoryUrl>https://github.com/twcrews/planningcenter-api.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>PlanningCenter;ChurchCenter;Church;REST;API</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageReleaseNotes>
       https://github.com/twcrews/planningcenter-api/blob/master/CHANGELOG.md
     </PackageReleaseNotes>

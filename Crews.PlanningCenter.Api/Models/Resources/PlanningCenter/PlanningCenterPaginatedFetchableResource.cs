@@ -14,6 +14,13 @@ public abstract class PlanningCenterPaginatedFetchableResource<T>(Uri uri)
 	public abstract Task<PaginatedResourceCollection<T>> GetAllAsync(int count, int offset);
 	
 	/// <summary>
+	/// Retrieves a singleton fetchable resource with the given ID.
+	/// </summary>
+	/// <param name="id">The ID of the resource.</param>
+	/// <returns>A singleton fetchable resource.</returns>
+	public abstract PlanningCenterSingletonFetchableResource<T> WithID(string id);
+	
+	/// <summary>
 	/// Adds parameters representing a query expression to the request.
 	/// </summary>
 	/// <param name="buildQuery">An action used to define property values by which to query.</param>

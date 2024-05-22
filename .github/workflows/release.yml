@@ -17,12 +17,12 @@ jobs:
     - name: Set VERSION variable from tag
       run: echo "VERSION=${GITHUB_REF_NAME}" >> $GITHUB_ENV
     - name: Build
-      run: dotnet build Cos.PlanningCenter.Api --configuration Release /p:Version=${VERSION}
+      run: dotnet build Crews.PlanningCenter.Api --configuration Release /p:Version=${VERSION}
     - name: Test
-      run: dotnet test Cos.PlanningCenter.Api.Tests --configuration Release /p:Version=${VERSION}
+      run: dotnet test Crews.PlanningCenter.Api.Tests --configuration Release /p:Version=${VERSION}
     - name: Pack
-      run: dotnet pack Cos.PlanningCenter.Api --configuration Release /p:Version=${VERSION} --no-build --output .
+      run: dotnet pack Crews.PlanningCenter.Api --configuration Release /p:Version=${VERSION} --no-build --output .
     - name: Push
-      run: dotnet nuget push Cos.PlanningCenter.Api.${VERSION}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${NUGET_APIKEY}
+      run: dotnet nuget push Crews.PlanningCenter.Api.${VERSION}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${NUGET_APIKEY}
       env:
         NUGET_APIKEY: ${{ secrets.NUGET_APIKEY }}

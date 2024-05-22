@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crews.PlanningCenter.Api.Tests", "Crews.PlanningCenter.Api.Tests\Crews.PlanningCenter.Api.Tests.csproj", "{B96F7BCB-2913-4B95-B26E-75A39A4530FE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crews.PlanningCenter.Api", "Crews.PlanningCenter.Api\Crews.PlanningCenter.Api.csproj", "{F957ABA6-71AD-4BC2-AAD6-099F6B9E6CC7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B96F7BCB-2913-4B95-B26E-75A39A4530FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B96F7BCB-2913-4B95-B26E-75A39A4530FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B96F7BCB-2913-4B95-B26E-75A39A4530FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B96F7BCB-2913-4B95-B26E-75A39A4530FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F957ABA6-71AD-4BC2-AAD6-099F6B9E6CC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F957ABA6-71AD-4BC2-AAD6-099F6B9E6CC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F957ABA6-71AD-4BC2-AAD6-099F6B9E6CC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F957ABA6-71AD-4BC2-AAD6-099F6B9E6CC7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Cos.PlanningCenter.Api;
+namespace Cos.PlanningCenter.Api.Models;
 
 /// <summary>
 /// Represents an error response body from the Planning Center API.

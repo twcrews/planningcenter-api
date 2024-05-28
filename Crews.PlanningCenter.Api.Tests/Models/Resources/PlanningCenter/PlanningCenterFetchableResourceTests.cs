@@ -1,22 +1,18 @@
-﻿using Crews.PlanningCenter.Api.Models.Resources.PlanningCenter;
-
-namespace Crews.PlanningCenter.Api.Tests;
+﻿namespace Crews.PlanningCenter.Api.Tests;
 
 public class PlanningCenterFetchableResourceTests
 {
-	class TestFetchableResource(Uri? uri) : PlanningCenterFetchableResource(uri!) { }
-
 	[Fact]
 	public void GuardUri_ThrowsExceptionOnNullUri()
 	{
-		TestFetchableResource subject = new(null);
+		DummyFetchableResource subject = new(null);
 		Assert.Throws<NullReferenceException>(() => subject.AppendCustomParameters([]));
 	}
 
 	[Fact]
 	public void AppendCustomParameters_ReturnsExpectedObject()
 	{
-		TestFetchableResource subject = new(new("http://localhost/"));
+		DummyFetchableResource subject = new(new("http://localhost/"));
 		subject.AppendCustomParameters([
 			new()
 			{
@@ -30,8 +26,16 @@ public class PlanningCenterFetchableResourceTests
 	[Fact]
 	public void ClearAllParameters_RemovesQueryString()
 	{
-		TestFetchableResource subject = new(new("http://localhost/?a=b&c=d,e"));
+		DummyFetchableResource subject = new(new("http://localhost/?a=b&c=d,e"));
 		subject.ClearAllParameters();
 		Assert.Equal("http://localhost/", subject.Uri.ToString());
+	}
+
+	[Fact]
+	public void Include_ReturnsExpectedObject()
+	{
+		DummyFetchableResource subject = new(new("http://localhost/"));
+		subject.Include(DummyEnum.First, DummyEnum.Second);
+		Assert.Equal("http://localhost/?include=first_value,second_value", subject.Uri.ToString());
 	}
 }

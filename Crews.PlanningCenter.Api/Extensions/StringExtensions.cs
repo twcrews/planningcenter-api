@@ -9,7 +9,7 @@ static class StringExtensions
     string result = target;
     while (result.StartsWith(trimString))
     {
-			result = result[trimString.Length..];
+      result = result[trimString.Length..];
     }
 
     return result;
@@ -22,7 +22,7 @@ static class StringExtensions
     string result = target;
     while (result.EndsWith(trimString))
     {
-			result = result[..^trimString.Length];
+      result = result[..^trimString.Length];
     }
 
     return result;

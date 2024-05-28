@@ -1,46 +1,95 @@
-﻿namespace Crews.PlanningCenter.Api.Models.Resources.PlanningCenter;
+﻿using Crews.PlanningCenter.Api.Extensions;
+using Crews.PlanningCenter.Api.Services;
+using JsonApiFramework;
+using JsonApiFramework.Json;
+using JsonApiFramework.JsonApi;
+
+namespace Crews.PlanningCenter.Api.Models.Resources.PlanningCenter;
 
 /// <inheritdoc />
-public abstract class PlanningCenterPaginatedFetchableResource<T>(Uri uri)
-	: PlanningCenterFetchableResource(uri), IPaginatedFetchableResource<T>
+public abstract class PlanningCenterPaginatedFetchableResource<T, TSelf, TSingleton, TContext>(Uri uri)
+	: PlanningCenterFetchableResource<TSelf>(uri), IPaginatedFetchableResource<T>
+	where TSelf : PlanningCenterPaginatedFetchableResource<T, TSelf, TSingleton, TContext>
+	where TSingleton : PlanningCenterSingletonFetchableResource<T, TSingleton, TContext>
+	where TContext : PlanningCenterDocumentContext
+	where T : class
 {
 	/// <inheritdoc />
-	public abstract Task<PaginatedResourceCollection<T>> GetAllAsync();
+	public async Task<PaginatedResourceCollection<T>> GetAllAsync()
+	{
+		PlanningCenterApiClient client = new(new()
+		{
+			BaseAddress = new("https://api.planningcenteronline.com/")
+		});
+
+		HttpResponseMessage response = await client.SendAsync(new()
+		{
+			RequestUri = Uri
+		});
+		Document document = JsonObject.Parse<Document>(await response.Content.ReadAsStringAsync());
+
+		TContext context = (TContext)Activator.CreateInstance(typeof(TContext), document)!;
+		PlanningCenterMetadata metadata = context.GetDocumentMeta().GetData<PlanningCenterMetadata>();
+		return new()
+		{
+			NextPageOffset = metadata.Next?.Offset ?? default,
+			PreviousPageOffset = metadata.Prev?.Offset ?? default,
+			TotalCount = metadata.TotalCount ?? default,
+			Resources = context.GetResourceCollection<T>()
+		};
+	}
 
 	/// <inheritdoc />
-	public abstract Task<PaginatedResourceCollection<T>> GetAllAsync(int count);
+	public Task<PaginatedResourceCollection<T>> GetAllAsync(int count)
+	{
+		AddParameters("per_page", $"{count}");
+		return GetAllAsync();
+	}
 
 	/// <inheritdoc />
-	public abstract Task<PaginatedResourceCollection<T>> GetAllAsync(int count, int offset);
+	public Task<PaginatedResourceCollection<T>> GetAllAsync(int count, int offset)
+	{
+		AddParameters("offset", $"{offset}");
+		return GetAllAsync(count);
+	}
 	
 	/// <summary>
 	/// Retrieves a singleton fetchable resource with the given ID.
 	/// </summary>
 	/// <param name="id">The ID of the resource.</param>
 	/// <returns>A singleton fetchable resource.</returns>
-	public abstract PlanningCenterSingletonFetchableResource<T> WithID(string id);
-	
+	public TSingleton WithID(string id) => (TSingleton)Activator.CreateInstance(typeof(TSingleton), Uri)!;
+
 	/// <summary>
-	/// Adds parameters representing a query expression to the request.
+	/// Adds a parameter to the request for ordering the returned resources.
 	/// </summary>
-	/// <param name="buildQuery">An action used to define property values by which to query.</param>
-	/// <returns>An instance of the request with the added items.</returns>
-	public abstract PlanningCenterPaginatedFetchableResource<T> Query(Action<T> buildQuery);
-	
+	/// <param name="orderer">The orderable attribute.</param>
+	/// <typeparam name="TEnum">The enumerable associated with the orderable attributes.</typeparam>
+	/// <returns>This same instance of the request for call chaining.</returns>
+	protected TSelf OrderBy<TEnum>(TEnum orderer)
+		=> AddParameters("order", orderer.GetJsonApiName());
+
 	/// <summary>
-	/// Adds a string to the request representing an attribute by which to order the response results. Should be wrapped
-	/// by <c>IOrderable.OrderBy()</c> in the derived type.
+	/// Adds queries to the request.
 	/// </summary>
-	/// <param name="orderingAttribute">Attribute to order by.</param>
-	/// <returns>An instance of the request with the added item.</returns>
-	protected PlanningCenterPaginatedFetchableResource<T> OrderBy(string orderingAttribute)
-		=> (AddParameters("order", orderingAttribute) as PlanningCenterPaginatedFetchableResource<T>)!;
-	
+	/// <param name="queries">A collection of query parameters.</param>
+	/// <typeparam name="TEnum">The enumerable associated with the queryable attributes.</typeparam>
+	/// <returns>This same instance of the request for call chaining.</returns>
+	protected TSelf Query<TEnum>(params KeyValuePair<TEnum, string>[] queries)
+	{
+		foreach (KeyValuePair<TEnum, string> query in queries)
+		{
+			AddParameters($"where[{query.Key.GetJsonApiName()}]", query.Value);
+		}
+		return (this as TSelf)!;
+	}
+
 	/// <summary>
-	/// Adds an array of strings representing filterable attributes to the request. Should be wrapped by 
-	/// <c>IFilterable.FilterBy()</c> in the derived type.
+	/// Adds filters to the request.
 	/// </summary>
-	/// <param name="filters">Attributes to be filtered by.</param>
-	protected PlanningCenterPaginatedFetchableResource<T> FilterBy(params string[] filters) 
-		=> (AddParameters("filter", filters) as PlanningCenterPaginatedFetchableResource<T>)!;
+	/// <param name="filters">A collection of filterable attributes.</param>
+	/// <typeparam name="TEnum">The enumerable associated with the filterable attributes.</typeparam>
+	/// <returns>This same instance of the request for call chaining.</returns>
+	protected TSelf FilterBy<TEnum>(params TEnum[] filters)
+		=> AddParameters("filter", filters.Select(f => f.GetJsonApiName()).ToArray());
 }

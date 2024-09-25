@@ -13,7 +13,7 @@ public class QueryString
 	/// <summary>
 	/// A collection of the parameters in the query string.
 	/// </summary>
-	public IEnumerable<QueryStringParameter> Parameters => _queryString
+	public IEnumerable<Parameter> Parameters => _queryString
 		.TrimStart(BeginningDelimiter)
 		.TrimEnd(EndingDelimiter)
 		.Split(ParameterDelimiter, StringSplitOptions.RemoveEmptyEntries)
@@ -28,7 +28,7 @@ public class QueryString
 			{
 				throw new FormatException("A query string parameter name is empty");
 			}
-			return new QueryStringParameter()
+			return new Parameter()
 			{
 				Key = parameterParts[0],
 				Values = parameterParts.Length == 2 ? [.. parameterParts[1].Split(ParameterValuesDelimiter)] : []
@@ -88,7 +88,7 @@ public class QueryString
 	/// <summary>
 	/// Represents a parameter of a URI query string.
 	/// </summary>
-	public class QueryStringParameter
+	public class Parameter
 	{
 		/// <summary>
 		/// The key (name) of the parameter.

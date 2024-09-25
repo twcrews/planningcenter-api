@@ -9,13 +9,11 @@ static partial class Serialized
 			"next": "https://www.test.com"
 		},
 		"data": {
-			"type": "DummyData",
+			"type": "DummyResource",
 			"id": "123abc",
 			"attributes": {
-				"int_attribute": 123,
-				"string_attribute": "abc",
-				"bool_attribute": true,
-				"null_attribute": null
+				"name": "Tommy",
+				"age": 28
 			},
 			"relationships": {
 				"test_relationship": {
@@ -32,18 +30,6 @@ static partial class Serialized
 				"self": "https://www.test.com"
 			}
 		},
-		"included": [
-			{
-				"type": "DummyData",
-				"id": "12ab",
-				"attributes": {
-						"int_attribute": 789,
-						"string_attribute": "ghi",
-						"bool_attribute": true,
-						"null_attribute": null
-				}
-			}
-		],
 		"meta": {
 			"total_count": 8,
 			"count": 2,

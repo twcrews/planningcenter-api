@@ -1,78 +1,64 @@
-﻿using Crews.PlanningCenter.Api.Extensions;
+﻿using System.Net;
+using Crews.PlanningCenter.Api.Extensions;
 using Crews.PlanningCenter.Api.Utility;
+using JsonApiFramework.Json;
+using JsonApiFramework.JsonApi;
+using Newtonsoft.Json.Linq;
 
 namespace Crews.PlanningCenter.Api.Models.Resources.PlanningCenter;
 
 /// <summary>
 /// A Planning Center resource that can be fetched from the API.
 /// </summary>
-public abstract class PlanningCenterFetchableResource(Uri uri) : PlanningCenterRemoteResource(uri)
+public abstract class PlanningCenterFetchableResource<TSelf>(Uri uri, HttpClient client)
+	: PlanningCenterRemoteResource(uri) where TSelf : PlanningCenterFetchableResource<TSelf>
 {
 	/// <summary>
-	/// A dictionary used to define which resource types can be included with this resource.
-	/// Each key represents an includable type, 
+	/// The <see cref="HttpClient"/> instance used to make requests to the Planning Center API.
 	/// </summary>
-	protected Dictionary<Type, string> IncludableTypes { get; } = [];
+	protected HttpClient Client { get; } = client;
 
 	/// <summary>
 	/// Adds the given parameters to the end of the query string. The query string is not checked for duplicates.
 	/// </summary>
 	/// <param name="parameters">A collection of query string parameters.</param>
 	/// <returns>This same instance of the request for call chaining.</returns>
-	public virtual PlanningCenterFetchableResource AppendCustomParameters(List<QueryString.QueryStringParameter> parameters)
+	public virtual TSelf AppendCustomParameters(
+		List<QueryString.Parameter> parameters)
 	{
-		GuardUri();
 		QueryStringBuilder builder = new(Uri.Query);
 		builder.Parameters.AddRange(parameters);
 		Uri = Uri.SetQueryString(builder.QueryString);
-		return this;
+		return (this as TSelf)!;
 	}
 
 	/// <summary>
 	/// Removes the entire query string.
 	/// </summary>
 	/// <returns>This same instance of the request for call chaining.</returns>
-	public virtual PlanningCenterFetchableResource ClearAllParameters()
+	public virtual TSelf ClearAllParameters()
 	{
-		if (Uri == null) return this;
 		Uri = Uri.ClearQueryString();
-		return this;
+		return (this as TSelf)!;
 	}
 
 	/// <summary>
-	/// Adds an includable resource type to the query string. Should be wrapped by <c>IIncludable.Include()</c> in the 
-	/// derived type.
-	/// </summary>
-	/// <typeparam name="U">The resource type to include.</typeparam>
-	/// <returns>This same instance of the request for call chaining.</returns>
-	protected PlanningCenterFetchableResource Include<U>()
-	{
-		Type type = typeof(U);
-		if (!IncludableTypes.TryGetValue(type, out string? value))
-		{
-			throw new ArgumentException("The resource type '{type.FullName}' cannot be included with this resource.");
-		}
-		return AddParameters("include", value);
-	}
-
-	/// <summary>
-	/// Adds parameters to the URI query string. If a duplicate is found, the original is replaced.
+	/// Adds parameters to the URI query string.
 	/// </summary>
 	/// <param name="key">The parameter key.</param>
 	/// <param name="values">The values assigned to the parameter.</param>
 	/// <returns>This same instance of the request for call chaining.</returns>
-	protected PlanningCenterFetchableResource AddParameters(string key, params string[] values)
+	/// <exception cref="ArgumentException">A parameter with the same name already exists.</exception>
+	protected TSelf AddParameters(string key, params string[] values)
 	{
-		GuardUri();
-
-		QueryString.QueryStringParameter newParameter = new()
+		QueryString.Parameter newParameter = new()
 		{
 			Key = key,
-			Values = [..values]
+			Values = [.. values]
 		};
 
-		QueryStringBuilder builder = new(Uri!.Query);
-		QueryString.QueryStringParameter? parameter = builder.Parameters
+		QueryStringBuilder builder = new(Uri.Query);
+		QueryString.Parameter? parameter = builder.Parameters
 			.FirstOrDefault(p => p.Key.Equals(key, StringComparison.CurrentCultureIgnoreCase));
 		if (parameter == null)
 		{
@@ -80,17 +66,106 @@ public abstract class PlanningCenterFetchableResource(Uri uri) : PlanningCenterR
 		}
 		else
 		{
-			parameter = newParameter;
+			throw new ArgumentException("A parameter with the same name already exists.", nameof(key));
 		}
 		Uri = Uri.SetQueryString(builder.QueryString);
-		return this;
+		return (this as TSelf)!;
 	}
 
 	/// <summary>
-	/// Throws an exception if the URI property value is null.
+	/// Adds includable resources to the request.
 	/// </summary>
-	protected void GuardUri()
+	/// <param name="includables">The includable resource types.</param>
+	/// <typeparam name="TEnum">The enumerable associated with the includable resource types.</typeparam>
+	/// <returns>This same instance of the request for call chaining.</returns>
+	protected virtual TSelf Include<TEnum>(params TEnum[] includables)
+		=> AddParameters("include", includables.Select(i => i.GetJsonApiName()).ToArray());
+
+	/// <summary>
+	/// Sends the given request and attempts to parse the response as a JSON:API document.
+	/// </summary>
+	/// <param name="request">The web request to send.</param>
+	/// <returns>A Document object representing the response content.</returns>
+	protected async Task<Document?> FetchDocumentAsync(HttpRequestMessage request)
 	{
-		if (Uri == null) throw new NullReferenceException("Cannot append parameters because the request URI was null.");
+		HttpResponseMessage response = await Client.SendAsync(request);
+		Document? document = await JsonObject.ParseAsync<Document>(await response.Content.ReadAsStringAsync());
+		if (document == null) return null;
+		
+		HandleBadDocument(document);
+		return document;
+	}
+
+	private static void HandleBadDocument(Document document)
+	{
+		if (!document.IsValidDocument())
+		{
+			throw new FormatException("The JSON:API document is not in a valid format.");
+		}
+
+		if (document.IsErrorsDocument()) HandleErrorDocument(document);
+	}
+
+	private static void HandleErrorDocument(Document document)
+	{
+		IEnumerable<Error> errors = GetErrorsFromDocument(document);
+		IEnumerable<HttpRequestException> exceptions = errors
+			.Select(error => new HttpRequestException(
+				string.Join(": ", error.Title, error.Details), null, error.HttpStatusCode));
+
+		if (exceptions.Count() == 1)
+		{
+			throw exceptions.Single();
+		}
+
+		throw new AggregateException(exceptions);
+	}
+
+	private static IEnumerable<Error> GetErrorsFromDocument(Document document)
+	{
+		return document.GetErrors().Select(error => new Error()
+		{
+			ID = error.Id,
+			Links = error.Links,
+			HttpStatusCode = error.Status == null
+								? null
+								: (HttpStatusCode)Convert.ToInt32(error.Status),
+			ErrorCode = error.Code,
+			Title = error.Title,
+			Details = error.Detail,
+			Source = GetErrorSource(error.Source),
+			Metadata = error.Meta?.GetData<PlanningCenterErrorMetadata>()
+		});
+	}
+
+	private static ErrorSource? GetErrorSource(JObject jsonApiSource)
+	{
+		JProperty? sourceProperty = jsonApiSource?.Properties().FirstOrDefault();
+		if (sourceProperty == null) return null;
+		if (sourceProperty.Value.Type != JTokenType.String) return null;
+
+		string? sourceName = sourceProperty.Name;
+		ErrorSourceType sourceType;
+
+		switch (sourceName)
+		{
+			case "pointer":
+				sourceType = ErrorSourceType.Pointer;
+				break;
+			case "parameter":
+				sourceType = ErrorSourceType.Parameter;
+				break;
+			case "header":
+				sourceType = ErrorSourceType.Header;
+				break;
+			default:
+				return null;
+		}
+
+		return new()
+		{
+			Type = sourceType,
+			Value = sourceProperty.Value.ToString()
+		};
 	}
 }

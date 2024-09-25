@@ -1,6 +1,4 @@
-﻿using System.Collections.Immutable;
-
-namespace Crews.PlanningCenter.Api.Models.Resources;
+﻿namespace Crews.PlanningCenter.Api.Models.Resources;
 
 /// <summary>
 /// A collection of resources along with their pagination metadata.
@@ -13,13 +11,18 @@ public class PaginatedResourceCollection<T>
 	public int TotalCount { get; init; }
 
 	/// <summary>
-	/// The offset index from which the resource collection was retrieved, relative to the total number of available
-	/// resources.
+	/// The offset index of the next page of resources.
 	/// </summary>
-	public int Offset { get; init; }
+	public int NextPageOffset { get; init; }
+
+	/// <summary>
+	/// The offset index of the previous page of resources.
+	/// </summary>
+	/// <value></value>
+	public int PreviousPageOffset { get; init; }
 
 	/// <summary>
 	/// The collection of resources retrieved from the paginated collection.
 	/// </summary>
-	public required ImmutableList<T> Resources { get; init; }
+	public required IEnumerable<T> Resources { get; init; }
 }

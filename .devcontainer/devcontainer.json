@@ -7,9 +7,7 @@
 	"customizations": {
 		"vscode": {
 			"extensions": [
-				"ms-dotnettools.csdevkit",
-				"k--kato.docomment",
-				"eamodio.gitlens"
+				"ms-dotnettools.csdevkit"
 			]
 		}
 	}

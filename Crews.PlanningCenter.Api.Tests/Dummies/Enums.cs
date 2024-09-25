@@ -1,4 +1,6 @@
-﻿namespace Crews.PlanningCenter.Api.Tests;
+﻿using Crews.PlanningCenter.Api.Attributes;
+
+namespace Crews.PlanningCenter.Api.Tests.Dummies;
 
 public enum DummyEnum
 {

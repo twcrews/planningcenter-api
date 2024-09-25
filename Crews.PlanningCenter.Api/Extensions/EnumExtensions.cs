@@ -1,4 +1,6 @@
-﻿namespace Crews.PlanningCenter.Api.Extensions;
+﻿using Crews.PlanningCenter.Api.Attributes;
+
+namespace Crews.PlanningCenter.Api.Extensions;
 
 static class EnumExtensions
 {

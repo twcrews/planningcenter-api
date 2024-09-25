@@ -1,53 +1,44 @@
 ﻿using Crews.PlanningCenter.Api.Extensions;
-using Crews.PlanningCenter.Api.Services;
 using JsonApiFramework;
-using JsonApiFramework.Json;
 using JsonApiFramework.JsonApi;
 
 namespace Crews.PlanningCenter.Api.Models.Resources.PlanningCenter;
 
 /// <inheritdoc />
-public abstract class PlanningCenterPaginatedFetchableResource<T, TSelf, TSingleton, TContext>(Uri uri)
-	: PlanningCenterFetchableResource<TSelf>(uri), IPaginatedFetchableResource<T>
-	where TSelf : PlanningCenterPaginatedFetchableResource<T, TSelf, TSingleton, TContext>
-	where TSingleton : PlanningCenterSingletonFetchableResource<T, TSingleton, TContext>
+public abstract class PlanningCenterPaginatedFetchableResource<TResource, TSelf, TSingleton, TContext>(
+	Uri uri, HttpClient client)
+	: PlanningCenterFetchableResource<TSelf>(uri, client), IPaginatedFetchableResource<TResource>
+	where TSelf : PlanningCenterPaginatedFetchableResource<TResource, TSelf, TSingleton, TContext>
+	where TSingleton : PlanningCenterSingletonFetchableResource<TResource, TSingleton, TContext>
 	where TContext : PlanningCenterDocumentContext
-	where T : class
+	where TResource : class
 {
 	/// <inheritdoc />
-	public async Task<PaginatedResourceCollection<T>> GetAllAsync()
+	public async Task<PaginatedResourceCollection<TResource>> GetAllAsync()
 	{
-		PlanningCenterApiClient client = new(new()
-		{
-			BaseAddress = new("https://api.planningcenteronline.com/")
-		});
-
-		HttpResponseMessage response = await client.SendAsync(new()
-		{
-			RequestUri = Uri
-		});
-		Document document = JsonObject.Parse<Document>(await response.Content.ReadAsStringAsync());
-
+		Document? document = await FetchDocumentAsync(new() { RequestUri = Uri });
+		if (document == null) return new() { Resources = [] };
+		
 		TContext context = (TContext)Activator.CreateInstance(typeof(TContext), document)!;
-		PlanningCenterMetadata metadata = context.GetDocumentMeta().GetData<PlanningCenterMetadata>();
+		PlanningCenterMetadata? metadata = context.GetDocumentMeta()?.GetData<PlanningCenterMetadata>();
 		return new()
 		{
-			NextPageOffset = metadata.Next?.Offset ?? default,
-			PreviousPageOffset = metadata.Prev?.Offset ?? default,
-			TotalCount = metadata.TotalCount ?? default,
-			Resources = context.GetResourceCollection<T>()
+			NextPageOffset = metadata?.Next?.Offset ?? default,
+			PreviousPageOffset = metadata?.Prev?.Offset ?? default,
+			TotalCount = metadata?.TotalCount ?? default,
+			Resources = context.GetResourceCollection<TResource>()
 		};
 	}
 
 	/// <inheritdoc />
-	public Task<PaginatedResourceCollection<T>> GetAllAsync(int count)
+	public Task<PaginatedResourceCollection<TResource>> GetAllAsync(int count)
 	{
 		AddParameters("per_page", $"{count}");
 		return GetAllAsync();
 	}
 
 	/// <inheritdoc />
-	public Task<PaginatedResourceCollection<T>> GetAllAsync(int count, int offset)
+	public Task<PaginatedResourceCollection<TResource>> GetAllAsync(int count, int offset)
 	{
 		AddParameters("offset", $"{offset}");
 		return GetAllAsync(count);
@@ -58,7 +49,8 @@ public abstract class PlanningCenterPaginatedFetchableResource<T, TSelf, TSingle
 	/// </summary>
 	/// <param name="id">The ID of the resource.</param>
 	/// <returns>A singleton fetchable resource.</returns>
-	public TSingleton WithID(string id) => (TSingleton)Activator.CreateInstance(typeof(TSingleton), Uri)!;
+	public TSingleton WithID(string id) 
+		=> (TSingleton)Activator.CreateInstance(typeof(TSingleton), new Uri(Uri, id), Client)!;
 
 	/// <summary>
 	/// Adds a parameter to the request for ordering the returned resources.

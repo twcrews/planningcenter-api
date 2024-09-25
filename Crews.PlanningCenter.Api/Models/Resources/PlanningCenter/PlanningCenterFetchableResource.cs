@@ -1,27 +1,31 @@
-﻿using Crews.PlanningCenter.Api.Extensions;
-using Crews.PlanningCenter.Api.Models.Resources.Querying;
-using Crews.PlanningCenter.Api.Services;
+﻿using System.Net;
+using Crews.PlanningCenter.Api.Extensions;
 using Crews.PlanningCenter.Api.Utility;
 using JsonApiFramework.Json;
 using JsonApiFramework.JsonApi;
+using Newtonsoft.Json.Linq;
 
 namespace Crews.PlanningCenter.Api.Models.Resources.PlanningCenter;
 
 /// <summary>
 /// A Planning Center resource that can be fetched from the API.
 /// </summary>
-public abstract class PlanningCenterFetchableResource<TSelf>(Uri uri) : PlanningCenterRemoteResource(uri)
-	where TSelf : PlanningCenterFetchableResource<TSelf>
+public abstract class PlanningCenterFetchableResource<TSelf>(Uri uri, HttpClient client)
+	: PlanningCenterRemoteResource(uri) where TSelf : PlanningCenterFetchableResource<TSelf>
 {
+	/// <summary>
+	/// The <see cref="HttpClient"/> instance used to make requests to the Planning Center API.
+	/// </summary>
+	protected HttpClient Client { get; } = client;
+
 	/// <summary>
 	/// Adds the given parameters to the end of the query string. The query string is not checked for duplicates.
 	/// </summary>
 	/// <param name="parameters">A collection of query string parameters.</param>
 	/// <returns>This same instance of the request for call chaining.</returns>
 	public virtual TSelf AppendCustomParameters(
-		List<QueryString.QueryStringParameter> parameters)
+		List<QueryString.Parameter> parameters)
 	{
-		GuardUri();
 		QueryStringBuilder builder = new(Uri.Query);
 		builder.Parameters.AddRange(parameters);
 		Uri = Uri.SetQueryString(builder.QueryString);
@@ -34,29 +38,27 @@ public abstract class PlanningCenterFetchableResource<TSelf>(Uri uri) : Planning
 	/// <returns>This same instance of the request for call chaining.</returns>
 	public virtual TSelf ClearAllParameters()
 	{
-		if (Uri == null) return (this as TSelf)!;
 		Uri = Uri.ClearQueryString();
 		return (this as TSelf)!;
 	}
 
 	/// <summary>
-	/// Adds parameters to the URI query string. If a duplicate is found, the original is replaced.
+	/// Adds parameters to the URI query string.
 	/// </summary>
 	/// <param name="key">The parameter key.</param>
 	/// <param name="values">The values assigned to the parameter.</param>
 	/// <returns>This same instance of the request for call chaining.</returns>
+	/// <exception cref="ArgumentException">A parameter with the same name already exists.</exception>
 	protected TSelf AddParameters(string key, params string[] values)
 	{
-		GuardUri();
-
-		QueryString.QueryStringParameter newParameter = new()
+		QueryString.Parameter newParameter = new()
 		{
 			Key = key,
-			Values = [..values]
+			Values = [.. values]
 		};
 
-		QueryStringBuilder builder = new(Uri!.Query);
-		QueryString.QueryStringParameter? parameter = builder.Parameters
+		QueryStringBuilder builder = new(Uri.Query);
+		QueryString.Parameter? parameter = builder.Parameters
 			.FirstOrDefault(p => p.Key.Equals(key, StringComparison.CurrentCultureIgnoreCase));
 		if (parameter == null)
 		{
@@ -64,7 +66,7 @@ public abstract class PlanningCenterFetchableResource<TSelf>(Uri uri) : Planning
 		}
 		else
 		{
-			parameter = newParameter;
+			throw new ArgumentException("A parameter with the same name already exists.", nameof(key));
 		}
 		Uri = Uri.SetQueryString(builder.QueryString);
 		return (this as TSelf)!;
@@ -80,26 +82,90 @@ public abstract class PlanningCenterFetchableResource<TSelf>(Uri uri) : Planning
 		=> AddParameters("include", includables.Select(i => i.GetJsonApiName()).ToArray());
 
 	/// <summary>
-	/// Throws an exception if the URI property value is null.
+	/// Sends the given request and attempts to parse the response as a JSON:API document.
 	/// </summary>
-	protected void GuardUri()
+	/// <param name="request">The web request to send.</param>
+	/// <returns>A Document object representing the response content.</returns>
+	protected async Task<Document?> FetchDocumentAsync(HttpRequestMessage request)
 	{
-		if (Uri == null) throw new NullReferenceException("Cannot append parameters because the request URI was null.");
+		HttpResponseMessage response = await Client.SendAsync(request);
+		Document? document = await JsonObject.ParseAsync<Document>(await response.Content.ReadAsStringAsync());
+		if (document == null) return null;
+		
+		HandleBadDocument(document);
+		return document;
 	}
 
-	/// <summary>
-	/// Sends an HTTP request and returns the content as a JSON document.
-	/// </summary>
-	/// <param name="request">The request to send.</param>
-	/// <returns>A JSON API resource document instance.</returns>
-	protected async Task<Document> GetDocumentAsync(HttpRequestMessage request)
+	private static void HandleBadDocument(Document document)
 	{
-		PlanningCenterApiClient client = new(new()
+		if (!document.IsValidDocument())
 		{
-			BaseAddress = new("https://api.planningcenteronline.com/")
-		});
+			throw new FormatException("The JSON:API document is not in a valid format.");
+		}
 
-		HttpResponseMessage response = await client.SendAsync(request);
-		return JsonObject.Parse<Document>(await response.Content.ReadAsStringAsync());
+		if (document.IsErrorsDocument()) HandleErrorDocument(document);
+	}
+
+	private static void HandleErrorDocument(Document document)
+	{
+		IEnumerable<Error> errors = GetErrorsFromDocument(document);
+		IEnumerable<HttpRequestException> exceptions = errors
+			.Select(error => new HttpRequestException(
+				string.Join(": ", error.Title, error.Details), null, error.HttpStatusCode));
+
+		if (exceptions.Count() == 1)
+		{
+			throw exceptions.Single();
+		}
+
+		throw new AggregateException(exceptions);
+	}
+
+	private static IEnumerable<Error> GetErrorsFromDocument(Document document)
+	{
+		return document.GetErrors().Select(error => new Error()
+		{
+			ID = error.Id,
+			Links = error.Links,
+			HttpStatusCode = error.Status == null
+								? null
+								: (HttpStatusCode)Convert.ToInt32(error.Status),
+			ErrorCode = error.Code,
+			Title = error.Title,
+			Details = error.Detail,
+			Source = GetErrorSource(error.Source),
+			Metadata = error.Meta?.GetData<PlanningCenterErrorMetadata>()
+		});
+	}
+
+	private static ErrorSource? GetErrorSource(JObject jsonApiSource)
+	{
+		JProperty? sourceProperty = jsonApiSource?.Properties().FirstOrDefault();
+		if (sourceProperty == null) return null;
+		if (sourceProperty.Value.Type != JTokenType.String) return null;
+
+		string? sourceName = sourceProperty.Name;
+		ErrorSourceType sourceType;
+
+		switch (sourceName)
+		{
+			case "pointer":
+				sourceType = ErrorSourceType.Pointer;
+				break;
+			case "parameter":
+				sourceType = ErrorSourceType.Parameter;
+				break;
+			case "header":
+				sourceType = ErrorSourceType.Header;
+				break;
+			default:
+				return null;
+		}
+
+		return new()
+		{
+			Type = sourceType,
+			Value = sourceProperty.Value.ToString()
+		};
 	}
 }

@@ -1,6 +1,4 @@
-﻿using System.Collections.Immutable;
-
-namespace Crews.PlanningCenter.Api.Models.Resources;
+﻿namespace Crews.PlanningCenter.Api.Models.Resources;
 
 /// <summary>
 /// A collection of resources along with their pagination metadata.

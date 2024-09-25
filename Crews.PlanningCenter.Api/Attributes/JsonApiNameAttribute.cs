@@ -1,4 +1,4 @@
-﻿namespace Crews.PlanningCenter.Api;
+﻿namespace Crews.PlanningCenter.Api.Attributes;
 
 /// <summary>
 /// An attribute used to apply a JSON API serial name to an element.

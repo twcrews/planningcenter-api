@@ -8,7 +8,7 @@ public class QueryStringBuilder
 	/// <summary>
 	/// Gets or sets the parameters in the query string.
 	/// </summary>
-	public List<QueryString.QueryStringParameter> Parameters { get; set; } = [];
+	public List<QueryString.Parameter> Parameters { get; set; } = [];
 
 	/// <summary>
 	/// Gets or sets the query string's starting delimiter. Defaults to '?'.

@@ -1,29 +1,50 @@
 ﻿using Crews.PlanningCenter.Api.Models.Resources.PlanningCenter;
 using Crews.PlanningCenter.Api.Models.Resources.Querying;
+using JsonApiFramework.JsonApi;
+using JsonApiFramework.ServiceModel.Configuration;
 
-namespace Crews.PlanningCenter.Api.Tests;
+namespace Crews.PlanningCenter.Api.Tests.Dummies;
 
-class DummyFetchableResource(Uri? uri) : 
-	PlanningCenterFetchableResource<DummyFetchableResource>(uri!),
-	IIncludable<DummyFetchableResource, DummyEnum> 
-{ 
+class DummyFetchableResource(Uri? uri, HttpClient client) :
+	PlanningCenterFetchableResource<DummyFetchableResource>(uri!, client),
+	IIncludable<DummyFetchableResource, DummyEnum>
+{
 	public DummyFetchableResource Include(params DummyEnum[] includables) => base.Include(includables);
+	public new DummyFetchableResource AddParameters(string key, params string[] values)
+		=> base.AddParameters(key, values);
+	public new Task<Document?> FetchDocumentAsync(HttpRequestMessage request)
+		=> base.FetchDocumentAsync(request);
 }
 
-class DummyContext : PlanningCenterDocumentContext { }
+class DummyContext : PlanningCenterDocumentContext
+{
+	public DummyContext() : base() { }
+	public DummyContext(Document document) : base(document) { }
 
-class DummySingletonFetchableResource(Uri? uri) :
+	protected override void OnServiceModelCreating(IServiceModelBuilder serviceModelBuilder)
+	{
+		base.OnServiceModelCreating(serviceModelBuilder);
+		serviceModelBuilder.Configurations.Add(new DummyResourceConfiguration());
+	}
+}
+
+class DummySingletonFetchableResource(Uri? uri, HttpClient client) :
 	PlanningCenterSingletonFetchableResource<
-		DummyResource, 
-		DummySingletonFetchableResource, 
-		DummyContext>(uri!) { }
+		DummyResource,
+		DummySingletonFetchableResource,
+		DummyContext>(uri!, client)
+{
+	public new Task<DummyResource?> PostAsync(DummyResource resource) => base.PostAsync(resource);
+	public new Task<DummyResource?> PatchAsync(DummyResource resource) => base.PatchAsync(resource);
+	public new Task DeleteAsync() => base.DeleteAsync();
+}
 
-class DummyPaginatedFetchableResource(Uri? uri) :
+class DummyPaginatedFetchableResource(Uri? uri, HttpClient client) :
 	PlanningCenterPaginatedFetchableResource<
-		DummyResource, 
-		DummyPaginatedFetchableResource, 
-		DummySingletonFetchableResource, 
-		DummyContext>(uri!),
+		DummyResource,
+		DummyPaginatedFetchableResource,
+		DummySingletonFetchableResource,
+		DummyContext>(uri!, client),
 	IFilterable<DummyPaginatedFetchableResource, DummyEnum>,
 	IOrderable<DummyPaginatedFetchableResource, DummyEnum>,
 	IQueryable<DummyPaginatedFetchableResource, DummyEnum>

@@ -10,13 +10,11 @@ static partial class Serialized
 		},
 		"data": [
 			{
-				"type": "DummyData",
+				"type": "DummyResource",
 				"id": "123abc",
 				"attributes": {
-					"int_attribute": 123,
-					"string_attribute": "abc",
-					"bool_attribute": true,
-					"null_attribute": null
+					"age": 28,
+					"name": "Tommy"
 				},
 				"relationships": {
 					"test_relationship": {
@@ -34,13 +32,11 @@ static partial class Serialized
 				}
 			},
 			{
-				"type": "DummyData",
+				"type": "DummyResource",
 				"id": "456def",
 				"attributes": {
-					"int_attribute": 456,
-					"string_attribute": "def",
-					"bool_attribute": false,
-					"null_attribute": null
+					"age": 26,
+					"name": "Bri"
 				},
 				"relationships": {
 					"test_relationship": {
@@ -60,13 +56,11 @@ static partial class Serialized
 		],
 		"included": [
 			{
-				"type": "DummyData",
+				"type": "DummyResource",
 				"id": "12ab",
 				"attributes": {
-						"int_attribute": 789,
-						"string_attribute": "ghi",
-						"bool_attribute": true,
-						"null_attribute": null
+					"age": 0,
+					"name": "Eli"
 				}
 			}
 		],
@@ -101,6 +95,72 @@ static partial class Serialized
 				"type": "Organization"
 			}
 		}
+	}
+	""";
+
+
+	public const string DummyRootCollectionNoMetaObject = """
+	{
+		"links": {
+			"self": "https://www.test.com",
+			"next": "https://www.test.com"
+		},
+		"data": [
+			{
+				"type": "DummyResource",
+				"id": "123abc",
+				"attributes": {
+					"age": 28,
+					"name": "Tommy"
+				},
+				"relationships": {
+					"test_relationship": {
+						"links": {
+							"self": "https://www.test.com"
+						},
+						"data": {
+							"type": "TestRelationshipType",
+							"id": "1234abcd"
+						}
+					}
+				},
+				"links": {
+					"self": "https://www.test.com"
+				}
+			},
+			{
+				"type": "DummyResource",
+				"id": "456def",
+				"attributes": {
+					"age": 26,
+					"name": "Bri"
+				},
+				"relationships": {
+					"test_relationship": {
+						"links": {
+							"self": "https://www.test.com"
+						},
+						"data": {
+							"type": "TestRelationshipType",
+							"id": "5678efgh"
+						}
+					}
+				},
+				"links": {
+					"self": "https://www.test.com"
+				}
+			}
+		],
+		"included": [
+			{
+				"type": "DummyResource",
+				"id": "12ab",
+				"attributes": {
+					"age": 0,
+					"name": "Eli"
+				}
+			}
+		]
 	}
 	""";
 }

@@ -1,7 +1,7 @@
-﻿using System.Text.Json.Serialization;
-using JsonApiFramework.JsonApi;
+﻿using JsonApiFramework.JsonApi;
+using Newtonsoft.Json;
 
-namespace Crews.PlanningCenter.Api;
+namespace Crews.PlanningCenter.Api.Models;
 
 /// <summary> 
 /// Represents metadata returned in a Planning Center API response. 
@@ -11,32 +11,32 @@ public class PlanningCenterMetadata
 	/// <summary> 
 	/// Names of Planning Center data object types that can be included in the API response. 
 	/// </summary> 
-	[JsonPropertyName("can_include")] 
+	[JsonProperty("can_include")] 
 	public IEnumerable<string> CanInclude { get; init; } = []; 
  
 	/// <summary> 
 	/// Names of attributes of the current data object type that can be used for querying the collection of data objects. 
 	/// </summary> 
-	[JsonPropertyName("can_query_by")] 
+	[JsonProperty("can_query_by")] 
 	public IEnumerable<string> CanQueryBy { get; init; } = []; 
  
 	/// <summary> 
 	/// Names of properties that can be used to filter the collection of data objects. 
 	/// </summary> 
-	[JsonPropertyName("can_filter")] 
+	[JsonProperty("can_filter")] 
 	public IEnumerable<string> CanFilter { get; init; } = []; 
  
 	/// <summary> 
 	/// Names of attributes of the current data object type that can be used for ordering the collection of data objects. 
 	/// </summary> 
-	[JsonPropertyName("can_order_by")] 
+	[JsonProperty("can_order_by")] 
 	public IEnumerable<string> CanOrderBy { get; init; } = []; 
  
 	/// <summary> 
 	/// The number of data objects returned in the current API response object. If this number is less than `TotalCount`, 
 	/// modifying the page offset of the request will return a different subset of paginated objects from this total. 
 	/// </summary> 
-	[JsonPropertyName("count")] 
+	[JsonProperty("count")] 
 	public int? Count { get; init; } 
  
 	/// <summary> 
@@ -44,25 +44,25 @@ public class PlanningCenterMetadata
 	/// `Count`, modifying the page offset of the request will return a different subset of paginated objects from this  
 	/// total. 
 	/// </summary> 
-	[JsonPropertyName("total_count")] 
+	[JsonProperty("total_count")] 
 	public int? TotalCount { get; init; } 
  
 	/// <summary> 
 	/// The parent data object of the data object or collection of data objects in the current API response. 
 	/// </summary> 
-	[JsonPropertyName("parent")] 
+	[JsonProperty("parent")] 
 	public ResourceIdentifier? Parent { get; init; } 
  
 	/// <summary> 
 	/// The next page of paginated data objects. 
 	/// </summary> 
-	[JsonPropertyName("next")] 
+	[JsonProperty("next")] 
 	public Page? Next { get; init; } 
  
 	/// <summary> 
 	/// The previous page of paginated data objects. 
 	/// </summary> 
-	[JsonPropertyName("prev")] 
+	[JsonProperty("prev")] 
 	public Page? Prev { get; init; } 
  
 	/// <summary> 
@@ -72,7 +72,7 @@ public class PlanningCenterMetadata
 		/// <summary> 
 		/// The index of the start of the page. 
 		/// </summary> 
-		[JsonPropertyName("offset")] 
+		[JsonProperty("offset")] 
 		public required int Offset { get; init; } 
 	} 
 }

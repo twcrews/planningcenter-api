@@ -10,5 +10,5 @@ public interface ISingletonFetchableResource<T>
 	/// Retrieves the resource.
 	/// </summary>
 	/// <returns>The task object representing the asynchronous operation.</returns>
-	Task<T> GetAsync();
+	Task<T?> GetAsync();
 }

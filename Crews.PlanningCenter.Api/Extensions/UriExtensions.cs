@@ -21,4 +21,23 @@ static class UriExtensions
 		};
 		return uriBuilder.Uri;
 	}
+
+	/// <summary>
+	/// Appends the given <paramref name="path"/> to the <paramref name="uri"/>.
+	/// </summary>
+	/// <param name="uri">The original URI instance.</param>
+	/// <param name="path">The path to append.</param>
+	/// <returns>A new URI instance with the <paramref name="path"/> appended.</returns>
+	/// <remarks>
+	/// The <see cref="Uri"/> class provides a helpful constructor for appending paths: <c>new Uri(Uri, string)</c>. 
+	/// Unfortunately, this constructor can produce siginificantly variable results depending on the value of its
+	/// parameters; specifically, the presence of leading and trailing slashes can cause parts of the URI path to be lost.
+	/// </remarks>
+	public static Uri SafelyAppendPath(this Uri uri, string path)
+	{
+		string uriString = uri.OriginalString;
+		uriString = uriString.TrimEnd('/');
+		path = path.TrimStart('/');
+		return new($"{uriString}/{path}");
+	}
 }

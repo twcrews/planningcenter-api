@@ -2,8 +2,17 @@
 
 namespace Crews.PlanningCenter.Api.Extensions;
 
-static class UriExtensions
+/// <summary>
+/// Provides extension methods for <see cref="Uri"/> instances.
+/// </summary>
+public static class UriExtensions
 {
+	/// <summary>
+	/// Appends <paramref name="queryString"/> to <paramref name="uri"/>, replacing any existing query string.
+	/// </summary>
+	/// <param name="uri">The original <see cref="Uri"/> instance.</param>
+	/// <param name="queryString">The <see cref="QueryString"/> instance to append to <paramref name="uri"/>.</param>
+	/// <returns>A new <see cref="Uri"/> instance with the appended <see cref="QueryString"/> value.</returns>
 	public static Uri SetQueryString(this Uri uri, QueryString queryString)
 	{
 		UriBuilder uriBuilder = new(uri)
@@ -13,6 +22,11 @@ static class UriExtensions
 		return uriBuilder.Uri;
 	}
 
+	/// <summary>
+	/// Removes the query string from a <see cref="Uri"/> instance.
+	/// </summary>
+	/// <param name="uri">The original <see cref="Uri"/> instance.</param>
+	/// <returns>A new <see cref="Uri"/> instance with its query string removed.</returns>
 	public static Uri ClearQueryString(this Uri uri)
 	{
 		UriBuilder uriBuilder = new(uri)

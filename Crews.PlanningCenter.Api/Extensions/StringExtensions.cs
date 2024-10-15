@@ -1,4 +1,6 @@
-﻿namespace Crews.PlanningCenter.Api.Extensions;
+﻿using System.Text;
+
+namespace Crews.PlanningCenter.Api.Extensions;
 
 static class StringExtensions
 {
@@ -27,4 +29,11 @@ static class StringExtensions
 
     return result;
 	}
+
+  public static string Base64Encode(this string target, Encoding? encoding = null)
+  {
+    encoding ??= Encoding.UTF8;
+    byte[] data = encoding.GetBytes(target);
+    return Convert.ToBase64String(data);
+  }
 }

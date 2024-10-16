@@ -1,6 +1,7 @@
 ﻿using Crews.PlanningCenter.Api.Extensions;
 using JsonApiFramework;
 using JsonApiFramework.JsonApi;
+using System.Globalization;
 using System.Reflection;
 
 namespace Crews.PlanningCenter.Api.Models.Resources.PlanningCenter;
@@ -19,11 +20,13 @@ public abstract class PlanningCenterPaginatedFetchableResource<TResource, TSelf,
 	{
 		Document? document = await FetchDocumentAsync(new() { RequestUri = Uri });
 		if (document == null) return new() { Resources = [] };
-		
+
 		TContext context = (TContext)Activator.CreateInstance(
 			typeof(TContext), 
 			BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance,
-			document)!;
+			default,
+			[document],
+			default)!;
 		PlanningCenterMetadata? metadata = context.GetDocumentMeta()?.GetData<PlanningCenterMetadata>();
 		return new()
 		{
@@ -57,8 +60,9 @@ public abstract class PlanningCenterPaginatedFetchableResource<TResource, TSelf,
 		=> (TSingleton)Activator.CreateInstance(
 			typeof(TSingleton), 
 			BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance,
-			Uri.SafelyAppendPath(id), 
-			Client)!;
+			default,
+			[Uri.SafelyAppendPath(id), Client],
+			default)!;
 
 	/// <summary>
 	/// Adds a parameter to the request for ordering the returned resources.

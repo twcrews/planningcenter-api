@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using System.Globalization;
+using System.Reflection;
+using System.Text;
 using JsonApiFramework;
 using JsonApiFramework.JsonApi;
 
@@ -60,7 +62,12 @@ public abstract class PlanningCenterSingletonFetchableResource<TResource, TSelf,
 	/// <returns>A <see cref="StringContent"/> instance.</returns>
 	protected static StringContent BuildDocumentContent(TResource resource)
 	{
-		using TContext context = (TContext)Activator.CreateInstance(typeof(TContext))!;
+		using TContext context = (TContext)Activator.CreateInstance(
+			typeof(TContext),
+			BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance,
+			default,
+			[],
+			default)!;
 		return new(
 			context.NewDocument().Resource(resource).ResourceEnd().WriteDocument().ToJson(), 
 			Encoding.UTF8, 
@@ -70,7 +77,12 @@ public abstract class PlanningCenterSingletonFetchableResource<TResource, TSelf,
 	private static TResource? TryGetResource(Document? document)
 	{
 		if (document == null) return null;
-		TContext context = (TContext)Activator.CreateInstance(typeof(TContext), document)!;
+		TContext context = (TContext)Activator.CreateInstance(
+			typeof(TContext), 
+			BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance,
+			default,
+			[document],
+			default)!;
 		return context.GetResource<TResource>();
 	}
 }

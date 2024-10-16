@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.0-preview.7] - 2024-10-15
+
+### Changed
+
+- Enable use of non-public constructors in resource types.
+
+### Fixed
+
+- Fixed broken link in changelog for version `1.0.0-preview.6`.
+
 ## [1.0.0-preview.6] - 2024-10-14
 
 ### Added
@@ -66,7 +76,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Initial release.
 
-[1.0.0-preview.5]: https://github.com/twcrews/planningcenter-api/compare/1.0.0-preview.5...1.0.0-preview.6
+[1.0.0-preview.7]: https://github.com/twcrews/planningcenter-api/compare/1.0.0-preview.6...1.0.0-preview.7
+[1.0.0-preview.6]: https://github.com/twcrews/planningcenter-api/compare/1.0.0-preview.5...1.0.0-preview.6
 [1.0.0-preview.5]: https://github.com/twcrews/planningcenter-api/compare/1.0.0-preview.4...1.0.0-preview.5
 [1.0.0-preview.4]: https://github.com/twcrews/planningcenter-api/compare/1.0.0-preview.3...1.0.0-preview.4
 [1.0.0-preview.3]: https://github.com/twcrews/planningcenter-api/compare/1.0.0-preview.2...1.0.0-preview.3

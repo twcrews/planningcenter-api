@@ -14,11 +14,6 @@ public abstract class PlanningCenterFetchableResource<TSelf>(Uri uri, HttpClient
 	: PlanningCenterRemoteResource(uri) where TSelf : PlanningCenterFetchableResource<TSelf>
 {
 	/// <summary>
-	/// Represents the resource's name as it is defined in the API.
-	/// </summary>
-	public abstract string ApiName { get; }
-
-	/// <summary>
 	/// The <see cref="HttpClient"/> instance used to make requests to the Planning Center API.
 	/// </summary>
 	protected HttpClient Client { get; } = client;
@@ -96,29 +91,36 @@ public abstract class PlanningCenterFetchableResource<TSelf>(Uri uri, HttpClient
 		HttpResponseMessage response = await Client.SendAsync(request);
 		Document? document = await JsonObject.ParseAsync<Document>(await response.Content.ReadAsStringAsync());
 		if (document == null) return null;
-		
+
 		HandleBadDocument(document);
 		return document;
 	}
 
 	/// <summary>
-	/// Creates a new <typeparamref name="TResource"/> instance and appends either the <see cref="ApiName"/> value 
-	/// belonging to <typeparamref name="TResource"/> or the string specified in <paramref name="apiName"/> to the new 
-	/// <typeparamref name="TResource"/>'s <see cref="Uri"/> property.
+	/// Creates a new <typeparamref name="TResource"/> instance and appends the value of <paramref name="path"/> to 
+	/// the new <typeparamref name="TResource"/>'s <see cref="Uri"/> property.
 	/// </summary>
 	/// <typeparam name="TResource">
 	/// The type of <see cref="PlanningCenterFetchableResource{TResource}"/> to return.
 	/// </typeparam>
-	/// <param name="apiName">If specified, overrides the <see cref="ApiName"/> property on 
-	/// <typeparamref name="TResource"/> when setting its <see cref="Uri"/> parameter.</param>
+	/// <param name="path">The path to append to <typeparamref name="TResource"/>'s <see cref="Uri"/> property.</param>
 	/// <returns>A new <typeparamref name="TResource"/> instance.</returns>
-	protected TResource GetAssociated<TResource>(string? apiName = null) 
-		where TResource : PlanningCenterFetchableResource<TResource>
-	{
-		TResource resource = (TResource)Activator.CreateInstance(typeof(TResource), Uri, Client)!;
-		resource.Uri = Uri.SafelyAppendPath(apiName ?? resource.ApiName);
-		return resource;
-	}
+	protected TResource GetAssociated<TResource>(string path) where TResource : PlanningCenterFetchableResource<TResource>
+		=> (TResource)Activator.CreateInstance(typeof(TResource), Uri.SafelyAppendPath(path), Client)!;
+
+	/// <summary>
+	/// Creates a new <typeparamref name="TNamedResource"/> instance and appends the <see cref="INamedApiResource.ApiName"/> 
+	/// value belonging to <typeparamref name="TNamedResource"/> to its <see cref="Uri"/> property.
+	/// </summary>
+	/// <typeparam name="TNamedResource">
+	/// The type of <see cref="PlanningCenterFetchableResource{TNamedResource}"/> to return.
+	/// </typeparam>
+	/// <returns>A new <typeparamref name="TNamedResource"/> instance.</returns>
+	protected TNamedResource GetNamedAssociated<TNamedResource>()
+		where TNamedResource : PlanningCenterFetchableResource<TNamedResource>, INamedApiResource
+		=> (TNamedResource)Activator.CreateInstance(
+			typeof(TNamedResource),
+			Uri.SafelyAppendPath(TNamedResource.ApiName), Client)!;
 
 	private static void HandleBadDocument(Document document)
 	{

@@ -1,7 +1,6 @@
 ﻿using Crews.PlanningCenter.Api.Extensions;
 using JsonApiFramework;
 using JsonApiFramework.JsonApi;
-using System.Globalization;
 using System.Reflection;
 
 namespace Crews.PlanningCenter.Api.Models.Resources.PlanningCenter;

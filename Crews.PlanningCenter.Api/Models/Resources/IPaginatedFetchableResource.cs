@@ -6,7 +6,6 @@
 /// <typeparam name="T">The type of resource to be fetched.</typeparam>
 public interface IPaginatedFetchableResource<T>
 {
-
 	/// <summary>
 	/// Fetches the paginated collection with an undefined page size and offset.
 	/// </summary>

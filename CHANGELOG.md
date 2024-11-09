@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.0-preview.9] - 2024-11-09
+
+### Changed
+
+- Refactor API naming additions introduced in Preview 8 to use the new `INamedApiResource` interface, effectively making 
+  the change opt-in and non-breaking.
+- Split `GetAssociated<TResource>()` method introduced in Preview 8 into two methods: `GetAssociated` and 
+  `GetNamedAssociated`.
+
 ## [1.0.0-preview.8] - 2024-11-09
 
 ### Added
@@ -89,6 +98,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Initial release.
 
+[1.0.0-preview.9]: https://github.com/twcrews/planningcenter-api/compare/1.0.0-preview.8...1.0.0-preview.9
 [1.0.0-preview.8]: https://github.com/twcrews/planningcenter-api/compare/1.0.0-preview.7...1.0.0-preview.8
 [1.0.0-preview.7]: https://github.com/twcrews/planningcenter-api/compare/1.0.0-preview.6...1.0.0-preview.7
 [1.0.0-preview.6]: https://github.com/twcrews/planningcenter-api/compare/1.0.0-preview.5...1.0.0-preview.6

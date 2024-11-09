@@ -109,11 +109,11 @@ public class PlanningCenterFetchableResourceTests
 			RequestUri = new("http://localhost/invalid")
 		}));
 
-	[Fact(DisplayName = "GetAssociated returns new resource instance with correct path appended to URI")]
-	public void GetAssociated_ReturnsResourceWithCorrectUri()
+	[Fact(DisplayName = "GetNamedAssociated returns new resource instance with correct path appended to URI")]
+	public void GetNamedAssociated_ReturnsResourceWithCorrectUri()
 	{
-		Uri expectedUri = _subject.Uri.SafelyAppendPath(new DummyPaginatedFetchableResource(_subject.Uri, _client).ApiName);
-		DummyPaginatedFetchableResource associated = _subject.Dummies;
+		Uri expectedUri = _subject.Uri.SafelyAppendPath(DummySingletonFetchableResource.ApiName);
+		DummySingletonFetchableResource associated = _subject.Dummy;
 
 		Assert.Equal(expectedUri, associated.Uri);
 	}
@@ -121,8 +121,9 @@ public class PlanningCenterFetchableResourceTests
 	[Fact(DisplayName = "GetAssociated returns new resource instance with custom path appended to URI")]
 	public void GetAssociated_ReturnsResourceWithCustomUri()
 	{
-		Uri expectedUri = _subject.Uri.SafelyAppendPath("test");
-		DummyPaginatedFetchableResource associated = _subject.GetAssociatedDummies("test");
+		_subject.DummiesName = "dummies";
+		Uri expectedUri = _subject.Uri.SafelyAppendPath(_subject.DummiesName);
+		DummyPaginatedFetchableResource associated = _subject.Dummies;
 
 		Assert.Equal(expectedUri, associated.Uri);
 	}

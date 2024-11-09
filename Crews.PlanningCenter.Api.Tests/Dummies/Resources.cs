@@ -9,6 +9,11 @@ class DummyFetchableResource(Uri? uri, HttpClient client) :
 	PlanningCenterFetchableResource<DummyFetchableResource>(uri!, client),
 	IIncludable<DummyFetchableResource, DummyEnum>
 {
+	public override string ApiName => "dummy";
+	public DummyPaginatedFetchableResource Dummies => GetAssociated<DummyPaginatedFetchableResource>();
+
+	public DummyPaginatedFetchableResource GetAssociatedDummies(string apiName) 
+		=> GetAssociated<DummyPaginatedFetchableResource>(apiName);
 	public DummyFetchableResource Include(params DummyEnum[] includables) => base.Include(includables);
 	public new DummyFetchableResource AddParameters(string key, params string[] values)
 		=> base.AddParameters(key, values);
@@ -34,6 +39,7 @@ class DummySingletonFetchableResource(Uri? uri, HttpClient client) :
 		DummySingletonFetchableResource,
 		DummyContext>(uri!, client)
 {
+	public override string ApiName => "dummy";
 	public new Task<DummyResource?> PostAsync(DummyResource resource) => base.PostAsync(resource);
 	public new Task<DummyResource?> PatchAsync(DummyResource resource) => base.PatchAsync(resource);
 	public new Task DeleteAsync() => base.DeleteAsync();
@@ -49,6 +55,7 @@ class DummyPaginatedFetchableResource(Uri? uri, HttpClient client) :
 	IOrderable<DummyPaginatedFetchableResource, DummyEnum>,
 	IQueryable<DummyPaginatedFetchableResource, DummyEnum>
 {
+	public override string ApiName => "dummies";
 	public DummyPaginatedFetchableResource FilterBy(params DummyEnum[] filters) => base.FilterBy(filters);
 	public DummyPaginatedFetchableResource OrderBy(DummyEnum orderer) => base.OrderBy(orderer);
 	public DummyPaginatedFetchableResource Query(params KeyValuePair<DummyEnum, string>[] queries) => base.Query(queries);

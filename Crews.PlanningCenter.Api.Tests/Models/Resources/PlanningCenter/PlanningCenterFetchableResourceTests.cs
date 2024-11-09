@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using Crews.PlanningCenter.Api.Extensions;
 using Crews.PlanningCenter.Api.Models;
 using Crews.PlanningCenter.Api.Tests.Dummies;
 using Crews.PlanningCenter.Api.Tests.Dummies.Serialized;
@@ -107,4 +108,22 @@ public class PlanningCenterFetchableResourceTests
 		{
 			RequestUri = new("http://localhost/invalid")
 		}));
+
+	[Fact(DisplayName = "GetAssociated returns new resource instance with correct path appended to URI")]
+	public void GetAssociated_ReturnsResourceWithCorrectUri()
+	{
+		Uri expectedUri = _subject.Uri.SafelyAppendPath(new DummyPaginatedFetchableResource(_subject.Uri, _client).ApiName);
+		DummyPaginatedFetchableResource associated = _subject.Dummies;
+
+		Assert.Equal(expectedUri, associated.Uri);
+	}
+
+	[Fact(DisplayName = "GetAssociated returns new resource instance with custom path appended to URI")]
+	public void GetAssociated_ReturnsResourceWithCustomUri()
+	{
+		Uri expectedUri = _subject.Uri.SafelyAppendPath("test");
+		DummyPaginatedFetchableResource associated = _subject.GetAssociatedDummies("test");
+
+		Assert.Equal(expectedUri, associated.Uri);
+	}
 }

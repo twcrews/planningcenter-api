@@ -1,4 +1,5 @@
 ﻿using Crews.PlanningCenter.Api.Models.Resources;
+using Crews.PlanningCenter.Api.Models.Resources.Querying;
 using Crews.PlanningCenter.Api.Tests.Dummies;
 using Crews.PlanningCenter.Api.Tests.Dummies.Serialized;
 using Crews.PlanningCenter.Api.Utility;
@@ -38,6 +39,14 @@ public class PlanningCenterPaginatedFetchableResourceTests
 		DummyPaginatedFetchableResource subject = new(new("http://localhost/"), new());
 		subject.OrderBy(DummyEnum.ValueWithoutAttribute);
 		Assert.Equal("http://localhost/?order=value_without_attribute", subject.Uri.ToString());
+	}
+
+	[Fact(DisplayName = "OrderBy correctly adds reverse-order parameter when using descending order")]
+	public void OrderBy_CorrectlyAddsDescendingOrderParameter()
+	{
+		DummyPaginatedFetchableResource subject = new(new("http://localhost/"), new());
+		subject.OrderBy(DummyEnum.First, Order.Descending);
+		Assert.Equal("http://localhost/?order=-first_value", subject.Uri.ToString());
 	}
 
 	[Fact]

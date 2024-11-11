@@ -1,4 +1,5 @@
 ﻿using Crews.PlanningCenter.Api.Extensions;
+using Crews.PlanningCenter.Api.Models.Resources.Querying;
 using JsonApiFramework;
 using JsonApiFramework.JsonApi;
 using System.Reflection;
@@ -67,10 +68,11 @@ public abstract class PlanningCenterPaginatedFetchableResource<TResource, TSelf,
 	/// Adds a parameter to the request for ordering the returned resources.
 	/// </summary>
 	/// <param name="orderer">The orderable attribute.</param>
+	/// <param name="order">The sorting method for the <see cref="IOrderable{TSelf, TEnum}"/> items.</param>
 	/// <typeparam name="TEnum">The enumerable associated with the orderable attributes.</typeparam>
 	/// <returns>This same instance of the request for call chaining.</returns>
-	protected TSelf OrderBy<TEnum>(TEnum orderer)
-		=> AddParameters("order", orderer.GetJsonApiName());
+	protected TSelf OrderBy<TEnum>(TEnum orderer, Order order)
+		=> AddParameters("order", (order == Order.Descending ? "-" : "") + orderer.GetJsonApiName());
 
 	/// <summary>
 	/// Adds queries to the request.

@@ -58,6 +58,13 @@ public class PlanningCenterFetchableResourceTests
 		Assert.Equal("http://localhost/?include=first_value,second_value", _subject.Uri.ToString());
 	}
 
+	[Fact(DisplayName = "Include returns snake case enum name when JsonApiName attribute is missing")]
+	public void Include_ReturnsEnumNameByDefault()
+	{
+		_subject.Include(DummyEnum.ValueWithoutAttribute);
+		Assert.Equal("http://localhost/?include=value_without_attribute", _subject.Uri.ToString());
+	}
+
 	[Fact(DisplayName = "AddParameters throws exception when attempting to add duplicate")]
 	public void AddParameters_ThrowsOnDuplicate()
 	{

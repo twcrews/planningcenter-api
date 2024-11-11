@@ -7,7 +7,7 @@
 /// Applies the JSON API name attribute to an element.
 /// </remarks>
 /// <param name="name">The JSON API name of the element.</param>
-[AttributeUsage(AttributeTargets.All)]
+[AttributeUsage(AttributeTargets.All, AllowMultiple = false)]
 public class JsonApiNameAttribute(string name) : Attribute
 {
 	/// <summary>

@@ -3,7 +3,8 @@
 /// <summary>
 /// A collection of resources along with their pagination metadata.
 /// </summary>
-public class PaginatedResourceCollection<T>
+/// <typeparam name="TResource">The represented resource type.</typeparam>
+public class PaginatedResourceCollection<TResource>
 {
 	/// <summary>
 	/// The total number of resources available from the remote source.
@@ -24,5 +25,5 @@ public class PaginatedResourceCollection<T>
 	/// <summary>
 	/// The collection of resources retrieved from the paginated collection.
 	/// </summary>
-	public required IEnumerable<T> Resources { get; init; }
+	public required IEnumerable<TResource> Resources { get; init; }
 }

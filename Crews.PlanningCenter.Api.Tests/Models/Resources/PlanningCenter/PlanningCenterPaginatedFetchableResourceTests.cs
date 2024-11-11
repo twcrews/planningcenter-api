@@ -16,6 +16,14 @@ public class PlanningCenterPaginatedFetchableResourceTests
 		Assert.Equal("http://localhost/?filter=first_value,second_value", subject.Uri.ToString());
 	}
 
+	[Fact(DisplayName = "FilterBy returns snake case enum name when JsonApiName attribute is missing")]
+	public void FilterBy_ReturnsEnumNameByDefault()
+	{
+		DummyPaginatedFetchableResource subject = new(new("http://localhost/"), new());
+		subject.FilterBy(DummyEnum.ValueWithoutAttribute);
+		Assert.Equal("http://localhost/?filter=value_without_attribute", subject.Uri.ToString());
+	}
+
 	[Fact]
 	public void OrderBy_ReturnsExpectedObject()
 	{
@@ -24,12 +32,28 @@ public class PlanningCenterPaginatedFetchableResourceTests
 		Assert.Equal("http://localhost/?order=first_value", subject.Uri.ToString());
 	}
 
+	[Fact(DisplayName = "OrderBy returns snake case enum name when JsonApiName attribute is missing")]
+	public void OrderBy_ReturnsEnumNameByDefault()
+	{
+		DummyPaginatedFetchableResource subject = new(new("http://localhost/"), new());
+		subject.OrderBy(DummyEnum.ValueWithoutAttribute);
+		Assert.Equal("http://localhost/?order=value_without_attribute", subject.Uri.ToString());
+	}
+
 	[Fact]
 	public void Query_ReturnsExpectedObject()
 	{
 		DummyPaginatedFetchableResource subject = new(new("http://localhost/"), new());
 		subject.Query(new(DummyEnum.First, "test1"), new(DummyEnum.Second, "test2"));
 		Assert.Equal("http://localhost/?where[first_value]=test1&where[second_value]=test2", subject.Uri.ToString());
+	}
+
+	[Fact(DisplayName = "Query returns snake case enum name when JsonApiName attribute is missing")]
+	public void Query_ReturnsEnumNameByDefault()
+	{
+		DummyPaginatedFetchableResource subject = new(new("http://localhost/"), new());
+		subject.Query(new KeyValuePair<DummyEnum, string>(DummyEnum.ValueWithoutAttribute, "test3"));
+		Assert.Equal("http://localhost/?where[value_without_attribute]=test3", subject.Uri.ToString());
 	}
 
 	[Fact(DisplayName = "WithID successfully returns the singleton type for the resource")]

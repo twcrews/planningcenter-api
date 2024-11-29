@@ -1,5 +1,5 @@
 using System.Net.Http.Headers;
-using Crews.PlanningCenter.Api.Extensions;
+using Crews.Extensions.Primitives;
 
 namespace Crews.PlanningCenter.Api.Models;
 

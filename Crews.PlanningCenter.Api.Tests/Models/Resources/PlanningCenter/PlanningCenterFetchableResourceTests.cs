@@ -1,5 +1,5 @@
 ﻿using System.Net;
-using Crews.PlanningCenter.Api.Extensions;
+using Crews.Extensions.Http;
 using Crews.PlanningCenter.Api.Models;
 using Crews.PlanningCenter.Api.Tests.Dummies;
 using Crews.PlanningCenter.Api.Tests.Dummies.Serialized;

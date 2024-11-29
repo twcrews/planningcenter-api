@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.0-preview.12] - 2024-11-29
+
+### Changed
+
+- Switch to NuGet packages for some internal extension methods. No functional changes.
+
 ## [1.0.0-preview.11] - 2024-11-11
 
 ### Added
@@ -113,6 +119,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Initial release.
 
+[1.0.0-preview.12]: https://github.com/twcrews/planningcenter-api/compare/1.0.0-preview.11...1.0.0-preview.12
 [1.0.0-preview.11]: https://github.com/twcrews/planningcenter-api/compare/1.0.0-preview.10...1.0.0-preview.11
 [1.0.0-preview.10]: https://github.com/twcrews/planningcenter-api/compare/1.0.0-preview.9...1.0.0-preview.10
 [1.0.0-preview.9]: https://github.com/twcrews/planningcenter-api/compare/1.0.0-preview.8...1.0.0-preview.9

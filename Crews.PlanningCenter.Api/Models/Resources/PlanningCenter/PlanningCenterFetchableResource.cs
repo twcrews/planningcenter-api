@@ -1,6 +1,7 @@
 ﻿using System.Net;
+using Crews.Extensions.Http;
+using Crews.Extensions.Http.Utility;
 using Crews.PlanningCenter.Api.Extensions;
-using Crews.PlanningCenter.Api.Utility;
 using JsonApiFramework.Json;
 using JsonApiFramework.JsonApi;
 using Newtonsoft.Json.Linq;

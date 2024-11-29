@@ -1,8 +1,8 @@
-﻿using Crews.PlanningCenter.Api.Models.Resources;
+﻿using Crews.Extensions.Http.Utility;
+using Crews.PlanningCenter.Api.Models.Resources;
 using Crews.PlanningCenter.Api.Models.Resources.Querying;
 using Crews.PlanningCenter.Api.Tests.Dummies;
 using Crews.PlanningCenter.Api.Tests.Dummies.Serialized;
-using Crews.PlanningCenter.Api.Utility;
 using RichardSzalay.MockHttp;
 
 namespace Crews.PlanningCenter.Api.Tests.Models.Resources.PlanningCenter;

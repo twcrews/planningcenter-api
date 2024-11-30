@@ -10,7 +10,7 @@
 
   <PropertyGroup>
     <PackageId>Crews.PlanningCenter.Api</PackageId>
-    <PackageVersion>1.0.0-preview.12</PackageVersion>
+    <PackageVersion>1.0.0-preview.13</PackageVersion>
     <Authors>Tommy Crews</Authors>
     <Description>
       A library containing basic models and services for interacting with the Planning Center API. In most cases, this
@@ -36,7 +36,7 @@
 
   <ItemGroup>
     <PackageReference Include="Crews.Extensions.Http" Version="1.0.0" />
-    <PackageReference Include="Crews.Extensions.Primitives" Version="1.0.0" />
+    <PackageReference Include="Crews.Extensions.Primitives" Version="1.1.0" />
     <PackageReference Include="JsonApiFramework.Client" Version="2.10.1" />
   </ItemGroup>
 

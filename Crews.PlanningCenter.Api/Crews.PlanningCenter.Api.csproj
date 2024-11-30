@@ -36,7 +36,7 @@
 
   <ItemGroup>
     <PackageReference Include="Crews.Extensions.Http" Version="1.0.0" />
-    <PackageReference Include="Crews.Extensions.Primitives" Version="1.0.0" />
+    <PackageReference Include="Crews.Extensions.Primitives" Version="1.1.0" />
     <PackageReference Include="JsonApiFramework.Client" Version="2.10.1" />
   </ItemGroup>
 

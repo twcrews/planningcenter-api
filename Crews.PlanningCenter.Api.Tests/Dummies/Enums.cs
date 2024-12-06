@@ -1,4 +1,4 @@
-﻿using Crews.PlanningCenter.Api.Attributes;
+﻿using Crews.PlanningCenter.Models;
 
 namespace Crews.PlanningCenter.Api.Tests.Dummies;
 

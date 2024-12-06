@@ -1,4 +1,4 @@
-﻿using Crews.PlanningCenter.Api.Attributes;
+﻿using Crews.PlanningCenter.Models;
 using Crews.PlanningCenter.Api.Conventions;
 
 namespace Crews.PlanningCenter.Api.Extensions;

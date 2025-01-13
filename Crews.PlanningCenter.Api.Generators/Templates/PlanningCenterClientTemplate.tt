@@ -33,6 +33,7 @@ This code is automatically generated. Please do not modify it directly.
 */
 
 using Crews.Extensions.Http;
+using Crews.PlanningCenter.Api.Extensions;
 
 namespace Crews.PlanningCenter.Api.Clients;
 
@@ -48,18 +49,34 @@ public class <#=clientName#>(HttpClient client, Uri? baseUri = null)
 {
   private readonly HttpClient _client = client;
   private readonly Uri _baseUri = baseUri ?? client.BaseAddress ?? throw new InvalidOperationException(
-      "A base URI for the API was not set in either the constructor or the `HttpClient.BaseAddress` property.");
+    "A base URI for the API was not set in either the constructor or the `HttpClient.BaseAddress` property.");
 <#
-    foreach (string versionId in Task.Run(() => service.GetVersionsAsync(productId)).Result)
+    IEnumerable<string> versions = Task.Run(() => service.GetVersionsAsync(productId)).Result;
+    foreach (string versionId in versions)
     {
       string version = $"V{versionId.ToSnakeCase()}";
+      if (versionId == versions.First())
+      {
+#>
+  /// <summary>
+  /// Gets a client for the latest version of the <#=product#> API.
+  /// </summary>
+  public Resources.<#=product#>.<#=version#>.OrganizationResource LatestVersion => <#=version#>;
+<#
+      }
 #>
 
   /// <summary>
   /// Gets a client for version <#=versionId#> of the <#=product#> API.
   /// </summary>
   public Resources.<#=product#>.<#=version#>.OrganizationResource <#=version#>
-    => new(_baseUri.SafelyAppendPath("<#=productId#>/v2"), _client);
+  {
+    get
+    {
+      _client.DefaultRequestHeaders.AddPlanningCenterVersion("<#=versionId#>");
+      return new(_baseUri.SafelyAppendPath("<#=productId#>/v2"), _client);
+    }
+  }
 <#
     }
 #>

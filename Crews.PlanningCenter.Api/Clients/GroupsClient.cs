@@ -5,6 +5,7 @@ This code is automatically generated. Please do not modify it directly.
 */
 
 using Crews.Extensions.Http;
+using Crews.PlanningCenter.Api.Extensions;
 
 namespace Crews.PlanningCenter.Api.Clients;
 
@@ -20,18 +21,34 @@ public class GroupsClient(HttpClient client, Uri? baseUri = null)
 {
   private readonly HttpClient _client = client;
   private readonly Uri _baseUri = baseUri ?? client.BaseAddress ?? throw new InvalidOperationException(
-      "A base URI for the API was not set in either the constructor or the `HttpClient.BaseAddress` property.");
+    "A base URI for the API was not set in either the constructor or the `HttpClient.BaseAddress` property.");
+  /// <summary>
+  /// Gets a client for the latest version of the Groups API.
+  /// </summary>
+  public Resources.Groups.V2023_07_10.OrganizationResource LatestVersion => V2023_07_10;
 
   /// <summary>
   /// Gets a client for version 2023-07-10 of the Groups API.
   /// </summary>
   public Resources.Groups.V2023_07_10.OrganizationResource V2023_07_10
-    => new(_baseUri.SafelyAppendPath("groups/v2"), _client);
+  {
+    get
+    {
+      _client.DefaultRequestHeaders.AddPlanningCenterVersion("2023-07-10");
+      return new(_baseUri.SafelyAppendPath("groups/v2"), _client);
+    }
+  }
 
   /// <summary>
   /// Gets a client for version 2018-08-01 of the Groups API.
   /// </summary>
   public Resources.Groups.V2018_08_01.OrganizationResource V2018_08_01
-    => new(_baseUri.SafelyAppendPath("groups/v2"), _client);
+  {
+    get
+    {
+      _client.DefaultRequestHeaders.AddPlanningCenterVersion("2018-08-01");
+      return new(_baseUri.SafelyAppendPath("groups/v2"), _client);
+    }
+  }
 }
 

@@ -5,8 +5,6 @@ This code is automatically generated. Please do not modify it directly.
 */
 
 using Crews.PlanningCenter.Models.Groups.V2023_07_10.Entities;
-using Crews.PlanningCenter.Models.Groups.V2023_07_10.Parameters;
-using Crews.PlanningCenter.Api.Models.Resources.Querying;
 using Crews.PlanningCenter.Api.Models.Resources;
 
 namespace Crews.PlanningCenter.Api.Resources.Groups.V2023_07_10;

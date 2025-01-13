@@ -4,7 +4,6 @@ using Crews.PlanningCenter.Api.Models.Resources.Querying;
 using JsonApiFramework;
 using JsonApiFramework.JsonApi;
 using System.Reflection;
-using System.Text.Json;
 
 namespace Crews.PlanningCenter.Api.Models.Resources;
 

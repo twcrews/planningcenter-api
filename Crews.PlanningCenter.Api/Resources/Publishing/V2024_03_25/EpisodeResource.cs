@@ -4,7 +4,6 @@ This code is automatically generated. Please do not modify it directly.
 =======================================================================
 */
 
-using Crews.PlanningCenter.Models.Publishing.V2024_03_25.Entities;
 using Crews.PlanningCenter.Models.Publishing.V2024_03_25.Parameters;
 using Crews.PlanningCenter.Api.Models.Resources.Querying;
 using Crews.PlanningCenter.Api.Models.Resources;

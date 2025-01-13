@@ -1,5 +1,5 @@
 ﻿using Crews.Extensions.Http.Utility;
-using Crews.PlanningCenter.Api.Models.Resources;
+using Crews.PlanningCenter.Api.Models;
 using Crews.PlanningCenter.Api.Models.Resources.Querying;
 using Crews.PlanningCenter.Api.Tests.Dummies;
 using Crews.PlanningCenter.Api.Tests.Dummies.Serialized;
@@ -84,9 +84,9 @@ public class PlanningCenterPaginatedFetchableResourceTests
 		handler.When("http://localhost/resources").Respond("application/json", responseJson);
 
 		DummyPaginatedFetchableResource subject = new(new("http://localhost/resources"), client);
-		PaginatedResourceCollection<DummyResource> result = await subject.GetAllAsync();
-		Assert.Equal(totalCount, result.TotalCount);
-		Assert.Equal(28, result.Resources.First().Age);
+		JsonApiCollectionResponse<DummyResource> result = await subject.GetAllAsync();
+		Assert.Equal(totalCount, result.Data.TotalCount);
+		Assert.Equal(28, result.Data.Resources.First().Age);
 	}
 
 	[Fact(DisplayName = "GetAllAsync with custom count adds correct parameters to request")]

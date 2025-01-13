@@ -72,16 +72,17 @@ public class PlanningCenterFetchableResourceTests
 		Assert.Throws<ArgumentException>(() => _subject.AddParameters("key", "value3"));
 	}
 
-	[Fact(DisplayName = "FetchDocumentAsync returns Document object")]
-	public async Task FetchDocumentAsync_ReturnsExpectedObject()
+	[Fact(DisplayName = "GetDocumentAsync returns Document object")]
+	public async Task GetDocumentAsync_ReturnsExpectedObject()
 	{
-		Document? document = await _subject.FetchDocumentAsync(new() { RequestUri = new("http://localhost/") });
+		Document? document = await _subject.GetDocumentAsync(
+			await _client.SendAsync(new() { RequestUri = new("http://localhost/") }));
 		if (document == null) Assert.Fail("Document object was null.");
 
 		using DummyContext context = new(document);
 
 		Meta documentMeta = context.GetDocumentMeta();
-		PlanningCenterMetadata metaData = documentMeta.GetData<PlanningCenterMetadata>();
+		JsonApiMetadata metaData = documentMeta.GetData<JsonApiMetadata>();
 		
 		Links documentLinks = context.GetDocumentLinks();
 		Link selfLink = documentLinks.Single(l => l.Key == "self").Value;
@@ -95,42 +96,32 @@ public class PlanningCenterFetchableResourceTests
 		Assert.Equal("Tommy", firstResource.Name);
 	}
 
-	[Fact(DisplayName = "FetchDocumentAsync throws correct exception when document contains single error")]
-	public Task FetchDocumentAsync_SingleErrorThrowsHttpRequestException()
-		=> Assert.ThrowsAsync<HttpRequestException>(() => _subject.FetchDocumentAsync(new() 
+	[Fact(DisplayName = "GetDocumentAsync throws correct exception when document contains single error")]
+	public Task GetDocumentAsync_SingleErrorThrowsHttpRequestException()
+		=> Assert.ThrowsAsync<HttpRequestException>(async () => await _subject.GetDocumentAsync(await _client.SendAsync(new() 
 		{ 
 			RequestUri = new("http://localhost/error") 
-		}));
+		})));
 
-	[Fact(DisplayName = "FetchDocumentAsync throws correct exception when document contains multiple errors")]
-	public Task FetchDocumentAsync_MultipleErrorsThrowAggregateException()
-		=> Assert.ThrowsAsync<AggregateException>(() => _subject.FetchDocumentAsync(new() 
+	[Fact(DisplayName = "GetDocumentAsync throws correct exception when document contains multiple errors")]
+	public Task GetDocumentAsync_MultipleErrorsThrowAggregateException()
+		=> Assert.ThrowsAsync<AggregateException>(async () => await _subject.GetDocumentAsync(await _client.SendAsync(new() 
 		{ 
 			RequestUri = new("http://localhost/errorCollection") 
-		}));
+		})));
 
-	[Fact(DisplayName = "FetchDocumentAsync throws correct exception when document is not in a valid format")]
-	public Task FetchDocumentAsync_InvalidDocumentThrowsFormatException()
-		=> Assert.ThrowsAsync<FormatException>(() => _subject.FetchDocumentAsync(new()
+	[Fact(DisplayName = "GetDocumentAsync throws correct exception when document is not in a valid format")]
+	public Task GetDocumentAsync_InvalidDocumentThrowsFormatException()
+		=> Assert.ThrowsAsync<FormatException>(async () => await _subject.GetDocumentAsync(await _client.SendAsync(new()
 		{
 			RequestUri = new("http://localhost/invalid")
-		}));
+		})));
 
-	[Fact(DisplayName = "GetNamedAssociated returns new resource instance with correct path appended to URI")]
-	public void GetNamedAssociated_ReturnsResourceWithCorrectUri()
+	[Fact(DisplayName = "GetRelated returns new resource instance with correct path appended to URI")]
+	public void GetRelated_ReturnsResourceWithCorrectUri()
 	{
-		Uri expectedUri = _subject.Uri.SafelyAppendPath(DummySingletonFetchableResource.ApiName);
+		Uri expectedUri = _subject.Uri.SafelyAppendPath("dummy");
 		DummySingletonFetchableResource associated = _subject.Dummy;
-
-		Assert.Equal(expectedUri, associated.Uri);
-	}
-
-	[Fact(DisplayName = "GetAssociated returns new resource instance with custom path appended to URI")]
-	public void GetAssociated_ReturnsResourceWithCustomUri()
-	{
-		_subject.DummiesName = "dummies";
-		Uri expectedUri = _subject.Uri.SafelyAppendPath(_subject.DummiesName);
-		DummyPaginatedFetchableResource associated = _subject.Dummies;
 
 		Assert.Equal(expectedUri, associated.Uri);
 	}

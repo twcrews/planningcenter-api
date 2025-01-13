@@ -6,17 +6,17 @@ namespace Crews.PlanningCenter.Api.Models;
 /// <summary>
 /// Represents a developer personal access token for the Planning Center API.
 /// </summary>
-public class PlanningCenterPersonalAccessToken
+public readonly struct PlanningCenterPersonalAccessToken
 {
 	/// <summary>
 	/// The App ID component of the personal access token.
 	/// </summary>
-	public required string AppID { get; set; }
+	public required string AppID { get; init; }
 
 	/// <summary>
 	/// The Secret component of the personal access token.
 	/// </summary>
-	public required string Secret { get; set; }
+	public required string Secret { get; init; }
 
 	/// <summary>
 	/// Implicitly converts the current <see cref="PlanningCenterPersonalAccessToken"/> instance to an

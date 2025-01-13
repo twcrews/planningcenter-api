@@ -10,5 +10,5 @@ public interface ISingletonFetchableResource<TResource>
 	/// Retrieves the resource.
 	/// </summary>
 	/// <returns>The task object representing the asynchronous operation.</returns>
-	Task<TResource?> GetAsync();
+	Task<JsonApiSingletonResponse<TResource>> GetAsync();
 }

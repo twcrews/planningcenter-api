@@ -1,0 +1,83 @@
+<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ output extension="/" #>
+<#@ assembly name="/workspaces/planningcenter-api/Crews.PlanningCenter.Api/bin/Debug/net8.0/Crews.PlanningCenter.Api.dll" #>
+<#@ assembly name="/workspaces/planningcenter-api/Crews.PlanningCenter.Api.Generators/bin/Debug/net8.0/Crews.PlanningCenter.Api.Generators.dll" #>
+<#@ assembly name="/home/vscode/.nuget/packages/crews.extensions.http/1.0.0/lib/net8.0/Crews.Extensions.Http.dll" #>
+<#@ assembly name="/home/vscode/.nuget/packages/crews.extensions.primitives/1.1.0/lib/net8.0/Crews.Extensions.Primitives.dll" #>
+<#@ assembly name="/home/vscode/.nuget/packages/crews.planningcenter.models/1.0.0/lib/net8.0/Crews.PlanningCenter.Models.dll" #>
+<#@ assembly name="/home/vscode/.nuget/packages/humanizer.core/2.14.1/lib/net6.0/Humanizer.dll"#>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Threading.Tasks" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="Crews.Extensions.Primitives" #>
+<#@ import namespace="Crews.PlanningCenter.Models.Calendar.V2018_08_01.Entities" #>
+<#@ import namespace="Crews.PlanningCenter.Api.Generators.Services" #>
+<#@ import namespace="Crews.PlanningCenter.Api.Generators.Extensions" #>
+<#@ import namespace="Crews.PlanningCenter.Api.Generators.Models" #>
+<#
+  PlanningCenterApiReferenceService service = new(new()
+    {
+      BaseAddress = new("https://api.planningcenteronline.com/")
+    });
+
+  foreach (string productId in PlanningCenterApiReferenceService.Products)
+  {
+    string product = productId.ToPascalCase();
+    string clientName = $"{product}Client";
+#>
+/*
+=======================================================================
+This code is automatically generated. Please do not modify it directly.
+=======================================================================
+*/
+
+using Crews.Extensions.Http;
+
+namespace Crews.PlanningCenter.Api.Clients;
+
+/// <summary>
+/// Service for interacting with Planning Center <#=product#> APIs.
+/// </summary>
+/// <param name="client">The <see cref="HttpClient"/> used to send requests.</param>
+/// <param name="baseUri">
+/// An optional base <see cref="Uri"/> to use for the API address. If omitted,
+/// <see cref="HttpClient.BaseAddress"/> is used instead. If this is also not set, an exception is thrown. 
+/// </param>
+public class <#=clientName#>(HttpClient client, Uri? baseUri = null)
+{
+  private readonly HttpClient _client = client;
+  private readonly Uri _baseUri = baseUri ?? client.BaseAddress ?? throw new InvalidOperationException(
+      "A base URI for the API was not set in either the constructor or the `HttpClient.BaseAddress` property.");
+<#
+    foreach (string versionId in Task.Run(() => service.GetVersionsAsync(productId)).Result)
+    {
+      string version = $"V{versionId.ToSnakeCase()}";
+#>
+
+  /// <summary>
+  /// Gets a client for version <#=versionId#> of the <#=product#> API.
+  /// </summary>
+  public Resources.<#=product#>.<#=version#>.OrganizationResource <#=version#>
+    => new(_baseUri.SafelyAppendPath("<#=productId#>/v2"), _client);
+<#
+    }
+#>
+}
+
+<#
+    SaveOutputToSubFolder("../../Crews.PlanningCenter.Api/Clients", $"{clientName}.cs");
+  }
+#>
+
+<#+
+private void SaveOutputToSubFolder(string folderName, string outputFileName) {
+  string templateDirectory = Path.GetDirectoryName(Host.TemplateFile);
+  string newDirectoryName = Path.Combine(templateDirectory,folderName);
+  if(!Directory.Exists(newDirectoryName))
+    Directory.CreateDirectory(newDirectoryName);
+  string outputFilePath = Path.Combine(newDirectoryName, outputFileName);
+  File.WriteAllText(outputFilePath, this.GenerationEnvironment.ToString()); 
+  this.GenerationEnvironment.Clear();
+}
+#>

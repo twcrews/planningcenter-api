@@ -1,0 +1,179 @@
+<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ output extension="/" #>
+<#@ assembly name="/workspaces/planningcenter-api/Crews.PlanningCenter.Api/bin/Debug/net8.0/Crews.PlanningCenter.Api.dll" #>
+<#@ assembly name="/workspaces/planningcenter-api/Crews.PlanningCenter.Api.Generators/bin/Debug/net8.0/Crews.PlanningCenter.Api.Generators.dll" #>
+<#@ assembly name="/home/vscode/.nuget/packages/crews.extensions.http/1.0.0/lib/net8.0/Crews.Extensions.Http.dll" #>
+<#@ assembly name="/home/vscode/.nuget/packages/crews.extensions.primitives/1.1.0/lib/net8.0/Crews.Extensions.Primitives.dll" #>
+<#@ assembly name="/home/vscode/.nuget/packages/crews.planningcenter.models/1.0.0/lib/net8.0/Crews.PlanningCenter.Models.dll" #>
+<#@ assembly name="/home/vscode/.nuget/packages/humanizer.core/2.14.1/lib/net6.0/Humanizer.dll"#>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Threading.Tasks" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="Crews.Extensions.Primitives" #>
+<#@ import namespace="Crews.PlanningCenter.Models.Calendar.V2018_08_01.Entities" #>
+<#@ import namespace="Crews.PlanningCenter.Api.Generators.Services" #>
+<#@ import namespace="Crews.PlanningCenter.Api.Generators.Extensions" #>
+<#@ import namespace="Crews.PlanningCenter.Api.Generators.Models" #>
+<#
+  PlanningCenterApiReferenceService service = new(new()
+    {
+      BaseAddress = new("https://api.planningcenteronline.com/")
+    });
+
+  foreach (string productId in PlanningCenterApiReferenceService.Products)
+  {
+    string product = productId.ToPascalCase();
+    string contextName = $"{product}DocumentContext";
+    foreach (string versionId in Task.Run(() => service.GetVersionsAsync(productId)).Result)
+    {
+      string version = $"V{versionId.ToSnakeCase()}";
+      IEnumerable<PlanningCenterResource> resources = Task.Run(() => service.GetResourcesAsync(productId, versionId)).Result;
+
+      foreach (PlanningCenterResource resource in resources)
+      {
+        bool hasIncludables = resource.HasIncludables();
+        bool hasOrderables = resource.HasOrderables();
+        bool hasQueryables = resource.HasQueryables();
+        string resourceName = $"{resource.EntityClrType.Name}Resource";
+        string collectionName = $"{resourceName}Collection";
+#>
+/*
+=======================================================================
+This code is automatically generated. Please do not modify it directly.
+=======================================================================
+*/
+
+using Crews.PlanningCenter.Models.<#=product#>.<#=version#>.Entities;
+using Crews.PlanningCenter.Models.<#=product#>.<#=version#>.Parameters;
+using Crews.PlanningCenter.Api.Models.Resources.Querying;
+using Crews.PlanningCenter.Api.Models.Resources;
+
+namespace Crews.PlanningCenter.Api.Resources.<#=product#>.<#=version#>;
+
+<#=$"A fetchable {product} {resource.EntityClrType.Name} resource.".ToXmlDocSummary()#>
+public class <#=resourceName#>
+  : PlanningCenterSingletonFetchableResource<<#=resource.EntityClrType.Name#>, <#=resourceName#>, <#=contextName#>><#=hasIncludables ? "," : ""#>
+<#
+        if (hasIncludables)
+        {
+#>
+  IIncludable<<#=resourceName#>, <#=resource.EntityClrType.Name#>Includable>
+<#
+        }
+#>
+{
+<#
+        foreach (PlanningCenterResourceVertex vertex in resource.OutboundVertices)
+        {
+          string vertexTypeName = 
+            $"{vertex.Resource.EntityClrType.Name}Resource{(vertex.IsCollection ? "Collection" : "")}";
+#>
+
+<#=$"The related <see cref=\"{vertexTypeName}\" />.".ToXmlDocSummary(indentSpaces: 2)#>
+  public <#=vertexTypeName#> <#=vertex.Name.ToPascalCase()#> => GetRelated<<#=vertexTypeName#>>("<#=vertex.Name#>");
+<#
+        }
+#>
+
+  internal <#=resourceName#>(Uri uri, HttpClient client) : base(uri, client) { }
+<#
+        if (hasIncludables)
+        {
+#>
+
+	/// <inheritdoc />
+	public <#=resourceName#> Include(params <#=resource.EntityClrType.Name#>Includable[] included) 
+    => base.Include(included);
+<#
+        }
+#>
+}
+
+<#
+        if (resource.EntityClrType.Name != "Organization")
+        {
+#>
+<#=$"A fetchable collection of {product} {resource.EntityClrType.Name} resources.".ToXmlDocSummary()#>
+public class <#=collectionName#>
+  : PlanningCenterPaginatedFetchableResource<<#=resource.EntityClrType.Name#>, <#=collectionName#>, <#=resourceName#>, <#=contextName#>><#=(hasIncludables || hasOrderables || hasQueryables) ? "," : ""#>
+<#
+          if (hasIncludables)
+          {
+#>
+  IIncludable<<#=collectionName#>, <#=resource.EntityClrType.Name#>Includable><#=(hasOrderables || hasQueryables) ? "," : ""#>
+<#
+          }
+
+          if (hasOrderables)
+          {
+#>
+  IOrderable<<#=collectionName#>, <#=resource.EntityClrType.Name#>Orderable><#=hasQueryables ? "," : ""#>
+<#
+          }
+
+          if (hasQueryables)
+          {
+#>
+  IQueryable<<#=collectionName#>, <#=resource.EntityClrType.Name#>Queryable>
+<#
+          }
+#>
+{
+  internal <#=collectionName#>(Uri uri, HttpClient client) : base(uri, client) { }
+<#
+          if (hasIncludables)
+          {
+#>
+
+  /// <inheritdoc />
+  public <#=collectionName#> Include(params <#=resource.EntityClrType.Name#>Includable[] included)
+    => base.Include(included);
+<#
+          }
+
+          if (hasOrderables)
+          {
+#>
+
+  /// <inheritdoc />
+  public <#=collectionName#> OrderBy(<#=resource.EntityClrType.Name#>Orderable orderer, Order order = Order.Ascending)
+    => base.OrderBy(orderer, order);
+<#
+          }
+
+          if (hasQueryables)
+          {
+#>
+
+  /// <inheritdoc />
+  public <#=collectionName#> Query(params KeyValuePair<<#=resource.EntityClrType.Name#>Queryable, string>[] queries)
+    => base.Query(queries);
+<#
+          }
+#>
+}
+<#
+        }
+#>
+
+<#
+        SaveOutputToSubFolder(
+          "../../Crews.PlanningCenter.Api/Resources/" +
+          $"{product}/{version}",
+          $"{resource.EntityClrType.Name}.cs");
+      }
+    }
+  }
+#>
+<#+
+private void SaveOutputToSubFolder(string folderName, string outputFileName) {
+  string templateDirectory = Path.GetDirectoryName(Host.TemplateFile);
+  string newDirectoryName = Path.Combine(templateDirectory,folderName);
+  if(!Directory.Exists(newDirectoryName))
+    Directory.CreateDirectory(newDirectoryName);
+  string outputFilePath = Path.Combine(newDirectoryName, outputFileName);
+  File.WriteAllText(outputFilePath, this.GenerationEnvironment.ToString()); 
+  this.GenerationEnvironment.Clear();
+}
+#>

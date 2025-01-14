@@ -107,24 +107,6 @@ var patchResult = await myEventConnection.PatchAsync(newConnection); // PATCH
 await myEventConnection.DeleteAsync();                               // DELETE
 ```
 
-## Local Development
-
-To use this project locally (build from source):
-
-1. Clone the repo
-2. Install `dotnet-t4`:
-```sh
-dotnet tool install --global dotnet-t4
-```
-3. Generate source files:
-```sh
-bash Crews.PlanningCenter.Api.Generators/generator.sh
-```
-4. Finally, build the project:
-```sh
-dotnet build Crews.PlanningCenter.Api
-```
-
 ***
 
 > S.D.G.

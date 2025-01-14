@@ -1,4 +1,4 @@
-﻿using System.Reflection;
+using System.Reflection;
 using System.Text;
 using JsonApiFramework;
 using JsonApiFramework.JsonApi;
@@ -90,7 +90,8 @@ public abstract class PlanningCenterSingletonFetchableResource<TResource, TSelf,
 		{
 			Data = data,
 			Metadata = context.GetDocumentMeta()?.GetData<JsonApiMetadata>(),
-			RawResponse = response
+			RawResponse = response,
+			JsonApiDocument = document
 		};
 	}
 }

@@ -1,4 +1,5 @@
 using Crews.PlanningCenter.Api.Models.Resources;
+using JsonApiFramework.JsonApi;
 
 namespace Crews.PlanningCenter.Api.Models;
 
@@ -16,6 +17,11 @@ public abstract class JsonApiResponse
 	/// The original, unmodified HTTP response.
 	/// </summary>
 	public required HttpResponseMessage RawResponse { get; init; }
+
+	/// <summary>
+	/// The JSON API document constructed from the response.
+	/// </summary>
+	public Document? JsonApiDocument { get; init; }
 }
 
 /// <summary>
@@ -35,7 +41,7 @@ public class JsonApiSingletonResponse<T> : JsonApiResponse
 /// </summary>
 /// <typeparam name="T">The type of data returned.</typeparam>
 public class JsonApiCollectionResponse<T> : JsonApiResponse
-{
+{	
 	/// <summary>
 	/// The data content of the collection.
 	/// </summary>

@@ -1,4 +1,4 @@
-using Crews.Extensions.Http;
+﻿using Crews.Extensions.Http;
 using Crews.PlanningCenter.Api.Extensions;
 using Crews.PlanningCenter.Api.Models.Resources.Querying;
 using JsonApiFramework;
@@ -35,7 +35,8 @@ public abstract class PlanningCenterPaginatedFetchableResource<TResource, TSelf,
 		{
 			Data = context.GetResourceCollection<TResource>(),
 			Metadata = metadata,
-			RawResponse = response
+			RawResponse = response,
+			JsonApiDocument = document
 		};
 	}
 

@@ -1,4 +1,5 @@
 using System.Net;
+using Crews.PlanningCenter.Api.Models;
 using Crews.PlanningCenter.Api.Tests.Dummies;
 using Crews.PlanningCenter.Api.Tests.Dummies.Serialized;
 using JsonApiFramework.JsonApi;
@@ -23,10 +24,10 @@ public class PlanningCenterSingletonFetchableResourceTests
 	public async Task GetAsync_GetsExpectedObject()
 	{
 		DummySingletonFetchableResource subject = new(new("http://localhost/"), _client);
-		DummyResource? resource = await subject.GetAsync();
-		Assert.Equal("123abc", resource?.ID);
-		Assert.Equal("Tommy", resource?.Name);
-		Assert.Equal(28, resource?.Age);
+		JsonApiSingletonResponse<DummyResource> resource = await subject.GetAsync();
+		Assert.Equal("123abc", resource.Data?.ID);
+		Assert.Equal("Tommy", resource.Data?.Name);
+		Assert.Equal(28, resource.Data?.Age);
 	}
 
 	[Fact(DisplayName = "PostAsync sends correct request content")]

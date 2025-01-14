@@ -13,6 +13,13 @@
                 <ModulePath>.*Crews.PlanningCenter.Api.dll</ModulePath>
               </Include>
             </ModulePaths>
+            <Sources>
+              <Exclude>
+                <Source>.*\\Crews.PlanningCenter.Api\\Clients\\.*</Source>
+                <Source>.*\\Crews.PlanningCenter.Api\\Resources\\.*</Source>
+                <Source>.*\\Crews.PlanningCenter.Api\\Extensions\\HttpHeadersExtensions.cs</Source>
+              </Exclude>
+            </Sources>
           </CodeCoverage>
         </Configuration>
       </DataCollector>

@@ -12,5 +12,5 @@ public interface IQueryable<TSelf, TEnum>
 	/// </summary>
 	/// <param name="queries">A list of queries.</param>
 	/// <returns>An instance of T.</returns>
-	TSelf Query(params KeyValuePair<TEnum, string>[] queries);
+	TSelf Query(params (TEnum, string)[] queries);
 }

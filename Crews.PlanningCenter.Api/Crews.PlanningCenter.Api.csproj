@@ -10,12 +10,10 @@
 
   <PropertyGroup>
     <PackageId>Crews.PlanningCenter.Api</PackageId>
-    <PackageVersion>1.0.0-preview.14</PackageVersion>
+    <PackageVersion>1.0.0</PackageVersion>
     <Authors>Tommy Crews</Authors>
     <Description>
-      A library containing basic models and services for interacting with the Planning Center API. In most cases, this
-      library should not be used directly. Instead, look for product-specific libraries that depend on this package,
-      or consider authoring your own!
+      A library containing basic models and services for interacting with the Planning Center API.
     </Description>
     <PackageProjectUrl>https://github.com/twcrews/planningcenter-api</PackageProjectUrl>
     <PackageIcon>icon.png</PackageIcon>

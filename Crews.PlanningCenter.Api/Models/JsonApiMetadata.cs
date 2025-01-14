@@ -4,12 +4,12 @@ using Newtonsoft.Json;
 namespace Crews.PlanningCenter.Api.Models;
 
 /// <summary> 
-/// Represents metadata returned in a Planning Center API response. 
+/// Represents metadata returned in a JSON API response. 
 /// </summary> 
-public class PlanningCenterMetadata
+public class JsonApiMetadata
 {
 	/// <summary> 
-	/// Names of Planning Center data object types that can be included in the API response. 
+	/// Names of JSON data object types that can be included in the API response. 
 	/// </summary> 
 	[JsonProperty("can_include")] 
 	public IEnumerable<string> CanInclude { get; init; } = []; 
@@ -66,9 +66,9 @@ public class PlanningCenterMetadata
 	public Page? Prev { get; init; } 
  
 	/// <summary> 
-	/// Represents a page in a Planning Center API responses containing a paginated collection of data objects. 
+	/// Represents a page in a JSON API responses containing a paginated collection of data objects. 
 	/// </summary> 
-	public class Page { 
+	public readonly struct Page { 
 		/// <summary> 
 		/// The index of the start of the page. 
 		/// </summary> 

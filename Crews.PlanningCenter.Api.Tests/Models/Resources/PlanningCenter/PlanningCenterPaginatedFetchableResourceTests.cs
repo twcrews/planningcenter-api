@@ -1,5 +1,5 @@
 ﻿using Crews.Extensions.Http.Utility;
-using Crews.PlanningCenter.Api.Models.Resources;
+using Crews.PlanningCenter.Api.Models;
 using Crews.PlanningCenter.Api.Models.Resources.Querying;
 using Crews.PlanningCenter.Api.Tests.Dummies;
 using Crews.PlanningCenter.Api.Tests.Dummies.Serialized;
@@ -61,7 +61,7 @@ public class PlanningCenterPaginatedFetchableResourceTests
 	public void Query_ReturnsEnumNameByDefault()
 	{
 		DummyPaginatedFetchableResource subject = new(new("http://localhost/"), new());
-		subject.Query(new KeyValuePair<DummyEnum, string>(DummyEnum.ValueWithoutAttribute, "test3"));
+		subject.Query((DummyEnum.ValueWithoutAttribute, "test3"));
 		Assert.Equal("http://localhost/?where[value_without_attribute]=test3", subject.Uri.ToString());
 	}
 
@@ -75,8 +75,8 @@ public class PlanningCenterPaginatedFetchableResourceTests
 
 	[Theory(DisplayName = "GetAllAsync returns correct resource collection")]
 	[InlineData(Serialized.DummyRootCollectionObject, 8)]
-	[InlineData(Serialized.DummyRootCollectionNoMetaObject, 0)]
-	public async Task GetAllAsync_GetsResourceCollection(string responseJson, int totalCount)
+	[InlineData(Serialized.DummyRootCollectionNoMetaObject, null)]
+	public async Task GetAllAsync_GetsResourceCollection(string responseJson, int? totalCount)
 	{
 		MockHttpMessageHandler handler = new();
 		HttpClient client = new(handler);
@@ -84,9 +84,9 @@ public class PlanningCenterPaginatedFetchableResourceTests
 		handler.When("http://localhost/resources").Respond("application/json", responseJson);
 
 		DummyPaginatedFetchableResource subject = new(new("http://localhost/resources"), client);
-		PaginatedResourceCollection<DummyResource> result = await subject.GetAllAsync();
-		Assert.Equal(totalCount, result.TotalCount);
-		Assert.Equal(28, result.Resources.First().Age);
+		JsonApiCollectionResponse<DummyResource> result = await subject.GetAllAsync();
+		Assert.Equal(totalCount, result.Metadata?.TotalCount);
+		Assert.Equal(28, result.Data.First().Age);
 	}
 
 	[Fact(DisplayName = "GetAllAsync with custom count adds correct parameters to request")]

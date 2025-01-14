@@ -1,4 +1,4 @@
-﻿namespace Crews.PlanningCenter.Api.Models.Resources.PlanningCenter;
+﻿namespace Crews.PlanningCenter.Api.Models.Resources;
 
 /// <summary>
 /// Represents any resource on the Planning Center API.

@@ -3,11 +3,10 @@
 A client library for the Planning Center API built on the 
 [JSON:API Framework](https://github.com/scott-mcdonald/JsonApiFramework).
 
-> [!NOTE]
-> This is a "scaffolding library" that consists mostly of abstract members and interfaces. It is intended to be 
-> implemented as a dependency in the development of higher level Planning Center API clients.
-
 ## Installation
+
+> [!TIP]
+> Using dependency injection? Check out the [Crews.PlanningCenter.DependencyInjection](https://www.nuget.org/packages/Crews.PlanningCenter.DependencyInjection/) package instead!
 
 `Crews.PlanningCenter.Api` is available on [NuGet](https://www.nuget.org/packages/Crews.PlanningCenter.Api):
 
@@ -15,48 +14,117 @@ A client library for the Planning Center API built on the
 dotnet add package Crews.PlanningCenter.Api
 ```
 
-## Basic Usage
+## Usage
 
-1. Create a document context derived from `PlanningCenterDocumentContext`:
+Start by creating an `HttpClient` instance with a Planning Center API base address:
 
 ```cs
-class MyContext : PlanningCenterDocumentContext
+using Crews.Extensions.Http;
+using Crews.PlanningCenter.Api.Clients;
+
+HttpClient client = new();
+client.SafelySetBaseAddress(new("https://api.planningcenteronline.com"));
+```
+
+Use this `HttpClient` to create a new API client of your choice, and you're off to the races!
+
+```cs
+CalendarClient calendar = new(client);
+
+var myEvent = await calendar.LatestVersion.Events.WithID("123").GetAsync();
+Console.WriteLine($"My event is called {myEvent.Data.Name}!");
+```
+
+### Fluent API Example
+
+You can chain API resource calls to navigate the API:
+
+```cs
+var myEvent = await calendar.LatestVersion
+	.Events
+	.WithID("123")
+	.Owner
+	.EventResourceRequests
+	.WithID("456")
+	.ResourceBookings
+	.WithID("789")
+	.EventInstance
+	.Event
+	.GetAsync();
+```
+
+### Querying Example
+
+You can easily _include_ related resources, or _sort_ and _query_ collections:
+
+```cs
+var myAttachments = await calendar.LatestVersion.Attachments
+	.Include(AttachmentIncludable.Event)
+	.OrderBy(AttachmentOrderable.FileSize, Order.Descending)
+	.Query((AttachmentQueryable.Name, "myAttachment"), (AttachmentQueryable.Description, "The best attachment."))
+	.GetAllAsync();
+
+// Reading included resources must be done manually.
+var includedResources = myAttachments.JsonApiDocument.GetIncludedResources();
+```
+
+### Pagination Example
+
+You can specify a count and an offset for collections of resources:
+
+```cs
+var myAttachments = await calendar.LatestVersion.Attachments.GetAllAsync();
+
+Console.WriteLine(myAttachments.Metadata.TotalCount);  // Get total count of items available on the API
+Console.WriteLine(myAttachments.Metadata.Next.Offset);  // Get item offset for next page of items
+
+// Get only first five items
+myAttachments = await calendar.LatestVersion.Attachments.GetAllAsync(count: 5);
+
+// Get ten items, offset by five items
+myAttachments = await calendar.LatestVersion.Attachments.GetAllAsync(count: 10, offset: 5);
+```
+
+### Mutation Example
+
+You can also `POST`, `PATCH`, and `DELETE` resources with these options:
+
+```cs
+var myEventConnection = calendar.LatestVersion
+	.Events
+	.WithID("123")
+	.EventConnections
+	.WithID("456");
+
+EventConnection newConnection = new()
 {
-	// Add any conventions or other context settings supported by the JSON:API Framework
-}
+	ConectedToId = "123",
+	ConnectedToName = "Test"
+};
+
+var postResult = await myEventConnection.PostAsync(newConnection);   // POST
+var patchResult = await myEventConnection.PatchAsync(newConnection); // PATCH
+await myEventConnection.DeleteAsync();                               // DELETE
 ```
 
-2. Create a resource POCO type:
+## Local Development
 
-```cs
-class MyResource
-{
-	public string? FavoriteColor { get; set; }
-	public int FavoriteNumber { get; set; }
-}
+To use this project locally (build from source):
+
+1. Clone the repo
+2. Install `dotnet-t4`:
+```sh
+dotnet tool install --global dotnet-t4
+```
+3. Generate source files:
+```sh
+bash Crews.PlanningCenter.Api.Generators/generator.sh
+```
+4. Finally, build the project:
+```sh
+dotnet build Crews.PlanningCenter.Api
 ```
 
-3. Create a fetchable resource wrapper:
+***
 
-```cs
-class MyFetchableResource : PlanningCenterSingletonFetchableResource<MyResource, MyFetchableResource, MyContext>
-{
-	private static readonly Uri _resourceUri = new("https://api-url.com/path/to/resource");
-
-	// The following is for example only; do not use HttpClient like this.
-	private static readonly HttpClient _client = new();
-
-	public MyFetchableResource() : base(_resourceUri, _client) { }
-
-	// Optionally implement POST and PATCH members, if your resource supports them.
-	public new Task<MyResource?> PostAsync(MyResource resource) => base.PostAsync(resource);
-	public new Task<MyResource?> PatchAsync(MyResource resource) => base.PatchAsync(resource);
-}
-```
-
-4. Fetch your resource!
-
-```cs
-MyFetchableResource fetchableResource = new();
-MyResource resource = await fetchableResource.GetAsync();
-```
+> S.D.G.

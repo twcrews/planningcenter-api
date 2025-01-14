@@ -5,7 +5,7 @@ using JsonApiFramework;
 using JsonApiFramework.JsonApi;
 using System.Reflection;
 
-namespace Crews.PlanningCenter.Api.Models.Resources.PlanningCenter;
+namespace Crews.PlanningCenter.Api.Models.Resources;
 
 /// <inheritdoc />
 public abstract class PlanningCenterPaginatedFetchableResource<TResource, TSelf, TSingleton, TContext>(
@@ -17,49 +17,51 @@ public abstract class PlanningCenterPaginatedFetchableResource<TResource, TSelf,
 	where TResource : class
 {
 	/// <inheritdoc />
-	public async Task<PaginatedResourceCollection<TResource>> GetAllAsync()
+	public async Task<JsonApiCollectionResponse<TResource>> GetAllAsync()
 	{
-		Document? document = await FetchDocumentAsync(new() { RequestUri = Uri });
-		if (document == null) return new() { Resources = [] };
+		HttpResponseMessage response = await Client.SendAsync(new() { RequestUri = Uri });
+		Document? document = await GetDocumentAsync(response);
+
+		if (document == null) return new() { RawResponse = response };
 
 		TContext context = (TContext)Activator.CreateInstance(
-			typeof(TContext), 
+			typeof(TContext),
 			BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance,
 			default,
 			[document],
 			default)!;
-		PlanningCenterMetadata? metadata = context.GetDocumentMeta()?.GetData<PlanningCenterMetadata>();
+		JsonApiMetadata? metadata = context.GetDocumentMeta()?.GetData<JsonApiMetadata>();
 		return new()
 		{
-			NextPageOffset = metadata?.Next?.Offset ?? default,
-			PreviousPageOffset = metadata?.Prev?.Offset ?? default,
-			TotalCount = metadata?.TotalCount ?? default,
-			Resources = context.GetResourceCollection<TResource>()
+			Data = context.GetResourceCollection<TResource>(),
+			Metadata = metadata,
+			RawResponse = response,
+			JsonApiDocument = document
 		};
 	}
 
 	/// <inheritdoc />
-	public Task<PaginatedResourceCollection<TResource>> GetAllAsync(int count)
+	public Task<JsonApiCollectionResponse<TResource>> GetAllAsync(int count)
 	{
 		AddParameters("per_page", $"{count}");
 		return GetAllAsync();
 	}
 
 	/// <inheritdoc />
-	public Task<PaginatedResourceCollection<TResource>> GetAllAsync(int count, int offset)
+	public Task<JsonApiCollectionResponse<TResource>> GetAllAsync(int count, int offset)
 	{
 		AddParameters("offset", $"{offset}");
 		return GetAllAsync(count);
 	}
-	
+
 	/// <summary>
 	/// Retrieves a singleton fetchable resource with the given ID.
 	/// </summary>
 	/// <param name="id">The ID of the resource.</param>
 	/// <returns>A singleton fetchable resource.</returns>
-	public TSingleton WithID(string id) 
+	public TSingleton WithID(string id)
 		=> (TSingleton)Activator.CreateInstance(
-			typeof(TSingleton), 
+			typeof(TSingleton),
 			BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance,
 			default,
 			[Uri.SafelyAppendPath(id), Client],
@@ -81,11 +83,11 @@ public abstract class PlanningCenterPaginatedFetchableResource<TResource, TSelf,
 	/// <param name="queries">A collection of query parameters.</param>
 	/// <typeparam name="TEnum">The enumerable associated with the queryable attributes.</typeparam>
 	/// <returns>This same instance of the request for call chaining.</returns>
-	protected TSelf Query<TEnum>(params KeyValuePair<TEnum, string>[] queries)
+	protected TSelf Query<TEnum>(params (TEnum, string)[] queries)
 	{
-		foreach (KeyValuePair<TEnum, string> query in queries)
+		foreach ((TEnum, string) query in queries)
 		{
-			AddParameters($"where[{query.Key.GetJsonApiName()}]", query.Value);
+			AddParameters($"where[{query.Item1.GetJsonApiName()}]", query.Item2);
 		}
 		return (this as TSelf)!;
 	}

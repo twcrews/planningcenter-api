@@ -3,7 +3,7 @@ using System.Text;
 using JsonApiFramework;
 using JsonApiFramework.JsonApi;
 
-namespace Crews.PlanningCenter.Api.Models.Resources.PlanningCenter;
+namespace Crews.PlanningCenter.Api.Models.Resources;
 
 /// <inheritdoc />
 public abstract class PlanningCenterSingletonFetchableResource<TResource, TSelf, TContext>(
@@ -14,16 +14,16 @@ public abstract class PlanningCenterSingletonFetchableResource<TResource, TSelf,
 	where TContext : PlanningCenterDocumentContext
 {
 	/// <inheritdoc />
-	public async Task<TResource?> GetAsync()
-		=> TryGetResource(await FetchDocumentAsync(new() { RequestUri = Uri }));
+	public async Task<JsonApiSingletonResponse<TResource>> GetAsync()
+		=> await TryGetResourceAsync(await Client.SendAsync(new() { RequestUri = Uri }));
 
 	/// <summary>
 	/// Posts the specified resource to Planning Center.
 	/// </summary>
 	/// <param name="resource">The resource to post.</param>
 	/// <returns>An instance of the resource representing its newly created server instance.</returns>
-	protected async Task<TResource?> PostAsync(TResource resource)
-		=> TryGetResource(await FetchDocumentAsync(new()
+	protected async Task<JsonApiSingletonResponse<TResource>> PostAsync(TResource resource)
+		=> await TryGetResourceAsync(await Client.SendAsync(new()
 		{
 			RequestUri = Uri,
 			Method = HttpMethod.Post,
@@ -35,8 +35,8 @@ public abstract class PlanningCenterSingletonFetchableResource<TResource, TSelf,
 	/// </summary>
 	/// <param name="resource">The resource to patch.</param>
 	/// <returns>An instance of the resource representing its newly modified server instance.</returns>
-	protected async Task<TResource?> PatchAsync(TResource resource)
-		=> TryGetResource(await FetchDocumentAsync(new()
+	protected async Task<JsonApiSingletonResponse<TResource>> PatchAsync(TResource resource)
+		=> await TryGetResourceAsync(await Client.SendAsync(new()
 		{
 			RequestUri = Uri,
 			Method = HttpMethod.Patch,
@@ -47,7 +47,7 @@ public abstract class PlanningCenterSingletonFetchableResource<TResource, TSelf,
 	/// Deletes the specified resource from Planning Center.
 	/// </summary>
 	/// <returns>An instance of the resource representing its newly modified server instance.</returns>
-	public Task DeleteAsync() => Client.SendAsync(new()
+	protected Task DeleteAsync() => Client.SendAsync(new()
 	{
 		RequestUri = Uri,
 		Method = HttpMethod.Delete
@@ -68,20 +68,30 @@ public abstract class PlanningCenterSingletonFetchableResource<TResource, TSelf,
 			[],
 			default)!;
 		return new(
-			context.NewDocument().Resource(resource).ResourceEnd().WriteDocument().ToJson(), 
-			Encoding.UTF8, 
+			context.NewDocument().Resource(resource).ResourceEnd().WriteDocument().ToJson(),
+			Encoding.UTF8,
 			"application/json");
 	}
 
-	private static TResource? TryGetResource(Document? document)
+	private async Task<JsonApiSingletonResponse<TResource>> TryGetResourceAsync(HttpResponseMessage response)
 	{
-		if (document == null) return null;
+		Document? document = await GetDocumentAsync(response);
+		if (document == null) return new() { RawResponse = response };
+
 		TContext context = (TContext)Activator.CreateInstance(
-			typeof(TContext), 
+			typeof(TContext),
 			BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance,
 			default,
 			[document],
 			default)!;
-		return context.GetResource<TResource>();
+		
+		TResource data = context.GetResource<TResource>();
+		return new()
+		{
+			Data = data,
+			Metadata = context.GetDocumentMeta()?.GetData<JsonApiMetadata>(),
+			RawResponse = response,
+			JsonApiDocument = document
+		};
 	}
 }

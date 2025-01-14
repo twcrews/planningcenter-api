@@ -4,9 +4,9 @@ using JsonApiFramework.JsonApi;
 namespace Crews.PlanningCenter.Api.Models;
 
 /// <summary>
-/// Represents an error object returned in a Planning Center API error response.
+/// Represents an error object returned in a JSON API error response.
 /// </summary>
-class Error
+class JsonApiError
 {
 	public string? ID { get; set; }
 
@@ -18,7 +18,7 @@ class Error
 	public HttpStatusCode? HttpStatusCode { get; init; }
 
 	/// <summary>
-	/// A string identifying the type of error as defined by Planning Center.
+	/// A string identifying the type of error as defined by JSON.
 	/// </summary>
 	public string? ErrorCode { get; init; }
 
@@ -54,7 +54,7 @@ enum ErrorSourceType
 }
 
 /// <summary>
-/// Represents metadata that may be included in a Planning Center API error response.
+/// Represents metadata that may be included in a JSON API error response.
 /// </summary>
 class PlanningCenterErrorMetadata
 {

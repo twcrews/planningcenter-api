@@ -10,7 +10,7 @@ public interface IPaginatedFetchableResource<TResource>
 	/// Fetches the paginated collection with an undefined page size and offset.
 	/// </summary>
 	/// <returns>The task object representing the asynchronous operation.</returns>
-	Task<PaginatedResourceCollection<TResource>> GetAllAsync();
+	Task<JsonApiCollectionResponse<TResource>> GetAllAsync();
 
 	/// <summary>
 	/// Fetches the paginated collection with the given page size and an undefined page offset.
@@ -19,7 +19,7 @@ public interface IPaginatedFetchableResource<TResource>
 	/// The requested size of the page. The remote provider may enforce an upper limit to this.
 	/// </param>
 	/// <returns>The task object representing the asynchronous operation.</returns>
-	Task<PaginatedResourceCollection<TResource>> GetAllAsync(int count);
+	Task<JsonApiCollectionResponse<TResource>> GetAllAsync(int count);
 
 	/// <summary>
 	/// Fetches the paginated collection with the given page size and offset.
@@ -31,5 +31,5 @@ public interface IPaginatedFetchableResource<TResource>
 	/// The requested offset index of the page relative to the total number of available resources.
 	/// </param>
 	/// <returns>The task object representing the asynchronous operation.</returns>
-	Task<PaginatedResourceCollection<TResource>> GetAllAsync(int count, int offset);
+	Task<JsonApiCollectionResponse<TResource>> GetAllAsync(int count, int offset);
 }

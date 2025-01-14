@@ -6,13 +6,13 @@ using JsonApiFramework.Json;
 using JsonApiFramework.JsonApi;
 using Newtonsoft.Json.Linq;
 
-namespace Crews.PlanningCenter.Api.Models.Resources.PlanningCenter;
+namespace Crews.PlanningCenter.Api.Models.Resources;
 
 /// <summary>
 /// A Planning Center resource that can be fetched from the API.
 /// </summary>
 public abstract class PlanningCenterFetchableResource<TSelf>(Uri uri, HttpClient client)
-	: PlanningCenterRemoteResource(uri) where TSelf : PlanningCenterFetchableResource<TSelf>
+		: PlanningCenterRemoteResource(uri) where TSelf : PlanningCenterFetchableResource<TSelf>
 {
 	/// <summary>
 	/// The <see cref="HttpClient"/> instance used to make requests to the Planning Center API.
@@ -24,8 +24,7 @@ public abstract class PlanningCenterFetchableResource<TSelf>(Uri uri, HttpClient
 	/// </summary>
 	/// <param name="parameters">A collection of query string parameters.</param>
 	/// <returns>This same instance of the request for call chaining.</returns>
-	public virtual TSelf AppendCustomParameters(
-		List<QueryString.Parameter> parameters)
+	public virtual TSelf AppendCustomParameters(List<QueryString.Parameter> parameters)
 	{
 		QueryStringBuilder builder = new(Uri.Query);
 		builder.Parameters.AddRange(parameters);
@@ -83,13 +82,12 @@ public abstract class PlanningCenterFetchableResource<TSelf>(Uri uri, HttpClient
 		=> AddParameters("include", includables.Select(i => i.GetJsonApiName()).ToArray());
 
 	/// <summary>
-	/// Sends the given request and attempts to parse the response as a JSON:API document.
+	/// Attempts to parse the given <see cref="HttpResponseMessage"/> as a JSON:API document.
 	/// </summary>
-	/// <param name="request">The web request to send.</param>
+	/// <param name="response">The web response to parse.</param>
 	/// <returns>A Document object representing the response content.</returns>
-	protected async Task<Document?> FetchDocumentAsync(HttpRequestMessage request)
+	protected async Task <Document?> GetDocumentAsync(HttpResponseMessage response)
 	{
-		HttpResponseMessage response = await Client.SendAsync(request);
 		Document? document = await JsonObject.ParseAsync<Document>(await response.Content.ReadAsStringAsync());
 		if (document == null) return null;
 
@@ -98,30 +96,18 @@ public abstract class PlanningCenterFetchableResource<TSelf>(Uri uri, HttpClient
 	}
 
 	/// <summary>
-	/// Creates a new <typeparamref name="TResource"/> instance and appends the value of <paramref name="path"/> to 
-	/// the new <typeparamref name="TResource"/>'s <see cref="Uri"/> property.
+	/// Creates a new <typeparamref name="TRelatedResource"/> instance and appends the value of <paramref name="vertex"/>
+	/// to its <see cref="Uri"/> property.
 	/// </summary>
-	/// <typeparam name="TResource">
-	/// The type of <see cref="PlanningCenterFetchableResource{TResource}"/> to return.
+	/// <typeparam name="TRelatedResource">
+	/// The type of <see cref="PlanningCenterFetchableResource{TRelatedResource}"/> to return.
 	/// </typeparam>
-	/// <param name="path">The path to append to <typeparamref name="TResource"/>'s <see cref="Uri"/> property.</param>
-	/// <returns>A new <typeparamref name="TResource"/> instance.</returns>
-	protected TResource GetAssociated<TResource>(string path) where TResource : PlanningCenterFetchableResource<TResource>
-		=> (TResource)Activator.CreateInstance(typeof(TResource), Uri.SafelyAppendPath(path), Client)!;
-
-	/// <summary>
-	/// Creates a new <typeparamref name="TNamedResource"/> instance and appends the <see cref="INamedApiResource.ApiName"/> 
-	/// value belonging to <typeparamref name="TNamedResource"/> to its <see cref="Uri"/> property.
-	/// </summary>
-	/// <typeparam name="TNamedResource">
-	/// The type of <see cref="PlanningCenterFetchableResource{TNamedResource}"/> to return.
-	/// </typeparam>
-	/// <returns>A new <typeparamref name="TNamedResource"/> instance.</returns>
-	protected TNamedResource GetNamedAssociated<TNamedResource>()
-		where TNamedResource : PlanningCenterFetchableResource<TNamedResource>, INamedApiResource
-		=> (TNamedResource)Activator.CreateInstance(
-			typeof(TNamedResource),
-			Uri.SafelyAppendPath(TNamedResource.ApiName), Client)!;
+	/// <returns>A new <typeparamref name="TRelatedResource"/> instance.</returns>
+	protected TRelatedResource GetRelated<TRelatedResource>(string vertex)
+		where TRelatedResource : PlanningCenterFetchableResource<TRelatedResource>
+		=> (TRelatedResource)Activator.CreateInstance(
+			typeof(TRelatedResource),
+			Uri.SafelyAppendPath(vertex), Client)!;
 
 	private static void HandleBadDocument(Document document)
 	{
@@ -135,7 +121,7 @@ public abstract class PlanningCenterFetchableResource<TSelf>(Uri uri, HttpClient
 
 	private static void HandleErrorDocument(Document document)
 	{
-		IEnumerable<Error> errors = GetErrorsFromDocument(document);
+		IEnumerable<JsonApiError> errors = GetErrorsFromDocument(document);
 		IEnumerable<HttpRequestException> exceptions = errors
 			.Select(error => new HttpRequestException(
 				string.Join(": ", error.Title, error.Details), null, error.HttpStatusCode));
@@ -148,15 +134,15 @@ public abstract class PlanningCenterFetchableResource<TSelf>(Uri uri, HttpClient
 		throw new AggregateException(exceptions);
 	}
 
-	private static IEnumerable<Error> GetErrorsFromDocument(Document document)
+	private static IEnumerable<JsonApiError> GetErrorsFromDocument(Document document)
 	{
-		return document.GetErrors().Select(error => new Error()
+		return document.GetErrors().Select(error => new JsonApiError()
 		{
 			ID = error.Id,
 			Links = error.Links,
 			HttpStatusCode = error.Status == null
-								? null
-								: (HttpStatusCode)Convert.ToInt32(error.Status),
+														? null
+														: (HttpStatusCode)Convert.ToInt32(error.Status),
 			ErrorCode = error.Code,
 			Title = error.Title,
 			Details = error.Detail,

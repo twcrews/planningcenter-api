@@ -1,3 +1,11 @@
+### Project-specific ignores ###
+
+# Generated code
+Crews.PlanningCenter.Api/Resources/
+Crews.PlanningCenter.Api/Clients/
+
+# =================
+
 # Created by https://www.toptal.com/developers/gitignore/api/csharp,visualstudiocode,visualstudio
 # Edit at https://www.toptal.com/developers/gitignore?templates=csharp,visualstudiocode,visualstudio
 

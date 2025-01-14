@@ -1,5 +1,5 @@
-﻿using Crews.PlanningCenter.Api.Models.Resources;
-using Crews.PlanningCenter.Api.Models.Resources.PlanningCenter;
+﻿using Crews.PlanningCenter.Api.Models;
+using Crews.PlanningCenter.Api.Models.Resources;
 using Crews.PlanningCenter.Api.Models.Resources.Querying;
 using JsonApiFramework.JsonApi;
 using JsonApiFramework.ServiceModel.Configuration;
@@ -10,16 +10,15 @@ class DummyFetchableResource(Uri? uri, HttpClient client) :
 	PlanningCenterFetchableResource<DummyFetchableResource>(uri!, client),
 	IIncludable<DummyFetchableResource, DummyEnum>
 {
-	public string DummiesName { get; set; } = null!;
 
-	public DummyPaginatedFetchableResource Dummies => GetAssociated<DummyPaginatedFetchableResource>(DummiesName);
-	public DummySingletonFetchableResource Dummy => GetNamedAssociated<DummySingletonFetchableResource>();
+	public DummyPaginatedFetchableResource Dummies => GetRelated<DummyPaginatedFetchableResource>("dummies");
+	public DummySingletonFetchableResource Dummy => GetRelated<DummySingletonFetchableResource>("dummy");
 
 	public DummyFetchableResource Include(params DummyEnum[] includables) => base.Include(includables);
 	public new DummyFetchableResource AddParameters(string key, params string[] values)
 		=> base.AddParameters(key, values);
-	public new Task<Document?> FetchDocumentAsync(HttpRequestMessage request)
-		=> base.FetchDocumentAsync(request);
+
+	public new Task<Document?> GetDocumentAsync(HttpResponseMessage response) => base.GetDocumentAsync(response);
 }
 
 class DummyContext : PlanningCenterDocumentContext
@@ -38,12 +37,10 @@ class DummySingletonFetchableResource(Uri? uri, HttpClient client) :
 	PlanningCenterSingletonFetchableResource<
 		DummyResource,
 		DummySingletonFetchableResource,
-		DummyContext>(uri!, client),
-		INamedApiResource
+		DummyContext>(uri!, client)
 {
-	public static string ApiName => "dummy";
-	public new Task<DummyResource?> PostAsync(DummyResource resource) => base.PostAsync(resource);
-	public new Task<DummyResource?> PatchAsync(DummyResource resource) => base.PatchAsync(resource);
+	public new Task<JsonApiSingletonResponse<DummyResource>> PostAsync(DummyResource resource) => base.PostAsync(resource);
+	public new Task<JsonApiSingletonResponse<DummyResource>> PatchAsync(DummyResource resource) => base.PatchAsync(resource);
 	public new Task DeleteAsync() => base.DeleteAsync();
 }
 
@@ -60,7 +57,7 @@ class DummyPaginatedFetchableResource(Uri? uri, HttpClient client) :
 	public DummyPaginatedFetchableResource FilterBy(params DummyEnum[] filters) => base.FilterBy(filters);
 	public DummyPaginatedFetchableResource OrderBy(DummyEnum orderer, Order order = Order.Ascending) 
 		=> base.OrderBy(orderer, order);
-	public DummyPaginatedFetchableResource Query(params KeyValuePair<DummyEnum, string>[] queries) => base.Query(queries);
+	public DummyPaginatedFetchableResource Query(params (DummyEnum, string)[] queries) => base.Query(queries);
 }
 
 class DummyResource

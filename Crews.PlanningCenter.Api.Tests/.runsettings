@@ -17,6 +17,7 @@
               <Exclude>
                 <Source>.*\\Crews.PlanningCenter.Api\\Clients\\.*</Source>
                 <Source>.*\\Crews.PlanningCenter.Api\\Resources\\.*</Source>
+                <Soruce>.*\\Crews.PlanningCenter.Api\\Extensions\\HttpHeadersExtensions\\.cs</Source>
               </Exclude>
             </Sources>
           </CodeCoverage>

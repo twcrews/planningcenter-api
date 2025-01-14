@@ -61,7 +61,7 @@ public class PlanningCenterPaginatedFetchableResourceTests
 	public void Query_ReturnsEnumNameByDefault()
 	{
 		DummyPaginatedFetchableResource subject = new(new("http://localhost/"), new());
-		subject.Query(new KeyValuePair<DummyEnum, string>(DummyEnum.ValueWithoutAttribute, "test3"));
+		subject.Query((DummyEnum.ValueWithoutAttribute, "test3"));
 		Assert.Equal("http://localhost/?where[value_without_attribute]=test3", subject.Uri.ToString());
 	}
 
@@ -85,8 +85,8 @@ public class PlanningCenterPaginatedFetchableResourceTests
 
 		DummyPaginatedFetchableResource subject = new(new("http://localhost/resources"), client);
 		JsonApiCollectionResponse<DummyResource> result = await subject.GetAllAsync();
-		Assert.Equal(totalCount, result.Data.TotalCount);
-		Assert.Equal(28, result.Data.Resources.First().Age);
+		Assert.Equal(totalCount, result.Metadata?.TotalCount);
+		Assert.Equal(28, result.Data.First().Age);
 	}
 
 	[Fact(DisplayName = "GetAllAsync with custom count adds correct parameters to request")]

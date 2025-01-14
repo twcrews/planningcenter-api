@@ -57,7 +57,7 @@ class DummyPaginatedFetchableResource(Uri? uri, HttpClient client) :
 	public DummyPaginatedFetchableResource FilterBy(params DummyEnum[] filters) => base.FilterBy(filters);
 	public DummyPaginatedFetchableResource OrderBy(DummyEnum orderer, Order order = Order.Ascending) 
 		=> base.OrderBy(orderer, order);
-	public DummyPaginatedFetchableResource Query(params KeyValuePair<DummyEnum, string>[] queries) => base.Query(queries);
+	public DummyPaginatedFetchableResource Query(params (DummyEnum, string)[] queries) => base.Query(queries);
 }
 
 class DummyResource

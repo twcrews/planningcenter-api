@@ -5,9 +5,6 @@ A client library for the Planning Center API built on the
 
 ## Installation
 
-> [!TIP]
-> Using dependency injection? Check out the [Crews.PlanningCenter.DependencyInjection](https://www.nuget.org/packages/Crews.PlanningCenter.DependencyInjection/) package instead!
-
 `Crews.PlanningCenter.Api` is available on [NuGet](https://www.nuget.org/packages/Crews.PlanningCenter.Api):
 
 ```sh

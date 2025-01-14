@@ -75,8 +75,8 @@ public class PlanningCenterPaginatedFetchableResourceTests
 
 	[Theory(DisplayName = "GetAllAsync returns correct resource collection")]
 	[InlineData(Serialized.DummyRootCollectionObject, 8)]
-	[InlineData(Serialized.DummyRootCollectionNoMetaObject, 0)]
-	public async Task GetAllAsync_GetsResourceCollection(string responseJson, int totalCount)
+	[InlineData(Serialized.DummyRootCollectionNoMetaObject, null)]
+	public async Task GetAllAsync_GetsResourceCollection(string responseJson, int? totalCount)
 	{
 		MockHttpMessageHandler handler = new();
 		HttpClient client = new(handler);

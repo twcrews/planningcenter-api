@@ -46,8 +46,23 @@ This code is automatically generated. Please do not modify it directly.
 
 using Crews.PlanningCenter.Models.<#=product#>.<#=version#>.Entities;
 using Crews.PlanningCenter.Models.<#=product#>.<#=version#>.Parameters;
+<#
+        if (hasIncludables || hasOrderables || hasQueryables)
+        {
+#>
 using Crews.PlanningCenter.Api.Models.Resources.Querying;
+<#
+        }
+#>
 using Crews.PlanningCenter.Api.Models.Resources;
+<#
+        if (resource.CanCreate || resource.CanUpdate || resource.CanDestroy)
+        {
+#>
+using Crews.PlanningCenter.Api.Models;
+<#
+        }
+#>
 
 namespace Crews.PlanningCenter.Api.Resources.<#=product#>.<#=version#>;
 
@@ -85,6 +100,32 @@ public class <#=resourceName#>
 	/// <inheritdoc />
 	public <#=resourceName#> Include(params <#=resource.EntityClrType.Name#>Includable[] included) 
     => base.Include(included);
+<#
+        }
+        if (resource.CanCreate)
+        {
+#>
+
+  /// <inheritdoc />
+  public new Task<JsonApiSingletonResponse<<#=resource.EntityClrType.Name#>>> PostAsync(<#=resource.EntityClrType.Name#> resource)
+    => base.PostAsync(resource);
+<#
+        }
+        if (resource.CanUpdate)
+        {
+#>
+
+  /// <inheritdoc />
+  public new Task<JsonApiSingletonResponse<<#=resource.EntityClrType.Name#>>> PatchAsync(<#=resource.EntityClrType.Name#> resource)
+    => base.PatchAsync(resource);
+<#
+        }
+        if (resource.CanDestroy)
+        {
+#>
+
+  /// <inheritdoc />
+  public new Task DeleteAsync() => base.DeleteAsync();
 <#
         }
 #>
@@ -147,7 +188,7 @@ public class <#=collectionName#>
 #>
 
   /// <inheritdoc />
-  public <#=collectionName#> Query(params KeyValuePair<<#=resource.EntityClrType.Name#>Queryable, string>[] queries)
+  public <#=collectionName#> Query(params (<#=resource.EntityClrType.Name#>Queryable, string)[] queries)
     => base.Query(queries);
 <#
           }

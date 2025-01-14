@@ -96,6 +96,22 @@ public class PlanningCenterApiReferenceService
 				.GetProperty("data")
 				.EnumerateArray();
 
+			JsonElement permissionsElement = vertexDocument.RootElement
+				.GetProperty("data")
+				.GetProperty("relationships")
+				.GetProperty("permissions")
+				.GetProperty("data")
+				.GetProperty("attributes");
+			bool canCreate = permissionsElement
+				.GetProperty("can_create")
+				.GetBoolean();
+			bool canUpdate = permissionsElement
+				.GetProperty("can_update")
+				.GetBoolean();
+			bool canDestroy = permissionsElement
+				.GetProperty("can_destroy")
+				.GetBoolean();
+
 			List<PlanningCenterResourceVertex> resourceVertices = [];
 			foreach (JsonElement outboundElement in outboundElements)
 			{
@@ -123,7 +139,10 @@ public class PlanningCenterApiReferenceService
 			resources.Add(new()
 			{
 				EntityClrType = clrType,
-				OutboundVertices = resourceVertices
+				OutboundVertices = resourceVertices,
+				CanCreate = canCreate,
+				CanUpdate = canUpdate,
+				CanDestroy = canDestroy
 			});
 		}
 		return resources;

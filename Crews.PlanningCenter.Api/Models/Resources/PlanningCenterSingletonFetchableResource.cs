@@ -1,4 +1,4 @@
-using System.Reflection;
+﻿using System.Reflection;
 using System.Text;
 using JsonApiFramework;
 using JsonApiFramework.JsonApi;
@@ -47,7 +47,7 @@ public abstract class PlanningCenterSingletonFetchableResource<TResource, TSelf,
 	/// Deletes the specified resource from Planning Center.
 	/// </summary>
 	/// <returns>An instance of the resource representing its newly modified server instance.</returns>
-	public Task DeleteAsync() => Client.SendAsync(new()
+	protected Task DeleteAsync() => Client.SendAsync(new()
 	{
 		RequestUri = Uri,
 		Method = HttpMethod.Delete

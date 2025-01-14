@@ -13,14 +13,23 @@ dotnet add package Crews.PlanningCenter.Api
 
 ## Usage
 
-Start by creating an `HttpClient` instance with a Planning Center API base address:
+Start by creating an `HttpClient` instance:
 
 ```cs
 using Crews.Extensions.Http;
 using Crews.PlanningCenter.Api.Clients;
+using Crews.PlanningCenter.Api.Models;
 
 HttpClient client = new();
 client.SafelySetBaseAddress(new("https://api.planningcenteronline.com"));
+
+// Don't forget to add your access token!
+PlanningCenterPersonalAccessToken token = new()
+{
+	AppID = "yourAppIdHere",
+	Secret = "superSecretPasswordHere"
+};
+client.DefaultRequestHeaders.Authorization = token;
 ```
 
 Use this `HttpClient` to create a new API client of your choice, and you're off to the races!

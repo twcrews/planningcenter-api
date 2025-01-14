@@ -33,13 +33,7 @@ public abstract class PlanningCenterPaginatedFetchableResource<TResource, TSelf,
 		JsonApiMetadata? metadata = context.GetDocumentMeta()?.GetData<JsonApiMetadata>();
 		return new()
 		{
-			Data = new()
-			{
-				NextPageOffset = metadata?.Next?.Offset ?? default,
-				PreviousPageOffset = metadata?.Prev?.Offset ?? default,
-				TotalCount = metadata?.TotalCount ?? default,
-				Resources = context.GetResourceCollection<TResource>()
-			},
+			Data = context.GetResourceCollection<TResource>(),
 			Metadata = metadata,
 			RawResponse = response
 		};

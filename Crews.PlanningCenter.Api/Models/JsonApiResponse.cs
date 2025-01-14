@@ -39,5 +39,5 @@ public class JsonApiCollectionResponse<T> : JsonApiResponse
 	/// <summary>
 	/// The data content of the collection.
 	/// </summary>
-	public PaginatedResourceCollection<T> Data { get; init; } = new() { Resources = [] };
+	public IEnumerable<T> Data { get; init; } = [];
 }

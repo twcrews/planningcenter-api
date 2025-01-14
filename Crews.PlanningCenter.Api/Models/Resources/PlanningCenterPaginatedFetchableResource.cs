@@ -1,4 +1,4 @@
-﻿using Crews.Extensions.Http;
+using Crews.Extensions.Http;
 using Crews.PlanningCenter.Api.Extensions;
 using Crews.PlanningCenter.Api.Models.Resources.Querying;
 using JsonApiFramework;
@@ -88,11 +88,11 @@ public abstract class PlanningCenterPaginatedFetchableResource<TResource, TSelf,
 	/// <param name="queries">A collection of query parameters.</param>
 	/// <typeparam name="TEnum">The enumerable associated with the queryable attributes.</typeparam>
 	/// <returns>This same instance of the request for call chaining.</returns>
-	protected TSelf Query<TEnum>(params KeyValuePair<TEnum, string>[] queries)
+	protected TSelf Query<TEnum>(params (TEnum, string)[] queries)
 	{
-		foreach (KeyValuePair<TEnum, string> query in queries)
+		foreach ((TEnum, string) query in queries)
 		{
-			AddParameters($"where[{query.Key.GetJsonApiName()}]", query.Value);
+			AddParameters($"where[{query.Item1.GetJsonApiName()}]", query.Item2);
 		}
 		return (this as TSelf)!;
 	}

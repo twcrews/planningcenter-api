@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using System.Reflection;
 using Crews.Extensions.Http;
 using Crews.Extensions.Http.Utility;
 using Crews.PlanningCenter.Api.Extensions;
@@ -107,7 +108,10 @@ public abstract class PlanningCenterFetchableResource<TSelf>(Uri uri, HttpClient
 		where TRelatedResource : PlanningCenterFetchableResource<TRelatedResource>
 		=> (TRelatedResource)Activator.CreateInstance(
 			typeof(TRelatedResource),
-			Uri.SafelyAppendPath(vertex), Client)!;
+			BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance,
+			default,
+			[Uri.SafelyAppendPath(vertex), Client],
+			default)!;
 
 	private static void HandleBadDocument(Document document)
 	{

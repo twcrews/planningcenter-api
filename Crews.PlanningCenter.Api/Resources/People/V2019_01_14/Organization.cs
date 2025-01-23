@@ -5,7 +5,6 @@ This code is automatically generated. Please do not modify it directly.
 */
 
 using Crews.PlanningCenter.Models.People.V2019_01_14.Entities;
-using Crews.PlanningCenter.Models.People.V2019_01_14.Parameters;
 using Crews.PlanningCenter.Api.Models.Resources;
 
 namespace Crews.PlanningCenter.Api.Resources.People.V2019_01_14;

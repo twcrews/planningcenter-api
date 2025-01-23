@@ -8,7 +8,6 @@ using Crews.PlanningCenter.Models.People.V2019_01_14.Entities;
 using Crews.PlanningCenter.Models.People.V2019_01_14.Parameters;
 using Crews.PlanningCenter.Api.Models.Resources.Querying;
 using Crews.PlanningCenter.Api.Models.Resources;
-using Crews.PlanningCenter.Api.Models;
 
 namespace Crews.PlanningCenter.Api.Resources.People.V2019_01_14;
 

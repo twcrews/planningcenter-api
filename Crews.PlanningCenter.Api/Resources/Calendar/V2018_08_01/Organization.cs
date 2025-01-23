@@ -5,7 +5,6 @@ This code is automatically generated. Please do not modify it directly.
 */
 
 using Crews.PlanningCenter.Models.Calendar.V2018_08_01.Entities;
-using Crews.PlanningCenter.Models.Calendar.V2018_08_01.Parameters;
 using Crews.PlanningCenter.Api.Models.Resources;
 
 namespace Crews.PlanningCenter.Api.Resources.Calendar.V2018_08_01;

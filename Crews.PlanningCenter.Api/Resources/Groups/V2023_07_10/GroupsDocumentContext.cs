@@ -51,7 +51,7 @@ public class GroupsDocumentContext : PlanningCenterDocumentContext
   internal class OrganizationConfiguration : ResourceTypeBuilder<Organization> { public OrganizationConfiguration() { } }
   internal class OwnerConfiguration : ResourceTypeBuilder<Owner> { public OwnerConfiguration() { } }
   internal class PersonConfiguration : ResourceTypeBuilder<Person> { public PersonConfiguration() { } }
-  internal class ResourceConfiguration : ResourceTypeBuilder<Resource> { public ResourceConfiguration() { } }
+  internal class ResourceConfiguration : ResourceTypeBuilder<PlanningCenter.Models.Groups.V2023_07_10.Entities.Resource> { public ResourceConfiguration() { } }
   internal class TagConfiguration : ResourceTypeBuilder<Tag> { public TagConfiguration() { } }
   internal class TagGroupConfiguration : ResourceTypeBuilder<TagGroup> { public TagGroupConfiguration() { } }
 }

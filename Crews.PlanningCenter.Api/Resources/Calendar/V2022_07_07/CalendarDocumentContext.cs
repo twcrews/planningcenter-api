@@ -59,7 +59,7 @@ public class CalendarDocumentContext : PlanningCenterDocumentContext
   internal class PersonConfiguration : ResourceTypeBuilder<Person> { public PersonConfiguration() { } }
   internal class ReportTemplateConfiguration : ResourceTypeBuilder<ReportTemplate> { public ReportTemplateConfiguration() { } }
   internal class RequiredApprovalConfiguration : ResourceTypeBuilder<RequiredApproval> { public RequiredApprovalConfiguration() { } }
-  internal class ResourceConfiguration : ResourceTypeBuilder<Resource> { public ResourceConfiguration() { } }
+  internal class ResourceConfiguration : ResourceTypeBuilder<PlanningCenter.Models.Calendar.V2022_07_07.Entities.Resource> { public ResourceConfiguration() { } }
   internal class ResourceApprovalGroupConfiguration : ResourceTypeBuilder<ResourceApprovalGroup> { public ResourceApprovalGroupConfiguration() { } }
   internal class ResourceBookingConfiguration : ResourceTypeBuilder<ResourceBooking> { public ResourceBookingConfiguration() { } }
   internal class ResourceFolderConfiguration : ResourceTypeBuilder<ResourceFolder> { public ResourceFolderConfiguration() { } }

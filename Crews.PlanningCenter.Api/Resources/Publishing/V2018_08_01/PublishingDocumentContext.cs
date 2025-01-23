@@ -38,11 +38,11 @@ public class PublishingDocumentContext : PlanningCenterDocumentContext
   }
 
   internal class ChannelConfiguration : ResourceTypeBuilder<Channel> { public ChannelConfiguration() { } }
-  internal class ChannelDefaultEpisodeResourceConfiguration : ResourceTypeBuilder<ChannelDefaultEpisodeResource> { public ChannelDefaultEpisodeResourceConfiguration() { } }
+  internal class ChannelDefaultEpisodeResourceConfiguration : ResourceTypeBuilder<PlanningCenter.Models.Publishing.V2018_08_01.Entities.ChannelDefaultEpisodeResource> { public ChannelDefaultEpisodeResourceConfiguration() { } }
   internal class ChannelDefaultTimeConfiguration : ResourceTypeBuilder<ChannelDefaultTime> { public ChannelDefaultTimeConfiguration() { } }
   internal class ChannelNextTimeConfiguration : ResourceTypeBuilder<ChannelNextTime> { public ChannelNextTimeConfiguration() { } }
   internal class EpisodeConfiguration : ResourceTypeBuilder<Episode> { public EpisodeConfiguration() { } }
-  internal class EpisodeResourceConfiguration : ResourceTypeBuilder<EpisodeResource> { public EpisodeResourceConfiguration() { } }
+  internal class EpisodeResourceConfiguration : ResourceTypeBuilder<PlanningCenter.Models.Publishing.V2018_08_01.Entities.EpisodeResource> { public EpisodeResourceConfiguration() { } }
   internal class EpisodeStatisticsConfiguration : ResourceTypeBuilder<EpisodeStatistics> { public EpisodeStatisticsConfiguration() { } }
   internal class EpisodeTimeConfiguration : ResourceTypeBuilder<EpisodeTime> { public EpisodeTimeConfiguration() { } }
   internal class NoteTemplateConfiguration : ResourceTypeBuilder<NoteTemplate> { public NoteTemplateConfiguration() { } }

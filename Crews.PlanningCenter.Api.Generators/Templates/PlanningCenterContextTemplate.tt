@@ -65,8 +65,11 @@ public class <#=contextName#> : PlanningCenterDocumentContext
 <#
       foreach (PlanningCenterResource resource in resources)
       {
+        string fullTypeName = resource.EntityClrType.Name.EndsWith("Resource") 
+          ? $"PlanningCenter.Models.{product}.{version}.Entities.{resource.EntityClrType.Name}"
+          : resource.EntityClrType.Name;
 #>
-  internal class <#=resource.EntityClrType.Name#>Configuration : ResourceTypeBuilder<<#=resource.EntityClrType.Name#>> { public <#=resource.EntityClrType.Name#>Configuration() { } }
+  internal class <#=resource.EntityClrType.Name#>Configuration : ResourceTypeBuilder<<#=fullTypeName#>> { public <#=resource.EntityClrType.Name#>Configuration() { } }
 <#
       }
 #>

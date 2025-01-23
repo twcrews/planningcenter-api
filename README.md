@@ -1,7 +1,18 @@
-# Planning Center API Library
+# .NET Planning Center API Library
 
 A client library for the Planning Center API built on the 
 [JSON:API Framework](https://github.com/scott-mcdonald/JsonApiFramework).
+
+- [Installation](#installation)
+- [Setup with Dependency Injection](#setup-with-dependency-injection)
+	- [Configuration Provider (Recommended)](#configuration-provider-recommended)
+	- [Hardcoded Configuration](#hardcoded-configuration)
+- [Basic Setup (Without Dependency Injection)](#basic-setup-without-dependency-injection)
+- [Usage Examples](#usage-examples)
+	- [Fluent API Example](#fluent-api-example)
+	- [Querying Example](#querying-example)
+	- [Pagination Example](#pagination-example)
+	- [Mutation Example](#mutation-example)
 
 ## Installation
 
@@ -11,7 +22,69 @@ A client library for the Planning Center API built on the
 dotnet add package Crews.PlanningCenter.Api
 ```
 
-## Usage
+## Setup with Dependency Injection
+
+How you set up dependency injection depends on how you want to configure the service.
+
+This library uses the [options pattern](https://learn.microsoft.com/en-us/dotnet/core/extensions/options). Options are defined in the `PlanningCenterApiOptions` class. 
+
+The following are valid options for configuring the service:
+
+| Option Name           | Type                                | Required | Description                                                                                                                                                                                                                                                      | Default                                |
+| --------------------- | ----------------------------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| `ApiBaseAddress`      | `Uri`                               | No       | The base URL of the Planning Center API.                                                                                                                                                                                                                         | `https://api.planningcenteronline.com` |
+| `PersonalAccessToken` | `PlanningCenterPersonalAccessToken` | Yes      | The access token used to authenticate with the API.                                                                                                                                                                                                              | N/A                                    |
+| `HttpClientName`      | `string`                            | No       | The name of a [named](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/http-requests#named-clients) `HttpClient` to use in the service.<br><br>**NOTE**: This client's `BaseAddress` property will be ignored in favor of the `ApiBaseAddress` option. | N/A                                    |
+
+### Configuration Provider (Recommended)
+
+You can automatically configure the service with the provider of your choice. Here's an example using `appsettings.json`:
+
+```json
+{
+	"PlanningCenterApi": {
+		"ApiBaseAddress": "https://api.planningcenteronline.com",
+		"PersonalAccessToken": {
+			"AppID": "yourAppId",
+			"Secret": "yourSecret"
+		},
+		"HttpClientName": "myCustomClient"
+	}
+}
+```
+
+Then, in `Program.cs` or `Startup.cs`:
+
+```cs
+using Crews.PlanningCenter.Api.DependencyInjection;
+
+// ...
+
+builder.Services.AddPlanningCenterApi();
+```
+
+### Hardcoded Configuration
+
+You can also configure the service using a lambda expression during service registration:
+
+```cs
+using Crews.PlanningCenter.Api.DependencyInjection;
+
+// ...
+
+builder.Services.AddPlanningCenterApi(options =>
+{
+	options.ApiBaseAddress = new("https://api.planningcenteronline.com");
+	options.PersonalAccessToken = new()
+	{
+		AppID = "yourAppId",
+		Secret = "yourSecret"
+	};
+	options.HttpClientName = "myCustomClient";
+});
+```
+
+## Basic Setup (Without Dependency Injection)
 
 Start by creating an `HttpClient` instance:
 
@@ -40,6 +113,8 @@ CalendarClient calendar = new(client);
 var myEvent = await calendar.LatestVersion.Events.WithID("123").GetAsync();
 Console.WriteLine($"My event is called {myEvent.Data.Name}!");
 ```
+
+## Usage Examples
 
 ### Fluent API Example
 

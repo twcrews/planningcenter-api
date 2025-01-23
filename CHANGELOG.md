@@ -170,6 +170,7 @@ First official stable release!
 
 Initial release.
 
+[1.1.0]: https://github.com/twcrews/planningcenter-api/compare/1.0.2...1.1.0
 [1.0.2]: https://github.com/twcrews/planningcenter-api/compare/1.0.1...1.0.2
 [1.0.1]: https://github.com/twcrews/planningcenter-api/compare/1.0.0...1.0.1
 [1.0.0]: https://github.com/twcrews/planningcenter-api/compare/1.0.0-preview.14...1.0.0

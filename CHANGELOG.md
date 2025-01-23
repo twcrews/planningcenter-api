@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2025-01-23
+
+### Added
+
+- Added Dependency Injection.
+
+### Changed
+
+- Updated `README.md` to reflect addition of DI.
+
+### Fixed
+
+- Fixed an issue where some resources were not properly registered in document contexts due to naming ambiguity.
+
 ## [1.0.2] - 2025-01-15
 
 ### Fixed

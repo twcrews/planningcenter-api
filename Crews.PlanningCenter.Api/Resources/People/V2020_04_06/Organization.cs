@@ -5,6 +5,7 @@ This code is automatically generated. Please do not modify it directly.
 */
 
 using Crews.PlanningCenter.Models.People.V2020_04_06.Entities;
+using Crews.PlanningCenter.Models.People.V2020_04_06.Parameters;
 using Crews.PlanningCenter.Api.Models.Resources;
 
 namespace Crews.PlanningCenter.Api.Resources.People.V2020_04_06;
@@ -20,11 +21,6 @@ public class OrganizationResource
   /// The related <see cref="AddressResourceCollection" />.
   /// </summary>
   public AddressResourceCollection Addresses => GetRelated<AddressResourceCollection>("addresses");
-
-  /// <summary>
-  /// The related <see cref="AnniversaryCouplesResourceCollection" />.
-  /// </summary>
-  public AnniversaryCouplesResourceCollection AnniversaryCouples => GetRelated<AnniversaryCouplesResourceCollection>("anniversary_couples");
 
   /// <summary>
   /// The related <see cref="AppResourceCollection" />.
@@ -60,6 +56,11 @@ public class OrganizationResource
   /// The related <see cref="FieldDefinitionResourceCollection" />.
   /// </summary>
   public FieldDefinitionResourceCollection FieldDefinitions => GetRelated<FieldDefinitionResourceCollection>("field_definitions");
+
+  /// <summary>
+  /// The related <see cref="FormCategoryResourceCollection" />.
+  /// </summary>
+  public FormCategoryResourceCollection FormCategories => GetRelated<FormCategoryResourceCollection>("form_categories");
 
   /// <summary>
   /// The related <see cref="FormResourceCollection" />.

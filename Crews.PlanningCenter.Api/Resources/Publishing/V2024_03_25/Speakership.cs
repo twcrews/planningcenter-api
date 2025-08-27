@@ -8,6 +8,7 @@ using Crews.PlanningCenter.Models.Publishing.V2024_03_25.Entities;
 using Crews.PlanningCenter.Models.Publishing.V2024_03_25.Parameters;
 using Crews.PlanningCenter.Api.Models.Resources.Querying;
 using Crews.PlanningCenter.Api.Models.Resources;
+using Crews.PlanningCenter.Api.Models;
 
 namespace Crews.PlanningCenter.Api.Resources.Publishing.V2024_03_25;
 
@@ -29,6 +30,17 @@ public class SpeakershipResource
 	/// <inheritdoc />
 	public SpeakershipResource Include(params SpeakershipIncludable[] included) 
     => base.Include(included);
+
+  /// <inheritdoc />
+  public new Task<JsonApiSingletonResponse<Speakership>> PostAsync(Speakership resource)
+    => base.PostAsync(resource);
+
+  /// <inheritdoc />
+  public new Task<JsonApiSingletonResponse<Speakership>> PatchAsync(Speakership resource)
+    => base.PatchAsync(resource);
+
+  /// <inheritdoc />
+  public new Task DeleteAsync() => base.DeleteAsync();
 }
 
 /// <summary>

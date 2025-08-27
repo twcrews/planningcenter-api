@@ -8,6 +8,7 @@ using Crews.PlanningCenter.Models.Publishing.V2024_03_25.Entities;
 using Crews.PlanningCenter.Models.Publishing.V2024_03_25.Parameters;
 using Crews.PlanningCenter.Api.Models.Resources.Querying;
 using Crews.PlanningCenter.Api.Models.Resources;
+using Crews.PlanningCenter.Api.Models;
 
 namespace Crews.PlanningCenter.Api.Resources.Publishing.V2024_03_25;
 
@@ -59,6 +60,17 @@ public class ChannelResource
 	/// <inheritdoc />
 	public ChannelResource Include(params ChannelIncludable[] included) 
     => base.Include(included);
+
+  /// <inheritdoc />
+  public new Task<JsonApiSingletonResponse<Channel>> PostAsync(Channel resource)
+    => base.PostAsync(resource);
+
+  /// <inheritdoc />
+  public new Task<JsonApiSingletonResponse<Channel>> PatchAsync(Channel resource)
+    => base.PatchAsync(resource);
+
+  /// <inheritdoc />
+  public new Task DeleteAsync() => base.DeleteAsync();
 }
 
 /// <summary>

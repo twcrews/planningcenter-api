@@ -5,6 +5,7 @@ This code is automatically generated. Please do not modify it directly.
 */
 
 using Crews.PlanningCenter.Models.Groups.V2018_08_01.Entities;
+using Crews.PlanningCenter.Models.Groups.V2018_08_01.Parameters;
 using Crews.PlanningCenter.Api.Models.Resources;
 
 namespace Crews.PlanningCenter.Api.Resources.Groups.V2018_08_01;
@@ -15,6 +16,11 @@ namespace Crews.PlanningCenter.Api.Resources.Groups.V2018_08_01;
 public class OrganizationResource
   : PlanningCenterSingletonFetchableResource<Organization, OrganizationResource, GroupsDocumentContext>
 {
+
+  /// <summary>
+  /// The related <see cref="CampusResourceCollection" />.
+  /// </summary>
+  public CampusResourceCollection Campuses => GetRelated<CampusResourceCollection>("campuses");
 
   /// <summary>
   /// The related <see cref="EventResourceCollection" />.

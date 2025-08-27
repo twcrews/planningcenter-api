@@ -8,6 +8,7 @@ using Crews.PlanningCenter.Models.Publishing.V2024_03_25.Entities;
 using Crews.PlanningCenter.Models.Publishing.V2024_03_25.Parameters;
 using Crews.PlanningCenter.Api.Models.Resources.Querying;
 using Crews.PlanningCenter.Api.Models.Resources;
+using Crews.PlanningCenter.Api.Models;
 
 namespace Crews.PlanningCenter.Api.Resources.Publishing.V2024_03_25;
 
@@ -19,6 +20,17 @@ public class EpisodeTimeResource
 {
 
   internal EpisodeTimeResource(Uri uri, HttpClient client) : base(uri, client) { }
+
+  /// <inheritdoc />
+  public new Task<JsonApiSingletonResponse<EpisodeTime>> PostAsync(EpisodeTime resource)
+    => base.PostAsync(resource);
+
+  /// <inheritdoc />
+  public new Task<JsonApiSingletonResponse<EpisodeTime>> PatchAsync(EpisodeTime resource)
+    => base.PatchAsync(resource);
+
+  /// <inheritdoc />
+  public new Task DeleteAsync() => base.DeleteAsync();
 }
 
 /// <summary>

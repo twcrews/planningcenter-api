@@ -5,6 +5,7 @@ This code is automatically generated. Please do not modify it directly.
 */
 
 using Crews.PlanningCenter.Models.CheckIns.V2024_09_03.Entities;
+using Crews.PlanningCenter.Models.CheckIns.V2024_09_03.Parameters;
 using Crews.PlanningCenter.Api.Models.Resources;
 
 namespace Crews.PlanningCenter.Api.Resources.CheckIns.V2024_09_03;

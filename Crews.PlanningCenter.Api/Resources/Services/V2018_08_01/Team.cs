@@ -31,14 +31,9 @@ public class TeamResource
   public PersonTeamPositionAssignmentResourceCollection PersonTeamPositionAssignments => GetRelated<PersonTeamPositionAssignmentResourceCollection>("person_team_position_assignments");
 
   /// <summary>
-  /// The related <see cref="PlanPersonResource" />.
+  /// The related <see cref="ServiceTypeResourceCollection" />.
   /// </summary>
-  public PlanPersonResource PlanPeople => GetRelated<PlanPersonResource>("plan_people");
-
-  /// <summary>
-  /// The related <see cref="ServiceTypeResource" />.
-  /// </summary>
-  public ServiceTypeResource ServiceType => GetRelated<ServiceTypeResource>("service_type");
+  public ServiceTypeResourceCollection ServiceTypes => GetRelated<ServiceTypeResourceCollection>("service_types");
 
   /// <summary>
   /// The related <see cref="TeamLeaderResourceCollection" />.

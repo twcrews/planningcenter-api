@@ -23,6 +23,7 @@ public class GroupsDocumentContext : PlanningCenterDocumentContext
     base.OnServiceModelCreating(builder);
   
     builder.Configurations.Add(new AttendanceConfiguration());
+    builder.Configurations.Add(new CampusConfiguration());
     builder.Configurations.Add(new EnrollmentConfiguration());
     builder.Configurations.Add(new EventConfiguration());
     builder.Configurations.Add(new EventNoteConfiguration());
@@ -40,6 +41,7 @@ public class GroupsDocumentContext : PlanningCenterDocumentContext
   }
 
   internal class AttendanceConfiguration : ResourceTypeBuilder<Attendance> { public AttendanceConfiguration() { } }
+  internal class CampusConfiguration : ResourceTypeBuilder<Campus> { public CampusConfiguration() { } }
   internal class EnrollmentConfiguration : ResourceTypeBuilder<Enrollment> { public EnrollmentConfiguration() { } }
   internal class EventConfiguration : ResourceTypeBuilder<Event> { public EventConfiguration() { } }
   internal class EventNoteConfiguration : ResourceTypeBuilder<EventNote> { public EventNoteConfiguration() { } }

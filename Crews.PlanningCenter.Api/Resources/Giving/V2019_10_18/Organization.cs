@@ -5,6 +5,7 @@ This code is automatically generated. Please do not modify it directly.
 */
 
 using Crews.PlanningCenter.Models.Giving.V2019_10_18.Entities;
+using Crews.PlanningCenter.Models.Giving.V2019_10_18.Parameters;
 using Crews.PlanningCenter.Api.Models.Resources;
 
 namespace Crews.PlanningCenter.Api.Resources.Giving.V2019_10_18;
@@ -40,6 +41,11 @@ public class OrganizationResource
   /// The related <see cref="FundResourceCollection" />.
   /// </summary>
   public FundResourceCollection Funds => GetRelated<FundResourceCollection>("funds");
+
+  /// <summary>
+  /// The related <see cref="InKindDonationResourceCollection" />.
+  /// </summary>
+  public InKindDonationResourceCollection InKindDonations => GetRelated<InKindDonationResourceCollection>("in_kind_donations");
 
   /// <summary>
   /// The related <see cref="LabelResourceCollection" />.

@@ -25,7 +25,19 @@ public class CheckInsClient(HttpClient client, Uri? baseUri = null)
   /// <summary>
   /// Gets a client for the latest version of the CheckIns API.
   /// </summary>
-  public Resources.CheckIns.V2024_11_07.OrganizationResource LatestVersion => V2024_11_07;
+  public Resources.CheckIns.V2025_05_28.OrganizationResource LatestVersion => V2025_05_28;
+
+  /// <summary>
+  /// Gets a client for version 2025-05-28 of the CheckIns API.
+  /// </summary>
+  public Resources.CheckIns.V2025_05_28.OrganizationResource V2025_05_28
+  {
+    get
+    {
+      _client.DefaultRequestHeaders.AddPlanningCenterVersion("2025-05-28");
+      return new(_baseUri.SafelyAppendPath("check-ins/v2"), _client);
+    }
+  }
 
   /// <summary>
   /// Gets a client for version 2024-11-07 of the CheckIns API.

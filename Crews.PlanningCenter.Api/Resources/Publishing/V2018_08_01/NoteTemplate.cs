@@ -5,7 +5,9 @@ This code is automatically generated. Please do not modify it directly.
 */
 
 using Crews.PlanningCenter.Models.Publishing.V2018_08_01.Entities;
+using Crews.PlanningCenter.Models.Publishing.V2018_08_01.Parameters;
 using Crews.PlanningCenter.Api.Models.Resources;
+using Crews.PlanningCenter.Api.Models;
 
 namespace Crews.PlanningCenter.Api.Resources.Publishing.V2018_08_01;
 
@@ -17,6 +19,10 @@ public class NoteTemplateResource
 {
 
   internal NoteTemplateResource(Uri uri, HttpClient client) : base(uri, client) { }
+
+  /// <inheritdoc />
+  public new Task<JsonApiSingletonResponse<NoteTemplate>> PatchAsync(NoteTemplate resource)
+    => base.PatchAsync(resource);
 }
 
 /// <summary>

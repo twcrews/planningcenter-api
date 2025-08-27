@@ -8,7 +8,7 @@ HTTP_EXTENSIONS_FRAMEWORK="net8.0"
 PRIMITIVES_EXTENSIONS_VERSION="1.1.2"
 PRIMITIVES_EXTENSIONS_FRAMEWORK="net8.0"
 
-PC_MODELS_VERSION="1.1.0"
+PC_MODELS_VERSION="1.2.0"
 PC_MODELS_FRAMEWORK="net8.0"
 
 HUMANIZER_VERSION="2.14.1"
@@ -17,6 +17,8 @@ HUMANIZER_FRAMEWORK="net6.0"
 printf "Building project...\n"
 dotnet build "$SCRIPT_DIR"
 printf "\n\n================\n\n"
+
+printf "You can safely ignore errors that begin with 'Could not write output file'."
 
 printf "Generating document contexts...\n"
 t4 \
@@ -49,3 +51,5 @@ t4 \
 	"$SCRIPT_DIR/Templates/PlanningCenterClientTemplate.tt"
 
 printf "\nCompleted in $SECONDS seconds.\n"
+
+printf "\nREMINDER: You can safely ignore errors that begin with 'Could not write output file'.\n"

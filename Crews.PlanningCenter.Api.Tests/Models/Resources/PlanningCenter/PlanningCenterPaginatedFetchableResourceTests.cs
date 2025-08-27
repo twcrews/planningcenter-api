@@ -1,4 +1,4 @@
-﻿using Crews.Extensions.Http.Utility;
+﻿using Crews.Extensions.Http;
 using Crews.PlanningCenter.Api.Models;
 using Crews.PlanningCenter.Api.Models.Resources.Querying;
 using Crews.PlanningCenter.Api.Tests.Dummies;

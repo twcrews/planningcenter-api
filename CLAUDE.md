@@ -33,6 +33,7 @@ This is a .NET 8 C# library that provides a strongly-typed client for the Planni
 **Generated Code Pattern:**
 - Most API client classes (in `Clients/` folder) are auto-generated from T4 templates
 - Resource classes (in `Resources/` folder) are versioned by API version (e.g., `V2018_08_01`, `V2025_07_17`) and auto-generated
+- Current latest versions include: CheckIns `V2025_05_28`, People `V2025_07_17`
 - Document contexts per API service are auto-generated
 - Generation process uses reflection and API documentation parsing
 
@@ -59,9 +60,10 @@ This is a .NET 8 C# library that provides a strongly-typed client for the Planni
 - Versioned namespaces follow pattern `V{YYYY}_{MM}_{DD}`
 
 **Authentication:**
-- Uses `PlanningCenterPersonalAccessToken` class (AppID + Secret)
-- Supports OAuth (added in v1.2.0)
-- Token automatically converted to HTTP Authorization header
+- Uses `PlanningCenterPersonalAccessToken` record struct (AppID + Secret) in `Authentication` namespace
+- Supports OAuth via `PlanningCenterOAuthDefaults` class (added in v1.2.0)
+- Personal Access Token automatically converted to HTTP Basic Authorization header
+- OAuth constants include endpoints for authorization, token exchange, and user information
 
 **Fluent Query API:**
 - Include related resources: `.Include(ResourceIncludable.RelatedResource)`
@@ -82,9 +84,10 @@ This is a .NET 8 C# library that provides a strongly-typed client for the Planni
 - MockHttp used for HTTP testing scenarios
 
 **Versioning:**
-- Library follows semantic versioning
+- Library follows semantic versioning (currently v1.2.0)
 - API resource versions match Planning Center's API versioning scheme
 - Latest API versions are aliased via `LatestVersion` properties
+- Recent major updates include OAuth support and comprehensive API regeneration
 
 **Code Generation Process:**
 1. Build the main library and generators projects

@@ -33,6 +33,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Crews.Extensions.Http" Version="2.0.0" />
     <PackageReference Include="Crews.PlanningCenter.Models" Version="1.2.0" />
     <PackageReference Include="JsonApiFramework.Client" Version="2.10.1" />

@@ -33,7 +33,7 @@ This is a .NET 8 C# library that provides a strongly-typed client for the Planni
 **Generated Code Pattern:**
 - Most API client classes (in `Clients/` folder) are auto-generated from T4 templates
 - Resource classes (in `Resources/` folder) are versioned by API version (e.g., `V2018_08_01`, `V2025_07_17`) and auto-generated
-- Current latest versions include: CheckIns `V2025_05_28`, People `V2025_07_17`
+- Current latest versions include: CheckIns `V2025_05_28`, People `V2025_07_17`, Publishing `V2024_03_25`, Calendar `V2022_07_07`, Groups `V2023_07_10`, Giving `V2019_10_18`, Services `V2018_11_01`
 - Document contexts per API service are auto-generated
 - Generation process uses reflection and API documentation parsing
 
@@ -60,7 +60,7 @@ This is a .NET 8 C# library that provides a strongly-typed client for the Planni
 - Versioned namespaces follow pattern `V{YYYY}_{MM}_{DD}`
 
 **Authentication:**
-- Uses `PlanningCenterPersonalAccessToken` record struct (AppID + Secret) in `Authentication` namespace
+- Uses `PlanningCenterPersonalAccessToken` record struct (AppID + Secret) in `Authentication` namespace (moved to Authentication namespace in v1.2.0)
 - Supports OAuth via `PlanningCenterOAuthDefaults` class (added in v1.2.0)
 - Personal Access Token automatically converted to HTTP Basic Authorization header
 - OAuth constants include endpoints for authorization, token exchange, and user information
@@ -87,7 +87,8 @@ This is a .NET 8 C# library that provides a strongly-typed client for the Planni
 - Library follows semantic versioning (currently v1.2.0)
 - API resource versions match Planning Center's API versioning scheme
 - Latest API versions are aliased via `LatestVersion` properties
-- Recent major updates include OAuth support and comprehensive API regeneration
+- v1.2.0 (August 2025): Added OAuth support and comprehensive API regeneration
+- Major dependency updates: upgraded to Crews.Extensions.Http 2.0.0, Crews.PlanningCenter.Models 1.2.0, and Microsoft.Extensions packages 9.0.1
 
 **Code Generation Process:**
 1. Build the main library and generators projects

@@ -27,6 +27,7 @@ public class ServicesDocumentContext : PlanningCenterDocumentContext
     builder.Configurations.Add(new AttachmentConfiguration());
     builder.Configurations.Add(new AttachmentActivityConfiguration());
     builder.Configurations.Add(new AttachmentTypeConfiguration());
+    builder.Configurations.Add(new AttachmentTypeGroupConfiguration());
     builder.Configurations.Add(new AttendanceConfiguration());
     builder.Configurations.Add(new AvailableSignupConfiguration());
     builder.Configurations.Add(new BlockoutConfiguration());
@@ -46,7 +47,6 @@ public class ServicesDocumentContext : PlanningCenterDocumentContext
     builder.Configurations.Add(new ItemNoteCategoryConfiguration());
     builder.Configurations.Add(new ItemTimeConfiguration());
     builder.Configurations.Add(new KeyConfiguration());
-    builder.Configurations.Add(new LayoutConfiguration());
     builder.Configurations.Add(new LiveConfiguration());
     builder.Configurations.Add(new LiveControllerConfiguration());
     builder.Configurations.Add(new MediaConfiguration());
@@ -92,6 +92,7 @@ public class ServicesDocumentContext : PlanningCenterDocumentContext
   internal class AttachmentConfiguration : ResourceTypeBuilder<Attachment> { public AttachmentConfiguration() { } }
   internal class AttachmentActivityConfiguration : ResourceTypeBuilder<AttachmentActivity> { public AttachmentActivityConfiguration() { } }
   internal class AttachmentTypeConfiguration : ResourceTypeBuilder<AttachmentType> { public AttachmentTypeConfiguration() { } }
+  internal class AttachmentTypeGroupConfiguration : ResourceTypeBuilder<AttachmentTypeGroup> { public AttachmentTypeGroupConfiguration() { } }
   internal class AttendanceConfiguration : ResourceTypeBuilder<Attendance> { public AttendanceConfiguration() { } }
   internal class AvailableSignupConfiguration : ResourceTypeBuilder<AvailableSignup> { public AvailableSignupConfiguration() { } }
   internal class BlockoutConfiguration : ResourceTypeBuilder<Blockout> { public BlockoutConfiguration() { } }
@@ -111,7 +112,6 @@ public class ServicesDocumentContext : PlanningCenterDocumentContext
   internal class ItemNoteCategoryConfiguration : ResourceTypeBuilder<ItemNoteCategory> { public ItemNoteCategoryConfiguration() { } }
   internal class ItemTimeConfiguration : ResourceTypeBuilder<ItemTime> { public ItemTimeConfiguration() { } }
   internal class KeyConfiguration : ResourceTypeBuilder<Key> { public KeyConfiguration() { } }
-  internal class LayoutConfiguration : ResourceTypeBuilder<Layout> { public LayoutConfiguration() { } }
   internal class LiveConfiguration : ResourceTypeBuilder<Live> { public LiveConfiguration() { } }
   internal class LiveControllerConfiguration : ResourceTypeBuilder<LiveController> { public LiveControllerConfiguration() { } }
   internal class MediaConfiguration : ResourceTypeBuilder<Media> { public MediaConfiguration() { } }

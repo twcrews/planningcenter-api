@@ -8,6 +8,7 @@ using Crews.PlanningCenter.Models.Giving.V2018_08_01.Entities;
 using Crews.PlanningCenter.Models.Giving.V2018_08_01.Parameters;
 using Crews.PlanningCenter.Api.Models.Resources.Querying;
 using Crews.PlanningCenter.Api.Models.Resources;
+using Crews.PlanningCenter.Api.Models;
 
 namespace Crews.PlanningCenter.Api.Resources.Giving.V2018_08_01;
 
@@ -34,6 +35,11 @@ public class PersonResource
   public DonationResourceCollection Donations => GetRelated<DonationResourceCollection>("donations");
 
   /// <summary>
+  /// The related <see cref="InKindDonationResourceCollection" />.
+  /// </summary>
+  public InKindDonationResourceCollection InKindDonations => GetRelated<InKindDonationResourceCollection>("in_kind_donations");
+
+  /// <summary>
   /// The related <see cref="PaymentMethodResourceCollection" />.
   /// </summary>
   public PaymentMethodResourceCollection PaymentMethods => GetRelated<PaymentMethodResourceCollection>("payment_methods");
@@ -49,6 +55,10 @@ public class PersonResource
   public RecurringDonationResourceCollection RecurringDonations => GetRelated<RecurringDonationResourceCollection>("recurring_donations");
 
   internal PersonResource(Uri uri, HttpClient client) : base(uri, client) { }
+
+  /// <inheritdoc />
+  public new Task<JsonApiSingletonResponse<Person>> PatchAsync(Person resource)
+    => base.PatchAsync(resource);
 }
 
 /// <summary>

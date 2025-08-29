@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch(domain:developer.planning.center)",
+      "Bash(rm:*)",
+      "Bash(dotnet build)",
+      "Bash(dotnet build:*)",
+      "Bash(dotnet test:*)",
+      "Bash(mkdir:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

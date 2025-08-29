@@ -29,6 +29,7 @@ public class GivingDocumentContext : PlanningCenterDocumentContext
     builder.Configurations.Add(new DesignationRefundConfiguration());
     builder.Configurations.Add(new DonationConfiguration());
     builder.Configurations.Add(new FundConfiguration());
+    builder.Configurations.Add(new InKindDonationConfiguration());
     builder.Configurations.Add(new LabelConfiguration());
     builder.Configurations.Add(new NoteConfiguration());
     builder.Configurations.Add(new OrganizationConfiguration());
@@ -49,6 +50,7 @@ public class GivingDocumentContext : PlanningCenterDocumentContext
   internal class DesignationRefundConfiguration : ResourceTypeBuilder<DesignationRefund> { public DesignationRefundConfiguration() { } }
   internal class DonationConfiguration : ResourceTypeBuilder<Donation> { public DonationConfiguration() { } }
   internal class FundConfiguration : ResourceTypeBuilder<Fund> { public FundConfiguration() { } }
+  internal class InKindDonationConfiguration : ResourceTypeBuilder<InKindDonation> { public InKindDonationConfiguration() { } }
   internal class LabelConfiguration : ResourceTypeBuilder<Label> { public LabelConfiguration() { } }
   internal class NoteConfiguration : ResourceTypeBuilder<Note> { public NoteConfiguration() { } }
   internal class OrganizationConfiguration : ResourceTypeBuilder<Organization> { public OrganizationConfiguration() { } }

@@ -73,12 +73,17 @@ public class PlanPersonResource
 /// </summary>
 public class PlanPersonResourceCollection
   : PlanningCenterPaginatedFetchableResource<PlanPerson, PlanPersonResourceCollection, PlanPersonResource, ServicesDocumentContext>,
-  IIncludable<PlanPersonResourceCollection, PlanPersonIncludable>
+  IIncludable<PlanPersonResourceCollection, PlanPersonIncludable>,
+  IQueryable<PlanPersonResourceCollection, PlanPersonQueryable>
 {
   internal PlanPersonResourceCollection(Uri uri, HttpClient client) : base(uri, client) { }
 
   /// <inheritdoc />
   public PlanPersonResourceCollection Include(params PlanPersonIncludable[] included)
     => base.Include(included);
+
+  /// <inheritdoc />
+  public PlanPersonResourceCollection Query(params (PlanPersonQueryable, string)[] queries)
+    => base.Query(queries);
 }
 

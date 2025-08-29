@@ -25,6 +25,11 @@ public class FormResource
   public CampusResource Campus => GetRelated<CampusResource>("campus");
 
   /// <summary>
+  /// The related <see cref="FormCategoryResource" />.
+  /// </summary>
+  public FormCategoryResource Category => GetRelated<FormCategoryResource>("category");
+
+  /// <summary>
   /// The related <see cref="FormFieldResourceCollection" />.
   /// </summary>
   public FormFieldResourceCollection Fields => GetRelated<FormFieldResourceCollection>("fields");

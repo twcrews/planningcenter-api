@@ -31,11 +31,6 @@ public class ServiceTypeResource
   public ItemNoteCategoryResourceCollection ItemNoteCategories => GetRelated<ItemNoteCategoryResourceCollection>("item_note_categories");
 
   /// <summary>
-  /// The related <see cref="LayoutResourceCollection" />.
-  /// </summary>
-  public LayoutResourceCollection Layouts => GetRelated<LayoutResourceCollection>("layouts");
-
-  /// <summary>
   /// The related <see cref="LiveControllerResourceCollection" />.
   /// </summary>
   public LiveControllerResourceCollection LiveControllers => GetRelated<LiveControllerResourceCollection>("live_controllers");

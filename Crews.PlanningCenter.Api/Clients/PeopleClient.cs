@@ -25,7 +25,43 @@ public class PeopleClient(HttpClient client, Uri? baseUri = null)
   /// <summary>
   /// Gets a client for the latest version of the People API.
   /// </summary>
-  public Resources.People.V2024_09_12.OrganizationResource LatestVersion => V2024_09_12;
+  public Resources.People.V2025_07_17.OrganizationResource LatestVersion => V2025_07_17;
+
+  /// <summary>
+  /// Gets a client for version 2025-07-17 of the People API.
+  /// </summary>
+  public Resources.People.V2025_07_17.OrganizationResource V2025_07_17
+  {
+    get
+    {
+      _client.DefaultRequestHeaders.AddPlanningCenterVersion("2025-07-17");
+      return new(_baseUri.SafelyAppendPath("people/v2"), _client);
+    }
+  }
+
+  /// <summary>
+  /// Gets a client for version 2025-07-02 of the People API.
+  /// </summary>
+  public Resources.People.V2025_07_02.OrganizationResource V2025_07_02
+  {
+    get
+    {
+      _client.DefaultRequestHeaders.AddPlanningCenterVersion("2025-07-02");
+      return new(_baseUri.SafelyAppendPath("people/v2"), _client);
+    }
+  }
+
+  /// <summary>
+  /// Gets a client for version 2025-03-20 of the People API.
+  /// </summary>
+  public Resources.People.V2025_03_20.OrganizationResource V2025_03_20
+  {
+    get
+    {
+      _client.DefaultRequestHeaders.AddPlanningCenterVersion("2025-03-20");
+      return new(_baseUri.SafelyAppendPath("people/v2"), _client);
+    }
+  }
 
   /// <summary>
   /// Gets a client for version 2024-09-12 of the People API.

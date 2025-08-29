@@ -23,18 +23,19 @@ public class PeopleDocumentContext : PlanningCenterDocumentContext
     base.OnServiceModelCreating(builder);
   
     builder.Configurations.Add(new AddressConfiguration());
-    builder.Configurations.Add(new AnniversaryCouplesConfiguration());
     builder.Configurations.Add(new AppConfiguration());
     builder.Configurations.Add(new BirthdayPeopleConfiguration());
     builder.Configurations.Add(new CampusConfiguration());
     builder.Configurations.Add(new CarrierConfiguration());
     builder.Configurations.Add(new ConditionConfiguration());
     builder.Configurations.Add(new ConnectedPersonConfiguration());
+    builder.Configurations.Add(new CustomSenderConfiguration());
     builder.Configurations.Add(new EmailConfiguration());
     builder.Configurations.Add(new FieldDatumConfiguration());
     builder.Configurations.Add(new FieldDefinitionConfiguration());
     builder.Configurations.Add(new FieldOptionConfiguration());
     builder.Configurations.Add(new FormConfiguration());
+    builder.Configurations.Add(new FormCategoryConfiguration());
     builder.Configurations.Add(new FormFieldConfiguration());
     builder.Configurations.Add(new FormFieldOptionConfiguration());
     builder.Configurations.Add(new FormSubmissionConfiguration());
@@ -42,7 +43,6 @@ public class PeopleDocumentContext : PlanningCenterDocumentContext
     builder.Configurations.Add(new HouseholdConfiguration());
     builder.Configurations.Add(new HouseholdMembershipConfiguration());
     builder.Configurations.Add(new InactiveReasonConfiguration());
-    builder.Configurations.Add(new JoltTokenConfiguration());
     builder.Configurations.Add(new ListConfiguration());
     builder.Configurations.Add(new ListCategoryConfiguration());
     builder.Configurations.Add(new ListResultConfiguration());
@@ -86,18 +86,19 @@ public class PeopleDocumentContext : PlanningCenterDocumentContext
   }
 
   internal class AddressConfiguration : ResourceTypeBuilder<Address> { public AddressConfiguration() { } }
-  internal class AnniversaryCouplesConfiguration : ResourceTypeBuilder<AnniversaryCouples> { public AnniversaryCouplesConfiguration() { } }
   internal class AppConfiguration : ResourceTypeBuilder<App> { public AppConfiguration() { } }
   internal class BirthdayPeopleConfiguration : ResourceTypeBuilder<BirthdayPeople> { public BirthdayPeopleConfiguration() { } }
   internal class CampusConfiguration : ResourceTypeBuilder<Campus> { public CampusConfiguration() { } }
   internal class CarrierConfiguration : ResourceTypeBuilder<Carrier> { public CarrierConfiguration() { } }
   internal class ConditionConfiguration : ResourceTypeBuilder<Condition> { public ConditionConfiguration() { } }
   internal class ConnectedPersonConfiguration : ResourceTypeBuilder<ConnectedPerson> { public ConnectedPersonConfiguration() { } }
+  internal class CustomSenderConfiguration : ResourceTypeBuilder<CustomSender> { public CustomSenderConfiguration() { } }
   internal class EmailConfiguration : ResourceTypeBuilder<Email> { public EmailConfiguration() { } }
   internal class FieldDatumConfiguration : ResourceTypeBuilder<FieldDatum> { public FieldDatumConfiguration() { } }
   internal class FieldDefinitionConfiguration : ResourceTypeBuilder<FieldDefinition> { public FieldDefinitionConfiguration() { } }
   internal class FieldOptionConfiguration : ResourceTypeBuilder<FieldOption> { public FieldOptionConfiguration() { } }
   internal class FormConfiguration : ResourceTypeBuilder<Form> { public FormConfiguration() { } }
+  internal class FormCategoryConfiguration : ResourceTypeBuilder<FormCategory> { public FormCategoryConfiguration() { } }
   internal class FormFieldConfiguration : ResourceTypeBuilder<FormField> { public FormFieldConfiguration() { } }
   internal class FormFieldOptionConfiguration : ResourceTypeBuilder<FormFieldOption> { public FormFieldOptionConfiguration() { } }
   internal class FormSubmissionConfiguration : ResourceTypeBuilder<FormSubmission> { public FormSubmissionConfiguration() { } }
@@ -105,7 +106,6 @@ public class PeopleDocumentContext : PlanningCenterDocumentContext
   internal class HouseholdConfiguration : ResourceTypeBuilder<Household> { public HouseholdConfiguration() { } }
   internal class HouseholdMembershipConfiguration : ResourceTypeBuilder<HouseholdMembership> { public HouseholdMembershipConfiguration() { } }
   internal class InactiveReasonConfiguration : ResourceTypeBuilder<InactiveReason> { public InactiveReasonConfiguration() { } }
-  internal class JoltTokenConfiguration : ResourceTypeBuilder<JoltToken> { public JoltTokenConfiguration() { } }
   internal class ListConfiguration : ResourceTypeBuilder<List> { public ListConfiguration() { } }
   internal class ListCategoryConfiguration : ResourceTypeBuilder<ListCategory> { public ListCategoryConfiguration() { } }
   internal class ListResultConfiguration : ResourceTypeBuilder<ListResult> { public ListResultConfiguration() { } }

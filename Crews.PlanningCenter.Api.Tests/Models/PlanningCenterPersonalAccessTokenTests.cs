@@ -1,6 +1,6 @@
 using System.Net.Http.Headers;
 using Crews.Extensions.Primitives;
-using Crews.PlanningCenter.Api.Models;
+using Crews.PlanningCenter.Api.Authentication;
 
 namespace Crews.PlanningCenter.Api.Tests.Models;
 

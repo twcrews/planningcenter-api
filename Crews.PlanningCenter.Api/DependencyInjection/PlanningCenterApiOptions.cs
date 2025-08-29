@@ -1,4 +1,4 @@
-using Crews.PlanningCenter.Api.Models;
+using Crews.PlanningCenter.Api.Authentication;
 
 namespace Crews.PlanningCenter.Api.DependencyInjection;
 

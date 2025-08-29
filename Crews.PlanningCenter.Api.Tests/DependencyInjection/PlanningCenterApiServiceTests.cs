@@ -1,6 +1,6 @@
 using System.Net;
+using Crews.PlanningCenter.Api.Authentication;
 using Crews.PlanningCenter.Api.DependencyInjection;
-using Crews.PlanningCenter.Api.Models;
 using Crews.PlanningCenter.Api.Tests.Dummies.Serialized;
 using Microsoft.Extensions.Options;
 using NSubstitute;

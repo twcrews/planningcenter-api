@@ -8,6 +8,7 @@ using Crews.PlanningCenter.Models.Groups.V2023_07_10.Entities;
 using Crews.PlanningCenter.Models.Groups.V2023_07_10.Parameters;
 using Crews.PlanningCenter.Api.Models.Resources.Querying;
 using Crews.PlanningCenter.Api.Models.Resources;
+using Crews.PlanningCenter.Api.Models;
 
 namespace Crews.PlanningCenter.Api.Resources.Groups.V2023_07_10;
 
@@ -23,6 +24,11 @@ public class GroupResource
   /// The related <see cref="GroupApplicationResourceCollection" />.
   /// </summary>
   public GroupApplicationResourceCollection Applications => GetRelated<GroupApplicationResourceCollection>("applications");
+
+  /// <summary>
+  /// The related <see cref="CampusResourceCollection" />.
+  /// </summary>
+  public CampusResourceCollection Campuses => GetRelated<CampusResourceCollection>("campuses");
 
   /// <summary>
   /// The related <see cref="EnrollmentResource" />.
@@ -69,6 +75,10 @@ public class GroupResource
 	/// <inheritdoc />
 	public GroupResource Include(params GroupIncludable[] included) 
     => base.Include(included);
+
+  /// <inheritdoc />
+  public new Task<JsonApiSingletonResponse<Group>> PatchAsync(Group resource)
+    => base.PatchAsync(resource);
 }
 
 /// <summary>

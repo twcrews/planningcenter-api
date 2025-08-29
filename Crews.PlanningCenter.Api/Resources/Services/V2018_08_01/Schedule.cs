@@ -52,7 +52,8 @@ public class ScheduleResource
 public class ScheduleResourceCollection
   : PlanningCenterPaginatedFetchableResource<Schedule, ScheduleResourceCollection, ScheduleResource, ServicesDocumentContext>,
   IIncludable<ScheduleResourceCollection, ScheduleIncludable>,
-  IOrderable<ScheduleResourceCollection, ScheduleOrderable>
+  IOrderable<ScheduleResourceCollection, ScheduleOrderable>,
+  IQueryable<ScheduleResourceCollection, ScheduleQueryable>
 {
   internal ScheduleResourceCollection(Uri uri, HttpClient client) : base(uri, client) { }
 
@@ -63,5 +64,9 @@ public class ScheduleResourceCollection
   /// <inheritdoc />
   public ScheduleResourceCollection OrderBy(ScheduleOrderable orderer, Order order = Order.Ascending)
     => base.OrderBy(orderer, order);
+
+  /// <inheritdoc />
+  public ScheduleResourceCollection Query(params (ScheduleQueryable, string)[] queries)
+    => base.Query(queries);
 }
 

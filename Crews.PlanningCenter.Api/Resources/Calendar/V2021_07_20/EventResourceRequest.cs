@@ -20,6 +20,11 @@ public class EventResourceRequestResource
 {
 
   /// <summary>
+  /// The related <see cref="EventResourceAnswerResourceCollection" />.
+  /// </summary>
+  public EventResourceAnswerResourceCollection Answers => GetRelated<EventResourceAnswerResourceCollection>("answers");
+
+  /// <summary>
   /// The related <see cref="PersonResource" />.
   /// </summary>
   public PersonResource CreatedBy => GetRelated<PersonResource>("created_by");

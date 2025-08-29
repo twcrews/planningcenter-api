@@ -27,6 +27,7 @@ public class CalendarDocumentContext : PlanningCenterDocumentContext
     builder.Configurations.Add(new EventConfiguration());
     builder.Configurations.Add(new EventConnectionConfiguration());
     builder.Configurations.Add(new EventInstanceConfiguration());
+    builder.Configurations.Add(new EventResourceAnswerConfiguration());
     builder.Configurations.Add(new EventResourceRequestConfiguration());
     builder.Configurations.Add(new EventTimeConfiguration());
     builder.Configurations.Add(new FeedConfiguration());
@@ -51,6 +52,7 @@ public class CalendarDocumentContext : PlanningCenterDocumentContext
   internal class EventConfiguration : ResourceTypeBuilder<Event> { public EventConfiguration() { } }
   internal class EventConnectionConfiguration : ResourceTypeBuilder<EventConnection> { public EventConnectionConfiguration() { } }
   internal class EventInstanceConfiguration : ResourceTypeBuilder<EventInstance> { public EventInstanceConfiguration() { } }
+  internal class EventResourceAnswerConfiguration : ResourceTypeBuilder<EventResourceAnswer> { public EventResourceAnswerConfiguration() { } }
   internal class EventResourceRequestConfiguration : ResourceTypeBuilder<EventResourceRequest> { public EventResourceRequestConfiguration() { } }
   internal class EventTimeConfiguration : ResourceTypeBuilder<EventTime> { public EventTimeConfiguration() { } }
   internal class FeedConfiguration : ResourceTypeBuilder<Feed> { public FeedConfiguration() { } }

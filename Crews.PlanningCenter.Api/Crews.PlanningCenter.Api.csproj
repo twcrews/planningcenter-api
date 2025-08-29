@@ -10,7 +10,7 @@
 
   <PropertyGroup>
     <PackageId>Crews.PlanningCenter.Api</PackageId>
-    <PackageVersion>1.1.0</PackageVersion>
+    <PackageVersion>1.2.0</PackageVersion>
     <Authors>Tommy Crews</Authors>
     <Description>
       A library containing basic models and services for interacting with the Planning Center API.
@@ -33,9 +33,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Crews.Extensions.Http" Version="1.0.0" />
-    <PackageReference Include="Crews.Extensions.Primitives" Version="1.1.2" />
-    <PackageReference Include="Crews.PlanningCenter.Models" Version="1.1.0" />
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Crews.Extensions.Http" Version="2.0.0" />
+    <PackageReference Include="Crews.PlanningCenter.Models" Version="1.2.0" />
     <PackageReference Include="JsonApiFramework.Client" Version="2.10.1" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.1" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.1" />

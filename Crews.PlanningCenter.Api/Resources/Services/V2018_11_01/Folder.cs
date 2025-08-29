@@ -54,7 +54,8 @@ public class FolderResource
 public class FolderResourceCollection
   : PlanningCenterPaginatedFetchableResource<Folder, FolderResourceCollection, FolderResource, ServicesDocumentContext>,
   IIncludable<FolderResourceCollection, FolderIncludable>,
-  IOrderable<FolderResourceCollection, FolderOrderable>
+  IOrderable<FolderResourceCollection, FolderOrderable>,
+  IQueryable<FolderResourceCollection, FolderQueryable>
 {
   internal FolderResourceCollection(Uri uri, HttpClient client) : base(uri, client) { }
 
@@ -65,5 +66,9 @@ public class FolderResourceCollection
   /// <inheritdoc />
   public FolderResourceCollection OrderBy(FolderOrderable orderer, Order order = Order.Ascending)
     => base.OrderBy(orderer, order);
+
+  /// <inheritdoc />
+  public FolderResourceCollection Query(params (FolderQueryable, string)[] queries)
+    => base.Query(queries);
 }
 

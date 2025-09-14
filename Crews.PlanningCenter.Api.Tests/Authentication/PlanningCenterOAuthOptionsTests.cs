@@ -1,4 +1,5 @@
 using Crews.PlanningCenter.Api.Authentication;
+using Microsoft.AspNetCore.Authentication.OAuth.Claims;
 using System.Security.Claims;
 
 namespace Crews.PlanningCenter.Api.Tests.Authentication;
@@ -8,8 +9,8 @@ public class PlanningCenterOAuthOptionsTests
     [Fact(DisplayName = "Constructor sets correct default values")]
     public void Constructor_SetsCorrectDefaults()
     {
-        // Act
-        var options = new PlanningCenterOAuthOptions();
+		// Act
+		PlanningCenterOAuthOptions options = new PlanningCenterOAuthOptions();
 
         // Assert
         Assert.Equal(PlanningCenterOAuthDefaults.CallbackPath, options.CallbackPath);
@@ -23,14 +24,14 @@ public class PlanningCenterOAuthOptionsTests
     [Fact(DisplayName = "Constructor configures claim actions for standard claims")]
     public void Constructor_ConfiguresStandardClaimActions()
     {
-        // Act
-        var options = new PlanningCenterOAuthOptions();
+		// Act
+		PlanningCenterOAuthOptions options = new PlanningCenterOAuthOptions();
 
         // Assert - Verify claim actions are configured
         Assert.NotEmpty(options.ClaimActions);
-        
-        // Check that key claim types are mapped
-        var claimActions = options.ClaimActions.ToList();
+
+		// Check that key claim types are mapped
+		List<ClaimAction> claimActions = options.ClaimActions.ToList();
         Assert.Contains(claimActions, ca => ca.ClaimType == ClaimTypes.NameIdentifier);
         Assert.Contains(claimActions, ca => ca.ClaimType == ClaimTypes.Name);
         Assert.Contains(claimActions, ca => ca.ClaimType == ClaimTypes.DateOfBirth);
@@ -40,11 +41,11 @@ public class PlanningCenterOAuthOptionsTests
     [Fact(DisplayName = "Constructor configures claim actions for Planning Center specific claims")]
     public void Constructor_ConfiguresPlanningCenterSpecificClaimActions()
     {
-        // Act
-        var options = new PlanningCenterOAuthOptions();
+		// Act
+		PlanningCenterOAuthOptions options = new PlanningCenterOAuthOptions();
 
-        // Assert
-        var claimActions = options.ClaimActions.ToList();
+		// Assert
+		List<ClaimAction> claimActions = options.ClaimActions.ToList();
         
         Assert.Contains(claimActions, ca => ca.ClaimType == "urn:planningcenter:first_name");
         Assert.Contains(claimActions, ca => ca.ClaimType == "urn:planningcenter:last_name");
@@ -64,8 +65,8 @@ public class PlanningCenterOAuthOptionsTests
     [Fact(DisplayName = "Options inherit from OAuthOptions correctly")]
     public void Options_InheritFromOAuthOptionsCorrectly()
     {
-        // Act
-        var options = new PlanningCenterOAuthOptions();
+		// Act
+		PlanningCenterOAuthOptions options = new PlanningCenterOAuthOptions();
 
         // Assert
         Assert.NotNull(options.Scope);

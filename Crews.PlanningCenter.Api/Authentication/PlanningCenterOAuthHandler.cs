@@ -26,10 +26,10 @@ public class PlanningCenterOAuthHandler : OAuthHandler<PlanningCenterOAuthOption
 
     protected override async Task<AuthenticationTicket> CreateTicketAsync(ClaimsIdentity identity, AuthenticationProperties properties, OAuthTokenResponse tokens)
     {
-        using var request = new HttpRequestMessage(HttpMethod.Get, Options.UserInformationEndpoint);
+        using HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, Options.UserInformationEndpoint);
         request.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", tokens.AccessToken);
 
-        using var response = await Backchannel.SendAsync(request, Context.RequestAborted);
+        using HttpResponseMessage response = await Backchannel.SendAsync(request, Context.RequestAborted);
         if (!response.IsSuccessStatusCode)
         {
             Logger.LogError("An error occurred while retrieving the user profile: the remote server " +
@@ -39,10 +39,10 @@ public class PlanningCenterOAuthHandler : OAuthHandler<PlanningCenterOAuthOption
             throw new HttpRequestException("An error occurred while retrieving the user profile.");
         }
 
-        using var payload = JsonDocument.Parse(await response.Content.ReadAsStringAsync(Context.RequestAborted));
-        var data = payload.RootElement.GetProperty("data");
+        using JsonDocument payload = JsonDocument.Parse(await response.Content.ReadAsStringAsync(Context.RequestAborted));
+		JsonElement data = payload.RootElement.GetProperty("data");
 
-        var context = new OAuthCreatingTicketContext(new ClaimsPrincipal(identity), properties, Context, Scheme, Options, Backchannel, tokens, data);
+		OAuthCreatingTicketContext context = new OAuthCreatingTicketContext(new ClaimsPrincipal(identity), properties, Context, Scheme, Options, Backchannel, tokens, data);
 
         context.RunClaimActions();
 
@@ -57,21 +57,21 @@ public class PlanningCenterOAuthHandler : OAuthHandler<PlanningCenterOAuthOption
     {
         try
         {
-            using var request = new HttpRequestMessage(HttpMethod.Get, PlanningCenterOAuthDefaults.UserEmailsEndpoint);
+            using HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, PlanningCenterOAuthDefaults.UserEmailsEndpoint);
             request.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
 
-            using var response = await Backchannel.SendAsync(request, Context.RequestAborted);
+            using HttpResponseMessage response = await Backchannel.SendAsync(request, Context.RequestAborted);
             if (response.IsSuccessStatusCode)
             {
-                using var payload = JsonDocument.Parse(await response.Content.ReadAsStringAsync(Context.RequestAborted));
-                var emails = payload.RootElement.GetProperty("data");
+                using JsonDocument payload = JsonDocument.Parse(await response.Content.ReadAsStringAsync(Context.RequestAborted));
+				JsonElement emails = payload.RootElement.GetProperty("data");
 
                 // Find primary email or first email
-                foreach (var email in emails.EnumerateArray())
+                foreach (JsonElement email in emails.EnumerateArray())
                 {
-                    var attributes = email.GetProperty("attributes");
-                    var emailAddress = attributes.GetProperty("address").GetString();
-                    var isPrimary = attributes.TryGetProperty("primary", out var primary) && primary.GetBoolean();
+					JsonElement attributes = email.GetProperty("attributes");
+					string? emailAddress = attributes.GetProperty("address").GetString();
+					bool isPrimary = attributes.TryGetProperty("primary", out JsonElement primary) && primary.GetBoolean();
 
                     if (!string.IsNullOrEmpty(emailAddress))
                     {

@@ -9,7 +9,7 @@ namespace Crews.PlanningCenter.Api.Authentication;
 /// <summary>
 /// Claims transformation service that can refresh Planning Center user data.
 /// </summary>
-public class PlanningCenterClaimsTransformation : IClaimsTransformation
+class PlanningCenterClaimsTransformation : IClaimsTransformation
 {
     private readonly IHttpClientFactory _httpClientFactory;
     private readonly ILogger<PlanningCenterClaimsTransformation> _logger;
@@ -27,13 +27,12 @@ public class PlanningCenterClaimsTransformation : IClaimsTransformation
 
     public async Task<ClaimsPrincipal> TransformAsync(ClaimsPrincipal principal)
     {
-        // Only transform if this is a Planning Center authentication (be more flexible about the auth scheme)
-        var identity = principal.Identity as ClaimsIdentity;
-        if (identity == null || !identity.IsAuthenticated)
-            return principal;
-            
-        // Check if this looks like a Planning Center OAuth authentication by looking for access_token
-        var hasAccessToken = identity.FindFirst("access_token") != null;
+		// Only transform if this is a Planning Center authentication (be more flexible about the auth scheme)
+		if (principal.Identity is not ClaimsIdentity identity || !identity.IsAuthenticated)
+			return principal;
+
+		// Check if this looks like a Planning Center OAuth authentication by looking for access_token
+		bool hasAccessToken = identity.FindFirst("access_token") != null;
         if (!hasAccessToken)
             return principal;
 
@@ -58,12 +57,12 @@ public class PlanningCenterClaimsTransformation : IClaimsTransformation
         if (!_options.EnableClaimsRefresh)
             return false;
 
-        // Check if claims are older than the refresh interval
-        var lastRefreshClaim = identity.FindFirst("urn:planningcenter:last_refresh");
+		// Check if claims are older than the refresh interval
+		Claim? lastRefreshClaim = identity.FindFirst("urn:planningcenter:last_refresh");
         if (lastRefreshClaim == null)
             return true;
 
-        if (DateTime.TryParse(lastRefreshClaim.Value, out var lastRefresh))
+        if (DateTime.TryParse(lastRefreshClaim.Value, out DateTime lastRefresh))
         {
             return DateTime.UtcNow - lastRefresh > _options.ClaimsRefreshInterval;
         }
@@ -73,27 +72,27 @@ public class PlanningCenterClaimsTransformation : IClaimsTransformation
 
     private async Task RefreshUserClaimsAsync(ClaimsIdentity identity)
     {
-        var accessTokenClaim = identity.FindFirst("access_token");
+		Claim? accessTokenClaim = identity.FindFirst("access_token");
         if (accessTokenClaim == null)
         {
             _logger.LogWarning("No access token found in claims, cannot refresh user data");
             return;
         }
 
-        using var httpClient = _httpClientFactory.CreateClient();
-        using var request = new HttpRequestMessage(HttpMethod.Get, PlanningCenterOAuthDefaults.UserInformationEndpoint);
+        using HttpClient httpClient = _httpClientFactory.CreateClient();
+        using HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, PlanningCenterOAuthDefaults.UserInformationEndpoint);
         request.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessTokenClaim.Value);
 
-        using var response = await httpClient.SendAsync(request);
+        using HttpResponseMessage response = await httpClient.SendAsync(request);
         if (!response.IsSuccessStatusCode)
         {
             _logger.LogWarning("Failed to refresh user information from Planning Center: {StatusCode}", response.StatusCode);
             return;
         }
 
-        using var payload = JsonDocument.Parse(await response.Content.ReadAsStringAsync());
-        var data = payload.RootElement.GetProperty("data");
-        var attributes = data.GetProperty("attributes");
+        using JsonDocument payload = JsonDocument.Parse(await response.Content.ReadAsStringAsync());
+		JsonElement data = payload.RootElement.GetProperty("data");
+		JsonElement attributes = data.GetProperty("attributes");
 
         // Remove old refreshable claims and add new ones
         RemoveRefreshableClaims(identity);
@@ -105,11 +104,11 @@ public class PlanningCenterClaimsTransformation : IClaimsTransformation
 
     private static void RemoveRefreshableClaims(ClaimsIdentity identity)
     {
-        var claimsToRemove = identity.Claims
+		List<Claim> claimsToRemove = identity.Claims
             .Where(c => c.Type.StartsWith("urn:planningcenter:") && c.Type != "urn:planningcenter:last_refresh")
             .ToList();
 
-        foreach (var claim in claimsToRemove)
+        foreach (Claim? claim in claimsToRemove)
         {
             identity.RemoveClaim(claim);
         }
@@ -118,82 +117,82 @@ public class PlanningCenterClaimsTransformation : IClaimsTransformation
     private static void AddClaimsFromUserData(ClaimsIdentity identity, JsonElement data, JsonElement attributes)
     {
         // Add refreshed user claims
-        if (attributes.TryGetProperty("name", out var name) && !string.IsNullOrEmpty(name.GetString()))
+        if (attributes.TryGetProperty("name", out JsonElement name) && !string.IsNullOrEmpty(name.GetString()))
         {
             identity.AddClaim(new Claim(ClaimTypes.Name, name.GetString()!));
         }
 
-        if (attributes.TryGetProperty("first_name", out var firstName) && !string.IsNullOrEmpty(firstName.GetString()))
+        if (attributes.TryGetProperty("first_name", out JsonElement firstName) && !string.IsNullOrEmpty(firstName.GetString()))
         {
             identity.AddClaim(new Claim("urn:planningcenter:first_name", firstName.GetString()!));
         }
 
-        if (attributes.TryGetProperty("last_name", out var lastName) && !string.IsNullOrEmpty(lastName.GetString()))
+        if (attributes.TryGetProperty("last_name", out JsonElement lastName) && !string.IsNullOrEmpty(lastName.GetString()))
         {
             identity.AddClaim(new Claim("urn:planningcenter:last_name", lastName.GetString()!));
         }
 
-        if (attributes.TryGetProperty("avatar", out var avatar) && !string.IsNullOrEmpty(avatar.GetString()))
+        if (attributes.TryGetProperty("avatar", out JsonElement avatar) && !string.IsNullOrEmpty(avatar.GetString()))
         {
             identity.AddClaim(new Claim("urn:planningcenter:avatar", avatar.GetString()!));
         }
 
-        if (attributes.TryGetProperty("status", out var status) && !string.IsNullOrEmpty(status.GetString()))
+        if (attributes.TryGetProperty("status", out JsonElement status) && !string.IsNullOrEmpty(status.GetString()))
         {
             identity.AddClaim(new Claim("urn:planningcenter:status", status.GetString()!));
         }
 
-        if (attributes.TryGetProperty("site_administrator", out var siteAdmin))
+        if (attributes.TryGetProperty("site_administrator", out JsonElement siteAdmin))
         {
             identity.AddClaim(new Claim("urn:planningcenter:site_administrator", siteAdmin.GetBoolean().ToString().ToLowerInvariant()));
         }
 
-        if (attributes.TryGetProperty("accounting_administrator", out var accountingAdmin))
+        if (attributes.TryGetProperty("accounting_administrator", out JsonElement accountingAdmin))
         {
             identity.AddClaim(new Claim("urn:planningcenter:accounting_administrator", accountingAdmin.GetBoolean().ToString().ToLowerInvariant()));
         }
 
-        if (attributes.TryGetProperty("birthdate", out var birthdate) && !string.IsNullOrEmpty(birthdate.GetString()))
+        if (attributes.TryGetProperty("birthdate", out JsonElement birthdate) && !string.IsNullOrEmpty(birthdate.GetString()))
         {
             identity.AddClaim(new Claim(ClaimTypes.DateOfBirth, birthdate.GetString()!));
         }
 
-        if (attributes.TryGetProperty("people_permissions", out var peoplePermissions) && !string.IsNullOrEmpty(peoplePermissions.GetString()))
+        if (attributes.TryGetProperty("people_permissions", out JsonElement peoplePermissions) && !string.IsNullOrEmpty(peoplePermissions.GetString()))
         {
             identity.AddClaim(new Claim("urn:planningcenter:people_permissions", peoplePermissions.GetString()!));
         }
 
-        if (attributes.TryGetProperty("gender", out var gender) && !string.IsNullOrEmpty(gender.GetString()))
+        if (attributes.TryGetProperty("gender", out JsonElement gender) && !string.IsNullOrEmpty(gender.GetString()))
         {
             identity.AddClaim(new Claim(ClaimTypes.Gender, gender.GetString()!));
         }
 
-        if (attributes.TryGetProperty("membership", out var membership) && !string.IsNullOrEmpty(membership.GetString()))
+        if (attributes.TryGetProperty("membership", out JsonElement membership) && !string.IsNullOrEmpty(membership.GetString()))
         {
             identity.AddClaim(new Claim("urn:planningcenter:membership", membership.GetString()!));
         }
 
-        if (attributes.TryGetProperty("directory_status", out var directoryStatus) && !string.IsNullOrEmpty(directoryStatus.GetString()))
+        if (attributes.TryGetProperty("directory_status", out JsonElement directoryStatus) && !string.IsNullOrEmpty(directoryStatus.GetString()))
         {
             identity.AddClaim(new Claim("urn:planningcenter:directory_status", directoryStatus.GetString()!));
         }
 
-        if (attributes.TryGetProperty("passed_background_check", out var passedBackgroundCheck))
+        if (attributes.TryGetProperty("passed_background_check", out JsonElement passedBackgroundCheck))
         {
             identity.AddClaim(new Claim("urn:planningcenter:passed_background_check", passedBackgroundCheck.GetBoolean().ToString().ToLowerInvariant()));
         }
 
-        if (attributes.TryGetProperty("resource_permission_flags", out var resourcePermissionFlags) && !string.IsNullOrEmpty(resourcePermissionFlags.GetString()))
+        if (attributes.TryGetProperty("resource_permission_flags", out JsonElement resourcePermissionFlags) && !string.IsNullOrEmpty(resourcePermissionFlags.GetString()))
         {
             identity.AddClaim(new Claim("urn:planningcenter:resource_permission_flags", resourcePermissionFlags.GetString()!));
         }
 
-        if (attributes.TryGetProperty("login_identifier", out var loginIdentifier) && !string.IsNullOrEmpty(loginIdentifier.GetString()))
+        if (attributes.TryGetProperty("login_identifier", out JsonElement loginIdentifier) && !string.IsNullOrEmpty(loginIdentifier.GetString()))
         {
             identity.AddClaim(new Claim("urn:planningcenter:login_identifier", loginIdentifier.GetString()!));
         }
 
-        if (attributes.TryGetProperty("mfa_configured", out var mfaConfigured))
+        if (attributes.TryGetProperty("mfa_configured", out JsonElement mfaConfigured))
         {
             identity.AddClaim(new Claim("urn:planningcenter:mfa_configured", mfaConfigured.GetBoolean().ToString().ToLowerInvariant()));
         }

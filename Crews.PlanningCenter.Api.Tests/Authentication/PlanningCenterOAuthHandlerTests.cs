@@ -22,7 +22,7 @@ public class PlanningCenterOAuthHandlerTests
 
     public PlanningCenterOAuthHandlerTests()
     {
-        var options = new PlanningCenterOAuthOptions();
+		PlanningCenterOAuthOptions options = new PlanningCenterOAuthOptions();
         _optionsMonitor = Substitute.For<IOptionsMonitor<PlanningCenterOAuthOptions>>();
         _optionsMonitor.Get(Arg.Any<string>()).Returns(options);
 
@@ -45,8 +45,8 @@ public class PlanningCenterOAuthHandlerTests
     [Fact(DisplayName = "Handler setup processes user information mock correctly")]
     public void HandlerSetup_ProcessesUserInformationMockCorrectly()
     {
-        // Arrange
-        var userJson = JsonSerializer.Serialize(new
+		// Arrange
+		string userJson = JsonSerializer.Serialize(new
         {
             data = new
             {
@@ -63,7 +63,7 @@ public class PlanningCenterOAuthHandlerTests
             }
         });
 
-        var emailsJson = JsonSerializer.Serialize(new
+		string emailsJson = JsonSerializer.Serialize(new
         {
             data = new[]
             {
@@ -92,16 +92,16 @@ public class PlanningCenterOAuthHandlerTests
     [Fact(DisplayName = "Constructor initializes with required dependencies")]
     public void Constructor_InitializesWithRequiredDependencies()
     {
-        // Act & Assert - Constructor should not throw
-        var handler = new PlanningCenterOAuthHandler(_optionsMonitor, _loggerFactory, _urlEncoder);
+		// Act & Assert - Constructor should not throw
+		PlanningCenterOAuthHandler handler = new PlanningCenterOAuthHandler(_optionsMonitor, _loggerFactory, _urlEncoder);
         Assert.NotNull(handler);
     }
 
     [Fact(DisplayName = "Options monitor provides correct configuration")]
     public void OptionsMonitor_ProvidesCorrectConfiguration()
     {
-        // Act
-        var options = _optionsMonitor.Get(string.Empty);
+		// Act
+		PlanningCenterOAuthOptions options = _optionsMonitor.Get(string.Empty);
 
         // Assert
         Assert.NotNull(options);

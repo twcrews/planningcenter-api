@@ -24,7 +24,7 @@ public class PlanningCenterClaimsTransformationTests
 
         _logger = Substitute.For<ILogger<PlanningCenterClaimsTransformation>>();
 
-        var transformationOptions = new PlanningCenterClaimsTransformationOptions
+		PlanningCenterClaimsTransformationOptions transformationOptions = new PlanningCenterClaimsTransformationOptions
         {
             EnableClaimsRefresh = true,
             ClaimsRefreshInterval = TimeSpan.FromMinutes(30)
@@ -37,12 +37,12 @@ public class PlanningCenterClaimsTransformationTests
     [Fact(DisplayName = "TransformAsync returns original principal for non-Planning Center authentication")]
     public async Task TransformAsync_ReturnsOriginalPrincipal_ForNonPlanningCenterAuth()
     {
-        // Arrange
-        var identity = new ClaimsIdentity("other-scheme");
-        var principal = new ClaimsPrincipal(identity);
+		// Arrange
+		ClaimsIdentity identity = new ClaimsIdentity("other-scheme");
+		ClaimsPrincipal principal = new ClaimsPrincipal(identity);
 
-        // Act
-        var result = await _transformation.TransformAsync(principal);
+		// Act
+		ClaimsPrincipal result = await _transformation.TransformAsync(principal);
 
         // Assert
         Assert.Same(principal, result);
@@ -51,18 +51,18 @@ public class PlanningCenterClaimsTransformationTests
     [Fact(DisplayName = "TransformAsync returns original principal when refresh disabled")]
     public async Task TransformAsync_ReturnsOriginalPrincipal_WhenRefreshDisabled()
     {
-        // Arrange
-        var optionsWithRefreshDisabled = Options.Create(new PlanningCenterClaimsTransformationOptions
+		// Arrange
+		IOptions<PlanningCenterClaimsTransformationOptions> optionsWithRefreshDisabled = Options.Create(new PlanningCenterClaimsTransformationOptions
         {
             EnableClaimsRefresh = false
         });
-        var transformation = new PlanningCenterClaimsTransformation(_httpClientFactory, _logger, optionsWithRefreshDisabled);
+		PlanningCenterClaimsTransformation transformation = new PlanningCenterClaimsTransformation(_httpClientFactory, _logger, optionsWithRefreshDisabled);
 
-        var identity = new ClaimsIdentity(PlanningCenterOAuthDefaults.AuthenticationScheme);
-        var principal = new ClaimsPrincipal(identity);
+		ClaimsIdentity identity = new ClaimsIdentity(PlanningCenterOAuthDefaults.AuthenticationScheme);
+		ClaimsPrincipal principal = new ClaimsPrincipal(identity);
 
-        // Act
-        var result = await transformation.TransformAsync(principal);
+		// Act
+		ClaimsPrincipal result = await transformation.TransformAsync(principal);
 
         // Assert
         Assert.Same(principal, result);
@@ -71,8 +71,8 @@ public class PlanningCenterClaimsTransformationTests
     [Fact(DisplayName = "TransformAsync refreshes claims when no last refresh timestamp exists")]
     public async Task TransformAsync_RefreshesClaims_WhenNoLastRefreshTimestamp()
     {
-        // Arrange
-        var userJson = JsonSerializer.Serialize(new
+		// Arrange
+		string userJson = JsonSerializer.Serialize(new
         {
             data = new
             {
@@ -92,15 +92,15 @@ public class PlanningCenterClaimsTransformationTests
         _mockHttp.When(PlanningCenterOAuthDefaults.UserInformationEndpoint)
                  .Respond("application/json", userJson);
 
-        var identity = new ClaimsIdentity(PlanningCenterOAuthDefaults.AuthenticationScheme);
+		ClaimsIdentity identity = new ClaimsIdentity(PlanningCenterOAuthDefaults.AuthenticationScheme);
         identity.AddClaim(new Claim("access_token", "test_token"));
-        var principal = new ClaimsPrincipal(identity);
+		ClaimsPrincipal principal = new ClaimsPrincipal(identity);
 
-        // Act
-        var result = await _transformation.TransformAsync(principal);
+		// Act
+		ClaimsPrincipal result = await _transformation.TransformAsync(principal);
 
-        // Assert
-        var resultIdentity = result.Identity as ClaimsIdentity;
+		// Assert
+		ClaimsIdentity? resultIdentity = result.Identity as ClaimsIdentity;
         Assert.NotNull(resultIdentity);
         Assert.Contains(resultIdentity.Claims, c => c.Type == ClaimTypes.Name && c.Value == "John Updated");
         Assert.Contains(resultIdentity.Claims, c => c.Type == "urn:planningcenter:last_refresh");
@@ -109,8 +109,8 @@ public class PlanningCenterClaimsTransformationTests
     [Fact(DisplayName = "TransformAsync refreshes claims when refresh interval exceeded")]
     public async Task TransformAsync_RefreshesClaims_WhenRefreshIntervalExceeded()
     {
-        // Arrange
-        var userJson = JsonSerializer.Serialize(new
+		// Arrange
+		string userJson = JsonSerializer.Serialize(new
         {
             data = new
             {
@@ -140,17 +140,17 @@ public class PlanningCenterClaimsTransformationTests
         _mockHttp.When(PlanningCenterOAuthDefaults.UserInformationEndpoint)
                  .Respond("application/json", userJson);
 
-        var identity = new ClaimsIdentity(PlanningCenterOAuthDefaults.AuthenticationScheme);
+		ClaimsIdentity identity = new ClaimsIdentity(PlanningCenterOAuthDefaults.AuthenticationScheme);
         identity.AddClaim(new Claim("access_token", "test_token"));
         // Add old refresh timestamp (2 hours ago, beyond 30 minute interval)
         identity.AddClaim(new Claim("urn:planningcenter:last_refresh", DateTime.UtcNow.AddHours(-2).ToString("O")));
-        var principal = new ClaimsPrincipal(identity);
+		ClaimsPrincipal principal = new ClaimsPrincipal(identity);
 
-        // Act
-        var result = await _transformation.TransformAsync(principal);
+		// Act
+		ClaimsPrincipal result = await _transformation.TransformAsync(principal);
 
-        // Assert
-        var resultIdentity = result.Identity as ClaimsIdentity;
+		// Assert
+		ClaimsIdentity? resultIdentity = result.Identity as ClaimsIdentity;
         Assert.NotNull(resultIdentity);
         Assert.Contains(resultIdentity.Claims, c => c.Type == ClaimTypes.Name && c.Value == "John Refreshed");
         Assert.Contains(resultIdentity.Claims, c => c.Type == "urn:planningcenter:site_administrator" && c.Value == "true");
@@ -164,19 +164,19 @@ public class PlanningCenterClaimsTransformationTests
     [Fact(DisplayName = "TransformAsync does not refresh when within refresh interval")]
     public async Task TransformAsync_DoesNotRefresh_WhenWithinRefreshInterval()
     {
-        // Arrange
-        var identity = new ClaimsIdentity(PlanningCenterOAuthDefaults.AuthenticationScheme);
+		// Arrange
+		ClaimsIdentity identity = new ClaimsIdentity(PlanningCenterOAuthDefaults.AuthenticationScheme);
         identity.AddClaim(new Claim("access_token", "test_token"));
         identity.AddClaim(new Claim(ClaimTypes.Name, "Original Name"));
         // Add recent refresh timestamp (10 minutes ago, within 30 minute interval)
         identity.AddClaim(new Claim("urn:planningcenter:last_refresh", DateTime.UtcNow.AddMinutes(-10).ToString("O")));
-        var principal = new ClaimsPrincipal(identity);
+		ClaimsPrincipal principal = new ClaimsPrincipal(identity);
 
-        // Act
-        var result = await _transformation.TransformAsync(principal);
+		// Act
+		ClaimsPrincipal result = await _transformation.TransformAsync(principal);
 
-        // Assert
-        var resultIdentity = result.Identity as ClaimsIdentity;
+		// Assert
+		ClaimsIdentity? resultIdentity = result.Identity as ClaimsIdentity;
         Assert.NotNull(resultIdentity);
         Assert.Contains(resultIdentity.Claims, c => c.Type == ClaimTypes.Name && c.Value == "Original Name");
         
@@ -191,16 +191,16 @@ public class PlanningCenterClaimsTransformationTests
         _mockHttp.When(PlanningCenterOAuthDefaults.UserInformationEndpoint)
                  .Respond(System.Net.HttpStatusCode.InternalServerError);
 
-        var identity = new ClaimsIdentity(PlanningCenterOAuthDefaults.AuthenticationScheme);
+		ClaimsIdentity identity = new ClaimsIdentity(PlanningCenterOAuthDefaults.AuthenticationScheme);
         identity.AddClaim(new Claim("access_token", "test_token"));
         identity.AddClaim(new Claim(ClaimTypes.Name, "Original Name"));
-        var principal = new ClaimsPrincipal(identity);
+		ClaimsPrincipal principal = new ClaimsPrincipal(identity);
 
-        // Act
-        var result = await _transformation.TransformAsync(principal);
+		// Act
+		ClaimsPrincipal result = await _transformation.TransformAsync(principal);
 
-        // Assert
-        var resultIdentity = result.Identity as ClaimsIdentity;
+		// Assert
+		ClaimsIdentity? resultIdentity = result.Identity as ClaimsIdentity;
         Assert.NotNull(resultIdentity);
         Assert.Contains(resultIdentity.Claims, c => c.Type == ClaimTypes.Name && c.Value == "Original Name");
     }
@@ -208,13 +208,13 @@ public class PlanningCenterClaimsTransformationTests
     [Fact(DisplayName = "TransformAsync handles missing access token gracefully")]
     public async Task TransformAsync_HandlesMissingAccessTokenGracefully()
     {
-        // Arrange
-        var identity = new ClaimsIdentity(PlanningCenterOAuthDefaults.AuthenticationScheme);
+		// Arrange
+		ClaimsIdentity identity = new ClaimsIdentity(PlanningCenterOAuthDefaults.AuthenticationScheme);
         identity.AddClaim(new Claim(ClaimTypes.Name, "Original Name"));
-        var principal = new ClaimsPrincipal(identity);
+		ClaimsPrincipal principal = new ClaimsPrincipal(identity);
 
-        // Act
-        var result = await _transformation.TransformAsync(principal);
+		// Act
+		ClaimsPrincipal result = await _transformation.TransformAsync(principal);
 
         // Assert
         Assert.Same(principal, result);
@@ -226,8 +226,8 @@ public class PlanningCenterClaimsTransformationOptionsTests
     [Fact(DisplayName = "Default options have correct values")]
     public void DefaultOptions_HaveCorrectValues()
     {
-        // Act
-        var options = new PlanningCenterClaimsTransformationOptions();
+		// Act
+		PlanningCenterClaimsTransformationOptions options = new PlanningCenterClaimsTransformationOptions();
 
         // Assert
         Assert.True(options.EnableClaimsRefresh);
@@ -237,8 +237,8 @@ public class PlanningCenterClaimsTransformationOptionsTests
     [Fact(DisplayName = "Options can be configured")]
     public void Options_CanBeConfigured()
     {
-        // Act
-        var options = new PlanningCenterClaimsTransformationOptions
+		// Act
+		PlanningCenterClaimsTransformationOptions options = new PlanningCenterClaimsTransformationOptions
         {
             EnableClaimsRefresh = false,
             ClaimsRefreshInterval = TimeSpan.FromMinutes(15)

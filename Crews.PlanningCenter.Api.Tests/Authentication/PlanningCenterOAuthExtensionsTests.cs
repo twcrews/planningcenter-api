@@ -1,4 +1,4 @@
-using Crews.PlanningCenter.Api.Authentication;
+using Crews.PlanningCenter.Api.DependencyInjection;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -9,14 +9,14 @@ public class PlanningCenterOAuthExtensionsTests
     [Fact(DisplayName = "AddPlanningCenterOAuth with no parameters uses defaults")]
     public void AddPlanningCenterOAuth_WithNoParameters_UsesDefaults()
     {
-        // Arrange
-        var services = new ServiceCollection();
+		// Arrange
+		ServiceCollection services = new ServiceCollection();
         services.AddLogging();
         services.AddDataProtection();
-        var authBuilder = new AuthenticationBuilder(services);
+		AuthenticationBuilder authBuilder = new AuthenticationBuilder(services);
 
-        // Act
-        var result = authBuilder.AddPlanningCenterOAuth();
+		// Act
+		AuthenticationBuilder result = authBuilder.AddPlanningCenterOAuth();
 
         // Assert
         Assert.Same(authBuilder, result);
@@ -25,14 +25,14 @@ public class PlanningCenterOAuthExtensionsTests
     [Fact(DisplayName = "AddPlanningCenterOAuth with configure action works")]
     public void AddPlanningCenterOAuth_WithConfigureAction_Works()
     {
-        // Arrange
-        var services = new ServiceCollection();
+		// Arrange
+		ServiceCollection services = new ServiceCollection();
         services.AddLogging();
         services.AddDataProtection();
-        var authBuilder = new AuthenticationBuilder(services);
+		AuthenticationBuilder authBuilder = new AuthenticationBuilder(services);
 
-        // Act
-        var result = authBuilder.AddPlanningCenterOAuth(options =>
+		// Act
+		AuthenticationBuilder result = authBuilder.AddPlanningCenterOAuth(options =>
         {
             options.ClientId = "test-client-id";
         });
@@ -47,13 +47,13 @@ public class PlanningCenterOAuthExtensionsTests
     [Fact(DisplayName = "AddPlanningCenterOAuth with custom scheme works")]
     public void AddPlanningCenterOAuth_WithCustomScheme_Works()
     {
-        // Arrange
-        var services = new ServiceCollection();
-        var authBuilder = new AuthenticationBuilder(services);
+		// Arrange
+		ServiceCollection services = new ServiceCollection();
+		AuthenticationBuilder authBuilder = new AuthenticationBuilder(services);
         const string customScheme = "CustomPlanningCenter";
 
-        // Act
-        var result = authBuilder.AddPlanningCenterOAuth(customScheme, options =>
+		// Act
+		AuthenticationBuilder result = authBuilder.AddPlanningCenterOAuth(customScheme, options =>
         {
             options.ClientId = "test-client-id";
         });
@@ -65,14 +65,14 @@ public class PlanningCenterOAuthExtensionsTests
     [Fact(DisplayName = "AddPlanningCenterOAuth with custom scheme and display name works")]
     public void AddPlanningCenterOAuth_WithCustomSchemeAndDisplayName_Works()
     {
-        // Arrange
-        var services = new ServiceCollection();
-        var authBuilder = new AuthenticationBuilder(services);
+		// Arrange
+		ServiceCollection services = new ServiceCollection();
+		AuthenticationBuilder authBuilder = new AuthenticationBuilder(services);
         const string customScheme = "CustomPlanningCenter";
         const string customDisplayName = "Custom Planning Center";
 
-        // Act
-        var result = authBuilder.AddPlanningCenterOAuth(customScheme, customDisplayName, options =>
+		// Act
+		AuthenticationBuilder result = authBuilder.AddPlanningCenterOAuth(customScheme, customDisplayName, options =>
         {
             options.ClientId = "test-client-id";
         });

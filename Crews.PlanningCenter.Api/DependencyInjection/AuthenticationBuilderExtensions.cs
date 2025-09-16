@@ -1,5 +1,6 @@
 using Crews.PlanningCenter.Api.Authentication;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Crews.PlanningCenter.Api.DependencyInjection;
@@ -51,6 +52,16 @@ public static class AuthenticationBuilderExtensions
 		string authenticationScheme,
 		string displayName,
 		Action<PlanningCenterOAuthOptions> configureOptions)
-		=> builder.AddOAuth<PlanningCenterOAuthOptions, PlanningCenterOAuthHandler>(
-			authenticationScheme, displayName, configureOptions);
+	{
+		builder.Services.AddSingleton(TimeProvider.System);
+		
+		return builder.AddOAuth<PlanningCenterOAuthOptions, PlanningCenterOAuthHandler>(
+			authenticationScheme, displayName, options =>
+		{
+			ServiceProvider serviceProvider = builder.Services.BuildServiceProvider();
+			IConfiguration configuration = serviceProvider.GetRequiredService<IConfiguration>();
+			configuration.GetSection("Authentication:PlanningCenter").Bind(options);
+			configureOptions(options);
+		});
+	}
 }

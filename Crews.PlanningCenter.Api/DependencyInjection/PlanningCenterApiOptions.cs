@@ -13,7 +13,7 @@ public class PlanningCenterApiOptions
 	/// <summary>
 	/// Name used for binding the instance to a configuration provider.
 	/// </summary>
-	public const string ConfigurationName = "PlanningCenterAPi";
+	public const string ConfigurationName = "PlanningCenter";
 
 	/// <summary>
 	/// The base address of the API. Defaults to <c>https://api.planningcenteronline.com</c>.

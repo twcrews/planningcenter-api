@@ -9,30 +9,34 @@ namespace Crews.PlanningCenter.Api.Authentication;
 /// <summary>
 /// Claims transformation service that can refresh Planning Center user data.
 /// </summary>
-class PlanningCenterClaimsTransformation : IClaimsTransformation
+/// <remarks>
+/// Initializes a new instance of the <see cref="PlanningCenterClaimsTransformation"/> class.
+/// </remarks>
+/// <param name="httpClientFactory">The HTTP client factory for making requests to Planning Center.</param>
+/// <param name="logger">The logger for logging transformation activities.</param>
+/// <param name="options">The options for configuring claims transformation behavior.</param>
+public class PlanningCenterClaimsTransformation(
+    IHttpClientFactory httpClientFactory,
+    ILogger<PlanningCenterClaimsTransformation> logger,
+    IOptions<PlanningCenterClaimsTransformationOptions> options) : IClaimsTransformation
 {
-    private readonly IHttpClientFactory _httpClientFactory;
-    private readonly ILogger<PlanningCenterClaimsTransformation> _logger;
-    private readonly PlanningCenterClaimsTransformationOptions _options;
+    private readonly IHttpClientFactory _httpClientFactory = httpClientFactory;
+    private readonly ILogger<PlanningCenterClaimsTransformation> _logger = logger;
+    private readonly PlanningCenterClaimsTransformationOptions _options = options.Value;
 
-    public PlanningCenterClaimsTransformation(
-        IHttpClientFactory httpClientFactory,
-        ILogger<PlanningCenterClaimsTransformation> logger,
-        IOptions<PlanningCenterClaimsTransformationOptions> options)
-    {
-        _httpClientFactory = httpClientFactory;
-        _logger = logger;
-        _options = options.Value;
-    }
-
+    /// <summary>
+    /// Transforms the claims principal by refreshing user data from Planning Center if needed.
+    /// </summary>
+    /// <param name="principal">The claims principal to transform.</param>
+    /// <returns>The transformed claims principal with refreshed user data.</returns>
     public async Task<ClaimsPrincipal> TransformAsync(ClaimsPrincipal principal)
     {
-		// Only transform if this is a Planning Center authentication (be more flexible about the auth scheme)
-		if (principal.Identity is not ClaimsIdentity identity || !identity.IsAuthenticated)
-			return principal;
+        // Only transform if this is a Planning Center authentication (be more flexible about the auth scheme)
+        if (principal.Identity is not ClaimsIdentity identity || !identity.IsAuthenticated)
+            return principal;
 
-		// Check if this looks like a Planning Center OAuth authentication by looking for access_token
-		bool hasAccessToken = identity.FindFirst("access_token") != null;
+        // Check if this looks like a Planning Center OAuth authentication by looking for access_token
+        bool hasAccessToken = identity.FindFirst("access_token") != null;
         if (!hasAccessToken)
             return principal;
 
@@ -52,13 +56,18 @@ class PlanningCenterClaimsTransformation : IClaimsTransformation
         return principal;
     }
 
+    /// <summary>
+    /// Determines whether the claims should be refreshed based on the configured options and last refresh time.
+    /// </summary>
+    /// <param name="identity">The claims identity to check.</param>
+    /// <returns>True if claims should be refreshed; otherwise, false.</returns>
     private bool ShouldRefreshClaims(ClaimsIdentity identity)
     {
         if (!_options.EnableClaimsRefresh)
             return false;
 
-		// Check if claims are older than the refresh interval
-		Claim? lastRefreshClaim = identity.FindFirst("urn:planningcenter:last_refresh");
+        // Check if claims are older than the refresh interval
+        Claim? lastRefreshClaim = identity.FindFirst("urn:planningcenter:last_refresh");
         if (lastRefreshClaim == null)
             return true;
 
@@ -70,9 +79,14 @@ class PlanningCenterClaimsTransformation : IClaimsTransformation
         return true;
     }
 
+    /// <summary>
+    /// Refreshes user claims by fetching updated user data from Planning Center.
+    /// </summary>
+    /// <param name="identity">The claims identity to refresh.</param>
+    /// <returns>A task representing the asynchronous refresh operation.</returns>
     private async Task RefreshUserClaimsAsync(ClaimsIdentity identity)
     {
-		Claim? accessTokenClaim = identity.FindFirst("access_token");
+        Claim? accessTokenClaim = identity.FindFirst("access_token");
         if (accessTokenClaim == null)
         {
             _logger.LogWarning("No access token found in claims, cannot refresh user data");
@@ -80,7 +94,7 @@ class PlanningCenterClaimsTransformation : IClaimsTransformation
         }
 
         using HttpClient httpClient = _httpClientFactory.CreateClient();
-        using HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, PlanningCenterOAuthDefaults.UserInformationEndpoint);
+        using HttpRequestMessage request = new(HttpMethod.Get, PlanningCenterOAuthDefaults.UserInformationEndpoint);
         request.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessTokenClaim.Value);
 
         using HttpResponseMessage response = await httpClient.SendAsync(request);
@@ -91,22 +105,26 @@ class PlanningCenterClaimsTransformation : IClaimsTransformation
         }
 
         using JsonDocument payload = JsonDocument.Parse(await response.Content.ReadAsStringAsync());
-		JsonElement data = payload.RootElement.GetProperty("data");
-		JsonElement attributes = data.GetProperty("attributes");
+        JsonElement data = payload.RootElement.GetProperty("data");
+        JsonElement attributes = data.GetProperty("attributes");
 
         // Remove old refreshable claims and add new ones
         RemoveRefreshableClaims(identity);
         AddClaimsFromUserData(identity, data, attributes);
 
         // Update last refresh time
-        identity.AddClaim(new Claim("urn:planningcenter:last_refresh", DateTime.UtcNow.ToString("O"), ClaimValueTypes.DateTime));
+        identity.AddClaim(
+            new Claim("urn:planningcenter:last_refresh", DateTime.UtcNow.ToString("O"), ClaimValueTypes.DateTime));
     }
 
+    /// <summary>
+    /// Removes refreshable Planning Center claims from the identity, preserving the last refresh timestamp.
+    /// </summary>
+    /// <param name="identity">The claims identity to modify.</param>
     private static void RemoveRefreshableClaims(ClaimsIdentity identity)
     {
-		List<Claim> claimsToRemove = identity.Claims
-            .Where(c => c.Type.StartsWith("urn:planningcenter:") && c.Type != "urn:planningcenter:last_refresh")
-            .ToList();
+        List<Claim> claimsToRemove = [.. identity.Claims.Where(c => c.Type.StartsWith("urn:planningcenter:")
+            && c.Type != "urn:planningcenter:last_refresh")];
 
         foreach (Claim? claim in claimsToRemove)
         {
@@ -114,6 +132,12 @@ class PlanningCenterClaimsTransformation : IClaimsTransformation
         }
     }
 
+    /// <summary>
+    /// Adds claims to the identity based on user data returned from Planning Center.
+    /// </summary>
+    /// <param name="identity">The claims identity to add claims to.</param>
+    /// <param name="data">The data element from the Planning Center API response.</param>
+    /// <param name="attributes">The attributes element containing user information.</param>
     private static void AddClaimsFromUserData(ClaimsIdentity identity, JsonElement data, JsonElement attributes)
     {
         // Add refreshed user claims

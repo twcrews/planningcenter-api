@@ -10,7 +10,7 @@ public class PlanningCenterOAuthOptionsTests
     public void Constructor_SetsCorrectDefaults()
     {
 		// Act
-		PlanningCenterOAuthOptions options = new PlanningCenterOAuthOptions();
+		PlanningCenterOAuthOptions options = new();
 
         // Assert
         Assert.Equal(PlanningCenterOAuthDefaults.CallbackPath, options.CallbackPath);
@@ -25,13 +25,13 @@ public class PlanningCenterOAuthOptionsTests
     public void Constructor_ConfiguresStandardClaimActions()
     {
 		// Act
-		PlanningCenterOAuthOptions options = new PlanningCenterOAuthOptions();
+		PlanningCenterOAuthOptions options = new();
 
         // Assert - Verify claim actions are configured
         Assert.NotEmpty(options.ClaimActions);
 
 		// Check that key claim types are mapped
-		List<ClaimAction> claimActions = options.ClaimActions.ToList();
+		List<ClaimAction> claimActions = [.. options.ClaimActions];
         Assert.Contains(claimActions, ca => ca.ClaimType == ClaimTypes.NameIdentifier);
         Assert.Contains(claimActions, ca => ca.ClaimType == ClaimTypes.Name);
         Assert.Contains(claimActions, ca => ca.ClaimType == ClaimTypes.DateOfBirth);
@@ -42,10 +42,10 @@ public class PlanningCenterOAuthOptionsTests
     public void Constructor_ConfiguresPlanningCenterSpecificClaimActions()
     {
 		// Act
-		PlanningCenterOAuthOptions options = new PlanningCenterOAuthOptions();
+		PlanningCenterOAuthOptions options = new();
 
 		// Assert
-		List<ClaimAction> claimActions = options.ClaimActions.ToList();
+		List<ClaimAction> claimActions = [.. options.ClaimActions];
         
         Assert.Contains(claimActions, ca => ca.ClaimType == "urn:planningcenter:first_name");
         Assert.Contains(claimActions, ca => ca.ClaimType == "urn:planningcenter:last_name");
@@ -66,7 +66,7 @@ public class PlanningCenterOAuthOptionsTests
     public void Options_InheritFromOAuthOptionsCorrectly()
     {
 		// Act
-		PlanningCenterOAuthOptions options = new PlanningCenterOAuthOptions();
+		PlanningCenterOAuthOptions options = new();
 
         // Assert
         Assert.NotNull(options.Scope);

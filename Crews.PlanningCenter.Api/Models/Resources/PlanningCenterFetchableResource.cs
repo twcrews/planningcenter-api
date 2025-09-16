@@ -79,7 +79,7 @@ public abstract class PlanningCenterFetchableResource<TSelf>(Uri uri, HttpClient
 	/// <typeparam name="TEnum">The enumerable associated with the includable resource types.</typeparam>
 	/// <returns>This same instance of the request for call chaining.</returns>
 	protected virtual TSelf Include<TEnum>(params TEnum[] includables)
-		=> AddParameters("include", includables.Select(i => i.GetJsonApiName()).ToArray());
+		=> AddParameters("include", [.. includables.Select(i => i.GetJsonApiName())]);
 
 	/// <summary>
 	/// Attempts to parse the given <see cref="HttpResponseMessage"/> as a JSON:API document.

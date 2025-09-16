@@ -93,7 +93,7 @@ public class PlanningCenterOAuthHandlerTests
     public void Constructor_InitializesWithRequiredDependencies()
     {
 		// Act & Assert - Constructor should not throw
-		PlanningCenterOAuthHandler handler = new PlanningCenterOAuthHandler(_optionsMonitor, _loggerFactory, _urlEncoder);
+		PlanningCenterOAuthHandler handler = new(_optionsMonitor, _loggerFactory, _urlEncoder);
         Assert.NotNull(handler);
     }
 

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <DefaultNamespace>Crews.PlanningCenter.Api</DefaultNamespace>
@@ -37,9 +37,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Crews.Extensions.Http" Version="2.0.0" />
-    <PackageReference Include="Crews.PlanningCenter.Models" Version="1.2.0" />
-    <PackageReference Include="JsonApiFramework.Client" Version="2.10.1" />
+    <PackageReference Include="Crews.Extensions.Http" Version="3.0.0" />
+    <PackageReference Include="Crews.PlanningCenter.Models" Version="2.0.0" />
+    <PackageReference Include="JsonApiFramework.Client" Version="2.13.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.1" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.1" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="9.0.1" />

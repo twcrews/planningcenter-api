@@ -27,8 +27,13 @@ public class PlanningCenterApiOptions
 	public required PlanningCenterPersonalAccessToken PersonalAccessToken { get; set; }
 
 	/// <summary>
-	/// An optional named <see cref="HttpClient"/> to use for Planning Center API requests. 
+	/// An optional named <see cref="HttpClient"/> to use for Planning Center API requests.
 	/// <a href="https://learn.microsoft.com/en-us/aspnet/core/fundamentals/http-requests#named-clients">Learn more</a>.
 	/// </summary>
 	public string HttpClientName { get; set; } = DefaultHttpClientName;
+
+	/// <summary>
+	/// The User-Agent header value to send with API requests. Defaults to "Generic .NET Planning Center API Client".
+	/// </summary>
+	public string UserAgent { get; set; } = "Generic .NET Planning Center API Client";
 }

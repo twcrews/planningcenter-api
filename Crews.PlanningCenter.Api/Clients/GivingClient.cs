@@ -6,6 +6,7 @@ This code is automatically generated. Please do not modify it directly.
 
 using Crews.Extensions.Http;
 using Crews.PlanningCenter.Api.Extensions;
+using Crews.PlanningCenter.Api.DependencyInjection;
 
 namespace Crews.PlanningCenter.Api.Clients;
 
@@ -15,13 +16,15 @@ namespace Crews.PlanningCenter.Api.Clients;
 /// <param name="client">The <see cref="HttpClient"/> used to send requests.</param>
 /// <param name="baseUri">
 /// An optional base <see cref="Uri"/> to use for the API address. If omitted,
-/// <see cref="HttpClient.BaseAddress"/> is used instead. If this is also not set, an exception is thrown. 
+/// <see cref="HttpClient.BaseAddress"/> is used instead. If this is also not set,
+/// the default Planning Center API base address as defined in 
+/// <see cref="PlanningCenterApiOptions.DefaultPlanningCenterApiBaseAddress"/> is used.
 /// </param>
 public class GivingClient(HttpClient client, Uri? baseUri = null)
 {
   private readonly HttpClient _client = client;
-  private readonly Uri _baseUri = baseUri ?? client.BaseAddress ?? throw new InvalidOperationException(
-    "A base URI for the API was not set in either the constructor or the `HttpClient.BaseAddress` property.");
+  private readonly Uri _baseUri = baseUri ?? client.BaseAddress 
+    ?? new(PlanningCenterApiOptions.DefaultPlanningCenterApiBaseAddress);
   /// <summary>
   /// Gets a client for the latest version of the Giving API.
   /// </summary>

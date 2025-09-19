@@ -110,6 +110,7 @@ public class AuthenticationBuilderExtensionsTests
         services.AddLogging();
         services.AddDataProtection();
         services.AddSingleton<IConfiguration>(configuration);
+        services.AddSingleton(TimeProvider.System);
         AuthenticationBuilder authBuilder = new(services);
 
         PlanningCenterOAuthOptions? capturedOptions = null;

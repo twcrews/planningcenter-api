@@ -118,18 +118,18 @@ public class PlanningCenterClaimsTransformation(
     }
 
     /// <summary>
-    /// Removes refreshable Planning Center claims from the identity, preserving the last refresh timestamp.
+    /// Removes refreshable user claims from the identity, preserving system claims like access_token and last refresh timestamp.
     /// </summary>
     /// <param name="identity">The claims identity to modify.</param>
     private static void RemoveRefreshableClaims(ClaimsIdentity identity)
     {
-        List<Claim> claimsToRemove = [.. identity.Claims.Where(c => c.Type.StartsWith("urn:planningcenter:")
-            && c.Type != "urn:planningcenter:last_refresh")];
+        // Remove user-related claims that will be refreshed, but preserve system claims
+        List<Claim> claimsToRemove = identity.Claims
+            .Where(c => c.Type != "access_token" && c.Type != "urn:planningcenter:last_refresh")
+            .ToList();
 
-        foreach (Claim? claim in claimsToRemove)
-        {
+        foreach (Claim claim in claimsToRemove)
             identity.RemoveClaim(claim);
-        }
     }
 
     /// <summary>
@@ -140,7 +140,12 @@ public class PlanningCenterClaimsTransformation(
     /// <param name="attributes">The attributes element containing user information.</param>
     private static void AddClaimsFromUserData(ClaimsIdentity identity, JsonElement data, JsonElement attributes)
     {
-        // Add refreshed user claims
+        // Add refreshed user claims using standardized claim types
+        if (data.TryGetProperty("id", out JsonElement id) && !string.IsNullOrEmpty(id.GetString()))
+        {
+            identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, id.GetString()!));
+        }
+
         if (attributes.TryGetProperty("name", out JsonElement name) && !string.IsNullOrEmpty(name.GetString()))
         {
             identity.AddClaim(new Claim(ClaimTypes.Name, name.GetString()!));
@@ -148,32 +153,27 @@ public class PlanningCenterClaimsTransformation(
 
         if (attributes.TryGetProperty("first_name", out JsonElement firstName) && !string.IsNullOrEmpty(firstName.GetString()))
         {
-            identity.AddClaim(new Claim("urn:planningcenter:first_name", firstName.GetString()!));
+            identity.AddClaim(new Claim(ClaimTypes.GivenName, firstName.GetString()!));
         }
 
         if (attributes.TryGetProperty("last_name", out JsonElement lastName) && !string.IsNullOrEmpty(lastName.GetString()))
         {
-            identity.AddClaim(new Claim("urn:planningcenter:last_name", lastName.GetString()!));
+            identity.AddClaim(new Claim(ClaimTypes.Surname, lastName.GetString()!));
+        }
+
+        if (attributes.TryGetProperty("middle_name", out JsonElement middleName) && !string.IsNullOrEmpty(middleName.GetString()))
+        {
+            identity.AddClaim(new Claim("middle_name", middleName.GetString()!));
+        }
+
+        if (attributes.TryGetProperty("nickname", out JsonElement nickname) && !string.IsNullOrEmpty(nickname.GetString()))
+        {
+            identity.AddClaim(new Claim("nickname", nickname.GetString()!));
         }
 
         if (attributes.TryGetProperty("avatar", out JsonElement avatar) && !string.IsNullOrEmpty(avatar.GetString()))
         {
-            identity.AddClaim(new Claim("urn:planningcenter:avatar", avatar.GetString()!));
-        }
-
-        if (attributes.TryGetProperty("status", out JsonElement status) && !string.IsNullOrEmpty(status.GetString()))
-        {
-            identity.AddClaim(new Claim("urn:planningcenter:status", status.GetString()!));
-        }
-
-        if (attributes.TryGetProperty("site_administrator", out JsonElement siteAdmin))
-        {
-            identity.AddClaim(new Claim("urn:planningcenter:site_administrator", siteAdmin.GetBoolean().ToString().ToLowerInvariant()));
-        }
-
-        if (attributes.TryGetProperty("accounting_administrator", out JsonElement accountingAdmin))
-        {
-            identity.AddClaim(new Claim("urn:planningcenter:accounting_administrator", accountingAdmin.GetBoolean().ToString().ToLowerInvariant()));
+            identity.AddClaim(new Claim("picture", avatar.GetString()!));
         }
 
         if (attributes.TryGetProperty("birthdate", out JsonElement birthdate) && !string.IsNullOrEmpty(birthdate.GetString()))
@@ -181,14 +181,29 @@ public class PlanningCenterClaimsTransformation(
             identity.AddClaim(new Claim(ClaimTypes.DateOfBirth, birthdate.GetString()!));
         }
 
-        if (attributes.TryGetProperty("people_permissions", out JsonElement peoplePermissions) && !string.IsNullOrEmpty(peoplePermissions.GetString()))
-        {
-            identity.AddClaim(new Claim("urn:planningcenter:people_permissions", peoplePermissions.GetString()!));
-        }
-
         if (attributes.TryGetProperty("gender", out JsonElement gender) && !string.IsNullOrEmpty(gender.GetString()))
         {
             identity.AddClaim(new Claim(ClaimTypes.Gender, gender.GetString()!));
+        }
+
+        if (attributes.TryGetProperty("status", out JsonElement status) && !string.IsNullOrEmpty(status.GetString()))
+        {
+            identity.AddClaim(new Claim("urn:planningcenter:status", status.GetString()!));
+        }
+
+        if (attributes.TryGetProperty("child", out JsonElement child))
+        {
+            identity.AddClaim(new Claim("urn:planningcenter:child", child.GetBoolean().ToString().ToLowerInvariant()));
+        }
+
+        if (attributes.TryGetProperty("grade", out JsonElement grade) && grade.ValueKind != JsonValueKind.Null)
+        {
+            identity.AddClaim(new Claim("urn:planningcenter:grade", grade.ToString()));
+        }
+
+        if (attributes.TryGetProperty("graduation_year", out JsonElement graduationYear) && graduationYear.ValueKind != JsonValueKind.Null)
+        {
+            identity.AddClaim(new Claim("urn:planningcenter:graduation_year", graduationYear.ToString()));
         }
 
         if (attributes.TryGetProperty("membership", out JsonElement membership) && !string.IsNullOrEmpty(membership.GetString()))
@@ -196,29 +211,44 @@ public class PlanningCenterClaimsTransformation(
             identity.AddClaim(new Claim("urn:planningcenter:membership", membership.GetString()!));
         }
 
-        if (attributes.TryGetProperty("directory_status", out JsonElement directoryStatus) && !string.IsNullOrEmpty(directoryStatus.GetString()))
+        if (attributes.TryGetProperty("school_type", out JsonElement schoolType) && !string.IsNullOrEmpty(schoolType.GetString()))
         {
-            identity.AddClaim(new Claim("urn:planningcenter:directory_status", directoryStatus.GetString()!));
+            identity.AddClaim(new Claim("urn:planningcenter:school_type", schoolType.GetString()!));
+        }
+
+        if (attributes.TryGetProperty("anniversary", out JsonElement anniversary) && !string.IsNullOrEmpty(anniversary.GetString()))
+        {
+            identity.AddClaim(new Claim("urn:planningcenter:anniversary", anniversary.GetString()!));
+        }
+
+        if (attributes.TryGetProperty("people_permissions", out JsonElement peoplePermissions) && !string.IsNullOrEmpty(peoplePermissions.GetString()))
+        {
+            identity.AddClaim(new Claim("urn:planningcenter:people_permissions", peoplePermissions.GetString()!));
+        }
+
+        if (attributes.TryGetProperty("accounting_administrator", out JsonElement accountingAdmin))
+        {
+            identity.AddClaim(new Claim("urn:planningcenter:accounting_admin", accountingAdmin.GetBoolean().ToString().ToLowerInvariant()));
+        }
+
+        if (attributes.TryGetProperty("site_administrator", out JsonElement siteAdmin))
+        {
+            identity.AddClaim(new Claim("urn:planningcenter:site_admin", siteAdmin.GetBoolean().ToString().ToLowerInvariant()));
+        }
+
+        if (attributes.TryGetProperty("can_create_forms", out JsonElement canCreateForms))
+        {
+            identity.AddClaim(new Claim("urn:planningcenter:can_create_forms", canCreateForms.GetBoolean().ToString().ToLowerInvariant()));
+        }
+
+        if (attributes.TryGetProperty("can_email_lists", out JsonElement canEmailLists))
+        {
+            identity.AddClaim(new Claim("urn:planningcenter:can_email_lists", canEmailLists.GetBoolean().ToString().ToLowerInvariant()));
         }
 
         if (attributes.TryGetProperty("passed_background_check", out JsonElement passedBackgroundCheck))
         {
-            identity.AddClaim(new Claim("urn:planningcenter:passed_background_check", passedBackgroundCheck.GetBoolean().ToString().ToLowerInvariant()));
-        }
-
-        if (attributes.TryGetProperty("resource_permission_flags", out JsonElement resourcePermissionFlags) && !string.IsNullOrEmpty(resourcePermissionFlags.GetString()))
-        {
-            identity.AddClaim(new Claim("urn:planningcenter:resource_permission_flags", resourcePermissionFlags.GetString()!));
-        }
-
-        if (attributes.TryGetProperty("login_identifier", out JsonElement loginIdentifier) && !string.IsNullOrEmpty(loginIdentifier.GetString()))
-        {
-            identity.AddClaim(new Claim("urn:planningcenter:login_identifier", loginIdentifier.GetString()!));
-        }
-
-        if (attributes.TryGetProperty("mfa_configured", out JsonElement mfaConfigured))
-        {
-            identity.AddClaim(new Claim("urn:planningcenter:mfa_configured", mfaConfigured.GetBoolean().ToString().ToLowerInvariant()));
+            identity.AddClaim(new Claim("urn:planningcenter:background_check", passedBackgroundCheck.GetBoolean().ToString().ToLowerInvariant()));
         }
     }
 }

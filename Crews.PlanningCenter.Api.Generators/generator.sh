@@ -18,7 +18,7 @@ printf "Building project...\n"
 dotnet build "$SCRIPT_DIR"
 printf "\n\n================\n\n"
 
-printf "You can safely ignore errors that begin with 'Could not write output file'."
+printf "You can safely ignore errors that begin with 'Could not write output file'.\n\n"
 
 printf "Generating document contexts...\n"
 t4 \

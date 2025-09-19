@@ -53,13 +53,17 @@ public static class AuthenticationBuilderExtensions
 		string displayName,
 		Action<PlanningCenterOAuthOptions> configureOptions)
 	{
-		builder.Services.AddSingleton(TimeProvider.System);
-		
+		ServiceProvider serviceProvider = builder.Services.BuildServiceProvider();
+		IConfiguration configuration = serviceProvider.GetRequiredService<IConfiguration>();
+
+		// Register claims transformation services
+		builder.Services.Configure<PlanningCenterClaimsTransformationOptions>(
+			configuration.GetSection("Authentication:PlanningCenter:ClaimsTransformation"));
+		builder.Services.AddTransient<IClaimsTransformation, PlanningCenterClaimsTransformation>();
+
 		return builder.AddOAuth<PlanningCenterOAuthOptions, PlanningCenterOAuthHandler>(
 			authenticationScheme, displayName, options =>
 		{
-			ServiceProvider serviceProvider = builder.Services.BuildServiceProvider();
-			IConfiguration configuration = serviceProvider.GetRequiredService<IConfiguration>();
 			configuration.GetSection("Authentication:PlanningCenter").Bind(options);
 			configureOptions(options);
 		});

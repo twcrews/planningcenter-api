@@ -19,12 +19,29 @@ public abstract class PlanningCenterFetchableResource<TSelf>(Uri uri, HttpClient
 	/// </summary>
 	protected HttpClient Client { get; } = client;
 
-	/// <summary>
-	/// Adds the given parameters to the end of the query string. The query string is not checked for duplicates.
-	/// </summary>
-	/// <param name="parameters">A collection of query string parameters.</param>
-	/// <returns>This same instance of the request for call chaining.</returns>
-	public virtual TSelf AppendCustomParameters(List<QueryString.Parameter> parameters)
+    /// <summary>
+    /// Creates a new <typeparamref name="TRelatedResource"/> instance and appends the value of <paramref name="vertex"/>
+    /// to its <see cref="Uri"/> property.
+    /// </summary>
+    /// <typeparam name="TRelatedResource">
+    /// The type of <see cref="PlanningCenterFetchableResource{TRelatedResource}"/> to return.
+    /// </typeparam>
+    /// <returns>A new <typeparamref name="TRelatedResource"/> instance.</returns>
+    public virtual TRelatedResource GetRelated<TRelatedResource>(string vertex)
+        where TRelatedResource : PlanningCenterFetchableResource<TRelatedResource>
+        => (TRelatedResource)Activator.CreateInstance(
+            typeof(TRelatedResource),
+            BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance,
+            default,
+            [Uri.SafelyAppendPath(vertex), Client],
+            default)!;
+
+    /// <summary>
+    /// Adds the given parameters to the end of the query string. The query string is not checked for duplicates.
+    /// </summary>
+    /// <param name="parameters">A collection of query string parameters.</param>
+    /// <returns>This same instance of the request for call chaining.</returns>
+    public virtual TSelf AppendCustomParameters(List<QueryString.Parameter> parameters)
 	{
 		QueryStringBuilder builder = new(Uri.Query);
 		builder.Parameters.AddRange(parameters);
@@ -94,23 +111,6 @@ public abstract class PlanningCenterFetchableResource<TSelf>(Uri uri, HttpClient
 		HandleBadDocument(document);
 		return document;
 	}
-
-	/// <summary>
-	/// Creates a new <typeparamref name="TRelatedResource"/> instance and appends the value of <paramref name="vertex"/>
-	/// to its <see cref="Uri"/> property.
-	/// </summary>
-	/// <typeparam name="TRelatedResource">
-	/// The type of <see cref="PlanningCenterFetchableResource{TRelatedResource}"/> to return.
-	/// </typeparam>
-	/// <returns>A new <typeparamref name="TRelatedResource"/> instance.</returns>
-	protected TRelatedResource GetRelated<TRelatedResource>(string vertex)
-		where TRelatedResource : PlanningCenterFetchableResource<TRelatedResource>
-		=> (TRelatedResource)Activator.CreateInstance(
-			typeof(TRelatedResource),
-			BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance,
-			default,
-			[Uri.SafelyAppendPath(vertex), Client],
-			default)!;
 
 	private static void HandleBadDocument(Document document)
 	{

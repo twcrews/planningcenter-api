@@ -123,7 +123,7 @@ public class PlanningCenterOAuthHandler(
         if (data.LastName is not null) identity.AddClaim(
             new Claim(ClaimTypes.Surname, data.LastName, ClaimValueTypes.String, Options.ClaimsIssuer));
         if (data.Birthdate is not null) identity.AddClaim(
-            new Claim(ClaimTypes.DateOfBirth, ((DateOnly)data.Birthdate).ToString("O"), ClaimValueTypes.Date, Options.ClaimsIssuer));
+            new Claim(ClaimTypes.DateOfBirth, DateOnly.FromDateTime((DateTime)data.Birthdate).ToString("O"), ClaimValueTypes.Date, Options.ClaimsIssuer));
         if (data.Gender is not null) identity.AddClaim(
             new Claim(ClaimTypes.Gender, data.Gender, ClaimValueTypes.String, Options.ClaimsIssuer));
         if (data.MiddleName is not null) identity.AddClaim(
@@ -145,7 +145,7 @@ public class PlanningCenterOAuthHandler(
         if (data.SchoolType is not null) identity.AddClaim(
             new Claim("urn:planningcenter:school_type", data.SchoolType, ClaimValueTypes.String, Options.ClaimsIssuer));
         if (data.Anniversary is not null) identity.AddClaim(
-            new Claim("urn:planningcenter:anniversary", ((DateOnly)data.Anniversary).ToString("O"), ClaimValueTypes.Date, Options.ClaimsIssuer));
+            new Claim("urn:planningcenter:anniversary", DateOnly.FromDateTime((DateTime)data.Anniversary).ToString("O"), ClaimValueTypes.Date, Options.ClaimsIssuer));
         if (data.PeoplePermissions is not null) identity.AddClaim(
             new Claim("urn:planningcenter:people_permissions", data.PeoplePermissions, ClaimValueTypes.String, Options.ClaimsIssuer));
         if (data.AccountingAdministrator is not null) identity.AddClaim(

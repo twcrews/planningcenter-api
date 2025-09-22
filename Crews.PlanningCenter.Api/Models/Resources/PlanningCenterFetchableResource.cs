@@ -68,11 +68,7 @@ public abstract class PlanningCenterFetchableResource<TSelf>(Uri uri, HttpClient
 	/// <exception cref="ArgumentException">A parameter with the same name already exists.</exception>
 	protected TSelf AddParameters(string key, params string[] values)
 	{
-		QueryString.Parameter newParameter = new()
-		{
-			Key = key,
-			Values = [.. values]
-		};
+		QueryString.Parameter newParameter = new(key, [.. values]);
 
 		QueryStringBuilder builder = new(Uri.Query);
 		QueryString.Parameter? parameter = builder.Parameters

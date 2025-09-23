@@ -22,7 +22,7 @@ public class PlanningCenterApiServiceTests
 		string httpClientName = httpClientNameArg ?? PlanningCenterApiOptions.DefaultHttpClientName;
 		PlanningCenterPersonalAccessToken personalAccessToken = new()
 		{
-			AppID = "abc",
+			AppId = "abc",
 			Secret = "def"
 		};
 
@@ -70,7 +70,7 @@ public class PlanningCenterApiServiceTests
 
 		PlanningCenterPersonalAccessToken personalAccessToken = new()
 		{
-			AppID = "abc",
+			AppId = "abc",
 			Secret = "def"
 		};
 

@@ -11,7 +11,7 @@ public readonly record struct PlanningCenterPersonalAccessToken
 	/// <summary>
 	/// The App ID component of the personal access token.
 	/// </summary>
-	public required string AppID { get; init; }
+	public required string AppId { get; init; }
 
 	/// <summary>
 	/// The Secret component of the personal access token.
@@ -24,5 +24,5 @@ public readonly record struct PlanningCenterPersonalAccessToken
 	/// </summary>
 	/// <param name="token">The current instance.</param>
 	public static implicit operator AuthenticationHeaderValue(PlanningCenterPersonalAccessToken token)
-		=> new("Basic", $"{token.AppID}:{token.Secret}".Base64Encode());
+		=> new("Basic", $"{token.AppId}:{token.Secret}".Base64Encode());
 }

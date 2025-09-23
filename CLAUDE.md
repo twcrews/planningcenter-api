@@ -21,7 +21,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Architecture Overview
 
-This is a .NET 9 C# library that provides a strongly-typed client for the Planning Center API, built on top of the JSON:API Framework.
+This is a .NET library (targeting .NET 8.0 for main library, .NET 9.0 for tests and generators) that provides a strongly-typed client for the Planning Center API, built on top of the JSON:API Framework.
+
+**Current Version:** 2.0.0 (released September 2025) - **Feature Complete**
 
 ### Core Architecture Components
 
@@ -92,10 +94,24 @@ This is a .NET 9 C# library that provides a strongly-typed client for the Planni
 - Latest API versions are aliased via `LatestVersion` properties
 - v2.0.0 (September 2025): Fixed People related resource properties, moved OAuth extension methods to DependencyInjection namespace, simplified OAuth configuration
 - v1.2.0 (August 2025): Added OAuth support and comprehensive API regeneration
-- Upgraded to .NET 9 with major dependency updates: upgraded to Crews.Extensions.Http 2.0.0, Crews.PlanningCenter.Models 1.2.0, and Microsoft.Extensions packages 9.0.1
+- Upgraded dependencies: Crews.Extensions.Http 3.0.0, Crews.PlanningCenter.Models 2.0.0, and Microsoft.Extensions packages 9.0.1
+- Main library targets .NET 8.0, while tests and generators target .NET 9.0
 
 **Code Generation Process:**
 1. Build the main library and generators projects
 2. Run T4 templates that use reflection and API documentation parsing
 3. Generate client classes, resource classes, and document contexts
 4. Generated files include header comments indicating they're auto-generated
+
+## Library Status
+
+This library is **feature-complete** as of version 2.0.0. It provides comprehensive coverage of the Planning Center API with:
+
+- Full OAuth authentication support
+- Complete API resource coverage for all Planning Center services
+- Strongly-typed client interfaces with fluent query capabilities
+- Comprehensive dependency injection integration
+- Extensive test coverage
+- Automated code generation from API documentation
+
+The library is ready for production use and provides a stable, well-tested interface to the Planning Center API.

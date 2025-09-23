@@ -13,18 +13,12 @@ public class PlanningCenterApiOptions
 	/// <summary>
 	/// Name used for binding the instance to a configuration provider.
 	/// </summary>
-	public const string ConfigurationName = "PlanningCenter";
+	public const string ConfigurationName = "PlanningCenterApi";
 
 	/// <summary>
 	/// The base address of the API. Defaults to <c>https://api.planningcenteronline.com</c>.
 	/// </summary>
 	public Uri ApiBaseAddress { get; set; } = new(DefaultPlanningCenterApiBaseAddress);
-
-	/// <summary>
-	/// The personal access token used to authenticate with the API.
-	/// <a href="https://developer.planning.center/docs/#/overview/authentication%23personal-access-token">Learn more</a>.
-	/// </summary>
-	public required PlanningCenterPersonalAccessToken PersonalAccessToken { get; set; }
 
 	/// <summary>
 	/// An optional named <see cref="HttpClient"/> to use for Planning Center API requests.
@@ -36,4 +30,10 @@ public class PlanningCenterApiOptions
 	/// The User-Agent header value to send with API requests. Defaults to "Generic .NET Planning Center API Client".
 	/// </summary>
 	public string UserAgent { get; set; } = "Generic .NET Planning Center API Client";
+
+	/// <summary>
+	/// The personal access token used to authenticate with the API.
+	/// <a href="https://developer.planning.center/docs/#/overview/authentication%23personal-access-token">Learn more</a>.
+	/// </summary>
+	public required PlanningCenterPersonalAccessToken? PersonalAccessToken { get; set; }
 }

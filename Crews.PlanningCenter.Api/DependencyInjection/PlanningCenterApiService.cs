@@ -46,7 +46,11 @@ public class PlanningCenterApiService : IPlanningCenterApiService
 	{
 		HttpClient client = httpClientFactory.CreateClient(options.Value.HttpClientName);
 		client.BaseAddress = options.Value.ApiBaseAddress;
-		client.DefaultRequestHeaders.Authorization = options.Value.PersonalAccessToken;
+		client.DefaultRequestHeaders.UserAgent.ParseAdd(options.Value.UserAgent);
+
+		if (options.Value.PersonalAccessToken is not null)
+			client.DefaultRequestHeaders.Authorization = options.Value.PersonalAccessToken;
+
 		_httpClient = client;
 	}
 }

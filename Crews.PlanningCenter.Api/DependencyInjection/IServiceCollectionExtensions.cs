@@ -39,10 +39,7 @@ public static class IServiceCollectionExtensions
 		provider = services.BuildServiceProvider();
 		PlanningCenterApiOptions options = provider.GetRequiredService<IOptions<PlanningCenterApiOptions>>().Value;
 
-		services.AddHttpClient(options.HttpClientName, (httpClient) =>
-		{
-			httpClient.DefaultRequestHeaders.UserAgent.ParseAdd(options.UserAgent);
-		});
+		services.AddHttpClient(options.HttpClientName);
 		return services.AddScoped<IPlanningCenterApiService, PlanningCenterApiService>();
 	}
 }

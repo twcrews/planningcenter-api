@@ -1,6 +1,4 @@
 using Microsoft.AspNetCore.Authentication.OAuth;
-using Microsoft.AspNetCore.Authentication;
-using System.Security.Claims;
 
 namespace Crews.PlanningCenter.Api.Authentication;
 
@@ -20,7 +18,7 @@ public class PlanningCenterOAuthOptions : OAuthOptions
         UserInformationEndpoint = PlanningCenterOAuthDefaults.UserInformationEndpoint;
 
         ClaimsIssuer = PlanningCenterOAuthDefaults.Issuer;
-        
+
         Scope.Add(PlanningCenterOAuthDefaults.Scope);
     }
 }

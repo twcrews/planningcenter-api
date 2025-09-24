@@ -124,10 +124,11 @@ This library can be used with application builders (dependency injection), or as
 
 ### ASP.NET Core Application Builder
 
+First, add OAuth authentication:
+
 ```cs
 var builder = WebApplication.CreateBuilder(args);
 
-// Configure OAuth authentication
 builder.Services.AddAuthentication(options =>
 {
   options.DefaultScheme = "Cookies";
@@ -143,8 +144,11 @@ builder.Services.AddAuthentication(options =>
   options.Scope.Add(PlanningCenterOAuthScope.Calendar);
   options.Scope.Add(PlanningCenterOAuthScope.CheckIns);
 });
+```
 
-// Add Planning Center API service
+Next, add the Planning Center API service:
+
+```cs
 builder.Services.AddPlanningCenterApi();
 
 var app = builder.Build();
@@ -152,17 +156,31 @@ app.UseAuthentication();
 app.UseAuthorization();
 ```
 
-Example usage in a controller:
+Finally, add authentication endpoints to your app. The OAuth middleware will automatically handle token management and refreshing.
+
+```cs
+app.MapGet("/login", (HttpContext context, string? returnUrl = null) =>
+{
+  var properties = new AuthenticationProperties
+  {
+    RedirectUri = returnUrl ?? "/"
+  };
+  return Results.Challenge(properties, [PlanningCenterOAuthDefaults.AuthenticationScheme]);
+});
+
+app.MapPost("/logout", async (HttpContext context) =>
+{
+  await context.SignOutAsync("Cookies");
+  return Results.Redirect("/");
+});
+```
+
+Now you can inject `IPlanningCenterApiService` into your controllers or services.
 
 ```cs
 [Authorize]
-public class PlanningCenterController : Controller
+public class MyController(IPlanningCenterApiService _planningCenterApi) : Controller
 {
-  private readonly IPlanningCenterApiService _planningCenterApi;
-
-  public PlanningCenterController(IPlanningCenterApiService planningCenterApi)
-    => _planningCenterApi = planningCenterApi;
-
   public async Task<IActionResult> Profile()
   {
     // API calls automatically use the authenticated user's OAuth token, or your personal access token

@@ -26,9 +26,9 @@ public class HouseholdResource
   public HouseholdMembershipResourceCollection HouseholdMemberships => GetRelated<HouseholdMembershipResourceCollection>("household_memberships");
 
   /// <summary>
-  /// The related <see cref="PersonResource" />.
+  /// The related <see cref="PersonResourceCollection" />.
   /// </summary>
-  public PersonResource People => GetRelated<PersonResource>("people");
+  public PersonResourceCollection People => GetRelated<PersonResourceCollection>("people");
 
   internal HouseholdResource(Uri uri, HttpClient client) : base(uri, client) { }
 

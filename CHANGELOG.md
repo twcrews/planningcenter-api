@@ -5,6 +5,49 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.0] - 2025-09-24
+
+### Added
+
+- **Breaking change:** Add 
+  [User Agent](https://developer.planning.center/docs/#/overview/authentication%23specifying-user-agent) header 
+  configuration to `PlanningCenterApiOptions`. A default value is provided.
+- Add more claims to the claims principal created by the OAuth authentication handler. 
+	- All attributes of the `Person` resource are now included as claims. 
+	- Non-standard claims use the `urn:planningcenter:*` prefix.
+- Add `GetRelated<T>()` method to fetchable singleton resources, allowing custom resource type fetching for forward 
+  compatibility.
+- Add more detailed configuration instructions and examples to `README.md`.
+- Add configuration support for claims transformation in the `AddPlanningCenterOAuth` extension methods via the
+  `Authentication:PlanningCenter:ClaimsTransformation` configuration section.
+
+### Fixed
+
+- **Breaking change:** Fix an issue where the `AddPlanningCenterApi()` extension method ignored the provided 
+  `HttpClientName` option in `PlanningCenterApiOptions`.
+- **Breaking change:** Fix a casing typo in the default configuration section name of `PlanningCenterApiOptions`.
+- **Breaking change:** Fix an issue where `People` related resource properties were singleton types due to a 
+  pluralization ambiguity.
+- Fix `README.md` falsely claiming that the `PeopleClient` class contains a `Me` property.
+- Fix an issue where the `AddPlanningCenterOAuth` extension methods might ignore configuration options.
+- Fix an issue where the `AddPlanningCenterOAuth` extension methods might not correctly register the OAuth claims 
+  transformation class.
+
+### Changed
+
+- **Breaking change:** Rename some claim types to better reflect their contents.
+- **Breaking change:** Rename `PlanningCenterPersonalAccessToken.AppID` property to `AppId` for consistency with 
+  framework naming conventions.
+- **Breaking change:** Change the behavior of all client classes to use the default Planning Center API base URL instead
+  of throwing an exception if none is provided.
+- **Breaking change:** Move `AddPlanningCenterOAuth` extension methods to the `DependencyInjection` namespace for 
+  simplicity.
+- **Breaking change:** Change `AddPlanningCenterOAuth` extension methods to use the 
+  `Authentication:PlanningCenter:ClientId` and `Authentication:PlanningCenter:ClientSecret` configuration sections by 
+  default.
+- **Breaking change:** Upgraded some dependencies by major versions.
+- Make personal access token optional in `PlanningCenterApiOptions` to account for OAuth.
+
 ## [1.2.0] - 2025-08-27
 
 ### Added
@@ -180,6 +223,7 @@ First official stable release!
 
 Initial release.
 
+[2.0.0]: https://github.com/twcrews/planningcenter-api/compare/1.2.0...2.0.0
 [1.2.0]: https://github.com/twcrews/planningcenter-api/compare/1.1.0...1.2.0
 [1.1.0]: https://github.com/twcrews/planningcenter-api/compare/1.0.2...1.1.0
 [1.0.2]: https://github.com/twcrews/planningcenter-api/compare/1.0.1...1.0.2

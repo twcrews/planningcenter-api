@@ -11,13 +11,13 @@ public class PlanningCenterPersonalAccessTokenTests
 	{
 		PlanningCenterPersonalAccessToken token = new()
 		{
-			AppID = "testID",
+			AppId = "testID",
 			Secret = "testSecret"
 		};
 
 		AuthenticationHeaderValue authHeader = token;
 
-		string expectedParam = $"{token.AppID}:{token.Secret}".Base64Encode();
+		string expectedParam = $"{token.AppId}:{token.Secret}".Base64Encode();
 		string? actualParam = authHeader.Parameter;
 		
 		Assert.Equal(expectedParam, actualParam);

@@ -58,9 +58,9 @@ public class OrganizationResource
   public PassResourceCollection Passes => GetRelated<PassResourceCollection>("passes");
 
   /// <summary>
-  /// The related <see cref="PersonResource" />.
+  /// The related <see cref="PersonResourceCollection" />.
   /// </summary>
-  public PersonResource People => GetRelated<PersonResource>("people");
+  public PersonResourceCollection People => GetRelated<PersonResourceCollection>("people");
 
   /// <summary>
   /// The related <see cref="StationResourceCollection" />.

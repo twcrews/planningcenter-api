@@ -34,13 +34,7 @@ public class PlanningCenterFetchableResourceTests
 	[Fact]
 	public void AppendCustomParameters_ReturnsExpectedObject()
 	{
-		_subject.AppendCustomParameters([
-			new()
-			{
-					Key = "a",
-					Values = ["b", "c"]
-			}
-		]);
+		_subject.AppendCustomParameters([ new("a", "b", "c") ]);
 		Assert.Equal("http://localhost/?a=b,c", _subject.Uri.ToString());
 	}
 

@@ -18,6 +18,8 @@
                 <Source>.*\\Crews.PlanningCenter.Api\\Clients\\.*</Source>
                 <Source>.*\\Crews.PlanningCenter.Api\\Resources\\.*</Source>
                 <Source>.*\\Crews.PlanningCenter.Api\\Extensions\\HttpHeadersExtensions.cs</Source>
+                <Source>.*\\Crews.PlanningCenter.Api\\Authentication\\PlanningCenterOAuthHandler.cs</Source>
+                <Source>.*\\Crews.PlanningCenter.Api\\Authentication\\PlanningCenterOAuthScope.cs</Source>
               </Exclude>
             </Sources>
           </CodeCoverage>

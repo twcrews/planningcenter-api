@@ -21,7 +21,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Architecture Overview
 
-This is a .NET 8 C# library that provides a strongly-typed client for the Planning Center API, built on top of the JSON:API Framework.
+This is a .NET library (targeting .NET 8.0 for main library, .NET 9.0 for tests and generators) that provides a strongly-typed client for the Planning Center API, built on top of the JSON:API Framework.
+
+**Current Version:** 2.0.0 (released September 2025) - **Feature Complete**
 
 ### Core Architecture Components
 
@@ -49,8 +51,10 @@ This is a .NET 8 C# library that provides a strongly-typed client for the Planni
 
 **Dependency Injection Support:**
 - `AddPlanningCenterApi()` extension method for service registration
+- `AddPlanningCenterOAuth()` extension methods for OAuth authentication (in `DependencyInjection` namespace)
 - Options pattern with `PlanningCenterApiOptions`
 - Support for both configuration-based and programmatic setup
+- OAuth configuration uses `PlanningCenter:ClientId` and `PlanningCenter:ClientSecret` sections by default
 
 ### Key Conventions
 
@@ -61,7 +65,8 @@ This is a .NET 8 C# library that provides a strongly-typed client for the Planni
 
 **Authentication:**
 - Uses `PlanningCenterPersonalAccessToken` record struct (AppID + Secret) in `Authentication` namespace (moved to Authentication namespace in v1.2.0)
-- Supports OAuth via `PlanningCenterOAuthDefaults` class (added in v1.2.0)
+- Supports OAuth via `PlanningCenterOAuthDefaults` class and related OAuth components (added in v1.2.0)
+- Includes `PlanningCenterOAuthHandler`, `PlanningCenterOAuthOptions`, `PlanningCenterClaimsTransformation` for comprehensive OAuth support
 - Personal Access Token automatically converted to HTTP Basic Authorization header
 - OAuth constants include endpoints for authorization, token exchange, and user information
 
@@ -84,14 +89,29 @@ This is a .NET 8 C# library that provides a strongly-typed client for the Planni
 - MockHttp used for HTTP testing scenarios
 
 **Versioning:**
-- Library follows semantic versioning (currently v1.2.0)
+- Library follows semantic versioning (currently v1.2.0, with v2.0.0 released September 2025)
 - API resource versions match Planning Center's API versioning scheme
 - Latest API versions are aliased via `LatestVersion` properties
+- v2.0.0 (September 2025): Fixed People related resource properties, moved OAuth extension methods to DependencyInjection namespace, simplified OAuth configuration
 - v1.2.0 (August 2025): Added OAuth support and comprehensive API regeneration
-- Major dependency updates: upgraded to Crews.Extensions.Http 2.0.0, Crews.PlanningCenter.Models 1.2.0, and Microsoft.Extensions packages 9.0.1
+- Upgraded dependencies: Crews.Extensions.Http 3.0.0, Crews.PlanningCenter.Models 2.0.0, and Microsoft.Extensions packages 9.0.1
+- Main library targets .NET 8.0, while tests and generators target .NET 9.0
 
 **Code Generation Process:**
 1. Build the main library and generators projects
 2. Run T4 templates that use reflection and API documentation parsing
 3. Generate client classes, resource classes, and document contexts
 4. Generated files include header comments indicating they're auto-generated
+
+## Library Status
+
+This library is **feature-complete** as of version 2.0.0. It provides comprehensive coverage of the Planning Center API with:
+
+- Full OAuth authentication support
+- Complete API resource coverage for all Planning Center services
+- Strongly-typed client interfaces with fluent query capabilities
+- Comprehensive dependency injection integration
+- Extensive test coverage
+- Automated code generation from API documentation
+
+The library is ready for production use and provides a stable, well-tested interface to the Planning Center API.

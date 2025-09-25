@@ -47,10 +47,21 @@ public readonly record struct PlanningCenterOAuthScope
     /// </summary>
     public static PlanningCenterOAuthScope Services => new("services");
 
+    /// <summary>
+    /// Implicitly converts a <see cref="PlanningCenterOAuthScope"/> instance to a URI-friendly <see cref="string"/>.
+    /// </summary>
+    /// <param name="scope">The <see cref="PlanningCenterOAuthScope"/> instance to convert.</param>
     public static implicit operator string(PlanningCenterOAuthScope scope) => scope._value;
 
+    /// <summary>
+    /// Implicitly converts a <see cref="string"/> to an equivalent <see cref="PlanningCenterOAuthScope"/> instance.
+    /// </summary>
+    /// <param name="value">The <see cref="string"/> to convert.</param>
     public static implicit operator PlanningCenterOAuthScope(string value) => new(value);
 
+    /// <summary>
+    /// Converts a <see cref="PlanningCenterOAuthScope"/> instance to its URI-friendly string representation.
+    /// </summary>
     public override string ToString() => _value;
 
     private PlanningCenterOAuthScope(string value) => _value = value;

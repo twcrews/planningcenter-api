@@ -11,27 +11,31 @@ public class IServiceCollectionExtensionTests
 	[Fact(DisplayName = "AddPlanningCenterApi adds HTTP client factory")]
 	public void AddPlanningCenterApi_AddsHttpClientFactory()
 	{
-		IServiceCollection services = Substitute.For<IServiceCollection>();
+		ServiceCollection services = new();
 		services.AddPlanningCenterApi(options => options.ApiBaseAddress = new("http://test.abc"));
 
-		services.Received(1).Add(Arg.Is<ServiceDescriptor>(sd =>
-			sd.ServiceType == typeof(HttpClient) && sd.ImplementationFactory != null));
+		ServiceDescriptor? httpClientDescriptor = services.FirstOrDefault(sd =>
+			sd.ServiceType == typeof(HttpClient) && sd.ImplementationFactory != null);
+
+		Assert.NotNull(httpClientDescriptor);
 	}
 
 	[Fact(DisplayName = "AddPlanningCenterApi adds Planning Center API service")]
 	public void AddPlanningCenterApi_AddsApiService()
 	{
-		IServiceCollection services = Substitute.For<IServiceCollection>();
+		ServiceCollection services = new();
 		services.AddPlanningCenterApi(options => options.ApiBaseAddress = new("http://test.abc"));
 
-		services.Received(1).Add(Arg.Is<ServiceDescriptor>(sd =>
-			sd.ServiceType == typeof(IPlanningCenterApiService)));
+		ServiceDescriptor? apiServiceDescriptor = services.FirstOrDefault(sd =>
+			sd.ServiceType == typeof(IPlanningCenterApiService));
+
+		Assert.NotNull(apiServiceDescriptor);
 	}
 
 	[Fact(DisplayName = "AddPlanningCenterApi throws exception when not configured")]
 	public void AddPlanningCenterApi_ThrowsWhenNotConfigured()
 	{
-		IServiceCollection services = Substitute.For<IServiceCollection>();
+		ServiceCollection services = new();
 		Assert.Throws<InvalidOperationException>(() => services.AddPlanningCenterApi());
 	}
 
@@ -45,15 +49,5 @@ public class IServiceCollectionExtensionTests
 		services.AddPlanningCenterApi();
 
 		configuration.Received(1).GetSection(PlanningCenterApiOptions.ConfigurationName);
-	}
-
-	[Theory(DisplayName = "AddPlanningCenterApi() correctly configures and adds service")]
-	[InlineData(null, null)]
-	[InlineData("http://test.abc", null)]
-	[InlineData(null, "testClient")]
-	[InlineData("http://test.abc", "testClient")]
-	public void AddPlanningCenterApi_CorrectlyConfiguresService(string? baseAddressArg, string? httpClientNameArg)
-	{
-
 	}
 }

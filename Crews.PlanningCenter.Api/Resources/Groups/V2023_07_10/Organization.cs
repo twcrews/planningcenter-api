@@ -43,9 +43,9 @@ public class OrganizationResource
   public GroupResourceCollection Groups => GetRelated<GroupResourceCollection>("groups");
 
   /// <summary>
-  /// The related <see cref="PersonResource" />.
+  /// The related <see cref="PersonResourceCollection" />.
   /// </summary>
-  public PersonResource People => GetRelated<PersonResource>("people");
+  public PersonResourceCollection People => GetRelated<PersonResourceCollection>("people");
 
   /// <summary>
   /// The related <see cref="TagGroupResourceCollection" />.

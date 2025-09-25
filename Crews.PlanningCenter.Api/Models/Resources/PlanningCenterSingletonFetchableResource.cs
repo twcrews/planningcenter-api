@@ -17,12 +17,12 @@ public abstract class PlanningCenterSingletonFetchableResource<TResource, TSelf,
 	public async Task<JsonApiSingletonResponse<TResource>> GetAsync()
 		=> await TryGetResourceAsync(await Client.SendAsync(new() { RequestUri = Uri }));
 
-	/// <summary>
-	/// Posts the specified resource to Planning Center.
-	/// </summary>
-	/// <param name="resource">The resource to post.</param>
-	/// <returns>An instance of the resource representing its newly created server instance.</returns>
-	protected async Task<JsonApiSingletonResponse<TResource>> PostAsync(TResource resource)
+    /// <summary>
+    /// Posts the specified resource to Planning Center.
+    /// </summary>
+    /// <param name="resource">The resource to post.</param>
+    /// <returns>An instance of the resource representing its newly created server instance.</returns>
+    protected async Task<JsonApiSingletonResponse<TResource>> PostAsync(TResource resource)
 		=> await TryGetResourceAsync(await Client.SendAsync(new()
 		{
 			RequestUri = Uri,

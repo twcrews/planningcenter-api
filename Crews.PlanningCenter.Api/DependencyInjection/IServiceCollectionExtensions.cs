@@ -1,5 +1,6 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 
 namespace Crews.PlanningCenter.Api.DependencyInjection;
 
@@ -17,15 +18,17 @@ public static class IServiceCollectionExtensions
 	public static IServiceCollection AddPlanningCenterApi(
 		this IServiceCollection services, Action<PlanningCenterApiOptions>? configureOptions = null)
 	{
-		if (configureOptions == null) 
+		ServiceProvider provider;
+		
+		if (configureOptions == null)
 		{
-			ServiceProvider provider = services.BuildServiceProvider();
-			IConfiguration configuration = provider.GetService<IConfiguration>() 
+			provider = services.BuildServiceProvider();
+			IConfiguration configuration = provider.GetService<IConfiguration>()
 				?? throw new InvalidOperationException(
 				"Unable to configure service: no application configuration exists in the service container, and no "
 				+ $"configuration was provided via the {nameof(configureOptions)} argument.");
-			
-      services.Configure<PlanningCenterApiOptions>(
+
+			services.Configure<PlanningCenterApiOptions>(
 				configuration.GetSection(PlanningCenterApiOptions.ConfigurationName));
 		}
 		else
@@ -33,8 +36,10 @@ public static class IServiceCollectionExtensions
 			services.Configure(configureOptions);
 		}
 
-		return services
-			.AddHttpClient()
-			.AddScoped<IPlanningCenterApiService, PlanningCenterApiService>();
+		provider = services.BuildServiceProvider();
+		PlanningCenterApiOptions options = provider.GetRequiredService<IOptions<PlanningCenterApiOptions>>().Value;
+
+		services.AddHttpClient(options.HttpClientName);
+		return services.AddScoped<IPlanningCenterApiService, PlanningCenterApiService>();
 	}
 }

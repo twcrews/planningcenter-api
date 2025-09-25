@@ -22,7 +22,7 @@ public class PlanningCenterOAuthHandlerTests
 
     public PlanningCenterOAuthHandlerTests()
     {
-        var options = new PlanningCenterOAuthOptions();
+		PlanningCenterOAuthOptions options = new PlanningCenterOAuthOptions();
         _optionsMonitor = Substitute.For<IOptionsMonitor<PlanningCenterOAuthOptions>>();
         _optionsMonitor.Get(Arg.Any<string>()).Returns(options);
 
@@ -42,28 +42,57 @@ public class PlanningCenterOAuthHandlerTests
         Assert.IsAssignableFrom<OAuthHandler<PlanningCenterOAuthOptions>>(_handler);
     }
 
-    [Fact(DisplayName = "Handler setup processes user information mock correctly")]
-    public void HandlerSetup_ProcessesUserInformationMockCorrectly()
+    [Fact(DisplayName = "Handler setup processes comprehensive user information correctly")]
+    public void HandlerSetup_ProcessesComprehensiveUserInformationCorrectly()
     {
-        // Arrange
-        var userJson = JsonSerializer.Serialize(new
+		// Arrange - Complete user data matching the JSON structure provided
+		string userJson = JsonSerializer.Serialize(new
         {
             data = new
             {
-                id = "123",
+                type = "Person",
+                id = "1",
                 attributes = new
                 {
-                    name = "John Doe",
+                    avatar = "https://example.com/avatar.jpg",
                     first_name = "John",
                     last_name = "Doe",
-                    avatar = "https://example.com/avatar.jpg",
+                    demographic_avatar_url = "https://example.com/demographic_avatar.jpg",
+                    name = "John Doe",
                     status = "active",
-                    site_administrator = true
+                    remote_id = 12345,
+                    accounting_administrator = true,
+                    anniversary = "2000-01-01",
+                    birthdate = "1985-05-15",
+                    child = false,
+                    given_name = "Johnathan",
+                    grade = 12,
+                    graduation_year = 2025,
+                    middle_name = "Michael",
+                    nickname = "Johnny",
+                    people_permissions = "admin",
+                    site_administrator = true,
+                    gender = "Male",
+                    inactivated_at = (string?)null,
+                    medical_notes = "No known allergies",
+                    membership = "Member",
+                    created_at = "2020-01-01T12:00:00Z",
+                    updated_at = "2025-01-01T12:00:00Z",
+                    can_create_forms = true,
+                    can_email_lists = true,
+                    directory_shared_info = new { },
+                    directory_status = "visible",
+                    passed_background_check = true,
+                    resource_permission_flags = new { },
+                    school_type = "public",
+                    login_identifier = "john.doe@example.com",
+                    mfa_configured = true,
+                    stripe_customer_identifier = "cus_123456789"
                 }
             }
         });
 
-        var emailsJson = JsonSerializer.Serialize(new
+		string emailsJson = JsonSerializer.Serialize(new
         {
             data = new[]
             {
@@ -71,7 +100,7 @@ public class PlanningCenterOAuthHandlerTests
                 {
                     attributes = new
                     {
-                        address = "john@example.com",
+                        address = "john.doe@example.com",
                         primary = true
                     }
                 }
@@ -92,16 +121,16 @@ public class PlanningCenterOAuthHandlerTests
     [Fact(DisplayName = "Constructor initializes with required dependencies")]
     public void Constructor_InitializesWithRequiredDependencies()
     {
-        // Act & Assert - Constructor should not throw
-        var handler = new PlanningCenterOAuthHandler(_optionsMonitor, _loggerFactory, _urlEncoder);
+		// Act & Assert - Constructor should not throw
+		PlanningCenterOAuthHandler handler = new(_optionsMonitor, _loggerFactory, _urlEncoder);
         Assert.NotNull(handler);
     }
 
     [Fact(DisplayName = "Options monitor provides correct configuration")]
     public void OptionsMonitor_ProvidesCorrectConfiguration()
     {
-        // Act
-        var options = _optionsMonitor.Get(string.Empty);
+		// Act
+		PlanningCenterOAuthOptions options = _optionsMonitor.Get(string.Empty);
 
         // Assert
         Assert.NotNull(options);

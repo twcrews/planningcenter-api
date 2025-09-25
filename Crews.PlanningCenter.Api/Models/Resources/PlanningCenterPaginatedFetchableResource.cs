@@ -99,5 +99,5 @@ public abstract class PlanningCenterPaginatedFetchableResource<TResource, TSelf,
 	/// <typeparam name="TEnum">The enumerable associated with the filterable attributes.</typeparam>
 	/// <returns>This same instance of the request for call chaining.</returns>
 	protected TSelf FilterBy<TEnum>(params TEnum[] filters)
-		=> AddParameters("filter", filters.Select(f => f.GetJsonApiName()).ToArray());
+		=> AddParameters("filter", [.. filters.Select(f => f.GetJsonApiName())]);
 }

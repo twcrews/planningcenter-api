@@ -10,7 +10,7 @@
 
   <PropertyGroup>
     <PackageId>Crews.PlanningCenter.Api</PackageId>
-    <PackageVersion>1.2.0</PackageVersion>
+    <PackageVersion>2.0.0</PackageVersion>
     <Authors>Tommy Crews</Authors>
     <Description>
       A library containing basic models and services for interacting with the Planning Center API.

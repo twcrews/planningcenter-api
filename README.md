@@ -15,6 +15,7 @@ A client library for the Planning Center API built on the
   - [Querying Example](#querying-example)
   - [Pagination Example](#pagination-example)
   - [Mutation Example](#mutation-example)
+  - [Custom Resource Example](#custom-resource-example)
 
 ## Installation
 
@@ -297,6 +298,86 @@ var patchResult = await myEventConnection.PatchAsync(newConnection);
 
 // DELETE
 await myEventConnection.DeleteAsync();
+```
+
+### Custom Resource Example
+
+You can define your own resource types by inheriting from either `PlanningCenterSingletonFetchableResource` or `PlanningCenterPaginatedFetchableResource`.
+
+This provides forward compatibility by allowing you to define and fetch any resources not yet implemented in this library.
+
+#### Model Creation
+
+First, create a model class:
+
+```cs
+[JsonApiName("my_custom_resource")]
+public record MyCustomModel
+{
+  [JsonApiName("my_first_property")]
+  public string? MyFirstProperty { get; init; }
+
+  [JsonProperty("my_second_property")]
+  public int? MySecondProperty { get; init; }
+}
+```
+
+Next, you can create your resource class.
+
+#### Singleton Resource
+
+```cs
+public class MyCustomResource 
+  : PlanningCenterSingletonFetchableResource<MyCustomModel, MyCustomResource, PeopleDocumentContext>,
+  IIncludable<MyCustomResource, MyCustomResourceIncludable>
+{
+  // In this example, your resoruce has child resources of type "people"
+  public PeopleResourceCollection People => GetRelated<PeopleResourceCollection>("people");
+
+  public MyCustomSingletonResource(Uri uri, HttpClient client) : base(uri, client) { }
+
+  // In this example, your resource has certain includable resources
+  public MyCustomResource Include(params MyCustomResourceIncludable[] included) => base.Include(included);
+}
+```
+
+#### Paginated Resource
+
+> [!IMPORTANT]
+> Creating a paginated resource type requires the existence of a singleton resource type for the same model.
+
+```cs
+public class MyCustomResourceCollection 
+  : PlanningCenterPaginatedFetchableResource<MyCustomModel, MyCustomResourceCollection, MyCustomResource, PeopleDocumentContext>,
+  IIncludable<MyCustomResourceCollection, MyCustomResourceIncludable>,
+  IOrderable<MyCustomResourceCollection, MyCustomResourceOrderable>,
+  IFilterable<MyCustomResourceCollection, MyCustomResourceQueryable>
+{
+  public MyCustomResourceCollection(Uri uri, HttpClient client) : base(uri, client) { }
+
+  // In this example, your resource has certain includable resources
+  public MyCustomResourceCollection Include(params MyCustomResourceIncludable[] included) => base.Include(included);
+
+  // In this example, your resource has certain orderable properties
+  public MyCustomResourceCollection OrderBy(MyCustomResourceOrderable orderable, Order order = Order.Ascending) => base.OrderBy(orderable, order);
+
+  // In this example, your resource has certain queryable properties
+  public MyCustomResourceCollection Query(params (MyCustomResourceQueryable, string)[] queries) => base.Query(queries);
+}
+```
+
+#### Accessing your custom resources
+
+Simply call the `GetRelated<T>()` method on any singleton resource to access your custom resource:
+
+```cs
+// Singleton
+var currentUser = await planningCenterApi.People.LatestVersion
+  .GetRelated<MyCustomResource>("my_custom_resource");
+
+// Paginated
+var customResources = await planningCenterApi.People.LatestVersion
+  .GetRelated<MyCustomResourceCollection>("my_custom_resources");
 ```
 
 ***

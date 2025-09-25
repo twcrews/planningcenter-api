@@ -35,5 +35,5 @@ public class PlanningCenterApiOptions
 	/// The personal access token used to authenticate with the API.
 	/// <a href="https://developer.planning.center/docs/#/overview/authentication%23personal-access-token">Learn more</a>.
 	/// </summary>
-	public required PlanningCenterPersonalAccessToken? PersonalAccessToken { get; set; }
+	public PlanningCenterPersonalAccessToken? PersonalAccessToken { get; set; }
 }

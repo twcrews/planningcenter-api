@@ -1,6 +1,7 @@
 ﻿using Crews.PlanningCenter.Api.Models;
 using Crews.PlanningCenter.Api.Models.Resources;
 using Crews.PlanningCenter.Api.Models.Resources.Querying;
+using Crews.PlanningCenter.Api.Resources;
 using JsonApiFramework.JsonApi;
 using JsonApiFramework.ServiceModel.Configuration;
 

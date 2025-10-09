@@ -9,7 +9,7 @@ using RichardSzalay.MockHttp;
 
 namespace Crews.PlanningCenter.Api.Tests.DependencyInjection;
 
-public class PlanningCenterApiServiceTests
+public class PlanningCenterClientTests
 {
 	[Theory(DisplayName = "Constructor correctly propogates options to client instances.")]
 	[InlineData(null, null)]
@@ -18,15 +18,15 @@ public class PlanningCenterApiServiceTests
 	[InlineData("https://test.com", "testClient")]
 	public void PlanningCenterApiService_CorrectlyParsesOptions(string? baseAddressArg, string? httpClientNameArg)
 	{
-		Uri baseAddress = new(baseAddressArg ?? PlanningCenterApiOptions.DefaultPlanningCenterApiBaseAddress);
-		string httpClientName = httpClientNameArg ?? PlanningCenterApiOptions.DefaultHttpClientName;
+		Uri baseAddress = new(baseAddressArg ?? PlanningCenterClientOptions.DefaultPlanningCenterApiBaseAddress);
+		string httpClientName = httpClientNameArg ?? PlanningCenterClientOptions.DefaultHttpClientName;
 		PlanningCenterPersonalAccessToken personalAccessToken = new()
 		{
 			AppId = "abc",
 			Secret = "def"
 		};
 
-		PlanningCenterApiOptions options = new()
+		PlanningCenterClientOptions options = new()
 		{
 			ApiBaseAddress = baseAddress,
 			PersonalAccessToken = personalAccessToken,
@@ -38,11 +38,13 @@ public class PlanningCenterApiServiceTests
 
 		clientFactory.CreateClient(Arg.Any<string>()).Returns(client);
 
-		PlanningCenterApiService _ = new(Options.Create(options), clientFactory);
+		PlanningCenterClient _ = new(Options.Create(options), clientFactory);
 
 		clientFactory.Received().CreateClient(httpClientName);
 		Assert.Equal(baseAddress, client.BaseAddress);
-		Assert.Equal(personalAccessToken, client.DefaultRequestHeaders.Authorization);
+		// Note: Authentication is now handled by PlanningCenterAuthenticationHandler,
+		// not set directly on the HttpClient. The Authorization header is added by the handler
+		// during request execution, so it won't be present on the client itself.
 	}
 
 	[Fact(DisplayName = "API client properties return correctly configured client classes.")]
@@ -74,13 +76,13 @@ public class PlanningCenterApiServiceTests
 			Secret = "def"
 		};
 
-		PlanningCenterApiOptions options = new()
+		PlanningCenterClientOptions options = new()
 		{
 			ApiBaseAddress = new("http://test.com"),
 			PersonalAccessToken = personalAccessToken
 		};
 
-		PlanningCenterApiService subject = new(Options.Create(options), clientFactory);
+		PlanningCenterClient subject = new(Options.Create(options), clientFactory);
 
 		JsonApiSingletonResponse<PlanningCenter.Models.Calendar.V2022_07_07.Entities.Organization> calendarOrg = await subject.Calendar.LatestVersion.GetAsync();
 		JsonApiSingletonResponse<PlanningCenter.Models.CheckIns.V2025_05_28.Entities.Organization> checkInsOrg = await subject.CheckIns.LatestVersion.GetAsync();

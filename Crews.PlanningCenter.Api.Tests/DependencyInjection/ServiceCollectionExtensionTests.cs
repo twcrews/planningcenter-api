@@ -1,18 +1,17 @@
 using Crews.PlanningCenter.Api.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
 using NSubstitute;
 
 namespace Crews.PlanningCenter.Api.Tests.DependencyInjection;
 
-public class IServiceCollectionExtensionTests
+public class ServiceCollectionExtensionTests
 {
 	[Fact(DisplayName = "AddPlanningCenterApi adds HTTP client factory")]
 	public void AddPlanningCenterApi_AddsHttpClientFactory()
 	{
 		ServiceCollection services = new();
-		services.AddPlanningCenterApi(options => options.ApiBaseAddress = new("http://test.abc"));
+		services.AddPlanningCenterClient(options => options.ApiBaseAddress = new("http://test.abc"));
 
 		ServiceDescriptor? httpClientDescriptor = services.FirstOrDefault(sd =>
 			sd.ServiceType == typeof(HttpClient) && sd.ImplementationFactory != null);
@@ -24,10 +23,10 @@ public class IServiceCollectionExtensionTests
 	public void AddPlanningCenterApi_AddsApiService()
 	{
 		ServiceCollection services = new();
-		services.AddPlanningCenterApi(options => options.ApiBaseAddress = new("http://test.abc"));
+		services.AddPlanningCenterClient(options => options.ApiBaseAddress = new("http://test.abc"));
 
 		ServiceDescriptor? apiServiceDescriptor = services.FirstOrDefault(sd =>
-			sd.ServiceType == typeof(IPlanningCenterApiService));
+			sd.ServiceType == typeof(IPlanningCenterClient));
 
 		Assert.NotNull(apiServiceDescriptor);
 	}
@@ -36,7 +35,7 @@ public class IServiceCollectionExtensionTests
 	public void AddPlanningCenterApi_ThrowsWhenNotConfigured()
 	{
 		ServiceCollection services = new();
-		Assert.Throws<InvalidOperationException>(() => services.AddPlanningCenterApi());
+		Assert.Throws<InvalidOperationException>(() => services.AddPlanningCenterClient());
 	}
 
 	[Fact(DisplayName = "AddPlanningCenterApi gets configuration from providers")]
@@ -46,8 +45,8 @@ public class IServiceCollectionExtensionTests
 		IConfiguration configuration = Substitute.For<IConfiguration>();
 
 		services.AddSingleton<IConfiguration>(configuration);
-		services.AddPlanningCenterApi();
+		services.AddPlanningCenterClient();
 
-		configuration.Received(1).GetSection(PlanningCenterApiOptions.ConfigurationName);
+		configuration.Received(1).GetSection(PlanningCenterClientOptions.ConfigurationName);
 	}
 }

@@ -5,10 +5,9 @@ A client library for the Planning Center API built on the
 
 - [Installation](#installation)
 - [Configuration](#configuration)
-  - [OAuth Options](#oauth-options)
-  - [API Options](#api-options)
-- [Setup](#setup)
-  - [ASP.NET Core Application Builder](#aspnet-core-application-builder)
+  - [Basic Setup](#basic-setup)
+  - [Advanced Configuration](#advanced-configuration)
+- [Usage](#usage)
   - [Standalone](#standalone)
 - [Examples](#examples)
   - [Fluent API Example](#fluent-api-example)
@@ -29,66 +28,60 @@ dotnet add package Crews.PlanningCenter.Api
 
 This library uses the [options pattern](https://learn.microsoft.com/en-us/dotnet/core/extensions/options). By default, the following configuration sections are defined:
 
-- `Authentication:PlanningCenter`: mapped to the `PlanningCenterOAuthOptions` class. Used for defining [OAuth](https://developer.planning.center/docs/#/overview/authentication%23oauth-2-0) credentials.
-- `PlanningCenterApi`: mapped to the `PlanningCenterApiOptions` class. Used for defining all other options for the library.
+- `Authentication:PlanningCenter`: Mapped to the [`OpenIdConnectOptions`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.openidconnect.openidconnectoptions) class. Used for defining [OIDC](https://developer.planning.center/docs/#/overview/authentication%23oidc) options.
+- `PlanningCenterClient`: mapped to the `PlanningCenterClientOptions` class. Used for defining all other options for the library.
 
-### OAuth Options
+### Basic Setup
 
-The following are valid options for OAuth authentication:
-
-| Option Name | Type | Description |
-| ----------- | ---- | ----------- |
-| `ClientId` | `string` | The OAuth client ID. |
-| `ClientSecret` | `string` | The OAuth client secret. |
-
-> [!TIP]
-> This class also accepts all options defined in the [`OAuthOptions`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.builder.oauthoptions) class.
-
-`appsettings.json` example:
+Add the following to `appsettings.json`:
 
 ```json
 {
   "Authentication": {
     "PlanningCenter": {
-      "ClientId": "my-client-id",
-      "ClientSecret": "my-client-secret"
+      "ClientId": "your-client-id",
+      "ClientSecret": "your-client-secret",
+      "Scope": [
+        "calendar",
+        "people",
+        "registrations"
+      ]
     }
   }
 }
 ```
 
-Manual configuration example:
+Then, add authentication services to `Program.cs`. This example uses cookies:
 
 ```cs
 builder.Services.AddAuthentication(options =>
 {
-  options.DefaultScheme = "Cookies";
+  options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
   options.DefaultChallengeScheme = PlanningCenterOAuthDefaults.AuthenticationScheme;
 })
-.AddCookie("Cookies")
-.AddPlanningCenterOAuth(options =>
-{
-  // The strings here are hardcoded for example.
-  // These credentials should never be stored in your code.
-  options.ClientId = "my-client-id";
-  options.ClientSecret = "my-secret";
-});
+.AddCookie()
+.AddPlanningCenter();
+
+// Don't forget to register the client itself!
+builder.Services.AddPlanningCenterClient();
 ```
 
-### API Options
+### Advanced Configuration
+
+You can configure the `PlanningCenterClient` configuration section with the following options:
 
 | Option Name | Type | Description | Default |
 | ----------- | ---- | ----------- | ------- |
 | `ApiBaseAddress` | `Uri` | The base URL of the Planning Center API. | `https://api.planningcenteronline.com` |
-| `HttpClientName` | `string` | The name of an optional [named](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/http-requests#named-clients) `HttpClient` to use in the service.<br><br>**NOTE**: This client's `BaseAddress` property will be ignored in favor of the `ApiBaseAddress` option. | N/A |
-| `UserAgent` | `string` | The user agent string to send on API requests. This is [required](https://developer.planning.center/docs/#/overview/authentication%23specifying-user-agent) by Planning Center. | `Generic .NET Planning Center API Client` |
+| `HttpClientName` | `string` | The [name](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/http-requests#named-clients) of the internal `HttpClient` instance. | `__defaultPlanningCenterClient` |
+| `UserAgent` | `string` | The user agent string to send on API requests as [required](https://developer.planning.center/docs/#/overview/authentication%23specifying-user-agent) by Planning Center. | `Generic .NET Planning Center API Client` |
 | `PersonalAccessToken` | `PlanningCenterPersonalAccessToken` | An optional Planning Center [personal access token](https://developer.planning.center/docs/#/overview/authentication%23personal-access-token). | N/A |
 
 `appsettings.json` example:
 
 ```json
 {
-  "PlanningCenterApi": {
+  "PlanningCenterClient": {
     "ApiBaseAddress": "http://some-address.com",
     "HttpClientName": "my-custom-client",
     "UserAgent": "Some custom user agent string",
@@ -103,7 +96,7 @@ builder.Services.AddAuthentication(options =>
 Manual configuration example:
 
 ```cs
-builder.Services.AddPlanningCenterApi(options =>
+builder.Services.AddPlanningCenterClient(options =>
 {
   options.ApiBaseAddress = new("http://some-address.com");
   options.HttpClientName = "my-custom-client";
@@ -119,73 +112,18 @@ builder.Services.AddPlanningCenterApi(options =>
 });
 ```
 
-## Setup
+## Usage
 
-This library can be used with application builders (dependency injection), or as a standalone client.
-
-### ASP.NET Core Application Builder
-
-First, add OAuth authentication:
-
-```cs
-var builder = WebApplication.CreateBuilder(args);
-
-builder.Services.AddAuthentication(options =>
-{
-  options.DefaultScheme = "Cookies";
-  options.DefaultChallengeScheme = PlanningCenterOAuthDefaults.AuthenticationScheme;
-})
-.AddCookie("Cookies")
-.AddPlanningCenterOAuth(options =>
-{
-  // Add scopes for the APIs you need access to
-  // By default, the "People" scope is always included
-  options.Scope.Clear();
-  options.Scope.Add(PlanningCenterOAuthScope.People);
-  options.Scope.Add(PlanningCenterOAuthScope.Calendar);
-  options.Scope.Add(PlanningCenterOAuthScope.CheckIns);
-});
-```
-
-Next, add the Planning Center API service:
-
-```cs
-builder.Services.AddPlanningCenterApi();
-
-var app = builder.Build();
-app.UseAuthentication();
-app.UseAuthorization();
-```
-
-Finally, add authentication endpoints to your app. The OAuth middleware will automatically handle token management and refreshing.
-
-```cs
-app.MapGet("/login", (HttpContext context, string? returnUrl = null) =>
-{
-  var properties = new AuthenticationProperties
-  {
-    RedirectUri = returnUrl ?? "/"
-  };
-  return Results.Challenge(properties, [PlanningCenterOAuthDefaults.AuthenticationScheme]);
-});
-
-app.MapPost("/logout", async (HttpContext context) =>
-{
-  await context.SignOutAsync("Cookies");
-  return Results.Redirect("/");
-});
-```
-
-Now you can inject `IPlanningCenterApiService` into your controllers or services.
+You can inject `IPlanningCenterClient` into your controllers or services.
 
 ```cs
 [Authorize]
-public class MyController(IPlanningCenterApiService _planningCenterApi) : Controller
+public class MyController(IPlanningCenterClient _planningCenterClient) : Controller
 {
   public async Task<IActionResult> Profile()
   {
     // API calls automatically use the authenticated user's OAuth token, or your personal access token
-    var currentUser = await _planningCenterApi.People.LatestVersion
+    var currentUser = await _planningCenterClient.People.LatestVersion
       .GetRelated<PersonResource>("me")
       .GetAsync();
 
@@ -331,7 +269,7 @@ public class MyCustomResource
   : PlanningCenterSingletonFetchableResource<MyCustomModel, MyCustomResource, PeopleDocumentContext>,
   IIncludable<MyCustomResource, MyCustomResourceIncludable>
 {
-  // In this example, your resoruce has child resources of type "people"
+  // In this example, your resource has child resources of type "people"
   public PeopleResourceCollection People => GetRelated<PeopleResourceCollection>("people");
 
   public MyCustomSingletonResource(Uri uri, HttpClient client) : base(uri, client) { }

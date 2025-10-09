@@ -5,15 +5,15 @@ namespace Crews.PlanningCenter.Api.DependencyInjection;
 /// <summary>
 /// Represents options for configuring API client instances, especially in dependency injection scenarios.
 /// </summary>
-public class PlanningCenterApiOptions
+public class PlanningCenterClientOptions
 {
-	internal const string DefaultHttpClientName = "__defaultPlanningCenterApiHttpClient";
+	internal const string DefaultHttpClientName = "__defaultPlanningCenterClient";
 	internal const string DefaultPlanningCenterApiBaseAddress = "https://api.planningcenteronline.com";
 
 	/// <summary>
 	/// Name used for binding the instance to a configuration provider.
 	/// </summary>
-	public const string ConfigurationName = "PlanningCenterApi";
+	public const string ConfigurationName = "PlanningCenterClient";
 
 	/// <summary>
 	/// The base address of the API. Defaults to <c>https://api.planningcenteronline.com</c>.

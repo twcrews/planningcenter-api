@@ -43,9 +43,19 @@ public readonly record struct PlanningCenterOAuthScope
     public static PlanningCenterOAuthScope Registrations => new("registrations");
 
     /// <summary>
+    /// OAuth scope for Planning Center's Resources API.
+    /// </summary>
+    /// <remarks>
+    /// This API is not documented by Planning Center, and therefore is not officially supported by this library.
+    /// </remarks>
+    public static PlanningCenterOAuthScope Resources => new("resources");
+
+    /// <summary>
     /// OAuth scope for Planning Center's Services API.
     /// </summary>
     public static PlanningCenterOAuthScope Services => new("services");
+
+    internal static PlanningCenterOAuthScope OpenId => new("openid");
 
     /// <summary>
     /// Implicitly converts a <see cref="PlanningCenterOAuthScope"/> instance to a URI-friendly <see cref="string"/>.

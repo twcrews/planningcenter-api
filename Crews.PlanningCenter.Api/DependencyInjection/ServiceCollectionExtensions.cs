@@ -1,3 +1,5 @@
+using Crews.PlanningCenter.Api.Authentication;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
@@ -7,7 +9,7 @@ namespace Crews.PlanningCenter.Api.DependencyInjection;
 /// <summary>
 /// Extension methods useful for registering services with an <see cref="IServiceCollection"/>.
 /// </summary>
-public static class IServiceCollectionExtensions
+public static class ServiceCollectionExtensions
 {
 	/// <summary>
 	/// Registers all Planning Center product APIs with the given <see cref="IServiceCollection"/>.
@@ -15,8 +17,8 @@ public static class IServiceCollectionExtensions
 	/// <param name="services">The <see cref="IServiceCollection"/> with which to register the services.</param>
 	/// <param name="configureOptions">Optionally configures the service with a lambda expression.</param>
 	/// <returns>Returns the same <see cref="IServiceCollection"/>.</returns>
-	public static IServiceCollection AddPlanningCenterApi(
-		this IServiceCollection services, Action<PlanningCenterApiOptions>? configureOptions = null)
+	public static IServiceCollection AddPlanningCenterClient(
+		this IServiceCollection services, Action<PlanningCenterClientOptions>? configureOptions = null)
 	{
 		ServiceProvider provider;
 		
@@ -28,8 +30,8 @@ public static class IServiceCollectionExtensions
 				"Unable to configure service: no application configuration exists in the service container, and no "
 				+ $"configuration was provided via the {nameof(configureOptions)} argument.");
 
-			services.Configure<PlanningCenterApiOptions>(
-				configuration.GetSection(PlanningCenterApiOptions.ConfigurationName));
+			services.Configure<PlanningCenterClientOptions>(
+				configuration.GetSection(PlanningCenterClientOptions.ConfigurationName));
 		}
 		else
 		{
@@ -37,9 +39,21 @@ public static class IServiceCollectionExtensions
 		}
 
 		provider = services.BuildServiceProvider();
-		PlanningCenterApiOptions options = provider.GetRequiredService<IOptions<PlanningCenterApiOptions>>().Value;
+		PlanningCenterClientOptions options = provider.GetRequiredService<IOptions<PlanningCenterClientOptions>>().Value;
 
-		services.AddHttpClient(options.HttpClientName);
-		return services.AddScoped<IPlanningCenterApiService, PlanningCenterApiService>();
+		// Register HttpContextAccessor if not already registered
+		if (!services.Any(x => x.ServiceType == typeof(IHttpContextAccessor)))
+		{
+			services.AddHttpContextAccessor();
+		}
+
+		// Register the authentication handler
+		services.AddTransient<PlanningCenterAuthenticationHandler>();
+
+		// Register HttpClient with the authentication handler
+		services.AddHttpClient(options.HttpClientName)
+			.AddHttpMessageHandler<PlanningCenterAuthenticationHandler>();
+
+		return services.AddScoped<IPlanningCenterClient, PlanningCenterClient>();
 	}
 }

@@ -5,7 +5,7 @@ namespace Crews.PlanningCenter.Api.DependencyInjection;
 /// <summary>
 /// Represents a service that provides clients for Planning Center product APIs.
 /// </summary>
-public interface IPlanningCenterApiService
+public interface IPlanningCenterClient
 {
 	/// <summary>
 	/// Planning Center Calendar API client.

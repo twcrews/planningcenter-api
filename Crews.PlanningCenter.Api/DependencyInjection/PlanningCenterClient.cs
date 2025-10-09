@@ -4,9 +4,9 @@ using Microsoft.Extensions.Options;
 namespace Crews.PlanningCenter.Api.DependencyInjection;
 
 /// <summary>
-/// Default implementation of <see cref="IPlanningCenterApiService"/>.
+/// Default implementation of <see cref="IPlanningCenterClient"/>.
 /// </summary>
-public class PlanningCenterApiService : IPlanningCenterApiService
+public class PlanningCenterClient : IPlanningCenterClient
 {
 	private readonly HttpClient _httpClient;
 
@@ -37,19 +37,22 @@ public class PlanningCenterApiService : IPlanningCenterApiService
 	/// <param name="options">Configuration options for the service.</param>
 	/// <param name="httpClientFactory">The <see cref="HttpClient"/> factory used for API instances.</param>
 	/// <remarks>
-	/// <b>NOTE:</b> If <see cref="PlanningCenterApiOptions.HttpClientName"/> is set, the specified named client's 
+	/// <para>
+	/// <b>NOTE:</b> If <see cref="PlanningCenterClientOptions.HttpClientName"/> is set, the specified named client's
 	/// <see cref="HttpClient.BaseAddress"/> property will be ignored, and will be replaced with the value of
-	/// <see cref="PlanningCenterApiOptions.ApiBaseAddress"/> (which defaults to 
+	/// <see cref="PlanningCenterClientOptions.ApiBaseAddress"/> (which defaults to
 	/// <c>https://api.planningcenteronline.com</c>).
+	/// </para>
+	/// <para>
+	/// Authentication is handled by the <see cref="Authentication.PlanningCenterAuthenticationHandler"/> delegating handler,
+	/// which automatically applies Personal Access Tokens (from configuration) or OAuth tokens (from the authenticated user).
+	/// </para>
 	/// </remarks>
-	public PlanningCenterApiService(IOptions<PlanningCenterApiOptions> options, IHttpClientFactory httpClientFactory)
+	public PlanningCenterClient(IOptions<PlanningCenterClientOptions> options, IHttpClientFactory httpClientFactory)
 	{
 		HttpClient client = httpClientFactory.CreateClient(options.Value.HttpClientName);
 		client.BaseAddress = options.Value.ApiBaseAddress;
 		client.DefaultRequestHeaders.UserAgent.ParseAdd(options.Value.UserAgent);
-
-		if (options.Value.PersonalAccessToken is not null)
-			client.DefaultRequestHeaders.Authorization = options.Value.PersonalAccessToken;
 
 		_httpClient = client;
 	}

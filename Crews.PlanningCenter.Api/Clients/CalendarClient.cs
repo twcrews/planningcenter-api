@@ -18,13 +18,13 @@ namespace Crews.PlanningCenter.Api.Clients;
 /// An optional base <see cref="Uri"/> to use for the API address. If omitted,
 /// <see cref="HttpClient.BaseAddress"/> is used instead. If this is also not set,
 /// the default Planning Center API base address as defined in 
-/// <see cref="PlanningCenterApiOptions.DefaultPlanningCenterApiBaseAddress"/> is used.
+/// <see cref="PlanningCenterClientOptions.DefaultPlanningCenterApiBaseAddress"/> is used.
 /// </param>
 public class CalendarClient(HttpClient client, Uri? baseUri = null)
 {
   private readonly HttpClient _client = client;
   private readonly Uri _baseUri = baseUri ?? client.BaseAddress 
-    ?? new(PlanningCenterApiOptions.DefaultPlanningCenterApiBaseAddress);
+    ?? new(PlanningCenterClientOptions.DefaultPlanningCenterApiBaseAddress);
   /// <summary>
   /// Gets a client for the latest version of the Calendar API.
   /// </summary>

@@ -1,6 +1,7 @@
 ﻿using Crews.Extensions.Http;
 using Crews.PlanningCenter.Api.Extensions;
 using Crews.PlanningCenter.Api.Models.Resources.Querying;
+using Crews.PlanningCenter.Api.Resources;
 using JsonApiFramework;
 using JsonApiFramework.JsonApi;
 using System.Reflection;

@@ -5,6 +5,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.0.0] - 2025-10-09
+
+### Added
+
+- **Breaking change:** Add `PlanningCenterAuthenticationHandler` as a delegating handler for API client requests.
+  - The injected `PlanningCenterClient` will now automatically include authorization headers with each request.
+  - If a personal access token is configured, it is used, and other auth configuration (OAuth/OIDC) is ignored.
+  - If a personal access token is not configured, the current HTTP context's `access_token` is retrieved.
+  - If `access_token` cannot be retrieved, the request is attempted without setting an authorization header.
+- Add `Resources` scope to predefined OAuth scope names. 
+  - This is an undocumented Planning Center API product.
+  - The library does not include models or other types to support this scope.
+- Add `Microsoft.AspNetCore.Authentication.OpenIdConnect` package dependency.
+- Add `ClaimsPrincipal` extension methods for easy access to Planning Center claims values.
+  - Example usage: `User.GetOrganizationId()` is the equivalent of `User.FindFirst("organization_id")?.Value`.
+
+### Changed
+
+- **Breaking change:** Rename `PlanningCenterOAuthDefaults` to `PlanningCenterAuthenticationDefaults`.
+  - Properties have been updated to suit OIDC flows with auto-discovery.
+- **
+
 ## [2.0.0] - 2025-09-24
 
 ### Added
@@ -223,6 +245,7 @@ First official stable release!
 
 Initial release.
 
+[3.0.0]: https://github.com/twcrews/planningcenter-api/compare/2.0.0...3.0.0
 [2.0.0]: https://github.com/twcrews/planningcenter-api/compare/1.2.0...2.0.0
 [1.2.0]: https://github.com/twcrews/planningcenter-api/compare/1.1.0...1.2.0
 [1.1.0]: https://github.com/twcrews/planningcenter-api/compare/1.0.2...1.1.0

@@ -11,7 +11,8 @@
       "Bash(dotnet run:*)",
       "Bash(dotnet clean:*)",
       "Bash(dotnet list:*)",
-      "Bash(dotnet:*)"
+      "Bash(dotnet:*)",
+      "Bash(find:*)"
     ],
     "deny": [],
     "ask": []

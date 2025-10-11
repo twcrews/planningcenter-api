@@ -19,8 +19,14 @@ dotnet build
 
 ### Running Tests
 ```bash
-# Run all tests
+# Run all tests (unit + integration)
 dotnet test
+
+# Run only unit tests (fast, no credentials needed)
+dotnet test --filter "FullyQualifiedName~Crews.PlanningCenter.Api.Tests"
+
+# Run only integration tests (slow, requires credentials)
+dotnet test --filter "FullyQualifiedName~IntegrationTests"
 
 # Run tests with code coverage (uses .runsettings configuration)
 dotnet test --settings Crews.PlanningCenter.Api.Tests/.runsettings --collect:"XPlat Code Coverage"
@@ -124,7 +130,10 @@ Resources use the following pattern:
 
 ### Test Architecture
 
-Tests are organized by namespace matching the main project:
+The project has two test suites:
+
+#### Unit Tests (`Crews.PlanningCenter.Api.Tests`)
+Fast, isolated tests using mocks and fakes. Organized by namespace matching the main project:
 - `Authentication/`: Authentication handler and claims transformation tests
 - `DependencyInjection/`: Service registration tests
 - `Extensions/`: Extension method tests
@@ -132,6 +141,29 @@ Tests are organized by namespace matching the main project:
 - `Dummies/`: Test fixtures and dummy data
 
 Code coverage excludes auto-generated code (Clients, Resources folders) and some extension methods.
+
+#### Integration Tests (`Crews.PlanningCenter.Api.IntegrationTests`)
+Tests that make real API calls to Planning Center. **Requires valid credentials** to run.
+
+**Configuration:** Integration tests require Planning Center API credentials via user secrets or environment variables:
+```bash
+# Using user secrets (recommended for local development)
+cd Crews.PlanningCenter.Api.IntegrationTests
+dotnet user-secrets set "PlanningCenterClient:PersonalAccessToken:AppId" "your-app-id"
+dotnet user-secrets set "PlanningCenterClient:PersonalAccessToken:Secret" "your-secret"
+
+# Using environment variables (recommended for CI/CD)
+export PLANNINGCENTER_AppId="your-app-id"
+export PLANNINGCENTER_Secret="your-secret"
+```
+
+Test organization:
+- `Infrastructure/`: Base classes, fixtures, and helpers
+- `Authentication/`: Personal Access Token and OAuth integration tests
+- `Clients/`: Product-specific API client tests (People, Calendar, etc.)
+- `Features/`: Feature tests (fluent API, pagination, includes, etc.)
+
+See [Integration Tests README](Crews.PlanningCenter.Api.IntegrationTests/README.md) for detailed documentation.
 
 ## Important Patterns
 

@@ -95,6 +95,18 @@ public abstract class PlanningCenterFetchableResource<TSelf>(Uri uri, HttpClient
 		=> AddParameters("include", [.. includables.Select(i => i.GetJsonApiName())]);
 
 	/// <summary>
+	/// Adds custom includable resources to the request.
+	/// </summary>
+	/// <remarks>
+	/// This method enables forward compatibility for newly added or undocumented includable resources not yet
+	/// supported by this library.
+	/// </remarks>
+	/// <param name="include">The name of the related entity or data to include in the query results.</param>
+	/// <returns>This same instance of the request for call chaining.</returns>
+	protected virtual TSelf Include(params string[] include)
+		=> AddParameters("include", include);
+
+	/// <summary>
 	/// Attempts to parse the given <see cref="HttpResponseMessage"/> as a JSON:API document.
 	/// </summary>
 	/// <param name="response">The web response to parse.</param>

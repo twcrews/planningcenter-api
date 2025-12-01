@@ -10,9 +10,11 @@ public class PlanningCenterApiReferenceService
 	private readonly HttpClient _client;
 
 	private static JsonException NullJsonElementException => new("Unexpected null value in JSON element");
+    private static JsonException BadJsonHierarchyException
+        => new("The JSON string is properly formatted, but has an unexpected hierarchy");
 
-	// Certain vertices on the API documentation are incorrectly typed.
-	private static readonly Dictionary<string, Type> VertexTypeOverrides = new()
+    // Certain vertices on the API documentation are incorrectly typed.
+    private static readonly Dictionary<string, Type> VertexTypeOverrides = new()
 	{
 		// https://developer.planning.center/docs/#/apps/services/2018-08-01/vertices/organization
 		{ "services:2018-08-01:Organization:plans", typeof(PlanningCenter.Models.Services.V2018_08_01.Entities.Plan) },
@@ -146,9 +148,73 @@ public class PlanningCenterApiReferenceService
 			});
 		}
 		return resources;
-	}
+    }
 
-	private static Type GetVertexType(
+    public async Task<IEnumerable<PlanningCenterResourceAttributeInfo>> GetAttributesInfoAsync(
+        string product, string version, string resource)
+    {
+        JsonDocument document = await GetResourceDocumentAsync(product, version, resource);
+
+        if (document.RootElement.TryGetProperty("data", out JsonElement data) &&
+            data.TryGetProperty("relationships", out JsonElement relationships) &&
+            relationships.TryGetProperty("attributes", out JsonElement attributes) &&
+            attributes.TryGetProperty("data", out JsonElement attributeData))
+        {
+            List<JsonElement> attributeElements = [.. attributeData.EnumerateArray()];
+            return attributeElements.Select(e =>
+            {
+                if (e.TryGetProperty("attributes", out JsonElement elementAttributes) &&
+                    elementAttributes.TryGetProperty("name", out JsonElement nameElement) &&
+                    elementAttributes.TryGetProperty("type_annotation", out JsonElement typeAnnotation) &&
+                    typeAnnotation.TryGetProperty("name", out JsonElement typeNameElement))
+                {
+                    JsonElement descriptionElement = elementAttributes.GetProperty("description");
+                    string description = descriptionElement.GetString() ??
+                        "Planning Center does not provide a description for this attribute.";
+
+                    string name = nameElement.GetString() ?? throw NullJsonElementException;
+
+                    return new PlanningCenterResourceAttributeInfo
+                    {
+                        Name = name,
+                        Description = description,
+                        Type = typeNameElement.GetString() ?? throw NullJsonElementException,
+                        ClrTypeName = GetClrTypeName(typeNameElement.GetString() ?? throw NullJsonElementException, name)
+                    };
+                }
+                throw BadJsonHierarchyException;
+            });
+        }
+        throw BadJsonHierarchyException;
+    }
+
+    private async Task<JsonDocument> GetResourceDocumentAsync(string product, string version, string resource)
+    {
+        HttpResponseMessage response = await _client.GetAsync($"{product}/v2/documentation/{version}/vertices/{resource}");
+        await using Stream content = await response.Content.ReadAsStreamAsync();
+        return await JsonDocument.ParseAsync(content);
+    }
+
+    private static string GetClrTypeName(string typeName, string name)
+    {
+        // Some Organization object docs incorrectly type the date format attribute as an int.
+        if (typeName == "integer" && name == "date_format") return "string";
+        return GetClrTypeName(typeName);
+    }
+
+    private static string GetClrTypeName(string typeName) => typeName switch
+    {
+        "string" or "primary_key" or "currency_abbreviation" => "string",
+        "date_time" => "DateTime",
+        "integer" => "int",
+        "boolean" => "bool",
+        "float" => "double",
+        "array" => "IEnumerable<JsonElement>",
+        "date" => "DateTime",
+        _ => "JsonElement",
+    };
+
+    private static Type GetVertexType(
 		string product, string version, string resourceFormalName, string vertexName, string vertexFormalName)
 	{
 		Type? overridingType = VertexTypeOverrides.SingleOrDefault(typeOverride =>

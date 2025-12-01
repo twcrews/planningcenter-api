@@ -62,17 +62,40 @@ namespace Crews.PlanningCenter.Api.Resources.<#=product#>.<#=version#>;
 
 <#=$"A fetchable {product} {resource.EntityClrType.Name} resource.".ToXmlDocSummary()#>
 public class <#=resourceName#>
-  : PlanningCenterSingletonFetchableResource<<#=resource.EntityClrType.Name#>, <#=resourceName#>, <#=contextName#>><#=hasIncludables ? "," : ""#>
-<#
-        if (hasIncludables)
-        {
-#>
-  IIncludable<<#=resourceName#>, <#=resource.EntityClrType.Name#>Includable>
-<#
-        }
-#>
+  : PlanningCenterSingletonFetchableResource<<#=resource.EntityClrType.Name#>, <#=resourceName#>, <#=contextName#>>
 {
 <#
+        // ====================
+        // Attribute properties
+        // ====================
+        
+        foreach (PlanningCenterResourceAttributeInfo attribute in Task.Run(() => service.GetAttributesInfoAsync(product, version, resource.ID)).Result)
+        {
+          string attributeName = attribute.Name.ToPascalCase();
+          string description = attribute.Description.ToXmlDocSummary(indentSpaces: 2);
+
+          if (string.Equals(attributeName, "Id", StringComparison.OrdinalIgnoreCase))
+          {
+            attributeName = "ID";
+          }
+
+          if (string.Equals(attributeName, resource.Name, StringComparison.OrdinalIgnoreCase))
+          {
+            attributeName = $"{attributeName}Attribute";
+            description += $"\n  /// <remarks>\n  /// The true name of this attribute is <c>{attribute.Name}</c>.\n  /// It has been changed here to avoid conflicts with the resource name.\n  /// </remarks>";
+          }
+#>
+<#=description#>
+  [JsonApiName("<#=attribute.Name#>")]
+  public <#=attribute.ClrTypeName#>? <#=attributeName#> { get; init; }
+
+<#
+        }
+
+        // ===========================
+        // Related resource properties
+        // ===========================
+
         foreach (PlanningCenterResourceVertex vertex in resource.OutboundVertices)
         {
           string vertexTypeName = 
@@ -91,8 +114,8 @@ public class <#=resourceName#>
         {
 #>
 
-	/// <inheritdoc />
-	public <#=resourceName#> Include(params <#=resource.EntityClrType.Name#>Includable[] included) 
+    /// <inheritdoc />
+    public <#=resourceName#> Include(params <#=resource.EntityClrType.Name#>Includable[] included) 
     => base.Include(included);
 <#
         }

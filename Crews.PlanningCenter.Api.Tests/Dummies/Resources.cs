@@ -46,7 +46,7 @@ class DummySingletonFetchableResource(Uri? uri, HttpClient client) :
 }
 
 class DummyPaginatedFetchableResource(Uri? uri, HttpClient client) :
-	PlanningCenterPaginatedFetchableResource<
+	PlanningCenterPaginatedFetchableCollection<
 		DummyResource,
 		DummyPaginatedFetchableResource,
 		DummySingletonFetchableResource,

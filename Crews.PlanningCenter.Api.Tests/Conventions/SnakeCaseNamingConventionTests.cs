@@ -1,6 +1,3 @@
-using Crews.PlanningCenter.Api.Conventions;
-using JsonApiFramework.Conventions;
-
 namespace Crews.PlanningCenter.Api.Tests.Conventions;
 
 public class SnakeCaseNamingConventionTests

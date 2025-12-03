@@ -1,6 +1,5 @@
 using System.Reflection;
 using Crews.Extensions.Primitives;
-using Crews.PlanningCenter.Models.Calendar.V2018_08_01.Entities;
 
 namespace Crews.PlanningCenter.Api.Generators.Utilities;
 

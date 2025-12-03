@@ -1,8 +1,6 @@
 using System.Net;
-using Crews.PlanningCenter.Api.Models;
 using Crews.PlanningCenter.Api.Tests.Dummies;
 using Crews.PlanningCenter.Api.Tests.Dummies.Serialized;
-using JsonApiFramework.JsonApi;
 using RichardSzalay.MockHttp;
 
 namespace Crews.PlanningCenter.Api.Tests.Models.Resources.PlanningCenter;

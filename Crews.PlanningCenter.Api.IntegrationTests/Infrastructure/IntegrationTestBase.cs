@@ -1,5 +1,4 @@
 using Crews.PlanningCenter.Api.Authentication;
-using Crews.PlanningCenter.Api.Clients;
 using Crews.PlanningCenter.Api.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

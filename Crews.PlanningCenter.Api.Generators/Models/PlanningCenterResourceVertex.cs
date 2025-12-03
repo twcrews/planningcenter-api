@@ -1,5 +1,3 @@
-using Humanizer;
-
 namespace Crews.PlanningCenter.Api.Generators.Models;
 
 public record PlanningCenterResourceVertex

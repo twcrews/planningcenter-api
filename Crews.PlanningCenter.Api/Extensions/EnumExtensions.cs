@@ -1,7 +1,4 @@
-﻿using Crews.PlanningCenter.Models;
-using Crews.PlanningCenter.Api.Conventions;
-
-namespace Crews.PlanningCenter.Api.Extensions;
+﻿namespace Crews.PlanningCenter.Api.Extensions;
 
 static class EnumExtensions
 {

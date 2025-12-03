@@ -1,6 +1,4 @@
-using Crews.PlanningCenter.Api.Conventions;
 using Crews.PlanningCenter.Api.Extensions;
-using JsonApiFramework.Conventions;
 using NSubstitute;
 
 namespace Crews.PlanningCenter.Api.Tests.Extensions;

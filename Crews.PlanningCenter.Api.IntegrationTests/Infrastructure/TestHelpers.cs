@@ -1,5 +1,3 @@
-using JsonApiFramework.JsonApi;
-
 namespace Crews.PlanningCenter.Api.IntegrationTests.Infrastructure;
 
 /// <summary>

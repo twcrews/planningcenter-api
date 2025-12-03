@@ -1,8 +1,5 @@
 ﻿using System.Reflection;
 using System.Text;
-using Crews.PlanningCenter.Api.Resources;
-using JsonApiFramework;
-using JsonApiFramework.JsonApi;
 
 namespace Crews.PlanningCenter.Api.Models.Resources;
 

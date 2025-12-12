@@ -40,10 +40,57 @@ dotnet test --filter "FullyQualifiedName~TestClassName.TestMethodName"
 dotnet clean
 ```
 
+### Running DocParser
+```bash
+# Run the documentation parser to update API definitions
+cd Crews.PlanningCenter.Api.DocParser
+dotnet run
+```
+
+The DocParser downloads the latest API documentation from Planning Center and saves it to `Crews.PlanningCenter.Api/Definitions/`. Run this manually when you need to synchronize with Planning Center API updates.
+
 ## Architecture
 
 ### Code Generation
-The `Crews.PlanningCenter.Api.Generators` project contains utilities for generating client code from Planning Center's API documentation. The `PlanningCenterApiReferenceService` fetches API metadata from `https://api.planningcenteronline.com/` and generates strongly-typed resource classes.
+
+The project uses a two-phase code generation approach:
+
+#### Phase 1: Documentation Parser (`Crews.PlanningCenter.Api.DocParser`)
+A console application that downloads and transpiles Planning Center API documentation into JSON definition files. This tool should be run manually when synchronizing with the latest Planning Center API updates.
+
+**Running the DocParser:**
+```bash
+cd Crews.PlanningCenter.Api.DocParser
+dotnet run
+```
+
+The DocParser:
+- Fetches API metadata from `https://api.planningcenteronline.com/` for all supported products
+- Transpiles the documentation into a structured JSON format
+- Outputs definition files to `Crews.PlanningCenter.Api/Definitions/{Product}/{Version}.json`
+- Supports all Planning Center products: Calendar, Check-Ins, Giving, Groups, People, Publishing, Registrations, Services
+
+**Configuration:** The DocParser can be configured via `appsettings.json`:
+```json
+{
+  "AppSettings": {
+    "OutputDirectory": "../../../../Crews.PlanningCenter.Api/Definitions",
+    "PlanningCenterClient": {
+      "BaseAddress": "https://api.planningcenteronline.com/"
+    }
+  }
+}
+```
+
+See the [DocParser README](Crews.PlanningCenter.Api.DocParser/README.md) for detailed documentation.
+
+#### Phase 2: Incremental Source Generation (`Crews.PlanningCenter.Api.Generators`)
+Contains utilities and services for generating strongly-typed client code from the JSON definition files. The generator uses [incremental source generation](https://github.com/dotnet/roslyn/blob/main/docs/features/incremental-generators.md#syntaxvalueprovider) to efficiently process the definition files at compile time.
+
+**Definition Files Location:**
+- Path: `Crews.PlanningCenter.Api/Definitions/`
+- Structure: `{Product}/{Version}.json`
+- Example: `Definitions/People/2025-07-17.json`
 
 **Note:** Client classes (in `Clients/` folder) and resource classes (in `Resources/` folder) are auto-generated. They include a header comment: `This code is automatically generated. Please do not modify it directly.`
 
@@ -86,7 +133,7 @@ Custom resources can be created by inheriting from these base classes and implem
 ### Client Architecture
 
 The `IPlanningCenterClient` interface provides access to all Planning Center product APIs:
-- Calendar, CheckIns, Giving, Groups, People, Publishing, Services
+- Calendar, CheckIns, Giving, Groups, People, Publishing, Registrations, Services
 
 Each client (e.g., `PeopleClient`) provides access to multiple API versions via properties like:
 - `LatestVersion`: Points to the most recent API version
@@ -168,13 +215,32 @@ See [Integration Tests README](Crews.PlanningCenter.Api.IntegrationTests/README.
 ## Important Patterns
 
 ### Adding New API Products
-When Planning Center adds a new product API, add it to the `Products` list in `PlanningCenterApiReferenceService.cs:24-33` and regenerate client code.
+When Planning Center adds a new product API:
+1. Add the new product to `ProductDefinition.All` in [ProductDefinition.cs](Crews.PlanningCenter.Api.DocParser/Models/ProductDefinition.cs)
+2. Run the DocParser to download the new product's API definitions:
+   ```bash
+   cd Crews.PlanningCenter.Api.DocParser
+   dotnet run
+   ```
+3. Rebuild the solution to trigger incremental source generation of the new client code
 
-### API Version Support
-Each client supports multiple API versions. The `LatestVersion` property should be updated when new API versions are released. Versions use underscored date format (e.g., `V2025_07_17`).
+### Updating API Versions
+When Planning Center releases new API versions:
+1. Run the DocParser to download the updated API definitions:
+   ```bash
+   cd Crews.PlanningCenter.Api.DocParser
+   dotnet run
+   ```
+2. New definition files will be added to `Crews.PlanningCenter.Api/Definitions/{Product}/`
+3. Update the `LatestVersion` property in the affected client classes to point to the new version
+4. Rebuild the solution to trigger incremental source generation
+
+API versions use underscored date format (e.g., `V2025_07_17`).
 
 ### Vertex Type Overrides
-Some API documentation has incorrect type information. Override these in `VertexTypeOverrides` dictionary in [PlanningCenterApiReferenceService.cs](Crews.PlanningCenter.Api.Generators/Services/PlanningCenterApiReferenceService.cs:15-22).
+Some API documentation has incorrect type information. Override these in the `VertexTypeOverrides` dictionary in [PlanningCenterApiReferenceService.cs](Crews.PlanningCenter.Api.Generators/Services/PlanningCenterApiReferenceService.cs:15-22).
+
+**Note:** This override system may need refactoring to work with the new JSON definition file approach.
 
 ### Resource Capabilities
 Resources declare their capabilities via interfaces:

@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace Crews.PlanningCenter.Api.DocParser.Models.Incoming;
 
-internal class VertexChange { }
+class VertexChange { }
 
 class VertexChangeResource : JsonApiResource
 {

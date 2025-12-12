@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace Crews.PlanningCenter.Api.DocParser.Models.Incoming;
 
-internal class UrlParameter
+class UrlParameter
 {
   [JsonPropertyName("can_assign_on_create")]
   public bool? CanAssignOnCreate { get; set; }

@@ -1,0 +1,2496 @@
+{
+  "Id": "2021-07-20",
+  "Beta": false,
+  "Details": "Removed the deprecated archived_at attribute from \u0060Event\u0060. Renamed details attribute on \u0060Event\u0060 to summary. Removed percent_approved from \u0060EventResourceRequest\u0060. Renamed room_setup_info attribute on \u0060EventResourceRequest\u0060 to notes.",
+  "Resources": [
+    {
+      "Id": "attachment",
+      "Name": "Attachment",
+      "Description": "An uploaded file attached to an event.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": "Unique identifier for the attachment"
+        },
+        {
+          "Name": "content_type",
+          "Type": "string",
+          "Description": "MIME type of the attachment"
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": "UTC time at which the attachment was created"
+        },
+        {
+          "Name": "description",
+          "Type": "string",
+          "Description": "Description of the attachment"
+        },
+        {
+          "Name": "file_size",
+          "Type": "integer",
+          "Description": "File size in bytes"
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "Set to the file name if not provided"
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": "UTC time at which the attachment was updated"
+        },
+        {
+          "Name": "url",
+          "Type": "string",
+          "Description": "Path to where the attachment is stored"
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "event",
+          "Type": "Event",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "event",
+          "Description": "include associated event",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "content_type",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-content_type) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "description",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-description) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "file_size",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-file_size) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "content_type",
+          "Parameter": "where[content_type]",
+          "Type": "string",
+          "Description": "Query on a specific content_type",
+          "Example": "?where[content_type]=string"
+        },
+        {
+          "Name": "created_at",
+          "Parameter": "where[created_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific created_at",
+          "Example": "?where[created_at]=2000-01-01T12:00:00Z"
+        },
+        {
+          "Name": "description",
+          "Parameter": "where[description]",
+          "Type": "string",
+          "Description": "Query on a specific description",
+          "Example": "?where[description]=string"
+        },
+        {
+          "Name": "file_size",
+          "Parameter": "where[file_size]",
+          "Type": "integer",
+          "Description": "Query on a specific file_size",
+          "Example": "?where[file_size]=1"
+        },
+        {
+          "Name": "name",
+          "Parameter": "where[name]",
+          "Type": "string",
+          "Description": "Query on a specific name",
+          "Example": "?where[name]=string"
+        },
+        {
+          "Name": "updated_at",
+          "Parameter": "where[updated_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific updated_at",
+          "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
+        }
+      ]
+    },
+    {
+      "Id": "conflict",
+      "Name": "Conflict",
+      "Description": "A conflict between two events caused by overlapping event resource\nrequests.\n\nIf the conflict has been resolved, \u0060resolved_at\u0060 will be present.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": "Unique identifier for the conflict"
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": "UTC time at which the conflict was created"
+        },
+        {
+          "Name": "note",
+          "Type": "string",
+          "Description": "Additional information about the conflict or resolution"
+        },
+        {
+          "Name": "resolved_at",
+          "Type": "date_time",
+          "Description": "UTC time at which the conflict was resolved"
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": "UTC time at which the conflict was updated"
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "resource",
+          "Type": "Resource",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "resolved_by",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "winner",
+          "Type": "Event",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "resolved_by",
+          "Description": "include associated resolved_by",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "resource",
+          "Description": "include associated resource",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "winner",
+          "Description": "include associated winner",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "resolved_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-resolved_at) to reverse the order"
+        }
+      ],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "containing_resource",
+      "Name": "ContainingResource",
+      "Description": "The containing record for a RoomSetup. Can be a Resource or\nan Organization\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "event",
+      "Name": "Event",
+      "Description": "An event.\n\nMay contain information such as who owns\nthe event, visibility on Church Center and a public-facing summary.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": "Unique identifier for the event"
+        },
+        {
+          "Name": "approval_status",
+          "Type": "string",
+          "Description": "Possible values:\n- \u0060A\u0060: approved.\n- \u0060P\u0060: pending.\n- \u0060R\u0060: rejected.\n"
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": "UTC time at which the event was created"
+        },
+        {
+          "Name": "description",
+          "Type": "string",
+          "Description": "A rich text public-facing summary of the event"
+        },
+        {
+          "Name": "image_url",
+          "Type": "string",
+          "Description": "Path to where the event image is stored"
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "The name of the event"
+        },
+        {
+          "Name": "percent_approved",
+          "Type": "integer",
+          "Description": "Calculated by taking the sum of the \u0060percent_approved\u0060 for all\nfuture \u0060ReservationBlocks\u0060 and dividing that by the \u0060count\u0060 of all future\n\u0060ReservationBlocks\u0060.\n\nIf there are no future \u0060ReservationBlocks\u0060, returns \u0060100\u0060\n"
+        },
+        {
+          "Name": "percent_rejected",
+          "Type": "integer",
+          "Description": "Calculated by taking the sum of the \u0060percent_rejected\u0060 for all\nfuture \u0060ReservationBlocks\u0060 and dividing that by the \u0060count\u0060 of all future\n\u0060ReservationBlocks\u0060.\n\nIf there are no future \u0060ReservationBlocks\u0060, returns \u00600\u0060\n"
+        },
+        {
+          "Name": "registration_url",
+          "Type": "string",
+          "Description": "The registration URL for the event"
+        },
+        {
+          "Name": "summary",
+          "Type": "string",
+          "Description": "A plain text public-facing summary of the event"
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": "UTC time at which the event was updated"
+        },
+        {
+          "Name": "visible_in_church_center",
+          "Type": "boolean",
+          "Description": "- \u0060true\u0060 indicates the event Church Center visibility is set to \u0027Published\u0027\n- \u0060false\u0060 indicates the event Church Center visibility is set to \u0027Hidden\u0027\n"
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "calendar",
+          "Type": "Calendar",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "owner",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "attachments",
+          "Description": "include associated attachments",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "feed",
+          "Description": "include associated feed",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "owner",
+          "Description": "include associated owner",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "tags",
+          "Description": "include associated tags",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        }
+      ],
+      "CanOrderBy": [],
+      "CanQueryBy": [
+        {
+          "Name": "approval_status",
+          "Parameter": "where[approval_status]",
+          "Type": "string",
+          "Description": "Query on a specific approval_status",
+          "Example": "?where[approval_status]=string"
+        },
+        {
+          "Name": "created_at",
+          "Parameter": "where[created_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific created_at",
+          "Example": "?where[created_at]=2000-01-01T12:00:00Z"
+        },
+        {
+          "Name": "name",
+          "Parameter": "where[name]",
+          "Type": "string",
+          "Description": "Query on a specific name",
+          "Example": "?where[name]=string"
+        },
+        {
+          "Name": "percent_approved",
+          "Parameter": "where[percent_approved]",
+          "Type": "integer",
+          "Description": "Query on a specific percent_approved",
+          "Example": "?where[percent_approved]=1"
+        },
+        {
+          "Name": "percent_rejected",
+          "Parameter": "where[percent_rejected]",
+          "Type": "integer",
+          "Description": "Query on a specific percent_rejected",
+          "Example": "?where[percent_rejected]=1"
+        },
+        {
+          "Name": "updated_at",
+          "Parameter": "where[updated_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific updated_at",
+          "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
+        },
+        {
+          "Name": "visible_in_church_center",
+          "Parameter": "where[visible_in_church_center]",
+          "Type": "boolean",
+          "Description": "Query on a specific visible_in_church_center",
+          "Example": "?where[visible_in_church_center]=true"
+        }
+      ]
+    },
+    {
+      "Id": "event_connection",
+      "Name": "EventConnection",
+      "Description": "A connection between a Calendar event and a record in another product\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "connected_to_id",
+          "Type": "primary_key",
+          "Description": "Unique identifier for the connected record"
+        },
+        {
+          "Name": "connected_to_name",
+          "Type": "string",
+          "Description": "Name of the record that the event is connected to"
+        },
+        {
+          "Name": "connected_to_type",
+          "Type": "string",
+          "Description": "Currently we support \u0060signup\u0060, \u0060group\u0060, \u0060event\u0060, and \u0060service_type\u0060"
+        },
+        {
+          "Name": "product_name",
+          "Type": "string",
+          "Description": "Currently we support \u0060registrations\u0060, \u0060groups\u0060, \u0060check-ins\u0060, and \u0060services\u0060"
+        },
+        {
+          "Name": "connected_to_url",
+          "Type": "string",
+          "Description": "A link to the connected record"
+        },
+        {
+          "Name": "promoted",
+          "Type": "boolean",
+          "Description": "Whether this connection is promoted for display (only applies to Groups connections)\n\nOnly available when requested with the \u0060?fields\u0060 param"
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "event",
+          "Type": "Event",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": [
+        {
+          "Name": "connected_to_id",
+          "Parameter": "where[connected_to_id]",
+          "Type": "primary_key",
+          "Description": "Query on a specific connected_to_id",
+          "Example": "?where[connected_to_id]=primary_key"
+        },
+        {
+          "Name": "product_name",
+          "Parameter": "where[product_name]",
+          "Type": "string",
+          "Description": "Query on a specific product_name",
+          "Example": "?where[product_name]=string"
+        },
+        {
+          "Name": "promoted",
+          "Parameter": "where[promoted]",
+          "Type": "boolean",
+          "Description": "Query on a specific promoted",
+          "Example": "?where[promoted]=true"
+        }
+      ]
+    },
+    {
+      "Id": "event_instance",
+      "Name": "EventInstance",
+      "Description": "A specific occurrence of an event.\n\nIf the event is recurring, \u0060recurrence\u0060 will be set and\n\u0060recurrence_description\u0060 will provide an overview of the recurrence pattern.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": "Unique identifier for the event instance"
+        },
+        {
+          "Name": "all_day_event",
+          "Type": "boolean",
+          "Description": "Indicates whether event instance lasts all day"
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": "UTC time at which the event instance was created"
+        },
+        {
+          "Name": "description",
+          "Type": "string",
+          "Description": "A rich text public-facing summary of the event\n\nOnly available when requested with the \u0060?fields\u0060 param"
+        },
+        {
+          "Name": "ends_at",
+          "Type": "date_time",
+          "Description": "UTC time at which the event instance ends"
+        },
+        {
+          "Name": "image_url",
+          "Type": "string",
+          "Description": "Path to where the event image is stored\n\nOnly available when requested with the \u0060?fields\u0060 param"
+        },
+        {
+          "Name": "location",
+          "Type": "string",
+          "Description": "Representation of where the event instance takes place"
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "Name of event. Can be overridden for specific instances"
+        },
+        {
+          "Name": "recurrence",
+          "Type": "string",
+          "Description": "For a recurring event instance, the interval of how often the event instance occurs\n"
+        },
+        {
+          "Name": "recurrence_description",
+          "Type": "string",
+          "Description": "Longer description of the event instance\u0027s recurrence pattern\n"
+        },
+        {
+          "Name": "starts_at",
+          "Type": "date_time",
+          "Description": "UTC time at which the event instance starts"
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": "UTC time at which the event instance was updated"
+        },
+        {
+          "Name": "church_center_url",
+          "Type": "string",
+          "Description": "The URL for the event on Church Center"
+        },
+        {
+          "Name": "published_starts_at",
+          "Type": "string",
+          "Description": "Publicly visible start time"
+        },
+        {
+          "Name": "published_ends_at",
+          "Type": "string",
+          "Description": "Publicly visible end time"
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "event",
+          "Type": "Event",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "event",
+          "Description": "include associated event",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "event_times",
+          "Description": "include associated event_times",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "resource_bookings",
+          "Description": "include associated resource_bookings",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "tags",
+          "Description": "include associated tags",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "ends_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-ends_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "starts_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-starts_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "created_at",
+          "Parameter": "where[created_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific created_at",
+          "Example": "?where[created_at]=2000-01-01T12:00:00Z"
+        },
+        {
+          "Name": "ends_at",
+          "Parameter": "where[ends_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific ends_at",
+          "Example": "?where[ends_at]=2000-01-01T12:00:00Z"
+        },
+        {
+          "Name": "starts_at",
+          "Parameter": "where[starts_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific starts_at",
+          "Example": "?where[starts_at]=2000-01-01T12:00:00Z"
+        },
+        {
+          "Name": "updated_at",
+          "Parameter": "where[updated_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific updated_at",
+          "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
+        }
+      ]
+    },
+    {
+      "Id": "event_resource_answer",
+      "Name": "EventResourceAnswer",
+      "Description": "An answer to a question in a room or resource request.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "answer",
+          "Type": "json",
+          "Description": "The answer formatted for display"
+        },
+        {
+          "Name": "db_answer",
+          "Type": "string",
+          "Description": "Only available when requested with the \u0060?fields\u0060 param"
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "question",
+          "Type": "json",
+          "Description": "Question details as of when it was answered"
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "created_by",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "updated_by",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "resource_question",
+          "Type": "ResourceQuestion",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "event_resource_request",
+          "Type": "EventResourceRequest",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "event_resource_request",
+      "Name": "EventResourceRequest",
+      "Description": "A room or resource request for a specific event.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": "Unique identifier for the request"
+        },
+        {
+          "Name": "approval_sent",
+          "Type": "boolean",
+          "Description": "Whether or not an email has been sent to request approval"
+        },
+        {
+          "Name": "approval_status",
+          "Type": "string",
+          "Description": "Possible values:\n- \u0060A\u0060: approved\n- \u0060P\u0060: pending\n- \u0060R\u0060: rejected\n"
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": "UTC time at which request was created"
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": "UTC time at which request was updated"
+        },
+        {
+          "Name": "notes",
+          "Type": "string",
+          "Description": "Additional information about the room or resource request"
+        },
+        {
+          "Name": "quantity",
+          "Type": "integer",
+          "Description": "How many of the rooms or resources are being requested"
+        },
+        {
+          "Name": "visible_on_kiosks",
+          "Type": "boolean",
+          "Description": "Whether this resource request is visible on kiosks"
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "event",
+          "Type": "Event",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "resource",
+          "Type": "Resource",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "event_resource_request",
+          "Type": "EventResourceRequest",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "created_by",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "updated_by",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "room_setup",
+          "Type": "RoomSetup",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "created_by",
+          "Description": "include associated created_by",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "event",
+          "Description": "include associated event",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "resource",
+          "Description": "include associated resource",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "room_setup",
+          "Description": "include associated room_setup",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "updated_by",
+          "Description": "include associated updated_by",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        }
+      ],
+      "CanOrderBy": [],
+      "CanQueryBy": [
+        {
+          "Name": "approval_sent",
+          "Parameter": "where[approval_sent]",
+          "Type": "boolean",
+          "Description": "Query on a specific approval_sent",
+          "Example": "?where[approval_sent]=true"
+        },
+        {
+          "Name": "approval_status",
+          "Parameter": "where[approval_status]",
+          "Type": "string",
+          "Description": "Query on a specific approval_status",
+          "Example": "?where[approval_status]=string"
+        },
+        {
+          "Name": "created_at",
+          "Parameter": "where[created_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific created_at",
+          "Example": "?where[created_at]=2000-01-01T12:00:00Z"
+        },
+        {
+          "Name": "updated_at",
+          "Parameter": "where[updated_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific updated_at",
+          "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
+        }
+      ]
+    },
+    {
+      "Id": "event_time",
+      "Name": "EventTime",
+      "Description": "Start and end times for each event instance.\n\nIn the Calendar UI, these are represented under the \u0022Schedule\u0022 section and\nmay include \u0022Setup\u0022 and \u0022Teardown\u0022 times for the instance.\n",
+      "Deprecated": false,
+      "CollectionOnly": true,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": "Unique identifier for the event time"
+        },
+        {
+          "Name": "ends_at",
+          "Type": "date_time",
+          "Description": "UTC time at which the event time ends"
+        },
+        {
+          "Name": "starts_at",
+          "Type": "date_time",
+          "Description": "UTC time at which the event time starts"
+        },
+        {
+          "Name": "name",
+          "Type": "date_time",
+          "Description": "Name of the event time"
+        },
+        {
+          "Name": "visible_on_kiosks",
+          "Type": "boolean",
+          "Description": "Set to \u0060true\u0060 if the time is visible on kiosk"
+        },
+        {
+          "Name": "visible_on_widget_and_ical",
+          "Type": "boolean",
+          "Description": "Set to \u0060true\u0060 if the time is visible on widget or iCal"
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "event",
+          "Type": "Event",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "event",
+          "Description": "include associated event",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "ends_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-ends_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "starts_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-starts_at) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "ends_at",
+          "Parameter": "where[ends_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific ends_at",
+          "Example": "?where[ends_at]=2000-01-01T12:00:00Z"
+        },
+        {
+          "Name": "name",
+          "Parameter": "where[name]",
+          "Type": "date_time",
+          "Description": "Query on a specific name",
+          "Example": "?where[name]=2000-01-01T12:00:00Z"
+        },
+        {
+          "Name": "starts_at",
+          "Parameter": "where[starts_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific starts_at",
+          "Example": "?where[starts_at]=2000-01-01T12:00:00Z"
+        },
+        {
+          "Name": "visible_on_kiosks",
+          "Parameter": "where[visible_on_kiosks]",
+          "Type": "boolean",
+          "Description": "Query on a specific visible_on_kiosks",
+          "Example": "?where[visible_on_kiosks]=true"
+        },
+        {
+          "Name": "visible_on_widget_and_ical",
+          "Parameter": "where[visible_on_widget_and_ical]",
+          "Type": "boolean",
+          "Description": "Query on a specific visible_on_widget_and_ical",
+          "Example": "?where[visible_on_widget_and_ical]=true"
+        }
+      ]
+    },
+    {
+      "Id": "feed",
+      "Name": "Feed",
+      "Description": "A feed belonging to an organization.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "can_delete",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "default_church_center_visibility",
+          "Type": "string",
+          "Description": "Possible values: \u0060hidden\u0060 or \u0060published\u0060"
+        },
+        {
+          "Name": "feed_type",
+          "Type": "string",
+          "Description": "Possible values: \u0060registrations\u0060, \u0060groups\u0060, \u0060ical\u0060, or \u0060form\u0060"
+        },
+        {
+          "Name": "imported_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "deleting",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "sync_campus_tags",
+          "Type": "boolean",
+          "Description": "Only available when requested with the \u0060?fields\u0060 param"
+        },
+        {
+          "Name": "source_id",
+          "Type": "primary_key",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "event_owner",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "default_calendar",
+          "Type": "Calendar",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "feed_type",
+          "Parameter": "where[feed_type]",
+          "Type": "string",
+          "Description": "Query on a specific feed_type\n\nPossible values: \u0060registrations\u0060, \u0060groups\u0060, \u0060ical\u0060, or \u0060form\u0060",
+          "Example": "?where[feed_type]=value"
+        },
+        {
+          "Name": "source_id",
+          "Parameter": "where[source_id]",
+          "Type": "primary_key",
+          "Description": "Query on a specific source_id",
+          "Example": "?where[source_id]=primary_key"
+        }
+      ]
+    },
+    {
+      "Id": "job_status",
+      "Name": "JobStatus",
+      "Description": null,
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "retries",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "errors",
+          "Type": "json",
+          "Description": null
+        },
+        {
+          "Name": "message",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "started_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "status",
+          "Type": "string",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "organization",
+      "Name": "Organization",
+      "Description": "An administrative structure, usually representing a single church.\nContains date/time formatting and time zone preferences.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": "Unique identifier for the organization"
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "The name of the organization"
+        },
+        {
+          "Name": "time_zone",
+          "Type": "string",
+          "Description": "The time zone of the organization"
+        },
+        {
+          "Name": "twenty_four_hour_time",
+          "Type": "boolean",
+          "Description": "- \u0060true\u0060 indicates hours for times will use a 24-hour clock\n- \u0060false\u0060 indicates hours for times will use a 12-hour clock\n"
+        },
+        {
+          "Name": "date_format",
+          "Type": "string",
+          "Description": "Possible values:\n- \u0060%d/%m/%Y\u0060: indicates date/month/year formatting\n- \u0060%m/%d/%Y\u0060: indicates month/date/year formatting\n"
+        },
+        {
+          "Name": "onboarding",
+          "Type": "boolean",
+          "Description": "Only available when requested with the \u0060?fields\u0060 param"
+        },
+        {
+          "Name": "calendar_starts_on",
+          "Type": "string",
+          "Description": "The day of the week the calendar starts on"
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "person",
+      "Name": "Person",
+      "Description": "The people in your organization with access to Calendar.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": "Unique identifier for the person"
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": "UTC time at which the person was created"
+        },
+        {
+          "Name": "first_name",
+          "Type": "string",
+          "Description": "The person\u0027s first name"
+        },
+        {
+          "Name": "last_name",
+          "Type": "string",
+          "Description": "The person\u0027s last name"
+        },
+        {
+          "Name": "middle_name",
+          "Type": "string",
+          "Description": "The person\u0027s middle name"
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": "UTC time at which the person was updated"
+        },
+        {
+          "Name": "avatar_url",
+          "Type": "string",
+          "Description": "Path to where the avatar image is stored"
+        },
+        {
+          "Name": "child",
+          "Type": "boolean",
+          "Description": "Indicates whether the person is a child"
+        },
+        {
+          "Name": "contact_data",
+          "Type": "string",
+          "Description": "An object containing the person\u0027s contact data.\n\nThis can include an array of \u0060email_addresses\u0060, \u0060addresses\u0060 and \u0060phone_numbers\u0060\n"
+        },
+        {
+          "Name": "gender",
+          "Type": "string",
+          "Description": "\u0060M\u0060 indicates male, \u0060F\u0060 indicates female"
+        },
+        {
+          "Name": "has_access",
+          "Type": "boolean",
+          "Description": "Indicates whether the person has access to Calendar"
+        },
+        {
+          "Name": "name_prefix",
+          "Type": "string",
+          "Description": "Possible values:\n- \u0060Mr.\u0060\n- \u0060Mrs.\u0060\n- \u0060Ms.\u0060\n- \u0060Miss\u0060\n- \u0060Dr.\u0060\n- \u0060Rev.\u0060\n"
+        },
+        {
+          "Name": "name_suffix",
+          "Type": "string",
+          "Description": "Possible values:\n- \u0060Jr.\u0060\n- \u0060Sr.\u0060\n- \u0060Ph.D.\u0060\n- \u0060II\u0060\n- \u0060III\u0060\n"
+        },
+        {
+          "Name": "pending_request_count",
+          "Type": "integer",
+          "Description": "If the person is a member of an approval group, the number of EventResourceRequests needing resolution.\n\nIf \u0060resolves_conflicts\u0060 is \u0060true\u0060, the count will also include the number of Conflicts needing resolution.\n"
+        },
+        {
+          "Name": "permissions",
+          "Type": "integer",
+          "Description": "Integer that corresponds to the person\u0027s permissions in Calendar"
+        },
+        {
+          "Name": "resolves_conflicts",
+          "Type": "boolean",
+          "Description": "Indicates whether the person is able to resolve Conflicts"
+        },
+        {
+          "Name": "site_administrator",
+          "Type": "boolean",
+          "Description": "Indicates whether the person is a Organization Administrator"
+        },
+        {
+          "Name": "status",
+          "Type": "string",
+          "Description": "Possible values:\n- \u0060active\u0060: The person is marked \u0022active\u0022 in People\n- \u0060inactive\u0060: The person is marked \u0022inactive\u0022 in People\n\n\nPossible values: \u0060active\u0060, \u0060pending\u0060, or \u0060inactive\u0060"
+        },
+        {
+          "Name": "can_edit_people",
+          "Type": "boolean",
+          "Description": "Indicates whether the person can edit other people"
+        },
+        {
+          "Name": "can_edit_resources",
+          "Type": "boolean",
+          "Description": "Indicates whether the person can edit resources"
+        },
+        {
+          "Name": "can_edit_rooms",
+          "Type": "boolean",
+          "Description": "Indicates whether the person can edit rooms"
+        },
+        {
+          "Name": "event_permissions_type",
+          "Type": "string",
+          "Description": "Event permissions for the person"
+        },
+        {
+          "Name": "member_of_approval_groups",
+          "Type": "boolean",
+          "Description": "Indicates whether the person is a member of at least one approval group\n\nOnly available when requested with the \u0060?fields\u0060 param"
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "The person\u0027s first name, last name, and name suffix"
+        },
+        {
+          "Name": "people_permissions_type",
+          "Type": "string",
+          "Description": "People permissions for the person"
+        },
+        {
+          "Name": "room_permissions_type",
+          "Type": "string",
+          "Description": "Room permissions for the person"
+        },
+        {
+          "Name": "resources_permissions_type",
+          "Type": "string",
+          "Description": "Resource permissions for the person"
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "organization",
+          "Description": "include associated organization",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "first_name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-first_name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "last_name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-last_name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "resolves_conflicts",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-resolves_conflicts) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "created_at",
+          "Parameter": "where[created_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific created_at",
+          "Example": "?where[created_at]=2000-01-01T12:00:00Z"
+        },
+        {
+          "Name": "first_name",
+          "Parameter": "where[first_name]",
+          "Type": "string",
+          "Description": "Query on a specific first_name",
+          "Example": "?where[first_name]=string"
+        },
+        {
+          "Name": "last_name",
+          "Parameter": "where[last_name]",
+          "Type": "string",
+          "Description": "Query on a specific last_name",
+          "Example": "?where[last_name]=string"
+        },
+        {
+          "Name": "middle_name",
+          "Parameter": "where[middle_name]",
+          "Type": "string",
+          "Description": "Query on a specific middle_name",
+          "Example": "?where[middle_name]=string"
+        },
+        {
+          "Name": "updated_at",
+          "Parameter": "where[updated_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific updated_at",
+          "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
+        }
+      ]
+    },
+    {
+      "Id": "report_template",
+      "Name": "ReportTemplate",
+      "Description": "A template for generating a report.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": "Unique identifier for the report"
+        },
+        {
+          "Name": "body",
+          "Type": "string",
+          "Description": "The contents of the report template"
+        },
+        {
+          "Name": "created_at",
+          "Type": "string",
+          "Description": "UTC time at which the report was created"
+        },
+        {
+          "Name": "description",
+          "Type": "string",
+          "Description": "A summarization of the report"
+        },
+        {
+          "Name": "title",
+          "Type": "string",
+          "Description": "The title of the report"
+        },
+        {
+          "Name": "updated_at",
+          "Type": "string",
+          "Description": "UTC time at which the report was updated"
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "required_approval",
+      "Name": "RequiredApproval",
+      "Description": "Represents the relationship between a Resource and a Resource Approval Group.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "resource",
+          "Description": "include associated resource",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        }
+      ],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "resource",
+      "Name": "Resource",
+      "Description": "A room or resource that can be requested for use as part of\nan event.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": "Unique identifier for the room or resource"
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": "UTC time at which the room or resource was created"
+        },
+        {
+          "Name": "kind",
+          "Type": "string",
+          "Description": "The type of resource, can either be \u0060Room\u0060 or \u0060Resource\u0060"
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "The name of the room or resource"
+        },
+        {
+          "Name": "serial_number",
+          "Type": "string",
+          "Description": "The serial number of the resource"
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": "UTC time at which the room or resource was updated"
+        },
+        {
+          "Name": "description",
+          "Type": "string",
+          "Description": "Description of the room or resource"
+        },
+        {
+          "Name": "expires_at",
+          "Type": "date_time",
+          "Description": "UTC time at which the resource expires"
+        },
+        {
+          "Name": "home_location",
+          "Type": "string",
+          "Description": "Where the resource is normally kept"
+        },
+        {
+          "Name": "image",
+          "Type": "string",
+          "Description": "Path to where resource image is stored"
+        },
+        {
+          "Name": "quantity",
+          "Type": "integer",
+          "Description": "The quantity of the resource"
+        },
+        {
+          "Name": "path_name",
+          "Type": "string",
+          "Description": "A string representing the location of the resource if it is nested within a folder.\n\nEach parent folder is separated by \u0060/\u0060\n"
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "resource_approval_groups",
+          "Description": "include associated resource_approval_groups",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "resource_folder",
+          "Description": "include associated resource_folder",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "resource_questions",
+          "Description": "include associated resource_questions",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "room_setups",
+          "Description": "include associated room_setups",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "expires_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-expires_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "created_at",
+          "Parameter": "where[created_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific created_at",
+          "Example": "?where[created_at]=2000-01-01T12:00:00Z"
+        },
+        {
+          "Name": "kind",
+          "Parameter": "where[kind]",
+          "Type": "string",
+          "Description": "Query on a specific kind",
+          "Example": "?where[kind]=string"
+        },
+        {
+          "Name": "name",
+          "Parameter": "where[name]",
+          "Type": "string",
+          "Description": "Query on a specific name",
+          "Example": "?where[name]=string"
+        },
+        {
+          "Name": "path_name",
+          "Parameter": "where[path_name]",
+          "Type": "string",
+          "Description": "Query on a specific path_name",
+          "Example": "?where[path_name]=string"
+        },
+        {
+          "Name": "serial_number",
+          "Parameter": "where[serial_number]",
+          "Type": "string",
+          "Description": "Query on a specific serial_number",
+          "Example": "?where[serial_number]=string"
+        },
+        {
+          "Name": "updated_at",
+          "Parameter": "where[updated_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific updated_at",
+          "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
+        }
+      ]
+    },
+    {
+      "Id": "resource_approval_group",
+      "Name": "ResourceApprovalGroup",
+      "Description": "A group of people that can be attached to a room or resource\nin order to require their approval for booking.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": "Unique identifier for the approval group"
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": "UTC time at which the approval group was created"
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "Name of the approval group"
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": "UTC time at which the approval group was updated"
+        },
+        {
+          "Name": "form_count",
+          "Type": "integer",
+          "Description": "Only available when requested with the \u0060?fields\u0060 param"
+        },
+        {
+          "Name": "resource_count",
+          "Type": "integer",
+          "Description": "The number of resources in the approval group\n\nOnly available when requested with the \u0060?fields\u0060 param"
+        },
+        {
+          "Name": "room_count",
+          "Type": "integer",
+          "Description": "The number of rooms in the approval group\n\nOnly available when requested with the \u0060?fields\u0060 param"
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "people",
+          "Description": "include associated people",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "resources",
+          "Description": "include associated resources",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "created_at",
+          "Parameter": "where[created_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific created_at",
+          "Example": "?where[created_at]=2000-01-01T12:00:00Z"
+        },
+        {
+          "Name": "id",
+          "Parameter": "where[id]",
+          "Type": "primary_key",
+          "Description": "Query on a specific id",
+          "Example": "?where[id]=primary_key"
+        },
+        {
+          "Name": "name",
+          "Parameter": "where[name]",
+          "Type": "string",
+          "Description": "Query on a specific name",
+          "Example": "?where[name]=string"
+        },
+        {
+          "Name": "updated_at",
+          "Parameter": "where[updated_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific updated_at",
+          "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
+        }
+      ]
+    },
+    {
+      "Id": "resource_booking",
+      "Name": "ResourceBooking",
+      "Description": "A specific booking of a room or resource for an event instance.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": "Unique identifier for the booking"
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": "UTC time at which the booking was created"
+        },
+        {
+          "Name": "ends_at",
+          "Type": "date_time",
+          "Description": "UTC time at which usage of the booked room or resource ends"
+        },
+        {
+          "Name": "starts_at",
+          "Type": "date_time",
+          "Description": "UTC time at which usage of the booked room or resource starts"
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": "UTC time at which the booking was updated"
+        },
+        {
+          "Name": "quantity",
+          "Type": "integer",
+          "Description": "The quantity of the rooms or resources booked"
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "event",
+          "Type": "Event",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "event_instance",
+          "Type": "EventInstance",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "resource",
+          "Type": "Resource",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "event_instance",
+          "Description": "include associated event_instance",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "event_resource_request",
+          "Description": "include associated event_resource_request",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "resource",
+          "Description": "include associated resource",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "ends_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-ends_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "starts_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-starts_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "created_at",
+          "Parameter": "where[created_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific created_at",
+          "Example": "?where[created_at]=2000-01-01T12:00:00Z"
+        },
+        {
+          "Name": "ends_at",
+          "Parameter": "where[ends_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific ends_at",
+          "Example": "?where[ends_at]=2000-01-01T12:00:00Z"
+        },
+        {
+          "Name": "starts_at",
+          "Parameter": "where[starts_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific starts_at",
+          "Example": "?where[starts_at]=2000-01-01T12:00:00Z"
+        },
+        {
+          "Name": "updated_at",
+          "Parameter": "where[updated_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific updated_at",
+          "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
+        }
+      ]
+    },
+    {
+      "Id": "resource_folder",
+      "Name": "ResourceFolder",
+      "Description": "An organizational folder containing rooms or resources.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": "Unique identifier for the folder"
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": "UTC time at which the folder was created"
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "The folder name"
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": "UTC time at which the folder was updated"
+        },
+        {
+          "Name": "ancestry",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "kind",
+          "Type": "string",
+          "Description": "The type of folder, can either be \u0060Room\u0060 or \u0060Resource\u0060"
+        },
+        {
+          "Name": "path_name",
+          "Type": "string",
+          "Description": "A string representing the location of the folder if it is nested.\n\nEach parent folder is separated by \u0060/\u0060\n"
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "resources",
+          "Description": "include associated resources",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "ancestry",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-ancestry) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "ancestry",
+          "Parameter": "where[ancestry]",
+          "Type": "string",
+          "Description": "Query on a specific ancestry",
+          "Example": "?where[ancestry]=string"
+        },
+        {
+          "Name": "created_at",
+          "Parameter": "where[created_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific created_at",
+          "Example": "?where[created_at]=2000-01-01T12:00:00Z"
+        },
+        {
+          "Name": "name",
+          "Parameter": "where[name]",
+          "Type": "string",
+          "Description": "Query on a specific name",
+          "Example": "?where[name]=string"
+        },
+        {
+          "Name": "path_name",
+          "Parameter": "where[path_name]",
+          "Type": "string",
+          "Description": "Query on a specific path_name",
+          "Example": "?where[path_name]=string"
+        },
+        {
+          "Name": "updated_at",
+          "Parameter": "where[updated_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific updated_at",
+          "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
+        }
+      ]
+    },
+    {
+      "Id": "resource_question",
+      "Name": "ResourceQuestion",
+      "Description": "A question to answer when requesting to book a room or resource.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": "Unique identifier for the question"
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": "UTC time at which the question was created"
+        },
+        {
+          "Name": "kind",
+          "Type": "string",
+          "Description": "Possible values:\n- \u0060dropdown\u0060: predefined list of choices as an answer\n- \u0060paragraph\u0060: expected answer is a paragraph\n- \u0060text\u0060: expected answer is a sentence\n- \u0060yesno\u0060: expected answer is \u0027Yes\u0027 or \u0027No\u0027\n\n- \u0060section_header\u0060: used to separate questions in the UI, no expected answer\n"
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": "UTC time at which the question was updated"
+        },
+        {
+          "Name": "choices",
+          "Type": "string",
+          "Description": "If \u0060kind\u0060 is \u0060dropdown\u0060, represents a string of dropdown choices\nseparated by the \u0060|\u0060 character\n"
+        },
+        {
+          "Name": "description",
+          "Type": "string",
+          "Description": "Optional description of the question"
+        },
+        {
+          "Name": "multiple_select",
+          "Type": "boolean",
+          "Description": "If \u0060kind\u0060 is \u0060dropdown\u0060,\n\u0060true\u0060 indicates that more than one selection is permitted\n"
+        },
+        {
+          "Name": "optional",
+          "Type": "boolean",
+          "Description": "- \u0060true\u0060 indicates answering the question is not required when booking\n- \u0060false\u0060 indicates answering the question is required when booking\n"
+        },
+        {
+          "Name": "position",
+          "Type": "integer",
+          "Description": "Position of question in list in the UI"
+        },
+        {
+          "Name": "question",
+          "Type": "string",
+          "Description": "The question to be answered"
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "resource",
+          "Type": "Resource",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": [
+        {
+          "Name": "created_at",
+          "Parameter": "where[created_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific created_at",
+          "Example": "?where[created_at]=2000-01-01T12:00:00Z"
+        },
+        {
+          "Name": "kind",
+          "Parameter": "where[kind]",
+          "Type": "string",
+          "Description": "Query on a specific kind",
+          "Example": "?where[kind]=string"
+        },
+        {
+          "Name": "updated_at",
+          "Parameter": "where[updated_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific updated_at",
+          "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
+        }
+      ]
+    },
+    {
+      "Id": "resource_suggestion",
+      "Name": "ResourceSuggestion",
+      "Description": "A resource and quantity suggested by a room setup.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": "Unique identifier for the suggestion"
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": "UTC time at which the suggestion was created"
+        },
+        {
+          "Name": "quantity",
+          "Type": "integer",
+          "Description": "How many resources should be requested"
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": "UTC time at which the suggestion was updated"
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "resource",
+          "Type": "Resource",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "room_setup",
+          "Type": "RoomSetup",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "resource",
+          "Description": "include associated resource",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        }
+      ],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "room_setup",
+      "Name": "RoomSetup",
+      "Description": "A diagram and list of suggested resources useful for predefined room setups.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": "Unique identifier for the room setup"
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": "UTC time at which the room setup was created"
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "The name of the room setup"
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": "UTC time at which the room setup was updated"
+        },
+        {
+          "Name": "description",
+          "Type": "string",
+          "Description": "A description of the room setup"
+        },
+        {
+          "Name": "diagram",
+          "Type": "string",
+          "Description": "An object containing \u0060url\u0060 and \u0060thumbnail\u0060.\n\n\u0060url\u0060 is path to where room setup is stored.\n\u0060thumbnail\u0060 contains \u0060url\u0060 path to where thumbnail is stored.\n"
+        },
+        {
+          "Name": "diagram_url",
+          "Type": "string",
+          "Description": "Path to where room setup is stored"
+        },
+        {
+          "Name": "diagram_thumbnail_url",
+          "Type": "string",
+          "Description": "Path to where thumbnail version of room setup is stored"
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "room_setup",
+          "Type": "RoomSetup",
+          "AssociationType": "to_one",
+          "Note": "The shared room setup this is linked to"
+        },
+        {
+          "Name": "resource_suggestions",
+          "Type": "ResourceSuggestion",
+          "AssociationType": "to_many",
+          "Note": "A list of suggested resources for this room setup"
+        },
+        {
+          "Name": "containing_resource",
+          "Type": "Resource",
+          "AssociationType": "to_one",
+          "Note": "The resource this room setup is attached to"
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "containing_resource",
+          "Description": "include associated containing_resource",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "resource_suggestions",
+          "Description": "include associated resource_suggestions",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "created_at",
+          "Parameter": "where[created_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific created_at",
+          "Example": "?where[created_at]=2000-01-01T12:00:00Z"
+        },
+        {
+          "Name": "name",
+          "Parameter": "where[name]",
+          "Type": "string",
+          "Description": "Query on a specific name",
+          "Example": "?where[name]=string"
+        },
+        {
+          "Name": "updated_at",
+          "Parameter": "where[updated_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific updated_at",
+          "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
+        }
+      ]
+    },
+    {
+      "Id": "tag",
+      "Name": "Tag",
+      "Description": "An organizational tag that can be applied to events.\n\nApplied tags can be used to filter events on the calendar or\nfilter events for reports, iCal feeds, kiosk, and the widget.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": "Unique identifier for the tag"
+        },
+        {
+          "Name": "church_center_category",
+          "Type": "boolean",
+          "Description": "\u0060true\u0060 indicates that this tag is used as a category on Church Center"
+        },
+        {
+          "Name": "color",
+          "Type": "string",
+          "Description": "Hex color code of the tag"
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": "UTC time at which the tag was created"
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "The tag name"
+        },
+        {
+          "Name": "position",
+          "Type": "float",
+          "Description": "If the tag belongs to a TagGroup,\nposition indicates place in list within TagGroup in the UI.\n\nIf the tag does not belong to a TagGroup,\nposition indicates place in list under \u0022Individual Tags\u0022 in the UI.\n"
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": "UTC time at which the tag was updated"
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "tag_group",
+          "Description": "include associated tag_group",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "position",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-position) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "church_center_category",
+          "Parameter": "where[church_center_category]",
+          "Type": "boolean",
+          "Description": "Query on a specific church_center_category",
+          "Example": "?where[church_center_category]=true"
+        },
+        {
+          "Name": "color",
+          "Parameter": "where[color]",
+          "Type": "string",
+          "Description": "Query on a specific color",
+          "Example": "?where[color]=string"
+        },
+        {
+          "Name": "created_at",
+          "Parameter": "where[created_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific created_at",
+          "Example": "?where[created_at]=2000-01-01T12:00:00Z"
+        },
+        {
+          "Name": "id",
+          "Parameter": "where[id]",
+          "Type": "primary_key",
+          "Description": "Query on a specific id",
+          "Example": "?where[id]=primary_key"
+        },
+        {
+          "Name": "name",
+          "Parameter": "where[name]",
+          "Type": "string",
+          "Description": "Query on a specific name",
+          "Example": "?where[name]=string"
+        },
+        {
+          "Name": "position",
+          "Parameter": "where[position]",
+          "Type": "float",
+          "Description": "Query on a specific position",
+          "Example": "?where[position]=1.42"
+        },
+        {
+          "Name": "updated_at",
+          "Parameter": "where[updated_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific updated_at",
+          "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
+        }
+      ]
+    },
+    {
+      "Id": "tag_group",
+      "Name": "TagGroup",
+      "Description": "A grouping of tags for organizational purposes.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": "Unique identifier for the tag group"
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": "UTC time at which the tag group was created"
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "The name of the tag group"
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": "UTC time at which the tag group was updated"
+        },
+        {
+          "Name": "required",
+          "Type": "boolean",
+          "Description": "- \u0060true\u0060 indicates tag from this tag group must be applied when creating an event\n"
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "events",
+          "Description": "include associated events",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "tags",
+          "Description": "include associated tags",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "created_at",
+          "Parameter": "where[created_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific created_at",
+          "Example": "?where[created_at]=2000-01-01T12:00:00Z"
+        },
+        {
+          "Name": "name",
+          "Parameter": "where[name]",
+          "Type": "string",
+          "Description": "Query on a specific name",
+          "Example": "?where[name]=string"
+        },
+        {
+          "Name": "updated_at",
+          "Parameter": "where[updated_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific updated_at",
+          "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
+        }
+      ]
+    }
+  ]
+}

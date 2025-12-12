@@ -2,6 +2,8 @@
 
 class Product
 {
-    public required string Name { get; set; }
+    public required ProductDefinition Name { get; set; }
+    public required string Title { get; set; }
+    public string? Description { get; set; }
     public required IEnumerable<Version> Versions { get; set; }
 }

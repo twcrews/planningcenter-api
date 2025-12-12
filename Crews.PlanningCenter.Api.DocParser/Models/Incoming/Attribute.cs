@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace Crews.PlanningCenter.Api.DocParser.Models.Incoming;
 
-internal class Attribute
+class Attribute
 {
   [JsonPropertyName("name")]
   public required string Name { get; set; }

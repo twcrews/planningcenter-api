@@ -1,0 +1,6706 @@
+{
+  "Id": "2024-09-12",
+  "Beta": false,
+  "Details": "Excludes total counts from \u0060meta\u0060 section for single resources in \u0060List\u0060,\u0060Form\u0060 and \u0060Workflow\u0060",
+  "Resources": [
+    {
+      "Id": "address",
+      "Name": "Address",
+      "Description": "An address represents a physical and/or mailing address for a person.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "city",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "state",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "zip",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "country_code",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "location",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "primary",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "street_line_1",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "street_line_2",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "country_name",
+          "Type": "string",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "person",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "city",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-city) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "country_code",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-country_code) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "location",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-location) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "primary",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-primary) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "state",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-state) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "street_line_1",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-street_line_1) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "street_line_2",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-street_line_2) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "zip",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-zip) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "city",
+          "Parameter": "where[city]",
+          "Type": "string",
+          "Description": "Query on a specific city",
+          "Example": "?where[city]=string"
+        },
+        {
+          "Name": "country_code",
+          "Parameter": "where[country_code]",
+          "Type": "string",
+          "Description": "Query on a specific country_code",
+          "Example": "?where[country_code]=string"
+        },
+        {
+          "Name": "location",
+          "Parameter": "where[location]",
+          "Type": "string",
+          "Description": "Query on a specific location",
+          "Example": "?where[location]=string"
+        },
+        {
+          "Name": "primary",
+          "Parameter": "where[primary]",
+          "Type": "boolean",
+          "Description": "Query on a specific primary",
+          "Example": "?where[primary]=true"
+        },
+        {
+          "Name": "state",
+          "Parameter": "where[state]",
+          "Type": "string",
+          "Description": "Query on a specific state",
+          "Example": "?where[state]=string"
+        },
+        {
+          "Name": "street_line_1",
+          "Parameter": "where[street_line_1]",
+          "Type": "string",
+          "Description": "Query on a specific street_line_1",
+          "Example": "?where[street_line_1]=string"
+        },
+        {
+          "Name": "street_line_2",
+          "Parameter": "where[street_line_2]",
+          "Type": "string",
+          "Description": "Query on a specific street_line_2",
+          "Example": "?where[street_line_2]=string"
+        },
+        {
+          "Name": "zip",
+          "Parameter": "where[zip]",
+          "Type": "string",
+          "Description": "Query on a specific zip",
+          "Example": "?where[zip]=string"
+        }
+      ]
+    },
+    {
+      "Id": "app",
+      "Name": "App",
+      "Description": "An app is one of the handful of apps that Planning Center offers that organizations can subscribe to, e.g. Services, Registrations, etc.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "url",
+          "Type": "string",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "url",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-url) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "name",
+          "Parameter": "where[name]",
+          "Type": "string",
+          "Description": "Query on a specific name",
+          "Example": "?where[name]=string"
+        },
+        {
+          "Name": "url",
+          "Parameter": "where[url]",
+          "Type": "string",
+          "Description": "Query on a specific url",
+          "Example": "?where[url]=string"
+        }
+      ]
+    },
+    {
+      "Id": "background_check",
+      "Name": "BackgroundCheck",
+      "Description": "Background Checks for a Person",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "current",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "note",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "status_updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "report_url",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "expires_on",
+          "Type": "date",
+          "Description": null
+        },
+        {
+          "Name": "status",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "completed_at",
+          "Type": "date_time",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "person",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "created_by",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "person",
+          "Description": "include associated person",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        }
+      ],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "birthday_people",
+      "Name": "BirthdayPeople",
+      "Description": "Returns upcoming birthdays for the organization.\n\nNote: This endpoint will always only return the first 15 people having a birthday in the next 30 days, ordered by birthday, ascending.\n",
+      "Deprecated": false,
+      "CollectionOnly": true,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "campus",
+      "Name": "Campus",
+      "Description": "A Campus is a location belonging to an Organization",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "latitude",
+          "Type": "float",
+          "Description": null
+        },
+        {
+          "Name": "longitude",
+          "Type": "float",
+          "Description": null
+        },
+        {
+          "Name": "description",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "street",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "city",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "state",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "zip",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "country",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "phone_number",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "website",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "twenty_four_hour_time",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "date_format",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "church_center_enabled",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "contact_email_address",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "time_zone",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "geolocation_set_manually",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "time_zone_raw",
+          "Type": "string",
+          "Description": "Only available when requested with the \u0060?fields\u0060 param"
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "avatar_url",
+          "Type": "string",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "organization",
+          "Type": "Organization",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "lists",
+          "Description": "include associated lists",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "service_times",
+          "Description": "include associated service_times",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "created_at",
+          "Parameter": "where[created_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific created_at",
+          "Example": "?where[created_at]=2000-01-01T12:00:00Z"
+        },
+        {
+          "Name": "id",
+          "Parameter": "where[id]",
+          "Type": "primary_key",
+          "Description": "Query on a specific id",
+          "Example": "?where[id]=primary_key"
+        },
+        {
+          "Name": "updated_at",
+          "Parameter": "where[updated_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific updated_at",
+          "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
+        }
+      ]
+    },
+    {
+      "Id": "carrier",
+      "Name": "Carrier",
+      "Description": null,
+      "Deprecated": false,
+      "CollectionOnly": true,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "value",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "international",
+          "Type": "boolean",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "international",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-international) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
+        }
+      ],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "condition",
+      "Name": "Condition",
+      "Description": "A condition is an individual criterion used by a List Rule.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "application",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "definition_class",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "comparison",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "settings",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "definition_identifier",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "description",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "created_by",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "created_by",
+          "Description": "include associated created_by",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "application",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-application) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "comparison",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-comparison) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "definition_class",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-definition_class) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "definition_identifier",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-definition_identifier) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "description",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-description) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "settings",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-settings) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "application",
+          "Parameter": "where[application]",
+          "Type": "string",
+          "Description": "Query on a specific application",
+          "Example": "?where[application]=string"
+        },
+        {
+          "Name": "comparison",
+          "Parameter": "where[comparison]",
+          "Type": "string",
+          "Description": "Query on a specific comparison",
+          "Example": "?where[comparison]=string"
+        },
+        {
+          "Name": "created_at",
+          "Parameter": "where[created_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific created_at",
+          "Example": "?where[created_at]=2000-01-01T12:00:00Z"
+        },
+        {
+          "Name": "definition_class",
+          "Parameter": "where[definition_class]",
+          "Type": "string",
+          "Description": "Query on a specific definition_class",
+          "Example": "?where[definition_class]=string"
+        },
+        {
+          "Name": "definition_identifier",
+          "Parameter": "where[definition_identifier]",
+          "Type": "string",
+          "Description": "Query on a specific definition_identifier",
+          "Example": "?where[definition_identifier]=string"
+        },
+        {
+          "Name": "description",
+          "Parameter": "where[description]",
+          "Type": "string",
+          "Description": "Query on a specific description",
+          "Example": "?where[description]=string"
+        },
+        {
+          "Name": "settings",
+          "Parameter": "where[settings]",
+          "Type": "string",
+          "Description": "Query on a specific settings",
+          "Example": "?where[settings]=string"
+        },
+        {
+          "Name": "updated_at",
+          "Parameter": "where[updated_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific updated_at",
+          "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
+        }
+      ]
+    },
+    {
+      "Id": "connected_person",
+      "Name": "ConnectedPerson",
+      "Description": "A Connected Person is an account from a different organization linked to an account in this organization.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "given_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "first_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "nickname",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "middle_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "last_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "gender",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "organization_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "organization_id",
+          "Type": "primary_key",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "organization",
+          "Type": "Organization",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "custom_sender",
+      "Name": "CustomSender",
+      "Description": "A custom sender that can be used when sending emails.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "email_address",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "verified_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "verification_requested_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "verified",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "expired",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "verification_status",
+          "Type": "string",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "custom_sender_shares",
+          "Type": "CustomSenderShare",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "verification_requested_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-verification_requested_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "verified_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-verified_at) to reverse the order"
+        }
+      ],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "email",
+      "Name": "Email",
+      "Description": "An email represents an email address and location.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "address",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "location",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "primary",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "blocked",
+          "Type": "boolean",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "person",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "address",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-address) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "location",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-location) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "primary",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-primary) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "address",
+          "Parameter": "where[address]",
+          "Type": "string",
+          "Description": "Query on a specific address",
+          "Example": "?where[address]=string"
+        },
+        {
+          "Name": "blocked",
+          "Parameter": "where[blocked]",
+          "Type": "boolean",
+          "Description": "Query on a specific blocked",
+          "Example": "?where[blocked]=true"
+        },
+        {
+          "Name": "created_at",
+          "Parameter": "where[created_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific created_at",
+          "Example": "?where[created_at]=2000-01-01T12:00:00Z"
+        },
+        {
+          "Name": "location",
+          "Parameter": "where[location]",
+          "Type": "string",
+          "Description": "Query on a specific location",
+          "Example": "?where[location]=string"
+        },
+        {
+          "Name": "primary",
+          "Parameter": "where[primary]",
+          "Type": "boolean",
+          "Description": "Query on a specific primary",
+          "Example": "?where[primary]=true"
+        },
+        {
+          "Name": "updated_at",
+          "Parameter": "where[updated_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific updated_at",
+          "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
+        }
+      ]
+    },
+    {
+      "Id": "field_datum",
+      "Name": "FieldDatum",
+      "Description": "A field datum is an individual piece of data for a custom field.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "value",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "file",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "file_size",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "file_content_type",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "file_name",
+          "Type": "string",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "field_definition",
+          "Type": "FieldDefinition",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "customizable",
+          "Type": "Customizable",
+          "AssociationType": "to_one",
+          "Note": "Currently, the only customizable relationship is with \u0060Person\u0060."
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "field_definition",
+          "Description": "include associated field_definition",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "field_option",
+          "Description": "include associated field_option",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "tab",
+          "Description": "include associated tab",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "file",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-file) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "file_content_type",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-file_content_type) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "file_name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-file_name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "file_size",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-file_size) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "value",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-value) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "field_definition_id",
+          "Parameter": "where[field_definition_id]",
+          "Type": "integer",
+          "Description": "Query on a related field_definition",
+          "Example": "?where[field_definition_id]=1"
+        },
+        {
+          "Name": "file",
+          "Parameter": "where[file]",
+          "Type": "string",
+          "Description": "Query on a specific file",
+          "Example": "?where[file]=string"
+        },
+        {
+          "Name": "file_content_type",
+          "Parameter": "where[file_content_type]",
+          "Type": "string",
+          "Description": "Query on a specific file_content_type",
+          "Example": "?where[file_content_type]=string"
+        },
+        {
+          "Name": "file_name",
+          "Parameter": "where[file_name]",
+          "Type": "string",
+          "Description": "Query on a specific file_name",
+          "Example": "?where[file_name]=string"
+        },
+        {
+          "Name": "file_size",
+          "Parameter": "where[file_size]",
+          "Type": "integer",
+          "Description": "Query on a specific file_size",
+          "Example": "?where[file_size]=1"
+        },
+        {
+          "Name": "value",
+          "Parameter": "where[value]",
+          "Type": "string",
+          "Description": "Query on a specific value",
+          "Example": "?where[value]=string"
+        }
+      ]
+    },
+    {
+      "Id": "field_definition",
+      "Name": "FieldDefinition",
+      "Description": "A field definition represents a custom field -- its name, data type, etc.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "data_type",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "sequence",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "slug",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "config",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "deleted_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "tab_id",
+          "Type": "primary_key",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "tab",
+          "Type": "Tab",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "field_options",
+          "Description": "include associated field_options",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "tab",
+          "Description": "include associated tab",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "config",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-config) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "data_type",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-data_type) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "deleted_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-deleted_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "sequence",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-sequence) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "slug",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-slug) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "tab_id",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-tab_id) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "config",
+          "Parameter": "where[config]",
+          "Type": "string",
+          "Description": "Query on a specific config",
+          "Example": "?where[config]=string"
+        },
+        {
+          "Name": "data_type",
+          "Parameter": "where[data_type]",
+          "Type": "string",
+          "Description": "Query on a specific data_type",
+          "Example": "?where[data_type]=string"
+        },
+        {
+          "Name": "deleted_at",
+          "Parameter": "where[deleted_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific deleted_at",
+          "Example": "?where[deleted_at]=2000-01-01T12:00:00Z"
+        },
+        {
+          "Name": "name",
+          "Parameter": "where[name]",
+          "Type": "string",
+          "Description": "Query on a specific name",
+          "Example": "?where[name]=string"
+        },
+        {
+          "Name": "sequence",
+          "Parameter": "where[sequence]",
+          "Type": "integer",
+          "Description": "Query on a specific sequence",
+          "Example": "?where[sequence]=1"
+        },
+        {
+          "Name": "slug",
+          "Parameter": "where[slug]",
+          "Type": "string",
+          "Description": "Query on a specific slug",
+          "Example": "?where[slug]=string"
+        },
+        {
+          "Name": "tab_id",
+          "Parameter": "where[tab_id]",
+          "Type": "primary_key",
+          "Description": "Query on a specific tab_id",
+          "Example": "?where[tab_id]=primary_key"
+        }
+      ]
+    },
+    {
+      "Id": "field_option",
+      "Name": "FieldOption",
+      "Description": "A field option represents an individual option for a custom field of type \u0022select\u0022 or \u0022checkboxes\u0022.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "value",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "sequence",
+          "Type": "integer",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "field_definition",
+          "Type": "FieldDefinition",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "sequence",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-sequence) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "value",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-value) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "sequence",
+          "Parameter": "where[sequence]",
+          "Type": "integer",
+          "Description": "Query on a specific sequence",
+          "Example": "?where[sequence]=1"
+        },
+        {
+          "Name": "value",
+          "Parameter": "where[value]",
+          "Type": "string",
+          "Description": "Query on a specific value",
+          "Example": "?where[value]=string"
+        }
+      ]
+    },
+    {
+      "Id": "form",
+      "Name": "Form",
+      "Description": "A custom form for people to fill out.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "description",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "active",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "archived_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "deleted_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "submission_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "public_url",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "recently_viewed",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "archived",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "send_submission_notification_to_submitter",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "login_required",
+          "Type": "boolean",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "campus",
+          "Type": "Campus",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "form_category",
+          "Type": "FormCategory",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "campus",
+          "Description": "include associated campus",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "category",
+          "Description": "include associated category",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "active",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-active) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "archived_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-archived_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "deleted_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-deleted_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "description",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-description) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "active",
+          "Parameter": "where[active]",
+          "Type": "boolean",
+          "Description": "Query on a specific active",
+          "Example": "?where[active]=true"
+        },
+        {
+          "Name": "id",
+          "Parameter": "where[id]",
+          "Type": "primary_key",
+          "Description": "Query on a specific id",
+          "Example": "?where[id]=primary_key"
+        }
+      ]
+    },
+    {
+      "Id": "form_category",
+      "Name": "FormCategory",
+      "Description": "A Form Category",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "created_at",
+          "Parameter": "where[created_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific created_at",
+          "Example": "?where[created_at]=2000-01-01T12:00:00Z"
+        },
+        {
+          "Name": "name",
+          "Parameter": "where[name]",
+          "Type": "string",
+          "Description": "Query on a specific name",
+          "Example": "?where[name]=string"
+        },
+        {
+          "Name": "updated_at",
+          "Parameter": "where[updated_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific updated_at",
+          "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
+        }
+      ]
+    },
+    {
+      "Id": "form_field",
+      "Name": "FormField",
+      "Description": "A field in a custom form.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "label",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "description",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "required",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "settings",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "field_type",
+          "Type": "string",
+          "Description": "Possible values: \u0060string\u0060, \u0060text\u0060, \u0060checkboxes\u0060, \u0060dropdown\u0060, \u0060date\u0060, \u0060phone_number\u0060, \u0060address\u0060, \u0060birthday\u0060, \u0060gender\u0060, \u0060custom_field\u0060, \u0060note\u0060, \u0060workflow\u0060, \u0060heading\u0060, \u0060number\u0060, \u0060boolean\u0060, \u0060file\u0060, \u0060medical\u0060, \u0060workflow_checkbox\u0060, \u0060workflow_checkboxes\u0060, \u0060workflow_dropdown\u0060, \u0060marital_status\u0060, \u0060anniversary\u0060, \u0060grade\u0060, \u0060primary_campus\u0060, \u0060school\u0060, or \u0060household\u0060"
+        },
+        {
+          "Name": "sequence",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "form",
+          "Type": "Form",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "fieldable",
+          "Type": "Fieldable",
+          "AssociationType": "to_one",
+          "Note": "Polymorphic. Fieldable can be any of the following: FieldDefinition, NoteCategory, or Workflow. "
+        },
+        {
+          "Name": "options",
+          "Type": "FormFieldOption",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "form_field_conditions",
+          "Type": "FormFieldCondition",
+          "AssociationType": "to_many",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "options",
+          "Description": "include associated options",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "sequence",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-sequence) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
+        }
+      ],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "form_field_option",
+      "Name": "FormFieldOption",
+      "Description": "A field option on a custom form field.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "label",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "sequence",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "form_field",
+          "Type": "FormField",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "optionable",
+          "Type": "Optionable",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "sequence",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-sequence) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
+        }
+      ],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "form_submission",
+      "Name": "FormSubmission",
+      "Description": "A form submission.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "verified",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "requires_verification",
+          "Type": "boolean",
+          "Description": "Only available when requested with the \u0060?fields\u0060 param"
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "person",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "form",
+          "Type": "Form",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "form",
+          "Description": "include associated form",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "form_fields",
+          "Description": "include associated form_fields",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "form_submission_values",
+          "Description": "include associated form_submission_values",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "person",
+          "Description": "include associated person",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "person.first_name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-person.first_name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "person.last_name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-person.last_name) to reverse the order"
+        }
+      ],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "form_submission_value",
+      "Name": "FormSubmissionValue",
+      "Description": "A form submission value.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "display_value",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "attachments",
+          "Type": "array",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "form_field",
+          "Type": "FormField",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "form_field_option",
+          "Type": "FormFieldOption",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "form_submission",
+          "Type": "FormSubmission",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "grade",
+      "Name": "Grade",
+      "Description": null,
+      "Deprecated": false,
+      "CollectionOnly": true,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "value",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "key",
+          "Type": "integer",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "household",
+      "Name": "Household",
+      "Description": "A household links people together and can have a primary contact. To add a person to an existing household, use the HouseholdMemberships endpoint.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "member_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "primary_contact_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "avatar",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "primary_contact_id",
+          "Type": "primary_key",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "primary_contact",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "people",
+          "Type": "Person",
+          "AssociationType": "to_many",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "people",
+          "Description": "include associated people",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "member_count",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-member_count) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "primary_contact_name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-primary_contact_name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "created_at",
+          "Parameter": "where[created_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific created_at",
+          "Example": "?where[created_at]=2000-01-01T12:00:00Z"
+        },
+        {
+          "Name": "member_count",
+          "Parameter": "where[member_count]",
+          "Type": "integer",
+          "Description": "Query on a specific member_count",
+          "Example": "?where[member_count]=1"
+        },
+        {
+          "Name": "name",
+          "Parameter": "where[name]",
+          "Type": "string",
+          "Description": "Query on a specific name",
+          "Example": "?where[name]=string"
+        },
+        {
+          "Name": "primary_contact_name",
+          "Parameter": "where[primary_contact_name]",
+          "Type": "string",
+          "Description": "Query on a specific primary_contact_name",
+          "Example": "?where[primary_contact_name]=string"
+        },
+        {
+          "Name": "updated_at",
+          "Parameter": "where[updated_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific updated_at",
+          "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
+        }
+      ]
+    },
+    {
+      "Id": "household_membership",
+      "Name": "HouseholdMembership",
+      "Description": "A household membership is the linking record between a household and a person.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "person_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "pending",
+          "Type": "boolean",
+          "Description": "False when a person\u0027s membership in a household is unverified."
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "person",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "household",
+          "Description": "include associated household",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "person",
+          "Description": "include associated person",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "pending",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-pending) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "person_name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-person_name) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "pending",
+          "Parameter": "where[pending]",
+          "Type": "boolean",
+          "Description": "Query on a specific pending",
+          "Example": "?where[pending]=true"
+        },
+        {
+          "Name": "person_name",
+          "Parameter": "where[person_name]",
+          "Type": "string",
+          "Description": "Query on a specific person_name",
+          "Example": "?where[person_name]=string"
+        }
+      ]
+    },
+    {
+      "Id": "inactive_reason",
+      "Name": "InactiveReason",
+      "Description": "An inactive reason is a small bit of text indicating why a member is no longer active.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "value",
+          "Type": "string",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "value",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-value) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "value",
+          "Parameter": "where[value]",
+          "Type": "string",
+          "Description": "Query on a specific value",
+          "Example": "?where[value]=string"
+        }
+      ]
+    },
+    {
+      "Id": "list",
+      "Name": "List",
+      "Description": "A list is a powerful tool for finding and grouping people together using any criteria imaginable.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "auto_refresh",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "status",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "has_inactive_results",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "include_inactive",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "returns",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "return_original_if_none",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "subset",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "automations_active",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "automations_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "paused_automations_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "description",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "invalid",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "auto_refresh_frequency",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "name_or_description",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "recently_viewed",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "refreshed_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "starred",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "total_people",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "batch_completed_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "campus",
+          "Description": "include associated campus",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "category",
+          "Description": "include associated category",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "created_by",
+          "Description": "include associated created_by",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "mailchimp_sync_status",
+          "Description": "include associated mailchimp_sync_status",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "people",
+          "Description": "include associated people",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "rules",
+          "Description": "include associated rules",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "shares",
+          "Description": "include associated shares",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "updated_by",
+          "Description": "include associated updated_by",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "batch_completed_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-batch_completed_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "campus_id",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-campus_id) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "list_categories.name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-list_categories.name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "list_category_id",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-list_category_id) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "name_or_description",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name_or_description) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "batch_completed_at",
+          "Parameter": "where[batch_completed_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific batch_completed_at",
+          "Example": "?where[batch_completed_at]=2000-01-01T12:00:00Z"
+        },
+        {
+          "Name": "created_at",
+          "Parameter": "where[created_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific created_at",
+          "Example": "?where[created_at]=2000-01-01T12:00:00Z"
+        },
+        {
+          "Name": "id",
+          "Parameter": "where[id]",
+          "Type": "primary_key",
+          "Description": "Query on a specific id",
+          "Example": "?where[id]=primary_key"
+        },
+        {
+          "Name": "name",
+          "Parameter": "where[name]",
+          "Type": "string",
+          "Description": "Query on a specific name",
+          "Example": "?where[name]=string"
+        },
+        {
+          "Name": "updated_at",
+          "Parameter": "where[updated_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific updated_at",
+          "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
+        }
+      ]
+    },
+    {
+      "Id": "list_category",
+      "Name": "ListCategory",
+      "Description": "A List Category",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "organization_id",
+          "Type": "primary_key",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "organization",
+          "Type": "Organization",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "lists",
+          "Description": "include associated lists",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "organization_id",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-organization_id) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "created_at",
+          "Parameter": "where[created_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific created_at",
+          "Example": "?where[created_at]=2000-01-01T12:00:00Z"
+        },
+        {
+          "Name": "name",
+          "Parameter": "where[name]",
+          "Type": "string",
+          "Description": "Query on a specific name",
+          "Example": "?where[name]=string"
+        },
+        {
+          "Name": "organization_id",
+          "Parameter": "where[organization_id]",
+          "Type": "primary_key",
+          "Description": "Query on a specific organization_id",
+          "Example": "?where[organization_id]=primary_key"
+        },
+        {
+          "Name": "updated_at",
+          "Parameter": "where[updated_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific updated_at",
+          "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
+        }
+      ]
+    },
+    {
+      "Id": "list_result",
+      "Name": "ListResult",
+      "Description": "A list result",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "person",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "list",
+          "Type": "List",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
+        }
+      ],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "list_share",
+      "Name": "ListShare",
+      "Description": "A list share indicates who has access to edit a list.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "permission",
+          "Type": "string",
+          "Description": "Possible values: \u0060view\u0060 or \u0060manage\u0060"
+        },
+        {
+          "Name": "group",
+          "Type": "string",
+          "Description": "Possible values: \u0060No Access\u0060, \u0060Viewer\u0060, \u0060Editor\u0060, or \u0060Manager\u0060"
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "person",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "person",
+          "Description": "include associated person",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "group",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-group) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "created_at",
+          "Parameter": "where[created_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific created_at",
+          "Example": "?where[created_at]=2000-01-01T12:00:00Z"
+        },
+        {
+          "Name": "group",
+          "Parameter": "where[group]",
+          "Type": "string",
+          "Description": "Query on a specific group\n\nPossible values: \u0060No Access\u0060, \u0060Viewer\u0060, \u0060Editor\u0060, or \u0060Manager\u0060",
+          "Example": "?where[group]=value"
+        },
+        {
+          "Name": "name",
+          "Parameter": "where[name]",
+          "Type": "string",
+          "Description": "Query on a specific name",
+          "Example": "?where[name]=string"
+        },
+        {
+          "Name": "permission",
+          "Parameter": "where[permission]",
+          "Type": "string",
+          "Description": "Query on a specific permission\n\nPossible values: \u0060view\u0060 or \u0060manage\u0060",
+          "Example": "?where[permission]=value"
+        }
+      ]
+    },
+    {
+      "Id": "list_star",
+      "Name": "ListStar",
+      "Description": "A starred list for a person indicates it is special in some way",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "mailchimp_sync_status",
+      "Name": "MailchimpSyncStatus",
+      "Description": "The status of syncing a List with Mailchimp.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "status",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "error",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "progress",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "completed_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "segment_id",
+          "Type": "integer",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "marital_status",
+      "Name": "MaritalStatus",
+      "Description": "A martial status represents a member\u0027s current status, e.g. married, single, etc.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "value",
+          "Type": "string",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "value",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-value) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "value",
+          "Parameter": "where[value]",
+          "Type": "string",
+          "Description": "Query on a specific value",
+          "Example": "?where[value]=string"
+        }
+      ]
+    },
+    {
+      "Id": "message",
+      "Name": "Message",
+      "Description": "A message is an individual email or sms text sent to a member. Every message has a parent message group.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "kind",
+          "Type": "string",
+          "Description": "Possible values: \u0060email\u0060, \u0060sms\u0060, or \u0060church_center_message\u0060"
+        },
+        {
+          "Name": "to_addresses",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "subject",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "delivery_status",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "reject_reason",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "sent_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "bounced_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "rejection_notification_sent_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "from_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "from_address",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "read_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "app_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "message_type",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "file",
+          "Type": "string",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "from",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "to",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "message_group",
+          "Type": "MessageGroup",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "message_group",
+          "Description": "include associated message_group",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "to",
+          "Description": "include associated to",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "app_name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-app_name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "bounced_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-bounced_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "delivery_status",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-delivery_status) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "file",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-file) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "from_address",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-from_address) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "from_name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-from_name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "kind",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-kind) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "reject_reason",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-reject_reason) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "rejection_notification_sent_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-rejection_notification_sent_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "sent_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-sent_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "subject",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-subject) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "to_addresses",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-to_addresses) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "app_name",
+          "Parameter": "where[app_name]",
+          "Type": "string",
+          "Description": "Query on a specific app_name",
+          "Example": "?where[app_name]=string"
+        },
+        {
+          "Name": "bounced_at",
+          "Parameter": "where[bounced_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific bounced_at",
+          "Example": "?where[bounced_at]=2000-01-01T12:00:00Z"
+        },
+        {
+          "Name": "created_at",
+          "Parameter": "where[created_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific created_at",
+          "Example": "?where[created_at]=2000-01-01T12:00:00Z"
+        },
+        {
+          "Name": "delivery_status",
+          "Parameter": "where[delivery_status]",
+          "Type": "string",
+          "Description": "Query on a specific delivery_status",
+          "Example": "?where[delivery_status]=string"
+        },
+        {
+          "Name": "file",
+          "Parameter": "where[file]",
+          "Type": "string",
+          "Description": "Query on a specific file",
+          "Example": "?where[file]=string"
+        },
+        {
+          "Name": "from_address",
+          "Parameter": "where[from_address]",
+          "Type": "string",
+          "Description": "Query on a specific from_address",
+          "Example": "?where[from_address]=string"
+        },
+        {
+          "Name": "kind",
+          "Parameter": "where[kind]",
+          "Type": "string",
+          "Description": "Query on a specific kind\n\nPossible values: \u0060email\u0060, \u0060sms\u0060, or \u0060church_center_message\u0060",
+          "Example": "?where[kind]=value"
+        },
+        {
+          "Name": "reject_reason",
+          "Parameter": "where[reject_reason]",
+          "Type": "string",
+          "Description": "Query on a specific reject_reason",
+          "Example": "?where[reject_reason]=string"
+        },
+        {
+          "Name": "rejection_notification_sent_at",
+          "Parameter": "where[rejection_notification_sent_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific rejection_notification_sent_at",
+          "Example": "?where[rejection_notification_sent_at]=2000-01-01T12:00:00Z"
+        },
+        {
+          "Name": "sent_at",
+          "Parameter": "where[sent_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific sent_at",
+          "Example": "?where[sent_at]=2000-01-01T12:00:00Z"
+        },
+        {
+          "Name": "subject",
+          "Parameter": "where[subject]",
+          "Type": "string",
+          "Description": "Query on a specific subject",
+          "Example": "?where[subject]=string"
+        },
+        {
+          "Name": "to_addresses",
+          "Parameter": "where[to_addresses]",
+          "Type": "string",
+          "Description": "Query on a specific to_addresses",
+          "Example": "?where[to_addresses]=string"
+        }
+      ]
+    },
+    {
+      "Id": "message_group",
+      "Name": "MessageGroup",
+      "Description": "A message group represents one or more emails or text messages sent from one of the Planning Center apps. The message group indicates the from person, app, etc.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "uuid",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "message_type",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "from_address",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "subject",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "message_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "system_message",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "transactional_message",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "contains_user_generated_content",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "reply_to_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "reply_to_address",
+          "Type": "string",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "app",
+          "Description": "include associated app",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "from",
+          "Description": "include associated from",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "messages",
+          "Description": "include associated messages",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "contains_user_generated_content",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-contains_user_generated_content) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "from_address",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-from_address) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "message_count",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-message_count) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "message_type",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-message_type) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "reply_to_address",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-reply_to_address) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "reply_to_name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-reply_to_name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "subject",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-subject) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "system_message",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-system_message) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "transactional_message",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-transactional_message) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "uuid",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-uuid) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "contains_user_generated_content",
+          "Parameter": "where[contains_user_generated_content]",
+          "Type": "boolean",
+          "Description": "Query on a specific contains_user_generated_content",
+          "Example": "?where[contains_user_generated_content]=true"
+        },
+        {
+          "Name": "created_at",
+          "Parameter": "where[created_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific created_at",
+          "Example": "?where[created_at]=2000-01-01T12:00:00Z"
+        },
+        {
+          "Name": "from_address",
+          "Parameter": "where[from_address]",
+          "Type": "string",
+          "Description": "Query on a specific from_address",
+          "Example": "?where[from_address]=string"
+        },
+        {
+          "Name": "message_count",
+          "Parameter": "where[message_count]",
+          "Type": "integer",
+          "Description": "Query on a specific message_count",
+          "Example": "?where[message_count]=1"
+        },
+        {
+          "Name": "message_type",
+          "Parameter": "where[message_type]",
+          "Type": "string",
+          "Description": "Query on a specific message_type",
+          "Example": "?where[message_type]=string"
+        },
+        {
+          "Name": "reply_to_address",
+          "Parameter": "where[reply_to_address]",
+          "Type": "string",
+          "Description": "Query on a specific reply_to_address",
+          "Example": "?where[reply_to_address]=string"
+        },
+        {
+          "Name": "reply_to_name",
+          "Parameter": "where[reply_to_name]",
+          "Type": "string",
+          "Description": "Query on a specific reply_to_name",
+          "Example": "?where[reply_to_name]=string"
+        },
+        {
+          "Name": "subject",
+          "Parameter": "where[subject]",
+          "Type": "string",
+          "Description": "Query on a specific subject",
+          "Example": "?where[subject]=string"
+        },
+        {
+          "Name": "system_message",
+          "Parameter": "where[system_message]",
+          "Type": "boolean",
+          "Description": "Query on a specific system_message",
+          "Example": "?where[system_message]=true"
+        },
+        {
+          "Name": "transactional_message",
+          "Parameter": "where[transactional_message]",
+          "Type": "boolean",
+          "Description": "Query on a specific transactional_message",
+          "Example": "?where[transactional_message]=true"
+        },
+        {
+          "Name": "uuid",
+          "Parameter": "where[uuid]",
+          "Type": "string",
+          "Description": "Query on a specific uuid",
+          "Example": "?where[uuid]=string"
+        }
+      ]
+    },
+    {
+      "Id": "name_prefix",
+      "Name": "NamePrefix",
+      "Description": "A name prefix is one of Mr., Mrs., etc.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "value",
+          "Type": "string",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "value",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-value) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "value",
+          "Parameter": "where[value]",
+          "Type": "string",
+          "Description": "Query on a specific value",
+          "Example": "?where[value]=string"
+        }
+      ]
+    },
+    {
+      "Id": "name_suffix",
+      "Name": "NameSuffix",
+      "Description": "A name suffix is one of Sr., Jr., etc.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "value",
+          "Type": "string",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "value",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-value) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "value",
+          "Parameter": "where[value]",
+          "Type": "string",
+          "Description": "Query on a specific value",
+          "Example": "?where[value]=string"
+        }
+      ]
+    },
+    {
+      "Id": "note",
+      "Name": "Note",
+      "Description": "A note is text with a category connected to a person\u2019s profile.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "note",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "display_date",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "note_category_id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "organization_id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "person_id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "created_by_id",
+          "Type": "primary_key",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "note_category",
+          "Type": "NoteCategory",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "organization",
+          "Type": "Organization",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "person",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "created_by",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "category",
+          "Description": "include associated category",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "created_by",
+          "Description": "include associated created_by",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "person",
+          "Description": "include associated person",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "display_date",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-display_date) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "id",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-id) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "note",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-note) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "note_category_id",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-note_category_id) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "note",
+          "Parameter": "where[note]",
+          "Type": "string",
+          "Description": "Query on a specific note",
+          "Example": "?where[note]=string"
+        },
+        {
+          "Name": "note_category_id",
+          "Parameter": "where[note_category_id]",
+          "Type": "primary_key",
+          "Description": "Query on a specific note_category_id",
+          "Example": "?where[note_category_id]=primary_key"
+        }
+      ]
+    },
+    {
+      "Id": "note_category",
+      "Name": "NoteCategory",
+      "Description": "A Note Category",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "locked",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "organization_id",
+          "Type": "primary_key",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "organization",
+          "Type": "Organization",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "shares",
+          "Description": "include associated shares",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "subscribers",
+          "Description": "include associated subscribers",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "subscriptions",
+          "Description": "include associated subscriptions",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "locked",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-locked) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "organization_id",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-organization_id) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "created_at",
+          "Parameter": "where[created_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific created_at",
+          "Example": "?where[created_at]=2000-01-01T12:00:00Z"
+        },
+        {
+          "Name": "locked",
+          "Parameter": "where[locked]",
+          "Type": "boolean",
+          "Description": "Query on a specific locked",
+          "Example": "?where[locked]=true"
+        },
+        {
+          "Name": "name",
+          "Parameter": "where[name]",
+          "Type": "string",
+          "Description": "Query on a specific name",
+          "Example": "?where[name]=string"
+        },
+        {
+          "Name": "organization_id",
+          "Parameter": "where[organization_id]",
+          "Type": "primary_key",
+          "Description": "Query on a specific organization_id",
+          "Example": "?where[organization_id]=primary_key"
+        },
+        {
+          "Name": "updated_at",
+          "Parameter": "where[updated_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific updated_at",
+          "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
+        }
+      ]
+    },
+    {
+      "Id": "note_category_share",
+      "Name": "NoteCategoryShare",
+      "Description": "A note category share defines who can view notes in a category.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "group",
+          "Type": "string",
+          "Description": "Possible values: \u0060No Access\u0060, \u0060Viewer\u0060, \u0060Editor\u0060, or \u0060Manager\u0060"
+        },
+        {
+          "Name": "permission",
+          "Type": "string",
+          "Description": "Possible values: \u0060view\u0060, \u0060view_create\u0060, or \u0060manage\u0060"
+        },
+        {
+          "Name": "person_id",
+          "Type": "primary_key",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "person",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "note_category",
+          "Type": "NoteCategory",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "person",
+          "Description": "include associated person",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        }
+      ],
+      "CanOrderBy": [],
+      "CanQueryBy": [
+        {
+          "Name": "permission",
+          "Parameter": "where[permission]",
+          "Type": "string",
+          "Description": "Query on a specific permission\n\nPossible values: \u0060view\u0060, \u0060view_create\u0060, or \u0060manage\u0060",
+          "Example": "?where[permission]=value"
+        }
+      ]
+    },
+    {
+      "Id": "note_category_subscription",
+      "Name": "NoteCategorySubscription",
+      "Description": "A subscription for note categories",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "person",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "note_category",
+          "Type": "NoteCategory",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "person",
+          "Description": "include associated person",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "created_at",
+          "Parameter": "where[created_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific created_at",
+          "Example": "?where[created_at]=2000-01-01T12:00:00Z"
+        },
+        {
+          "Name": "updated_at",
+          "Parameter": "where[updated_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific updated_at",
+          "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
+        }
+      ]
+    },
+    {
+      "Id": "organization",
+      "Name": "Organization",
+      "Description": "The organization represents a single church. Every other resource is scoped to this record.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "country_code",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "date_format",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "time_zone",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "contact_website",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "avatar_url",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "church_center_subdomain",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "grades",
+          "Type": "array",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "organization_statistics",
+      "Name": "OrganizationStatistics",
+      "Description": "Returns statistics for the organization.",
+      "Deprecated": false,
+      "CollectionOnly": true,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "people_import",
+      "Name": "PeopleImport",
+      "Description": "A PeopleImport is a record of an ongoing or previous import from a CSV file.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "attribs",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "status",
+          "Type": "string",
+          "Description": "Possible values: \u0060matching\u0060, \u0060processing_preview\u0060, \u0060previewing\u0060, \u0060processing_import\u0060, \u0060complete\u0060, \u0060undone\u0060, or \u0060undoing\u0060"
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "processed_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "undone_at",
+          "Type": "date_time",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "created_by",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "undone_by",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": [
+        {
+          "Name": "status",
+          "Parameter": "where[status]",
+          "Type": "string",
+          "Description": "Query on a specific status\n\nPossible values: \u0060matching\u0060, \u0060processing_preview\u0060, \u0060previewing\u0060, \u0060processing_import\u0060, \u0060complete\u0060, \u0060undone\u0060, or \u0060undoing\u0060",
+          "Example": "?where[status]=value"
+        }
+      ]
+    },
+    {
+      "Id": "people_import_conflict",
+      "Name": "PeopleImportConflict",
+      "Description": "A PeopleImportConflict is a record of change that will occur if the parent PeopleImport is completed.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "kind",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "message",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "data",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "conflicting_changes",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "ignore",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": [
+        {
+          "Name": "kind",
+          "Parameter": "where[kind]",
+          "Type": "string",
+          "Description": "Query on a specific kind",
+          "Example": "?where[kind]=string"
+        },
+        {
+          "Name": "name",
+          "Parameter": "where[name]",
+          "Type": "string",
+          "Description": "Query on a specific name",
+          "Example": "?where[name]=string"
+        }
+      ]
+    },
+    {
+      "Id": "people_import_history",
+      "Name": "PeopleImportHistory",
+      "Description": "A PeopleImportHistory is a record of change that occurred when the parent PeopleImport was completed.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "conflicting_changes",
+          "Type": "hash",
+          "Description": null
+        },
+        {
+          "Name": "kind",
+          "Type": "string",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "household",
+          "Description": "include associated household",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "person",
+          "Description": "include associated person",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        }
+      ],
+      "CanOrderBy": [],
+      "CanQueryBy": [
+        {
+          "Name": "name",
+          "Parameter": "where[name]",
+          "Type": "string",
+          "Description": "Query on a specific name",
+          "Example": "?where[name]=string"
+        }
+      ]
+    },
+    {
+      "Id": "person",
+      "Name": "Person",
+      "Description": "A person record represents a single member/user of the application. Each person has different permissions that determine how the user can use this app (if at all).",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "avatar",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "first_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "last_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "demographic_avatar_url",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "status",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "remote_id",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "accounting_administrator",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "anniversary",
+          "Type": "date",
+          "Description": null
+        },
+        {
+          "Name": "birthdate",
+          "Type": "date",
+          "Description": null
+        },
+        {
+          "Name": "child",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "given_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "grade",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "graduation_year",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "middle_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "nickname",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "people_permissions",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "site_administrator",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "gender",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "inactivated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "medical_notes",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "membership",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "can_create_forms",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "can_email_lists",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "directory_shared_info",
+          "Type": "json",
+          "Description": "Only available when requested with the \u0060?fields\u0060 param"
+        },
+        {
+          "Name": "directory_status",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "passed_background_check",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "resource_permission_flags",
+          "Type": "json",
+          "Description": null
+        },
+        {
+          "Name": "school_type",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "login_identifier",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "mfa_configured",
+          "Type": "boolean",
+          "Description": "Only available when requested with the \u0060?fields\u0060 param"
+        },
+        {
+          "Name": "stripe_customer_identifier",
+          "Type": "string",
+          "Description": "Only available when requested with the \u0060?fields\u0060 param"
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "primary_campus",
+          "Type": "PrimaryCampus",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "created_by",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "gender",
+          "Type": "Gender",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "addresses",
+          "Description": "include associated addresses",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "emails",
+          "Description": "include associated emails",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "field_data",
+          "Description": "include associated field_data",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "households",
+          "Description": "include associated households",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "inactive_reason",
+          "Description": "include associated inactive_reason",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "marital_status",
+          "Description": "include associated marital_status",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "name_prefix",
+          "Description": "include associated name_prefix",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "name_suffix",
+          "Description": "include associated name_suffix",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "organization",
+          "Description": "include associated organization",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "person_apps",
+          "Description": "include associated person_apps",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "phone_numbers",
+          "Description": "include associated phone_numbers",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "platform_notifications",
+          "Description": "include associated platform_notifications",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "primary_campus",
+          "Description": "include associated primary_campus",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "school",
+          "Description": "include associated school",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "social_profiles",
+          "Description": "include associated social_profiles",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "accounting_administrator",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-accounting_administrator) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "anniversary",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-anniversary) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "birthdate",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-birthdate) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "child",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-child) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "first_name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-first_name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "gender",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-gender) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "given_name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-given_name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "grade",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-grade) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "graduation_year",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-graduation_year) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "inactivated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-inactivated_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "last_name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-last_name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "membership",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-membership) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "middle_name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-middle_name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "nickname",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-nickname) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "people_permissions",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-people_permissions) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "remote_id",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-remote_id) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "site_administrator",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-site_administrator) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "status",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-status) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "accounting_administrator",
+          "Parameter": "where[accounting_administrator]",
+          "Type": "boolean",
+          "Description": "Query on a specific accounting_administrator",
+          "Example": "?where[accounting_administrator]=true"
+        },
+        {
+          "Name": "anniversary",
+          "Parameter": "where[anniversary]",
+          "Type": "date",
+          "Description": "Query on a specific anniversary",
+          "Example": "?where[anniversary]=2000-01-01"
+        },
+        {
+          "Name": "birthdate",
+          "Parameter": "where[birthdate]",
+          "Type": "date",
+          "Description": "Query on a specific birthdate",
+          "Example": "?where[birthdate]=2000-01-01"
+        },
+        {
+          "Name": "child",
+          "Parameter": "where[child]",
+          "Type": "boolean",
+          "Description": "Query on a specific child",
+          "Example": "?where[child]=true"
+        },
+        {
+          "Name": "created_at",
+          "Parameter": "where[created_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific created_at",
+          "Example": "?where[created_at]=2000-01-01T12:00:00Z"
+        },
+        {
+          "Name": "first_name",
+          "Parameter": "where[first_name]",
+          "Type": "string",
+          "Description": "Query on a specific first_name",
+          "Example": "?where[first_name]=string"
+        },
+        {
+          "Name": "gender",
+          "Parameter": "where[gender]",
+          "Type": "string",
+          "Description": "Query on a specific gender",
+          "Example": "?where[gender]=string"
+        },
+        {
+          "Name": "given_name",
+          "Parameter": "where[given_name]",
+          "Type": "string",
+          "Description": "Query on a specific given_name",
+          "Example": "?where[given_name]=string"
+        },
+        {
+          "Name": "grade",
+          "Parameter": "where[grade]",
+          "Type": "integer",
+          "Description": "Query on a specific grade",
+          "Example": "?where[grade]=1"
+        },
+        {
+          "Name": "graduation_year",
+          "Parameter": "where[graduation_year]",
+          "Type": "integer",
+          "Description": "Query on a specific graduation_year",
+          "Example": "?where[graduation_year]=1"
+        },
+        {
+          "Name": "id",
+          "Parameter": "where[id]",
+          "Type": "primary_key",
+          "Description": "Query on a specific id",
+          "Example": "?where[id]=primary_key"
+        },
+        {
+          "Name": "inactivated_at",
+          "Parameter": "where[inactivated_at]",
+          "Type": "date_time",
+          "Description": "Set to an ISO 8601 date or time to make the profile inactive. Set to \u0022null\u0022 to reactivate the profile.",
+          "Example": "?where[inactivated_at]=2000-01-01T12:00:00Z"
+        },
+        {
+          "Name": "last_name",
+          "Parameter": "where[last_name]",
+          "Type": "string",
+          "Description": "Query on a specific last_name",
+          "Example": "?where[last_name]=string"
+        },
+        {
+          "Name": "medical_notes",
+          "Parameter": "where[medical_notes]",
+          "Type": "string",
+          "Description": "Query on a specific medical_notes",
+          "Example": "?where[medical_notes]=string"
+        },
+        {
+          "Name": "membership",
+          "Parameter": "where[membership]",
+          "Type": "string",
+          "Description": "Query on a specific membership",
+          "Example": "?where[membership]=string"
+        },
+        {
+          "Name": "mfa_configured",
+          "Parameter": "where[mfa_configured]",
+          "Type": "boolean",
+          "Description": "Set to \u0022true\u0022 or \u0022false\u0022 to filter. Can only be viewed and queried by an Organization Administrator.",
+          "Example": "?where[mfa_configured]=true"
+        },
+        {
+          "Name": "middle_name",
+          "Parameter": "where[middle_name]",
+          "Type": "string",
+          "Description": "Query on a specific middle_name",
+          "Example": "?where[middle_name]=string"
+        },
+        {
+          "Name": "nickname",
+          "Parameter": "where[nickname]",
+          "Type": "string",
+          "Description": "Query on a specific nickname",
+          "Example": "?where[nickname]=string"
+        },
+        {
+          "Name": "people_permissions",
+          "Parameter": "where[people_permissions]",
+          "Type": "string",
+          "Description": "Query on a specific people_permissions",
+          "Example": "?where[people_permissions]=string"
+        },
+        {
+          "Name": "primary_campus_id",
+          "Parameter": "where[primary_campus_id]",
+          "Type": "integer",
+          "Description": "Query on a related primary_campus",
+          "Example": "?where[primary_campus_id]=1"
+        },
+        {
+          "Name": "remote_id",
+          "Parameter": "where[remote_id]",
+          "Type": "integer",
+          "Description": "Query on a specific remote_id",
+          "Example": "?where[remote_id]=1"
+        },
+        {
+          "Name": "search_name",
+          "Parameter": "where[search_name]",
+          "Type": "string",
+          "Description": "Query on a specific search_name",
+          "Example": "?where[search_name]=string"
+        },
+        {
+          "Name": "search_name_or_email",
+          "Parameter": "where[search_name_or_email]",
+          "Type": "string",
+          "Description": "Query on a specific search_name_or_email",
+          "Example": "?where[search_name_or_email]=string"
+        },
+        {
+          "Name": "search_name_or_email_or_phone_number",
+          "Parameter": "where[search_name_or_email_or_phone_number]",
+          "Type": "string",
+          "Description": "Query on a specific search_name_or_email_or_phone_number",
+          "Example": "?where[search_name_or_email_or_phone_number]=string"
+        },
+        {
+          "Name": "search_phone_number",
+          "Parameter": "where[search_phone_number]",
+          "Type": "string",
+          "Description": "Query on a specific search_phone_number",
+          "Example": "?where[search_phone_number]=string"
+        },
+        {
+          "Name": "search_phone_number_e164",
+          "Parameter": "where[search_phone_number_e164]",
+          "Type": "string",
+          "Description": "Query on a specific search_phone_number_e164",
+          "Example": "?where[search_phone_number_e164]=string"
+        },
+        {
+          "Name": "site_administrator",
+          "Parameter": "where[site_administrator]",
+          "Type": "boolean",
+          "Description": "Query on a specific site_administrator",
+          "Example": "?where[site_administrator]=true"
+        },
+        {
+          "Name": "status",
+          "Parameter": "where[status]",
+          "Type": "string",
+          "Description": "Set to \u0022inactive\u0022 to set \u0022inactivated_at\u0022 to the current time and make the profile inactive. Set to anything else to clear \u0022inactivated_at\u0022 and reactivate the profile.",
+          "Example": "?where[status]=string"
+        },
+        {
+          "Name": "updated_at",
+          "Parameter": "where[updated_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific updated_at",
+          "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
+        }
+      ]
+    },
+    {
+      "Id": "person_app",
+      "Name": "PersonApp",
+      "Description": "A Person App is the relationship between a Person and an App.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "allow_pco_login",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "people_permissions",
+          "Type": "string",
+          "Description": "Possible values: \u0060no_access\u0060, \u0060viewer\u0060, or \u0060editor\u0060"
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "app",
+          "Type": "App",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "person",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "app",
+          "Description": "include associated app",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        }
+      ],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "person_merger",
+      "Name": "PersonMerger",
+      "Description": "A Person Merger is the history of profiles that were merged into other profiles.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "person_to_keep_id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "person_to_remove_id",
+          "Type": "primary_key",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "person_to_keep",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "person_to_remove",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "created_at",
+          "Parameter": "where[created_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific created_at",
+          "Example": "?where[created_at]=2000-01-01T12:00:00Z"
+        },
+        {
+          "Name": "person_to_keep_id",
+          "Parameter": "where[person_to_keep_id]",
+          "Type": "primary_key",
+          "Description": "Query on a specific person_to_keep_id",
+          "Example": "?where[person_to_keep_id]=primary_key"
+        },
+        {
+          "Name": "person_to_remove_id",
+          "Parameter": "where[person_to_remove_id]",
+          "Type": "primary_key",
+          "Description": "Query on a specific person_to_remove_id",
+          "Example": "?where[person_to_remove_id]=primary_key"
+        }
+      ]
+    },
+    {
+      "Id": "phone_number",
+      "Name": "PhoneNumber",
+      "Description": "A phone number represents a single telephone number and location.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "number",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "carrier",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "location",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "primary",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "e164",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "international",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "national",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "country_code",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "formatted_number",
+          "Type": "string",
+          "Description": "Only available when requested with the \u0060?fields\u0060 param"
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "person",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "carrier",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-carrier) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "location",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-location) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "number",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-number) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "primary",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-primary) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "carrier",
+          "Parameter": "where[carrier]",
+          "Type": "string",
+          "Description": "Query on a specific carrier",
+          "Example": "?where[carrier]=string"
+        },
+        {
+          "Name": "created_at",
+          "Parameter": "where[created_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific created_at",
+          "Example": "?where[created_at]=2000-01-01T12:00:00Z"
+        },
+        {
+          "Name": "location",
+          "Parameter": "where[location]",
+          "Type": "string",
+          "Description": "Query on a specific location",
+          "Example": "?where[location]=string"
+        },
+        {
+          "Name": "number",
+          "Parameter": "where[number]",
+          "Type": "string",
+          "Description": "Query on a specific number",
+          "Example": "?where[number]=string"
+        },
+        {
+          "Name": "primary",
+          "Parameter": "where[primary]",
+          "Type": "boolean",
+          "Description": "Query on a specific primary",
+          "Example": "?where[primary]=true"
+        },
+        {
+          "Name": "updated_at",
+          "Parameter": "where[updated_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific updated_at",
+          "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
+        }
+      ]
+    },
+    {
+      "Id": "platform_notification",
+      "Name": "PlatformNotification",
+      "Description": "A Platform Notification is a suite-wide notification that shows at the top of each application\u0027s screen until dismissed by the user.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "html",
+          "Type": "string",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "report",
+      "Name": "Report",
+      "Description": "A report is editable liquid syntax that provides a powerful tool for presenting your Lists however you want.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "body",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "created_by",
+          "Description": "include associated created_by",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "updated_by",
+          "Description": "include associated updated_by",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "body",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-body) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "body",
+          "Parameter": "where[body]",
+          "Type": "string",
+          "Description": "Query on a specific body",
+          "Example": "?where[body]=string"
+        },
+        {
+          "Name": "created_at",
+          "Parameter": "where[created_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific created_at",
+          "Example": "?where[created_at]=2000-01-01T12:00:00Z"
+        },
+        {
+          "Name": "name",
+          "Parameter": "where[name]",
+          "Type": "string",
+          "Description": "Query on a specific name",
+          "Example": "?where[name]=string"
+        },
+        {
+          "Name": "updated_at",
+          "Parameter": "where[updated_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific updated_at",
+          "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
+        }
+      ]
+    },
+    {
+      "Id": "rule",
+      "Name": "Rule",
+      "Description": "A rule belongs to a List and groups conditions together.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "subset",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "conditions",
+          "Description": "include associated conditions",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "subset",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-subset) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "created_at",
+          "Parameter": "where[created_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific created_at",
+          "Example": "?where[created_at]=2000-01-01T12:00:00Z"
+        },
+        {
+          "Name": "subset",
+          "Parameter": "where[subset]",
+          "Type": "string",
+          "Description": "Query on a specific subset",
+          "Example": "?where[subset]=string"
+        },
+        {
+          "Name": "updated_at",
+          "Parameter": "where[updated_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific updated_at",
+          "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
+        }
+      ]
+    },
+    {
+      "Id": "school_option",
+      "Name": "SchoolOption",
+      "Description": "A school option represents a school name, school type, grades, etc. and can be selected for a person.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "value",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "sequence",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "beginning_grade",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "ending_grade",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "school_types",
+          "Type": "array",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "beginning_grade",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-beginning_grade) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "ending_grade",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-ending_grade) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "sequence",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-sequence) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "value",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-value) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "beginning_grade",
+          "Parameter": "where[beginning_grade]",
+          "Type": "string",
+          "Description": "Query on a specific beginning_grade",
+          "Example": "?where[beginning_grade]=string"
+        },
+        {
+          "Name": "ending_grade",
+          "Parameter": "where[ending_grade]",
+          "Type": "string",
+          "Description": "Query on a specific ending_grade",
+          "Example": "?where[ending_grade]=string"
+        },
+        {
+          "Name": "school_types",
+          "Parameter": "where[school_types]",
+          "Type": "array",
+          "Description": "Query on a specific school_types",
+          "Example": "?where[school_types]=[]"
+        },
+        {
+          "Name": "sequence",
+          "Parameter": "where[sequence]",
+          "Type": "integer",
+          "Description": "Query on a specific sequence",
+          "Example": "?where[sequence]=1"
+        },
+        {
+          "Name": "value",
+          "Parameter": "where[value]",
+          "Type": "string",
+          "Description": "Query on a specific value",
+          "Example": "?where[value]=string"
+        }
+      ]
+    },
+    {
+      "Id": "service_time",
+      "Name": "ServiceTime",
+      "Description": "A ServiceTime Resource",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "start_time",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "day",
+          "Type": "string",
+          "Description": "Possible values: \u0060sunday\u0060, \u0060monday\u0060, \u0060tuesday\u0060, \u0060wednesday\u0060, \u0060thursday\u0060, \u0060friday\u0060, or \u0060saturday\u0060"
+        },
+        {
+          "Name": "description",
+          "Type": "string",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "organization",
+          "Type": "Organization",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "campus",
+          "Type": "Campus",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "time",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-time) to reverse the order"
+        }
+      ],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "social_profile",
+      "Name": "SocialProfile",
+      "Description": "A social profile represents a members\u0027s Twitter, Facebook, or other social media account.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "site",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "url",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "verified",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "person",
+          "Description": "include associated person",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "site",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-site) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "url",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-url) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "verified",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-verified) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "created_at",
+          "Parameter": "where[created_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific created_at",
+          "Example": "?where[created_at]=2000-01-01T12:00:00Z"
+        },
+        {
+          "Name": "site",
+          "Parameter": "where[site]",
+          "Type": "string",
+          "Description": "Query on a specific site",
+          "Example": "?where[site]=string"
+        },
+        {
+          "Name": "updated_at",
+          "Parameter": "where[updated_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific updated_at",
+          "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
+        },
+        {
+          "Name": "url",
+          "Parameter": "where[url]",
+          "Type": "string",
+          "Description": "Query on a specific url",
+          "Example": "?where[url]=string"
+        },
+        {
+          "Name": "verified",
+          "Parameter": "where[verified]",
+          "Type": "boolean",
+          "Description": "Query on a specific verified",
+          "Example": "?where[verified]=true"
+        }
+      ]
+    },
+    {
+      "Id": "spam_email_address",
+      "Name": "SpamEmailAddress",
+      "Description": "An email address that is marked as spam",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "address",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "tab",
+      "Name": "Tab",
+      "Description": "A tab is a custom tab and groups like field definitions.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "sequence",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "slug",
+          "Type": "string",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "field_definitions",
+          "Description": "include associated field_definitions",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "field_options",
+          "Description": "include associated field_options",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "sequence",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-sequence) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "slug",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-slug) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "name",
+          "Parameter": "where[name]",
+          "Type": "string",
+          "Description": "Query on a specific name",
+          "Example": "?where[name]=string"
+        },
+        {
+          "Name": "sequence",
+          "Parameter": "where[sequence]",
+          "Type": "integer",
+          "Description": "Query on a specific sequence",
+          "Example": "?where[sequence]=1"
+        },
+        {
+          "Name": "slug",
+          "Parameter": "where[slug]",
+          "Type": "string",
+          "Description": "Query on a specific slug",
+          "Example": "?where[slug]=string"
+        }
+      ]
+    },
+    {
+      "Id": "workflow",
+      "Name": "Workflow",
+      "Description": "A Workflow",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "my_ready_card_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "total_ready_card_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "completed_card_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "total_cards_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "total_ready_and_snoozed_card_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "total_steps_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "total_unassigned_steps_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "total_unassigned_card_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "total_overdue_card_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "deleted_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "archived_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "campus_id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "workflow_category_id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "my_overdue_card_count",
+          "Type": "integer",
+          "Description": "Only available when requested with the \u0060?fields\u0060 param"
+        },
+        {
+          "Name": "my_due_soon_card_count",
+          "Type": "integer",
+          "Description": "Only available when requested with the \u0060?fields\u0060 param"
+        },
+        {
+          "Name": "recently_viewed",
+          "Type": "boolean",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "workflow_category",
+          "Type": "WorkflowCategory",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "campus",
+          "Type": "Campus",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "category",
+          "Description": "include associated category",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "shares",
+          "Description": "include associated shares",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "steps",
+          "Description": "include associated steps",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "archived_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-archived_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "campus_id",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-campus_id) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "deleted_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-deleted_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "workflow_category_id",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-workflow_category_id) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "archived_at",
+          "Parameter": "where[archived_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific archived_at",
+          "Example": "?where[archived_at]=2000-01-01T12:00:00Z"
+        },
+        {
+          "Name": "campus_id",
+          "Parameter": "where[campus_id]",
+          "Type": "primary_key",
+          "Description": "Query on a specific campus_id",
+          "Example": "?where[campus_id]=primary_key"
+        },
+        {
+          "Name": "created_at",
+          "Parameter": "where[created_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific created_at",
+          "Example": "?where[created_at]=2000-01-01T12:00:00Z"
+        },
+        {
+          "Name": "deleted_at",
+          "Parameter": "where[deleted_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific deleted_at",
+          "Example": "?where[deleted_at]=2000-01-01T12:00:00Z"
+        },
+        {
+          "Name": "id",
+          "Parameter": "where[id]",
+          "Type": "primary_key",
+          "Description": "Query on a specific id",
+          "Example": "?where[id]=primary_key"
+        },
+        {
+          "Name": "name",
+          "Parameter": "where[name]",
+          "Type": "string",
+          "Description": "Query on a specific name",
+          "Example": "?where[name]=string"
+        },
+        {
+          "Name": "updated_at",
+          "Parameter": "where[updated_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific updated_at",
+          "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
+        },
+        {
+          "Name": "workflow_category_id",
+          "Parameter": "where[workflow_category_id]",
+          "Type": "primary_key",
+          "Description": "Query on a specific workflow_category_id",
+          "Example": "?where[workflow_category_id]=primary_key"
+        }
+      ]
+    },
+    {
+      "Id": "workflow_card",
+      "Name": "WorkflowCard",
+      "Description": "A Card",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "snooze_until",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "overdue",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "stage",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "calculated_due_at_in_days_ago",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "sticky_assignment",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "completed_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "flagged_for_notification_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "removed_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "moved_to_step_at",
+          "Type": "date_time",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "assignee",
+          "Type": "Assignee",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "person",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "workflow",
+          "Type": "Workflow",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "current_step",
+          "Type": "WorkflowStep",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "assignee",
+          "Description": "include associated assignee",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "current_step",
+          "Description": "include associated current_step",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "person",
+          "Description": "include associated person",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "workflow",
+          "Description": "include associated workflow",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "completed_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-completed_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "first_name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-first_name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "flagged_for_notification_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-flagged_for_notification_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "last_name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-last_name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "moved_to_step_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-moved_to_step_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "removed_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-removed_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "stage",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-stage) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "assignee_id",
+          "Parameter": "where[assignee_id]",
+          "Type": "integer",
+          "Description": "Query on a related assignee",
+          "Example": "?where[assignee_id]=1"
+        },
+        {
+          "Name": "overdue",
+          "Parameter": "where[overdue]",
+          "Type": "boolean",
+          "Description": "Query on a specific overdue",
+          "Example": "?where[overdue]=true"
+        },
+        {
+          "Name": "stage",
+          "Parameter": "where[stage]",
+          "Type": "string",
+          "Description": "Query on a specific stage",
+          "Example": "?where[stage]=string"
+        }
+      ]
+    },
+    {
+      "Id": "workflow_card_activity",
+      "Name": "WorkflowCardActivity",
+      "Description": "Workflow Card Activity is a record of an action performed on a card",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "comment",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "content",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "form_submission_url",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "automation_url",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "person_avatar_url",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "person_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "reassigned_to_avatar_url",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "reassigned_to_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "subject",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "type",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "content_is_html",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "workflow_card",
+          "Type": "WorkflowCard",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "workflow_step",
+          "Type": "WorkflowStep",
+          "AssociationType": "to_one",
+          "Note": "Only available when \u0060type\u0060 attribute is \u0060completion\u0060, \u0060skip\u0060, or \u0060reversal\u0060."
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "id",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-id) to reverse the order"
+        }
+      ],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "workflow_card_note",
+      "Name": "WorkflowCardNote",
+      "Description": "Workflow Note is a note that has been made on a Workflow Card",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "note",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "note_category",
+          "Type": "NoteCategory",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        }
+      ],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "workflow_category",
+      "Name": "WorkflowCategory",
+      "Description": "A Workflow Category",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "created_at",
+          "Parameter": "where[created_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific created_at",
+          "Example": "?where[created_at]=2000-01-01T12:00:00Z"
+        },
+        {
+          "Name": "name",
+          "Parameter": "where[name]",
+          "Type": "string",
+          "Description": "Query on a specific name",
+          "Example": "?where[name]=string"
+        },
+        {
+          "Name": "updated_at",
+          "Parameter": "where[updated_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific updated_at",
+          "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
+        }
+      ]
+    },
+    {
+      "Id": "workflow_share",
+      "Name": "WorkflowShare",
+      "Description": "A workflow share defines who can access a workflow.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "group",
+          "Type": "string",
+          "Description": "Possible values: \u0060No Access\u0060, \u0060Viewer\u0060, \u0060Editor\u0060, or \u0060Manager\u0060"
+        },
+        {
+          "Name": "permission",
+          "Type": "string",
+          "Description": "Possible values: \u0060view\u0060, \u0060manage_cards\u0060, or \u0060manage\u0060"
+        },
+        {
+          "Name": "person_id",
+          "Type": "primary_key",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "person",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "workflow",
+          "Type": "Workflow",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "person",
+          "Description": "include associated person",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        }
+      ],
+      "CanOrderBy": [],
+      "CanQueryBy": [
+        {
+          "Name": "permission",
+          "Parameter": "where[permission]",
+          "Type": "string",
+          "Description": "Query on a specific permission\n\nPossible values: \u0060view\u0060, \u0060manage_cards\u0060, or \u0060manage\u0060",
+          "Example": "?where[permission]=value"
+        }
+      ]
+    },
+    {
+      "Id": "workflow_step",
+      "Name": "WorkflowStep",
+      "Description": "A Step",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "sequence",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "description",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "expected_response_time_in_days",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "auto_snooze_value",
+          "Type": "integer",
+          "Description": "Must be a positive number"
+        },
+        {
+          "Name": "auto_snooze_interval",
+          "Type": "string",
+          "Description": "Valid values are \u0060day\u0060, \u0060week\u0060, or \u0060month\u0060\n\nPossible values: \u0060day\u0060, \u0060week\u0060, or \u0060month\u0060"
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "auto_snooze_days",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "my_ready_card_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "total_ready_card_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "default_assignee_id",
+          "Type": "primary_key",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "default_assignee",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "workflow",
+          "Type": "Workflow",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "default_assignee",
+          "Description": "include associated default_assignee",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "sequence",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-sequence) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "created_at",
+          "Parameter": "where[created_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific created_at",
+          "Example": "?where[created_at]=2000-01-01T12:00:00Z"
+        },
+        {
+          "Name": "name",
+          "Parameter": "where[name]",
+          "Type": "string",
+          "Description": "Query on a specific name",
+          "Example": "?where[name]=string"
+        },
+        {
+          "Name": "updated_at",
+          "Parameter": "where[updated_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific updated_at",
+          "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
+        }
+      ]
+    },
+    {
+      "Id": "workflow_step_assignee_summary",
+      "Name": "WorkflowStepAssigneeSummary",
+      "Description": "The ready and snoozed count for an assignee \u0026 step",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "ready_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "snoozed_count",
+          "Type": "integer",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "person",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "step",
+          "Type": "Step",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "person",
+          "Description": "include associated person",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        }
+      ],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    }
+  ]
+}

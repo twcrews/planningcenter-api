@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace Crews.PlanningCenter.Api.DocParser.Models.Incoming;
 
-internal class Relationship
+class Relationship
 {
   [JsonPropertyName("association")]
   public required string Association { get; set; }

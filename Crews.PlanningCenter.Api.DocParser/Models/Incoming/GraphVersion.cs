@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace Crews.PlanningCenter.Api.DocParser.Models.Incoming;
 
-internal class GraphVersion : Graph 
+class GraphVersion : Graph 
 {
   [JsonPropertyName("beta")]
   public bool Beta { get; set; }

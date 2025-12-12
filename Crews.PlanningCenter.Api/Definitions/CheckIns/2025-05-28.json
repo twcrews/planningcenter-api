@@ -1,0 +1,2102 @@
+{
+  "Id": "2025-05-28",
+  "Beta": false,
+  "Details": "Querying by registration event id now queries for new Registrations integrations",
+  "Resources": [
+    {
+      "Id": "attendance_type",
+      "Name": "AttendanceType",
+      "Description": "A kind of attendee which is tracked by _headcount_, not by check-in.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "color",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "limit",
+          "Type": "integer",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "event",
+          "Type": "Event",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "event",
+          "Description": "include associated event",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        }
+      ],
+      "CanOrderBy": [],
+      "CanQueryBy": [
+        {
+          "Name": "id",
+          "Parameter": "where[id]",
+          "Type": "primary_key",
+          "Description": "Query on a specific id",
+          "Example": "?where[id]=primary_key"
+        },
+        {
+          "Name": "name",
+          "Parameter": "where[name]",
+          "Type": "string",
+          "Description": "Query on a specific name",
+          "Example": "?where[name]=string"
+        }
+      ]
+    },
+    {
+      "Id": "check_in",
+      "Name": "CheckIn",
+      "Description": "An attendance record for an event.\n\nIf someone was checked out, \u0060checked_out_at\u0060 will be present.\n\nYou can scope check-ins in a few ways:\n\n- \u0060regular\u0060s, \u0060guest\u0060s, and \u0060volunteer\u0060s correspond to the option selected when checking in.\n- \u0060attendee\u0060s are \u0060regular\u0060s and \u0060guest\u0060s together.\n- \u0060one_time_guest\u0060s are check-ins which were created without a corresponding person record.\n- \u0060not_one_time_guest\u0060s are check-ins which had a corresponding person record when they were created.\n- \u0060checked_out\u0060 are check-ins where \u0060checked_out_at\u0060 is present (meaning they were checked out from a station).\n- \u0060first_time\u0060s are check-ins which are the person\u0027s first for a given event. (Label-only visitors are not included here.)\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "first_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "last_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "medical_notes",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "number",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "security_code",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "checked_out_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "confirmed_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "emergency_contact_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "emergency_contact_phone_number",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "one_time_guest",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "kind",
+          "Type": "string",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "event_period",
+          "Type": "EventPeriod",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "person",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "check_in_times",
+          "Description": "include associated check_in_times",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "checked_in_at",
+          "Description": "include associated checked_in_at",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "checked_in_by",
+          "Description": "include associated checked_in_by",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "checked_out_by",
+          "Description": "include associated checked_out_by",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "event",
+          "Description": "include associated event",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "event_period",
+          "Description": "include associated event_period",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "event_times",
+          "Description": "include associated event_times",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "locations",
+          "Description": "include associated locations",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "options",
+          "Description": "include associated options",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "person",
+          "Description": "include associated person",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "checked_out_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-checked_out_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "first_name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-first_name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "last_name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-last_name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "number",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-number) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "account_center_person_id",
+          "Parameter": "where[account_center_person_id]",
+          "Type": "integer",
+          "Description": "Query on a related person",
+          "Example": "?where[account_center_person_id]=1"
+        },
+        {
+          "Name": "created_at",
+          "Parameter": "where[created_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific created_at",
+          "Example": "?where[created_at]=2000-01-01T12:00:00Z"
+        },
+        {
+          "Name": "security_code",
+          "Parameter": "where[security_code]",
+          "Type": "string",
+          "Description": "Query on a specific security_code",
+          "Example": "?where[security_code]=string"
+        },
+        {
+          "Name": "updated_at",
+          "Parameter": "where[updated_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific updated_at",
+          "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
+        }
+      ]
+    },
+    {
+      "Id": "check_in_group",
+      "Name": "CheckInGroup",
+      "Description": "When one or more people check in, they\u0027re grouped in a \u0060CheckInGroup\u0060.\nThese check-ins all have the same \u0022checked-in by\u0022 person.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "name_labels_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "security_labels_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "check_ins_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "print_status",
+          "Type": "string",
+          "Description": "Possible values:\n  - \u0060ready\u0060: This group isn\u0027t printed or canceled yet\n  - \u0060printed\u0060: This group was successfully printed at a station\n  - \u0060canceled\u0060: This group was canceled at a station\n  - \u0060skipped\u0060: This group had no labels to print, so it was never printed.\n"
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "check_ins",
+          "Description": "include associated check_ins",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "event_period",
+          "Description": "include associated event_period",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "print_station",
+          "Description": "include associated print_station",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        }
+      ],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "check_in_time",
+      "Name": "CheckInTime",
+      "Description": "A CheckInTime combines an EventTime and a Location, and associates it with\nthe parent CheckIn.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "kind",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "has_validated",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "services_integrated",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "alerts",
+          "Type": "array",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "event_time",
+          "Type": "EventTime",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "location",
+          "Type": "Location",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "check_in",
+          "Type": "CheckIn",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "pre_check",
+          "Type": "PreCheck",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "event",
+      "Name": "Event",
+      "Description": "A recurring event which people may attend.\n\nEach recurrence is an _event period_ (which often corresponds to a week).\n\nEvent periods have _event times_ where people may actually check in.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "frequency",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "enable_services_integration",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "archived_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "integration_key",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "location_times_enabled",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "pre_select_enabled",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "app_source",
+          "Type": "string",
+          "Description": "Only available when requested with the \u0060?fields\u0060 param"
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "campuses",
+          "Type": "Campus",
+          "AssociationType": "to_many",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "attendance_types",
+          "Description": "include associated attendance_types",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "id",
+          "Parameter": "where[id]",
+          "Type": "primary_key",
+          "Description": "Query on a specific id",
+          "Example": "?where[id]=primary_key"
+        },
+        {
+          "Name": "name",
+          "Parameter": "where[name]",
+          "Type": "string",
+          "Description": "Query on a specific name",
+          "Example": "?where[name]=string"
+        }
+      ]
+    },
+    {
+      "Id": "event_label",
+      "Name": "EventLabel",
+      "Description": "Says how many of a given label to print for this event and\nwhether to print it for regulars, guests, and/or volunteers.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "quantity",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "for_regular",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "for_guest",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "for_volunteer",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "event",
+          "Description": "include associated event",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "label",
+          "Description": "include associated label",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        }
+      ],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "event_period",
+      "Name": "EventPeriod",
+      "Description": "A recurrence of an event, sometimes called a \u0022session\u0022.\nFor weekly events, an event period is a week. For daily events, an event period is a day.\nAn event period has event times, which is what people select\nwhen they actually check in. When new sessions are created, times\nare copied from one session to the next.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "starts_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "ends_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "regular_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "guest_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "volunteer_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "note",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "event",
+          "Type": "Event",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "event",
+          "Description": "include associated event",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "event_times",
+          "Description": "include associated event_times",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "starts_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-starts_at) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "ends_at",
+          "Parameter": "where[ends_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific ends_at",
+          "Example": "?where[ends_at]=2000-01-01T12:00:00Z"
+        },
+        {
+          "Name": "starts_at",
+          "Parameter": "where[starts_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific starts_at",
+          "Example": "?where[starts_at]=2000-01-01T12:00:00Z"
+        }
+      ]
+    },
+    {
+      "Id": "event_time",
+      "Name": "EventTime",
+      "Description": "A time that someone may check in. Times are copied from session to session.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "total_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "starts_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "shows_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "hides_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "regular_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "guest_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "volunteer_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "hour",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "minute",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "day_of_week",
+          "Type": "integer",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "event",
+          "Type": "Event",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "event_period",
+          "Type": "EventPeriod",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "event",
+          "Description": "include associated event",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "event_period",
+          "Description": "include associated event_period",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "headcounts",
+          "Description": "include associated headcounts",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "shows_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-shows_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "starts_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-starts_at) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "created_at",
+          "Parameter": "where[created_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific created_at",
+          "Example": "?where[created_at]=2000-01-01T12:00:00Z"
+        },
+        {
+          "Name": "updated_at",
+          "Parameter": "where[updated_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific updated_at",
+          "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
+        }
+      ]
+    },
+    {
+      "Id": "headcount",
+      "Name": "Headcount",
+      "Description": "A tally of attendees for a given event time and attendance type.\nIf one does not exist, the count may have been zero.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "total",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "event_time",
+          "Type": "EventTime",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "attendance_type",
+          "Type": "AttendanceType",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "attendance_type",
+          "Description": "include associated attendance_type",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "event_time",
+          "Description": "include associated event_time",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "total",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-total) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "created_at",
+          "Parameter": "where[created_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific created_at",
+          "Example": "?where[created_at]=2000-01-01T12:00:00Z"
+        },
+        {
+          "Name": "updated_at",
+          "Parameter": "where[updated_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific updated_at",
+          "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
+        }
+      ]
+    },
+    {
+      "Id": "integration_link",
+      "Name": "IntegrationLink",
+      "Description": "A record linking another product\u0027s resource to a Check-Ins resource.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "remote_gid",
+          "Type": "string",
+          "Description": "The Global ID for the external resource. Formatted as \u0060gid://\u003Capp\u003E/\u003Ctype\u003E/\u003Cid\u003E\u0060."
+        },
+        {
+          "Name": "remote_app",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "remote_type",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "remote_id",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "sync_future_assignment_types",
+          "Type": "boolean",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "local",
+          "Type": "Event",
+          "AssociationType": "to_one",
+          "Note": "Type will be the type of Check-Ins resource it is linked to."
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": [
+        {
+          "Name": "remote_gid",
+          "Parameter": "where[remote_gid]",
+          "Type": "string",
+          "Description": "Query on a specific remote_gid",
+          "Example": "?where[remote_gid]=string"
+        }
+      ]
+    },
+    {
+      "Id": "label",
+      "Name": "Label",
+      "Description": "Labels can be set to print for events (through \u0060EventLabel\u0060s),\nlocations (through \u0060LocationLabel\u0060s) or options.\nLabel type (security label / name label) is expressed with the\n\u0060prints_for\u0060 attribute. \u0060prints_for=\u0022Person\u0022\u0060 is a name label,\n\u0060prints_for=\u0022Group\u0022\u0060 is a security label.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "xml",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "prints_for",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "roll",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "location",
+      "Name": "Location",
+      "Description": "A place where people may check in to for a given event.\nSome locations have \u0060kind=\u0022Folder\u0022\u0060, which means that people\ncan\u0027t check-in here, but this location contains other locations.\nYou can get its contents from the \u0060locations\u0060 attribute.\nYou can get a location\u0027s parent folder from the \u0060parent\u0060 attribute.\n(If it\u0027s not in a folder, \u0060parent\u0060 will be empty.)\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "kind",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "opened",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "questions",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "age_min_in_months",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "age_max_in_months",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "age_range_by",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "age_on",
+          "Type": "date",
+          "Description": null
+        },
+        {
+          "Name": "child_or_adult",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "effective_date",
+          "Type": "date",
+          "Description": null
+        },
+        {
+          "Name": "gender",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "grade_min",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "grade_max",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "max_occupancy",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "min_volunteers",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "attendees_per_volunteer",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "position",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "milestone",
+          "Type": "string",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "parent",
+          "Type": "Parent",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "event",
+          "Description": "include associated event",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "locations",
+          "Description": "include associated locations",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "options",
+          "Description": "include associated options",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "parent",
+          "Description": "include associated parent",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "kind",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-kind) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "position",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-position) to reverse the order"
+        }
+      ],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "location_event_period",
+      "Name": "LocationEventPeriod",
+      "Description": "Counts check-ins for a location during a certain event period.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "regular_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "guest_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "volunteer_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "event_period",
+          "Description": "include associated event_period",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "location",
+          "Description": "include associated location",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        }
+      ],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "location_event_time",
+      "Name": "LocationEventTime",
+      "Description": "Counts check-ins for a location for a given event time.\nThis is useful for checking occupancy.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "regular_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "guest_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "volunteer_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "event_time",
+          "Description": "include associated event_time",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "location",
+          "Description": "include associated location",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        }
+      ],
+      "CanOrderBy": [],
+      "CanQueryBy": [
+        {
+          "Name": "created_at",
+          "Parameter": "where[created_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific created_at",
+          "Example": "?where[created_at]=2000-01-01T12:00:00Z"
+        },
+        {
+          "Name": "updated_at",
+          "Parameter": "where[updated_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific updated_at",
+          "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
+        }
+      ]
+    },
+    {
+      "Id": "location_label",
+      "Name": "LocationLabel",
+      "Description": "Says how many of a given label to print for this location and\nwhether to print it for regulars, guests, and/or volunteers.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "quantity",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "for_regular",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "for_guest",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "for_volunteer",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "label",
+          "Description": "include associated label",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "location",
+          "Description": "include associated location",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        }
+      ],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "option",
+      "Name": "Option",
+      "Description": "An option which an attendee may select when checking in.\n\nOptions may have extra labels associated with them, denoted by \u0060label\u0060 and \u0060quantity\u0060.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "body",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "quantity",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "label",
+          "Description": "include associated label",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        }
+      ],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "organization",
+      "Name": "Organization",
+      "Description": "An organization which has people and events.\nThis contains its date format \u0026 time zone preferences.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "date_format_pattern",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "time_zone",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "daily_check_ins",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "avatar_url",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "pass",
+      "Name": "Pass",
+      "Description": "Enables quick lookup of a person via barcode reader.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "code",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "kind",
+          "Type": "string",
+          "Description": "Possible values: \u0060barcode\u0060 or \u0060pkpass\u0060.\n\nUsing the \u0060pkpass\u0060 value creates a mobile pass and sends an email to the associated person.\n"
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "person",
+          "Description": "include associated person",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        }
+      ],
+      "CanOrderBy": [],
+      "CanQueryBy": [
+        {
+          "Name": "code",
+          "Parameter": "where[code]",
+          "Type": "string",
+          "Description": "Query on a specific code",
+          "Example": "?where[code]=string"
+        }
+      ]
+    },
+    {
+      "Id": "person",
+      "Name": "Person",
+      "Description": "An attendee, volunteer or administrator.\n\n_Usually_, a person who checked in will be present as a \u0060Person\u0060. In some cases, they may not be present:\n- The person was manually deleted from the admin interface\n- The check-in was created as a \u0022Visitor - Label Only\u0022 (which doesn\u0027t create a corresponding person record)\n\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "addresses",
+          "Type": "array",
+          "Description": null
+        },
+        {
+          "Name": "email_addresses",
+          "Type": "array",
+          "Description": null
+        },
+        {
+          "Name": "phone_numbers",
+          "Type": "array",
+          "Description": null
+        },
+        {
+          "Name": "avatar_url",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "name_prefix",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "first_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "middle_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "last_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "name_suffix",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "birthdate",
+          "Type": "date",
+          "Description": null
+        },
+        {
+          "Name": "grade",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "gender",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "medical_notes",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "child",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "permission",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "headcounter",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "last_checked_in_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "check_in_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "passed_background_check",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "demographic_avatar_url",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "top_permission",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "ignore_filters",
+          "Type": "boolean",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "organization",
+          "Description": "include associated organization",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "check_in_count",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-check_in_count) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "first_name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-first_name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "last_checked_in_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-last_checked_in_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "last_name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-last_name) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "headcounter",
+          "Parameter": "where[headcounter]",
+          "Type": "boolean",
+          "Description": "Query on a specific headcounter",
+          "Example": "?where[headcounter]=true"
+        },
+        {
+          "Name": "ignore_filters",
+          "Parameter": "where[ignore_filters]",
+          "Type": "boolean",
+          "Description": "Query on a specific ignore_filters",
+          "Example": "?where[ignore_filters]=true"
+        },
+        {
+          "Name": "permission",
+          "Parameter": "where[permission]",
+          "Type": "string",
+          "Description": "Query on a specific permission",
+          "Example": "?where[permission]=string"
+        },
+        {
+          "Name": "search_name",
+          "Parameter": "where[search_name]",
+          "Type": "string",
+          "Description": "Search by person name (first, last, combination)",
+          "Example": "?where[search_name]=string"
+        }
+      ]
+    },
+    {
+      "Id": "person_event",
+      "Name": "PersonEvent",
+      "Description": "Counts a person\u0027s attendence for a given event.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "check_in_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "event",
+          "Description": "include associated event",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "first_check_in",
+          "Description": "include associated first_check_in",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "last_check_in",
+          "Description": "include associated last_check_in",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "person",
+          "Description": "include associated person",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        }
+      ],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "pre_check",
+      "Name": "PreCheck",
+      "Description": null,
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "roster_list_person",
+      "Name": "RosterListPerson",
+      "Description": null,
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "first_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "last_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "demographic_avatar_url",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "grade",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "gender",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "medical_notes",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "birthdate",
+          "Type": "date_time",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "station",
+      "Name": "Station",
+      "Description": "A device where people can be checked in.\nA device may also be connected to a printer\nand print labels for itself or other stations.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "online",
+          "Type": "boolean",
+          "Description": "Only available when requested with the \u0060?fields\u0060 param"
+        },
+        {
+          "Name": "mode",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "timeout_seconds",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "input_type",
+          "Type": "string",
+          "Description": "Possible values: \u0060scanner\u0060 or \u0060keypad\u0060"
+        },
+        {
+          "Name": "input_type_options",
+          "Type": "string",
+          "Description": "Possible values: \u0060all_input_types\u0060, \u0060only_keypad\u0060, or \u0060only_scanner\u0060"
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "next_shows_at",
+          "Type": "date_time",
+          "Description": "Only available when requested with the \u0060?fields\u0060 param"
+        },
+        {
+          "Name": "open_for_check_in",
+          "Type": "boolean",
+          "Description": "Only available when requested with the \u0060?fields\u0060 param"
+        },
+        {
+          "Name": "closes_at",
+          "Type": "date_time",
+          "Description": "Only available when requested with the \u0060?fields\u0060 param"
+        },
+        {
+          "Name": "check_in_count",
+          "Type": "integer",
+          "Description": "Only available when requested with the \u0060?fields\u0060 param"
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "event",
+          "Description": "include associated event",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "location",
+          "Description": "include associated location",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "print_station",
+          "Description": "include associated print_station",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "theme",
+          "Description": "include associated theme",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        }
+      ],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "theme",
+      "Name": "Theme",
+      "Description": "A custom style which may be applied to stations.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "image_thumbnail",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "color",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "text_color",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "image",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "background_color",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "mode",
+          "Type": "string",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    }
+  ]
+}

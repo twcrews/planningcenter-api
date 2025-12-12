@@ -1,33 +1,26 @@
 ﻿using Crews.PlanningCenter.Api.DocParser;
-using Crews.PlanningCenter.Api.DocParser.Models;
-using Crews.PlanningCenter.Api.DocParser.Models.Incoming;
-using Attribute = Crews.PlanningCenter.Api.DocParser.Models.Incoming.Attribute;
+using Crews.PlanningCenter.Api.DocParser.Configuration;
+using Crews.PlanningCenter.Api.DocParser.Services;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
-PlanningCenterClient client = new(new());
-
-foreach (ProductDefinition product in ProductDefinition.All)
-{
-  GraphDocument graphDocument = await client.GetGraphAsync(product);
-  Console.WriteLine();
-  Console.WriteLine("===================");
-  Console.WriteLine(product.ToString().ToUpper());
-  Console.WriteLine("===================");
-
-  foreach (VersionResource version in graphDocument.Data.Relationships.Versions.Data)
-  {
-    Console.WriteLine();
-    Console.WriteLine($"- {version.Id}");
-
-    GraphVersionDocument versionDocument = await client.GetGraphVersionAsync(product, version.Id!);
-    foreach (VertexResource vertex in versionDocument.Data.Relationships.Vertices.Data)
+var host = Host.CreateDefaultBuilder(args)
+    .ConfigureServices((context, services) =>
     {
-      Console.WriteLine($"  - {vertex.Attributes?.Name ?? "******* UNDEFINED VERTEX *******"}");
+        AppSettings settings = new();
+        context.Configuration.GetSection(nameof(AppSettings)).Bind(settings);
 
-      VertexDocument vertexDocument = await client.GetVertexAsync(product, version.Id!, vertex.Id!);
-      foreach (Attribute attribute in vertexDocument.Data.Relationships.Attributes.Data.Select(resource => resource.Attributes))
-      {
-        Console.WriteLine($"    - {attribute.Name ?? "******* UNDEFINED ATTRIBUTE *******"}");
-      }
-    }
-  }
-}
+        services.AddHttpClient<IPlanningCenterClient, PlanningCenterClient>(client =>
+        {
+            string? baseAddress = settings.PlanningCenterClient?.BaseAddress;
+            if (!string.IsNullOrWhiteSpace(baseAddress)) client.BaseAddress = new Uri(baseAddress);
+        });
+
+        services.AddTransient<IDocumentationBuilder, DocumentationBuilder>();
+        services.AddTransient<Application>();
+    })
+    .Build();
+
+Application app = host.Services.GetRequiredService<Application>();
+await app.RunAsync();

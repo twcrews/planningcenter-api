@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace Crews.PlanningCenter.Api.DocParser.Models.Incoming;
 
-internal class Permissions
+class Permissions
 {
   [JsonPropertyName("can_create")]
   public bool CanCreate { get; set; }

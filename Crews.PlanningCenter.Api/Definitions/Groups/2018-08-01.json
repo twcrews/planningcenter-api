@@ -1,0 +1,1331 @@
+{
+  "Id": "2018-08-01",
+  "Beta": false,
+  "Details": "The first available version of the API\n",
+  "Resources": [
+    {
+      "Id": "attendance",
+      "Name": "Attendance",
+      "Description": "Individual event attendance for a person.\n",
+      "Deprecated": false,
+      "CollectionOnly": true,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "attended",
+          "Type": "boolean",
+          "Description": "Whether or not the person attended the event.\n"
+        },
+        {
+          "Name": "role",
+          "Type": "string",
+          "Description": "The role of the person at the time of event.\n\n\nPossible values: \u0060member\u0060, \u0060leader\u0060, \u0060visitor\u0060, or \u0060applicant\u0060"
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "person",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "event",
+          "Type": "Event",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "person",
+          "Description": "include associated person",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "first_name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-first_name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "last_name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-last_name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "role",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-role) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "role",
+          "Parameter": "where[role]",
+          "Type": "string",
+          "Description": "Query on a specific role\n\nPossible values: \u0060member\u0060, \u0060leader\u0060, \u0060visitor\u0060, or \u0060applicant\u0060",
+          "Example": "?where[role]=value"
+        }
+      ]
+    },
+    {
+      "Id": "campus",
+      "Name": "Campus",
+      "Description": "A campus as defined in Planning Center Accounts\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "The name of the campus"
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "id",
+          "Parameter": "where[id]",
+          "Type": "primary_key",
+          "Description": "Query on a specific id",
+          "Example": "?where[id]=primary_key"
+        },
+        {
+          "Name": "name",
+          "Parameter": "where[name]",
+          "Type": "string",
+          "Description": "Query on a specific name",
+          "Example": "?where[name]=string"
+        }
+      ]
+    },
+    {
+      "Id": "enrollment",
+      "Name": "Enrollment",
+      "Description": "Details on how and when members can join a \u0060Group\u0060.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "auto_closed",
+          "Type": "boolean",
+          "Description": "Whether or not enrollment has been closed automatically due to set limits\n"
+        },
+        {
+          "Name": "auto_closed_reason",
+          "Type": "string",
+          "Description": "Brief description as to which limit automatically closed enrollment\n"
+        },
+        {
+          "Name": "date_limit",
+          "Type": "string",
+          "Description": "Date when enrollment should automatically close\n"
+        },
+        {
+          "Name": "date_limit_reached",
+          "Type": "boolean",
+          "Description": "Whether or not the \u0060date_limit\u0060 has been reached\n"
+        },
+        {
+          "Name": "member_limit",
+          "Type": "integer",
+          "Description": "Total number of members allowed before enrollment should automatically close\n"
+        },
+        {
+          "Name": "member_limit_reached",
+          "Type": "boolean",
+          "Description": "Whether or not the \u0060member_limit\u0060 has been reached\n"
+        },
+        {
+          "Name": "status",
+          "Type": "string",
+          "Description": "Current enrollment status. Possible values:\n* \u0060open\u0060 - strategy is not \u0060closed\u0060 and no limits have been reached\n* \u0060closed\u0060 - strategy is \u0060closed\u0060 _or_ limits have been reached\n* \u0060full\u0060 - member limit has been reached\n* \u0060private\u0060 - group is unlisted\n"
+        },
+        {
+          "Name": "strategy",
+          "Type": "string",
+          "Description": "Sign up strategy. Possible values: \u0060request_to_join\u0060, \u0060open_signup\u0060, or \u0060closed\u0060\n"
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "group",
+          "Type": "Group",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "event",
+      "Name": "Event",
+      "Description": "An event is a meeting of a group. It has a start and end time, and can be\neither physical or virtual.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "attendance_requests_enabled",
+          "Type": "boolean",
+          "Description": "This is a group setting that applies to all the events in the group.\nIf selected, an email will be sent to the primary email address of the group leader\n60 minutes before the event start time, asking them to report attendance.\n"
+        },
+        {
+          "Name": "automated_reminder_enabled",
+          "Type": "boolean",
+          "Description": "If \u0060true\u0060, we send an event remind some specified time before the event starts\nto all members in the group.\n"
+        },
+        {
+          "Name": "canceled",
+          "Type": "boolean",
+          "Description": "Whether or not the event has been canceled.\n"
+        },
+        {
+          "Name": "canceled_at",
+          "Type": "date_time",
+          "Description": "The date and time the event was canceled.\n"
+        },
+        {
+          "Name": "description",
+          "Type": "string",
+          "Description": "A longform description of the event. Can contain HTML markup.\n"
+        },
+        {
+          "Name": "ends_at",
+          "Type": "date_time",
+          "Description": "The date and time the event ends.\n"
+        },
+        {
+          "Name": "image",
+          "Type": "hash",
+          "Description": "The image for the event.\n"
+        },
+        {
+          "Name": "location_type_preference",
+          "Type": "string",
+          "Description": "Either \u0022physical\u0022 or \u0022virtual\u0022.\n"
+        },
+        {
+          "Name": "multi_day",
+          "Type": "boolean",
+          "Description": "\u0060true\u0060 if the event spans multiple days. Otherwise \u0060false\u0060.\n"
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "The name/title of the event.\n"
+        },
+        {
+          "Name": "reminders_sent",
+          "Type": "boolean",
+          "Description": "\u0060true\u0060 if reminders have been sent for this event. Otherwise \u0060false\u0060.\n"
+        },
+        {
+          "Name": "reminders_sent_at",
+          "Type": "date_time",
+          "Description": "The date and time reminders were sent for this event.\n"
+        },
+        {
+          "Name": "repeating",
+          "Type": "boolean",
+          "Description": "\u0060true\u0060 if the event is a repeating event. Otherwise \u0060false\u0060.\n"
+        },
+        {
+          "Name": "starts_at",
+          "Type": "date_time",
+          "Description": "The date and time the event starts.\n"
+        },
+        {
+          "Name": "virtual_location_url",
+          "Type": "string",
+          "Description": "The URL for the virtual location. Typically we don\u0027t show this URL unless\nunless the location_type_preference is \u0022virtual\u0022.\n"
+        },
+        {
+          "Name": "visitors_count",
+          "Type": "integer",
+          "Description": "The number of visitors who attended the event. These are people who are not\nmembers of the group.\n"
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "attendance_submitter",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "group",
+          "Type": "Group",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "location",
+          "Type": "Location",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "repeating_event",
+          "Type": "RepeatingEvent",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "group",
+          "Description": "include associated group",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "location",
+          "Description": "include associated location",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "ends_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-ends_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "starts_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-starts_at) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "ends_at",
+          "Parameter": "where[ends_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific ends_at",
+          "Example": "?where[ends_at]=2000-01-01T12:00:00Z"
+        },
+        {
+          "Name": "name",
+          "Parameter": "where[name]",
+          "Type": "string",
+          "Description": "Query on a specific name",
+          "Example": "?where[name]=string"
+        },
+        {
+          "Name": "starts_at",
+          "Parameter": "where[starts_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific starts_at",
+          "Example": "?where[starts_at]=2000-01-01T12:00:00Z"
+        }
+      ]
+    },
+    {
+      "Id": "event_note",
+      "Name": "EventNote",
+      "Description": "Notes that group leaders can write for an event, generally related to attendance.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "body",
+          "Type": "string",
+          "Description": "The body text of the note.\n"
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "annotatable",
+          "Type": "Annotatable",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "owner",
+          "Type": "Owner",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "owner",
+          "Description": "include associated owner",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        }
+      ],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "group",
+      "Name": "Group",
+      "Description": "A group of people that meet together regularly.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "archived_at",
+          "Type": "date_time",
+          "Description": "The date and time the group was archived.\n"
+        },
+        {
+          "Name": "can_create_conversation",
+          "Type": "boolean",
+          "Description": "A boolean representing the current user\u0027s authorization to start a new conversation in the group.\n\n\nOnly available when requested with the \u0060?fields\u0060 param"
+        },
+        {
+          "Name": "chat_enabled",
+          "Type": "boolean",
+          "Description": "A boolean representing whether or not the group has Chat enabled.\n"
+        },
+        {
+          "Name": "contact_email",
+          "Type": "string",
+          "Description": "If a contact_email is provided, we will display a contact button on the public page\nwhere potential members can ask questions before joining the group.\n"
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": "The date and time the group was created.\n"
+        },
+        {
+          "Name": "description",
+          "Type": "string",
+          "Description": "A longform description of the group. Can contain HTML markup.\n"
+        },
+        {
+          "Name": "events_visibility",
+          "Type": "string",
+          "Description": "The visibility of events for the group.\n\n\nPossible values: \u0060public\u0060 or \u0060members\u0060"
+        },
+        {
+          "Name": "header_image",
+          "Type": "hash",
+          "Description": "A hash of header image URLs. The keys are \u0060thumbnail\u0060, \u0060medium\u0060, and \u0060original\u0060.\n\n\u0060\u0060\u0060json\n{\n  \u0022thumbnail\u0022: \u0022https://groups-production.s3.amazonaws.com/uploads/group/header_image/1986065/thumbnail_image-1676676396838.jpg\u0022,\n  \u0022medium\u0022: \u0022https://groups-production.s3.amazonaws.com/uploads/group/header_image/1986065/medium_image-1676676396838.jpg\u0022,\n  \u0022original\u0022: \u0022https://groups-production.s3.amazonaws.com/uploads/group/header_image/1986065/image-1676676396838.jpg\u0022\n}\n\u0060\u0060\u0060\n"
+        },
+        {
+          "Name": "leaders_can_search_people_database",
+          "Type": "boolean",
+          "Description": "Whether or not group leaders have access to the entire\nchurch database on the admin side of Groups. (Not recommended)\n"
+        },
+        {
+          "Name": "location_type_preference",
+          "Type": "string",
+          "Description": "The location type preference for the group.\n\n\nPossible values: \u0060physical\u0060 or \u0060virtual\u0060"
+        },
+        {
+          "Name": "members_are_confidential",
+          "Type": "boolean",
+          "Description": "Whether or not group members can see other members\u0027 info\n"
+        },
+        {
+          "Name": "memberships_count",
+          "Type": "integer",
+          "Description": "The number of members in the group, includes leaders.\nDoes not include membership requests.\n"
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "The name/title of the group.\n"
+        },
+        {
+          "Name": "public_church_center_web_url",
+          "Type": "string",
+          "Description": "The public URL for the group on Church Center.\n"
+        },
+        {
+          "Name": "schedule",
+          "Type": "string",
+          "Description": "A text summary of the group\u0027s typical meeting schedule.\nCan be a string like \u0022Sundays at 9:30am\u0022 or \u0022Every other Tuesday at 7pm\u0022.\n"
+        },
+        {
+          "Name": "tag_ids",
+          "Type": "integer",
+          "Description": "The IDs of the tags associated with the group.\n\n\nOnly available when requested with the \u0060?fields\u0060 param"
+        },
+        {
+          "Name": "virtual_location_url",
+          "Type": "string",
+          "Description": "The URL for the group\u0027s virtual location. A zoom link, for example.\nThis could be set even if \u0060location_type_preference\u0060 is \u0060physical\u0060.\nThis is useful if you want to display a zoom link even if the group is meeting in person.\n"
+        },
+        {
+          "Name": "widget_status",
+          "Type": "hash",
+          "Description": "DEPRECATED: This is a private attribute used by Home widgets that we plan to remove soon.\n\n\nOnly available when requested with the \u0060?fields\u0060 param"
+        },
+        {
+          "Name": "enrollment_open",
+          "Type": "boolean",
+          "Description": "Calculated value. Either \u0060true\u0060 or \u0060false\u0060.\nIt will be \u0060false\u0060 if any of these conditions are true:\n* The group is archived\n* The group is full (has reached specified enrollment limit)\n* Enrollment Strategy is \u0060closed\u0060\n* Enrollment deadline has passed\n"
+        },
+        {
+          "Name": "enrollment_strategy",
+          "Type": "string",
+          "Description": "The enrollment strategy for the group.\nSee [documentation](https://pcogroups.zendesk.com/hc/en-us/articles/360016079154#Visibility\u0026EnrollmentStatus)\nfor more information about group enrollment settings.\n\n\nPossible values: \u0060closed\u0060, \u0060request_to_join\u0060, or \u0060open_signup\u0060"
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "group_type",
+          "Type": "GroupType",
+          "AssociationType": "to_one",
+          "Note": "The group type that this group belongs to.\nUnique groups do not belong to a group type\nand will return a \u0060null\u0060 data set for the relationship.\n"
+        },
+        {
+          "Name": "location",
+          "Type": "Location",
+          "AssociationType": "to_one",
+          "Note": "The group\u0027s default location is where the group normally meets.\nBut remember, each group event can have its own location if needed.\n"
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "enrollment",
+          "Description": "include associated enrollment",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "group_type",
+          "Description": "include associated group_type",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "location",
+          "Description": "include associated location",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "archive_status",
+          "Parameter": "where[archive_status]",
+          "Type": "string",
+          "Description": "Query on a specific archive_status\n\nPossible values: \u0060not_archived\u0060, \u0060only\u0060, or \u0060include\u0060",
+          "Example": "?where[archive_status]=value"
+        },
+        {
+          "Name": "name",
+          "Parameter": "where[name]",
+          "Type": "string",
+          "Description": "Query on a specific name",
+          "Example": "?where[name]=string"
+        }
+      ]
+    },
+    {
+      "Id": "group_application",
+      "Name": "GroupApplication",
+      "Description": "A group application is a request to join a group which can be approved or rejected.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "applied_at",
+          "Type": "date_time",
+          "Description": "Timestamp when this person applied.\n"
+        },
+        {
+          "Name": "message",
+          "Type": "string",
+          "Description": "An optional personal message from the applicant.\n"
+        },
+        {
+          "Name": "status",
+          "Type": "string",
+          "Description": "The approval status of the application.\n\nPossible values: \u0060pending\u0060, \u0060approved\u0060, or \u0060rejected\u0060\n"
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "group",
+          "Type": "Group",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "person",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "group",
+          "Description": "include associated group",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "person",
+          "Description": "include associated person",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "applied_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-applied_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "status",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-status) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "applied_at",
+          "Parameter": "where[applied_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific applied_at",
+          "Example": "?where[applied_at]=2000-01-01T12:00:00Z"
+        },
+        {
+          "Name": "status",
+          "Parameter": "where[status]",
+          "Type": "string",
+          "Description": "Query on a specific status",
+          "Example": "?where[status]=string"
+        }
+      ]
+    },
+    {
+      "Id": "group_type",
+      "Name": "GroupType",
+      "Description": "A group type is a category of groups.\nFor example, a church might have group types for \u0022Small Groups\u0022 and \u0022Classes\u0022.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "church_center_visible",
+          "Type": "boolean",
+          "Description": "\u0060true\u0060 if the group type contains any published groups. Otherwise \u0060false\u0060.\n"
+        },
+        {
+          "Name": "church_center_map_visible",
+          "Type": "boolean",
+          "Description": "\u0060true\u0060 if the map view is visible on the public groups list page. Otherwise \u0060false\u0060.\n"
+        },
+        {
+          "Name": "color",
+          "Type": "string",
+          "Description": "Hex color value. Color themes are a visual tool for administrators on the admin side of Groups.\nEx: \u0022#4fd2e3\u0022\n"
+        },
+        {
+          "Name": "default_group_settings",
+          "Type": "string",
+          "Description": "A JSON object of default settings for groups of this type.\n"
+        },
+        {
+          "Name": "description",
+          "Type": "string",
+          "Description": "A description of the group type\n"
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "The name of the group type\n"
+        },
+        {
+          "Name": "position",
+          "Type": "integer",
+          "Description": "The position of the group type in relation to other group types.\n"
+        },
+        {
+          "Name": "public_church_center_web_url",
+          "Type": "string",
+          "Description": "The public URL for the group on Church Center.\n"
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "position",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-position) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "id",
+          "Parameter": "where[id]",
+          "Type": "primary_key",
+          "Description": "Query on a specific id",
+          "Example": "?where[id]=primary_key"
+        }
+      ]
+    },
+    {
+      "Id": "location",
+      "Name": "Location",
+      "Description": "A physical event location\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "display_preference",
+          "Type": "string",
+          "Description": "This preference controls how the location is displayed to non-members for public groups and events.\n\n\nPossible values: \u0060hidden\u0060, \u0060approximate\u0060, or \u0060exact\u0060"
+        },
+        {
+          "Name": "full_formatted_address",
+          "Type": "string",
+          "Description": "Ex: \u00221313 Disneyland Dr\nAnaheim, CA 92802\u0022 (may be approximate or \u0060null\u0060)\nApproximate address would be \u0022Anaheim, CA 92802\u0022.\nWe obscure Canadian zip codes.\n"
+        },
+        {
+          "Name": "latitude",
+          "Type": "float",
+          "Description": "Ex: \u006033.815396\u0060 (may be approximate or \u0060null\u0060)\n"
+        },
+        {
+          "Name": "longitude",
+          "Type": "float",
+          "Description": "Ex: \u0060-117.926399\u0060 (may be approximate or \u0060null\u0060)\n"
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "Ex: \u0022Disneyland\u0022\n"
+        },
+        {
+          "Name": "radius",
+          "Type": "string",
+          "Description": "The number of miles in a location\u0027s approximate address.\nWill be \u00600\u0060 if the strategy is exact, and will be \u0060null\u0060 if the strategy is hidden.\n"
+        },
+        {
+          "Name": "strategy",
+          "Type": "string",
+          "Description": "The display preference strategy used for the current request, based on user permissions.\nEither \u0060hidden\u0060, \u0060approximate\u0060, or \u0060exact\u0060.\n"
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "group",
+          "Description": "include associated group",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        }
+      ],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "membership",
+      "Name": "Membership",
+      "Description": "A person who belongs to a group.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "joined_at",
+          "Type": "date_time",
+          "Description": "The date and time the person joined the group.\n"
+        },
+        {
+          "Name": "role",
+          "Type": "string",
+          "Description": "The role of the person in the group.\nPossible values: \u0060member\u0060 or \u0060leader\u0060\n"
+        },
+        {
+          "Name": "account_center_identifier",
+          "Type": "string",
+          "Description": "The ID of the person in People.\n"
+        },
+        {
+          "Name": "avatar_url",
+          "Type": "string",
+          "Description": "The URL of the person\u0027s avatar.\n"
+        },
+        {
+          "Name": "email_address",
+          "Type": "string",
+          "Description": "The person\u0027s primary email address.\n"
+        },
+        {
+          "Name": "first_name",
+          "Type": "string",
+          "Description": "The person\u0027s first name.\n"
+        },
+        {
+          "Name": "last_name",
+          "Type": "string",
+          "Description": "The person\u0027s last name.\n"
+        },
+        {
+          "Name": "phone_number",
+          "Type": "string",
+          "Description": "The person\u0027s primary phone number.\n"
+        },
+        {
+          "Name": "color_identifier",
+          "Type": "integer",
+          "Description": "The color theme of the group\u0027s group type.\n"
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "group",
+          "Type": "Group",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "person",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "person",
+          "Description": "include associated person",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "first_name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-first_name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "joined_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-joined_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "last_name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-last_name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "role",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-role) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "role",
+          "Parameter": "where[role]",
+          "Type": "string",
+          "Description": "Query on a specific role",
+          "Example": "?where[role]=string"
+        }
+      ]
+    },
+    {
+      "Id": "organization",
+      "Name": "Organization",
+      "Description": "The organization represents a single church. Every other resource is scoped to this record.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "The name of the organization.\n"
+        },
+        {
+          "Name": "time_zone",
+          "Type": "string",
+          "Description": "The time zone of the organization.\n"
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "owner",
+      "Name": "Owner",
+      "Description": "The owner/creator of an event note.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "avatar_url",
+          "Type": "string",
+          "Description": "The URL of the person\u0027s avatar.\n"
+        },
+        {
+          "Name": "first_name",
+          "Type": "string",
+          "Description": "The person\u0027s first name.\n"
+        },
+        {
+          "Name": "last_name",
+          "Type": "string",
+          "Description": "The person\u0027s last name.\n"
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "person",
+      "Name": "Person",
+      "Description": "A person is a user of Planning Center.\nThey can be a member of a group, a leader of a group, or an administrator.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "addresses",
+          "Type": "array",
+          "Description": "Returns all the addresses associated with this person.\n"
+        },
+        {
+          "Name": "avatar_url",
+          "Type": "string",
+          "Description": "The URL of the person\u0027s avatar.\n"
+        },
+        {
+          "Name": "child",
+          "Type": "boolean",
+          "Description": "Whether or not the person is under 13 years old.\nThis is false if a birthdate is not set.\n\n\nOnly available when requested with the \u0060?fields\u0060 param"
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": "Date and time this person was first created in Planning Center\n"
+        },
+        {
+          "Name": "email_addresses",
+          "Type": "array",
+          "Description": "Returns all the email addresses associated with this person.\n\n\u0060\u0060\u0060json\n[{\n  \u0022address\u0022: \u0022sam@example.com\u0022,\n  \u0022location\u0022: \u0022Home\u0022,\n  \u0022primary\u0022: true\n}]\n\u0060\u0060\u0060\n"
+        },
+        {
+          "Name": "first_name",
+          "Type": "string",
+          "Description": "The person\u0027s first name.\n"
+        },
+        {
+          "Name": "last_name",
+          "Type": "string",
+          "Description": "The person\u0027s last name.\n"
+        },
+        {
+          "Name": "permissions",
+          "Type": "string",
+          "Description": "Can be \u0060administrator\u0060, \u0060group_type_manager\u0060, \u0060leader\u0060, \u0060member\u0060, or \u0060no access\u0060.\n"
+        },
+        {
+          "Name": "phone_numbers",
+          "Type": "array",
+          "Description": "Returns all the phone numbers associated with this person.\n\n\u0060\u0060\u0060json\n[{\n  \u0022number\u0022: \u0022(800) 123-4567\u0022,\n  \u0022carrier\u0022: null,\n  \u0022location\u0022: \u0022Mobile\u0022,\n  \u0022primary\u0022: true\n}]\n\u0060\u0060\u0060\n"
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "first_name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-first_name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "last_name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-last_name) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "first_name",
+          "Parameter": "where[first_name]",
+          "Type": "string",
+          "Description": "Query on a specific first_name",
+          "Example": "?where[first_name]=string"
+        },
+        {
+          "Name": "last_name",
+          "Parameter": "where[last_name]",
+          "Type": "string",
+          "Description": "Query on a specific last_name",
+          "Example": "?where[last_name]=string"
+        }
+      ]
+    },
+    {
+      "Id": "rsvp",
+      "Name": "RSVP",
+      "Description": "A person\u0027s RSVP response for a group event.\nRSVPs can be submitted at any point leading up to the event.\nWhen an event reminder is sent, \u0060awaiting_response\u0060 RSVPs are generated for\nany remaining members, or \u0060not_sent\u0060 if they\u0027re missing an email address.\n",
+      "Deprecated": false,
+      "CollectionOnly": true,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "response",
+          "Type": "string",
+          "Description": "Possible values: \u0060awaiting_response\u0060, \u0060yes\u0060, \u0060no\u0060, \u0060maybe\u0060, or \u0060not_sent\u0060"
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "event",
+          "Type": "Event",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "group",
+          "Type": "Group",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "person",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "response",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-response) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "response",
+          "Parameter": "where[response]",
+          "Type": "string",
+          "Description": "Query on a specific response\n\nPossible values: \u0060awaiting_response\u0060, \u0060yes\u0060, \u0060no\u0060, \u0060maybe\u0060, or \u0060not_sent\u0060",
+          "Example": "?where[response]=value"
+        }
+      ]
+    },
+    {
+      "Id": "resource",
+      "Name": "Resource",
+      "Description": "A file or link resource that can be shared with a group.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "description",
+          "Type": "string",
+          "Description": "The description of the resource written by the person who created it.\n"
+        },
+        {
+          "Name": "last_updated",
+          "Type": "date_time",
+          "Description": "The date and time the resource was last updated.\n"
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "The name/title of the resource.\n"
+        },
+        {
+          "Name": "type",
+          "Type": "string",
+          "Description": "Either \u0060FileResource\u0060 or \u0060LinkResource\u0060\n"
+        },
+        {
+          "Name": "visibility",
+          "Type": "string",
+          "Description": "Possible values: \u0060leaders\u0060 or \u0060members\u0060"
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "created_by",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": "The person who created this resource"
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "last_updated",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-last_updated) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
+        }
+      ],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "tag",
+      "Name": "Tag",
+      "Description": "Tags are used to filter groups.\nThey can be organized into tag_groups.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "The name of the tag\n"
+        },
+        {
+          "Name": "position",
+          "Type": "integer",
+          "Description": "The position of the tag in relation to other tags\n"
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "tag_group",
+          "Type": "TagGroup",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "position",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-position) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "id",
+          "Parameter": "where[id]",
+          "Type": "primary_key",
+          "Description": "Query on a specific id",
+          "Example": "?where[id]=primary_key"
+        },
+        {
+          "Name": "name",
+          "Parameter": "where[name]",
+          "Type": "string",
+          "Description": "Query on a specific name",
+          "Example": "?where[name]=string"
+        }
+      ]
+    },
+    {
+      "Id": "tag_group",
+      "Name": "TagGroup",
+      "Description": "A way to group related tags.\nFor example you could have a \u0022Life Stage\u0022 tag group\nwith tags like \u0022Child\u0022, \u0022Teen\u0022, \u0022Adult\u0022, etc.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "display_publicly",
+          "Type": "boolean",
+          "Description": "Whether or not this tag group is visible to the public on Church Center\n"
+        },
+        {
+          "Name": "multiple_options_enabled",
+          "Type": "boolean",
+          "Description": "Whether or not a group can belong to many tags within this tag group\n"
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "The name of the tag group\n"
+        },
+        {
+          "Name": "position",
+          "Type": "integer",
+          "Description": "The position of the tag group in relation to other tag groups\n"
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "position",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-position) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "name",
+          "Parameter": "where[name]",
+          "Type": "string",
+          "Description": "Query on a specific name",
+          "Example": "?where[name]=string"
+        }
+      ]
+    }
+  ]
+}

@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace Crews.PlanningCenter.Api.DocParser.Models.Incoming;
 
-internal class Edge
+class Edge
 {
   [JsonPropertyName("name")]
   public required string Name { get; set; }
@@ -51,7 +51,7 @@ class EdgeRelationships
   public required JsonApiRelationship RateLimits { get; set; }
 }
 
-internal class Scope
+class Scope
 {
   [JsonPropertyName("name")]
   public required string Name { get; set; }

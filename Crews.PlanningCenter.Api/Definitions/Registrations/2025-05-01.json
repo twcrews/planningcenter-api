@@ -1,0 +1,603 @@
+{
+  "Id": "2025-05-01",
+  "Beta": false,
+  "Details": "The first publicly available version of the API",
+  "Resources": [
+    {
+      "Id": "attendee",
+      "Name": "Attendee",
+      "Description": "An \u0060Attendee\u0060 is a person registered for a signup.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "complete",
+          "Type": "boolean",
+          "Description": "Whether or not attendee has completed all necessary items (personal information, questions, forms, add ons).\n\n\nOnly available when requested with the \u0060?fields\u0060 param"
+        },
+        {
+          "Name": "active",
+          "Type": "boolean",
+          "Description": "Whether or not the attendee is active.\n"
+        },
+        {
+          "Name": "canceled",
+          "Type": "boolean",
+          "Description": "Whether or not the attendee is canceled.\n"
+        },
+        {
+          "Name": "waitlisted",
+          "Type": "boolean",
+          "Description": "Whether or not the attendee is waitlisted.\n"
+        },
+        {
+          "Name": "waitlisted_at",
+          "Type": "date_time",
+          "Description": "UTC time at which the attendee was waitlisted.\n"
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "emergency_contact",
+          "Description": "include associated emergency_contact",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "person",
+          "Description": "include associated person",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "registration",
+          "Description": "include associated registration",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "selection_type",
+          "Description": "include associated selection_type",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        }
+      ],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "campus",
+      "Name": "Campus",
+      "Description": "A \u0060Campus\u0060 is a location belonging to an Organization.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "Name of the campus.\n"
+        },
+        {
+          "Name": "street",
+          "Type": "string",
+          "Description": "Street address of the campus.\n"
+        },
+        {
+          "Name": "city",
+          "Type": "string",
+          "Description": "City where the campus is located.\n"
+        },
+        {
+          "Name": "state",
+          "Type": "string",
+          "Description": "State or province where the campus is located.\n"
+        },
+        {
+          "Name": "zip",
+          "Type": "string",
+          "Description": "Zip code of the campus.\n"
+        },
+        {
+          "Name": "country",
+          "Type": "string",
+          "Description": "Country where the campus is located.\n"
+        },
+        {
+          "Name": "full_formatted_address",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "category",
+      "Name": "Category",
+      "Description": "A \u0060Category\u0060 is a label used to group together and find signups more easily.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "Name of the category.\n"
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "emergency_contact",
+      "Name": "EmergencyContact",
+      "Description": "\u0060Emergency_Contact\u0060 is the person assigned as the emergency contact for an attendee.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "phone_number",
+          "Type": "string",
+          "Description": "Phone number of the emergency contact person.\n"
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "organization",
+      "Name": "Organization",
+      "Description": "The root level \u0060Organization\u0060 record which serves as a link to \u0060Signup\u0060s.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "Name of the Organization.\n"
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "person",
+      "Name": "Person",
+      "Description": null,
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "first_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "last_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "registration",
+      "Name": "Registration",
+      "Description": null,
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "created_by",
+          "Description": "include associated created_by",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "registrant_contact",
+          "Description": "include associated registrant_contact",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        }
+      ],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "selection_type",
+      "Name": "SelectionType",
+      "Description": "\u0060Selection_Types\u0060 are used to present the options people register for in a signup.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "Name of the selection type.\n"
+        },
+        {
+          "Name": "publicly_available",
+          "Type": "boolean",
+          "Description": "Whether or not the selection type is available to the public.\n"
+        },
+        {
+          "Name": "price_cents",
+          "Type": "integer",
+          "Description": "Price of selection type in cents.\n"
+        },
+        {
+          "Name": "price_currency",
+          "Type": "string",
+          "Description": "Signup currency code, example \u0060\u0022USD\u0022\u0060.\n\n\nOnly available when requested with the \u0060?fields\u0060 param"
+        },
+        {
+          "Name": "price_currency_symbol",
+          "Type": "string",
+          "Description": "Signup currency symbol, example \u0060\u0022$\u0022\u0060.\n\n\nOnly available when requested with the \u0060?fields\u0060 param"
+        },
+        {
+          "Name": "price_formatted",
+          "Type": "string",
+          "Description": "Price of selection type with currency formatting (symbol not included).\n\n\nOnly available when requested with the \u0060?fields\u0060 param"
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "signup",
+      "Name": "Signup",
+      "Description": "A \u0060Signup\u0060 is an organization signup that people can register for.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "archived",
+          "Type": "boolean",
+          "Description": "Whether the signup is archived or not.\n"
+        },
+        {
+          "Name": "close_at",
+          "Type": "date_time",
+          "Description": "UTC time at which regsitration closes.\n"
+        },
+        {
+          "Name": "description",
+          "Type": "string",
+          "Description": "Decription of the signup.\n"
+        },
+        {
+          "Name": "logo_url",
+          "Type": "string",
+          "Description": "URL for the image used for the signup.\n"
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "Name of the signup.\n"
+        },
+        {
+          "Name": "new_registration_url",
+          "Type": "string",
+          "Description": "URL to allow people to register for signup.\n"
+        },
+        {
+          "Name": "open_at",
+          "Type": "date_time",
+          "Description": "UTC time at which regsitration opens.\n"
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "campuses",
+          "Description": "include associated campuses",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "categories",
+          "Description": "include associated categories",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "next_signup_time",
+          "Description": "include associated next_signup_time",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "signup_location",
+          "Description": "include associated signup_location",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "signup_times",
+          "Description": "include associated signup_times",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        }
+      ],
+      "CanOrderBy": [],
+      "CanQueryBy": [
+        {
+          "Name": "id",
+          "Parameter": "where[id]",
+          "Type": "primary_key",
+          "Description": "Query on a specific id",
+          "Example": "?where[id]=primary_key"
+        }
+      ]
+    },
+    {
+      "Id": "signup_location",
+      "Name": "SignupLocation",
+      "Description": "\u0060Signup_location\u0060 is the location of a signup.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "The name of the signup location.\n"
+        },
+        {
+          "Name": "address_data",
+          "Type": "json",
+          "Description": "The address data of the signup location, which includes details like street, city, state, and postal code.\n\n\nOnly available when requested with the \u0060?fields\u0060 param"
+        },
+        {
+          "Name": "subpremise",
+          "Type": "string",
+          "Description": "The subpremise of the signup location, such as an building or room number.\n"
+        },
+        {
+          "Name": "latitude",
+          "Type": "string",
+          "Description": "The latitude of the signup location.\n"
+        },
+        {
+          "Name": "longitude",
+          "Type": "string",
+          "Description": "The longitude of the signup location.\n"
+        },
+        {
+          "Name": "location_type",
+          "Type": "string",
+          "Description": "The type of location, such as \u0060address\u0060, \u0060coords\u0060, or \u0060online\u0060.\n"
+        },
+        {
+          "Name": "url",
+          "Type": "string",
+          "Description": "The URL for the signup location, if applicable (e.g., for online events).\n"
+        },
+        {
+          "Name": "formatted_address",
+          "Type": "string",
+          "Description": "The formatted address of the signup location, which may not include subpremise details.\n"
+        },
+        {
+          "Name": "full_formatted_address",
+          "Type": "string",
+          "Description": "The fully formatted address of the signup location, including subpremise details.\n"
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "signup_time",
+      "Name": "SignupTime",
+      "Description": "\u0060Signup_time\u0060s are associated with a signup, which can have multiple signup times.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "starts_at",
+          "Type": "date_time",
+          "Description": "Start date and time of signup time.\n"
+        },
+        {
+          "Name": "ends_at",
+          "Type": "date_time",
+          "Description": "End date and time of signup time.\n"
+        },
+        {
+          "Name": "all_day",
+          "Type": "boolean",
+          "Description": "Whether or not the signup time is all day.\n"
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    }
+  ]
+}

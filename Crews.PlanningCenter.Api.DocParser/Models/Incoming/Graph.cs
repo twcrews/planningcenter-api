@@ -12,7 +12,7 @@ class Graph
   public string? Description { get; set; }
 }
 
-internal class GraphDocument : JsonApiDocument
+class GraphDocument : JsonApiDocument
 {
   [JsonPropertyName("data")]
   public required new GraphResource Data { get; set; }

@@ -1,0 +1,990 @@
+{
+  "Id": "2018-08-01",
+  "Beta": false,
+  "Details": "The first version of the API. Internal use only.",
+  "Resources": [
+    {
+      "Id": "channel",
+      "Name": "Channel",
+      "Description": "A collection of sermons",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "art",
+          "Type": "hash",
+          "Description": null
+        },
+        {
+          "Name": "podcast_art",
+          "Type": "hash",
+          "Description": null
+        },
+        {
+          "Name": "podcast_settings",
+          "Type": "hash",
+          "Description": null
+        },
+        {
+          "Name": "activate_episode_minutes_before",
+          "Type": "integer",
+          "Description": "The activation time for an episode, expressed in minutes before its start\n"
+        },
+        {
+          "Name": "can_enable_chat",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "church_center_url",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "default_video_embed_code",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "description",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "url",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "default_video_duration",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "default_video_url",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "enable_audio",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "enable_on_demand_video",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "enable_watch_live",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "general_chat_enabled",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "group_chat_enabled",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "podcast_feed_url",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "position",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "published",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "sermon_notes_enabled",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "services_service_type_remote_identifier",
+          "Type": "string",
+          "Description": "The id for the associated Services Service Type (https://developer.planning.center/docs/#/apps/services/2018-08-01/vertices/service_type)\n"
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "channel_default_episode_resources",
+          "Description": "include associated channel_default_episode_resources",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "channel_default_times",
+          "Description": "include associated channel_default_times",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "current_episode",
+          "Description": "include associated current_episode",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "position",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-position) to reverse the order"
+        }
+      ],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "channel_default_episode_resource",
+      "Name": "ChannelDefaultEpisodeResource",
+      "Description": "The default EpisodeResources for a Channel",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "featured",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "icon",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "kind",
+          "Type": "string",
+          "Description": "Possible values: \u0060giving_fund\u0060, \u0060people_form\u0060, \u0060generic_url\u0060, \u0060services_public_page\u0060\n"
+        },
+        {
+          "Name": "position",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "title",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "type",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "url",
+          "Type": "string",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "channel_default_time",
+      "Name": "ChannelDefaultTime",
+      "Description": "The default times for a channel",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "day_of_week",
+          "Type": "integer",
+          "Description": "The day of the week. 0 is Sunday, 1 is Monday, etc.\n"
+        },
+        {
+          "Name": "hour",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "minute",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "frequency",
+          "Type": "string",
+          "Description": "Possible values: \u0060weekly\u0060\n"
+        },
+        {
+          "Name": "position",
+          "Type": "integer",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "position",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-position) to reverse the order"
+        }
+      ],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "channel_next_time",
+      "Name": "ChannelNextTime",
+      "Description": "The next default time for a channel",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "starts_at",
+          "Type": "date_time",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "episode",
+      "Name": "Episode",
+      "Description": null,
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "art",
+          "Type": "hash",
+          "Description": null
+        },
+        {
+          "Name": "church_center_url",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "description",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "library_audio_url",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "library_streaming_service",
+          "Type": "string",
+          "Description": "Possible values: \u0060vimeo\u0060, \u0060youtube\u0060, \u0060livestream_com\u0060, \u0060resi\u0060, \u0060facebook\u0060, or \u0060boxcast\u0060"
+        },
+        {
+          "Name": "library_video_embed_code",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "library_video_thumbnail_url",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "library_video_url",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "needs_library_audio_or_video_url",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "needs_notes_template",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "needs_video_url",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "page_actions",
+          "Type": "array",
+          "Description": null
+        },
+        {
+          "Name": "published_live_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "published_to_library_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "sermon_audio",
+          "Type": "hash",
+          "Description": null
+        },
+        {
+          "Name": "stream_type",
+          "Type": "string",
+          "Description": "Possible values: \u0060channel_default_livestream\u0060, \u0060livestream\u0060, or \u0060prerecorded\u0060"
+        },
+        {
+          "Name": "streaming_service",
+          "Type": "string",
+          "Description": "Possible values: \u0060vimeo\u0060, \u0060youtube\u0060, \u0060livestream_com\u0060, \u0060resi\u0060, \u0060facebook\u0060, or \u0060boxcast\u0060"
+        },
+        {
+          "Name": "title",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "video_thumbnail_url",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "video_embed_code",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "video_url",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "services_plan_remote_identifier",
+          "Type": "string",
+          "Description": "The id for the associated Services Plan\n(https://developer.planning.center/docs/#/apps/services/2018-08-01/vertices/plan)\n"
+        },
+        {
+          "Name": "services_service_type_remote_identifier",
+          "Type": "string",
+          "Description": "The id for the associated Services Service Type\n(https://developer.planning.center/docs/#/apps/services/2018-08-01/vertices/service_type)\n"
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "series",
+          "Type": "Series",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "channel",
+          "Description": "include associated channel",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "episode_resources",
+          "Description": "include associated episode_resources",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "episode_times",
+          "Description": "include associated episode_times",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "series",
+          "Description": "include associated series",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "speakerships",
+          "Description": "include associated speakerships",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "published_live_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-published_live_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "published_to_library_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-published_to_library_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "stream_type",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-stream_type) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "title",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-title) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "series_id",
+          "Parameter": "where[series_id]",
+          "Type": "integer",
+          "Description": "Query on a related series",
+          "Example": "?where[series_id]=1"
+        },
+        {
+          "Name": "services_plan_remote_identifier",
+          "Parameter": "where[services_plan_remote_identifier]",
+          "Type": "string",
+          "Description": "Query on a specific services_plan_remote_identifier",
+          "Example": "?where[services_plan_remote_identifier]=string"
+        },
+        {
+          "Name": "services_service_type_remote_identifier",
+          "Parameter": "where[services_service_type_remote_identifier]",
+          "Type": "string",
+          "Description": "Query on a specific services_service_type_remote_identifier",
+          "Example": "?where[services_service_type_remote_identifier]=string"
+        }
+      ]
+    },
+    {
+      "Id": "episode_resource",
+      "Name": "EpisodeResource",
+      "Description": null,
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "featured",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "icon",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "kind",
+          "Type": "string",
+          "Description": "Possible values: \u0060giving_fund\u0060, \u0060people_form\u0060, \u0060generic_url\u0060, \u0060services_public_page\u0060\n"
+        },
+        {
+          "Name": "position",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "title",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "type",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "url",
+          "Type": "string",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "position",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-position) to reverse the order"
+        }
+      ],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "episode_statistics",
+      "Name": "EpisodeStatistics",
+      "Description": "Viewership statistics for an episode",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "times",
+          "Type": "array",
+          "Description": "\u0060watch_count\u0060 per EpisodeTime"
+        },
+        {
+          "Name": "library_watch_count",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "live_watch_count",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "published_to_library_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "published_live_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "title",
+          "Type": "string",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "episode_time",
+      "Name": "EpisodeTime",
+      "Description": "Live schedule times for an Episode",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "starts_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "ends_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "video_url",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "video_embed_code",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "current_timestamp",
+          "Type": "float",
+          "Description": null
+        },
+        {
+          "Name": "current_state",
+          "Type": "string",
+          "Description": "Possible values: \u0060upcoming\u0060, \u0060active\u0060, \u0060over\u0060\n"
+        },
+        {
+          "Name": "streaming_service",
+          "Type": "string",
+          "Description": "Possible values: \u0060vimeo\u0060, \u0060youtube\u0060, \u0060livestream_com\u0060, \u0060resi\u0060, \u0060facebook\u0060, \u0060boxcast\u0060\n"
+        },
+        {
+          "Name": "caveats",
+          "Type": "array",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "starts_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-starts_at) to reverse the order"
+        }
+      ],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "note_template",
+      "Name": "NoteTemplate",
+      "Description": null,
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "enabled",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "template",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "auto_create_free_form_notes",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "published_at",
+          "Type": "date_time",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "organization",
+      "Name": "Organization",
+      "Description": null,
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "subdomain",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "downloads_used",
+          "Type": "integer",
+          "Description": "Only available when requested with the \u0060?fields\u0060 param"
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "series",
+      "Name": "Series",
+      "Description": null,
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "art",
+          "Type": "hash",
+          "Description": null
+        },
+        {
+          "Name": "church_center_url",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "description",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "ended_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "episodes_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "published",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "started_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "title",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "channel",
+          "Description": "include associated channel",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "ended_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-ended_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "episodes_count",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-episodes_count) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "started_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-started_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "title",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-title) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "id",
+          "Parameter": "where[id]",
+          "Type": "primary_key",
+          "Description": "Query on a specific id",
+          "Example": "?where[id]=primary_key"
+        }
+      ]
+    },
+    {
+      "Id": "speaker",
+      "Name": "Speaker",
+      "Description": null,
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "avatar_url",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "episodes_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "first_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "formatted_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "last_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "name_prefix",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "name_suffix",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "speaker_type",
+          "Type": "string",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "first_name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-first_name) to reverse the order"
+        }
+      ],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "speakership",
+      "Name": "Speakership",
+      "Description": null,
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "speaker",
+          "Type": "Speaker",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "speaker",
+          "Description": "include associated speaker",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        }
+      ],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    }
+  ]
+}

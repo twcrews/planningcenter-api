@@ -1,0 +1,5550 @@
+{
+  "Id": "2018-11-01",
+  "Beta": false,
+  "Details": "Changed the \u0060/people\u0060 endpoint to respect the \u0022Can view people not on My Teams\u0022 permission setting found on the Services People page.",
+  "Resources": [
+    {
+      "Id": "arrangement",
+      "Name": "Arrangement",
+      "Description": "Each arrangement belongs to a song and is a different version of that song.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "bpm",
+          "Type": "float",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "has_chords",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "length",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "meter",
+          "Type": "string",
+          "Description": "Possible Values:\n\n- \u00602/2\u0060\n\n- \u00602/4\u0060\n\n- \u00603/2\u0060\n\n- \u00603/4\u0060\n\n- \u00604/2\u0060\n\n- \u00604/4\u0060\n\n- \u00605/4\u0060\n\n- \u00606/4\u0060\n\n- \u00603/8\u0060\n\n- \u00606/8\u0060\n\n- \u00607/4\u0060\n\n- \u00607/8\u0060\n\n- \u00609/8\u0060\n\n- \u006012/4\u0060\n\n- \u006012/8\u0060\n"
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "notes",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "print_margin",
+          "Type": "string",
+          "Description": "Possible Values:\n\n- \u00600.0in\u0060\n\n- \u00600.25in\u0060\n\n- \u00600.5in\u0060\n\n- \u00600.75in\u0060\n\n- \u00601.0in\u0060\n"
+        },
+        {
+          "Name": "print_orientation",
+          "Type": "string",
+          "Description": "Possible Values:\n\n- \u0060Portrait\u0060\n\n- \u0060Landscape\u0060\n"
+        },
+        {
+          "Name": "print_page_size",
+          "Type": "string",
+          "Description": "Possible Values:\n\n- \u0060Widescreen (16x9)\u0060\n\n- \u0060Fullscreen (4x3)\u0060\n\n- \u0060A4\u0060\n\n- \u0060Letter\u0060\n\n- \u0060Legal\u0060\n\n- \u006011x17\u0060\n"
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "chord_chart",
+          "Type": "string",
+          "Description": "A string of lyrics and chords. Supports standard and ChordPro formats.\n"
+        },
+        {
+          "Name": "chord_chart_font",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "chord_chart_key",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "chord_chart_columns",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "chord_chart_font_size",
+          "Type": "integer",
+          "Description": "Possible Values:\n\n\u006010\u0060, \u006011\u0060, \u006012\u0060, \u006013\u0060, \u006014\u0060, \u006015\u0060, \u006016\u0060, \u006018\u0060, \u006020\u0060, \u006022\u0060, \u006024\u0060, \u006026\u0060, \u006028\u0060, \u006032\u0060, \u006036\u0060, \u006042\u0060, \u006048\u0060\n"
+        },
+        {
+          "Name": "has_chord_chart",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "lyrics_enabled",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "number_chart_enabled",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "numeral_chart_enabled",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "sequence",
+          "Type": "array",
+          "Description": "An array of strings containing a label and a number describing the section:\n\n[\u0027Verse 1\u0027, \u0027Chorus 1\u0027, \u0027Verse 2\u0027]\n"
+        },
+        {
+          "Name": "sequence_short",
+          "Type": "array",
+          "Description": null
+        },
+        {
+          "Name": "sequence_full",
+          "Type": "array",
+          "Description": null
+        },
+        {
+          "Name": "chord_chart_chord_color",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "archived_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "lyrics",
+          "Type": "string",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "updated_by",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "created_by",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "song",
+          "Type": "Song",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "keys",
+          "Description": "include associated keys",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "sections",
+          "Description": "include associated sections",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        }
+      ],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "arrangement_sections",
+      "Name": "ArrangementSections",
+      "Description": "Sections of an Arrangement, derived from its chord chart",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "sections",
+          "Type": "array",
+          "Description": "Given an arrangement with the folowing \u0060chord_chart\u0060:\n\n\u0060\u0060\u0060\nVERSE 1\nD          Bm       G          D\nBe thou my vision O Lord of my heart\nA             Bm         G              A\nnaught be all else to me save that Thou art\n\u0060\u0060\u0060\n\nThe value will be:\n\n\u0060\u0060\u0060json\n[\n  {\n    \u0022label\u0022: \u0022Verse\u0022,\n    \u0022lyrics\u0022: \u0022Be thou my vision O Lord of my heart\n\rnaught be all else to me save that Thou art\u0022,\n    \u0022breaks_at\u0022: null\n  }\n]\n\u0060\u0060\u0060\n"
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "attachment",
+      "Name": "Attachment",
+      "Description": "A file, whether it\u0027s stored on Planning Center or linked from another location.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "page_order",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "filename",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "file_size",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "licenses_purchased",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "licenses_remaining",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "licenses_used",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "content",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "content_type",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "display_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "filetype",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "linked_url",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "pco_type",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "remote_link",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "thumbnail_url",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "url",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "allow_mp3_download",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "web_streamable",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "downloadable",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "transposable",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "import_to_item_details",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "streamable",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "has_preview",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "file_upload_identifier",
+          "Type": "string",
+          "Description": "Planning Center File UUID. Required only when creating a file attachment. See the \u0022File Uploads\u0022 section of the API documentation for more information.\n\nOnly available when requested with the \u0060?fields\u0060 param"
+        },
+        {
+          "Name": "deleted_at",
+          "Type": "date_time",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "attachable",
+          "Type": "Plan",
+          "AssociationType": "to_one",
+          "Note": "Type will be the type of resource to which it is attached."
+        },
+        {
+          "Name": "attachment_types",
+          "Type": "AttachmentType",
+          "AssociationType": "to_many",
+          "Note": null
+        },
+        {
+          "Name": "created_by",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "updated_by",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "administrator",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "zooms",
+          "Description": "include associated zooms",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "attachable_type",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-attachable_type) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "deleted_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-deleted_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "filename",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-filename) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "filetype",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-filetype) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "size",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-size) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "administrator_id",
+          "Parameter": "where[administrator_id]",
+          "Type": "integer",
+          "Description": "Query on a related administrator",
+          "Example": "?where[administrator_id]=1"
+        },
+        {
+          "Name": "licenses_purchased",
+          "Parameter": "where[licenses_purchased]",
+          "Type": "integer",
+          "Description": "Query on a specific licenses_purchased",
+          "Example": "?where[licenses_purchased]=1"
+        }
+      ]
+    },
+    {
+      "Id": "attachment_activity",
+      "Name": "AttachmentActivity",
+      "Description": "Returned from the \u0060open\u0060 attachment action.",
+      "Deprecated": false,
+      "CollectionOnly": true,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "date",
+          "Type": "date",
+          "Description": null
+        },
+        {
+          "Name": "attachment_url",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "activity_type",
+          "Type": "string",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "attachment",
+          "Type": "Attachment",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "attachment_type",
+      "Name": "AttachmentType",
+      "Description": "Create an Attachment Type for each type of file you might want only specific people to see. When you attach a file, you can specify an attachment type to then be able to link the file to a position.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "aliases",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "capoed_chord_charts",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "chord_charts",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "exclusions",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "lyrics",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "number_charts",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "numeral_charts",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "built_in",
+          "Type": "boolean",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "attachment_type_group",
+          "Type": "AttachmentTypeGroup",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
+        }
+      ],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "attachment_type_group",
+      "Name": "AttachmentTypeGroup",
+      "Description": null,
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "readonly",
+          "Type": "boolean",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
+        }
+      ],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "attendance",
+      "Name": "Attendance",
+      "Description": null,
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "checked_in_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "check_ins_event_id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "check_ins_event_period_id",
+          "Type": "primary_key",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "plan_time",
+          "Type": "PlanTime",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "plan_person",
+          "Type": "PlanPerson",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "available_signup",
+      "Name": "AvailableSignup",
+      "Description": "Signups that are available.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "organization_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "planning_center_url",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "service_type_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "signups_available",
+          "Type": "boolean",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "organization",
+          "Type": "Organization",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "person",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "service_type",
+          "Type": "ServiceType",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "signup_sheets",
+          "Description": "include associated signup_sheets",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        }
+      ],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "blockout",
+      "Name": "Blockout",
+      "Description": "An object representing a blockout date, and an optional recurrence pattern",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "description",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "group_identifier",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "organization_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "reason",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "repeat_frequency",
+          "Type": "string",
+          "Description": "Possible values:\n\n- no_repeat\n\n- every_1\n\n- every_2\n\n- every_3\n\n- every_4\n\n- every_5\n\n- every_6\n\n- every_7\n\n- every_8"
+        },
+        {
+          "Name": "repeat_interval",
+          "Type": "string",
+          "Description": "Possible values:\n\n- exact_day_of_month\n\n- week_of_month_1\n\n- week_of_month_2\n\n- week_of_month_3\n\n- week_of_month_4\n\n- week_of_month_last"
+        },
+        {
+          "Name": "repeat_period",
+          "Type": "string",
+          "Description": "Possible values:\n\n- daily\n\n- weekly\n\n- monthly\n\n- yearly"
+        },
+        {
+          "Name": "settings",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "time_zone",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "repeat_until",
+          "Type": "date",
+          "Description": null
+        },
+        {
+          "Name": "starts_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "ends_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "share",
+          "Type": "boolean",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "person",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "organization",
+          "Type": "Organization",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": [
+        {
+          "Name": "group_identifier",
+          "Parameter": "where[group_identifier]",
+          "Type": "string",
+          "Description": "Query on a specific group_identifier",
+          "Example": "?where[group_identifier]=string"
+        }
+      ]
+    },
+    {
+      "Id": "blockout_date",
+      "Name": "BlockoutDate",
+      "Description": "The actual dates generated by the blockout or its recurrence pattern. Generated up to a year in advance",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "group_identifier",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "reason",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "time_zone",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "share",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "starts_at",
+          "Type": "date_time",
+          "Description": "Start time as a \u0027wall-clock\u0027 timestamp"
+        },
+        {
+          "Name": "ends_at",
+          "Type": "date_time",
+          "Description": "End time as a \u0027wall-clock\u0027 timestamp"
+        },
+        {
+          "Name": "ends_at_utc",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "starts_at_utc",
+          "Type": "date_time",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "person",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "blockout",
+          "Type": "Blockout",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "blockout_exception",
+      "Name": "BlockoutException",
+      "Description": "A single exception for the dates generated from the blockout",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "date",
+          "Type": "date",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "blockout",
+          "Type": "Blockout",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "blockout_schedule_conflict",
+      "Name": "BlockoutScheduleConflict",
+      "Description": null,
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "dates",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "organization_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "person_avatar",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "person_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "position_display_times",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "service_type_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "short_dates",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "status",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "team_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "team_position_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "sort_date",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "can_accept_partial",
+          "Type": "boolean",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "organization",
+          "Type": "Organization",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "person",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "plan",
+          "Type": "Plan",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "plan_person",
+          "Type": "PlanPerson",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "service_type",
+          "Type": "ServiceType",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "chat",
+      "Name": "Chat",
+      "Description": null,
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "payload",
+          "Type": "string",
+          "Description": "Only available when requested with the \u0060?fields\u0060 param"
+        },
+        {
+          "Name": "group_identifiers",
+          "Type": "array",
+          "Description": "Only available when requested with the \u0060?fields\u0060 param"
+        },
+        {
+          "Name": "people",
+          "Type": "array",
+          "Description": "Only available when requested with the \u0060?fields\u0060 param"
+        },
+        {
+          "Name": "plans",
+          "Type": "array",
+          "Description": "Only available when requested with the \u0060?fields\u0060 param"
+        },
+        {
+          "Name": "teams",
+          "Type": "array",
+          "Description": "Only available when requested with the \u0060?fields\u0060 param"
+        },
+        {
+          "Name": "teams_i_lead",
+          "Type": "array",
+          "Description": "Only available when requested with the \u0060?fields\u0060 param"
+        },
+        {
+          "Name": "my_teams",
+          "Type": "array",
+          "Description": "Only available when requested with the \u0060?fields\u0060 param"
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "contributor",
+      "Name": "Contributor",
+      "Description": "A Contributor Resource",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "contributable_action",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "contributable_category",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "contributable_type",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "full_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "photo_thumbnail_url",
+          "Type": "string",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "plan",
+          "Type": "Plan",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "person",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
+        }
+      ],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "custom_slide",
+      "Name": "CustomSlide",
+      "Description": "A CustomSlide is used for adding text intended for display on a screen.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "body",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "label",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "order",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "enabled",
+          "Type": "boolean",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "item",
+          "Type": "Item",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "attachment",
+          "Type": "Attachment",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "email",
+      "Name": "Email",
+      "Description": "A persons email",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "primary",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "address",
+          "Type": "string",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "email_template",
+      "Name": "EmailTemplate",
+      "Description": "A EmailTemplate Resource",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "kind",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "html_body",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "subject",
+          "Type": "string",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "template_owner",
+          "Type": "Organization",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "email_template_rendered_response",
+      "Name": "EmailTemplateRenderedResponse",
+      "Description": "A EmailTemplateRenderedResponse Resource",
+      "Deprecated": false,
+      "CollectionOnly": true,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "body",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "subject",
+          "Type": "string",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "person",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "email_template",
+          "Type": "EmailTemplate",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "folder",
+      "Name": "Folder",
+      "Description": "A folder is a container used to organize multiple Service Types or other Folders.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "container",
+          "Type": "string",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "ancestors",
+          "Type": "Folder",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "parent",
+          "Type": "Folder",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "campus",
+          "Type": "Campus",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "service_types",
+          "Description": "include associated service_types",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "parent_id",
+          "Parameter": "where[parent_id]",
+          "Type": "integer",
+          "Description": "Query on a related parent",
+          "Example": "?where[parent_id]=1"
+        }
+      ]
+    },
+    {
+      "Id": "folder_path",
+      "Name": "FolderPath",
+      "Description": "The Folder path of a Folder",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "path",
+          "Type": "array",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "item",
+      "Name": "Item",
+      "Description": "An item in a plan.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "title",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "sequence",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "length",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "item_type",
+          "Type": "string",
+          "Description": "There are 4 possible values:\n\n- \u0060song\u0060: The item is a song\n\n- \u0060header\u0060: The item is a header\n\n- \u0060media\u0060: The item is a piece of media\n\n- \u0060item\u0060: The default item type\n\nThis value can only be set when an item is created. The only value that you can pass is \u0060header\u0060. If no value is passed then \u0060item\u0060 will be used. To create a media item you\u0027ll attach a video media to the item, and to create a song item, you\u0027ll attach a song.\n"
+        },
+        {
+          "Name": "html_details",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "service_position",
+          "Type": "string",
+          "Description": "There are 3 possible values:\n\n- \u0060pre\u0060: the item happens before the service starts\n\n- \u0060post\u0060: the item happens after the service ends\n\n- \u0060during\u0060: the item happens during the service\n"
+        },
+        {
+          "Name": "description",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "key_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "custom_arrangement_sequence",
+          "Type": "array",
+          "Description": "An array of strings containing a label and a number describing the section:\n\n[\u0027Verse 1\u0027, \u0027Chorus 1\u0027, \u0027Verse 2\u0027]\n"
+        },
+        {
+          "Name": "custom_arrangement_sequence_short",
+          "Type": "array",
+          "Description": null
+        },
+        {
+          "Name": "custom_arrangement_sequence_full",
+          "Type": "array",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "plan",
+          "Type": "Plan",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "song",
+          "Type": "Song",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "arrangement",
+          "Type": "Arrangement",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "key",
+          "Type": "Key",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "selected_layout",
+          "Type": "Layout",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "selected_background",
+          "Type": "Attachment",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "arrangement",
+          "Description": "include associated arrangement",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "item_notes",
+          "Description": "include associated item_notes",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "item_times",
+          "Description": "include associated item_times",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "key",
+          "Description": "include associated key",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "media",
+          "Description": "include associated media",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "selected_attachment",
+          "Description": "include associated selected_attachment",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "song",
+          "Description": "include associated song",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        }
+      ],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "item_note",
+      "Name": "ItemNote",
+      "Description": "A plan item note that belongs to a category.\n\nNote: You can only assign the category on create. If you want to change category; delete the current note, and create a new one passing in the \u0060item_note_category_id\u0060 then.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "content",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "category_name",
+          "Type": "string",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "item_note_category",
+          "Type": "ItemNoteCategory",
+          "AssociationType": "to_one",
+          "Note": "An \u0060ItemNoteCategory\u0060 **must** be assigned when creating an \u0060ItemNote\u0060.\n\nThis can be done by assigning an \u0060item_note_category_id\u0060:\n\n\u0060\u0060\u0060json\n{\n  \u0022data\u0022: {\n    \u0022type\u0022: \u0022ItemNote\u0022,\n    \u0022attributes\u0022: {\n      \u0022content\u0022: \u0022ok\u0022,\n      \u0022item_note_category_id\u0022: 1\n    }\n  }\n}\n\u0060\u0060\u0060\n\nor including the relationship in the \u0060POST\u0060 body:\n\n\u0060\u0060\u0060json\n{\n  \u0022data\u0022: {\n    \u0022type\u0022: \u0022ItemNote\u0022,\n    \u0022attributes\u0022: {\n      \u0022content\u0022: \u0022ok\u0022,\n    },\n    \u0022relationships\u0022: {\n      \u0022item_note_category\u0022: {\n        \u0022data\u0022: {\n          \u0022type\u0022: \u0022ItemNoteCategory\u0022,\n          \u0022id\u0022: 1\n        }\n      }\n    }\n  }\n}\n\u0060\u0060\u0060\n\n"
+        },
+        {
+          "Name": "item",
+          "Type": "Item",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "item_note_category",
+          "Description": "include associated item_note_category",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        }
+      ],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "item_note_category",
+      "Name": "ItemNoteCategory",
+      "Description": "A category of plan item notes for an entire Service Type.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "deleted_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "sequence",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "frequently_used",
+          "Type": "boolean",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "service_type",
+          "Type": "ServiceType",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "item_time",
+      "Name": "ItemTime",
+      "Description": null,
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "live_start_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "live_end_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "exclude",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "length",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "length_offset",
+          "Type": "integer",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "item",
+          "Type": "Item",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "plan_time",
+          "Type": "PlanTime",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "plan",
+          "Type": "Plan",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "key",
+      "Name": "Key",
+      "Description": "Each song arrangement can have multiple keys. A key is the pitch center of the song.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "alternate_keys",
+          "Type": "string",
+          "Description": "An array of objects.\n\n\u0060\n{\n  \u0022name\u0022: \u0022My Alternate Key\u0022,\n  \u0022key\u0022: \u0022B\u0022\n}\n\u0060\n"
+        },
+        {
+          "Name": "ending_key",
+          "Type": "string",
+          "Description": "Possible Values:\n\n\u0060Ab\u0060, \u0060A\u0060, \u0060A#\u0060, \u0060Bb\u0060, \u0060B\u0060, \u0060C\u0060, \u0060C#\u0060, \u0060Db\u0060, \u0060D\u0060, \u0060D#\u0060, \u0060Eb\u0060, \u0060E\u0060, \u0060F\u0060, \u0060F#\u0060, \u0060Gb\u0060, \u0060G\u0060, \u0060G#\u0060, \u0060Abm\u0060, \u0060Am\u0060, \u0060A#m\u0060, \u0060Bbm\u0060, \u0060Bm\u0060, \u0060Cm\u0060, \u0060C#m\u0060, \u0060Dbm\u0060, \u0060Dm\u0060, \u0060D#m\u0060, \u0060Ebm\u0060, \u0060Em\u0060, \u0060Fm\u0060, \u0060F#m\u0060, \u0060Gbm\u0060, \u0060Gm\u0060, \u0060G#m\u0060\n\nTo set the key to minor append \u0060m\u0060 to the key. e.g. \u0060Cm\u0060\n"
+        },
+        {
+          "Name": "starting_key",
+          "Type": "string",
+          "Description": "Possible Values:\n\n\u0060Ab\u0060, \u0060A\u0060, \u0060A#\u0060, \u0060Bb\u0060, \u0060B\u0060, \u0060C\u0060, \u0060C#\u0060, \u0060Db\u0060, \u0060D\u0060, \u0060D#\u0060, \u0060Eb\u0060, \u0060E\u0060, \u0060F\u0060, \u0060F#\u0060, \u0060Gb\u0060, \u0060G\u0060, \u0060G#\u0060, \u0060Abm\u0060, \u0060Am\u0060, \u0060A#m\u0060, \u0060Bbm\u0060, \u0060Bm\u0060, \u0060Cm\u0060, \u0060C#m\u0060, \u0060Dbm\u0060, \u0060Dm\u0060, \u0060D#m\u0060, \u0060Ebm\u0060, \u0060Em\u0060, \u0060Fm\u0060, \u0060F#m\u0060, \u0060Gbm\u0060, \u0060Gm\u0060, \u0060G#m\u0060\n\nTo set the key to minor append \u0060m\u0060 to the key. e.g. \u0060Cm\u0060\n"
+        },
+        {
+          "Name": "starting_minor",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "ending_minor",
+          "Type": "boolean",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "arrangement",
+          "Type": "Arrangement",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
+        }
+      ],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "live",
+      "Name": "Live",
+      "Description": null,
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "series_title",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "title",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "dates",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "live_channel",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "chat_room_channel",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "can_control",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "can_take_control",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "can_chat",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "can_control_video_feed",
+          "Type": "boolean",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "controller",
+          "Description": "include associated controller",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "current_item_time",
+          "Description": "include associated current_item_time",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "items",
+          "Description": "include associated items",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "next_item_time",
+          "Description": "include associated next_item_time",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "service_type",
+          "Description": "include associated service_type",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        }
+      ],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "live_controller",
+      "Name": "LiveController",
+      "Description": "A person who can control Services LIVE without the required permissions",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "full_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "photo_thumbnail_url",
+          "Type": "string",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "person",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
+        }
+      ],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "media",
+      "Name": "Media",
+      "Description": "A piece of media",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "themes",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "title",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "thumbnail_file_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "thumbnail_content_type",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "thumbnail_file_size",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "thumbnail_updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "preview_file_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "preview_content_type",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "preview_file_size",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "preview_updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "length",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "media_type",
+          "Type": "string",
+          "Description": "Possible Values:\n\n- \u0060audio\u0060\n\n- \u0060background_audio\u0060\n\n- \u0060background_image\u0060\n\n- \u0060background_video\u0060\n\n- \u0060countdown\u0060\n\n- \u0060curriculum\u0060\n\n- \u0060document\u0060\n\n- \u0060drama\u0060\n\n- \u0060image\u0060\n\n- \u0060powerpoint\u0060\n\n- \u0060song_video\u0060\n\n- \u0060video\u0060\n"
+        },
+        {
+          "Name": "media_type_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "thumbnail_url",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "creator_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "preview_url",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "image_url",
+          "Type": "string",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "attachments",
+          "Description": "include associated attachments",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "title",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-title) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "creator_name",
+          "Parameter": "where[creator_name]",
+          "Type": "string",
+          "Description": "Query on a specific creator_name",
+          "Example": "?where[creator_name]=string"
+        },
+        {
+          "Name": "id",
+          "Parameter": "where[id]",
+          "Type": "primary_key",
+          "Description": "Query on a specific id",
+          "Example": "?where[id]=primary_key"
+        },
+        {
+          "Name": "themes",
+          "Parameter": "where[themes]",
+          "Type": "string",
+          "Description": "Query on a specific themes",
+          "Example": "?where[themes]=string"
+        },
+        {
+          "Name": "title",
+          "Parameter": "where[title]",
+          "Type": "string",
+          "Description": "Query on a specific title",
+          "Example": "?where[title]=string"
+        }
+      ]
+    },
+    {
+      "Id": "media_schedule",
+      "Name": "MediaSchedule",
+      "Description": null,
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "plan_dates",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "plan_short_dates",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "service_type_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "plan_sort_date",
+          "Type": "date_time",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "plan",
+          "Type": "Plan",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "service_type",
+          "Type": "ServiceType",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "needed_position",
+      "Name": "NeededPosition",
+      "Description": "An amount of unfilled positions needed within a team in a plan.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "quantity",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "team_position_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "scheduled_to",
+          "Type": "string",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "team",
+          "Type": "Team",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "plan",
+          "Type": "Plan",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "time",
+          "Type": "PlanTime",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "time_preference_option",
+          "Type": "TimePreferenceOption",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "team",
+          "Description": "include associated team",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "time",
+          "Description": "include associated time",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        }
+      ],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "organization",
+      "Name": "Organization",
+      "Description": "The root level of an organization where account-level settings are applied.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "ccli",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "date_format",
+          "Type": "integer",
+          "Description": "Two possible values, \u0060US\u0060 \u0060EU\u0060"
+        },
+        {
+          "Name": "music_stand_enabled",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "projector_enabled",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "time_zone",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "twenty_four_hour_time",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "owner_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "required_to_set_download_permission",
+          "Type": "string",
+          "Description": "Possible values: \u0060editor\u0060, \u0060administrator\u0060, \u0060site_administrator\u0060"
+        },
+        {
+          "Name": "secret",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "allow_mp3_download",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "calendar_starts_on_sunday",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "ccli_connected",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "ccli_auto_reporting_enabled",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "ccli_reporting_enabled",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "extra_file_storage_allowed",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "file_storage_exceeded",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "file_storage_size",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "file_storage_size_used",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "file_storage_extra_enabled",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "rehearsal_mix_enabled",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "rehearsal_pack_connected",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "legacy_id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "file_storage_extra_charges",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "people_allowed",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "people_remaining",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "beta",
+          "Type": "boolean",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "person",
+      "Name": "Person",
+      "Description": "A person added to Planning Center Services.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "photo_url",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "photo_thumbnail_url",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "preferred_app",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "assigned_to_rehearsal_team",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "archived_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "first_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "last_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "name_prefix",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "name_suffix",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "facebook_id",
+          "Type": "primary_key",
+          "Description": "DEPRECATED: this attribute will be removed in the next release and will return the string \u0022DEPRECATED\u0022 in this version"
+        },
+        {
+          "Name": "legacy_id",
+          "Type": "primary_key",
+          "Description": "If you\u0027ve used Person.id from API v1 this attribute can be used to map from those old IDs to the new IDs used in API v2"
+        },
+        {
+          "Name": "anniversary",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "birthdate",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "signature",
+          "Type": "string",
+          "Description": "Only available when requested with the \u0060?fields\u0060 param"
+        },
+        {
+          "Name": "full_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "media_permissions",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "permissions",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "song_permissions",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "status",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "profile_name",
+          "Type": "string",
+          "Description": "Only available when requested with the \u0060?fields\u0060 param"
+        },
+        {
+          "Name": "max_permissions",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "max_plan_permissions",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "given_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "middle_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "nickname",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "archived",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "site_administrator",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "logged_in_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "notes",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "passed_background_check",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "ical_code",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "access_media_attachments",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "access_plan_attachments",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "access_song_attachments",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "preferred_max_plans_per_day",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "preferred_max_plans_per_month",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "praise_charts_enabled",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "me_tab",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "plans_tab",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "songs_tab",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "media_tab",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "people_tab",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "can_edit_all_people",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "can_view_all_people",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "onboardings",
+          "Type": "array",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "created_by",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "updated_by",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "current_folder",
+          "Type": "Folder",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "emails",
+          "Description": "include associated emails",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "tags",
+          "Description": "include associated tags",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "team_leaders",
+          "Description": "include associated team_leaders",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "first_name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-first_name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "last_name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-last_name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "assigned_to_rehearsal_team",
+          "Parameter": "where[assigned_to_rehearsal_team]",
+          "Type": "boolean",
+          "Description": "Query on a specific assigned_to_rehearsal_team",
+          "Example": "?where[assigned_to_rehearsal_team]=true"
+        },
+        {
+          "Name": "legacy_id",
+          "Parameter": "where[legacy_id]",
+          "Type": "primary_key",
+          "Description": "Query on a specific legacy_id",
+          "Example": "?where[legacy_id]=primary_key"
+        }
+      ]
+    },
+    {
+      "Id": "person_team_position_assignment",
+      "Name": "PersonTeamPositionAssignment",
+      "Description": "A person\u0027s assignment to a position within a team.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "schedule_preference",
+          "Type": "string",
+          "Description": "Possible Values:\n  \u0022Every week\u0022\n  \u0022Every other week\u0022\n  \u0022Every 3rd week\u0022\n  \u0022Every 4th week\u0022\n  \u0022Every 5th week\u0022\n  \u0022Every 6th week\u0022\n  \u0022Once a month\u0022\n  \u0022Twice a month\u0022\n  \u0022Three times a month\u0022\n  \u0022Choose Weeks\u0022\n"
+        },
+        {
+          "Name": "preferred_weeks",
+          "Type": "array",
+          "Description": "When \u0060schedule_preference\u0060 is set to \u0022Choose Weeks\u0022 then this\nindicates which weeks are preferred (checked).\n\ne.g. [\u00271\u0027, \u00273\u0027, \u00275\u0027] to prefer odd numbered weeks.\n"
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "person",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "team_position",
+          "Type": "TeamPosition",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "time_preference_options",
+          "Type": "TimePreferenceOption",
+          "AssociationType": "to_many",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "person",
+          "Description": "include associated person",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "team_position",
+          "Description": "include associated team_position",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "first_name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-first_name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "last_name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-last_name) to reverse the order"
+        }
+      ],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "plan",
+      "Name": "Plan",
+      "Description": "A single plan within a Service Type.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "can_view_order",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "prefers_order_view",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "rehearsable",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "items_count",
+          "Type": "integer",
+          "Description": "The total number of items, including regular items, songs, media, and headers, that the current user can see in the plan."
+        },
+        {
+          "Name": "permissions",
+          "Type": "string",
+          "Description": "The current user\u0027s permissions for this plan\u0027s Service Type."
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "title",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "public",
+          "Type": "boolean",
+          "Description": "True if Public Access has been enabled."
+        },
+        {
+          "Name": "series_title",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "plan_notes_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "other_time_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "rehearsal_time_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "service_time_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "plan_people_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "needed_positions_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "total_length",
+          "Type": "integer",
+          "Description": "The total of length of all items, excluding pre-service and post-service items."
+        },
+        {
+          "Name": "multi_day",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "files_expire_at",
+          "Type": "date_time",
+          "Description": "A date 15 days after the last service time. ___Returns in the time zone specified in your organization\u0027s localization settings___"
+        },
+        {
+          "Name": "sort_date",
+          "Type": "date_time",
+          "Description": "A time representing the chronological first Service Time, used to sort plan chronologically. If no Service Times exist, it uses Rehearsal Times, then Other Times, then NOW. ___Returns in the time zone specified in your organization\u0027s localization settings___"
+        },
+        {
+          "Name": "last_time_at",
+          "Type": "date_time",
+          "Description": "___Returns in the time zone specified in your organization\u0027s localization settings___"
+        },
+        {
+          "Name": "dates",
+          "Type": "string",
+          "Description": "The full date string representing all Service Time dates."
+        },
+        {
+          "Name": "short_dates",
+          "Type": "string",
+          "Description": "The shortened date string representing all Service Time dates. Months are abbreviated, and the year is omitted."
+        },
+        {
+          "Name": "planning_center_url",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "reminders_disabled",
+          "Type": "boolean",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "service_type",
+          "Type": "ServiceType",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "previous_plan",
+          "Type": "Plan",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "next_plan",
+          "Type": "Plan",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "series",
+          "Type": "Series",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "created_by",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "updated_by",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "linked_publishing_episode",
+          "Type": "LinkedPublishingEpisode",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "attachment_types",
+          "Type": "AttachmentType",
+          "AssociationType": "to_many",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "contributors",
+          "Description": "include associated contributors",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "my_schedules",
+          "Description": "include associated my_schedules",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "plan_times",
+          "Description": "include associated plan_times",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "series",
+          "Description": "include associated series",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "sort_date",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-sort_date) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "title",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-title) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "created_at",
+          "Parameter": "where[created_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific created_at",
+          "Example": "?where[created_at]=2000-01-01T12:00:00Z"
+        },
+        {
+          "Name": "id",
+          "Parameter": "where[id]",
+          "Type": "primary_key",
+          "Description": "Query on a specific id",
+          "Example": "?where[id]=primary_key"
+        },
+        {
+          "Name": "series_title",
+          "Parameter": "where[series_title]",
+          "Type": "string",
+          "Description": "Query on a specific series_title",
+          "Example": "?where[series_title]=string"
+        },
+        {
+          "Name": "title",
+          "Parameter": "where[title]",
+          "Type": "string",
+          "Description": "Query on a specific title",
+          "Example": "?where[title]=string"
+        },
+        {
+          "Name": "updated_at",
+          "Parameter": "where[updated_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific updated_at",
+          "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
+        }
+      ]
+    },
+    {
+      "Id": "plan_note",
+      "Name": "PlanNote",
+      "Description": "A specific plan note within a single plan.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "category_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "content",
+          "Type": "string",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "created_by",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "plan_note_category",
+          "Type": "PlanNoteCategory",
+          "AssociationType": "to_one",
+          "Note": "Required"
+        },
+        {
+          "Name": "teams",
+          "Type": "Team",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "plan_note_category",
+          "Description": "include associated plan_note_category",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "created_at",
+          "Parameter": "where[created_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific created_at",
+          "Example": "?where[created_at]=2000-01-01T12:00:00Z"
+        },
+        {
+          "Name": "updated_at",
+          "Parameter": "where[updated_at]",
+          "Type": "date_time",
+          "Description": "Query on a specific updated_at",
+          "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
+        }
+      ]
+    },
+    {
+      "Id": "plan_note_category",
+      "Name": "PlanNoteCategory",
+      "Description": "A category of plan notes for an entire Service Type.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "deleted_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "sequence",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "service_type",
+          "Type": "ServiceType",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "teams",
+          "Type": "Team",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "plan_person",
+      "Name": "PlanPerson",
+      "Description": "A person scheduled within a specific plan.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "status",
+          "Type": "string",
+          "Description": "Accepts one of \u0027C\u0027, \u0027U\u0027, \u0027D\u0027, or \u0027Confirmed\u0027, \u0027Unconfirmed\u0027, or \u0027Declined\u0027"
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "notes",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "decline_reason",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "notification_changed_by_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "notification_sender_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "team_position_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "photo_thumbnail",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "scheduled_by_name",
+          "Type": "string",
+          "Description": "Only available when requested with the \u0060?fields\u0060 param"
+        },
+        {
+          "Name": "status_updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "notification_changed_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "notification_prepared_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "notification_read_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "notification_sent_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "prepare_notification",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "can_accept_partial",
+          "Type": "boolean",
+          "Description": "If the person is scheduled to a split team where they could potentially accept 1 time and decline another."
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "person",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "plan",
+          "Type": "Plan",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "scheduled_by",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "service_type",
+          "Type": "ServiceType",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "team",
+          "Type": "Team",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "responds_to",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "times",
+          "Type": "PlanTime",
+          "AssociationType": "to_many",
+          "Note": null
+        },
+        {
+          "Name": "service_times",
+          "Type": "PlanTime",
+          "AssociationType": "to_many",
+          "Note": null
+        },
+        {
+          "Name": "time_preference_options",
+          "Type": "TimePreferenceOption",
+          "AssociationType": "to_many",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "declined_plan_times",
+          "Description": "include associated declined_plan_times",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "person",
+          "Description": "include associated person",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "plan",
+          "Description": "include associated plan",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "team",
+          "Description": "include associated team",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        }
+      ],
+      "CanOrderBy": [],
+      "CanQueryBy": [
+        {
+          "Name": "team_id",
+          "Parameter": "where[team_id]",
+          "Type": "integer",
+          "Description": "Query on a related team",
+          "Example": "?where[team_id]=1"
+        }
+      ]
+    },
+    {
+      "Id": "plan_person_time",
+      "Name": "PlanPersonTime",
+      "Description": null,
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "status",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "plan_time",
+          "Type": "PlanTime",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "plan",
+          "Type": "Plan",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "plan_person",
+          "Type": "PlanPerson",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "plan_template",
+      "Name": "PlanTemplate",
+      "Description": "A PlanTemplate Resource",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "item_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "team_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "note_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "can_view_order",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "multi_day",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "rehearsable",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "prefers_order_view",
+          "Type": "boolean",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "service_type",
+          "Type": "ServiceType",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "created_by",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "updated_by",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "item_count",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-item_count) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "note_count",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-note_count) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "team_count",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-team_count) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
+        }
+      ],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "plan_time",
+      "Name": "PlanTime",
+      "Description": "A time in a plan.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "time_type",
+          "Type": "string",
+          "Description": "Possible values are:\n\n- rehearsal\n\n- service\n\n- other\n"
+        },
+        {
+          "Name": "recorded",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "team_reminders",
+          "Type": "array",
+          "Description": "A Hash that maps a Team ID to a reminder value. If nothing is specified, no reminder is set for that team. A reminder value is an integer (0-7) equal to the number of days before the selected time a reminder should be sent."
+        },
+        {
+          "Name": "starts_at",
+          "Type": "date_time",
+          "Description": "Planned start time."
+        },
+        {
+          "Name": "ends_at",
+          "Type": "date_time",
+          "Description": "Planned end time."
+        },
+        {
+          "Name": "live_starts_at",
+          "Type": "date_time",
+          "Description": "Start time as recorded by Services LIVE."
+        },
+        {
+          "Name": "live_ends_at",
+          "Type": "date_time",
+          "Description": "End time as recorded by Services LIVE."
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "assigned_teams",
+          "Type": "Team",
+          "AssociationType": "to_many",
+          "Note": null
+        },
+        {
+          "Name": "assigned_positions",
+          "Type": "TeamPosition",
+          "AssociationType": "to_many",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "split_team_rehearsal_assignments",
+          "Description": "include associated split_team_rehearsal_assignments",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "starts_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-starts_at) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "time_type",
+          "Parameter": "where[time_type]",
+          "Type": "string",
+          "Description": "Query on a specific time_type",
+          "Example": "?where[time_type]=string"
+        }
+      ]
+    },
+    {
+      "Id": "public_view",
+      "Name": "PublicView",
+      "Description": "Manage options for a public plan",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "series_artwork",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "series_and_plan_titles",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "item_descriptions",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "item_lengths",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "service_times",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "song_items",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "media_items",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "regular_items",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "headers",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "itunes",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "amazon",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "spotify",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "youtube",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "vimeo",
+          "Type": "boolean",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "report_template",
+      "Name": "ReportTemplate",
+      "Description": "A template for generating reports",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "body",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "title",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "type",
+          "Type": "string",
+          "Description": "Possible values: \u0060ReportMatrix\u0060, \u0060ReportPeople\u0060, \u0060ReportPlan\u0060"
+        },
+        {
+          "Name": "default",
+          "Type": "boolean",
+          "Description": "A template provided by Planning Center"
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "schedule",
+      "Name": "Schedule",
+      "Description": "An instance of a PlanPerson with included data for displaying in a user\u0027s schedule",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "sort_date",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "dates",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "decline_reason",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "organization_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "organization_time_zone",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "organization_twenty_four_hour_time",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "person_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "position_display_times",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "responds_to_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "service_type_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "short_dates",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "status",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "team_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "team_position_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "can_accept_partial",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "can_accept_partial_one_time",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "can_rehearse",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "plan_visible",
+          "Type": "boolean",
+          "Description": "True if the scheduled Plan is visible to the scheduled Person"
+        },
+        {
+          "Name": "plan_visible_to_me",
+          "Type": "boolean",
+          "Description": "True if the scheduled Plan is visible to the current Person"
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "person",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "service_type",
+          "Type": "ServiceType",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "organization",
+          "Type": "Organization",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "plan_person",
+          "Type": "PlanPerson",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "plan",
+          "Type": "Plan",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "team",
+          "Type": "Team",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "responds_to_person",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "times",
+          "Type": "PlanTime",
+          "AssociationType": "to_many",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "plan_times",
+          "Description": "include associated plan_times",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "starts_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-starts_at) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "plan_id",
+          "Parameter": "where[plan_id]",
+          "Type": "integer",
+          "Description": "Query on a related plan",
+          "Example": "?where[plan_id]=1"
+        }
+      ]
+    },
+    {
+      "Id": "scheduled_person",
+      "Name": "ScheduledPerson",
+      "Description": "A person already scheduled to a SignupSheet",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "full_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "status",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "thumbnail",
+          "Type": "string",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "person",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "signup_sheet",
+          "Type": "SignupSheet",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "scheduling_preference",
+      "Name": "SchedulingPreference",
+      "Description": "Household member scheduling preference",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "preference",
+          "Type": "string",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "household_member",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "series",
+      "Name": "Series",
+      "Description": "A Series can be specified for each plan to tie plans with similar messages together, even across Service Types.\n\n*Note*: A series is not created until artwork is added from the plan.  You can use \u0060series_title\u0060 included in \u0060Plan\u0060 attributes to get titles for series without artwork.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "artwork_file_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "artwork_content_type",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "artwork_file_size",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "title",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "artwork_for_dashboard",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "artwork_for_mobile",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "artwork_for_plan",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "artwork_original",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "has_artwork",
+          "Type": "boolean",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "title",
+          "Parameter": "where[title]",
+          "Type": "string",
+          "Description": "Query on a specific title",
+          "Example": "?where[title]=string"
+        }
+      ]
+    },
+    {
+      "Id": "service_type",
+      "Name": "ServiceType",
+      "Description": "A Service Type is a container for plans.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "archived_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "deleted_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "sequence",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "permissions",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "attachment_types_enabled",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "scheduled_publish",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "custom_item_types",
+          "Type": "array",
+          "Description": "A array of hashes that maps an item title substring matcher to a color:\n\n[{ name: \u0022Announcements\u0022, color: \u0022#FFFFFF\u0022 }]\n\nValid substring matchers are any string that could be used as an item title.\n\nA color is the hexadecimal value of a valid color e.g. #FFFFFF\nValid colors values are #e8f6df, #e0f7ff, #e6e2fd, #ffe0e8, #ffedd1, #cfcfcf, #eaebeb, and #ffffff\n"
+        },
+        {
+          "Name": "standard_item_types",
+          "Type": "array",
+          "Description": "An array of hashes that maps an item type to a color:\n\n[{ name: \u0022Header\u0022, color: \u0022#FFFFFF\u0022 }]\n\nValid names are Header, Song, and Media.\n\nA color is the hexadecimal value of a valid color e.g. #FFFFFF\nValid colors values are #e8f6df, #e0f7ff, #e6e2fd, #ffe0e8, #ffedd1, #cfcfcf, #eaebeb, and #ffffff\n"
+        },
+        {
+          "Name": "background_check_permissions",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "comment_permissions",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "frequency",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "last_plan_from",
+          "Type": "string",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "parent",
+          "Type": "Folder",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "time_preference_options",
+          "Description": "include associated time_preference_options",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "sequence",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-sequence) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "id",
+          "Parameter": "where[id]",
+          "Type": "primary_key",
+          "Description": "Query on a specific id",
+          "Example": "?where[id]=primary_key"
+        },
+        {
+          "Name": "name",
+          "Parameter": "where[name]",
+          "Type": "string",
+          "Description": "Query on a specific name",
+          "Example": "?where[name]=string"
+        },
+        {
+          "Name": "parent_id",
+          "Parameter": "where[parent_id]",
+          "Type": "integer",
+          "Description": "Query on a related parent",
+          "Example": "?where[parent_id]=1"
+        }
+      ]
+    },
+    {
+      "Id": "service_type_path",
+      "Name": "ServiceTypePath",
+      "Description": "The Folder path of a Service Type",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "path",
+          "Type": "array",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "signup_sheet",
+      "Name": "SignupSheet",
+      "Description": "Available positions to sign up for",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "sort_date",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "group_key",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "team_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "display_times",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "position_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "title",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "sort_index",
+          "Type": "integer",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "plan",
+          "Type": "Plan",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "team_position",
+          "Type": "TeamPosition",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "team",
+          "Type": "Team",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "scheduled_people",
+          "Description": "include associated scheduled_people",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "signup_sheet_metadata",
+          "Description": "include associated signup_sheet_metadata",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        }
+      ],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "signup_sheet_metadata",
+      "Name": "SignupSheetMetadata",
+      "Description": "A SignupSheetMetadata Resource",
+      "Deprecated": false,
+      "CollectionOnly": true,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "conflicts",
+          "Type": "hash",
+          "Description": null
+        },
+        {
+          "Name": "time_type",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "time_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "ends_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "starts_at",
+          "Type": "date_time",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "plan_time",
+          "Type": "PlanTime",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "skipped_attachment",
+      "Name": "SkippedAttachment",
+      "Description": "a skipped attachment",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "skipped",
+          "Type": "boolean",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "person",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "attachment",
+          "Type": "Attachment",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "song",
+      "Name": "Song",
+      "Description": "A song",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "title",
+          "Type": "string",
+          "Description": "The name of the song.\n\nWhen setting this value on a create you can pass a CCLI number and Services will fetch the song metadata for you.\n"
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "admin",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "author",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "copyright",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "hidden",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "notes",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "themes",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "last_scheduled_short_dates",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "last_scheduled_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "ccli_number",
+          "Type": "integer",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "last_scheduled_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-last_scheduled_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "title",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-title) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "author",
+          "Parameter": "where[author]",
+          "Type": "string",
+          "Description": "Query on a specific author",
+          "Example": "?where[author]=string"
+        },
+        {
+          "Name": "ccli_number",
+          "Parameter": "where[ccli_number]",
+          "Type": "integer",
+          "Description": "Query on a specific ccli_number",
+          "Example": "?where[ccli_number]=1"
+        },
+        {
+          "Name": "hidden",
+          "Parameter": "where[hidden]",
+          "Type": "boolean",
+          "Description": "Query on a specific hidden",
+          "Example": "?where[hidden]=true"
+        },
+        {
+          "Name": "themes",
+          "Parameter": "where[themes]",
+          "Type": "string",
+          "Description": "Query on a specific themes",
+          "Example": "?where[themes]=string"
+        },
+        {
+          "Name": "title",
+          "Parameter": "where[title]",
+          "Type": "string",
+          "Description": "Query on a specific title",
+          "Example": "?where[title]=string"
+        }
+      ]
+    },
+    {
+      "Id": "song_schedule",
+      "Name": "SongSchedule",
+      "Description": "A upcoming schedule for a song",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "arrangement_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "key_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "plan_dates",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "service_type_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "plan_sort_date",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "plan_visible",
+          "Type": "boolean",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "arrangement",
+          "Type": "Arrangement",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "key",
+          "Type": "Key",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "plan",
+          "Type": "Plan",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "service_type",
+          "Type": "ServiceType",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "item",
+          "Type": "Item",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "plan_sort_date",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-plan_sort_date) to reverse the order"
+        }
+      ],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "songbook_status",
+      "Name": "SongbookStatus",
+      "Description": "Used to get the status of an in progress songbook action. When FINISHED, will contain the url of the songbook.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "status",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "status_code",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "status_token",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "url",
+          "Type": "string",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "split_team_rehearsal_assignment",
+      "Name": "SplitTeamRehearsalAssignment",
+      "Description": "For Rehearsal/Other Times, maps a Split Team to selected Time Preference Options. For example, used to assign 8am Ushers to 7:30am call time, and 11am Ushers to 10:30am call time.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "schedule_special_service_times",
+          "Type": "boolean",
+          "Description": "Controls if the related rehearsal/other time is assigned when a person is scheduled to a split team service time that does not match a Time Preference Option"
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "team",
+          "Type": "Team",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "time_preference_options",
+          "Type": "TimePreferenceOption",
+          "AssociationType": "to_many",
+          "Note": null
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "tag",
+      "Name": "Tag",
+      "Description": "A tag belonging to a tag group.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "tag_group",
+          "Type": "TagGroup",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "tag_group",
+      "Name": "TagGroup",
+      "Description": "A tag group contains tags",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "required",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "allow_multiple_selections",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "tags_for",
+          "Type": "string",
+          "Description": "Scopes a tag group to \u0060person\u0060, \u0060song\u0060, \u0060arrangement\u0060, \u0060media\u0060"
+        },
+        {
+          "Name": "service_type_folder_name",
+          "Type": "string",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "folder",
+          "Description": "include associated folder",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "tags",
+          "Description": "include associated tags",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        }
+      ],
+      "CanOrderBy": [],
+      "CanQueryBy": [
+        {
+          "Name": "name",
+          "Parameter": "where[name]",
+          "Type": "string",
+          "Description": "Query on a specific name",
+          "Example": "?where[name]=string"
+        },
+        {
+          "Name": "tags_for",
+          "Parameter": "where[tags_for]",
+          "Type": "string",
+          "Description": "Query on a specific tags_for",
+          "Example": "?where[tags_for]=string"
+        }
+      ]
+    },
+    {
+      "Id": "team",
+      "Name": "Team",
+      "Description": "A Team within a Service Type.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "rehearsal_team",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "sequence",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "schedule_to",
+          "Type": "string",
+          "Description": "This determines whether a team is a split team or not.Accepted values: 1. \u0022plan\u0022 (default) 2. \u0022time\u0022 (designates as a split team)"
+        },
+        {
+          "Name": "default_status",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "default_prepare_notifications",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "archived_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "viewers_see",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "assigned_directly",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "secure_team",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "last_plan_from",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "stage_color",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "stage_variant",
+          "Type": "string",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "service_type",
+          "Type": "ServiceType",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "default_responds_to",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": "A relationship with id 0 will be returned when \u0022All Team Leaders\u0022 is the default."
+        },
+        {
+          "Name": "service_types",
+          "Type": "ServiceType",
+          "AssociationType": "to_many",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "people",
+          "Description": "include associated people",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "person_team_position_assignments",
+          "Description": "include associated person_team_position_assignments",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "service_types",
+          "Description": "include associated service_types",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "team_leaders",
+          "Description": "include associated team_leaders",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "team_positions",
+          "Description": "include associated team_positions",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "Name": "name",
+          "Parameter": "where[name]",
+          "Type": "string",
+          "Description": "Query on a specific name",
+          "Example": "?where[name]=string"
+        }
+      ]
+    },
+    {
+      "Id": "team_leader",
+      "Name": "TeamLeader",
+      "Description": "A leader of a specific Team in a Service Type.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "send_responses_for_accepts",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "send_responses_for_declines",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "send_responses_for_blockouts",
+          "Type": "boolean",
+          "Description": null
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "person",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "team",
+          "Type": "Team",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "people",
+          "Description": "include associated people",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "team",
+          "Description": "include associated team",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "first_name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-first_name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "last_name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-last_name) to reverse the order"
+        }
+      ],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "team_position",
+      "Name": "TeamPosition",
+      "Description": "A position within a team.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "sequence",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "tags",
+          "Type": "array",
+          "Description": "If the Team is assigned via tags, these are specific Tags that are specified."
+        },
+        {
+          "Name": "negative_tag_groups",
+          "Type": "array",
+          "Description": "If the Team is assigned via tags, these are Tags where the option \u0022None\u0022 is specified."
+        },
+        {
+          "Name": "tag_groups",
+          "Type": "array",
+          "Description": "If the Team is assigned via tags, these are Tags where the option \u0022Any\u0022 is specified."
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "team",
+          "Type": "Team",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "attachment_types",
+          "Type": "AttachmentType",
+          "AssociationType": "to_many",
+          "Note": null
+        },
+        {
+          "Name": "tags",
+          "Type": "Tag",
+          "AssociationType": "to_many",
+          "Note": null
+        }
+      ],
+      "CanInclude": [
+        {
+          "Parameter": "include",
+          "Value": "tags",
+          "Description": "include associated tags",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "team",
+          "Description": "include associated team",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
+        }
+      ],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "text_setting",
+      "Name": "TextSetting",
+      "Description": null,
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "scheduling_requests_enabled",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "general_emails_enabled",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "scheduling_replies_enabled",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "reminders_enabled",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "carrier",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "display_number",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "normalized_number",
+          "Type": "string",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "time_preference_option",
+      "Name": "TimePreferenceOption",
+      "Description": "A Service Time a person prefers to be scheduled to.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "day_of_week",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "description",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "sort_index",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "time_type",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "minute_of_day",
+          "Type": "integer",
+          "Description": "0 for 12:00 am, 1 for 12:01 am, 100 for 1:00 am, through 2359 for 11:59pm"
+        },
+        {
+          "Name": "starts_at",
+          "Type": "date_time",
+          "Description": null
+        }
+      ],
+      "Relationships": [],
+      "CanInclude": [],
+      "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "day_of_week",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-day_of_week) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "hour_of_day",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-hour_of_day) to reverse the order"
+        }
+      ],
+      "CanQueryBy": []
+    },
+    {
+      "Id": "zoom",
+      "Name": "Zoom",
+      "Description": "Describes a zoom level for an attachment",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Attributes": [
+        {
+          "Name": "id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "aspect_ratio",
+          "Type": "float",
+          "Description": "The aspect ratio of the device this zoom is for. It is rounded to the nearest 3 decimal places."
+        },
+        {
+          "Name": "zoom_level",
+          "Type": "float",
+          "Description": "The percentage of the zoom. Must be a value between 1.0 and 5.0"
+        },
+        {
+          "Name": "x_offset",
+          "Type": "float",
+          "Description": "The percentage of the document\u0027s width the zoomed document should be offset by horizontally."
+        },
+        {
+          "Name": "y_offset",
+          "Type": "float",
+          "Description": "The percentage of the document\u0027s height the zoomed document should be offset by vertically."
+        }
+      ],
+      "Relationships": [
+        {
+          "Name": "person",
+          "Type": "Person",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "attachable",
+          "Type": "Attachment",
+          "AssociationType": "to_one",
+          "Note": null
+        },
+        {
+          "Name": "attachment",
+          "Type": "Attachment",
+          "AssociationType": "to_one",
+          "Note": null
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    }
+  ]
+}

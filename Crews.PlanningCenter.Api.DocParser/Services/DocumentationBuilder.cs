@@ -7,44 +7,38 @@ namespace Crews.PlanningCenter.Api.DocParser.Services;
 
 class DocumentationBuilder(IPlanningCenterClient client, ILogger<DocumentationBuilder> logger) : IDocumentationBuilder
 {
+    private readonly SemaphoreSlim _semaphore = new(10, 10);
+
     public async Task<IEnumerable<Product>> BuildAllProductsAsync()
     {
         logger.LogDebug("Building documentation for all products");
 
-        List<Product> products = [];
-        foreach (ProductDefinition productDefinition in ProductDefinition.All)
-        {
-            Product product = await BuildProductAsync(productDefinition);
-            products.Add(product);
-        }
-        return products;
+        Task<Product>[] productTasks = [.. ProductDefinition.All.Select(BuildProductAsync)];
+
+        return await Task.WhenAll(productTasks);
     }
 
     public async Task<Product> BuildProductAsync(ProductDefinition product)
     {
         logger.LogDebug("Building documentation for product: {ProductName}", product);
-        GraphDocument graphDocument = await client.GetGraphAsync(product);
-        List<Models.Outgoing.Version> versions = [];
 
-        foreach (VersionResource version in graphDocument.Data.Relationships.Versions.Data)
+        await _semaphore.WaitAsync();
+        GraphDocument graphDocument;
+        try
         {
-            logger.LogTrace("Building version with ID: {VersionId}", version.Id);
-            GraphVersionDocument versionDocument = await client.GetGraphVersionAsync(product, version.Id!);
-            List<Resource> resources = [];
-
-            foreach (VertexResource versionVertex in versionDocument.Data.Relationships.Vertices.Data)
-            {
-                VertexDocument vertexDocument = await client.GetVertexAsync(product, version.Id!, versionVertex.Id!);
-                resources.Add(BuildResource(vertexDocument.Data));
-            }
-            versions.Add(new()
-            {
-                Id = versionDocument.Data.Id!,
-                Beta = versionDocument.Data.Attributes.Beta,
-                Details = versionDocument.Data.Attributes.Details,
-                Resources = resources
-            });
+            graphDocument = await client.GetGraphAsync(product);
         }
+        finally
+        {
+            _semaphore.Release();
+        }
+
+        Task<Models.Outgoing.Version>[] versionTasks = 
+        [
+            .. graphDocument.Data.Relationships.Versions.Data.Select(version => BuildVersionAsync(product, version))
+        ];
+
+        Models.Outgoing.Version[] versions = await Task.WhenAll(versionTasks);
 
         return new()
         {
@@ -53,6 +47,55 @@ class DocumentationBuilder(IPlanningCenterClient client, ILogger<DocumentationBu
             Description = graphDocument.Data.Attributes.Description,
             Versions = versions
         };
+    }
+
+    private async Task<Models.Outgoing.Version> BuildVersionAsync(ProductDefinition product, VersionResource version)
+    {
+        logger.LogTrace("Building version with ID: {VersionId}", version.Id);
+
+        await _semaphore.WaitAsync();
+        GraphVersionDocument versionDocument;
+        try
+        {
+            versionDocument = await client.GetGraphVersionAsync(product, version.Id!);
+        }
+        finally
+        {
+            _semaphore.Release();
+        }
+
+        Task<Resource>[] resourceTasks =
+        [
+            .. versionDocument.Data.Relationships.Vertices.Data.Select(
+                versionVertex => BuildResourceAsync(product, version.Id!, versionVertex))
+        ];
+
+        Resource[] resources = await Task.WhenAll(resourceTasks);
+
+        return new()
+        {
+            Id = versionDocument.Data.Id!,
+            Beta = versionDocument.Data.Attributes.Beta,
+            Details = versionDocument.Data.Attributes.Details,
+            Resources = resources
+        };
+    }
+
+    private async Task<Resource> BuildResourceAsync(
+        ProductDefinition product, string versionId, VertexResource versionVertex)
+    {
+        await _semaphore.WaitAsync();
+        VertexDocument vertexDocument;
+        try
+        {
+            vertexDocument = await client.GetVertexAsync(product, versionId, versionVertex.Id!);
+        }
+        finally
+        {
+            _semaphore.Release();
+        }
+
+        return BuildResource(vertexDocument.Data);
     }
 
     private Resource BuildResource(VertexResource vertex)

@@ -1,8 +1,10 @@
+using Crews.PlanningCenter.Api.DocParser.Configuration;
 using Crews.PlanningCenter.Api.DocParser.Models;
 using Crews.PlanningCenter.Api.DocParser.Models.Incoming;
 using Crews.PlanningCenter.Api.DocParser.Services;
 using Crews.PlanningCenter.Api.DocParser.Tests.Fixtures;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using NSubstitute;
 using System.Net;
 using System.Text.Json;
@@ -15,7 +17,6 @@ public class PlanningCenterClientTests : IDisposable
     private readonly ILogger<PlanningCenterClient> _mockLogger;
     private readonly MockHttpMessageHandler _mockHandler;
     private readonly PlanningCenterClient _client;
-    private readonly JsonSerializerOptions _jsonOptions;
 
     public PlanningCenterClientTests()
     {
@@ -25,11 +26,8 @@ public class PlanningCenterClientTests : IDisposable
             BaseAddress = new Uri("https://api.planningcenteronline.com/")
         };
         _mockLogger = Substitute.For<ILogger<PlanningCenterClient>>();
-        _jsonOptions = new JsonSerializerOptions
-        {
-            PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower
-        };
-        _client = new PlanningCenterClient(_httpClient, _mockLogger, _jsonOptions);
+        _client = new PlanningCenterClient(_httpClient, _mockLogger, 
+            Options.Create<AppSettings.PlanningCenterClientOptions>(new() { BaseAddress = "https://test.com" }));
     }
 
     [Fact(DisplayName = "GetGraphAsync sends request to correct endpoint")]
@@ -206,11 +204,7 @@ public class PlanningCenterClientTests : IDisposable
         Assert.False(result.Data.Relationships.Permissions.Data.Attributes.CanDestroy);
     }
 
-    public void Dispose()
-    {
-        _httpClient.Dispose();
-        _mockHandler.Dispose();
-    }
+    public void Dispose() => GC.SuppressFinalize(this);
 
     /// <summary>
     /// Simple mock HTTP message handler for testing
@@ -249,10 +243,7 @@ public class PlanningCenterClientTests : IDisposable
 
             if (_responses.TryGetValue(path, out object? response))
             {
-                string json = JsonSerializer.Serialize(response, new JsonSerializerOptions
-                {
-                    PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower
-                });
+                string json = JsonSerializer.Serialize(response);
 
                 return new HttpResponseMessage(HttpStatusCode.OK)
                 {

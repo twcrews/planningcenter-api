@@ -1,9 +1,11 @@
+using Crews.PlanningCenter.Api.DocParser.Configuration;
 using Crews.PlanningCenter.Api.DocParser.Models;
 using Crews.PlanningCenter.Api.DocParser.Models.Incoming;
 using Crews.PlanningCenter.Api.DocParser.Models.Outgoing;
 using Crews.PlanningCenter.Api.DocParser.Services;
 using Crews.PlanningCenter.Api.DocParser.Tests.Fixtures;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using NSubstitute;
 
 namespace Crews.PlanningCenter.Api.DocParser.Tests.Services;
@@ -18,7 +20,8 @@ public class DocumentationBuilderTests
     {
         _mockClient = Substitute.For<IPlanningCenterClient>();
         _mockLogger = Substitute.For<ILogger<DocumentationBuilder>>();
-        _builder = new DocumentationBuilder(_mockClient, _mockLogger);
+        _builder = new DocumentationBuilder(_mockLogger, _mockClient, 
+            Options.Create<AppSettings.DocumentationBuilderOptions>(new() { ConcurrentConnections = 10 }));
     }
 
     [Fact(DisplayName = "BuildAllProductsAsync builds all products concurrently")]
@@ -427,5 +430,98 @@ public class DocumentationBuilderTests
         {
             await _mockClient.Received(1).GetGraphVersionAsync(productDef, version.Id!);
         }
+    }
+
+    [Fact(DisplayName = "ConcurrentConnections configuration limits parallel API calls")]
+    public async Task ConcurrentConnectionsConfiguration_LimitsParallelApiCalls()
+    {
+        // Arrange - Configure with a specific concurrent connection limit
+        int maxConcurrentRequests = 3;
+        int currentConcurrentCalls = 0;
+        int maxObservedConcurrentCalls = 0;
+        object lockObject = new();
+
+        IPlanningCenterClient mockClient = Substitute.For<IPlanningCenterClient>();
+        ILogger<DocumentationBuilder> mockLogger = Substitute.For<ILogger<DocumentationBuilder>>();
+
+        DocumentationBuilder builder = new(mockLogger, mockClient,
+            Options.Create<AppSettings.DocumentationBuilderOptions>(new()
+            {
+                ConcurrentConnections = maxConcurrentRequests
+            }));
+
+        // Create a product with multiple versions to trigger concurrent calls
+        ProductDefinition productDef = ProductDefinition.Services;
+        List<VersionResource> versions = [];
+        for (int i = 1; i <= 10; i++)
+        {
+            versions.Add(TestDataBuilder.CreateVersionResource($"2024-{i:D2}-01"));
+        }
+
+        GraphDocument graphDoc = TestDataBuilder.CreateGraphDocument(versions: [.. versions]);
+
+        // Set up mock to track concurrent calls
+        mockClient.GetGraphAsync(productDef).Returns(callInfo =>
+        {
+            return Task.Run(async () =>
+            {
+                lock (lockObject)
+                {
+                    currentConcurrentCalls++;
+                    maxObservedConcurrentCalls = Math.Max(maxObservedConcurrentCalls, currentConcurrentCalls);
+                }
+
+                await Task.Delay(50); // Simulate network delay
+
+                lock (lockObject)
+                {
+                    currentConcurrentCalls--;
+                }
+
+                return graphDoc;
+            });
+        });
+
+        foreach (VersionResource version in versions)
+        {
+            GraphVersionDocument versionDoc = TestDataBuilder.CreateGraphVersionDocument(
+                id: version.Id!,
+                vertices: []);
+
+            mockClient.GetGraphVersionAsync(productDef, version.Id!).Returns(callInfo =>
+            {
+                return Task.Run(async () =>
+                {
+                    lock (lockObject)
+                    {
+                        currentConcurrentCalls++;
+                        maxObservedConcurrentCalls = Math.Max(maxObservedConcurrentCalls, currentConcurrentCalls);
+                    }
+
+                    await Task.Delay(50); // Simulate network delay
+
+                    lock (lockObject)
+                    {
+                        currentConcurrentCalls--;
+                    }
+
+                    return versionDoc;
+                });
+            });
+        }
+
+        // Act
+        Product product = await builder.BuildProductAsync(productDef);
+
+        // Assert
+        Assert.Equal(10, product.Versions.Count());
+
+        // Verify that concurrent calls never exceeded the configured limit
+        Assert.True(maxObservedConcurrentCalls <= maxConcurrentRequests,
+            $"Expected max concurrent calls to be <= {maxConcurrentRequests}, but observed {maxObservedConcurrentCalls}");
+
+        // Verify that concurrent calls actually happened (should be > 1 with 10 versions)
+        Assert.True(maxObservedConcurrentCalls > 1,
+            $"Expected concurrent execution, but max concurrent calls was {maxObservedConcurrentCalls}");
     }
 }

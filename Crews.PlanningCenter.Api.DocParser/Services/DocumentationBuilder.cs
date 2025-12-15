@@ -1,17 +1,25 @@
-﻿using Crews.PlanningCenter.Api.DocParser.Models;
+﻿using Crews.PlanningCenter.Api.DocParser.Configuration;
+using Crews.PlanningCenter.Api.DocParser.Models;
 using Crews.PlanningCenter.Api.DocParser.Models.Incoming;
 using Crews.PlanningCenter.Api.DocParser.Models.Outgoing;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 namespace Crews.PlanningCenter.Api.DocParser.Services;
 
-class DocumentationBuilder(IPlanningCenterClient client, ILogger<DocumentationBuilder> logger) : IDocumentationBuilder
+class DocumentationBuilder(
+    ILogger<DocumentationBuilder> logger, 
+    IPlanningCenterClient client, 
+    IOptions<AppSettings.DocumentationBuilderOptions> options) 
+    : IDocumentationBuilder
 {
-    private readonly SemaphoreSlim _semaphore = new(10, 10);
+    private readonly SemaphoreSlim _semaphore = new(options.Value.ConcurrentConnections);
+    private readonly ILogger<DocumentationBuilder> _logger = logger;
+    private readonly IPlanningCenterClient _client = client;
 
     public async Task<IEnumerable<Product>> BuildAllProductsAsync()
     {
-        logger.LogDebug("Building documentation for all products");
+        _logger.LogDebug("Building documentation for all products");
 
         Task<Product>[] productTasks = [.. ProductDefinition.All.Select(BuildProductAsync)];
 
@@ -20,13 +28,13 @@ class DocumentationBuilder(IPlanningCenterClient client, ILogger<DocumentationBu
 
     public async Task<Product> BuildProductAsync(ProductDefinition product)
     {
-        logger.LogDebug("Building documentation for product: {ProductName}", product);
+        _logger.LogDebug("Building documentation for product: {ProductName}", product);
 
         await _semaphore.WaitAsync();
         GraphDocument graphDocument;
         try
         {
-            graphDocument = await client.GetGraphAsync(product);
+            graphDocument = await _client.GetGraphAsync(product);
         }
         finally
         {
@@ -51,13 +59,13 @@ class DocumentationBuilder(IPlanningCenterClient client, ILogger<DocumentationBu
 
     private async Task<Models.Outgoing.Version> BuildVersionAsync(ProductDefinition product, VersionResource version)
     {
-        logger.LogTrace("Building version with ID: {VersionId}", version.Id);
+        _logger.LogTrace("Building version with ID: {VersionId}", version.Id);
 
         await _semaphore.WaitAsync();
         GraphVersionDocument versionDocument;
         try
         {
-            versionDocument = await client.GetGraphVersionAsync(product, version.Id!);
+            versionDocument = await _client.GetGraphVersionAsync(product, version.Id!);
         }
         finally
         {
@@ -88,7 +96,7 @@ class DocumentationBuilder(IPlanningCenterClient client, ILogger<DocumentationBu
         VertexDocument vertexDocument;
         try
         {
-            vertexDocument = await client.GetVertexAsync(product, versionId, versionVertex.Id!);
+            vertexDocument = await _client.GetVertexAsync(product, versionId, versionVertex.Id!);
         }
         finally
         {
@@ -100,7 +108,7 @@ class DocumentationBuilder(IPlanningCenterClient client, ILogger<DocumentationBu
 
     private Resource BuildResource(VertexResource vertex)
     {
-        logger.LogTrace("Building resource for vertex with ID: {VertexId}", vertex.Id);
+        _logger.LogTrace("Building resource for vertex with ID: {VertexId}", vertex.Id);
         return new()
         {
             Id = vertex.Id!,
@@ -118,7 +126,7 @@ class DocumentationBuilder(IPlanningCenterClient client, ILogger<DocumentationBu
 
     private ResourceAttribute BuildAttribute(Models.Incoming.Attribute attribute)
     {
-        logger.LogTrace("Building attribute: {AttributeName}", attribute.Name);
+        _logger.LogTrace("Building attribute: {AttributeName}", attribute.Name);
         return new()
         {
             Name = attribute.Name,
@@ -129,7 +137,7 @@ class DocumentationBuilder(IPlanningCenterClient client, ILogger<DocumentationBu
 
     private ResourceRelationship BuildRelationship(Relationship relationship)
     {
-        logger.LogTrace("Building relationship: {RelationshipName}", relationship.Name);
+        _logger.LogTrace("Building relationship: {RelationshipName}", relationship.Name);
         return new()
         {
             Name = relationship.Name,
@@ -141,7 +149,7 @@ class DocumentationBuilder(IPlanningCenterClient client, ILogger<DocumentationBu
 
     private ResourceIncludable BuildIncludable(UrlParameter parameter)
     {
-        logger.LogTrace("Building includable parameter: {ParameterName}", parameter.Parameter);
+        _logger.LogTrace("Building includable parameter: {ParameterName}", parameter.Parameter);
         return new()
         {
             Parameter = parameter.Parameter,
@@ -154,7 +162,7 @@ class DocumentationBuilder(IPlanningCenterClient client, ILogger<DocumentationBu
 
     private ResourceOrderable BuildOrderable(UrlParameter parameter)
     {
-        logger.LogTrace("Building orderable parameter: {ParameterName}", parameter.Parameter);
+        _logger.LogTrace("Building orderable parameter: {ParameterName}", parameter.Parameter);
         return new()
         {
             Parameter = parameter.Parameter,
@@ -166,7 +174,7 @@ class DocumentationBuilder(IPlanningCenterClient client, ILogger<DocumentationBu
 
     private ResourceQueryable BuildQueryable(UrlParameter parameter)
     {
-        logger.LogTrace("Building queryable parameter: {ParameterName}", parameter.Parameter);
+        _logger.LogTrace("Building queryable parameter: {ParameterName}", parameter.Parameter);
         return new()
         {
             Name = parameter.Name,

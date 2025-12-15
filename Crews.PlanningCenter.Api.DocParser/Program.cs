@@ -11,11 +11,12 @@ var host = Host.CreateDefaultBuilder(args)
         AppSettings settings = new();
         context.Configuration.GetSection(nameof(AppSettings)).Bind(settings);
 
-        services.AddHttpClient<IPlanningCenterClient, PlanningCenterClient>(client =>
-        {
-            string? baseAddress = settings.PlanningCenterClient?.BaseAddress;
-            if (!string.IsNullOrWhiteSpace(baseAddress)) client.BaseAddress = new Uri(baseAddress);
-        });
+        services.Configure<AppSettings.PlanningCenterClientOptions>(context.Configuration
+            .GetSection($"{nameof(AppSettings)}:{nameof(AppSettings.PlanningCenterClient)}"));
+        services.Configure<AppSettings.DocumentationBuilderOptions>(context.Configuration
+            .GetSection($"{nameof(AppSettings)}:{nameof(AppSettings.DocumentationBuilder)}"));
+
+        services.AddHttpClient<IPlanningCenterClient, PlanningCenterClient>();
 
         services.AddTransient<IDocumentationBuilder, DocumentationBuilder>();
         services.AddTransient<Application>();

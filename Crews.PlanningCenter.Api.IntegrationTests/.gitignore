@@ -1,8 +1,0 @@
-# Ignore appsettings with credentials
-appsettings.Development.json
-appsettings.*.local.json
-
-# Ignore test results
-TestResults/
-*.trx
-*.coverage

@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace Crews.PlanningCenter.Api.Generators.Extensions;
@@ -8,13 +9,13 @@ public static class StringExtensions
 	{
 		string indent = indentSpaces > 0 ? new(' ', indentSpaces) : string.Empty;
 
-		string content = string.Join('\n', target
+		string content = string.Join("\n", target
 			.Trim()
 			.RecursivelyRemoveTripleNewLines()
 			.FixAmpersands()
 			.FixLinks()
 			.FixInlineCode()
-			.Split('\n', StringSplitOptions.TrimEntries)
+			.Split('\n')
 			.Select(substring => $"{indent}/// {substring}"));
 
 		return $"{indent}/// <summary>\n"

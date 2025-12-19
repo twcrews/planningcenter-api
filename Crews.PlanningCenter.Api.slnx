@@ -11,7 +11,6 @@
   <Project Path="Crews.PlanningCenter.Api.DocParser.Tests/Crews.PlanningCenter.Api.DocParser.Tests.csproj" Id="c6adfa34-c038-4049-b033-cc8e4db78776" />
   <Project Path="Crews.PlanningCenter.Api.DocParser/Crews.PlanningCenter.Api.DocParser.csproj" Id="ceeea978-8dd1-4762-bc8d-ddce4e7ccf1b" />
   <Project Path="Crews.PlanningCenter.Api.Generators/Crews.PlanningCenter.Api.Generators.csproj" />
-  <Project Path="Crews.PlanningCenter.Api.IntegrationTests/Crews.PlanningCenter.Api.IntegrationTests.csproj" />
   <Project Path="Crews.PlanningCenter.Api.Tests/Crews.PlanningCenter.Api.Tests.csproj" />
   <Project Path="Crews.PlanningCenter.Api/Crews.PlanningCenter.Api.csproj" />
 </Solution>

@@ -4,11 +4,20 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a .NET library that provides a client for the Planning Center API, built on top of the JSON:API Framework. It supports all major Planning Center products (Calendar, Check-Ins, Giving, Groups, People, Publishing, Services) with API versioning support.
+This is a multi-project .NET solution. The primary project in the solution (`Crews.PlanningCenter.Api`) is a client library for the Planning Center API, distributed as a NuGet Package. It supports all versions of each Planning Center product.
 
-The library uses ASP.NET Core's authentication system to support both:
-- Personal Access Token authentication (from configuration)
-- OAuth/OpenID Connect authentication (from authenticated user context)
+## Project Structure
+
+The solution contains six projects:
+
+1. **Crews.PlanningCenter.Api** (.NET 8.0): Main library project
+2. **Crews.PlanningCenter.Api.DocParser** (.NET 10.0): Console application for downloading and parsing API documentation
+3. **Crews.PlanningCenter.Api.Generators** (.NET Standard 2.0): Roslyn incremental source generator for code generation
+4. **Crews.PlanningCenter.Api.Tests** (.NET 8.0): Unit tests for the main library
+5. **Crews.PlanningCenter.Api.DocParser.Tests** (.NET 10.0): Unit tests for the doc parser
+6. **Crews.PlanningCenter.Api.Generators.Tests** (.NET Standard 2.0): Unit tests for the source generators
+
+**Current Development State:** The main API project has been cleared of generated code to prepare for the new source generator implementation. After the generators are fully implemented, client and resource classes will be automatically generated at compile time.
 
 ## Build and Test Commands
 
@@ -19,14 +28,13 @@ dotnet build
 
 ### Running Tests
 ```bash
-# Run all tests (unit + integration)
+# Run all tests
 dotnet test
 
-# Run only unit tests (fast, no credentials needed)
-dotnet test --filter "FullyQualifiedName~Crews.PlanningCenter.Api.Tests"
-
-# Run only integration tests (slow, requires credentials)
-dotnet test --filter "FullyQualifiedName~IntegrationTests"
+# Run tests for a specific project
+dotnet test Crews.PlanningCenter.Api.Tests
+dotnet test Crews.PlanningCenter.Api.DocParser.Tests
+dotnet test Crews.PlanningCenter.Api.Generators.Tests
 
 # Run tests with code coverage (uses .runsettings configuration)
 dotnet test --settings Crews.PlanningCenter.Api.Tests/.runsettings --collect:"XPlat Code Coverage"
@@ -92,125 +100,20 @@ Contains utilities and services for generating strongly-typed client code from t
 - Structure: `{Product}/{Version}.json`
 - Example: `Definitions/People/2025-07-17.json`
 
-**Note:** Client classes (in `Clients/` folder) and resource classes (in `Resources/` folder) are auto-generated. They include a header comment: `This code is automatically generated. Please do not modify it directly.`
+**Note:** The source generator is configured in the main library project via:
+- ProjectReference to the Generators project with `OutputItemType="Analyzer"`
+- AdditionalFiles include for `Definitions/**/*.json`
+- EmitCompilerGeneratedFiles is enabled to output generated code to `obj/Generated`
 
-### Resource Model Pattern
+Client and resource classes will be auto-generated at compile time and include a header comment indicating they are generated code.
 
-The library uses a sophisticated resource pattern with two main base classes:
+### Tests
 
-1. **PlanningCenterSingletonFetchableResource**: Represents a single resource that can be fetched, posted, patched, or deleted
-2. **PlanningCenterPaginatedFetchableResource**: Represents a collection of resources that can be fetched with pagination, filtering, ordering, and querying
+#### DocParser Tests (`Crews.PlanningCenter.Api.DocParser.Tests`)
+Unit tests for the documentation parser console application. Tests the parsing and transpilation logic for Planning Center API documentation.
 
-All resource types are generic and require:
-- `TResource`: The entity model type
-- `TContext`: A Planning Center document context for JSON:API serialization
-- `TSelf`: Self-referential type for fluent chaining
-
-Custom resources can be created by inheriting from these base classes and implementing the appropriate interfaces (`IIncludable`, `IOrderable`, `IFilterable`).
-
-### Authentication Flow
-
-1. **AddPlanningCenter()**: Registers OpenID Connect authentication with Planning Center
-   - Configures authority, scopes, and claims transformation
-   - Saves OAuth tokens for later use
-   - Located in [AuthenticationBuilderExtensions.cs](Crews.PlanningCenter.Api/DependencyInjection/AuthenticationBuilderExtensions.cs)
-
-2. **AddPlanningCenterClient()**: Registers the API client with DI
-   - Configures `IPlanningCenterClient` as a scoped service
-   - Registers `PlanningCenterAuthenticationHandler` as a delegating handler
-   - Located in [ServiceCollectionExtensions.cs](Crews.PlanningCenter.Api/DependencyInjection/ServiceCollectionExtensions.cs)
-
-3. **PlanningCenterAuthenticationHandler**: Automatic authentication injection
-   - Prioritizes Personal Access Token from configuration if available
-   - Falls back to OAuth access token from `HttpContext` if authenticated
-   - Allows per-request authorization header overrides
-   - Located in [Authentication/PlanningCenterAuthenticationHandler.cs](Crews.PlanningCenter.Api/Authentication/PlanningCenterAuthenticationHandler.cs)
-
-4. **PlanningCenterClaimsTransformation**: Maps Planning Center claims to .NET conventions
-   - Transforms OAuth claims into standard ASP.NET Core claim types
-   - Located in [Authentication/PlanningCenterClaimsTransformation.cs](Crews.PlanningCenter.Api/Authentication/PlanningCenterClaimsTransformation.cs)
-
-### Client Architecture
-
-The `IPlanningCenterClient` interface provides access to all Planning Center product APIs:
-- Calendar, CheckIns, Giving, Groups, People, Publishing, Registrations, Services
-
-Each client (e.g., `PeopleClient`) provides access to multiple API versions via properties like:
-- `LatestVersion`: Points to the most recent API version
-- `V2025_07_17`, `V2024_09_12`, etc.: Specific API versions
-
-Each version property returns an `OrganizationResource` which serves as the entry point to that API version's resource hierarchy.
-
-### Configuration
-
-Configuration uses the options pattern with two main sections:
-
-1. **Authentication:PlanningCenter**: OpenID Connect configuration
-   - `ClientId`, `ClientSecret`, `Scope[]`
-   - Bound to `OpenIdConnectOptions`
-
-2. **PlanningCenterClient**: API client configuration
-   - `ApiBaseAddress`: Default is `https://api.planningcenteronline.com`
-   - `HttpClientName`: Default is `__defaultPlanningCenterClient`
-   - `UserAgent`: Required by Planning Center API
-   - `PersonalAccessToken`: Optional PAT with `AppId` and `Secret`
-
-See [PlanningCenterClientOptions.cs](Crews.PlanningCenter.Api/DependencyInjection/PlanningCenterClientOptions.cs) and README.md for details.
-
-### Fluent API Pattern
-
-The library uses method chaining for building API requests:
-
-```csharp
-var result = await client.People.LatestVersion
-    .GetRelated<PersonResourceCollection>("people")
-    .Include(PersonIncludable.Emails)
-    .OrderBy(PersonOrderable.LastName, Order.Ascending)
-    .Query((PersonQueryable.FirstName, "John"))
-    .GetAllAsync(count: 25, offset: 0);
-```
-
-Resources use the following pattern:
-- Collections provide `.WithID(id)` to get singleton resources
-- Singleton resources provide navigation properties to related resources
-- Both support `.GetRelated<T>(path)` for accessing custom or undocumented resources
-
-### Test Architecture
-
-The project has two test suites:
-
-#### Unit Tests (`Crews.PlanningCenter.Api.Tests`)
-Fast, isolated tests using mocks and fakes. Organized by namespace matching the main project:
-- `Authentication/`: Authentication handler and claims transformation tests
-- `DependencyInjection/`: Service registration tests
-- `Extensions/`: Extension method tests
-- `Models/`: Resource model tests
-- `Dummies/`: Test fixtures and dummy data
-
-Code coverage excludes auto-generated code (Clients, Resources folders) and some extension methods.
-
-#### Integration Tests (`Crews.PlanningCenter.Api.IntegrationTests`)
-Tests that make real API calls to Planning Center. **Requires valid credentials** to run.
-
-**Configuration:** Integration tests require Planning Center API credentials via user secrets or environment variables:
-```bash
-# Using user secrets (recommended for local development)
-cd Crews.PlanningCenter.Api.IntegrationTests
-dotnet user-secrets set "PlanningCenterClient:PersonalAccessToken:AppId" "your-app-id"
-dotnet user-secrets set "PlanningCenterClient:PersonalAccessToken:Secret" "your-secret"
-
-# Using environment variables (recommended for CI/CD)
-export PLANNINGCENTER_AppId="your-app-id"
-export PLANNINGCENTER_Secret="your-secret"
-```
-
-Test organization:
-- `Infrastructure/`: Base classes, fixtures, and helpers
-- `Authentication/`: Personal Access Token and OAuth integration tests
-- `Clients/`: Product-specific API client tests (People, Calendar, etc.)
-- `Features/`: Feature tests (fluent API, pagination, includes, etc.)
-
-See [Integration Tests README](Crews.PlanningCenter.Api.IntegrationTests/README.md) for detailed documentation.
+#### Generator Tests (`Crews.PlanningCenter.Api.Generators.Tests`)
+Unit tests for the incremental source generator. Tests the code generation logic that creates client and resource classes from JSON definition files.
 
 ## Important Patterns
 
@@ -236,19 +139,3 @@ When Planning Center releases new API versions:
 4. Rebuild the solution to trigger incremental source generation
 
 API versions use underscored date format (e.g., `V2025_07_17`).
-
-### Vertex Type Overrides
-Some API documentation has incorrect type information. Override these in the `VertexTypeOverrides` dictionary in [PlanningCenterApiReferenceService.cs](Crews.PlanningCenter.Api.Generators/Services/PlanningCenterApiReferenceService.cs:15-22).
-
-**Note:** This override system may need refactoring to work with the new JSON definition file approach.
-
-### Resource Capabilities
-Resources declare their capabilities via interfaces:
-- `IIncludable<TSelf, TEnum>`: Can include related resources
-- `IOrderable<TSelf, TEnum>`: Can order results
-- `IFilterable<TSelf, TEnum>`: Can filter results
-- `IDeletableResource`: Can be deleted
-- `IPatchableResource<TResource>`: Can be updated
-- `IPostableResource<TResource>`: Can be created
-
-Check the Planning Center API documentation to determine which capabilities each resource supports.

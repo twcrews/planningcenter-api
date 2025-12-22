@@ -12,6 +12,8 @@ internal class PlanningCenterModelsGenerator : IIncrementalGenerator
 {
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
+        System.Diagnostics.Debugger.Launch();
+
         // Step 1: Get all additional files that are JSON files
         IncrementalValuesProvider<AdditionalText> jsonFiles = context.AdditionalTextsProvider
             .Where(static file => file.Path.EndsWith(".json"));

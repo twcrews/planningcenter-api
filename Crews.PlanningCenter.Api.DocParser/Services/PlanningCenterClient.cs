@@ -1,6 +1,6 @@
 ﻿using Crews.PlanningCenter.Api.DocParser.Configuration;
 using Crews.PlanningCenter.Api.DocParser.Models;
-using Crews.PlanningCenter.Api.DocParser.Models.Incoming;
+using Crews.PlanningCenter.Api.Models;
 using Crews.Web.JsonApiClient;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;

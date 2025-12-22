@@ -1,5 +1,4 @@
-﻿using Crews.PlanningCenter.Api.DocParser.Models;
-using Crews.PlanningCenter.Api.DocParser.Models.Outgoing;
+﻿using Crews.PlanningCenter.Api.Models;
 
 namespace Crews.PlanningCenter.Api.DocParser.Services;
 

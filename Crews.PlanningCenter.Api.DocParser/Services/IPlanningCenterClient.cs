@@ -1,5 +1,5 @@
 ﻿using Crews.PlanningCenter.Api.DocParser.Models;
-using Crews.PlanningCenter.Api.DocParser.Models.Incoming;
+using Crews.PlanningCenter.Api.Models;
 
 namespace Crews.PlanningCenter.Api.DocParser.Services;
 

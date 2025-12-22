@@ -1,7 +1,7 @@
 ﻿using Crews.Web.JsonApiClient;
 using System.Text.Json.Serialization;
 
-namespace Crews.PlanningCenter.Api.DocParser.Models.Incoming;
+namespace Crews.PlanningCenter.Api.DocParser.Models;
 
 class Edge
 {

@@ -1,6 +1,8 @@
-﻿namespace Crews.PlanningCenter.Api.DocParser.Models;
+﻿using System.Collections.Generic;
 
-sealed class ProductDefinition
+namespace Crews.PlanningCenter.Api.Models;
+
+public sealed class ProductDefinition
 {
   private readonly string _name;
 

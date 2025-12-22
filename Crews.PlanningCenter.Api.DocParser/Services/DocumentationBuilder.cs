@@ -1,7 +1,6 @@
 ﻿using Crews.PlanningCenter.Api.DocParser.Configuration;
 using Crews.PlanningCenter.Api.DocParser.Models;
-using Crews.PlanningCenter.Api.DocParser.Models.Incoming;
-using Crews.PlanningCenter.Api.DocParser.Models.Outgoing;
+using Crews.PlanningCenter.Api.Models;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
@@ -41,12 +40,12 @@ class DocumentationBuilder(
             _semaphore.Release();
         }
 
-        Task<Models.Outgoing.Version>[] versionTasks = 
+        Task<Api.Models.Version>[] versionTasks = 
         [
             .. graphDocument.Data.Relationships.Versions.Data.Select(version => BuildVersionAsync(product, version))
         ];
 
-        Models.Outgoing.Version[] versions = await Task.WhenAll(versionTasks);
+        Api.Models.Version[] versions = await Task.WhenAll(versionTasks);
 
         return new()
         {
@@ -57,7 +56,7 @@ class DocumentationBuilder(
         };
     }
 
-    private async Task<Models.Outgoing.Version> BuildVersionAsync(ProductDefinition product, VersionResource version)
+    private async Task<Api.Models.Version> BuildVersionAsync(ProductDefinition product, VersionResource version)
     {
         _logger.LogTrace("Building version with ID: {VersionId}", version.Id);
 
@@ -124,7 +123,7 @@ class DocumentationBuilder(
         };
     }
 
-    private ResourceAttribute BuildAttribute(Models.Incoming.Attribute attribute)
+    private ResourceAttribute BuildAttribute(Models.Attribute attribute)
     {
         _logger.LogTrace("Building attribute: {AttributeName}", attribute.Name);
         return new()

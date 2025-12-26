@@ -5,34 +5,34 @@ namespace Crews.PlanningCenter.Api.Generators.Extensions;
 
 public static class StringExtensions
 {
-	public static string ToXmlDocSummary(this string target, int indentSpaces = 0)
+	public static string ToXmlSummary(this string target)
 	{
-		string indent = indentSpaces > 0 ? new(' ', indentSpaces) : string.Empty;
-
-		string content = string.Join("\n", target
+		return string.Join("\n", target
 			.Trim()
-			.RecursivelyRemoveTripleNewLines()
+			.RemoveNewLines()
 			.FixAmpersands()
 			.FixLinks()
-			.FixInlineCode()
-			.Split('\n')
-			.Select(substring => $"{indent}/// {substring}"));
-
-		return $"{indent}/// <summary>\n"
-			+ content
-			+ $"\n{indent}/// </summary>";
+			.FixTagBrackets()
+			.FixInlineCode());
 	}
 
 	public static string ToSnakeCase(this string target) => target.Replace('-', '_');
 
-	private static string RecursivelyRemoveTripleNewLines(this string target)
-	{
-		if (target.Contains("\n\n\n"))
-		{
-			return target.Replace("\n\n\n", "\n\n").RecursivelyRemoveTripleNewLines();
-		}
-		return target;
-	}
+
+    public static string ToClrType(this string jsonType) => jsonType.ToLowerInvariant() switch
+    {
+        "string" or "primary_key" or "currency_abbreviation" => "string",
+        "integer" => "int",
+        "boolean" => "bool",
+        "float" => "decimal",
+        "date_time" => "DateTime",
+        "date" => "DateOnly",
+        "json" or "object" or "repeatable_schedule" => "JsonObject",
+        "array" => "JsonArray",
+        _ => "JsonElement"
+    };
+
+	private static string RemoveNewLines(this string target) => Regex.Replace(target, @"[\r\n]+", " ");
 
 	private static string FixAmpersands(this string target) => Regex.Replace(target, @"&(?!amp;)", "&amp;");
 
@@ -40,5 +40,5 @@ public static class StringExtensions
 
 	private static string FixInlineCode(this string target) => Regex.Replace(target, @"`([^`]+)`", "<c>$1</c>");
 
-	private static string FixTagBrackets(this string target) => target.Replace('<', '{').Replace('>', '}');
+    private static string FixTagBrackets(this string target) => target.Replace('<', '{').Replace('>', '}');
 }

@@ -1,5 +1,4 @@
 using Crews.PlanningCenter.Api.DocParser.Models;
-using Crews.PlanningCenter.Api.DocParser.Models.Incoming;
 
 namespace Crews.PlanningCenter.Api.DocParser.Tests.Fixtures;
 
@@ -41,7 +40,7 @@ internal static class TestDataBuilder
         {
             Id = id,
             Type = "version",
-            Attributes = new Models.Incoming.Version
+            Attributes = new Models.Version
             {
                 Beta = false,
                 Details = "Test version details"
@@ -206,7 +205,7 @@ internal static class TestDataBuilder
         {
             Id = name,
             Type = "attribute",
-            Attributes = new Models.Incoming.Attribute
+            Attributes = new Models.Attribute
             {
                 Name = name,
                 TypeAnnotation = new TypeAnnotation
@@ -228,7 +227,7 @@ internal static class TestDataBuilder
         {
             Id = name,
             Type = "relationship",
-            Attributes = new Models.Incoming.Relationship
+            Attributes = new Relationship
             {
                 Name = name,
                 GraphType = graphType,

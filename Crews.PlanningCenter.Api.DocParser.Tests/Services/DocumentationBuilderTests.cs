@@ -1,8 +1,8 @@
 using Crews.PlanningCenter.Api.DocParser.Configuration;
 using Crews.PlanningCenter.Api.DocParser.Models;
-using Crews.PlanningCenter.Api.DocParser.Models.Outgoing;
 using Crews.PlanningCenter.Api.DocParser.Services;
 using Crews.PlanningCenter.Api.DocParser.Tests.Fixtures;
+using Crews.PlanningCenter.Api.Models;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using NSubstitute;
@@ -139,7 +139,7 @@ public class DocumentationBuilderTests
         Product product = await _builder.BuildProductAsync(productDef);
 
         // Assert
-        Models.Outgoing.Version version = product.Versions.First();
+        Api.Models.Version version = product.Versions.First();
         Assert.Equal(2, version.Resources.Count());
 
         Resource? personResource = version.Resources.FirstOrDefault(r => r.Id == "person");

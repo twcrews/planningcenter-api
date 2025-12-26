@@ -1,4 +1,4 @@
-﻿using Crews.PlanningCenter.Api.DocParser.Extensions;
+﻿using Crews.PlanningCenter.Api.Models.Extensions;
 
 namespace Crews.PlanningCenter.Api.DocParser.Tests.Extensions;
 

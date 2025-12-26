@@ -2,10 +2,18 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>14.0</LangVersion>
     <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\Crews.PlanningCenter.Api.Models\Extensions\StringExtensions.cs" Link="StringExtensions.cs" />
+    <Compile Include="..\Crews.PlanningCenter.Api.Models\Product.cs" Link="Product.cs" />
+    <Compile Include="..\Crews.PlanningCenter.Api.Models\ProductDefinition.cs" Link="ProductDefinition.cs" />
+    <Compile Include="..\Crews.PlanningCenter.Api.Models\Resource.cs" Link="Resource.cs" />
+    <Compile Include="..\Crews.PlanningCenter.Api.Models\Version.cs" Link="Version.cs" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="5.0.0" PrivateAssets="all" />

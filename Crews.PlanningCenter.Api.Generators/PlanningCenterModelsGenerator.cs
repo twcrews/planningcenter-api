@@ -18,18 +18,9 @@ internal class PlanningCenterModelsGenerator : IIncrementalGenerator
 {
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
-#if DEBUG
-        if (!System.Diagnostics.Debugger.IsAttached)
-        {
-            System.Diagnostics.Debugger.Launch();
-        }
-#endif
-
-        // Step 1: Get all additional files that are JSON files
         IncrementalValuesProvider<AdditionalText> jsonFiles = context.AdditionalTextsProvider
             .Where(static file => file.Path.EndsWith(".json"));
 
-        // Step 2: Read and parse the JSON files
         IncrementalValuesProvider<(ProductDefinition Product, Models.Version? Version)> products =
             jsonFiles.Select(static (file, cancellationToken) =>
             {
@@ -44,7 +35,6 @@ internal class PlanningCenterModelsGenerator : IIncrementalGenerator
                 return (productDefinition, JsonSerializer.Deserialize<Models.Version>(text.ToString()));
             });
 
-        // Step 3: Filter out nulls and generate source
         context.RegisterSourceOutput(
             products.Where(static x => x.Version != null),
             static (context, tuple) =>

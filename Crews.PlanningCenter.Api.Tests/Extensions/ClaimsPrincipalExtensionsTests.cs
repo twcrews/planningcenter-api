@@ -1,5 +1,4 @@
 using System.Security.Claims;
-using Crews.PlanningCenter.Api.Extensions;
 
 namespace Crews.PlanningCenter.Api.Tests.Extensions;
 

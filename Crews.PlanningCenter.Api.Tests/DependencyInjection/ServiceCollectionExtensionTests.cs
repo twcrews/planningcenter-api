@@ -1,4 +1,3 @@
-using Crews.PlanningCenter.Api.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NSubstitute;

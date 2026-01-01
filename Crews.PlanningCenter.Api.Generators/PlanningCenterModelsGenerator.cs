@@ -9,7 +9,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Text.Json;
 
 namespace Crews.PlanningCenter.Api.Generators;
 
@@ -18,28 +17,14 @@ internal class PlanningCenterModelsGenerator : IIncrementalGenerator
 {
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
-        IncrementalValuesProvider<AdditionalText> jsonFiles = context.AdditionalTextsProvider
-            .Where(static file => file.Path.EndsWith(".json"));
-
         IncrementalValuesProvider<(ProductDefinition Product, Models.Version? Version)> products =
-            jsonFiles.Select(static (file, cancellationToken) =>
-            {
-                string productName = Path.GetFileName(Path.GetDirectoryName(file.Path));
-                ProductDefinition productDefinition = ProductDefinition.All
-                    .First(p => productName.Equals(p.ToString().ToPascalCase()));
-                string version = Path.GetFileNameWithoutExtension(file.Path);
-                SourceText? text = file.GetText(cancellationToken);
-
-                if (text is null) return (productDefinition, null);
-
-                return (productDefinition, JsonSerializer.Deserialize<Models.Version>(text.ToString()));
-            });
+            Providers.GetVersionsProvider(context);
 
         context.RegisterSourceOutput(
             products.Where(static x => x.Version != null),
             static (context, tuple) =>
             {
-                var sb = new StringBuilder();
+                StringBuilder sb = new();
                 (ProductDefinition product, Models.Version? version) = tuple;
                 string productName = product.ToString().ToPascalCase();
 

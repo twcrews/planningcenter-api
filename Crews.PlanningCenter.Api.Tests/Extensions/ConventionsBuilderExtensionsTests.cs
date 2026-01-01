@@ -1,4 +1,3 @@
-using Crews.PlanningCenter.Api.Extensions;
 using NSubstitute;
 
 namespace Crews.PlanningCenter.Api.Tests.Extensions;

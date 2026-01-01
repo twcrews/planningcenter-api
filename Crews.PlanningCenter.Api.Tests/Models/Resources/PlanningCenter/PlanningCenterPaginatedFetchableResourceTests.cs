@@ -1,5 +1,4 @@
 ﻿using Crews.Extensions.Http;
-using Crews.PlanningCenter.Api.Models.Resources.Querying;
 using Crews.PlanningCenter.Api.Tests.Dummies;
 using Crews.PlanningCenter.Api.Tests.Dummies.Serialized;
 using RichardSzalay.MockHttp;

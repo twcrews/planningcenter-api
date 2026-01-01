@@ -1,7 +1,4 @@
-﻿using Crews.PlanningCenter.Api.Models.Resources;
-using Crews.PlanningCenter.Api.Models.Resources.Querying;
-
-namespace Crews.PlanningCenter.Api.Tests.Dummies;
+﻿namespace Crews.PlanningCenter.Api.Tests.Dummies;
 
 class DummyFetchableResource(Uri? uri, HttpClient client) :
 	PlanningCenterFetchableResource<DummyFetchableResource>(uri!, client),

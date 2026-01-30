@@ -51,7 +51,7 @@ class VertexRelationships
   public required PermissionsRelationship Permissions { get; set; }
 
   [JsonPropertyName("actions")]
-  public required JsonApiRelationship Actions { get; set; }
+  public required ActionRelationship Actions { get; set; }
 
   [JsonPropertyName("outbound_edges")]
   public required EdgeCollectionRelationship OutboundEdges { get; set; }

@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace Crews.PlanningCenter.Api.DocParser.Models;
 
-class Permissions
+public class Permissions
 {
     [JsonPropertyName("can_create")]
     public bool CanCreate { get; set; }
@@ -31,13 +31,13 @@ class Permissions
     public IEnumerable<string> Edges { get; set; } = [];
 }
 
-class PermissionsResource : JsonApiResource
+public class PermissionsResource : JsonApiResource
 {
     [JsonPropertyName("attributes")]
     public required new Permissions Attributes { get; set; }
 }
 
-class PermissionsRelationship : JsonApiRelationship
+public class PermissionsRelationship : JsonApiRelationship
 {
     [JsonPropertyName("data")]
     public required new PermissionsResource Data { get; set; }

@@ -1,4 +1,5 @@
 ﻿using Crews.PlanningCenter.Api.DocParser.Configuration;
+using Crews.PlanningCenter.Api.DocParser.Extensions;
 using Crews.PlanningCenter.Api.DocParser.Models;
 using Crews.PlanningCenter.Api.Models;
 using Microsoft.Extensions.Logging;
@@ -20,7 +21,9 @@ class DocumentationBuilder(
     {
         _logger.LogDebug("Building documentation for all products");
 
-        Task<Product>[] productTasks = [.. ProductDefinition.All.Select(BuildProductAsync)];
+        Task<Product>[] productTasks = [.. ProductDefinition.All
+            .Where(p => !options.Value.ExcludedProducts.Contains(p.ToString()))
+            .Select(BuildProductAsync)];
 
         return await Task.WhenAll(productTasks);
     }
@@ -42,7 +45,11 @@ class DocumentationBuilder(
 
         Task<Api.Models.Version>[] versionTasks = 
         [
-            .. graphDocument.Data.Relationships.Versions.Data.Select(version => BuildVersionAsync(product, version))
+            .. graphDocument.Data.Relationships.Versions.Data
+            .Where(version => !options.Value.ExcludedVersions.Any(e => product.ToString().Equals(
+                e.Product, StringComparison.OrdinalIgnoreCase) && e.Version == version.Id)
+                && !options.Value.ExcludedVersions.Any(e => e.Product == null && e.Version == version.Id))
+            .Select(version => BuildVersionAsync(product, version))
         ];
 
         Api.Models.Version[] versions = await Task.WhenAll(versionTasks);
@@ -73,8 +80,16 @@ class DocumentationBuilder(
 
         Task<Resource>[] resourceTasks =
         [
-            .. versionDocument.Data.Relationships.Vertices.Data.Select(
-                versionVertex => BuildResourceAsync(product, version.Id!, versionVertex))
+            .. versionDocument.Data.Relationships.Vertices.Data
+            .Where(versionVertex => !options.Value.ExcludedVertices.Any(e => product.ToString().Equals(e.Product, StringComparison.OrdinalIgnoreCase)
+                    && e.Version == version.Id && e.Vertex.Equals(versionVertex.Id, StringComparison.OrdinalIgnoreCase))
+                && !options.Value.ExcludedVertices.Any(e => product.ToString().Equals(e.Product, StringComparison.OrdinalIgnoreCase)
+                    && e.Version == null && e.Vertex.Equals(versionVertex.Id, StringComparison.OrdinalIgnoreCase))
+                && !options.Value.ExcludedVertices.Any(e => e.Product == null 
+                    && e.Version == version.Id && e.Vertex.Equals(versionVertex.Id, StringComparison.OrdinalIgnoreCase))
+                && !options.Value.ExcludedVertices.Any(e => e.Product == null 
+                    && e.Version == null && e.Vertex.Equals(versionVertex.Id, StringComparison.OrdinalIgnoreCase)))
+            .Select(versionVertex => BuildResourceAsync(product, version.Id!, versionVertex))
         ];
 
         Resource[] resources = await Task.WhenAll(resourceTasks);
@@ -115,11 +130,17 @@ class DocumentationBuilder(
             Description = vertex.Attributes.Description,
             Deprecated = vertex.Attributes.Deprecated,
             CollectionOnly = vertex.Attributes.CollectionOnly,
-            Attributes = vertex.Relationships!.Attributes.Data.Select(attr => BuildAttribute(attr.Attributes)),
+            Attributes = vertex.Relationships!.Attributes.Data
+                .Where(attr => attr.Attributes.Name != "id")
+                .Select(attr => BuildAttribute(attr.Attributes)),
             Relationships = vertex.Relationships.Relationships.Data.Select(rel => BuildRelationship(rel.Attributes)),
             CanInclude = vertex.Relationships.CanInclude.Data.Select(inc => BuildIncludable(inc.Attributes)),
             CanOrderBy = vertex.Relationships.CanOrder.Data.Select(ord => BuildOrderable(ord.Attributes)),
-            CanQueryBy = vertex.Relationships.CanQuery.Data.Select(qry => BuildQueryable(qry.Attributes))
+            CanQueryBy = vertex.Relationships.CanQuery.Data.Select(qry => BuildQueryable(qry.Attributes)),
+            Children = vertex.Relationships.OutboundEdges.Data.Select(BuildChild),
+            Postable = vertex.Relationships.Permissions.Data.Attributes.CanCreate,
+            Patchable = vertex.Relationships.Permissions.Data.Attributes.CanUpdate,
+            Deletable = vertex.Relationships.Permissions.Data.Attributes.CanDestroy
         };
     }
 
@@ -181,6 +202,27 @@ class DocumentationBuilder(
             Type = parameter.Type,
             Description = parameter.Description,
             Example = parameter.Example
+        };
+    }
+
+    private ResourceChild BuildChild(EdgeResource edge)
+    {
+        _logger.LogTrace("Building associated resource: {EdgeName}", edge.Attributes.Name);
+
+        string slug = new Uri(edge.Attributes.Path).Segments[^1];
+        bool isCollection = edge.Attributes.Name.IsPlural();
+        IEnumerable<ResourceChildFilter> filters = edge.Attributes.Scopes
+            .Select(s => new ResourceChildFilter { Name = s.Name, Description = s.ScopeHelp });
+
+        return new()
+        {
+            Name = edge.Attributes.Name,
+            Description = edge.Attributes.Details,
+            Slug = slug,
+            Filters = filters,
+            IsCollection = isCollection,
+            IsDeprecated = edge.Attributes.Deprecated,
+            Type = edge.Relationships.Head.Data.Id!
         };
     }
 }

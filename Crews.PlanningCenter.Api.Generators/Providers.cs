@@ -10,10 +10,10 @@ using System.Text.Json;
 
 namespace Crews.PlanningCenter.Api.Generators;
 
-static class Providers
+static class IncrementalGeneratorContextExtensions
 {
     public static IncrementalValuesProvider<(ProductDefinition Product, Models.Version? Version)> GetVersionsProvider(
-        IncrementalGeneratorInitializationContext context)
+        this IncrementalGeneratorInitializationContext context)
     {
         IncrementalValuesProvider<AdditionalText> jsonFiles = context.AdditionalTextsProvider
             .Where(static file => file.Path.EndsWith(".json"));

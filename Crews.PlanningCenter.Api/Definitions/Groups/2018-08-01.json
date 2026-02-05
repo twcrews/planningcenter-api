@@ -11,11 +11,6 @@
       "CollectionOnly": true,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
           "Name": "attended",
           "Type": "boolean",
           "Description": "Whether or not the person attended the event.\n"
@@ -38,6 +33,17 @@
           "Type": "Event",
           "AssociationType": "to_one",
           "Note": null
+        }
+      ],
+      "Children": [
+        {
+          "Name": "person",
+          "Type": "person",
+          "Description": "person belonging to this attendance\n",
+          "Slug": "person",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
         }
       ],
       "CanInclude": [
@@ -77,7 +83,10 @@
           "Description": "Query on a specific role\n\nPossible values: \u0060member\u0060, \u0060leader\u0060, \u0060visitor\u0060, or \u0060applicant\u0060",
           "Example": "?where[role]=value"
         }
-      ]
+      ],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "campus",
@@ -87,17 +96,23 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
           "Name": "name",
           "Type": "string",
           "Description": "The name of the campus"
         }
       ],
       "Relationships": [],
+      "Children": [
+        {
+          "Name": "groups",
+          "Type": "group",
+          "Description": "groups which have applied this campus\n",
+          "Slug": "groups",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [],
       "CanOrderBy": [
         {
@@ -122,7 +137,10 @@
           "Description": "Query on a specific name",
           "Example": "?where[name]=string"
         }
-      ]
+      ],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "enrollment",
@@ -131,11 +149,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "auto_closed",
           "Type": "boolean",
@@ -185,9 +198,13 @@
           "Note": null
         }
       ],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "event",
@@ -196,11 +213,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "attendance_requests_enabled",
           "Type": "boolean",
@@ -308,6 +320,58 @@
           "Note": null
         }
       ],
+      "Children": [
+        {
+          "Name": "attendances",
+          "Type": "attendance",
+          "Description": "attendances recorded for this event\n",
+          "Slug": "attendances",
+          "Filters": [
+            {
+              "Name": "attended",
+              "Description": "where \u0060attended\u0060 is \u0060true\u0060\n"
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "group",
+          "Type": "group",
+          "Description": "group which the event belongs to\n",
+          "Slug": "group",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "location",
+          "Type": "location",
+          "Description": "physical location of the event\n",
+          "Slug": "location",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "notes",
+          "Type": "event_note",
+          "Description": "notes added to the event\n",
+          "Slug": "notes",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "rsvps",
+          "Type": "rsvp",
+          "Description": "RSVP responses for the event\n",
+          "Slug": "rsvps",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [
         {
           "Parameter": "include",
@@ -366,7 +430,10 @@
           "Description": "Query on a specific starts_at",
           "Example": "?where[starts_at]=2000-01-01T12:00:00Z"
         }
-      ]
+      ],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "event_note",
@@ -375,11 +442,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "body",
           "Type": "string",
@@ -400,6 +462,17 @@
           "Note": null
         }
       ],
+      "Children": [
+        {
+          "Name": "owner",
+          "Type": "owner",
+          "Description": "person who created the note\n",
+          "Slug": "owner",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [
         {
           "Parameter": "include",
@@ -410,7 +483,10 @@
         }
       ],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "group",
@@ -419,11 +495,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "archived_at",
           "Type": "date_time",
@@ -455,6 +526,26 @@
           "Description": "A longform description of the group. Can contain HTML markup.\n"
         },
         {
+          "Name": "description_as_plain_text",
+          "Type": "string",
+          "Description": "The plain text version of the group description.\n"
+        },
+        {
+          "Name": "enrollment_open",
+          "Type": "boolean",
+          "Description": "Calculated value. Either \u0060true\u0060 or \u0060false\u0060.\nIt will be \u0060false\u0060 if any of these conditions are true:\n* The group is archived\n* The group is full (has reached specified enrollment limit)\n* Enrollment Strategy is \u0060closed\u0060\n* Enrollment deadline has passed\n"
+        },
+        {
+          "Name": "enrollment_strategy",
+          "Type": "string",
+          "Description": "The enrollment strategy for the group.\nSee [documentation](https://pcogroups.zendesk.com/hc/en-us/articles/360016079154#Visibility\u0026EnrollmentStatus)\nfor more information about group enrollment settings.\n\n\nPossible values: \u0060closed\u0060, \u0060request_to_join\u0060, or \u0060open_signup\u0060"
+        },
+        {
+          "Name": "events_listed",
+          "Type": "boolean",
+          "Description": "Whether or not events are visible to the public on Church Center\n"
+        },
+        {
           "Name": "events_visibility",
           "Type": "string",
           "Description": "The visibility of events for the group.\n\n\nPossible values: \u0060public\u0060 or \u0060members\u0060"
@@ -468,6 +559,11 @@
           "Name": "leaders_can_search_people_database",
           "Type": "boolean",
           "Description": "Whether or not group leaders have access to the entire\nchurch database on the admin side of Groups. (Not recommended)\n"
+        },
+        {
+          "Name": "listed",
+          "Type": "boolean",
+          "Description": "Whether or not the group is visible on Church Center\n"
         },
         {
           "Name": "location_type_preference",
@@ -513,16 +609,6 @@
           "Name": "widget_status",
           "Type": "hash",
           "Description": "DEPRECATED: This is a private attribute used by Home widgets that we plan to remove soon.\n\n\nOnly available when requested with the \u0060?fields\u0060 param"
-        },
-        {
-          "Name": "enrollment_open",
-          "Type": "boolean",
-          "Description": "Calculated value. Either \u0060true\u0060 or \u0060false\u0060.\nIt will be \u0060false\u0060 if any of these conditions are true:\n* The group is archived\n* The group is full (has reached specified enrollment limit)\n* Enrollment Strategy is \u0060closed\u0060\n* Enrollment deadline has passed\n"
-        },
-        {
-          "Name": "enrollment_strategy",
-          "Type": "string",
-          "Description": "The enrollment strategy for the group.\nSee [documentation](https://pcogroups.zendesk.com/hc/en-us/articles/360016079154#Visibility\u0026EnrollmentStatus)\nfor more information about group enrollment settings.\n\n\nPossible values: \u0060closed\u0060, \u0060request_to_join\u0060, or \u0060open_signup\u0060"
         }
       ],
       "Relationships": [
@@ -537,6 +623,121 @@
           "Type": "Location",
           "AssociationType": "to_one",
           "Note": "The group\u0027s default location is where the group normally meets.\nBut remember, each group event can have its own location if needed.\n"
+        }
+      ],
+      "Children": [
+        {
+          "Name": "applications",
+          "Type": "group_application",
+          "Description": "requests to join this group\n",
+          "Slug": "applications",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "campuses",
+          "Type": "campus",
+          "Description": "campuses assigned this group\n",
+          "Slug": "campuses",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "enrollment",
+          "Type": "enrollment",
+          "Description": "enrollment details for this group\n",
+          "Slug": "enrollment",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "events",
+          "Type": "event",
+          "Description": "events for this group\n",
+          "Slug": "events",
+          "Filters": [
+            {
+              "Name": "canceled",
+              "Description": "have a \u0060canceled_at\u0060 date and time\n"
+            },
+            {
+              "Name": "not_canceled",
+              "Description": "do not have a \u0060canceled_at\u0060 date and time\n"
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "group_type",
+          "Type": "group_type",
+          "Description": "group type of this group\n",
+          "Slug": "group_type",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "location",
+          "Type": "location",
+          "Description": "default physical location for this group\u0027s events\n",
+          "Slug": "location",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "memberships",
+          "Type": "membership",
+          "Description": "memberships belonging to this group\n",
+          "Slug": "memberships",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "my_membership",
+          "Type": "membership",
+          "Description": "the current person\u0027s membership for this group\n",
+          "Slug": "my_membership",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "people",
+          "Type": "person",
+          "Description": "people who have memberships for this group\n",
+          "Slug": "people",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "resources",
+          "Type": "resource",
+          "Description": "file and link resources shared with this group\n",
+          "Slug": "resources",
+          "Filters": [
+            {
+              "Name": "leaders",
+              "Description": "only visible to group leaders\n"
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "tags",
+          "Type": "tag",
+          "Description": "tags assigned to this group\n",
+          "Slug": "tags",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
         }
       ],
       "CanInclude": [
@@ -565,6 +766,48 @@
       "CanOrderBy": [
         {
           "Parameter": "order",
+          "Value": "chat_enabled",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-chat_enabled) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "contact_email",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-contact_email) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "enrollment_limit",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-enrollment_limit) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "listed",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-listed) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "members_are_confidential",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-members_are_confidential) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "memberships_count",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-memberships_count) to reverse the order"
+        },
+        {
+          "Parameter": "order",
           "Value": "name",
           "Type": "string",
           "Description": "prefix with a hyphen (-name) to reverse the order"
@@ -585,7 +828,10 @@
           "Description": "Query on a specific name",
           "Example": "?where[name]=string"
         }
-      ]
+      ],
+      "Postable": false,
+      "Patchable": true,
+      "Deletable": false
     },
     {
       "Id": "group_application",
@@ -594,11 +840,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "applied_at",
           "Type": "date_time",
@@ -627,6 +868,26 @@
           "Type": "Person",
           "AssociationType": "to_one",
           "Note": null
+        }
+      ],
+      "Children": [
+        {
+          "Name": "group",
+          "Type": "group",
+          "Description": "group being applied to\n",
+          "Slug": "group",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "person",
+          "Type": "person",
+          "Description": "person who applied\n",
+          "Slug": "person",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
         }
       ],
       "CanInclude": [
@@ -674,7 +935,10 @@
           "Description": "Query on a specific status",
           "Example": "?where[status]=string"
         }
-      ]
+      ],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "group_type",
@@ -684,19 +948,14 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
+          "Name": "church_center_map_visible",
+          "Type": "boolean",
+          "Description": "\u0060true\u0060 if the map view is visible on the public groups list page. Otherwise \u0060false\u0060.\n"
         },
         {
           "Name": "church_center_visible",
           "Type": "boolean",
           "Description": "\u0060true\u0060 if the group type contains any published groups. Otherwise \u0060false\u0060.\n"
-        },
-        {
-          "Name": "church_center_map_visible",
-          "Type": "boolean",
-          "Description": "\u0060true\u0060 if the map view is visible on the public groups list page. Otherwise \u0060false\u0060.\n"
         },
         {
           "Name": "color",
@@ -730,6 +989,48 @@
         }
       ],
       "Relationships": [],
+      "Children": [
+        {
+          "Name": "events",
+          "Type": "event",
+          "Description": "events of groups with this group type\n",
+          "Slug": "events",
+          "Filters": [
+            {
+              "Name": "canceled",
+              "Description": "has a \u0060canceled_at\u0060 date and time\n"
+            },
+            {
+              "Name": "not_canceled",
+              "Description": "do not have a \u0060canceled_at\u0060 date and time\n"
+            },
+            {
+              "Name": "upcoming",
+              "Description": "future \u0060starts_at\u0060 date and time\n"
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "groups",
+          "Type": "group",
+          "Description": "groups belonging to this group type\n",
+          "Slug": "groups",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "resources",
+          "Type": "resource",
+          "Description": "file or link resources shared with all groups in this group type\n",
+          "Slug": "resources",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [],
       "CanOrderBy": [
         {
@@ -753,7 +1054,10 @@
           "Description": "Query on a specific id",
           "Example": "?where[id]=primary_key"
         }
-      ]
+      ],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "location",
@@ -762,11 +1066,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "display_preference",
           "Type": "string",
@@ -804,6 +1103,17 @@
         }
       ],
       "Relationships": [],
+      "Children": [
+        {
+          "Name": "group",
+          "Type": "group",
+          "Description": "group that manages this location\n",
+          "Slug": "group",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [
         {
           "Parameter": "include",
@@ -814,7 +1124,10 @@
         }
       ],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "membership",
@@ -824,21 +1137,6 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
-          "Name": "joined_at",
-          "Type": "date_time",
-          "Description": "The date and time the person joined the group.\n"
-        },
-        {
-          "Name": "role",
-          "Type": "string",
-          "Description": "The role of the person in the group.\nPossible values: \u0060member\u0060 or \u0060leader\u0060\n"
-        },
-        {
           "Name": "account_center_identifier",
           "Type": "string",
           "Description": "The ID of the person in People.\n"
@@ -847,6 +1145,11 @@
           "Name": "avatar_url",
           "Type": "string",
           "Description": "The URL of the person\u0027s avatar.\n"
+        },
+        {
+          "Name": "color_identifier",
+          "Type": "integer",
+          "Description": "The color theme of the group\u0027s group type.\n"
         },
         {
           "Name": "email_address",
@@ -859,6 +1162,11 @@
           "Description": "The person\u0027s first name.\n"
         },
         {
+          "Name": "joined_at",
+          "Type": "date_time",
+          "Description": "The date and time the person joined the group.\n"
+        },
+        {
           "Name": "last_name",
           "Type": "string",
           "Description": "The person\u0027s last name.\n"
@@ -869,9 +1177,9 @@
           "Description": "The person\u0027s primary phone number.\n"
         },
         {
-          "Name": "color_identifier",
-          "Type": "integer",
-          "Description": "The color theme of the group\u0027s group type.\n"
+          "Name": "role",
+          "Type": "string",
+          "Description": "The role of the person in the group.\nPossible values: \u0060member\u0060 or \u0060leader\u0060\n"
         }
       ],
       "Relationships": [
@@ -886,6 +1194,26 @@
           "Type": "Person",
           "AssociationType": "to_one",
           "Note": null
+        }
+      ],
+      "Children": [
+        {
+          "Name": "group",
+          "Type": "group",
+          "Description": "group for this membership\n",
+          "Slug": "group",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "person",
+          "Type": "person",
+          "Description": null,
+          "Slug": "person",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
         }
       ],
       "CanInclude": [
@@ -931,7 +1259,10 @@
           "Description": "Query on a specific role",
           "Example": "?where[role]=string"
         }
-      ]
+      ],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "organization",
@@ -940,11 +1271,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "name",
           "Type": "string",
@@ -957,9 +1283,157 @@
         }
       ],
       "Relationships": [],
+      "Children": [
+        {
+          "Name": "campuses",
+          "Type": "campus",
+          "Description": "campuses for this organization\n",
+          "Slug": "campuses",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "events",
+          "Type": "event",
+          "Description": "events for all groups in this organization\n",
+          "Slug": "events",
+          "Filters": [
+            {
+              "Name": "canceled",
+              "Description": "has a \u0060canceled_at\u0060 date and time\n"
+            },
+            {
+              "Name": "group",
+              "Description": "from specific groups; provide an additional \u0060group_id\u0060 param\nas a comma-separated list of IDs, ex: \u0060?filter=group\u0026group_id=1,2,3\u0060\n"
+            },
+            {
+              "Name": "group_type",
+              "Description": "from specific group types; provide an additional \u0060group_type_id\u0060 param\nas a comma-separated list of IDs, ex: \u0060?filter=group_type\u0026group_type_id=1,2,3\u0060\n"
+            },
+            {
+              "Name": "my_groups",
+              "Description": "only group events of which you are a member\n"
+            },
+            {
+              "Name": "not_canceled",
+              "Description": "does not have a \u0060canceled_at\u0060 date and time\n"
+            },
+            {
+              "Name": "upcoming",
+              "Description": "future \u0060starts_at\u0060 date and time\n"
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "group_applications",
+          "Type": "group_application",
+          "Description": "requests to join groups for this organization\n",
+          "Slug": "group_applications",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "group_types",
+          "Type": "group_type",
+          "Description": "group types for this organization\n",
+          "Slug": "group_types",
+          "Filters": [
+            {
+              "Name": "church_center_visible",
+              "Description": "contains groups which are published to Church Center\n"
+            },
+            {
+              "Name": "not_church_center_visible",
+              "Description": "does not contain any groups published to Church Center\n"
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "groups",
+          "Type": "group",
+          "Description": "groups for this organization\n",
+          "Slug": "groups",
+          "Filters": [
+            {
+              "Name": "campus",
+              "Description": "from specific campuses; provide an additional \u0060campus_id\u0060 param\nas a comma-separated list of IDs, ex: \u0060?filter=campus\u0026campus_id=1,2,3\u0060\n"
+            },
+            {
+              "Name": "enrollment",
+              "Description": "filter groups with enrollment settings; provide an additional \u0060enrollment\u0060 param\nas a comma-separated list of values, ex: \u0060?filter=enrollment\u0026enrollment=open_signup,request_to_join,closed\u0060\n"
+            },
+            {
+              "Name": "group",
+              "Description": "from specific groups; provide an additional \u0060group_id\u0060 param\nas a comma-separated list of IDs, ex: \u0060?filter=group\u0026group_id=1,2,3\u0060\n"
+            },
+            {
+              "Name": "group_type",
+              "Description": "from specific group types; provide an additional \u0060group_type_id\u0060 param\nas a comma-separated list of IDs, ex: \u0060?filter=group_type\u0026group_type_id=1,2,3\u0060\n"
+            },
+            {
+              "Name": "hidden",
+              "Description": "filter groups that are not published on Church Center"
+            },
+            {
+              "Name": "meeting_schedule",
+              "Description": "filter groups that have a meeting schedule"
+            },
+            {
+              "Name": "my_groups",
+              "Description": "only groups of which you are a member\n"
+            },
+            {
+              "Name": "people_database_searchable",
+              "Description": "based on their setting of allowing leaders to search the entire\nchurch database in Groups; provide an additional\n\u0060people_database_searchable\u0060 param with \u0060only\u0060 or \u0060none\u0060,\nex: \u0060?filter=people_database_searchable\u0026people_database_searchable=only\u0060\n"
+            },
+            {
+              "Name": "published",
+              "Description": "filter groups that are published on Church Center"
+            },
+            {
+              "Name": "tag",
+              "Description": "filter groups with tags; provide an additional \u0060tag_id\u0060 param\nas a comma-separated list of IDs, ex: \u0060?filter=tag\u0026tag_id=1,2,3\u0060.\nfiltering by tags within a tag group will expand results,\nand across tag groups will reduce results.\n"
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "people",
+          "Type": "person",
+          "Description": "people for this organization\n",
+          "Slug": "people",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "tag_groups",
+          "Type": "tag_group",
+          "Description": "tag groups in this organization\n",
+          "Slug": "tag_groups",
+          "Filters": [
+            {
+              "Name": "public",
+              "Description": "where \u0060display_publicly\u0060 is enabled\n"
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "owner",
@@ -968,11 +1442,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "avatar_url",
           "Type": "string",
@@ -990,9 +1459,13 @@
         }
       ],
       "Relationships": [],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "person",
@@ -1001,11 +1474,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "addresses",
           "Type": "array",
@@ -1053,6 +1521,44 @@
         }
       ],
       "Relationships": [],
+      "Children": [
+        {
+          "Name": "events",
+          "Type": "event",
+          "Description": "events of groups which this person is a member\n",
+          "Slug": "events",
+          "Filters": [
+            {
+              "Name": "canceled",
+              "Description": "has a \u0060canceled_at\u0060 date and time\n"
+            },
+            {
+              "Name": "not_canceled",
+              "Description": "does not have a \u0060canceled_at\u0060 date and time\n"
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "groups",
+          "Type": "group",
+          "Description": "groups of which this person is a member\n",
+          "Slug": "groups",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "memberships",
+          "Type": "membership",
+          "Description": "memberships for this person\n",
+          "Slug": "memberships",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [],
       "CanOrderBy": [
         {
@@ -1083,7 +1589,10 @@
           "Description": "Query on a specific last_name",
           "Example": "?where[last_name]=string"
         }
-      ]
+      ],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "rsvp",
@@ -1092,11 +1601,6 @@
       "Deprecated": false,
       "CollectionOnly": true,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "response",
           "Type": "string",
@@ -1123,6 +1627,7 @@
           "Note": null
         }
       ],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [
         {
@@ -1140,7 +1645,10 @@
           "Description": "Query on a specific response\n\nPossible values: \u0060awaiting_response\u0060, \u0060yes\u0060, \u0060no\u0060, \u0060maybe\u0060, or \u0060not_sent\u0060",
           "Example": "?where[response]=value"
         }
-      ]
+      ],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "resource",
@@ -1149,11 +1657,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "description",
           "Type": "string",
@@ -1188,6 +1691,26 @@
           "Note": "The person who created this resource"
         }
       ],
+      "Children": [
+        {
+          "Name": "download",
+          "Type": "resource",
+          "Description": "link to download this file resource\n",
+          "Slug": "download",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "visit",
+          "Type": "resource",
+          "Description": "link to visit this link resource\n",
+          "Slug": "visit",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [],
       "CanOrderBy": [
         {
@@ -1203,7 +1726,10 @@
           "Description": "prefix with a hyphen (-name) to reverse the order"
         }
       ],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "tag",
@@ -1212,11 +1738,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "name",
           "Type": "string",
@@ -1234,6 +1755,17 @@
           "Type": "TagGroup",
           "AssociationType": "to_one",
           "Note": null
+        }
+      ],
+      "Children": [
+        {
+          "Name": "groups",
+          "Type": "group",
+          "Description": "groups which have applied this tag\n",
+          "Slug": "groups",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
         }
       ],
       "CanInclude": [],
@@ -1266,7 +1798,10 @@
           "Description": "Query on a specific name",
           "Example": "?where[name]=string"
         }
-      ]
+      ],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "tag_group",
@@ -1275,11 +1810,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "display_publicly",
           "Type": "boolean",
@@ -1302,6 +1832,17 @@
         }
       ],
       "Relationships": [],
+      "Children": [
+        {
+          "Name": "tags",
+          "Type": "tag",
+          "Description": "tags belonging to this tag group\n",
+          "Slug": "tags",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [],
       "CanOrderBy": [
         {
@@ -1325,7 +1866,10 @@
           "Description": "Query on a specific name",
           "Example": "?where[name]=string"
         }
-      ]
+      ],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     }
   ]
 }

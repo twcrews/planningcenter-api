@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace Crews.PlanningCenter.Api.DocParser.Models;
 
-class Version
+public class Version
 {
   [JsonPropertyName("beta")]
   public bool Beta { get; set; }
@@ -12,7 +12,7 @@ class Version
   public string? Details { get; set; }
 }
 
-class VersionResource : JsonApiResource
+public class VersionResource : JsonApiResource
 {
   [JsonPropertyName("attributes")]
   public required new Version Attributes { get; set; }
@@ -21,7 +21,7 @@ class VersionResource : JsonApiResource
   public required new VersionRelationships Relationships { get; set; }
 }
 
-class VersionRelationships
+public class VersionRelationships
 {
   [JsonPropertyName("entry")]
   public required VertexRelationship Entry { get; set; }
@@ -30,7 +30,7 @@ class VersionRelationships
   public required VertexCollectionRelationship Vertices { get; set; }
 }
 
-class VersionRelationship : JsonApiRelationship
+public class VersionRelationship : JsonApiRelationship
 {
   [JsonPropertyName("data")]
   public required new IEnumerable<VersionResource> Data { get; set; }

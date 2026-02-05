@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace Crews.PlanningCenter.Api.DocParser.Models;
 
-class UrlParameter
+public class UrlParameter
 {
   [JsonPropertyName("can_assign_on_create")]
   public bool? CanAssignOnCreate { get; set; }
@@ -39,19 +39,19 @@ class UrlParameter
   public string? Description { get; set; }
 }
 
-class UrlParameterResource : JsonApiResource
+public class UrlParameterResource : JsonApiResource
 {
   [JsonPropertyName("attributes")]
   public required new UrlParameter Attributes { get; set; }
 }
 
-class UrlParameterCollectionRelationship : JsonApiRelationship
+public class UrlParameterCollectionRelationship : JsonApiRelationship
 {
   [JsonPropertyName("data")]
   public required new IEnumerable<UrlParameterResource> Data { get; set; }
 }
 
-class UrlParameterRelationship : JsonApiRelationship
+public class UrlParameterRelationship : JsonApiRelationship
 {
   [JsonPropertyName("data")]
   public required new UrlParameterResource Data { get; set; }

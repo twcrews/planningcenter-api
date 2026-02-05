@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace Crews.PlanningCenter.Api.DocParser.Models;
 
-class Graph
+public class Graph
 {
   [JsonPropertyName("title")]
   public string? Title { get; set; }
@@ -12,13 +12,13 @@ class Graph
   public string? Description { get; set; }
 }
 
-class GraphDocument : JsonApiDocument
+public class GraphDocument : JsonApiDocument
 {
   [JsonPropertyName("data")]
   public required new GraphResource Data { get; set; }
 }
 
-class GraphResource : JsonApiResource
+public class GraphResource : JsonApiResource
 {
   [JsonPropertyName("attributes")]
   public required new Graph Attributes { get; set; }
@@ -27,7 +27,7 @@ class GraphResource : JsonApiResource
   public required new GraphRelationships Relationships { get; set; }
 }
 
-class GraphRelationships
+public class GraphRelationships
 {
   [JsonPropertyName("versions")]
   public required VersionRelationship Versions { get; set; }

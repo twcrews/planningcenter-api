@@ -11,24 +11,14 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": "The unique identifier for a batch. For batches and batch groups, these identifiers are unique not across all of Planning Center, but only per organization. As such, it is possible to see the same batch \u0060id\u0060 in multiple organizations."
+          "Name": "committed_at",
+          "Type": "date_time",
+          "Description": "The date and time that a batch was committed at. If it\u0027s \u0060null\u0060, the batch is still in progress or updating. Example: \u00602000-01-01T12:00:00Z\u0060"
         },
         {
           "Name": "created_at",
           "Type": "date_time",
           "Description": "The date and time at which a batch was created. Example: \u00602000-01-01T12:00:00Z\u0060"
-        },
-        {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": "The date and time at which a batch was last updated. Example: \u00602000-01-01T12:00:00Z\u0060"
-        },
-        {
-          "Name": "committed_at",
-          "Type": "date_time",
-          "Description": "The date and time that a batch was committed at. If it\u0027s \u0060null\u0060, the batch is still in progress or updating. Example: \u00602000-01-01T12:00:00Z\u0060"
         },
         {
           "Name": "description",
@@ -41,6 +31,11 @@
           "Description": "Only available when requested with the \u0060?fields\u0060 param"
         },
         {
+          "Name": "status",
+          "Type": "string",
+          "Description": "One of \u0060in_progress\u0060, \u0060updating\u0060, or \u0060committed\u0060. The \u0060updating\u0060 state is temporary and describes a Batch that is currently being changed in some way (e.g. moving from \u0060in_progress\u0060 to \u0060committed\u0060). Certain changes to Batches in this state (or their Donations) will be restricted until the Batch has finished updating."
+        },
+        {
           "Name": "total_cents",
           "Type": "integer",
           "Description": "The gross total of cents donated within the batch."
@@ -51,9 +46,9 @@
           "Description": "The currency used to calculate \u0060total_cents\u0060."
         },
         {
-          "Name": "status",
-          "Type": "string",
-          "Description": "One of \u0060in_progress\u0060, \u0060updating\u0060, or \u0060committed\u0060. The \u0060updating\u0060 state is temporary and describes a Batch that is currently being changed in some way (e.g. moving from \u0060in_progress\u0060 to \u0060committed\u0060). Certain changes to Batches in this state (or their Donations) will be restricted until the Batch has finished updating."
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": "The date and time at which a batch was last updated. Example: \u00602000-01-01T12:00:00Z\u0060"
         }
       ],
       "Relationships": [
@@ -62,6 +57,35 @@
           "Type": "BatchGroup",
           "AssociationType": "to_one",
           "Note": null
+        }
+      ],
+      "Children": [
+        {
+          "Name": "batch_group",
+          "Type": "batch_group",
+          "Description": null,
+          "Slug": "batch_group",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "donations",
+          "Type": "donation",
+          "Description": null,
+          "Slug": "donations",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "owner",
+          "Type": "person",
+          "Description": null,
+          "Slug": "owner",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
         }
       ],
       "CanInclude": [
@@ -96,7 +120,10 @@
           "Description": "Query on a specific updated_at",
           "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
         }
-      ]
+      ],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "batch_group",
@@ -106,9 +133,9 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": "The unique identifier for a batch group. For batches and batch groups, these identifiers are unique not across all of Planning Center, but only per organization. As such, it is possible to see the same batch group \u0060id\u0060 in multiple organizations."
+          "Name": "committed",
+          "Type": "boolean",
+          "Description": "Returns \u0060true\u0060 if a batch group has been committed, and \u0060false\u0060 if it hasn\u0027t."
         },
         {
           "Name": "created_at",
@@ -116,19 +143,14 @@
           "Description": "The date and time at which a batch group was created. Example: \u00602000-01-01T12:00:00Z\u0060"
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": "The date and time at which a batch group was last updated. Example: \u00602000-01-01T12:00:00Z\u0060"
-        },
-        {
           "Name": "description",
           "Type": "string",
           "Description": "A brief description of what a batch group is for. This is displayed in Giving to help differentiate different batch groups from one another. If no description is provided for a batch group, it will be referred to as \u0060Untitled group\u0060 within Giving."
         },
         {
-          "Name": "committed",
-          "Type": "boolean",
-          "Description": "Returns \u0060true\u0060 if a batch group has been committed, and \u0060false\u0060 if it hasn\u0027t."
+          "Name": "status",
+          "Type": "string",
+          "Description": "One of \u0060in_progress\u0060, \u0060updating\u0060, or \u0060committed\u0060. The \u0060updating\u0060 state is temporary and describes a BatchGroup that is currently being changed in some way (e.g. moving from \u0060in_progress\u0060 to \u0060committed\u0060). Certain changes to BatchGroups in this state (or their Batches or Donations) will be restricted until the BatchGroup has finished updating."
         },
         {
           "Name": "total_cents",
@@ -141,12 +163,41 @@
           "Description": "The currency used to calculate \u0060total_cents\u0060."
         },
         {
-          "Name": "status",
-          "Type": "string",
-          "Description": "One of \u0060in_progress\u0060, \u0060updating\u0060, or \u0060committed\u0060. The \u0060updating\u0060 state is temporary and describes a BatchGroup that is currently being changed in some way (e.g. moving from \u0060in_progress\u0060 to \u0060committed\u0060). Certain changes to BatchGroups in this state (or their Batches or Donations) will be restricted until the BatchGroup has finished updating."
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": "The date and time at which a batch group was last updated. Example: \u00602000-01-01T12:00:00Z\u0060"
         }
       ],
       "Relationships": [],
+      "Children": [
+        {
+          "Name": "batches",
+          "Type": "batch",
+          "Description": null,
+          "Slug": "batches",
+          "Filters": [
+            {
+              "Name": "committed",
+              "Description": null
+            },
+            {
+              "Name": "in_progress",
+              "Description": null
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "owner",
+          "Type": "person",
+          "Description": null,
+          "Slug": "owner",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [
         {
           "Parameter": "include",
@@ -172,7 +223,10 @@
           "Description": "Query on a specific updated_at",
           "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
         }
-      ]
+      ],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "campus",
@@ -182,25 +236,34 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": "The unique identifier for a campus."
+          "Name": "address",
+          "Type": "object",
+          "Description": "The address for a campus. Campus descriptions can be set via Accounts or the People API."
         },
         {
           "Name": "name",
           "Type": "string",
           "Description": "The name for a campus. Campus names can be set via Accounts or the People API."
-        },
-        {
-          "Name": "address",
-          "Type": "object",
-          "Description": "The address for a campus. Campus descriptions can be set via Accounts or the People API."
         }
       ],
       "Relationships": [],
+      "Children": [
+        {
+          "Name": "donations",
+          "Type": "donation",
+          "Description": null,
+          "Slug": "donations",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "designation",
@@ -209,11 +272,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": "The unique identifier for a designation."
-        },
         {
           "Name": "amount_cents",
           "Type": "integer",
@@ -238,9 +296,23 @@
           "Note": null
         }
       ],
+      "Children": [
+        {
+          "Name": "fund",
+          "Type": "fund",
+          "Description": null,
+          "Slug": "fund",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "designation_refund",
@@ -249,11 +321,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": "The unique identifier for a designation refund."
-        },
         {
           "Name": "amount_cents",
           "Type": "integer",
@@ -273,6 +340,17 @@
           "Note": null
         }
       ],
+      "Children": [
+        {
+          "Name": "designation",
+          "Type": "designation",
+          "Description": null,
+          "Slug": "designation",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [
         {
           "Parameter": "include",
@@ -283,7 +361,10 @@
         }
       ],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "donation",
@@ -293,79 +374,9 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": "The unique identifier for a donation."
-        },
-        {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": "The date and time at which a donation was created. Example: \u00602000-01-01T12:00:00Z\u0060"
-        },
-        {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": "The date and time at which a donation was last updated. Example: \u00602000-01-01T12:00:00Z\u0060"
-        },
-        {
-          "Name": "payment_method_sub",
-          "Type": "string",
-          "Description": "For cards, this will be the card subtype. Will be \u0060null\u0060 for other payment method types.\n\nPossible values: \u0060credit\u0060, \u0060debit\u0060, \u0060prepaid\u0060, or \u0060unknown\u0060"
-        },
-        {
-          "Name": "payment_last4",
-          "Type": "string",
-          "Description": "The last 4 digits of a donation\u0027s payment method number. For cards, this is the last 4 digits of the card number. For bank accounts, this is the last 4 digits of the bank account number. For cash and check donations, this should be \u0060null\u0060. Note: In cases where we don\u0027t have all 4 digits on file, a \u0060*\u0060 will be used to pad the number. For example: \u0060*321\u0060"
-        },
-        {
-          "Name": "payment_brand",
-          "Type": "string",
-          "Description": "For cards, this is the card brand (eg Visa, Mastercard, etc). For checks and bank accounts, this is the bank name. For cash donations, this should be \u0060null\u0060."
-        },
-        {
-          "Name": "payment_check_number",
-          "Type": "integer",
-          "Description": "The check number for donations made by check."
-        },
-        {
-          "Name": "payment_check_dated_at",
-          "Type": "date",
-          "Description": "The check date for donations made by check. Example: \u00602000-01-01\u0060"
-        },
-        {
-          "Name": "fee_cents",
-          "Type": "integer",
-          "Description": "The fee to process a donation. This should either be 0 or a negative integer. For a donation processed by Giving via Stripe, this is the amount the associated organization paid Stripe to process it. For donations not processed by Stripe, this can be used to record fees from other systems. Note: while \u0060amount_cents\u0060 is assigned via a donation\u0027s designations, \u0060fee_cents\u0060 is set here, and used by Giving to distribute fees across all designations in proportion to the amount of each designation."
-        },
-        {
-          "Name": "payment_method",
-          "Type": "string",
-          "Description": "Required. The payment method used to make a donation.\n\nPossible values: \u0060ach\u0060, \u0060cash\u0060, \u0060check\u0060, or \u0060card\u0060"
-        },
-        {
-          "Name": "received_at",
-          "Type": "date_time",
-          "Description": "The date and time at which a donation was received. For card and ACH donations processed by Stripe, this is the moment when the donation was created in Giving. For batch donations, this is a customizable value that can be set via the Giving UI or API to any date. This allows for batch donations recieved on a previous day to be dated in the past, as well as for postdated checks to have a date in the future. It is important to ensure that this attribute is set accurately, as this is the date used to filter donations in the Giving admin UI. When creating new donations via the API, this attribute will default to the current date and time. Example: \u00602000-01-01T12:00:00Z\u0060"
-        },
-        {
           "Name": "amount_cents",
           "Type": "integer",
           "Description": "The number of cents being donated. Derived from the total of all of a donation\u0027s associated designation\u0027s \u0060amount_cents\u0060 values."
-        },
-        {
-          "Name": "payment_status",
-          "Type": "string",
-          "Description": "For Stripe donations, this is the payment status. For batch donations, \u0060pending\u0060 means that the donation has not yet been committed, whereas \u0060succeeded\u0060 refers to a committed donation.\n\nPossible values: \u0060pending\u0060, \u0060succeeded\u0060, or \u0060failed\u0060"
-        },
-        {
-          "Name": "completed_at",
-          "Type": "date_time",
-          "Description": "The date and time at which a donation was completely processed. For card and ACH donations processed by Stripe, this is the moment when the donation was marked as fully processed by Stripe. For committed batch donations, this is the moment that the batch was committed. For uncommitted batch donations, this should return \u0060null\u0060. Example: \u00602000-01-01T12:00:00Z\u0060"
-        },
-        {
-          "Name": "fee_covered",
-          "Type": "boolean",
-          "Description": "A boolean indicating whether the donor chose to cover the Stripe processing fee for this donation.Note that \u0060fee_covered\u0060 can only be true for donations processed through Stripe."
         },
         {
           "Name": "amount_currency",
@@ -373,9 +384,79 @@
           "Description": "The currency of \u0060amount_cents\u0060. Based on the organization\u0027s currency."
         },
         {
+          "Name": "completed_at",
+          "Type": "date_time",
+          "Description": "The date and time at which a donation was completely processed. For card and ACH donations processed by Stripe, this is the moment when the donation was marked as fully processed by Stripe. For committed batch donations, this is the moment that the batch was committed. For uncommitted batch donations, this should return \u0060null\u0060. Example: \u00602000-01-01T12:00:00Z\u0060"
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": "The date and time at which a donation was created. Example: \u00602000-01-01T12:00:00Z\u0060"
+        },
+        {
+          "Name": "fee_cents",
+          "Type": "integer",
+          "Description": "The fee to process a donation. This should either be 0 or a negative integer. For a donation processed by Giving via Stripe, this is the amount the associated organization paid Stripe to process it. For donations not processed by Stripe, this can be used to record fees from other systems. Note: while \u0060amount_cents\u0060 is assigned via a donation\u0027s designations, \u0060fee_cents\u0060 is set here, and used by Giving to distribute fees across all designations in proportion to the amount of each designation."
+        },
+        {
+          "Name": "fee_covered",
+          "Type": "boolean",
+          "Description": "A boolean indicating whether the donor chose to cover the Stripe processing fee for this donation.Note that \u0060fee_covered\u0060 can only be true for donations processed through Stripe."
+        },
+        {
           "Name": "fee_currency",
           "Type": "currency_abbreviation",
           "Description": "The currency of \u0060fee_cents\u0060. Based on the organization\u0027s currency."
+        },
+        {
+          "Name": "memo",
+          "Type": "string",
+          "Description": "An optional short note donors can add to specify their gift intention (e.g. \u0022In memory of...\u0022). Only available when enabled by the church for specific funds."
+        },
+        {
+          "Name": "payment_brand",
+          "Type": "string",
+          "Description": "For cards, this is the card brand (eg Visa, Mastercard, etc). For checks and bank accounts, this is the bank name. For cash donations, this should be \u0060null\u0060."
+        },
+        {
+          "Name": "payment_check_dated_at",
+          "Type": "date",
+          "Description": "The check date for donations made by check. Example: \u00602000-01-01\u0060"
+        },
+        {
+          "Name": "payment_check_number",
+          "Type": "integer",
+          "Description": "The check number for donations made by check."
+        },
+        {
+          "Name": "payment_last4",
+          "Type": "string",
+          "Description": "The last 4 digits of a donation\u0027s payment method number. For cards, this is the last 4 digits of the card number. For bank accounts, this is the last 4 digits of the bank account number. For cash and check donations, this should be \u0060null\u0060. Note: In cases where we don\u0027t have all 4 digits on file, a \u0060*\u0060 will be used to pad the number. For example: \u0060*321\u0060"
+        },
+        {
+          "Name": "payment_method",
+          "Type": "string",
+          "Description": "Required. The payment method used to make a donation.\n\nPossible values: \u0060ach\u0060, \u0060cash\u0060, \u0060check\u0060, or \u0060card\u0060"
+        },
+        {
+          "Name": "payment_method_sub",
+          "Type": "string",
+          "Description": "For cards, this will be the card subtype. Will be \u0060null\u0060 for other payment method types.\n\nPossible values: \u0060credit\u0060, \u0060debit\u0060, \u0060prepaid\u0060, or \u0060unknown\u0060"
+        },
+        {
+          "Name": "payment_status",
+          "Type": "string",
+          "Description": "For Stripe donations, this is the payment status. For batch donations, \u0060pending\u0060 means that the donation has not yet been committed, whereas \u0060succeeded\u0060 refers to a committed donation.\n\nPossible values: \u0060pending\u0060, \u0060succeeded\u0060, or \u0060failed\u0060"
+        },
+        {
+          "Name": "received_at",
+          "Type": "date_time",
+          "Description": "The date and time at which a donation was received. For card and ACH donations processed by Stripe, this is the moment when the donation was created in Giving. For batch donations, this is a customizable value that can be set via the Giving UI or API to any date. This allows for batch donations recieved on a previous day to be dated in the past, as well as for postdated checks to have a date in the future. It is important to ensure that this attribute is set accurately, as this is the date used to filter donations in the Giving admin UI. When creating new donations via the API, this attribute will default to the current date and time. Example: \u00602000-01-01T12:00:00Z\u0060"
+        },
+        {
+          "Name": "refundable",
+          "Type": "boolean",
+          "Description": "A boolean indicating whether this donation can be refunded via the API. Note that for some donations, this may be false, even though the donation _can_ be refunded in the UI."
         },
         {
           "Name": "refunded",
@@ -383,9 +464,9 @@
           "Description": "Returns \u0060true\u0060 if a donation has been refunded, or \u0060false\u0060 if it hasn\u0027t."
         },
         {
-          "Name": "refundable",
-          "Type": "boolean",
-          "Description": "A boolean indicating whether this donation can be refunded via the API. Note that for some donations, this may be false, even though the donation _can_ be refunded in the UI."
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": "The date and time at which a donation was last updated. Example: \u00602000-01-01T12:00:00Z\u0060"
         }
       ],
       "Relationships": [
@@ -424,6 +505,53 @@
           "Type": "RecurringDonation",
           "AssociationType": "to_one",
           "Note": null
+        }
+      ],
+      "Children": [
+        {
+          "Name": "campus",
+          "Type": "campus",
+          "Description": null,
+          "Slug": "campus",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "designations",
+          "Type": "designation",
+          "Description": null,
+          "Slug": "designations",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "labels",
+          "Type": "label",
+          "Description": null,
+          "Slug": "labels",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "note",
+          "Type": "note",
+          "Description": null,
+          "Slug": "note",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "refund",
+          "Type": "refund",
+          "Description": null,
+          "Slug": "refund",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
         }
       ],
       "CanInclude": [
@@ -518,7 +646,10 @@
           "Description": "Query on a specific updated_at",
           "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
         }
-      ]
+      ],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "fund",
@@ -528,9 +659,9 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": "The unique identifier for a fund."
+          "Name": "color",
+          "Type": "string",
+          "Description": "The hex color code that is used to help differentiate the fund from others in Giving, as determined by \u0060color_identifier\u0060."
         },
         {
           "Name": "created_at",
@@ -538,39 +669,9 @@
           "Description": "The date and time at which a fund was created. Example: \u00602000-01-01T12:00:00Z\u0060"
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": "The date and time at which a fund was last updated. Example: \u00602000-01-01T12:00:00Z\u0060"
-        },
-        {
-          "Name": "name",
-          "Type": "string",
-          "Description": "Required. The name for a fund. Must be unique within the associated organization."
-        },
-        {
-          "Name": "ledger_code",
-          "Type": "string",
-          "Description": "If an organization\u0027s general ledger software tracks funds by code, this attribute can be used to store the fund\u0027s code for reference."
-        },
-        {
-          "Name": "description",
-          "Type": "string",
-          "Description": "A short description that describes how the money given to the fund will be used. 255 characters maximum."
-        },
-        {
-          "Name": "visibility",
-          "Type": "string",
-          "Description": "Required. Controls how a fund is visible on Church Center. \u0060everywhere\u0060 will allow anyone to donate to the fund on Church Center. \u0060admin_only\u0060 will hide the fund on Church Center, allowing only permitted Giving Users to designate donations to it. \u0060nowhere\u0060 will prevent donations from being designated to the fund altogether, while still displaying fund data in historical reports. \u0060hidden\u0060 will hide the fund from the list of funds in the default Church Center donation form, but allow donors to give to it via direct link, or through Text-to-Give.\n\nPossible values: \u0060everywhere\u0060, \u0060admin_only\u0060, \u0060nowhere\u0060, or \u0060hidden\u0060"
-        },
-        {
           "Name": "default",
           "Type": "boolean",
           "Description": "This attribute is set to \u0060true\u0060 if a fund is the associated organization\u0027s default fund, or \u0060false\u0060 if it isn\u0027t. More information on default funds can be found in our product documentation: https://pcogiving.zendesk.com/hc/en-us/articles/205197070-Funds"
-        },
-        {
-          "Name": "color",
-          "Type": "string",
-          "Description": "The hex color code that is used to help differentiate the fund from others in Giving, as determined by \u0060color_identifier\u0060."
         },
         {
           "Name": "deletable",
@@ -578,12 +679,38 @@
           "Description": "Boolean that tells if you if the fund can be deleted or not. Read more in our product documentation: https://pcogiving.zendesk.com/hc/en-us/articles/205197070-Managing-Funds#DeleteaFund"
         },
         {
+          "Name": "description",
+          "Type": "string",
+          "Description": "A short description that describes how the money given to the fund will be used. 255 characters maximum."
+        },
+        {
+          "Name": "ledger_code",
+          "Type": "string",
+          "Description": "If an organization\u0027s general ledger software tracks funds by code, this attribute can be used to store the fund\u0027s code for reference."
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "Required. The name for a fund. Must be unique within the associated organization."
+        },
+        {
           "Name": "slug",
           "Type": "string",
           "Description": "A URL-friendly identifier for a fund, derived from the fund name."
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": "The date and time at which a fund was last updated. Example: \u00602000-01-01T12:00:00Z\u0060"
+        },
+        {
+          "Name": "visibility",
+          "Type": "string",
+          "Description": "Required. Controls how a fund is visible on Church Center. \u0060everywhere\u0060 will allow anyone to donate to the fund on Church Center. \u0060admin_only\u0060 will hide the fund on Church Center, allowing only permitted Giving Users to designate donations to it. \u0060nowhere\u0060 will prevent donations from being designated to the fund altogether, while still displaying fund data in historical reports. \u0060hidden\u0060 will hide the fund from the list of funds in the default Church Center donation form, but allow donors to give to it via direct link, or through Text-to-Give.\n\nPossible values: \u0060everywhere\u0060, \u0060admin_only\u0060, \u0060nowhere\u0060, or \u0060hidden\u0060"
         }
       ],
       "Relationships": [],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
       "CanQueryBy": [
@@ -615,7 +742,10 @@
           "Description": "Query on a specific visibility\n\nPossible values: \u0060everywhere\u0060, \u0060admin_only\u0060, \u0060nowhere\u0060, or \u0060hidden\u0060",
           "Example": "?where[visibility]=value"
         }
-      ]
+      ],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "in_kind_donation",
@@ -625,19 +755,14 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": "The unique identifier for an in-kind donation."
+          "Name": "acknowledgment_last_sent_at",
+          "Type": "date_time",
+          "Description": "The timestamp of when the acknowledgment letter was last sent for this in-kind donation. This value is set automatically and cannot be manually changed."
         },
         {
           "Name": "created_at",
           "Type": "date_time",
           "Description": "The date and time at which an in-kind donation was created.\n\nExample: \u00602000-01-01T12:00:00Z\u0060"
-        },
-        {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": "The date and time at which an in-kind donation was last updated.\n\nExample: \u00602000-01-01T12:00:00Z\u0060"
         },
         {
           "Name": "description",
@@ -655,24 +780,24 @@
           "Description": "Optional. The fair market value of an in-kind donation in cents. Must be greater than $0 and less than or equal to $21,000,000."
         },
         {
+          "Name": "fair_market_value_currency",
+          "Type": "currency_abbreviation",
+          "Description": null
+        },
+        {
           "Name": "received_on",
           "Type": "date",
           "Description": "Required. The date an in-kind donation was received.\n\nFormat: \u0060YYYY-MM-DD\u0060 (e.g. \u00602025-04-09\u0060)."
         },
         {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": "The date and time at which an in-kind donation was last updated.\n\nExample: \u00602000-01-01T12:00:00Z\u0060"
+        },
+        {
           "Name": "valuation_details",
           "Type": "string",
           "Description": "Optional. The fair market for an in-kind donation which should be determined by donors and appraisers. Maximum 255 characters. Example: \u0060Appraised by Bob Johnson CPA (123 Easy Street, Carlsbad CA 92008)\u0060"
-        },
-        {
-          "Name": "acknowledgment_last_sent_at",
-          "Type": "date_time",
-          "Description": "The timestamp of when the acknowledgment letter was last sent for this in-kind donation. This value is set automatically and cannot be manually changed."
-        },
-        {
-          "Name": "fair_market_value_currency",
-          "Type": "currency_abbreviation",
-          "Description": null
         }
       ],
       "Relationships": [
@@ -693,6 +818,35 @@
           "Type": "Campus",
           "AssociationType": "to_one",
           "Note": "\u0060Campus\u0060 is automatically assigned based on the donor\u0027s primary campus. If you pass an explicit value (a relationship reference or \u0060null\u0060), it will override the default."
+        }
+      ],
+      "Children": [
+        {
+          "Name": "campus",
+          "Type": "campus",
+          "Description": null,
+          "Slug": "campus",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "fund",
+          "Type": "fund",
+          "Description": null,
+          "Slug": "fund",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "person",
+          "Type": "person",
+          "Description": null,
+          "Slug": "person",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
         }
       ],
       "CanInclude": [
@@ -774,7 +928,10 @@
           "Description": "Query on a specific updated_at",
           "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
         }
-      ]
+      ],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "label",
@@ -784,17 +941,13 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": "The unique identifier for a label."
-        },
-        {
           "Name": "slug",
           "Type": "string",
           "Description": "The label text itself. Made up solely of lowercase letters, numbers, and dashes. When creating or updating a label, the string you provide will be formatted automatically. For example: \u0060My awesome label!\u0060 will be saved as \u0060my-awesome-label\u0060"
         }
       ],
       "Relationships": [],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
       "CanQueryBy": [
@@ -805,20 +958,18 @@
           "Description": "Query on a specific slug",
           "Example": "?where[slug]=string"
         }
-      ]
+      ],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "note",
       "Name": "Note",
-      "Description": null,
+      "Description": "A \u0060Note\u0060 is a way for Giving Admins and Bookkeepers to communicate internally about a donation.\nNotes are only visible in the Giving admin interface, not shown to donors. Each \u0060Donation\u0060 can only\nhave a single note associated with it.\n\nTo record notes from donors, consider using the [Memo Line feature](https://pcogiving.zendesk.com/hc/en-us/articles/44484564313883-Manage-your-online-donation-form) instead.\n",
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "body",
           "Type": "string",
@@ -826,9 +977,13 @@
         }
       ],
       "Relationships": [],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": true,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "organization",
@@ -838,30 +993,148 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": "The unique identifier for an organization."
-        },
-        {
           "Name": "name",
           "Type": "string",
           "Description": "The name for an organization."
         },
         {
-          "Name": "time_zone",
-          "Type": "string",
-          "Description": "The time zone for an organization."
-        },
-        {
           "Name": "text2give_enabled",
           "Type": "boolean",
           "Description": "\u0060true\u0060 if this organization is accepting Text2Give donations, \u0060false\u0060 otherwise."
+        },
+        {
+          "Name": "time_zone",
+          "Type": "string",
+          "Description": "The time zone for an organization."
         }
       ],
       "Relationships": [],
+      "Children": [
+        {
+          "Name": "batch_groups",
+          "Type": "batch_group",
+          "Description": null,
+          "Slug": "batch_groups",
+          "Filters": [
+            {
+              "Name": "committed",
+              "Description": null
+            },
+            {
+              "Name": "in_progress",
+              "Description": null
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "batches",
+          "Type": "batch",
+          "Description": null,
+          "Slug": "batches",
+          "Filters": [
+            {
+              "Name": "committed",
+              "Description": null
+            },
+            {
+              "Name": "in_progress",
+              "Description": null
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "campuses",
+          "Type": "campus",
+          "Description": null,
+          "Slug": "campuses",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "donations",
+          "Type": "donation",
+          "Description": null,
+          "Slug": "donations",
+          "Filters": [
+            {
+              "Name": "succeeded",
+              "Description": null
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "funds",
+          "Type": "fund",
+          "Description": null,
+          "Slug": "funds",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "in_kind_donations",
+          "Type": "in_kind_donation",
+          "Description": null,
+          "Slug": "in_kind_donations",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "labels",
+          "Type": "label",
+          "Description": null,
+          "Slug": "labels",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "payment_sources",
+          "Type": "payment_source",
+          "Description": null,
+          "Slug": "payment_sources",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "people",
+          "Type": "person",
+          "Description": null,
+          "Slug": "people",
+          "Filters": [
+            {
+              "Name": "has_donated",
+              "Description": "filter to people with at least one associated donation"
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "recurring_donations",
+          "Type": "recurring_donation",
+          "Description": null,
+          "Slug": "recurring_donations",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "payment_method",
@@ -871,9 +1144,9 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": "The unique identifier for a payment method."
+          "Name": "brand",
+          "Type": "string",
+          "Description": "For cards, this is the card brand (eg Visa, Mastercard, etc). For bank accounts, this is the bank name."
         },
         {
           "Name": "created_at",
@@ -881,19 +1154,9 @@
           "Description": "The date and time at which a payment method was created. Example: \u00602000-01-01T12:00:00Z\u0060"
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": "The date and time at which a payment method was last updated. Example: \u00602000-01-01T12:00:00Z\u0060"
-        },
-        {
-          "Name": "method_type",
-          "Type": "string",
-          "Description": "Determines whether or not the payment method is a card or bank account.\n\nPossible values: \u0060card\u0060, \u0060us_bank_account\u0060, or \u0060au_becs_debit\u0060"
-        },
-        {
-          "Name": "method_subtype",
-          "Type": "string",
-          "Description": "For cards, either \u0060credit\u0060, \u0060debit\u0060, \u0060prepaid\u0060, or \u0060unknown\u0060. For bank accounts, either \u0060checking\u0060 or \u0060savings\u0060."
+          "Name": "expiration",
+          "Type": "date",
+          "Description": "For cards only. String representation of the expiration date in the \u0060MM/YYYY\u0060 form (without leading zeros). Will be \u0060null\u0060 for bank accounts."
         },
         {
           "Name": "last4",
@@ -901,14 +1164,19 @@
           "Description": "The last 4 digits of the payment method\u0027s number. For cards, this is the last 4 digits of the card number. For bank accounts, this is the last 4 digits of the bank account number. Note: In cases where we don\u0027t have all 4 digits on file, a \u0060*\u0060 will be used to pad the number. For example: \u0060*321\u0060"
         },
         {
-          "Name": "brand",
+          "Name": "method_subtype",
           "Type": "string",
-          "Description": "For cards, this is the card brand (eg Visa, Mastercard, etc). For bank accounts, this is the bank name."
+          "Description": "For cards, either \u0060credit\u0060, \u0060debit\u0060, \u0060prepaid\u0060, or \u0060unknown\u0060. For bank accounts, either \u0060checking\u0060 or \u0060savings\u0060."
         },
         {
-          "Name": "expiration",
-          "Type": "date",
-          "Description": "For cards only. String representation of the expiration date in the \u0060MM/YYYY\u0060 form (without leading zeros). Will be \u0060null\u0060 for bank accounts."
+          "Name": "method_type",
+          "Type": "string",
+          "Description": "Determines whether or not the payment method is a card or bank account.\n\nPossible values: \u0060card\u0060, \u0060us_bank_account\u0060, or \u0060au_becs_debit\u0060"
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": "The date and time at which a payment method was last updated. Example: \u00602000-01-01T12:00:00Z\u0060"
         },
         {
           "Name": "verified",
@@ -917,9 +1185,23 @@
         }
       ],
       "Relationships": [],
+      "Children": [
+        {
+          "Name": "recurring_donations",
+          "Type": "recurring_donation",
+          "Description": null,
+          "Slug": "recurring_donations",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "payment_source",
@@ -929,30 +1211,44 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": "The unique identifier for a payment source."
-        },
-        {
           "Name": "created_at",
           "Type": "date_time",
           "Description": "The date and time at which a payment source was created. Example: \u00602000-01-01T12:00:00Z\u0060"
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": "The date and time at which a payment source was last updated. Example: \u00602000-01-01T12:00:00Z\u0060"
-        },
-        {
           "Name": "name",
           "Type": "string",
           "Description": "Required. The name of a payment source. Must be unique within the associated organization."
+        },
+        {
+          "Name": "status",
+          "Type": "string",
+          "Description": "The status of the payment source. Can be either \u0060active\u0060 or \u0060archived\u0060. \u0060active\u0060 payment sources can be assigned to donations, while \u0060archived\u0060 payment sources cannot. Payment sources are \u0060active\u0060 by default upon creation. Archiving a payment source will keep all historical records intact and can be undone.\n\nPossible values: \u0060active\u0060 or \u0060archived\u0060"
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": "The date and time at which a payment source was last updated. Example: \u00602000-01-01T12:00:00Z\u0060"
         }
       ],
       "Relationships": [],
+      "Children": [
+        {
+          "Name": "donations",
+          "Type": "donation",
+          "Description": null,
+          "Slug": "donations",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "person",
@@ -962,14 +1258,14 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": "The unique identifier for a person."
+          "Name": "addresses",
+          "Type": "array",
+          "Description": "An array of addresses for a person. Can be managed via People. Example:\n\u0060\u0060\u0060\n  [\n    {\n      \u0022street_line_1\u0022: \u00222790 Gateway Rd\u0022,\n      \u0022street_line_2\u0022: \u0022\u0022,\n      \u0022city\u0022: \u0022Carlsbad\u0022,\n      \u0022state\u0022: \u0022CA\u0022,\n      \u0022zip\u0022: \u002292009\u0022,\n      \u0022location\u0022: \u0022Home\u0022,\n      \u0022primary\u0022: true,\n      \u0022street\u0022: \u00222790 Gateway Rd\u0022,\n      \u0022line_1\u0022: \u00222790 Gateway Rd\u0022,\n      \u0022line_2\u0022: \u0022Carlsbad, CA 92009\u0022\n    }\n  ]\n\u0060\u0060\u0060\n"
         },
         {
-          "Name": "permissions",
-          "Type": "string",
-          "Description": "The level of Giving access granted to a person. See our product documentation for more information on [permissions in Giving](https://pcogiving.zendesk.com/hc/en-us/articles/206541708-Permissions-in-Giving).\n\nPossible values: \u0060administrator\u0060, \u0060reviewer\u0060, \u0060counter\u0060, or \u0060bookkeeper\u0060"
+          "Name": "donor_number",
+          "Type": "integer",
+          "Description": "The donor number for a person, if applicable. See our product documentation for more information on [donor numbers](https://pcogiving.zendesk.com/hc/en-us/articles/360012298634-donor-numbers)."
         },
         {
           "Name": "email_addresses",
@@ -977,14 +1273,9 @@
           "Description": "An array of email addresses for a person. Can be managed via People. Example:\n\u0060\u0060\u0060\n  [\n    {\n      \u0022address\u0022: \u0022support@planningcenter.com\u0022,\n      \u0022location\u0022: \u0022Home\u0022,\n      \u0022blocked\u0022: false,\n      \u0022primary\u0022: true\n    }\n  ]\n\u0060\u0060\u0060\n"
         },
         {
-          "Name": "addresses",
-          "Type": "array",
-          "Description": "An array of addresses for a person. Can be managed via People. Example:\n\u0060\u0060\u0060\n  [\n    {\n      \u0022street_line_1\u0022: \u00222790 Gateway Rd\u0022,\n      \u0022street_line_2\u0022: \u0022\u0022,\n      \u0022city\u0022: \u0022Carlsbad\u0022,\n      \u0022state\u0022: \u0022CA\u0022,\n      \u0022zip\u0022: \u002292009\u0022,\n      \u0022location\u0022: \u0022Home\u0022,\n      \u0022primary\u0022: true,\n      \u0022street\u0022: \u00222790 Gateway Rd\u0022,\n      \u0022line_1\u0022: \u00222790 Gateway Rd\u0022,\n      \u0022line_2\u0022: \u0022Carlsbad, CA 92009\u0022\n    }\n  ]\n\u0060\u0060\u0060\n"
-        },
-        {
-          "Name": "phone_numbers",
-          "Type": "array",
-          "Description": "An array of phone numbers for a person. Can be managed via People. Example:\n\u0060\u0060\u0060\n  [\n    {\n      \u0022number\u0022: \u0022(123) 456-7890\u0022,\n      \u0022carrier\u0022: \u0022PC Mobile\u0022,\n      \u0022location\u0022: \u0022Mobile\u0022,\n      \u0022primary\u0022: true\n    }\n  ]\n\u0060\u0060\u0060\n"
+          "Name": "first_donated_at",
+          "Type": "date_time",
+          "Description": "Timestamp of a person\u0027s first donation or \u0060null\u0060 if they have never donated."
         },
         {
           "Name": "first_name",
@@ -997,14 +1288,14 @@
           "Description": "A person\u0027s last name."
         },
         {
-          "Name": "donor_number",
-          "Type": "integer",
-          "Description": "The donor number for a person, if applicable. See our product documentation for more information on [donor numbers](https://pcogiving.zendesk.com/hc/en-us/articles/360012298634-donor-numbers)."
+          "Name": "permissions",
+          "Type": "string",
+          "Description": "The level of Giving access granted to a person. See our product documentation for more information on [permissions in Giving](https://pcogiving.zendesk.com/hc/en-us/articles/206541708-Permissions-in-Giving).\n\nPossible values: \u0060administrator\u0060, \u0060reviewer\u0060, \u0060counter\u0060, or \u0060bookkeeper\u0060"
         },
         {
-          "Name": "first_donated_at",
-          "Type": "date_time",
-          "Description": "Timestamp of a person\u0027s first donation or \u0060null\u0060 if they have never donated."
+          "Name": "phone_numbers",
+          "Type": "array",
+          "Description": "An array of phone numbers for a person. Can be managed via People. Example:\n\u0060\u0060\u0060\n  [\n    {\n      \u0022number\u0022: \u0022(123) 456-7890\u0022,\n      \u0022carrier\u0022: \u0022PC Mobile\u0022,\n      \u0022location\u0022: \u0022Mobile\u0022,\n      \u0022primary\u0022: true\n    }\n  ]\n\u0060\u0060\u0060\n"
         }
       ],
       "Relationships": [
@@ -1013,6 +1304,98 @@
           "Type": "Campus",
           "AssociationType": "to_one",
           "Note": null
+        }
+      ],
+      "Children": [
+        {
+          "Name": "batch_groups",
+          "Type": "batch_group",
+          "Description": null,
+          "Slug": "batch_groups",
+          "Filters": [
+            {
+              "Name": "committed",
+              "Description": null
+            },
+            {
+              "Name": "in_progress",
+              "Description": null
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "batches",
+          "Type": "batch",
+          "Description": null,
+          "Slug": "batches",
+          "Filters": [
+            {
+              "Name": "committed",
+              "Description": null
+            },
+            {
+              "Name": "in_progress",
+              "Description": null
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "donations",
+          "Type": "donation",
+          "Description": null,
+          "Slug": "donations",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "in_kind_donations",
+          "Type": "in_kind_donation",
+          "Description": null,
+          "Slug": "in_kind_donations",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "payment_methods",
+          "Type": "payment_method",
+          "Description": null,
+          "Slug": "payment_methods",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "pledges",
+          "Type": "pledge",
+          "Description": null,
+          "Slug": "pledges",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "primary_campus",
+          "Type": "campus",
+          "Description": null,
+          "Slug": "primary_campus",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "recurring_donations",
+          "Type": "recurring_donation",
+          "Description": null,
+          "Slug": "recurring_donations",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
         }
       ],
       "CanInclude": [],
@@ -1032,7 +1415,10 @@
           "Description": "Query on a specific last_name",
           "Example": "?where[last_name]=string"
         }
-      ]
+      ],
+      "Postable": false,
+      "Patchable": true,
+      "Deletable": false
     },
     {
       "Id": "pledge",
@@ -1041,21 +1427,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": null
-        },
         {
           "Name": "amount_cents",
           "Type": "integer",
@@ -1067,9 +1438,9 @@
           "Description": null
         },
         {
-          "Name": "joint_giver_amount_cents",
-          "Type": "integer",
-          "Description": "The amount pledged by the joint giver, if in a joint giving unit"
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
         },
         {
           "Name": "donated_total_cents",
@@ -1077,9 +1448,19 @@
           "Description": "The amount donated"
         },
         {
+          "Name": "joint_giver_amount_cents",
+          "Type": "integer",
+          "Description": "The amount pledged by the joint giver, if in a joint giving unit"
+        },
+        {
           "Name": "joint_giver_donated_total_cents",
           "Type": "integer",
           "Description": "The amount donated by the joint giver, if in a joint giving unit"
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
         }
       ],
       "Relationships": [
@@ -1094,6 +1475,26 @@
           "Type": "PledgeCampaign",
           "AssociationType": "to_one",
           "Note": null
+        }
+      ],
+      "Children": [
+        {
+          "Name": "joint_giver",
+          "Type": "person",
+          "Description": null,
+          "Slug": "joint_giver",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "pledge_campaign",
+          "Type": "pledge_campaign",
+          "Description": null,
+          "Slug": "pledge_campaign",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
         }
       ],
       "CanInclude": [
@@ -1141,7 +1542,10 @@
           "Description": "Query on a specific updated_at",
           "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
         }
-      ]
+      ],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "pledge_campaign",
@@ -1151,33 +1555,13 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
           "Name": "created_at",
           "Type": "date_time",
           "Description": null
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "name",
-          "Type": "string",
-          "Description": null
-        },
-        {
           "Name": "description",
           "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "starts_at",
-          "Type": "date_time",
           "Description": null
         },
         {
@@ -1196,9 +1580,9 @@
           "Description": null
         },
         {
-          "Name": "show_goal_in_church_center",
-          "Type": "boolean",
-          "Description": "In addition to seeing their personal pledge progress within their donor profile, this option allows donors to see the the collective progress towards the campaign\u2019s overall goal (if set)."
+          "Name": "name",
+          "Type": "string",
+          "Description": null
         },
         {
           "Name": "received_total_from_pledges_cents",
@@ -1209,6 +1593,21 @@
           "Name": "received_total_outside_of_pledges_cents",
           "Type": "integer",
           "Description": null
+        },
+        {
+          "Name": "show_goal_in_church_center",
+          "Type": "boolean",
+          "Description": "In addition to seeing their personal pledge progress within their donor profile, this option allows donors to see the the collective progress towards the campaign\u2019s overall goal (if set)."
+        },
+        {
+          "Name": "starts_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
         }
       ],
       "Relationships": [
@@ -1217,6 +1616,26 @@
           "Type": "Fund",
           "AssociationType": "to_one",
           "Note": null
+        }
+      ],
+      "Children": [
+        {
+          "Name": "fund",
+          "Type": "fund",
+          "Description": null,
+          "Slug": "fund",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "pledges",
+          "Type": "pledge",
+          "Description": null,
+          "Slug": "pledges",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
         }
       ],
       "CanInclude": [
@@ -1264,7 +1683,10 @@
           "Description": "Query on a specific starts_at",
           "Example": "?where[starts_at]=2000-01-01T12:00:00Z"
         }
-      ]
+      ],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "recurring_donation",
@@ -1274,34 +1696,19 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": "The unique identifier for a recurring donation."
-        },
-        {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": "The date and time at which a recurring donation was created. Example: \u00602000-01-01T12:00:00Z\u0060"
-        },
-        {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": "The date and time at which a recurring donation was last updated. Example: \u00602000-01-01T12:00:00Z\u0060"
-        },
-        {
-          "Name": "release_hold_at",
-          "Type": "date_time",
-          "Description": "The date when the hold on a recurring donation with a status of \u0060temporary_hold\u0060 will be released."
-        },
-        {
           "Name": "amount_cents",
           "Type": "integer",
           "Description": "The number of cents scheduled to be donated."
         },
         {
-          "Name": "status",
-          "Type": "string",
-          "Description": "Determines if a recurring donation is active or on hold, and if on hold, the kind of hold that has been placed on it.\n\nPossible values: \u0060active\u0060, \u0060indefinite_hold\u0060 or \u0060temporary_hold\u0060."
+          "Name": "amount_currency",
+          "Type": "currency_abbreviation",
+          "Description": "The currency of \u0060amount_cents\u0060."
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": "The date and time at which a recurring donation was created. Example: \u00602000-01-01T12:00:00Z\u0060"
         },
         {
           "Name": "last_donation_received_at",
@@ -1314,14 +1721,24 @@
           "Description": "The date that the next donation will be made for a recurring donation. Example: \u00602000-01-01T12:00:00Z\u0060"
         },
         {
+          "Name": "release_hold_at",
+          "Type": "date_time",
+          "Description": "The date when the hold on a recurring donation with a status of \u0060temporary_hold\u0060 will be released."
+        },
+        {
           "Name": "schedule",
           "Type": "repeatable_schedule",
           "Description": "JSON representation of the billing schedule. See the repeatable Ruby gem for more details on the structure and meaning: https://github.com/molawson/repeatable#time-expressions"
         },
         {
-          "Name": "amount_currency",
-          "Type": "currency_abbreviation",
-          "Description": "The currency of \u0060amount_cents\u0060."
+          "Name": "status",
+          "Type": "string",
+          "Description": "Determines if a recurring donation is active or on hold, and if on hold, the kind of hold that has been placed on it.\n\nPossible values: \u0060active\u0060, \u0060indefinite_hold\u0060 or \u0060temporary_hold\u0060."
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": "The date and time at which a recurring donation was last updated. Example: \u00602000-01-01T12:00:00Z\u0060"
         }
       ],
       "Relationships": [
@@ -1330,6 +1747,26 @@
           "Type": "Person",
           "AssociationType": "to_one",
           "Note": null
+        }
+      ],
+      "Children": [
+        {
+          "Name": "payment_method",
+          "Type": "payment_method",
+          "Description": null,
+          "Slug": "payment_method",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "designations",
+          "Type": "recurring_donation_designation",
+          "Description": null,
+          "Slug": "designations",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
         }
       ],
       "CanInclude": [
@@ -1342,7 +1779,10 @@
         }
       ],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "recurring_donation_designation",
@@ -1351,11 +1791,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": "The unique identifier for a recurring donation designation."
-        },
         {
           "Name": "amount_cents",
           "Type": "integer",
@@ -1368,6 +1803,17 @@
         }
       ],
       "Relationships": [],
+      "Children": [
+        {
+          "Name": "fund",
+          "Type": "fund",
+          "Description": null,
+          "Slug": "fund",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [
         {
           "Parameter": "include",
@@ -1378,7 +1824,10 @@
         }
       ],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "refund",
@@ -1387,21 +1836,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": "The unique identifier for a refund."
-        },
-        {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": "The date and time at which a refund was created. Example: \u00602000-01-01T12:00:00Z\u0060"
-        },
-        {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": "The date and time at which a refund was last updated. Example: \u00602000-01-01T12:00:00Z\u0060"
-        },
         {
           "Name": "amount_cents",
           "Type": "integer",
@@ -1413,9 +1847,19 @@
           "Description": "The currency of \u0060amount_cents\u0060."
         },
         {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": "The date and time at which a refund was created. Example: \u00602000-01-01T12:00:00Z\u0060"
+        },
+        {
           "Name": "fee_cents",
           "Type": "integer",
           "Description": "The payment processing fee returned by Stripe, if any."
+        },
+        {
+          "Name": "fee_currency",
+          "Type": "currency_abbreviation",
+          "Description": "The currency of \u0060fee_cents\u0060."
         },
         {
           "Name": "refunded_at",
@@ -1423,12 +1867,23 @@
           "Description": "The date and time at which a refund was processed. Example: \u00602000-01-01T12:00:00Z\u0060"
         },
         {
-          "Name": "fee_currency",
-          "Type": "currency_abbreviation",
-          "Description": "The currency of \u0060fee_cents\u0060."
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": "The date and time at which a refund was last updated. Example: \u00602000-01-01T12:00:00Z\u0060"
         }
       ],
       "Relationships": [],
+      "Children": [
+        {
+          "Name": "designation_refunds",
+          "Type": "designation_refund",
+          "Description": null,
+          "Slug": "designation_refunds",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [
         {
           "Parameter": "include",
@@ -1439,7 +1894,10 @@
         }
       ],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     }
   ]
 }

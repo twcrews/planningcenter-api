@@ -11,16 +11,6 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
-          "Name": "name",
-          "Type": "string",
-          "Description": null
-        },
-        {
           "Name": "color",
           "Type": "string",
           "Description": null
@@ -31,13 +21,18 @@
           "Description": null
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
+          "Name": "limit",
+          "Type": "integer",
           "Description": null
         },
         {
-          "Name": "limit",
-          "Type": "integer",
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
           "Description": null
         }
       ],
@@ -47,6 +42,26 @@
           "Type": "Event",
           "AssociationType": "to_one",
           "Note": null
+        }
+      ],
+      "Children": [
+        {
+          "Name": "event",
+          "Type": "event",
+          "Description": null,
+          "Slug": "event",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "headcounts",
+          "Type": "headcount",
+          "Description": null,
+          "Slug": "headcounts",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
         }
       ],
       "CanInclude": [
@@ -74,7 +89,10 @@
           "Description": "Query on a specific name",
           "Example": "?where[name]=string"
         }
-      ]
+      ],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "check_in",
@@ -84,12 +102,37 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
+          "Name": "checked_out_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "confirmed_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "emergency_contact_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "emergency_contact_phone_number",
+          "Type": "string",
           "Description": null
         },
         {
           "Name": "first_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "kind",
           "Type": "string",
           "Description": null
         },
@@ -109,48 +152,18 @@
           "Description": null
         },
         {
-          "Name": "security_code",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "checked_out_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "confirmed_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "emergency_contact_name",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "emergency_contact_phone_number",
-          "Type": "string",
-          "Description": null
-        },
-        {
           "Name": "one_time_guest",
           "Type": "boolean",
           "Description": null
         },
         {
-          "Name": "kind",
+          "Name": "security_code",
           "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
           "Description": null
         }
       ],
@@ -166,6 +179,98 @@
           "Type": "Person",
           "AssociationType": "to_one",
           "Note": null
+        }
+      ],
+      "Children": [
+        {
+          "Name": "check_in_group",
+          "Type": "check_in_group",
+          "Description": null,
+          "Slug": "check_in_group",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "checked_in_at",
+          "Type": "station",
+          "Description": null,
+          "Slug": "checked_in_at",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "checked_in_by",
+          "Type": "person",
+          "Description": null,
+          "Slug": "checked_in_by",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "checked_out_by",
+          "Type": "person",
+          "Description": null,
+          "Slug": "checked_out_by",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "event",
+          "Type": "event",
+          "Description": null,
+          "Slug": "event",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "event_period",
+          "Type": "event_period",
+          "Description": null,
+          "Slug": "event_period",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "event_times",
+          "Type": "event_time",
+          "Description": null,
+          "Slug": "event_times",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "location",
+          "Type": "location",
+          "Description": null,
+          "Slug": "location",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": true
+        },
+        {
+          "Name": "options",
+          "Type": "option",
+          "Description": null,
+          "Slug": "options",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "person",
+          "Type": "person",
+          "Description": null,
+          "Slug": "person",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
         }
       ],
       "CanInclude": [
@@ -300,7 +405,10 @@
           "Description": "Query on a specific updated_at",
           "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
         }
-      ]
+      ],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "check_in_group",
@@ -309,21 +417,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
-          "Name": "name_labels_count",
-          "Type": "integer",
-          "Description": null
-        },
-        {
-          "Name": "security_labels_count",
-          "Type": "integer",
-          "Description": null
-        },
         {
           "Name": "check_ins_count",
           "Type": "integer",
@@ -335,17 +428,56 @@
           "Description": null
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
+          "Name": "name_labels_count",
+          "Type": "integer",
           "Description": null
         },
         {
           "Name": "print_status",
           "Type": "string",
           "Description": "Possible values:\n  - \u0060ready\u0060: This group isn\u0027t printed or canceled yet\n  - \u0060printed\u0060: This group was successfully printed at a station\n  - \u0060canceled\u0060: This group was canceled at a station\n  - \u0060skipped\u0060: This group had no labels to print, so it was never printed.\n"
+        },
+        {
+          "Name": "security_labels_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
         }
       ],
       "Relationships": [],
+      "Children": [
+        {
+          "Name": "check_ins",
+          "Type": "check_in",
+          "Description": null,
+          "Slug": "check_ins",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "event_period",
+          "Type": "event_period",
+          "Description": null,
+          "Slug": "event_period",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "print_station",
+          "Type": "station",
+          "Description": null,
+          "Slug": "print_station",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [
         {
           "Parameter": "include",
@@ -370,7 +502,10 @@
         }
       ],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "event",
@@ -380,23 +515,13 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
-          "Name": "name",
+          "Name": "app_source",
           "Type": "string",
-          "Description": null
+          "Description": "Only available when requested with the \u0060?fields\u0060 param"
         },
         {
-          "Name": "frequency",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "enable_services_integration",
-          "Type": "boolean",
+          "Name": "archived_at",
+          "Type": "date_time",
           "Description": null
         },
         {
@@ -405,13 +530,13 @@
           "Description": null
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
+          "Name": "enable_services_integration",
+          "Type": "boolean",
           "Description": null
         },
         {
-          "Name": "archived_at",
-          "Type": "date_time",
+          "Name": "frequency",
+          "Type": "string",
           "Description": null
         },
         {
@@ -425,14 +550,19 @@
           "Description": null
         },
         {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
           "Name": "pre_select_enabled",
           "Type": "boolean",
           "Description": null
         },
         {
-          "Name": "app_source",
-          "Type": "string",
-          "Description": "Only available when requested with the \u0060?fields\u0060 param"
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
         }
       ],
       "Relationships": [
@@ -441,6 +571,126 @@
           "Type": "Campus",
           "AssociationType": "to_many",
           "Note": null
+        }
+      ],
+      "Children": [
+        {
+          "Name": "attendance_types",
+          "Type": "attendance_type",
+          "Description": null,
+          "Slug": "attendance_types",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "check_ins",
+          "Type": "check_in",
+          "Description": null,
+          "Slug": "check_ins",
+          "Filters": [
+            {
+              "Name": "attendee",
+              "Description": null
+            },
+            {
+              "Name": "checked_out",
+              "Description": null
+            },
+            {
+              "Name": "first_time",
+              "Description": null
+            },
+            {
+              "Name": "guest",
+              "Description": null
+            },
+            {
+              "Name": "not_checked_out",
+              "Description": null
+            },
+            {
+              "Name": "not_one_time_guest",
+              "Description": null
+            },
+            {
+              "Name": "one_time_guest",
+              "Description": null
+            },
+            {
+              "Name": "regular",
+              "Description": null
+            },
+            {
+              "Name": "volunteer",
+              "Description": null
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "current_event_times",
+          "Type": "event_time",
+          "Description": null,
+          "Slug": "current_event_times",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "event_labels",
+          "Type": "event_label",
+          "Description": null,
+          "Slug": "event_labels",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "event_periods",
+          "Type": "event_period",
+          "Description": null,
+          "Slug": "event_periods",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "integration_links",
+          "Type": "integration_link",
+          "Description": null,
+          "Slug": "integration_links",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "locations",
+          "Type": "location",
+          "Description": null,
+          "Slug": "locations",
+          "Filters": [
+            {
+              "Name": "locations",
+              "Description": null
+            },
+            {
+              "Name": "root",
+              "Description": null
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "person_events",
+          "Type": "person_event",
+          "Description": null,
+          "Slug": "person_events",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
         }
       ],
       "CanInclude": [
@@ -481,7 +731,10 @@
           "Description": "Query on a specific name",
           "Example": "?where[name]=string"
         }
-      ]
+      ],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "event_label",
@@ -491,22 +744,17 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
-          "Name": "quantity",
-          "Type": "integer",
-          "Description": null
-        },
-        {
-          "Name": "for_regular",
-          "Type": "boolean",
+          "Name": "created_at",
+          "Type": "date_time",
           "Description": null
         },
         {
           "Name": "for_guest",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "for_regular",
           "Type": "boolean",
           "Description": null
         },
@@ -516,8 +764,8 @@
           "Description": null
         },
         {
-          "Name": "created_at",
-          "Type": "date_time",
+          "Name": "quantity",
+          "Type": "integer",
           "Description": null
         },
         {
@@ -527,6 +775,26 @@
         }
       ],
       "Relationships": [],
+      "Children": [
+        {
+          "Name": "event",
+          "Type": "event",
+          "Description": null,
+          "Slug": "event",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "label",
+          "Type": "label",
+          "Description": null,
+          "Slug": "label",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [
         {
           "Parameter": "include",
@@ -544,7 +812,10 @@
         }
       ],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "event_period",
@@ -554,12 +825,7 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
-          "Name": "starts_at",
+          "Name": "created_at",
           "Type": "date_time",
           "Description": null
         },
@@ -569,17 +835,7 @@
           "Description": null
         },
         {
-          "Name": "regular_count",
-          "Type": "integer",
-          "Description": null
-        },
-        {
           "Name": "guest_count",
-          "Type": "integer",
-          "Description": null
-        },
-        {
-          "Name": "volunteer_count",
           "Type": "integer",
           "Description": null
         },
@@ -589,13 +845,23 @@
           "Description": null
         },
         {
-          "Name": "created_at",
+          "Name": "regular_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "starts_at",
           "Type": "date_time",
           "Description": null
         },
         {
           "Name": "updated_at",
           "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "volunteer_count",
+          "Type": "integer",
           "Description": null
         }
       ],
@@ -605,6 +871,86 @@
           "Type": "Event",
           "AssociationType": "to_one",
           "Note": null
+        }
+      ],
+      "Children": [
+        {
+          "Name": "check_ins",
+          "Type": "check_in",
+          "Description": null,
+          "Slug": "check_ins",
+          "Filters": [
+            {
+              "Name": "attendee",
+              "Description": null
+            },
+            {
+              "Name": "checked_out",
+              "Description": null
+            },
+            {
+              "Name": "first_time",
+              "Description": null
+            },
+            {
+              "Name": "guest",
+              "Description": null
+            },
+            {
+              "Name": "not_checked_out",
+              "Description": null
+            },
+            {
+              "Name": "not_one_time_guest",
+              "Description": null
+            },
+            {
+              "Name": "one_time_guest",
+              "Description": null
+            },
+            {
+              "Name": "regular",
+              "Description": null
+            },
+            {
+              "Name": "volunteer",
+              "Description": null
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "event",
+          "Type": "event",
+          "Description": null,
+          "Slug": "event",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "event_times",
+          "Type": "event_time",
+          "Description": null,
+          "Slug": "event_times",
+          "Filters": [
+            {
+              "Name": "available",
+              "Description": null
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "location_event_periods",
+          "Type": "location_event_period",
+          "Description": null,
+          "Slug": "location_event_periods",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
         }
       ],
       "CanInclude": [
@@ -646,7 +992,10 @@
           "Description": "Query on a specific starts_at",
           "Example": "?where[starts_at]=2000-01-01T12:00:00Z"
         }
-      ]
+      ],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "event_time",
@@ -656,32 +1005,12 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
-          "Name": "total_count",
-          "Type": "integer",
-          "Description": null
-        },
-        {
-          "Name": "starts_at",
+          "Name": "created_at",
           "Type": "date_time",
           "Description": null
         },
         {
-          "Name": "shows_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "hides_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "regular_count",
+          "Name": "day_of_week",
           "Type": "integer",
           "Description": null
         },
@@ -691,23 +1020,8 @@
           "Description": null
         },
         {
-          "Name": "volunteer_count",
-          "Type": "integer",
-          "Description": null
-        },
-        {
-          "Name": "created_at",
+          "Name": "hides_at",
           "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "name",
-          "Type": "string",
           "Description": null
         },
         {
@@ -721,7 +1035,37 @@
           "Description": null
         },
         {
-          "Name": "day_of_week",
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "regular_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "shows_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "starts_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "total_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "volunteer_count",
           "Type": "integer",
           "Description": null
         }
@@ -738,6 +1082,104 @@
           "Type": "EventPeriod",
           "AssociationType": "to_one",
           "Note": null
+        }
+      ],
+      "Children": [
+        {
+          "Name": "available_locations",
+          "Type": "location",
+          "Description": null,
+          "Slug": "available_locations",
+          "Filters": [
+            {
+              "Name": "for_current_station",
+              "Description": null
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "check_ins",
+          "Type": "check_in",
+          "Description": null,
+          "Slug": "check_ins",
+          "Filters": [
+            {
+              "Name": "attendee",
+              "Description": null
+            },
+            {
+              "Name": "checked_out",
+              "Description": null
+            },
+            {
+              "Name": "first_time",
+              "Description": null
+            },
+            {
+              "Name": "guest",
+              "Description": null
+            },
+            {
+              "Name": "not_checked_out",
+              "Description": null
+            },
+            {
+              "Name": "not_one_time_guest",
+              "Description": null
+            },
+            {
+              "Name": "one_time_guest",
+              "Description": null
+            },
+            {
+              "Name": "regular",
+              "Description": null
+            },
+            {
+              "Name": "volunteer",
+              "Description": null
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "event",
+          "Type": "event",
+          "Description": null,
+          "Slug": "event",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "event_period",
+          "Type": "event_period",
+          "Description": null,
+          "Slug": "event_period",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "headcounts",
+          "Type": "headcount",
+          "Description": null,
+          "Slug": "headcounts",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "location_event_times",
+          "Type": "location_event_time",
+          "Description": null,
+          "Slug": "location_event_times",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
         }
       ],
       "CanInclude": [
@@ -792,7 +1234,10 @@
           "Description": "Query on a specific updated_at",
           "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
         }
-      ]
+      ],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "headcount",
@@ -802,8 +1247,8 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
+          "Name": "created_at",
+          "Type": "date_time",
           "Description": null
         },
         {
@@ -813,11 +1258,6 @@
         },
         {
           "Name": "updated_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "created_at",
           "Type": "date_time",
           "Description": null
         }
@@ -834,6 +1274,26 @@
           "Type": "AttendanceType",
           "AssociationType": "to_one",
           "Note": null
+        }
+      ],
+      "Children": [
+        {
+          "Name": "attendance_type",
+          "Type": "attendance_type",
+          "Description": null,
+          "Slug": "attendance_type",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "event_time",
+          "Type": "event_time",
+          "Description": null,
+          "Slug": "event_time",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
         }
       ],
       "CanInclude": [
@@ -887,7 +1347,10 @@
           "Description": "Query on a specific updated_at",
           "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
         }
-      ]
+      ],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "integration_link",
@@ -897,8 +1360,8 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
+          "Name": "remote_app",
+          "Type": "string",
           "Description": null
         },
         {
@@ -907,17 +1370,12 @@
           "Description": "The Global ID for the external resource. Formatted as \u0060gid://\u003Capp\u003E/\u003Ctype\u003E/\u003Cid\u003E\u0060."
         },
         {
-          "Name": "remote_app",
+          "Name": "remote_id",
           "Type": "string",
           "Description": null
         },
         {
           "Name": "remote_type",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "remote_id",
           "Type": "string",
           "Description": null
         },
@@ -935,6 +1393,7 @@
           "Note": "Type will be the type of Check-Ins resource it is linked to."
         }
       ],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
       "CanQueryBy": [
@@ -945,7 +1404,10 @@
           "Description": "Query on a specific remote_gid",
           "Example": "?where[remote_gid]=string"
         }
-      ]
+      ],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "label",
@@ -955,17 +1417,12 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
+          "Name": "created_at",
+          "Type": "date_time",
           "Description": null
         },
         {
           "Name": "name",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "xml",
           "Type": "string",
           "Description": null
         },
@@ -980,20 +1437,43 @@
           "Description": null
         },
         {
-          "Name": "created_at",
+          "Name": "updated_at",
           "Type": "date_time",
           "Description": null
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
+          "Name": "xml",
+          "Type": "string",
           "Description": null
         }
       ],
       "Relationships": [],
+      "Children": [
+        {
+          "Name": "event_labels",
+          "Type": "event_label",
+          "Description": null,
+          "Slug": "event_labels",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "location_labels",
+          "Type": "location_label",
+          "Description": null,
+          "Slug": "location_labels",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "location",
@@ -1003,28 +1483,8 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
-          "Name": "name",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "kind",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "opened",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
-          "Name": "questions",
-          "Type": "string",
+          "Name": "age_max_in_months",
+          "Type": "integer",
           "Description": null
         },
         {
@@ -1033,8 +1493,8 @@
           "Description": null
         },
         {
-          "Name": "age_max_in_months",
-          "Type": "integer",
+          "Name": "age_on",
+          "Type": "date",
           "Description": null
         },
         {
@@ -1043,13 +1503,18 @@
           "Description": null
         },
         {
-          "Name": "age_on",
-          "Type": "date",
+          "Name": "attendees_per_volunteer",
+          "Type": "integer",
           "Description": null
         },
         {
           "Name": "child_or_adult",
           "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
           "Description": null
         },
         {
@@ -1063,13 +1528,18 @@
           "Description": null
         },
         {
+          "Name": "grade_max",
+          "Type": "integer",
+          "Description": null
+        },
+        {
           "Name": "grade_min",
           "Type": "integer",
           "Description": null
         },
         {
-          "Name": "grade_max",
-          "Type": "integer",
+          "Name": "kind",
+          "Type": "string",
           "Description": null
         },
         {
@@ -1078,13 +1548,23 @@
           "Description": null
         },
         {
+          "Name": "milestone",
+          "Type": "string",
+          "Description": null
+        },
+        {
           "Name": "min_volunteers",
           "Type": "integer",
           "Description": null
         },
         {
-          "Name": "attendees_per_volunteer",
-          "Type": "integer",
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "opened",
+          "Type": "boolean",
           "Description": null
         },
         {
@@ -1093,18 +1573,13 @@
           "Description": null
         },
         {
+          "Name": "questions",
+          "Type": "string",
+          "Description": null
+        },
+        {
           "Name": "updated_at",
           "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "milestone",
-          "Type": "string",
           "Description": null
         }
       ],
@@ -1114,6 +1589,126 @@
           "Type": "Parent",
           "AssociationType": "to_one",
           "Note": null
+        }
+      ],
+      "Children": [
+        {
+          "Name": "check_ins",
+          "Type": "check_in",
+          "Description": null,
+          "Slug": "check_ins",
+          "Filters": [
+            {
+              "Name": "attendee",
+              "Description": null
+            },
+            {
+              "Name": "checked_out",
+              "Description": null
+            },
+            {
+              "Name": "first_time",
+              "Description": null
+            },
+            {
+              "Name": "guest",
+              "Description": null
+            },
+            {
+              "Name": "not_checked_out",
+              "Description": null
+            },
+            {
+              "Name": "not_one_time_guest",
+              "Description": null
+            },
+            {
+              "Name": "one_time_guest",
+              "Description": null
+            },
+            {
+              "Name": "regular",
+              "Description": null
+            },
+            {
+              "Name": "volunteer",
+              "Description": null
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "event",
+          "Type": "event",
+          "Description": null,
+          "Slug": "event",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "integration_links",
+          "Type": "integration_link",
+          "Description": null,
+          "Slug": "integration_links",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "location_event_periods",
+          "Type": "location_event_period",
+          "Description": null,
+          "Slug": "location_event_periods",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "location_event_times",
+          "Type": "location_event_time",
+          "Description": null,
+          "Slug": "location_event_times",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "location_labels",
+          "Type": "location_label",
+          "Description": null,
+          "Slug": "location_labels",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "locations",
+          "Type": "location",
+          "Description": null,
+          "Slug": "locations",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "options",
+          "Type": "option",
+          "Description": null,
+          "Slug": "options",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "parent",
+          "Type": "location",
+          "Description": null,
+          "Slug": "parent",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
         }
       ],
       "CanInclude": [
@@ -1166,7 +1761,10 @@
           "Description": "prefix with a hyphen (-position) to reverse the order"
         }
       ],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "location_event_period",
@@ -1176,13 +1774,8 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
-          "Name": "regular_count",
-          "Type": "integer",
+          "Name": "created_at",
+          "Type": "date_time",
           "Description": null
         },
         {
@@ -1191,22 +1784,88 @@
           "Description": null
         },
         {
-          "Name": "volunteer_count",
+          "Name": "regular_count",
           "Type": "integer",
-          "Description": null
-        },
-        {
-          "Name": "created_at",
-          "Type": "date_time",
           "Description": null
         },
         {
           "Name": "updated_at",
           "Type": "date_time",
           "Description": null
+        },
+        {
+          "Name": "volunteer_count",
+          "Type": "integer",
+          "Description": null
         }
       ],
       "Relationships": [],
+      "Children": [
+        {
+          "Name": "check_ins",
+          "Type": "check_in",
+          "Description": null,
+          "Slug": "check_ins",
+          "Filters": [
+            {
+              "Name": "attendee",
+              "Description": null
+            },
+            {
+              "Name": "checked_out",
+              "Description": null
+            },
+            {
+              "Name": "first_time",
+              "Description": null
+            },
+            {
+              "Name": "guest",
+              "Description": null
+            },
+            {
+              "Name": "not_checked_out",
+              "Description": null
+            },
+            {
+              "Name": "not_one_time_guest",
+              "Description": null
+            },
+            {
+              "Name": "one_time_guest",
+              "Description": null
+            },
+            {
+              "Name": "regular",
+              "Description": null
+            },
+            {
+              "Name": "volunteer",
+              "Description": null
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "event_period",
+          "Type": "event_period",
+          "Description": null,
+          "Slug": "event_period",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "location",
+          "Type": "location",
+          "Description": null,
+          "Slug": "location",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [
         {
           "Parameter": "include",
@@ -1224,7 +1883,10 @@
         }
       ],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "location_event_time",
@@ -1234,13 +1896,8 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
-          "Name": "regular_count",
-          "Type": "integer",
+          "Name": "created_at",
+          "Type": "date_time",
           "Description": null
         },
         {
@@ -1249,22 +1906,88 @@
           "Description": null
         },
         {
-          "Name": "volunteer_count",
+          "Name": "regular_count",
           "Type": "integer",
-          "Description": null
-        },
-        {
-          "Name": "created_at",
-          "Type": "date_time",
           "Description": null
         },
         {
           "Name": "updated_at",
           "Type": "date_time",
           "Description": null
+        },
+        {
+          "Name": "volunteer_count",
+          "Type": "integer",
+          "Description": null
         }
       ],
       "Relationships": [],
+      "Children": [
+        {
+          "Name": "check_ins",
+          "Type": "check_in",
+          "Description": null,
+          "Slug": "check_ins",
+          "Filters": [
+            {
+              "Name": "attendee",
+              "Description": null
+            },
+            {
+              "Name": "checked_out",
+              "Description": null
+            },
+            {
+              "Name": "first_time",
+              "Description": null
+            },
+            {
+              "Name": "guest",
+              "Description": null
+            },
+            {
+              "Name": "not_checked_out",
+              "Description": null
+            },
+            {
+              "Name": "not_one_time_guest",
+              "Description": null
+            },
+            {
+              "Name": "one_time_guest",
+              "Description": null
+            },
+            {
+              "Name": "regular",
+              "Description": null
+            },
+            {
+              "Name": "volunteer",
+              "Description": null
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "event_time",
+          "Type": "event_time",
+          "Description": null,
+          "Slug": "event_time",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "location",
+          "Type": "location",
+          "Description": null,
+          "Slug": "location",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [
         {
           "Parameter": "include",
@@ -1297,7 +2020,10 @@
           "Description": "Query on a specific updated_at",
           "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
         }
-      ]
+      ],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "location_label",
@@ -1307,22 +2033,17 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
-          "Name": "quantity",
-          "Type": "integer",
-          "Description": null
-        },
-        {
-          "Name": "for_regular",
-          "Type": "boolean",
+          "Name": "created_at",
+          "Type": "date_time",
           "Description": null
         },
         {
           "Name": "for_guest",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "for_regular",
           "Type": "boolean",
           "Description": null
         },
@@ -1332,8 +2053,8 @@
           "Description": null
         },
         {
-          "Name": "created_at",
-          "Type": "date_time",
+          "Name": "quantity",
+          "Type": "integer",
           "Description": null
         },
         {
@@ -1343,6 +2064,26 @@
         }
       ],
       "Relationships": [],
+      "Children": [
+        {
+          "Name": "label",
+          "Type": "label",
+          "Description": null,
+          "Slug": "label",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "location",
+          "Type": "location",
+          "Description": null,
+          "Slug": "location",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [
         {
           "Parameter": "include",
@@ -1360,7 +2101,10 @@
         }
       ],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "option",
@@ -1370,23 +2114,18 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
           "Name": "body",
           "Type": "string",
           "Description": null
         },
         {
-          "Name": "quantity",
-          "Type": "integer",
+          "Name": "created_at",
+          "Type": "date_time",
           "Description": null
         },
         {
-          "Name": "created_at",
-          "Type": "date_time",
+          "Name": "quantity",
+          "Type": "integer",
           "Description": null
         },
         {
@@ -1396,6 +2135,26 @@
         }
       ],
       "Relationships": [],
+      "Children": [
+        {
+          "Name": "check_ins",
+          "Type": "check_in",
+          "Description": null,
+          "Slug": "check_ins",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "label",
+          "Type": "label",
+          "Description": null,
+          "Slug": "label",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [
         {
           "Parameter": "include",
@@ -1406,7 +2165,10 @@
         }
       ],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "organization",
@@ -1415,31 +2177,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
-          "Name": "date_format_pattern",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "time_zone",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "name",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "daily_check_ins",
-          "Type": "integer",
-          "Description": null
-        },
         {
           "Name": "avatar_url",
           "Type": "string",
@@ -1451,20 +2188,202 @@
           "Description": null
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
+          "Name": "daily_check_ins",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "date_format_pattern",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "time_zone",
+          "Type": "string",
           "Description": null
         },
         {
           "Name": "time_zone_olson",
           "Type": "string",
           "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
         }
       ],
       "Relationships": [],
+      "Children": [
+        {
+          "Name": "check_ins",
+          "Type": "check_in",
+          "Description": null,
+          "Slug": "check_ins",
+          "Filters": [
+            {
+              "Name": "attendee",
+              "Description": null
+            },
+            {
+              "Name": "checked_out",
+              "Description": null
+            },
+            {
+              "Name": "first_time",
+              "Description": null
+            },
+            {
+              "Name": "guest",
+              "Description": null
+            },
+            {
+              "Name": "not_checked_out",
+              "Description": null
+            },
+            {
+              "Name": "not_one_time_guest",
+              "Description": null
+            },
+            {
+              "Name": "one_time_guest",
+              "Description": null
+            },
+            {
+              "Name": "regular",
+              "Description": null
+            },
+            {
+              "Name": "volunteer",
+              "Description": null
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "event_times",
+          "Type": "event_time",
+          "Description": null,
+          "Slug": "event_times",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "events",
+          "Type": "event",
+          "Description": null,
+          "Slug": "events",
+          "Filters": [
+            {
+              "Name": "archived",
+              "Description": null
+            },
+            {
+              "Name": "for_campus",
+              "Description": null
+            },
+            {
+              "Name": "for_headcounts",
+              "Description": null
+            },
+            {
+              "Name": "for_registrations",
+              "Description": null
+            },
+            {
+              "Name": "not_archived",
+              "Description": null
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "headcounts",
+          "Type": "headcount",
+          "Description": null,
+          "Slug": "headcounts",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "integration_links",
+          "Type": "integration_link",
+          "Description": null,
+          "Slug": "integration_links",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "labels",
+          "Type": "label",
+          "Description": null,
+          "Slug": "labels",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "options",
+          "Type": "option",
+          "Description": null,
+          "Slug": "options",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "passes",
+          "Type": "pass",
+          "Description": null,
+          "Slug": "passes",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "people",
+          "Type": "person",
+          "Description": null,
+          "Slug": "people",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "stations",
+          "Type": "station",
+          "Description": null,
+          "Slug": "stations",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "themes",
+          "Type": "theme",
+          "Description": null,
+          "Slug": "themes",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "pass",
@@ -1474,13 +2393,13 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
+          "Name": "code",
+          "Type": "string",
           "Description": null
         },
         {
-          "Name": "code",
-          "Type": "string",
+          "Name": "created_at",
+          "Type": "date_time",
           "Description": null
         },
         {
@@ -1489,17 +2408,23 @@
           "Description": "Possible values: \u0060barcode\u0060 or \u0060pkpass\u0060.\n\nUsing the \u0060pkpass\u0060 value creates a mobile pass and sends an email to the associated person.\n"
         },
         {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
           "Name": "updated_at",
           "Type": "date_time",
           "Description": null
         }
       ],
       "Relationships": [],
+      "Children": [
+        {
+          "Name": "person",
+          "Type": "person",
+          "Description": null,
+          "Slug": "person",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [
         {
           "Parameter": "include",
@@ -1518,7 +2443,10 @@
           "Description": "Query on a specific code",
           "Example": "?where[code]=string"
         }
-      ]
+      ],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "person",
@@ -1528,22 +2456,7 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
           "Name": "addresses",
-          "Type": "array",
-          "Description": null
-        },
-        {
-          "Name": "email_addresses",
-          "Type": "array",
-          "Description": null
-        },
-        {
-          "Name": "phone_numbers",
           "Type": "array",
           "Description": null
         },
@@ -1553,48 +2466,13 @@
           "Description": null
         },
         {
-          "Name": "name_prefix",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "first_name",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "middle_name",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "last_name",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "name_suffix",
-          "Type": "string",
-          "Description": null
-        },
-        {
           "Name": "birthdate",
           "Type": "date",
           "Description": null
         },
         {
-          "Name": "grade",
+          "Name": "check_in_count",
           "Type": "integer",
-          "Description": null
-        },
-        {
-          "Name": "gender",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "medical_notes",
-          "Type": "string",
           "Description": null
         },
         {
@@ -1603,12 +2481,42 @@
           "Description": null
         },
         {
-          "Name": "permission",
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "demographic_avatar_url",
           "Type": "string",
           "Description": null
         },
         {
+          "Name": "email_addresses",
+          "Type": "array",
+          "Description": null
+        },
+        {
+          "Name": "first_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "gender",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "grade",
+          "Type": "integer",
+          "Description": null
+        },
+        {
           "Name": "headcounter",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "ignore_filters",
           "Type": "boolean",
           "Description": null
         },
@@ -1618,27 +2526,17 @@
           "Description": null
         },
         {
-          "Name": "check_in_count",
-          "Type": "integer",
+          "Name": "last_name",
+          "Type": "string",
           "Description": null
         },
         {
-          "Name": "created_at",
-          "Type": "date_time",
+          "Name": "medical_notes",
+          "Type": "string",
           "Description": null
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "passed_background_check",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
-          "Name": "demographic_avatar_url",
+          "Name": "middle_name",
           "Type": "string",
           "Description": null
         },
@@ -1648,17 +2546,117 @@
           "Description": null
         },
         {
+          "Name": "name_prefix",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "name_suffix",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "passed_background_check",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "permission",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "phone_numbers",
+          "Type": "array",
+          "Description": null
+        },
+        {
           "Name": "top_permission",
           "Type": "string",
           "Description": null
         },
         {
-          "Name": "ignore_filters",
-          "Type": "boolean",
+          "Name": "updated_at",
+          "Type": "date_time",
           "Description": null
         }
       ],
       "Relationships": [],
+      "Children": [
+        {
+          "Name": "check_ins",
+          "Type": "check_in",
+          "Description": null,
+          "Slug": "check_ins",
+          "Filters": [
+            {
+              "Name": "attendee",
+              "Description": null
+            },
+            {
+              "Name": "checked_out",
+              "Description": null
+            },
+            {
+              "Name": "first_time",
+              "Description": null
+            },
+            {
+              "Name": "guest",
+              "Description": null
+            },
+            {
+              "Name": "not_checked_out",
+              "Description": null
+            },
+            {
+              "Name": "not_one_time_guest",
+              "Description": null
+            },
+            {
+              "Name": "one_time_guest",
+              "Description": null
+            },
+            {
+              "Name": "regular",
+              "Description": null
+            },
+            {
+              "Name": "volunteer",
+              "Description": null
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "organization",
+          "Type": "organization",
+          "Description": null,
+          "Slug": "organization",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "passes",
+          "Type": "pass",
+          "Description": null,
+          "Slug": "passes",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "person_events",
+          "Type": "person_event",
+          "Description": null,
+          "Slug": "person_events",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [
         {
           "Parameter": "include",
@@ -1723,7 +2721,10 @@
           "Description": "Search by person name (first, last, combination)",
           "Example": "?where[search_name]=string"
         }
-      ]
+      ],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "person_event",
@@ -1733,27 +2734,60 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
           "Name": "check_in_count",
           "Type": "integer",
-          "Description": null
-        },
-        {
-          "Name": "updated_at",
-          "Type": "date_time",
           "Description": null
         },
         {
           "Name": "created_at",
           "Type": "date_time",
           "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
         }
       ],
       "Relationships": [],
+      "Children": [
+        {
+          "Name": "event",
+          "Type": "event",
+          "Description": null,
+          "Slug": "event",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "first_check_in",
+          "Type": "check_in",
+          "Description": null,
+          "Slug": "first_check_in",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "last_check_in",
+          "Type": "check_in",
+          "Description": null,
+          "Slug": "last_check_in",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "person",
+          "Type": "person",
+          "Description": null,
+          "Slug": "person",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [
         {
           "Parameter": "include",
@@ -1785,7 +2819,10 @@
         }
       ],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "pre_check",
@@ -1793,17 +2830,15 @@
       "Description": null,
       "Deprecated": false,
       "CollectionOnly": false,
-      "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        }
-      ],
+      "Attributes": [],
       "Relationships": [],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "roster_list_person",
@@ -1813,23 +2848,8 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
-          "Name": "first_name",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "last_name",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "name",
-          "Type": "string",
+          "Name": "birthdate",
+          "Type": "date_time",
           "Description": null
         },
         {
@@ -1838,7 +2858,7 @@
           "Description": null
         },
         {
-          "Name": "grade",
+          "Name": "first_name",
           "Type": "string",
           "Description": null
         },
@@ -1848,20 +2868,34 @@
           "Description": null
         },
         {
+          "Name": "grade",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "last_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
           "Name": "medical_notes",
           "Type": "string",
           "Description": null
         },
         {
-          "Name": "birthdate",
-          "Type": "date_time",
+          "Name": "name",
+          "Type": "string",
           "Description": null
         }
       ],
       "Relationships": [],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "station",
@@ -1871,23 +2905,18 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
-          "Name": "mode",
+          "Name": "check_in_count",
           "Type": "integer",
-          "Description": null
+          "Description": "Only available when requested with the \u0060?fields\u0060 param"
         },
         {
-          "Name": "name",
-          "Type": "string",
-          "Description": null
+          "Name": "closes_at",
+          "Type": "date_time",
+          "Description": "Only available when requested with the \u0060?fields\u0060 param"
         },
         {
-          "Name": "timeout_seconds",
-          "Type": "integer",
+          "Name": "created_at",
+          "Type": "date_time",
           "Description": null
         },
         {
@@ -1901,13 +2930,13 @@
           "Description": "Possible values: \u0060all_input_types\u0060, \u0060only_keypad\u0060, or \u0060only_scanner\u0060"
         },
         {
-          "Name": "created_at",
-          "Type": "date_time",
+          "Name": "mode",
+          "Type": "integer",
           "Description": null
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
+          "Name": "name",
+          "Type": "string",
           "Description": null
         },
         {
@@ -1916,27 +2945,137 @@
           "Description": "Only available when requested with the \u0060?fields\u0060 param"
         },
         {
+          "Name": "online",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
           "Name": "open_for_check_in",
           "Type": "boolean",
           "Description": "Only available when requested with the \u0060?fields\u0060 param"
         },
         {
-          "Name": "closes_at",
-          "Type": "date_time",
-          "Description": "Only available when requested with the \u0060?fields\u0060 param"
-        },
-        {
-          "Name": "check_in_count",
+          "Name": "timeout_seconds",
           "Type": "integer",
-          "Description": "Only available when requested with the \u0060?fields\u0060 param"
+          "Description": null
         },
         {
-          "Name": "online",
-          "Type": "boolean",
+          "Name": "updated_at",
+          "Type": "date_time",
           "Description": null
         }
       ],
       "Relationships": [],
+      "Children": [
+        {
+          "Name": "check_in_groups",
+          "Type": "check_in_group",
+          "Description": null,
+          "Slug": "check_in_groups",
+          "Filters": [
+            {
+              "Name": "canceled",
+              "Description": null
+            },
+            {
+              "Name": "printed",
+              "Description": null
+            },
+            {
+              "Name": "ready",
+              "Description": null
+            },
+            {
+              "Name": "skipped",
+              "Description": null
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "checked_in_at_check_ins",
+          "Type": "check_in",
+          "Description": null,
+          "Slug": "checked_in_at_check_ins",
+          "Filters": [
+            {
+              "Name": "attendee",
+              "Description": null
+            },
+            {
+              "Name": "checked_out",
+              "Description": null
+            },
+            {
+              "Name": "first_time",
+              "Description": null
+            },
+            {
+              "Name": "guest",
+              "Description": null
+            },
+            {
+              "Name": "not_checked_out",
+              "Description": null
+            },
+            {
+              "Name": "not_one_time_guest",
+              "Description": null
+            },
+            {
+              "Name": "one_time_guest",
+              "Description": null
+            },
+            {
+              "Name": "regular",
+              "Description": null
+            },
+            {
+              "Name": "volunteer",
+              "Description": null
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "event",
+          "Type": "event",
+          "Description": null,
+          "Slug": "event",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "location",
+          "Type": "location",
+          "Description": null,
+          "Slug": "location",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "print_station",
+          "Type": "station",
+          "Description": null,
+          "Slug": "print_station",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "theme",
+          "Type": "theme",
+          "Description": null,
+          "Slug": "theme",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [
         {
           "Parameter": "include",
@@ -1968,7 +3107,10 @@
         }
       ],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "theme",
@@ -1978,17 +3120,7 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
-          "Name": "image_thumbnail",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "name",
+          "Name": "background_color",
           "Type": "string",
           "Description": null
         },
@@ -1998,8 +3130,8 @@
           "Description": null
         },
         {
-          "Name": "text_color",
-          "Type": "string",
+          "Name": "created_at",
+          "Type": "date_time",
           "Description": null
         },
         {
@@ -2008,17 +3140,7 @@
           "Description": null
         },
         {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "background_color",
+          "Name": "image_thumbnail",
           "Type": "string",
           "Description": null
         },
@@ -2026,12 +3148,31 @@
           "Name": "mode",
           "Type": "string",
           "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "text_color",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
         }
       ],
       "Relationships": [],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     }
   ]
 }

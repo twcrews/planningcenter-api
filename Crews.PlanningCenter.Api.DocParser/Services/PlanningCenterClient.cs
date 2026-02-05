@@ -9,7 +9,7 @@ using System.Text.Json;
 
 namespace Crews.PlanningCenter.Api.DocParser.Services;
 
-class PlanningCenterClient : IPlanningCenterClient
+public class PlanningCenterClient : IPlanningCenterClient
 {
     private readonly HttpClient _httpClient;
     private readonly ILogger<PlanningCenterClient> _logger;

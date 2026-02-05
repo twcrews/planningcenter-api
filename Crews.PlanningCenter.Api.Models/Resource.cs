@@ -11,9 +11,13 @@ public class Resource
     public bool CollectionOnly { get; set; }
     public IEnumerable<ResourceAttribute> Attributes { get; set; } = [];
     public IEnumerable<ResourceRelationship> Relationships { get; set; } = [];
+    public IEnumerable<ResourceChild> Children { get; set; } = [];
     public IEnumerable<ResourceIncludable> CanInclude { get; set; } = [];
     public IEnumerable<ResourceOrderable> CanOrderBy { get; set; } = [];
     public IEnumerable<ResourceQueryable> CanQueryBy { get; set; } = [];
+    public bool Postable { get; set; }
+    public bool Patchable { get; set; }
+    public bool Deletable { get; set; }
 }
 
 public class ResourceAttribute
@@ -29,6 +33,23 @@ public class ResourceRelationship
     public string Type { get; set; } = null!;
     public string AssociationType { get; set; } = null!;
     public string? Note { get; set; }
+}
+
+public class ResourceChild
+{
+    public string Name { get; set; } = null!;
+    public string Type { get; set; } = null!;
+    public string? Description { get; set; }
+    public string Slug { get; set; } = null!;
+    public IEnumerable<ResourceChildFilter> Filters { get; set; } = [];
+    public bool IsCollection { get; set; }
+    public bool IsDeprecated { get; set; }
+}
+
+public class ResourceChildFilter
+{
+    public string Name { get; set; } = null!;
+    public string? Description { get; set; }
 }
 
 public class ResourceIncludable

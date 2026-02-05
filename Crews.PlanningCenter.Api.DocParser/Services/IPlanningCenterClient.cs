@@ -3,7 +3,7 @@ using Crews.PlanningCenter.Api.Models;
 
 namespace Crews.PlanningCenter.Api.DocParser.Services;
 
-interface IPlanningCenterClient
+public interface IPlanningCenterClient
 {
     Task<GraphDocument> GetGraphAsync(ProductDefinition product);
     Task<GraphVersionDocument> GetGraphVersionAsync(ProductDefinition product, string versionId);

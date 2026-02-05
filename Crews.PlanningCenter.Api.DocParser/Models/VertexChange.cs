@@ -3,9 +3,9 @@ using System.Text.Json.Serialization;
 
 namespace Crews.PlanningCenter.Api.DocParser.Models;
 
-class VertexChange { }
+public class VertexChange { }
 
-class VertexChangeResource : JsonApiResource
+public class VertexChangeResource : JsonApiResource
 {
   [JsonPropertyName("attributes")]
   public required new VertexChange Attributes { get; set; }
@@ -14,7 +14,7 @@ class VertexChangeResource : JsonApiResource
   public required new VertexChangeRelationships Relationships { get; set; }
 }
 
-class VertexChangeRelationships
+public class VertexChangeRelationships
 {
   [JsonPropertyName("changes")]
   public required ChangeRelationship Changes { get; set; }
@@ -46,7 +46,7 @@ class VertexChangeRelationships
   }
 }
 
-class VertexChangeCollectionRelationship : JsonApiRelationship
+public class VertexChangeCollectionRelationship : JsonApiRelationship
 {
   [JsonPropertyName("data")]
   public required new IEnumerable<VertexChangeResource> Data { get; set; }

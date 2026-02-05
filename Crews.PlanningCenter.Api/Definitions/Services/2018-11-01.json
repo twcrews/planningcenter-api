@@ -11,11 +11,6 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
           "Name": "bpm",
           "Type": "float",
           "Description": null
@@ -166,6 +161,44 @@
           "Note": null
         }
       ],
+      "Children": [
+        {
+          "Name": "attachments",
+          "Type": "attachment",
+          "Description": null,
+          "Slug": "attachments",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "keys",
+          "Type": "key",
+          "Description": null,
+          "Slug": "keys",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "sections",
+          "Type": "arrangement_sections",
+          "Description": null,
+          "Slug": "sections",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "tags",
+          "Type": "tag",
+          "Description": null,
+          "Slug": "tags",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [
         {
           "Parameter": "include",
@@ -183,7 +216,10 @@
         }
       ],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "arrangement_sections",
@@ -193,20 +229,19 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
           "Name": "sections",
           "Type": "array",
           "Description": "Given an arrangement with the folowing \u0060chord_chart\u0060:\n\n\u0060\u0060\u0060\nVERSE 1\nD          Bm       G          D\nBe thou my vision O Lord of my heart\nA             Bm         G              A\nnaught be all else to me save that Thou art\n\u0060\u0060\u0060\n\nThe value will be:\n\n\u0060\u0060\u0060json\n[\n  {\n    \u0022label\u0022: \u0022Verse\u0022,\n    \u0022lyrics\u0022: \u0022Be thou my vision O Lord of my heart\n\rnaught be all else to me save that Thou art\u0022,\n    \u0022breaks_at\u0022: null\n  }\n]\n\u0060\u0060\u0060\n"
         }
       ],
       "Relationships": [],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "attachment",
@@ -215,11 +250,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "created_at",
           "Type": "date_time",
@@ -383,6 +413,17 @@
           "Note": null
         }
       ],
+      "Children": [
+        {
+          "Name": "zooms",
+          "Type": "zoom",
+          "Description": null,
+          "Slug": "zooms",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [
         {
           "Parameter": "include",
@@ -445,7 +486,10 @@
           "Description": "Query on a specific licenses_purchased",
           "Example": "?where[licenses_purchased]=1"
         }
-      ]
+      ],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "attachment_activity",
@@ -454,11 +498,6 @@
       "Deprecated": false,
       "CollectionOnly": true,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "date",
           "Type": "date",
@@ -483,9 +522,13 @@
           "Note": null
         }
       ],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "attachment_type",
@@ -494,11 +537,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "name",
           "Type": "string",
@@ -553,6 +591,7 @@
           "Note": null
         }
       ],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [
         {
@@ -562,7 +601,10 @@
           "Description": "prefix with a hyphen (-name) to reverse the order"
         }
       ],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "attachment_type_group",
@@ -571,11 +613,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "name",
           "Type": "string",
@@ -588,6 +625,7 @@
         }
       ],
       "Relationships": [],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [
         {
@@ -597,7 +635,10 @@
           "Description": "prefix with a hyphen (-name) to reverse the order"
         }
       ],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "attendance",
@@ -606,11 +647,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "checked_in_at",
           "Type": "date_time",
@@ -641,9 +677,13 @@
           "Note": null
         }
       ],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "available_signup",
@@ -652,11 +692,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "organization_name",
           "Type": "string",
@@ -698,6 +733,17 @@
           "Note": null
         }
       ],
+      "Children": [
+        {
+          "Name": "signup_sheets",
+          "Type": "signup_sheet",
+          "Description": null,
+          "Slug": "signup_sheets",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [
         {
           "Parameter": "include",
@@ -708,7 +754,10 @@
         }
       ],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "blockout",
@@ -717,11 +766,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "description",
           "Type": "string",
@@ -812,6 +856,26 @@
           "Note": null
         }
       ],
+      "Children": [
+        {
+          "Name": "blockout_dates",
+          "Type": "blockout_date",
+          "Description": null,
+          "Slug": "blockout_dates",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "blockout_exceptions",
+          "Type": "blockout_exception",
+          "Description": null,
+          "Slug": "blockout_exceptions",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [],
       "CanOrderBy": [],
       "CanQueryBy": [
@@ -822,7 +886,10 @@
           "Description": "Query on a specific group_identifier",
           "Example": "?where[group_identifier]=string"
         }
-      ]
+      ],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "blockout_date",
@@ -831,11 +898,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "group_identifier",
           "Type": "string",
@@ -891,9 +953,13 @@
           "Note": null
         }
       ],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "blockout_exception",
@@ -902,11 +968,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "date",
           "Type": "date",
@@ -931,9 +992,13 @@
           "Note": null
         }
       ],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": true,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "blockout_schedule_conflict",
@@ -942,11 +1007,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "dates",
           "Type": "string",
@@ -1040,9 +1100,13 @@
           "Note": null
         }
       ],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "chat",
@@ -1051,11 +1115,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "payload",
           "Type": "string",
@@ -1093,9 +1152,13 @@
         }
       ],
       "Relationships": [],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "contributor",
@@ -1104,11 +1167,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "created_at",
           "Type": "date_time",
@@ -1159,6 +1217,7 @@
           "Note": null
         }
       ],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [
         {
@@ -1174,7 +1233,10 @@
           "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "custom_slide",
@@ -1183,11 +1245,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "body",
           "Type": "string",
@@ -1223,9 +1280,13 @@
           "Note": null
         }
       ],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "email",
@@ -1234,11 +1295,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "primary",
           "Type": "boolean",
@@ -1251,9 +1307,13 @@
         }
       ],
       "Relationships": [],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "email_template",
@@ -1262,11 +1322,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "kind",
           "Type": "string",
@@ -1301,9 +1356,13 @@
           "Note": null
         }
       ],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "email_template_rendered_response",
@@ -1312,11 +1371,6 @@
       "Deprecated": false,
       "CollectionOnly": true,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "body",
           "Type": "string",
@@ -1342,9 +1396,13 @@
           "Note": null
         }
       ],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "folder",
@@ -1353,11 +1411,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "created_at",
           "Type": "date_time",
@@ -1399,6 +1452,26 @@
           "Note": null
         }
       ],
+      "Children": [
+        {
+          "Name": "folders",
+          "Type": "folder",
+          "Description": null,
+          "Slug": "folders",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "service_types",
+          "Type": "service_type",
+          "Description": null,
+          "Slug": "service_types",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [
         {
           "Parameter": "include",
@@ -1424,7 +1497,10 @@
           "Description": "Query on a related parent",
           "Example": "?where[parent_id]=1"
         }
-      ]
+      ],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "folder_path",
@@ -1434,20 +1510,19 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
           "Name": "path",
           "Type": "array",
           "Description": null
         }
       ],
       "Relationships": [],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "item",
@@ -1456,11 +1531,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "title",
           "Type": "string",
@@ -1565,6 +1635,98 @@
           "Note": null
         }
       ],
+      "Children": [
+        {
+          "Name": "arrangement",
+          "Type": "arrangement",
+          "Description": null,
+          "Slug": "arrangement",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "attachments",
+          "Type": "attachment",
+          "Description": null,
+          "Slug": "attachments",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "custom_slides",
+          "Type": "custom_slide",
+          "Description": null,
+          "Slug": "custom_slides",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "item_notes",
+          "Type": "item_note",
+          "Description": null,
+          "Slug": "item_notes",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "item_times",
+          "Type": "item_time",
+          "Description": null,
+          "Slug": "item_times",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "key",
+          "Type": "key",
+          "Description": null,
+          "Slug": "key",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "media",
+          "Type": "media",
+          "Description": null,
+          "Slug": "media",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "selected_attachment",
+          "Type": "attachment",
+          "Description": null,
+          "Slug": "selected_attachment",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "selected_background",
+          "Type": "attachment",
+          "Description": null,
+          "Slug": "selected_background",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "song",
+          "Type": "song",
+          "Description": null,
+          "Slug": "song",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [
         {
           "Parameter": "include",
@@ -1617,7 +1779,10 @@
         }
       ],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "item_note",
@@ -1626,11 +1791,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "created_at",
           "Type": "date_time",
@@ -1666,6 +1826,17 @@
           "Note": null
         }
       ],
+      "Children": [
+        {
+          "Name": "item_note_category",
+          "Type": "item_note_category",
+          "Description": null,
+          "Slug": "item_note_category",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [
         {
           "Parameter": "include",
@@ -1676,7 +1847,10 @@
         }
       ],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "item_note_category",
@@ -1685,11 +1859,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "created_at",
           "Type": "date_time",
@@ -1729,9 +1898,13 @@
           "Note": null
         }
       ],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "item_time",
@@ -1740,11 +1913,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "live_start_at",
           "Type": "date_time",
@@ -1791,9 +1959,13 @@
           "Note": null
         }
       ],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "key",
@@ -1802,11 +1974,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "created_at",
           "Type": "date_time",
@@ -1856,6 +2023,17 @@
           "Note": null
         }
       ],
+      "Children": [
+        {
+          "Name": "attachments",
+          "Type": "attachment",
+          "Description": null,
+          "Slug": "attachments",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [],
       "CanOrderBy": [
         {
@@ -1871,7 +2049,10 @@
           "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "live",
@@ -1880,11 +2061,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "series_title",
           "Type": "string",
@@ -1932,6 +2108,62 @@
         }
       ],
       "Relationships": [],
+      "Children": [
+        {
+          "Name": "controller",
+          "Type": "person",
+          "Description": null,
+          "Slug": "controller",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "current_item_time",
+          "Type": "item_time",
+          "Description": null,
+          "Slug": "current_item_time",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "items",
+          "Type": "item",
+          "Description": null,
+          "Slug": "items",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "next_item_time",
+          "Type": "item_time",
+          "Description": null,
+          "Slug": "next_item_time",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "service_type",
+          "Type": "service_type",
+          "Description": null,
+          "Slug": "service_type",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "watchable_plans",
+          "Type": "plan",
+          "Description": null,
+          "Slug": "watchable_plans",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [
         {
           "Parameter": "include",
@@ -1970,7 +2202,10 @@
         }
       ],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "live_controller",
@@ -1979,11 +2214,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "created_at",
           "Type": "date_time",
@@ -2013,6 +2243,7 @@
           "Note": null
         }
       ],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [
         {
@@ -2028,7 +2259,10 @@
           "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "media",
@@ -2037,11 +2271,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "created_at",
           "Type": "date_time",
@@ -2139,6 +2368,35 @@
         }
       ],
       "Relationships": [],
+      "Children": [
+        {
+          "Name": "attachments",
+          "Type": "attachment",
+          "Description": null,
+          "Slug": "attachments",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "media_schedules",
+          "Type": "media_schedule",
+          "Description": null,
+          "Slug": "media_schedules",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "tags",
+          "Type": "tag",
+          "Description": null,
+          "Slug": "tags",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [
         {
           "Parameter": "include",
@@ -2197,7 +2455,10 @@
           "Description": "Query on a specific title",
           "Example": "?where[title]=string"
         }
-      ]
+      ],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "media_schedule",
@@ -2206,11 +2467,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "plan_dates",
           "Type": "string",
@@ -2246,9 +2502,13 @@
           "Note": null
         }
       ],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "needed_position",
@@ -2257,11 +2517,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "quantity",
           "Type": "integer",
@@ -2304,6 +2559,26 @@
           "Note": null
         }
       ],
+      "Children": [
+        {
+          "Name": "team",
+          "Type": "team",
+          "Description": null,
+          "Slug": "team",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "time",
+          "Type": "plan_time",
+          "Description": null,
+          "Slug": "time",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [
         {
           "Parameter": "include",
@@ -2321,7 +2596,10 @@
         }
       ],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "organization",
@@ -2330,11 +2608,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "ccli",
           "Type": "string",
@@ -2482,9 +2755,236 @@
         }
       ],
       "Relationships": [],
+      "Children": [
+        {
+          "Name": "attachment_types",
+          "Type": "attachment_type",
+          "Description": null,
+          "Slug": "attachment_types",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "chat",
+          "Type": "chat",
+          "Description": null,
+          "Slug": "chat",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "email_templates",
+          "Type": "email_template",
+          "Description": null,
+          "Slug": "email_templates",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "folders",
+          "Type": "folder",
+          "Description": null,
+          "Slug": "folders",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "media",
+          "Type": "media",
+          "Description": null,
+          "Slug": "media",
+          "Filters": [
+            {
+              "Name": "archived",
+              "Description": null
+            },
+            {
+              "Name": "audio",
+              "Description": null
+            },
+            {
+              "Name": "background_audio",
+              "Description": null
+            },
+            {
+              "Name": "background_image",
+              "Description": null
+            },
+            {
+              "Name": "background_video",
+              "Description": null
+            },
+            {
+              "Name": "countdown",
+              "Description": null
+            },
+            {
+              "Name": "curriculum",
+              "Description": null
+            },
+            {
+              "Name": "document",
+              "Description": null
+            },
+            {
+              "Name": "drama",
+              "Description": null
+            },
+            {
+              "Name": "image",
+              "Description": null
+            },
+            {
+              "Name": "not_archived",
+              "Description": null
+            },
+            {
+              "Name": "powerpoint",
+              "Description": null
+            },
+            {
+              "Name": "song_video",
+              "Description": null
+            },
+            {
+              "Name": "video",
+              "Description": null
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "people",
+          "Type": "person",
+          "Description": null,
+          "Slug": "people",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "plans",
+          "Type": "organization",
+          "Description": null,
+          "Slug": "plans",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "report_templates",
+          "Type": "report_template",
+          "Description": null,
+          "Slug": "report_templates",
+          "Filters": [
+            {
+              "Name": "matrix",
+              "Description": null
+            },
+            {
+              "Name": "people",
+              "Description": null
+            },
+            {
+              "Name": "plans",
+              "Description": null
+            },
+            {
+              "Name": "without_defaults",
+              "Description": null
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "series",
+          "Type": "series",
+          "Description": null,
+          "Slug": "series",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "service_types",
+          "Type": "service_type",
+          "Description": null,
+          "Slug": "service_types",
+          "Filters": [
+            {
+              "Name": "no_parent",
+              "Description": null
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "songs",
+          "Type": "song",
+          "Description": null,
+          "Slug": "songs",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "tag_groups",
+          "Type": "tag_group",
+          "Description": null,
+          "Slug": "tag_groups",
+          "Filters": [
+            {
+              "Name": "arrangement",
+              "Description": null
+            },
+            {
+              "Name": "media",
+              "Description": null
+            },
+            {
+              "Name": "person",
+              "Description": null
+            },
+            {
+              "Name": "song",
+              "Description": null
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "teams",
+          "Type": "team",
+          "Description": null,
+          "Slug": "teams",
+          "Filters": [
+            {
+              "Name": "editable",
+              "Description": null
+            },
+            {
+              "Name": "service_types",
+              "Description": null
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "person",
@@ -2493,11 +2993,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "photo_url",
           "Type": "string",
@@ -2754,6 +3249,159 @@
           "Note": null
         }
       ],
+      "Children": [
+        {
+          "Name": "available_signups",
+          "Type": "available_signup",
+          "Description": null,
+          "Slug": "available_signups",
+          "Filters": [
+            {
+              "Name": "current_organization",
+              "Description": null
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "blockouts",
+          "Type": "blockout",
+          "Description": null,
+          "Slug": "blockouts",
+          "Filters": [
+            {
+              "Name": "future",
+              "Description": null
+            },
+            {
+              "Name": "past",
+              "Description": null
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "emails",
+          "Type": "email",
+          "Description": null,
+          "Slug": "emails",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "person_team_position_assignments",
+          "Type": "person_team_position_assignment",
+          "Description": null,
+          "Slug": "person_team_position_assignments",
+          "Filters": [
+            {
+              "Name": "not_archived",
+              "Description": null
+            },
+            {
+              "Name": "not_deleted",
+              "Description": null
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "plan_people",
+          "Type": "plan_person",
+          "Description": null,
+          "Slug": "plan_people",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "schedules",
+          "Type": "schedule",
+          "Description": null,
+          "Slug": "schedules",
+          "Filters": [
+            {
+              "Name": "after",
+              "Description": "Fetch schedules after the included \u0060after\u0060 iso8601 date param. e.g. \u0060?filter=after\u0026after=2020-01-01T00:00:00Z\u0060"
+            },
+            {
+              "Name": "all",
+              "Description": null
+            },
+            {
+              "Name": "before",
+              "Description": "Fetch schedules before the included \u0060before\u0060 iso8601 date param. e.g. \u0060?filter=before\u0026before=2020-01-01T00:00:00Z\u0060"
+            },
+            {
+              "Name": "future",
+              "Description": null
+            },
+            {
+              "Name": "not_across_organizations",
+              "Description": null
+            },
+            {
+              "Name": "past",
+              "Description": null
+            },
+            {
+              "Name": "with_declined",
+              "Description": null
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "scheduling_preferences",
+          "Type": "scheduling_preference",
+          "Description": null,
+          "Slug": "scheduling_preferences",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "tags",
+          "Type": "tag",
+          "Description": null,
+          "Slug": "tags",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "team_leaders",
+          "Type": "team_leader",
+          "Description": null,
+          "Slug": "team_leaders",
+          "Filters": [
+            {
+              "Name": "not_archived",
+              "Description": null
+            },
+            {
+              "Name": "not_deleted",
+              "Description": null
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "text_settings",
+          "Type": "text_setting",
+          "Description": null,
+          "Slug": "text_settings",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [
         {
           "Parameter": "include",
@@ -2818,7 +3466,10 @@
           "Description": "Query on a specific legacy_id",
           "Example": "?where[legacy_id]=primary_key"
         }
-      ]
+      ],
+      "Postable": false,
+      "Patchable": true,
+      "Deletable": false
     },
     {
       "Id": "person_team_position_assignment",
@@ -2827,11 +3478,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "created_at",
           "Type": "date_time",
@@ -2873,6 +3519,26 @@
           "Note": null
         }
       ],
+      "Children": [
+        {
+          "Name": "person",
+          "Type": "person",
+          "Description": null,
+          "Slug": "person",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "team_position",
+          "Type": "team_position",
+          "Description": null,
+          "Slug": "team_position",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [
         {
           "Parameter": "include",
@@ -2903,7 +3569,10 @@
           "Description": "prefix with a hyphen (-last_name) to reverse the order"
         }
       ],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "plan",
@@ -2912,11 +3581,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "can_view_order",
           "Type": "boolean",
@@ -3093,6 +3757,174 @@
           "Note": null
         }
       ],
+      "Children": [
+        {
+          "Name": "all_attachments",
+          "Type": "attachment",
+          "Description": null,
+          "Slug": "all_attachments",
+          "Filters": [
+            {
+              "Name": "attachable_type",
+              "Description": "filter attachments by their attachable_type as specified in the \u0060attachable_type\u0060 parameter.\nDefault: \u0060[\u0022ServiceType\u0022, \u0022Plan\u0022, \u0022Item\u0022, \u0022Media\u0022, \u0022Song\u0022, \u0022Arrangement\u0022, \u0022Key\u0022]\u0060.\ne.g. \u0060?filter=attachable_type\u0026attachable_type=Plan,ServiceType\u0060\n"
+            },
+            {
+              "Name": "extensions",
+              "Description": "filter to attachments with a file extension specified in the \u0060extensions\u0060 parameter.\ne.g. \u0060?filter=extensions\u0026extensions=pdf,txt\u0060\n"
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "attachments",
+          "Type": "attachment",
+          "Description": null,
+          "Slug": "attachments",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "attendances",
+          "Type": "attendance",
+          "Description": null,
+          "Slug": "attendances",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "contributors",
+          "Type": "contributor",
+          "Description": null,
+          "Slug": "contributors",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "items",
+          "Type": "item",
+          "Description": null,
+          "Slug": "items",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "live",
+          "Type": "live",
+          "Description": null,
+          "Slug": "live",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "my_schedules",
+          "Type": "schedule",
+          "Description": null,
+          "Slug": "my_schedules",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "needed_positions",
+          "Type": "needed_position",
+          "Description": null,
+          "Slug": "needed_positions",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "next_plan",
+          "Type": "plan",
+          "Description": null,
+          "Slug": "next_plan",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "notes",
+          "Type": "plan_note",
+          "Description": null,
+          "Slug": "notes",
+          "Filters": [
+            {
+              "Name": "team",
+              "Description": null
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "plan_times",
+          "Type": "plan_time",
+          "Description": null,
+          "Slug": "plan_times",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "previous_plan",
+          "Type": "plan",
+          "Description": null,
+          "Slug": "previous_plan",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "series",
+          "Type": "series",
+          "Description": null,
+          "Slug": "series",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "signup_teams",
+          "Type": "team",
+          "Description": null,
+          "Slug": "signup_teams",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "team_members",
+          "Type": "plan_person",
+          "Description": null,
+          "Slug": "team_members",
+          "Filters": [
+            {
+              "Name": "confirmed",
+              "Description": null
+            },
+            {
+              "Name": "not_archived",
+              "Description": null
+            },
+            {
+              "Name": "not_declined",
+              "Description": null
+            },
+            {
+              "Name": "not_deleted",
+              "Description": null
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [
         {
           "Parameter": "include",
@@ -3185,7 +4017,10 @@
           "Description": "Query on a specific updated_at",
           "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
         }
-      ]
+      ],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "plan_note",
@@ -3194,11 +4029,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "created_at",
           "Type": "date_time",
@@ -3240,6 +4070,17 @@
           "Note": null
         }
       ],
+      "Children": [
+        {
+          "Name": "plan_note_category",
+          "Type": "plan_note_category",
+          "Description": null,
+          "Slug": "plan_note_category",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [
         {
           "Parameter": "include",
@@ -3278,7 +4119,10 @@
           "Description": "Query on a specific updated_at",
           "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
         }
-      ]
+      ],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "plan_note_category",
@@ -3287,11 +4131,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "created_at",
           "Type": "date_time",
@@ -3332,9 +4171,13 @@
           "Note": null
         }
       ],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "plan_person",
@@ -3343,11 +4186,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "status",
           "Type": "string",
@@ -3401,6 +4239,11 @@
         {
           "Name": "scheduled_by_name",
           "Type": "string",
+          "Description": "Only available when requested with the \u0060?fields\u0060 param"
+        },
+        {
+          "Name": "scheduled_by_is_eligible_for_responds_to",
+          "Type": "boolean",
           "Description": "Only available when requested with the \u0060?fields\u0060 param"
         },
         {
@@ -3495,6 +4338,62 @@
           "Note": null
         }
       ],
+      "Children": [
+        {
+          "Name": "declined_plan_times",
+          "Type": "plan_time",
+          "Description": null,
+          "Slug": "declined_plan_times",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "person",
+          "Type": "person",
+          "Description": null,
+          "Slug": "person",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "plan",
+          "Type": "plan",
+          "Description": null,
+          "Slug": "plan",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "plan_person_times",
+          "Type": "plan_person_time",
+          "Description": null,
+          "Slug": "plan_person_times",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "plan_times",
+          "Type": "plan_time",
+          "Description": null,
+          "Slug": "plan_times",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "team",
+          "Type": "team",
+          "Description": null,
+          "Slug": "team",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [
         {
           "Parameter": "include",
@@ -3534,7 +4433,10 @@
           "Description": "Query on a related team",
           "Example": "?where[team_id]=1"
         }
-      ]
+      ],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "plan_person_time",
@@ -3543,11 +4445,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "status",
           "Type": "string",
@@ -3584,9 +4481,13 @@
           "Note": null
         }
       ],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "plan_template",
@@ -3595,11 +4496,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "name",
           "Type": "string",
@@ -3671,6 +4567,52 @@
           "Note": null
         }
       ],
+      "Children": [
+        {
+          "Name": "items",
+          "Type": "item",
+          "Description": null,
+          "Slug": "items",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "notes",
+          "Type": "plan_note",
+          "Description": null,
+          "Slug": "notes",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "team_members",
+          "Type": "plan_person",
+          "Description": null,
+          "Slug": "team_members",
+          "Filters": [
+            {
+              "Name": "confirmed",
+              "Description": null
+            },
+            {
+              "Name": "not_archived",
+              "Description": null
+            },
+            {
+              "Name": "not_declined",
+              "Description": null
+            },
+            {
+              "Name": "not_deleted",
+              "Description": null
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [],
       "CanOrderBy": [
         {
@@ -3710,7 +4652,10 @@
           "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "plan_time",
@@ -3719,11 +4664,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "created_at",
           "Type": "date_time",
@@ -3789,6 +4729,17 @@
           "Note": null
         }
       ],
+      "Children": [
+        {
+          "Name": "split_team_rehearsal_assignments",
+          "Type": "split_team_rehearsal_assignment",
+          "Description": null,
+          "Slug": "split_team_rehearsal_assignments",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [
         {
           "Parameter": "include",
@@ -3814,7 +4765,10 @@
           "Description": "Query on a specific time_type",
           "Example": "?where[time_type]=string"
         }
-      ]
+      ],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "public_view",
@@ -3823,11 +4777,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "series_artwork",
           "Type": "boolean",
@@ -3900,9 +4849,13 @@
         }
       ],
       "Relationships": [],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "report_template",
@@ -3911,11 +4864,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "body",
           "Type": "string",
@@ -3938,9 +4886,13 @@
         }
       ],
       "Relationships": [],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "schedule",
@@ -3949,11 +4901,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "sort_date",
           "Type": "date_time",
@@ -4100,6 +5047,44 @@
           "Note": null
         }
       ],
+      "Children": [
+        {
+          "Name": "declined_plan_times",
+          "Type": "plan_time",
+          "Description": null,
+          "Slug": "declined_plan_times",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "plan_times",
+          "Type": "plan_time",
+          "Description": null,
+          "Slug": "plan_times",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "respond_to",
+          "Type": "person",
+          "Description": null,
+          "Slug": "respond_to",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "team",
+          "Type": "team",
+          "Description": null,
+          "Slug": "team",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [
         {
           "Parameter": "include",
@@ -4125,7 +5110,10 @@
           "Description": "Query on a related plan",
           "Example": "?where[plan_id]=1"
         }
-      ]
+      ],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "scheduled_person",
@@ -4134,11 +5122,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "full_name",
           "Type": "string",
@@ -4169,9 +5152,13 @@
           "Note": null
         }
       ],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "scheduling_preference",
@@ -4180,11 +5167,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "preference",
           "Type": "string",
@@ -4199,9 +5181,13 @@
           "Note": null
         }
       ],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "series",
@@ -4210,11 +5196,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "created_at",
           "Type": "date_time",
@@ -4272,6 +5253,17 @@
         }
       ],
       "Relationships": [],
+      "Children": [
+        {
+          "Name": "plans",
+          "Type": "plan",
+          "Description": null,
+          "Slug": "plans",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [],
       "CanOrderBy": [
         {
@@ -4289,7 +5281,10 @@
           "Description": "Query on a specific title",
           "Example": "?where[title]=string"
         }
-      ]
+      ],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "service_type",
@@ -4298,11 +5293,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "archived_at",
           "Type": "date_time",
@@ -4387,6 +5377,155 @@
           "Note": null
         }
       ],
+      "Children": [
+        {
+          "Name": "attachments",
+          "Type": "attachment",
+          "Description": null,
+          "Slug": "attachments",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "item_note_categories",
+          "Type": "item_note_category",
+          "Description": null,
+          "Slug": "item_note_categories",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "live_controllers",
+          "Type": "live_controller",
+          "Description": null,
+          "Slug": "live_controllers",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "plan_note_categories",
+          "Type": "plan_note_category",
+          "Description": null,
+          "Slug": "plan_note_categories",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "plan_templates",
+          "Type": "plan_template",
+          "Description": null,
+          "Slug": "plan_templates",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "plan_times",
+          "Type": "plan_time",
+          "Description": null,
+          "Slug": "plan_times",
+          "Filters": [
+            {
+              "Name": "future",
+              "Description": null
+            },
+            {
+              "Name": "named",
+              "Description": null
+            },
+            {
+              "Name": "past",
+              "Description": null
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "plans",
+          "Type": "plan",
+          "Description": null,
+          "Slug": "plans",
+          "Filters": [
+            {
+              "Name": "after",
+              "Description": "filter to plans with a time beginning after the \u0060after\u0060 parameter"
+            },
+            {
+              "Name": "before",
+              "Description": "filter to plans with a time beginning before the \u0060before\u0060 parameter"
+            },
+            {
+              "Name": "future",
+              "Description": null
+            },
+            {
+              "Name": "no_dates",
+              "Description": null
+            },
+            {
+              "Name": "past",
+              "Description": null
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "public_view",
+          "Type": "public_view",
+          "Description": null,
+          "Slug": "public_view",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "team_positions",
+          "Type": "team_position",
+          "Description": null,
+          "Slug": "team_positions",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "teams",
+          "Type": "team",
+          "Description": null,
+          "Slug": "teams",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "time_preference_options",
+          "Type": "time_preference_option",
+          "Description": null,
+          "Slug": "time_preference_options",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "unscoped_plans",
+          "Type": "plan",
+          "Description": null,
+          "Slug": "unscoped_plans",
+          "Filters": [
+            {
+              "Name": "deleted",
+              "Description": null
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [
         {
           "Parameter": "include",
@@ -4432,7 +5571,10 @@
           "Description": "Query on a related parent",
           "Example": "?where[parent_id]=1"
         }
-      ]
+      ],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "service_type_path",
@@ -4442,20 +5584,19 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
           "Name": "path",
           "Type": "array",
           "Description": null
         }
       ],
       "Relationships": [],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "signup_sheet",
@@ -4464,11 +5605,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "sort_date",
           "Type": "date_time",
@@ -4525,6 +5661,26 @@
           "Note": null
         }
       ],
+      "Children": [
+        {
+          "Name": "scheduled_people",
+          "Type": "scheduled_person",
+          "Description": null,
+          "Slug": "scheduled_people",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "signup_sheet_metadata",
+          "Type": "signup_sheet_metadata",
+          "Description": null,
+          "Slug": "signup_sheet_metadata",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [
         {
           "Parameter": "include",
@@ -4542,7 +5698,10 @@
         }
       ],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "signup_sheet_metadata",
@@ -4551,11 +5710,6 @@
       "Deprecated": false,
       "CollectionOnly": true,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "conflicts",
           "Type": "hash",
@@ -4590,9 +5744,13 @@
           "Note": null
         }
       ],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "skipped_attachment",
@@ -4601,11 +5759,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "skipped",
           "Type": "boolean",
@@ -4626,9 +5779,13 @@
           "Note": null
         }
       ],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "song",
@@ -4637,11 +5794,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "title",
           "Type": "string",
@@ -4704,6 +5856,58 @@
         }
       ],
       "Relationships": [],
+      "Children": [
+        {
+          "Name": "arrangements",
+          "Type": "arrangement",
+          "Description": null,
+          "Slug": "arrangements",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "attachments",
+          "Type": "attachment",
+          "Description": null,
+          "Slug": "attachments",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "last_scheduled_item",
+          "Type": "item",
+          "Description": "The Song\u0027s most recently scheduled Item in a given Service Type.\nRequires a \u0060service_type\u0060 query parameter.\ne.g. \u0060?service_type=789\u0060\n",
+          "Slug": "last_scheduled_item",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "song_schedules",
+          "Type": "song_schedule",
+          "Description": null,
+          "Slug": "song_schedules",
+          "Filters": [
+            {
+              "Name": "three_most_recent",
+              "Description": null
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "tags",
+          "Type": "tag",
+          "Description": null,
+          "Slug": "tags",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [],
       "CanOrderBy": [
         {
@@ -4767,7 +5971,10 @@
           "Description": "Query on a specific title",
           "Example": "?where[title]=string"
         }
-      ]
+      ],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "song_schedule",
@@ -4776,11 +5983,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "arrangement_name",
           "Type": "string",
@@ -4844,6 +6046,7 @@
           "Note": null
         }
       ],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [
         {
@@ -4853,7 +6056,10 @@
           "Description": "prefix with a hyphen (-plan_sort_date) to reverse the order"
         }
       ],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "songbook_status",
@@ -4862,11 +6068,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "status",
           "Type": "string",
@@ -4889,9 +6090,13 @@
         }
       ],
       "Relationships": [],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "split_team_rehearsal_assignment",
@@ -4900,11 +6105,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "schedule_special_service_times",
           "Type": "boolean",
@@ -4925,9 +6125,23 @@
           "Note": null
         }
       ],
+      "Children": [
+        {
+          "Name": "team",
+          "Type": "team",
+          "Description": null,
+          "Slug": "team",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "tag",
@@ -4936,11 +6150,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "name",
           "Type": "string",
@@ -4955,9 +6164,13 @@
           "Note": null
         }
       ],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "tag_group",
@@ -4966,11 +6179,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "name",
           "Type": "string",
@@ -4998,6 +6206,26 @@
         }
       ],
       "Relationships": [],
+      "Children": [
+        {
+          "Name": "folder",
+          "Type": "folder",
+          "Description": null,
+          "Slug": "folder",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "tags",
+          "Type": "tag",
+          "Description": null,
+          "Slug": "tags",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [
         {
           "Parameter": "include",
@@ -5030,7 +6258,10 @@
           "Description": "Query on a specific tags_for",
           "Example": "?where[tags_for]=string"
         }
-      ]
+      ],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "team",
@@ -5039,11 +6270,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "name",
           "Type": "string",
@@ -5086,6 +6312,11 @@
         },
         {
           "Name": "archived_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "deleted_at",
           "Type": "date_time",
           "Description": null
         },
@@ -5138,6 +6369,53 @@
           "Type": "ServiceType",
           "AssociationType": "to_many",
           "Note": null
+        }
+      ],
+      "Children": [
+        {
+          "Name": "people",
+          "Type": "person",
+          "Description": null,
+          "Slug": "people",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "person_team_position_assignments",
+          "Type": "person_team_position_assignment",
+          "Description": null,
+          "Slug": "person_team_position_assignments",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "service_types",
+          "Type": "service_type",
+          "Description": null,
+          "Slug": "service_types",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "team_leaders",
+          "Type": "team_leader",
+          "Description": null,
+          "Slug": "team_leaders",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "team_positions",
+          "Type": "team_position",
+          "Description": null,
+          "Slug": "team_positions",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
         }
       ],
       "CanInclude": [
@@ -5205,7 +6483,10 @@
           "Description": "Query on a specific name",
           "Example": "?where[name]=string"
         }
-      ]
+      ],
+      "Postable": true,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "team_leader",
@@ -5214,11 +6495,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "send_responses_for_accepts",
           "Type": "boolean",
@@ -5247,6 +6523,26 @@
           "Type": "Team",
           "AssociationType": "to_one",
           "Note": null
+        }
+      ],
+      "Children": [
+        {
+          "Name": "people",
+          "Type": "person",
+          "Description": null,
+          "Slug": "people",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "team",
+          "Type": "team",
+          "Description": null,
+          "Slug": "team",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
         }
       ],
       "CanInclude": [
@@ -5279,7 +6575,10 @@
           "Description": "prefix with a hyphen (-last_name) to reverse the order"
         }
       ],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "team_position",
@@ -5288,11 +6587,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "name",
           "Type": "string",
@@ -5339,6 +6633,40 @@
           "Note": null
         }
       ],
+      "Children": [
+        {
+          "Name": "person_team_position_assignments",
+          "Type": "person_team_position_assignment",
+          "Description": null,
+          "Slug": "person_team_position_assignments",
+          "Filters": [
+            {
+              "Name": "time_preference_options",
+              "Description": "pass an additonal array of \u0060time_preference_option_ids\u0060 as a param to filter to people who prefer those times.use id \u0027none\u0027 to filter people who have no preferred times"
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "tags",
+          "Type": "tag",
+          "Description": null,
+          "Slug": "tags",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "team",
+          "Type": "team",
+          "Description": null,
+          "Slug": "team",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [
         {
           "Parameter": "include",
@@ -5363,7 +6691,10 @@
           "Description": "prefix with a hyphen (-name) to reverse the order"
         }
       ],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "text_setting",
@@ -5372,11 +6703,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "scheduling_requests_enabled",
           "Type": "boolean",
@@ -5414,9 +6740,13 @@
         }
       ],
       "Relationships": [],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": true,
+      "Deletable": false
     },
     {
       "Id": "time_preference_option",
@@ -5425,11 +6755,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "day_of_week",
           "Type": "integer",
@@ -5472,6 +6797,7 @@
         }
       ],
       "Relationships": [],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [
         {
@@ -5487,7 +6813,10 @@
           "Description": "prefix with a hyphen (-hour_of_day) to reverse the order"
         }
       ],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "zoom",
@@ -5496,11 +6825,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "aspect_ratio",
           "Type": "float",
@@ -5542,9 +6866,13 @@
           "Note": null
         }
       ],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     }
   ]
 }

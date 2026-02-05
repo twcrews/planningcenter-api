@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace Crews.PlanningCenter.Api.DocParser.Models;
 
-class Action
+public class Action
 {
     [JsonPropertyName("name")]
     public required string Name { get; set; }
@@ -31,7 +31,7 @@ class Action
     public bool Deprecated { get; set; }
 }
 
-class ActionRelationships
+public class ActionRelationships
 {
     [JsonPropertyName("tail")]
     public VertexRelationship? Tail { get; set; }
@@ -40,7 +40,7 @@ class ActionRelationships
     public JsonApiRelationship? RateLimits { get; set; }
 }
 
-class ActionResource : JsonApiResource
+public class ActionResource : JsonApiResource
 {
     [JsonPropertyName("attributes")]
     public new Action? Attributes { get; set; }
@@ -49,7 +49,7 @@ class ActionResource : JsonApiResource
     public new ActionRelationships? Relationships { get; set; }
 }
 
-class ActionRelationship : JsonApiRelationship
+public class ActionRelationship : JsonApiRelationship
 {
     [JsonPropertyName("data")]
     public new IEnumerable<ActionResource> Data { get; set; } = [];

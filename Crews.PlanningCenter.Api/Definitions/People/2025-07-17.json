@@ -11,28 +11,23 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
           "Name": "city",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "state",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "zip",
           "Type": "string",
           "Description": null
         },
         {
           "Name": "country_code",
           "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "country_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
           "Description": null
         },
         {
@@ -46,6 +41,11 @@
           "Description": null
         },
         {
+          "Name": "state",
+          "Type": "string",
+          "Description": null
+        },
+        {
           "Name": "street_line_1",
           "Type": "string",
           "Description": null
@@ -56,17 +56,12 @@
           "Description": null
         },
         {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
           "Name": "updated_at",
           "Type": "date_time",
           "Description": null
         },
         {
-          "Name": "country_name",
+          "Name": "zip",
           "Type": "string",
           "Description": null
         }
@@ -79,6 +74,7 @@
           "Note": null
         }
       ],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [
         {
@@ -199,7 +195,10 @@
           "Description": "Query on a specific zip",
           "Example": "?where[zip]=string"
         }
-      ]
+      ],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "app",
@@ -208,11 +207,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "name",
           "Type": "string",
@@ -225,6 +219,7 @@
         }
       ],
       "Relationships": [],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [
         {
@@ -255,7 +250,10 @@
           "Description": "Query on a specific url",
           "Example": "?where[url]=string"
         }
-      ]
+      ],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "background_check",
@@ -265,8 +263,8 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
+          "Name": "completed_at",
+          "Type": "date_time",
           "Description": null
         },
         {
@@ -275,13 +273,13 @@
           "Description": null
         },
         {
-          "Name": "note",
-          "Type": "string",
+          "Name": "expires_on",
+          "Type": "date",
           "Description": null
         },
         {
-          "Name": "status_updated_at",
-          "Type": "date_time",
+          "Name": "note",
+          "Type": "string",
           "Description": null
         },
         {
@@ -290,17 +288,12 @@
           "Description": null
         },
         {
-          "Name": "expires_on",
-          "Type": "date",
-          "Description": null
-        },
-        {
           "Name": "status",
           "Type": "string",
           "Description": null
         },
         {
-          "Name": "completed_at",
+          "Name": "status_updated_at",
           "Type": "date_time",
           "Description": null
         }
@@ -319,6 +312,17 @@
           "Note": null
         }
       ],
+      "Children": [
+        {
+          "Name": "person",
+          "Type": "person",
+          "Description": null,
+          "Slug": "person",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [
         {
           "Parameter": "include",
@@ -329,25 +333,10 @@
         }
       ],
       "CanOrderBy": [],
-      "CanQueryBy": []
-    },
-    {
-      "Id": "birthday_people",
-      "Name": "BirthdayPeople",
-      "Description": "Returns upcoming birthdays for the organization.\n\nNote: This endpoint will always only return the first 15 people having a birthday in the next 30 days, ordered by birthday, ascending.\n",
-      "Deprecated": false,
-      "CollectionOnly": true,
-      "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        }
-      ],
-      "Relationships": [],
-      "CanInclude": [],
-      "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "campus",
@@ -357,8 +346,48 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
+          "Name": "avatar_url",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "church_center_enabled",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "city",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "contact_email_address",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "country",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "date_format",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "description",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "geolocation_set_manually",
+          "Type": "boolean",
           "Description": null
         },
         {
@@ -372,32 +401,7 @@
           "Description": null
         },
         {
-          "Name": "description",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "street",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "city",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "state",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "zip",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "country",
+          "Name": "name",
           "Type": "string",
           "Description": null
         },
@@ -407,27 +411,12 @@
           "Description": null
         },
         {
-          "Name": "website",
+          "Name": "state",
           "Type": "string",
           "Description": null
         },
         {
-          "Name": "twenty_four_hour_time",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
-          "Name": "date_format",
-          "Type": "integer",
-          "Description": null
-        },
-        {
-          "Name": "church_center_enabled",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
-          "Name": "contact_email_address",
+          "Name": "street",
           "Type": "string",
           "Description": null
         },
@@ -437,23 +426,13 @@
           "Description": null
         },
         {
-          "Name": "geolocation_set_manually",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
           "Name": "time_zone_raw",
           "Type": "string",
           "Description": "Only available when requested with the \u0060?fields\u0060 param"
         },
         {
-          "Name": "name",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "created_at",
-          "Type": "date_time",
+          "Name": "twenty_four_hour_time",
+          "Type": "boolean",
           "Description": null
         },
         {
@@ -462,7 +441,12 @@
           "Description": null
         },
         {
-          "Name": "avatar_url",
+          "Name": "website",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "zip",
           "Type": "string",
           "Description": null
         }
@@ -473,6 +457,26 @@
           "Type": "Organization",
           "AssociationType": "to_one",
           "Note": null
+        }
+      ],
+      "Children": [
+        {
+          "Name": "lists",
+          "Type": "list",
+          "Description": null,
+          "Slug": "lists",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "service_times",
+          "Type": "service_time",
+          "Description": null,
+          "Slug": "service_times",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
         }
       ],
       "CanInclude": [
@@ -533,7 +537,10 @@
           "Description": "Query on a specific updated_at",
           "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
         }
-      ]
+      ],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "carrier",
@@ -543,13 +550,8 @@
       "CollectionOnly": true,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
-          "Name": "value",
-          "Type": "string",
+          "Name": "international",
+          "Type": "boolean",
           "Description": null
         },
         {
@@ -558,12 +560,13 @@
           "Description": null
         },
         {
-          "Name": "international",
-          "Type": "boolean",
+          "Name": "value",
+          "Type": "string",
           "Description": null
         }
       ],
       "Relationships": [],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [
         {
@@ -579,7 +582,10 @@
           "Description": "prefix with a hyphen (-name) to reverse the order"
         }
       ],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "condition",
@@ -589,17 +595,7 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
           "Name": "application",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "definition_class",
           "Type": "string",
           "Description": null
         },
@@ -609,7 +605,12 @@
           "Description": null
         },
         {
-          "Name": "settings",
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "definition_class",
           "Type": "string",
           "Description": null
         },
@@ -624,8 +625,8 @@
           "Description": null
         },
         {
-          "Name": "created_at",
-          "Type": "date_time",
+          "Name": "settings",
+          "Type": "string",
           "Description": null
         },
         {
@@ -640,6 +641,17 @@
           "Type": "Person",
           "AssociationType": "to_one",
           "Note": null
+        }
+      ],
+      "Children": [
+        {
+          "Name": "created_by",
+          "Type": "person",
+          "Description": null,
+          "Slug": "created_by",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
         }
       ],
       "CanInclude": [
@@ -758,7 +770,10 @@
           "Description": "Query on a specific updated_at",
           "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
         }
-      ]
+      ],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "connected_person",
@@ -768,32 +783,7 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
-          "Name": "given_name",
-          "Type": "string",
-          "Description": null
-        },
-        {
           "Name": "first_name",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "nickname",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "middle_name",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "last_name",
           "Type": "string",
           "Description": null
         },
@@ -803,13 +793,33 @@
           "Description": null
         },
         {
-          "Name": "organization_name",
+          "Name": "given_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "last_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "middle_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "nickname",
           "Type": "string",
           "Description": null
         },
         {
           "Name": "organization_id",
           "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "organization_name",
+          "Type": "string",
           "Description": null
         }
       ],
@@ -821,9 +831,13 @@
           "Note": null
         }
       ],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "custom_sender",
@@ -833,13 +847,8 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
-          "Name": "name",
-          "Type": "string",
+          "Name": "created_at",
+          "Type": "date_time",
           "Description": null
         },
         {
@@ -848,7 +857,17 @@
           "Description": null
         },
         {
-          "Name": "verified_at",
+          "Name": "expired",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
           "Type": "date_time",
           "Description": null
         },
@@ -858,13 +877,8 @@
           "Description": null
         },
         {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "updated_at",
-          "Type": "date_time",
+          "Name": "verification_status",
+          "Type": "string",
           "Description": null
         },
         {
@@ -873,13 +887,8 @@
           "Description": null
         },
         {
-          "Name": "expired",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
-          "Name": "verification_status",
-          "Type": "string",
+          "Name": "verified_at",
+          "Type": "date_time",
           "Description": null
         }
       ],
@@ -891,6 +900,7 @@
           "Note": null
         }
       ],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [
         {
@@ -924,7 +934,10 @@
           "Description": "prefix with a hyphen (-verified_at) to reverse the order"
         }
       ],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "email",
@@ -934,13 +947,18 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
+          "Name": "address",
+          "Type": "string",
           "Description": null
         },
         {
-          "Name": "address",
-          "Type": "string",
+          "Name": "blocked",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
           "Description": null
         },
         {
@@ -954,18 +972,8 @@
           "Description": null
         },
         {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
           "Name": "updated_at",
           "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "blocked",
-          "Type": "boolean",
           "Description": null
         }
       ],
@@ -975,6 +983,17 @@
           "Type": "Person",
           "AssociationType": "to_one",
           "Note": null
+        }
+      ],
+      "Children": [
+        {
+          "Name": "person",
+          "Type": "person",
+          "Description": null,
+          "Slug": "person",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
         }
       ],
       "CanInclude": [],
@@ -1053,7 +1072,10 @@
           "Description": "Query on a specific updated_at",
           "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
         }
-      ]
+      ],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "field_datum",
@@ -1063,23 +1085,8 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
-          "Name": "value",
-          "Type": "string",
-          "Description": null
-        },
-        {
           "Name": "file",
           "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "file_size",
-          "Type": "integer",
           "Description": null
         },
         {
@@ -1089,6 +1096,16 @@
         },
         {
           "Name": "file_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "file_size",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "value",
           "Type": "string",
           "Description": null
         }
@@ -1105,6 +1122,44 @@
           "Type": "Customizable",
           "AssociationType": "to_one",
           "Note": "Currently, the only customizable relationship is with \u0060Person\u0060."
+        }
+      ],
+      "Children": [
+        {
+          "Name": "field_definition",
+          "Type": "field_definition",
+          "Description": null,
+          "Slug": "field_definition",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "field_option",
+          "Type": "field_option",
+          "Description": null,
+          "Slug": "field_option",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "person",
+          "Type": "person",
+          "Description": null,
+          "Slug": "person",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "tab",
+          "Type": "tab",
+          "Description": null,
+          "Slug": "tab",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
         }
       ],
       "CanInclude": [
@@ -1205,7 +1260,10 @@
           "Description": "Query on a specific value",
           "Example": "?where[value]=string"
         }
-      ]
+      ],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "field_definition",
@@ -1215,13 +1273,18 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
+          "Name": "config",
+          "Type": "string",
           "Description": null
         },
         {
           "Name": "data_type",
           "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "deleted_at",
+          "Type": "date_time",
           "Description": null
         },
         {
@@ -1240,16 +1303,6 @@
           "Description": null
         },
         {
-          "Name": "config",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "deleted_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
           "Name": "tab_id",
           "Type": "primary_key",
           "Description": null
@@ -1261,6 +1314,26 @@
           "Type": "Tab",
           "AssociationType": "to_one",
           "Note": null
+        }
+      ],
+      "Children": [
+        {
+          "Name": "field_options",
+          "Type": "field_option",
+          "Description": null,
+          "Slug": "field_options",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "tab",
+          "Type": "tab",
+          "Description": null,
+          "Slug": "tab",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
         }
       ],
       "CanInclude": [
@@ -1373,7 +1446,10 @@
           "Description": "Query on a specific tab_id",
           "Example": "?where[tab_id]=primary_key"
         }
-      ]
+      ],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "field_option",
@@ -1383,18 +1459,13 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
+          "Name": "sequence",
+          "Type": "integer",
           "Description": null
         },
         {
           "Name": "value",
           "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "sequence",
-          "Type": "integer",
           "Description": null
         }
       ],
@@ -1406,6 +1477,7 @@
           "Note": null
         }
       ],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [
         {
@@ -1436,7 +1508,10 @@
           "Description": "Query on a specific value",
           "Example": "?where[value]=string"
         }
-      ]
+      ],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "form",
@@ -1446,22 +1521,12 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
-          "Name": "name",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "description",
-          "Type": "string",
-          "Description": null
-        },
-        {
           "Name": "active",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "archived",
           "Type": "boolean",
           "Description": null
         },
@@ -1476,18 +1541,23 @@
           "Description": null
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
           "Name": "deleted_at",
           "Type": "date_time",
           "Description": null
         },
         {
-          "Name": "submission_count",
-          "Type": "integer",
+          "Name": "description",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "login_required",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
           "Description": null
         },
         {
@@ -1501,18 +1571,18 @@
           "Description": null
         },
         {
-          "Name": "archived",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
           "Name": "send_submission_notification_to_submitter",
           "Type": "boolean",
           "Description": null
         },
         {
-          "Name": "login_required",
-          "Type": "boolean",
+          "Name": "submission_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
           "Description": null
         }
       ],
@@ -1528,6 +1598,44 @@
           "Type": "FormCategory",
           "AssociationType": "to_one",
           "Note": null
+        }
+      ],
+      "Children": [
+        {
+          "Name": "campus",
+          "Type": "campus",
+          "Description": null,
+          "Slug": "campus",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "category",
+          "Type": "form_category",
+          "Description": null,
+          "Slug": "category",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "fields",
+          "Type": "form_field",
+          "Description": null,
+          "Slug": "fields",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "form_submissions",
+          "Type": "form_submission",
+          "Description": null,
+          "Slug": "form_submissions",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
         }
       ],
       "CanInclude": [
@@ -1605,7 +1713,10 @@
           "Description": "Query on a specific id",
           "Example": "?where[id]=primary_key"
         }
-      ]
+      ],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "form_category",
@@ -1615,18 +1726,13 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
+          "Name": "created_at",
+          "Type": "date_time",
           "Description": null
         },
         {
           "Name": "name",
           "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "created_at",
-          "Type": "date_time",
           "Description": null
         },
         {
@@ -1636,6 +1742,7 @@
         }
       ],
       "Relationships": [],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [
         {
@@ -1679,7 +1786,10 @@
           "Description": "Query on a specific updated_at",
           "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
         }
-      ]
+      ],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "form_field",
@@ -1689,27 +1799,12 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
-          "Name": "label",
-          "Type": "string",
+          "Name": "created_at",
+          "Type": "date_time",
           "Description": null
         },
         {
           "Name": "description",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "required",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
-          "Name": "settings",
           "Type": "string",
           "Description": null
         },
@@ -1719,13 +1814,23 @@
           "Description": "Possible values: \u0060string\u0060, \u0060text\u0060, \u0060checkboxes\u0060, \u0060dropdown\u0060, \u0060date\u0060, \u0060phone_number\u0060, \u0060address\u0060, \u0060birthday\u0060, \u0060gender\u0060, \u0060custom_field\u0060, \u0060note\u0060, \u0060workflow\u0060, \u0060heading\u0060, \u0060number\u0060, \u0060boolean\u0060, \u0060file\u0060, \u0060medical\u0060, \u0060workflow_checkbox\u0060, \u0060workflow_checkboxes\u0060, \u0060workflow_dropdown\u0060, \u0060marital_status\u0060, \u0060anniversary\u0060, \u0060grade\u0060, \u0060primary_campus\u0060, \u0060school\u0060, or \u0060household\u0060"
         },
         {
+          "Name": "label",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "required",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
           "Name": "sequence",
           "Type": "integer",
           "Description": null
         },
         {
-          "Name": "created_at",
-          "Type": "date_time",
+          "Name": "settings",
+          "Type": "string",
           "Description": null
         },
         {
@@ -1760,6 +1865,17 @@
           "Note": null
         }
       ],
+      "Children": [
+        {
+          "Name": "options",
+          "Type": "form_field_option",
+          "Description": null,
+          "Slug": "options",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [
         {
           "Parameter": "include",
@@ -1789,7 +1905,10 @@
           "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "form_field_option",
@@ -1799,8 +1918,8 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
+          "Name": "created_at",
+          "Type": "date_time",
           "Description": null
         },
         {
@@ -1811,11 +1930,6 @@
         {
           "Name": "sequence",
           "Type": "integer",
-          "Description": null
-        },
-        {
-          "Name": "created_at",
-          "Type": "date_time",
           "Description": null
         },
         {
@@ -1838,6 +1952,7 @@
           "Note": null
         }
       ],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [
         {
@@ -1859,7 +1974,10 @@
           "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "form_submission",
@@ -1869,13 +1987,8 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
-          "Name": "verified",
-          "Type": "boolean",
+          "Name": "created_at",
+          "Type": "date_time",
           "Description": null
         },
         {
@@ -1884,8 +1997,8 @@
           "Description": "Only available when requested with the \u0060?fields\u0060 param"
         },
         {
-          "Name": "created_at",
-          "Type": "date_time",
+          "Name": "verified",
+          "Type": "boolean",
           "Description": null
         }
       ],
@@ -1901,6 +2014,44 @@
           "Type": "Form",
           "AssociationType": "to_one",
           "Note": null
+        }
+      ],
+      "Children": [
+        {
+          "Name": "form",
+          "Type": "form",
+          "Description": null,
+          "Slug": "form",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "form_fields",
+          "Type": "form_field",
+          "Description": null,
+          "Slug": "form_fields",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "form_submission_values",
+          "Type": "form_submission_value",
+          "Description": null,
+          "Slug": "form_submission_values",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "person",
+          "Type": "person",
+          "Description": null,
+          "Slug": "person",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
         }
       ],
       "CanInclude": [
@@ -1953,7 +2104,10 @@
           "Description": "prefix with a hyphen (-person.last_name) to reverse the order"
         }
       ],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "form_submission_value",
@@ -1963,18 +2117,13 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
+          "Name": "attachments",
+          "Type": "array",
           "Description": null
         },
         {
           "Name": "display_value",
           "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "attachments",
-          "Type": "array",
           "Description": null
         }
       ],
@@ -1998,9 +2147,13 @@
           "Note": null
         }
       ],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "grade",
@@ -2010,25 +2163,24 @@
       "CollectionOnly": true,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
+          "Name": "key",
+          "Type": "integer",
           "Description": null
         },
         {
           "Name": "value",
           "Type": "string",
           "Description": null
-        },
-        {
-          "Name": "key",
-          "Type": "integer",
-          "Description": null
         }
       ],
       "Relationships": [],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "household",
@@ -2038,22 +2190,7 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
-          "Name": "name",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "member_count",
-          "Type": "integer",
-          "Description": null
-        },
-        {
-          "Name": "primary_contact_name",
+          "Name": "avatar",
           "Type": "string",
           "Description": null
         },
@@ -2063,18 +2200,28 @@
           "Description": null
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
+          "Name": "member_count",
+          "Type": "integer",
           "Description": null
         },
         {
-          "Name": "avatar",
+          "Name": "name",
           "Type": "string",
           "Description": null
         },
         {
           "Name": "primary_contact_id",
           "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "primary_contact_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
           "Description": null
         }
       ],
@@ -2090,6 +2237,35 @@
           "Type": "Person",
           "AssociationType": "to_many",
           "Note": null
+        }
+      ],
+      "Children": [
+        {
+          "Name": "household_memberships",
+          "Type": "household_membership",
+          "Description": null,
+          "Slug": "household_memberships",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "people",
+          "Type": "person",
+          "Description": null,
+          "Slug": "people",
+          "Filters": [
+            {
+              "Name": "non_pending",
+              "Description": null
+            },
+            {
+              "Name": "without_deceased",
+              "Description": null
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
         }
       ],
       "CanInclude": [
@@ -2169,7 +2345,10 @@
           "Description": "Query on a specific updated_at",
           "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
         }
-      ]
+      ],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "household_membership",
@@ -2179,19 +2358,19 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
-          "Name": "person_name",
+          "Name": "household_role",
           "Type": "string",
-          "Description": null
+          "Description": "The role of the person within the household. Possible values are: \u0060adult\u0060, \u0060child_or_dependent\u0060, \u0060other_adult\u0060or\u0060parent_guardian\u0060."
         },
         {
           "Name": "pending",
           "Type": "boolean",
           "Description": "False when a person\u0027s membership in a household is unverified."
+        },
+        {
+          "Name": "person_name",
+          "Type": "string",
+          "Description": null
         }
       ],
       "Relationships": [
@@ -2200,6 +2379,26 @@
           "Type": "Person",
           "AssociationType": "to_one",
           "Note": null
+        }
+      ],
+      "Children": [
+        {
+          "Name": "household",
+          "Type": "household",
+          "Description": null,
+          "Slug": "household",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "person",
+          "Type": "person",
+          "Description": null,
+          "Slug": "person",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
         }
       ],
       "CanInclude": [
@@ -2247,7 +2446,10 @@
           "Description": "Query on a specific person_name",
           "Example": "?where[person_name]=string"
         }
-      ]
+      ],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "inactive_reason",
@@ -2257,17 +2459,13 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
           "Name": "value",
           "Type": "string",
           "Description": null
         }
       ],
       "Relationships": [],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [
         {
@@ -2285,7 +2483,10 @@
           "Description": "Query on a specific value",
           "Example": "?where[value]=string"
         }
-      ]
+      ],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "list",
@@ -2295,77 +2496,12 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
-          "Name": "name",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "auto_refresh",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
-          "Name": "status",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "has_inactive_results",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
-          "Name": "include_inactive",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
-          "Name": "returns",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "return_original_if_none",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
-          "Name": "subset",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "automations_active",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
           "Name": "auto_generated_name",
           "Type": "boolean",
           "Description": null
         },
         {
-          "Name": "automations_count",
-          "Type": "integer",
-          "Description": null
-        },
-        {
-          "Name": "paused_automations_count",
-          "Type": "integer",
-          "Description": null
-        },
-        {
-          "Name": "description",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "invalid",
+          "Name": "auto_refresh",
           "Type": "boolean",
           "Description": null
         },
@@ -2375,27 +2511,12 @@
           "Description": null
         },
         {
-          "Name": "name_or_description",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "recently_viewed",
+          "Name": "automations_active",
           "Type": "boolean",
           "Description": null
         },
         {
-          "Name": "refreshed_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "starred",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
-          "Name": "total_people",
+          "Name": "automations_count",
           "Type": "integer",
           "Description": null
         },
@@ -2410,12 +2531,179 @@
           "Description": null
         },
         {
+          "Name": "description",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "has_inactive_results",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "include_inactive",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "invalid",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "name_or_description",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "paused_automations_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "recently_viewed",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "refreshed_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "return_original_if_none",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "returns",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "starred",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "status",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "subset",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "total_people",
+          "Type": "integer",
+          "Description": null
+        },
+        {
           "Name": "updated_at",
           "Type": "date_time",
           "Description": null
         }
       ],
       "Relationships": [],
+      "Children": [
+        {
+          "Name": "campus",
+          "Type": "campus",
+          "Description": null,
+          "Slug": "campus",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "category",
+          "Type": "list_category",
+          "Description": null,
+          "Slug": "category",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "created_by",
+          "Type": "person",
+          "Description": null,
+          "Slug": "created_by",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "list_results",
+          "Type": "list_result",
+          "Description": null,
+          "Slug": "list_results",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "mailchimp_sync_status",
+          "Type": "mailchimp_sync_status",
+          "Description": null,
+          "Slug": "mailchimp_sync_status",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "people",
+          "Type": "person",
+          "Description": null,
+          "Slug": "people",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "rules",
+          "Type": "rule",
+          "Description": null,
+          "Slug": "rules",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "shares",
+          "Type": "list_share",
+          "Description": null,
+          "Slug": "shares",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "star",
+          "Type": "list_star",
+          "Description": null,
+          "Slug": "star",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "updated_by",
+          "Type": "person",
+          "Description": null,
+          "Slug": "updated_by",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [
         {
           "Parameter": "include",
@@ -2560,7 +2848,10 @@
           "Description": "Query on a specific updated_at",
           "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
         }
-      ]
+      ],
+      "Postable": false,
+      "Patchable": true,
+      "Deletable": false
     },
     {
       "Id": "list_category",
@@ -2570,8 +2861,8 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
+          "Name": "created_at",
+          "Type": "date_time",
           "Description": null
         },
         {
@@ -2580,18 +2871,13 @@
           "Description": null
         },
         {
-          "Name": "created_at",
-          "Type": "date_time",
+          "Name": "organization_id",
+          "Type": "primary_key",
           "Description": null
         },
         {
           "Name": "updated_at",
           "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "organization_id",
-          "Type": "primary_key",
           "Description": null
         }
       ],
@@ -2601,6 +2887,17 @@
           "Type": "Organization",
           "AssociationType": "to_one",
           "Note": null
+        }
+      ],
+      "Children": [
+        {
+          "Name": "lists",
+          "Type": "list",
+          "Description": null,
+          "Slug": "lists",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
         }
       ],
       "CanInclude": [
@@ -2667,7 +2964,10 @@
           "Description": "Query on a specific updated_at",
           "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
         }
-      ]
+      ],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "list_result",
@@ -2676,11 +2976,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "created_at",
           "Type": "date_time",
@@ -2706,6 +3001,7 @@
           "Note": null
         }
       ],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [
         {
@@ -2721,7 +3017,10 @@
           "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "list_share",
@@ -2731,14 +3030,9 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
+          "Name": "created_at",
+          "Type": "date_time",
           "Description": null
-        },
-        {
-          "Name": "permission",
-          "Type": "string",
-          "Description": "Possible values: \u0060view\u0060 or \u0060manage\u0060"
         },
         {
           "Name": "group",
@@ -2746,14 +3040,14 @@
           "Description": "Possible values: \u0060No Access\u0060, \u0060Viewer\u0060, \u0060Editor\u0060, or \u0060Manager\u0060"
         },
         {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
           "Name": "name",
           "Type": "string",
           "Description": null
+        },
+        {
+          "Name": "permission",
+          "Type": "string",
+          "Description": "Possible values: \u0060view\u0060 or \u0060manage\u0060"
         }
       ],
       "Relationships": [
@@ -2762,6 +3056,17 @@
           "Type": "Person",
           "AssociationType": "to_one",
           "Note": null
+        }
+      ],
+      "Children": [
+        {
+          "Name": "person",
+          "Type": "person",
+          "Description": null,
+          "Slug": "person",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
         }
       ],
       "CanInclude": [
@@ -2816,7 +3121,10 @@
           "Description": "Query on a specific permission\n\nPossible values: \u0060view\u0060 or \u0060manage\u0060",
           "Example": "?where[permission]=value"
         }
-      ]
+      ],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "list_star",
@@ -2826,20 +3134,19 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
           "Name": "created_at",
           "Type": "date_time",
           "Description": null
         }
       ],
       "Relationships": [],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": true,
+      "Patchable": false,
+      "Deletable": true
     },
     {
       "Id": "mailchimp_sync_status",
@@ -2849,13 +3156,8 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
-          "Name": "status",
-          "Type": "string",
+          "Name": "completed_at",
+          "Type": "date_time",
           "Description": null
         },
         {
@@ -2869,20 +3171,24 @@
           "Description": null
         },
         {
-          "Name": "completed_at",
-          "Type": "date_time",
+          "Name": "segment_id",
+          "Type": "integer",
           "Description": null
         },
         {
-          "Name": "segment_id",
-          "Type": "integer",
+          "Name": "status",
+          "Type": "string",
           "Description": null
         }
       ],
       "Relationships": [],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "marital_status",
@@ -2892,19 +3198,21 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
           "Name": "value",
           "Type": "string",
           "Description": null
         }
       ],
       "Relationships": [],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [
+        {
+          "Parameter": "order",
+          "Value": "sequence",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-sequence) to reverse the order"
+        },
         {
           "Parameter": "order",
           "Value": "value",
@@ -2920,7 +3228,10 @@
           "Description": "Query on a specific value",
           "Example": "?where[value]=string"
         }
-      ]
+      ],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "message",
@@ -2930,43 +3241,8 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
-          "Name": "kind",
+          "Name": "app_name",
           "Type": "string",
-          "Description": "Possible values: \u0060email\u0060, \u0060sms\u0060, or \u0060church_center_message\u0060"
-        },
-        {
-          "Name": "to_addresses",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "subject",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "delivery_status",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "reject_reason",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "sent_at",
-          "Type": "date_time",
           "Description": null
         },
         {
@@ -2975,12 +3251,17 @@
           "Description": null
         },
         {
-          "Name": "rejection_notification_sent_at",
+          "Name": "created_at",
           "Type": "date_time",
           "Description": null
         },
         {
-          "Name": "from_name",
+          "Name": "delivery_status",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "file",
           "Type": "string",
           "Description": null
         },
@@ -2990,14 +3271,14 @@
           "Description": null
         },
         {
-          "Name": "read_at",
-          "Type": "date_time",
+          "Name": "from_name",
+          "Type": "string",
           "Description": null
         },
         {
-          "Name": "app_name",
+          "Name": "kind",
           "Type": "string",
-          "Description": null
+          "Description": "Possible values: \u0060email\u0060, \u0060sms\u0060, or \u0060church_center_message\u0060"
         },
         {
           "Name": "message_type",
@@ -3005,7 +3286,32 @@
           "Description": null
         },
         {
-          "Name": "file",
+          "Name": "read_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "reject_reason",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "rejection_notification_sent_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "sent_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "subject",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "to_addresses",
           "Type": "string",
           "Description": null
         }
@@ -3028,6 +3334,26 @@
           "Type": "MessageGroup",
           "AssociationType": "to_one",
           "Note": null
+        }
+      ],
+      "Children": [
+        {
+          "Name": "message_group",
+          "Type": "message_group",
+          "Description": null,
+          "Slug": "message_group",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "to",
+          "Type": "person",
+          "Description": null,
+          "Slug": "to",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
         }
       ],
       "CanInclude": [
@@ -3211,7 +3537,10 @@
           "Description": "Query on a specific to_addresses",
           "Example": "?where[to_addresses]=string"
         }
-      ]
+      ],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "message_group",
@@ -3221,18 +3550,13 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
+          "Name": "contains_user_generated_content",
+          "Type": "boolean",
           "Description": null
         },
         {
-          "Name": "uuid",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "message_type",
-          "Type": "string",
+          "Name": "created_at",
+          "Type": "date_time",
           "Description": null
         },
         {
@@ -3241,13 +3565,28 @@
           "Description": null
         },
         {
-          "Name": "subject",
+          "Name": "message_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "message_type",
           "Type": "string",
           "Description": null
         },
         {
-          "Name": "message_count",
-          "Type": "integer",
+          "Name": "reply_to_address",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "reply_to_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "subject",
+          "Type": "string",
           "Description": null
         },
         {
@@ -3261,27 +3600,41 @@
           "Description": null
         },
         {
-          "Name": "contains_user_generated_content",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "reply_to_name",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "reply_to_address",
+          "Name": "uuid",
           "Type": "string",
           "Description": null
         }
       ],
       "Relationships": [],
+      "Children": [
+        {
+          "Name": "app",
+          "Type": "app",
+          "Description": null,
+          "Slug": "app",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "from",
+          "Type": "person",
+          "Description": null,
+          "Slug": "from",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "messages",
+          "Type": "message",
+          "Description": null,
+          "Slug": "messages",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [
         {
           "Parameter": "include",
@@ -3451,7 +3804,10 @@
           "Description": "Query on a specific uuid",
           "Example": "?where[uuid]=string"
         }
-      ]
+      ],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "name_prefix",
@@ -3461,17 +3817,13 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
           "Name": "value",
           "Type": "string",
           "Description": null
         }
       ],
       "Relationships": [],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [
         {
@@ -3489,7 +3841,10 @@
           "Description": "Query on a specific value",
           "Example": "?where[value]=string"
         }
-      ]
+      ],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "name_suffix",
@@ -3499,17 +3854,13 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
           "Name": "value",
           "Type": "string",
           "Description": null
         }
       ],
       "Relationships": [],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [
         {
@@ -3527,7 +3878,10 @@
           "Description": "Query on a specific value",
           "Example": "?where[value]=string"
         }
-      ]
+      ],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "note",
@@ -3537,28 +3891,23 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
-          "Name": "note",
-          "Type": "string",
-          "Description": null
-        },
-        {
           "Name": "created_at",
           "Type": "date_time",
           "Description": null
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
+          "Name": "created_by_id",
+          "Type": "primary_key",
           "Description": null
         },
         {
           "Name": "display_date",
           "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "note",
+          "Type": "string",
           "Description": null
         },
         {
@@ -3577,8 +3926,8 @@
           "Description": null
         },
         {
-          "Name": "created_by_id",
-          "Type": "primary_key",
+          "Name": "updated_at",
+          "Type": "date_time",
           "Description": null
         }
       ],
@@ -3606,6 +3955,35 @@
           "Type": "Person",
           "AssociationType": "to_one",
           "Note": null
+        }
+      ],
+      "Children": [
+        {
+          "Name": "category",
+          "Type": "note_category",
+          "Description": null,
+          "Slug": "category",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "created_by",
+          "Type": "person",
+          "Description": null,
+          "Slug": "created_by",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "person",
+          "Type": "person",
+          "Description": null,
+          "Slug": "person",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
         }
       ],
       "CanInclude": [
@@ -3684,7 +4062,10 @@
           "Description": "Query on a specific note_category_id",
           "Example": "?where[note_category_id]=primary_key"
         }
-      ]
+      ],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "note_category",
@@ -3694,13 +4075,8 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
-          "Name": "name",
-          "Type": "string",
+          "Name": "created_at",
+          "Type": "date_time",
           "Description": null
         },
         {
@@ -3709,18 +4085,18 @@
           "Description": null
         },
         {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "updated_at",
-          "Type": "date_time",
+          "Name": "name",
+          "Type": "string",
           "Description": null
         },
         {
           "Name": "organization_id",
           "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
           "Description": null
         }
       ],
@@ -3730,6 +4106,35 @@
           "Type": "Organization",
           "AssociationType": "to_one",
           "Note": null
+        }
+      ],
+      "Children": [
+        {
+          "Name": "shares",
+          "Type": "note_category_share",
+          "Description": null,
+          "Slug": "shares",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "subscribers",
+          "Type": "person",
+          "Description": null,
+          "Slug": "subscribers",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "subscriptions",
+          "Type": "note_category_subscription",
+          "Description": null,
+          "Slug": "subscriptions",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
         }
       ],
       "CanInclude": [
@@ -3823,7 +4228,10 @@
           "Description": "Query on a specific updated_at",
           "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
         }
-      ]
+      ],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "note_category_share",
@@ -3832,11 +4240,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "group",
           "Type": "string",
@@ -3867,6 +4270,17 @@
           "Note": null
         }
       ],
+      "Children": [
+        {
+          "Name": "person",
+          "Type": "person",
+          "Description": null,
+          "Slug": "person",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [
         {
           "Parameter": "include",
@@ -3885,7 +4299,10 @@
           "Description": "Query on a specific permission\n\nPossible values: \u0060view\u0060, \u0060view_create\u0060, or \u0060manage\u0060",
           "Example": "?where[permission]=value"
         }
-      ]
+      ],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "note_category_subscription",
@@ -3894,11 +4311,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "created_at",
           "Type": "date_time",
@@ -3922,6 +4334,17 @@
           "Type": "NoteCategory",
           "AssociationType": "to_one",
           "Note": null
+        }
+      ],
+      "Children": [
+        {
+          "Name": "person",
+          "Type": "person",
+          "Description": null,
+          "Slug": "person",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
         }
       ],
       "CanInclude": [
@@ -3962,7 +4385,10 @@
           "Description": "Query on a specific updated_at",
           "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
         }
-      ]
+      ],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "organization",
@@ -3971,41 +4397,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
-          "Name": "name",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "country_code",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "date_format",
-          "Type": "integer",
-          "Description": null
-        },
-        {
-          "Name": "time_zone",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "contact_website",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
-        },
         {
           "Name": "avatar_url",
           "Type": "string",
@@ -4017,33 +4408,477 @@
           "Description": null
         },
         {
+          "Name": "contact_website",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "country_code",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "date_format",
+          "Type": "integer",
+          "Description": null
+        },
+        {
           "Name": "grades",
           "Type": "array",
           "Description": null
-        }
-      ],
-      "Relationships": [],
-      "CanInclude": [],
-      "CanOrderBy": [],
-      "CanQueryBy": []
-    },
-    {
-      "Id": "organization_statistics",
-      "Name": "OrganizationStatistics",
-      "Description": "Returns statistics for the organization.",
-      "Deprecated": false,
-      "CollectionOnly": true,
-      "Attributes": [
+        },
         {
-          "Name": "id",
-          "Type": "primary_key",
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "time_zone",
+          "Type": "string",
           "Description": null
         }
       ],
       "Relationships": [],
+      "Children": [
+        {
+          "Name": "addresses",
+          "Type": "address",
+          "Description": null,
+          "Slug": "addresses",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "apps",
+          "Type": "app",
+          "Description": null,
+          "Slug": "apps",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "background_checks",
+          "Type": "background_check",
+          "Description": null,
+          "Slug": "background_checks",
+          "Filters": [
+            {
+              "Name": "current",
+              "Description": "filter background checks to only those considered \u0022current\u0022"
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "birthday_people",
+          "Type": "birthday_people",
+          "Description": null,
+          "Slug": "birthday_people",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "campuses",
+          "Type": "campus",
+          "Description": null,
+          "Slug": "campuses",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "carriers",
+          "Type": "carrier",
+          "Description": null,
+          "Slug": "carriers",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "emails",
+          "Type": "email",
+          "Description": null,
+          "Slug": "emails",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "field_data",
+          "Type": "field_datum",
+          "Description": null,
+          "Slug": "field_data",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "field_definitions",
+          "Type": "field_definition",
+          "Description": null,
+          "Slug": "field_definitions",
+          "Filters": [
+            {
+              "Name": "include_deleted",
+              "Description": "By default, deleted fields are not included. Pass filter=include_deleted to include them."
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "form_categories",
+          "Type": "form_category",
+          "Description": null,
+          "Slug": "form_categories",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "forms",
+          "Type": "form",
+          "Description": null,
+          "Slug": "forms",
+          "Filters": [
+            {
+              "Name": "archived",
+              "Description": null
+            },
+            {
+              "Name": "closed",
+              "Description": null
+            },
+            {
+              "Name": "not_archived",
+              "Description": null
+            },
+            {
+              "Name": "open",
+              "Description": null
+            },
+            {
+              "Name": "recently_viewed",
+              "Description": null
+            },
+            {
+              "Name": "with_recoverable",
+              "Description": null
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "households",
+          "Type": "household",
+          "Description": null,
+          "Slug": "households",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "inactive_reasons",
+          "Type": "inactive_reason",
+          "Description": null,
+          "Slug": "inactive_reasons",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "list_categories",
+          "Type": "list_category",
+          "Description": null,
+          "Slug": "list_categories",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "lists",
+          "Type": "list",
+          "Description": null,
+          "Slug": "lists",
+          "Filters": [
+            {
+              "Name": "can_manage",
+              "Description": null
+            },
+            {
+              "Name": "recently_viewed",
+              "Description": null
+            },
+            {
+              "Name": "starred",
+              "Description": null
+            },
+            {
+              "Name": "unassigned",
+              "Description": null
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "marital_statuses",
+          "Type": "marital_status",
+          "Description": null,
+          "Slug": "marital_statuses",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "message_groups",
+          "Type": "message_group",
+          "Description": null,
+          "Slug": "message_groups",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "messages",
+          "Type": "message",
+          "Description": null,
+          "Slug": "messages",
+          "Filters": [
+            {
+              "Name": "created_after",
+              "Description": null
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "name_prefixes",
+          "Type": "name_prefix",
+          "Description": null,
+          "Slug": "name_prefixes",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "name_suffixes",
+          "Type": "name_suffix",
+          "Description": null,
+          "Slug": "name_suffixes",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "note_categories",
+          "Type": "note_category",
+          "Description": null,
+          "Slug": "note_categories",
+          "Filters": [
+            {
+              "Name": "view_creatable",
+              "Description": null
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "note_category_subscriptions",
+          "Type": "note_category_subscription",
+          "Description": null,
+          "Slug": "note_category_subscriptions",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "notes",
+          "Type": "note",
+          "Description": null,
+          "Slug": "notes",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "people",
+          "Type": "person",
+          "Description": null,
+          "Slug": "people",
+          "Filters": [
+            {
+              "Name": "admins",
+              "Description": null
+            },
+            {
+              "Name": "created_since",
+              "Description": "filter people created in the last 24 hours; pass an additional \u0060time\u0060 parameter in ISO 8601 format to specify your own timeframe"
+            },
+            {
+              "Name": "organization_admins",
+              "Description": null
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "people_imports",
+          "Type": "people_import",
+          "Description": null,
+          "Slug": "people_imports",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "person_mergers",
+          "Type": "person_merger",
+          "Description": null,
+          "Slug": "person_mergers",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "phone_numbers",
+          "Type": "phone_number",
+          "Description": null,
+          "Slug": "phone_numbers",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "reports",
+          "Type": "report",
+          "Description": null,
+          "Slug": "reports",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "school_options",
+          "Type": "school_option",
+          "Description": null,
+          "Slug": "school_options",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "social_profiles",
+          "Type": "social_profile",
+          "Description": null,
+          "Slug": "social_profiles",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "spam_email_addresses",
+          "Type": "spam_email_address",
+          "Description": null,
+          "Slug": "spam_email_addresses",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "stats",
+          "Type": "organization_statistics",
+          "Description": null,
+          "Slug": "stats",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "tabs",
+          "Type": "tab",
+          "Description": null,
+          "Slug": "tabs",
+          "Filters": [
+            {
+              "Name": "with_field_definitions",
+              "Description": null
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "workflows",
+          "Type": "workflow",
+          "Description": null,
+          "Slug": "workflows",
+          "Filters": [
+            {
+              "Name": "archived",
+              "Description": null
+            },
+            {
+              "Name": "has_my_cards",
+              "Description": null
+            },
+            {
+              "Name": "manage_cards_allowed",
+              "Description": null
+            },
+            {
+              "Name": "not_archived",
+              "Description": null
+            },
+            {
+              "Name": "only_deleted",
+              "Description": null
+            },
+            {
+              "Name": "recently_viewed",
+              "Description": null
+            },
+            {
+              "Name": "unassigned",
+              "Description": null
+            },
+            {
+              "Name": "with_deleted",
+              "Description": null
+            },
+            {
+              "Name": "with_recoverable",
+              "Description": null
+            },
+            {
+              "Name": "with_steps",
+              "Description": null
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "people_import",
@@ -4053,27 +4888,12 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
           "Name": "attribs",
           "Type": "string",
           "Description": null
         },
         {
-          "Name": "status",
-          "Type": "string",
-          "Description": "Possible values: \u0060matching\u0060, \u0060processing_preview\u0060, \u0060previewing\u0060, \u0060processing_import\u0060, \u0060complete\u0060, \u0060undone\u0060, or \u0060undoing\u0060"
-        },
-        {
           "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "updated_at",
           "Type": "date_time",
           "Description": null
         },
@@ -4083,7 +4903,17 @@
           "Description": null
         },
         {
+          "Name": "status",
+          "Type": "string",
+          "Description": "Possible values: \u0060matching\u0060, \u0060processing_preview\u0060, \u0060previewing\u0060, \u0060processing_import\u0060, \u0060complete\u0060, \u0060undone\u0060, or \u0060undoing\u0060"
+        },
+        {
           "Name": "undone_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
           "Type": "date_time",
           "Description": null
         }
@@ -4102,6 +4932,84 @@
           "Note": null
         }
       ],
+      "Children": [
+        {
+          "Name": "conflicts",
+          "Type": "people_import_conflict",
+          "Description": null,
+          "Slug": "conflicts",
+          "Filters": [
+            {
+              "Name": "creates",
+              "Description": null
+            },
+            {
+              "Name": "creates_and_updates",
+              "Description": null
+            },
+            {
+              "Name": "errors",
+              "Description": null
+            },
+            {
+              "Name": "household_creates",
+              "Description": null
+            },
+            {
+              "Name": "household_updates",
+              "Description": null
+            },
+            {
+              "Name": "identical",
+              "Description": null
+            },
+            {
+              "Name": "ignored",
+              "Description": null
+            },
+            {
+              "Name": "not_ignored",
+              "Description": null
+            },
+            {
+              "Name": "updates",
+              "Description": null
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "histories",
+          "Type": "people_import_history",
+          "Description": null,
+          "Slug": "histories",
+          "Filters": [
+            {
+              "Name": "creates",
+              "Description": null
+            },
+            {
+              "Name": "household_creates",
+              "Description": null
+            },
+            {
+              "Name": "household_updates",
+              "Description": null
+            },
+            {
+              "Name": "identical",
+              "Description": null
+            },
+            {
+              "Name": "updates",
+              "Description": null
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [],
       "CanOrderBy": [],
       "CanQueryBy": [
@@ -4112,7 +5020,10 @@
           "Description": "Query on a specific status\n\nPossible values: \u0060matching\u0060, \u0060processing_preview\u0060, \u0060previewing\u0060, \u0060processing_import\u0060, \u0060complete\u0060, \u0060undone\u0060, or \u0060undoing\u0060",
           "Example": "?where[status]=value"
         }
-      ]
+      ],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "people_import_conflict",
@@ -4122,32 +5033,17 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
-          "Name": "kind",
+          "Name": "conflicting_changes",
           "Type": "string",
           "Description": null
         },
         {
-          "Name": "name",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "message",
-          "Type": "string",
+          "Name": "created_at",
+          "Type": "date_time",
           "Description": null
         },
         {
           "Name": "data",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "conflicting_changes",
           "Type": "string",
           "Description": null
         },
@@ -4157,8 +5053,18 @@
           "Description": null
         },
         {
-          "Name": "created_at",
-          "Type": "date_time",
+          "Name": "kind",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "message",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
           "Description": null
         },
         {
@@ -4168,6 +5074,7 @@
         }
       ],
       "Relationships": [],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
       "CanQueryBy": [
@@ -4185,7 +5092,10 @@
           "Description": "Query on a specific name",
           "Example": "?where[name]=string"
         }
-      ]
+      ],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "people_import_history",
@@ -4195,13 +5105,8 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
-          "Name": "name",
-          "Type": "string",
+          "Name": "conflicting_changes",
+          "Type": "hash",
           "Description": null
         },
         {
@@ -4210,22 +5115,42 @@
           "Description": null
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "conflicting_changes",
-          "Type": "hash",
-          "Description": null
-        },
-        {
           "Name": "kind",
           "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
           "Description": null
         }
       ],
       "Relationships": [],
+      "Children": [
+        {
+          "Name": "household",
+          "Type": "household",
+          "Description": null,
+          "Slug": "household",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "person",
+          "Type": "person",
+          "Description": null,
+          "Slug": "person",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [
         {
           "Parameter": "include",
@@ -4251,7 +5176,10 @@
           "Description": "Query on a specific name",
           "Example": "?where[name]=string"
         }
-      ]
+      ],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "person",
@@ -4260,46 +5188,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
-          "Name": "avatar",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "first_name",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "last_name",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "demographic_avatar_url",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "name",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "status",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "remote_id",
-          "Type": "integer",
-          "Description": null
-        },
         {
           "Name": "accounting_administrator",
           "Type": "boolean",
@@ -4311,13 +5199,58 @@
           "Description": null
         },
         {
+          "Name": "avatar",
+          "Type": "string",
+          "Description": null
+        },
+        {
           "Name": "birthdate",
           "Type": "date",
           "Description": null
         },
         {
+          "Name": "can_create_forms",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "can_email_lists",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
           "Name": "child",
           "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "demographic_avatar_url",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "directory_shared_info",
+          "Type": "json",
+          "Description": "Only available when requested with the \u0060?fields\u0060 param"
+        },
+        {
+          "Name": "directory_status",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "first_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "gender",
+          "Type": "string",
           "Description": null
         },
         {
@@ -4336,33 +5269,18 @@
           "Description": null
         },
         {
-          "Name": "middle_name",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "nickname",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "people_permissions",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "site_administrator",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
-          "Name": "gender",
-          "Type": "string",
-          "Description": null
-        },
-        {
           "Name": "inactivated_at",
           "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "last_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "login_identifier",
+          "Type": "string",
           "Description": null
         },
         {
@@ -4376,38 +5294,38 @@
           "Description": null
         },
         {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "can_create_forms",
+          "Name": "mfa_configured",
           "Type": "boolean",
-          "Description": null
-        },
-        {
-          "Name": "can_email_lists",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
-          "Name": "directory_shared_info",
-          "Type": "json",
           "Description": "Only available when requested with the \u0060?fields\u0060 param"
         },
         {
-          "Name": "directory_status",
+          "Name": "middle_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "nickname",
           "Type": "string",
           "Description": null
         },
         {
           "Name": "passed_background_check",
           "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "people_permissions",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "remote_id",
+          "Type": "integer",
           "Description": null
         },
         {
@@ -4421,19 +5339,24 @@
           "Description": null
         },
         {
-          "Name": "login_identifier",
-          "Type": "string",
+          "Name": "site_administrator",
+          "Type": "boolean",
           "Description": null
         },
         {
-          "Name": "mfa_configured",
-          "Type": "boolean",
-          "Description": "Only available when requested with the \u0060?fields\u0060 param"
+          "Name": "status",
+          "Type": "string",
+          "Description": null
         },
         {
           "Name": "stripe_customer_identifier",
           "Type": "string",
           "Description": "Only available when requested with the \u0060?fields\u0060 param"
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
         }
       ],
       "Relationships": [
@@ -4454,6 +5377,246 @@
           "Type": "Gender",
           "AssociationType": "to_one",
           "Note": null
+        }
+      ],
+      "Children": [
+        {
+          "Name": "addresses",
+          "Type": "address",
+          "Description": null,
+          "Slug": "addresses",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "apps",
+          "Type": "app",
+          "Description": null,
+          "Slug": "apps",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "background_checks",
+          "Type": "background_check",
+          "Description": null,
+          "Slug": "background_checks",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "connected_people",
+          "Type": "connected_person",
+          "Description": null,
+          "Slug": "connected_people",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "emails",
+          "Type": "email",
+          "Description": null,
+          "Slug": "emails",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "field_data",
+          "Type": "field_datum",
+          "Description": null,
+          "Slug": "field_data",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "household_memberships",
+          "Type": "household_membership",
+          "Description": null,
+          "Slug": "household_memberships",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "households",
+          "Type": "household",
+          "Description": null,
+          "Slug": "households",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "inactive_reason",
+          "Type": "inactive_reason",
+          "Description": null,
+          "Slug": "inactive_reason",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "marital_status",
+          "Type": "marital_status",
+          "Description": null,
+          "Slug": "marital_status",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "message_groups",
+          "Type": "message_group",
+          "Description": null,
+          "Slug": "message_groups",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "messages",
+          "Type": "message",
+          "Description": "The Person\u0027s received messages. Can also receive a filter\nto return \u0060sent\u0060 or \u0060unread\u0060\ne.g. \u0060?filter=sent\u0060\n",
+          "Slug": "messages",
+          "Filters": [
+            {
+              "Name": "created_after",
+              "Description": null
+            },
+            {
+              "Name": "received",
+              "Description": null
+            },
+            {
+              "Name": "sent",
+              "Description": null
+            },
+            {
+              "Name": "unread",
+              "Description": null
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "name_prefix",
+          "Type": "name_prefix",
+          "Description": null,
+          "Slug": "name_prefix",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "name_suffix",
+          "Type": "name_suffix",
+          "Description": null,
+          "Slug": "name_suffix",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "notes",
+          "Type": "note",
+          "Description": null,
+          "Slug": "notes",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "organization",
+          "Type": "organization",
+          "Description": null,
+          "Slug": "organization",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "person_apps",
+          "Type": "person_app",
+          "Description": null,
+          "Slug": "person_apps",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "phone_numbers",
+          "Type": "phone_number",
+          "Description": null,
+          "Slug": "phone_numbers",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "platform_notifications",
+          "Type": "platform_notification",
+          "Description": null,
+          "Slug": "platform_notifications",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "primary_campus",
+          "Type": "campus",
+          "Description": null,
+          "Slug": "primary_campus",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "school",
+          "Type": "school_option",
+          "Description": null,
+          "Slug": "school",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "social_profiles",
+          "Type": "social_profile",
+          "Description": null,
+          "Slug": "social_profiles",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "workflow_cards",
+          "Type": "workflow_card",
+          "Description": null,
+          "Slug": "workflow_cards",
+          "Filters": [
+            {
+              "Name": "assigned",
+              "Description": null
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "workflow_shares",
+          "Type": "workflow_share",
+          "Description": null,
+          "Slug": "workflow_shares",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
         }
       ],
       "CanInclude": [
@@ -4889,7 +6052,10 @@
           "Description": "Query on a specific updated_at",
           "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
         }
-      ]
+      ],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "person_app",
@@ -4898,11 +6064,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "allow_pco_login",
           "Type": "boolean",
@@ -4928,6 +6089,17 @@
           "Note": null
         }
       ],
+      "Children": [
+        {
+          "Name": "app",
+          "Type": "app",
+          "Description": null,
+          "Slug": "app",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [
         {
           "Parameter": "include",
@@ -4938,7 +6110,10 @@
         }
       ],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": true,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "person_merger",
@@ -4947,11 +6122,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "created_at",
           "Type": "date_time",
@@ -4982,6 +6152,7 @@
           "Note": null
         }
       ],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [
         {
@@ -5013,7 +6184,10 @@
           "Description": "Query on a specific person_to_remove_id",
           "Example": "?where[person_to_remove_id]=primary_key"
         }
-      ]
+      ],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "phone_number",
@@ -5023,52 +6197,7 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
-          "Name": "number",
-          "Type": "string",
-          "Description": null
-        },
-        {
           "Name": "carrier",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "location",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "primary",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "e164",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "international",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "national",
           "Type": "string",
           "Description": null
         },
@@ -5078,9 +6207,49 @@
           "Description": null
         },
         {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "e164",
+          "Type": "string",
+          "Description": null
+        },
+        {
           "Name": "formatted_number",
           "Type": "string",
           "Description": "Only available when requested with the \u0060?fields\u0060 param"
+        },
+        {
+          "Name": "international",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "location",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "national",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "number",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "primary",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
         }
       ],
       "Relationships": [
@@ -5091,6 +6260,7 @@
           "Note": null
         }
       ],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [
         {
@@ -5173,7 +6343,10 @@
           "Description": "Query on a specific updated_at",
           "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
         }
-      ]
+      ],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "platform_notification",
@@ -5183,20 +6356,19 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
           "Name": "html",
           "Type": "string",
           "Description": null
         }
       ],
       "Relationships": [],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "report",
@@ -5205,16 +6377,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
-          "Name": "name",
-          "Type": "string",
-          "Description": null
-        },
         {
           "Name": "body",
           "Type": "string",
@@ -5226,12 +6388,37 @@
           "Description": null
         },
         {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
           "Name": "updated_at",
           "Type": "date_time",
           "Description": null
         }
       ],
       "Relationships": [],
+      "Children": [
+        {
+          "Name": "created_by",
+          "Type": "person",
+          "Description": null,
+          "Slug": "created_by",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "updated_by",
+          "Type": "person",
+          "Description": null,
+          "Slug": "updated_by",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [
         {
           "Parameter": "include",
@@ -5303,7 +6490,10 @@
           "Description": "Query on a specific updated_at",
           "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
         }
-      ]
+      ],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "rule",
@@ -5313,18 +6503,13 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
+          "Name": "created_at",
+          "Type": "date_time",
           "Description": null
         },
         {
           "Name": "subset",
           "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "created_at",
-          "Type": "date_time",
           "Description": null
         },
         {
@@ -5334,6 +6519,17 @@
         }
       ],
       "Relationships": [],
+      "Children": [
+        {
+          "Name": "conditions",
+          "Type": "condition",
+          "Description": null,
+          "Slug": "conditions",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [
         {
           "Parameter": "include",
@@ -5385,7 +6581,10 @@
           "Description": "Query on a specific updated_at",
           "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
         }
-      ]
+      ],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "school_option",
@@ -5394,21 +6593,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
-          "Name": "value",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "sequence",
-          "Type": "integer",
-          "Description": null
-        },
         {
           "Name": "beginning_grade",
           "Type": "string",
@@ -5423,9 +6607,30 @@
           "Name": "school_types",
           "Type": "array",
           "Description": null
+        },
+        {
+          "Name": "sequence",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "value",
+          "Type": "string",
+          "Description": null
         }
       ],
       "Relationships": [],
+      "Children": [
+        {
+          "Name": "promotes_to_school",
+          "Type": "school_option",
+          "Description": null,
+          "Slug": "promotes_to_school",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [],
       "CanOrderBy": [
         {
@@ -5489,7 +6694,10 @@
           "Description": "Query on a specific value",
           "Example": "?where[value]=string"
         }
-      ]
+      ],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "service_time",
@@ -5499,16 +6707,6 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
-          "Name": "start_time",
-          "Type": "integer",
-          "Description": null
-        },
-        {
           "Name": "day",
           "Type": "string",
           "Description": "Possible values: \u0060sunday\u0060, \u0060monday\u0060, \u0060tuesday\u0060, \u0060wednesday\u0060, \u0060thursday\u0060, \u0060friday\u0060, or \u0060saturday\u0060"
@@ -5516,6 +6714,11 @@
         {
           "Name": "description",
           "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "start_time",
+          "Type": "integer",
           "Description": null
         }
       ],
@@ -5533,6 +6736,7 @@
           "Note": null
         }
       ],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [
         {
@@ -5542,7 +6746,10 @@
           "Description": "prefix with a hyphen (-time) to reverse the order"
         }
       ],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "social_profile",
@@ -5552,13 +6759,18 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
+          "Name": "created_at",
+          "Type": "date_time",
           "Description": null
         },
         {
           "Name": "site",
           "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
           "Description": null
         },
         {
@@ -5570,19 +6782,20 @@
           "Name": "verified",
           "Type": "boolean",
           "Description": null
-        },
-        {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": null
         }
       ],
       "Relationships": [],
+      "Children": [
+        {
+          "Name": "person",
+          "Type": "person",
+          "Description": null,
+          "Slug": "person",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [
         {
           "Parameter": "include",
@@ -5660,7 +6873,10 @@
           "Description": "Query on a specific verified",
           "Example": "?where[verified]=true"
         }
-      ]
+      ],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "spam_email_address",
@@ -5669,11 +6885,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "address",
           "Type": "string",
@@ -5691,9 +6902,13 @@
         }
       ],
       "Relationships": [],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "tab",
@@ -5702,11 +6917,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "name",
           "Type": "string",
@@ -5724,6 +6934,31 @@
         }
       ],
       "Relationships": [],
+      "Children": [
+        {
+          "Name": "field_definitions",
+          "Type": "field_definition",
+          "Description": null,
+          "Slug": "field_definitions",
+          "Filters": [
+            {
+              "Name": "with_deleted",
+              "Description": null
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "field_options",
+          "Type": "field_option",
+          "Description": null,
+          "Slug": "field_options",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [
         {
           "Parameter": "include",
@@ -5782,7 +7017,10 @@
           "Description": "Query on a specific slug",
           "Example": "?where[slug]=string"
         }
-      ]
+      ],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "workflow",
@@ -5791,76 +7029,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
-          "Name": "name",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "my_ready_card_count",
-          "Type": "integer",
-          "Description": null
-        },
-        {
-          "Name": "total_ready_card_count",
-          "Type": "integer",
-          "Description": null
-        },
-        {
-          "Name": "completed_card_count",
-          "Type": "integer",
-          "Description": null
-        },
-        {
-          "Name": "total_cards_count",
-          "Type": "integer",
-          "Description": null
-        },
-        {
-          "Name": "total_ready_and_snoozed_card_count",
-          "Type": "integer",
-          "Description": null
-        },
-        {
-          "Name": "total_steps_count",
-          "Type": "integer",
-          "Description": null
-        },
-        {
-          "Name": "total_unassigned_steps_count",
-          "Type": "integer",
-          "Description": null
-        },
-        {
-          "Name": "total_unassigned_card_count",
-          "Type": "integer",
-          "Description": null
-        },
-        {
-          "Name": "total_overdue_card_count",
-          "Type": "integer",
-          "Description": null
-        },
-        {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "deleted_at",
-          "Type": "date_time",
-          "Description": null
-        },
         {
           "Name": "archived_at",
           "Type": "date_time",
@@ -5872,14 +7040,19 @@
           "Description": null
         },
         {
-          "Name": "workflow_category_id",
-          "Type": "primary_key",
+          "Name": "completed_card_count",
+          "Type": "integer",
           "Description": null
         },
         {
-          "Name": "my_overdue_card_count",
-          "Type": "integer",
-          "Description": "Only available when requested with the \u0060?fields\u0060 param"
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "deleted_at",
+          "Type": "date_time",
+          "Description": null
         },
         {
           "Name": "my_due_soon_card_count",
@@ -5887,8 +7060,68 @@
           "Description": "Only available when requested with the \u0060?fields\u0060 param"
         },
         {
+          "Name": "my_overdue_card_count",
+          "Type": "integer",
+          "Description": "Only available when requested with the \u0060?fields\u0060 param"
+        },
+        {
+          "Name": "my_ready_card_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
           "Name": "recently_viewed",
           "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "total_cards_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "total_overdue_card_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "total_ready_and_snoozed_card_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "total_ready_card_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "total_steps_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "total_unassigned_card_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "total_unassigned_steps_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "workflow_category_id",
+          "Type": "primary_key",
           "Description": null
         }
       ],
@@ -5904,6 +7137,53 @@
           "Type": "Campus",
           "AssociationType": "to_one",
           "Note": null
+        }
+      ],
+      "Children": [
+        {
+          "Name": "cards",
+          "Type": "workflow_card",
+          "Description": null,
+          "Slug": "cards",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "category",
+          "Type": "workflow_category",
+          "Description": null,
+          "Slug": "category",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "shared_people",
+          "Type": "person",
+          "Description": null,
+          "Slug": "shared_people",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "shares",
+          "Type": "workflow_share",
+          "Description": null,
+          "Slug": "shares",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "steps",
+          "Type": "workflow_step",
+          "Description": null,
+          "Slug": "steps",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
         }
       ],
       "CanInclude": [
@@ -6030,7 +7310,10 @@
           "Description": "Query on a specific workflow_category_id",
           "Example": "?where[workflow_category_id]=primary_key"
         }
-      ]
+      ],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "workflow_card",
@@ -6040,47 +7323,17 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
-          "Name": "snooze_until",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "overdue",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
-          "Name": "stage",
-          "Type": "string",
-          "Description": null
-        },
-        {
           "Name": "calculated_due_at_in_days_ago",
           "Type": "integer",
           "Description": null
         },
         {
-          "Name": "sticky_assignment",
-          "Type": "boolean",
+          "Name": "completed_at",
+          "Type": "date_time",
           "Description": null
         },
         {
           "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "completed_at",
           "Type": "date_time",
           "Description": null
         },
@@ -6090,12 +7343,37 @@
           "Description": null
         },
         {
+          "Name": "moved_to_step_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "overdue",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
           "Name": "removed_at",
           "Type": "date_time",
           "Description": null
         },
         {
-          "Name": "moved_to_step_at",
+          "Name": "snooze_until",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "stage",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "sticky_assignment",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
           "Type": "date_time",
           "Description": null
         }
@@ -6124,6 +7402,62 @@
           "Type": "WorkflowStep",
           "AssociationType": "to_one",
           "Note": null
+        }
+      ],
+      "Children": [
+        {
+          "Name": "activities",
+          "Type": "workflow_card_activity",
+          "Description": null,
+          "Slug": "activities",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "assignee",
+          "Type": "person",
+          "Description": null,
+          "Slug": "assignee",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "current_step",
+          "Type": "workflow_step",
+          "Description": null,
+          "Slug": "current_step",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "notes",
+          "Type": "workflow_card_note",
+          "Description": null,
+          "Slug": "notes",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "person",
+          "Type": "person",
+          "Description": null,
+          "Slug": "person",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "workflow",
+          "Type": "workflow",
+          "Description": null,
+          "Slug": "workflow",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
         }
       ],
       "CanInclude": [
@@ -6234,7 +7568,10 @@
           "Description": "Query on a specific stage",
           "Example": "?where[stage]=string"
         }
-      ]
+      ],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "workflow_card_activity",
@@ -6244,8 +7581,8 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
+          "Name": "automation_url",
+          "Type": "string",
           "Description": null
         },
         {
@@ -6259,12 +7596,17 @@
           "Description": null
         },
         {
-          "Name": "form_submission_url",
-          "Type": "string",
+          "Name": "content_is_html",
+          "Type": "boolean",
           "Description": null
         },
         {
-          "Name": "automation_url",
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "form_submission_url",
           "Type": "string",
           "Description": null
         },
@@ -6297,16 +7639,6 @@
           "Name": "type",
           "Type": "string",
           "Description": null
-        },
-        {
-          "Name": "content_is_html",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
         }
       ],
       "Relationships": [
@@ -6323,6 +7655,7 @@
           "Note": "Only available when \u0060type\u0060 attribute is \u0060completion\u0060, \u0060skip\u0060, or \u0060reversal\u0060."
         }
       ],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [
         {
@@ -6332,7 +7665,10 @@
           "Description": "prefix with a hyphen (-id) to reverse the order"
         }
       ],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": true
     },
     {
       "Id": "workflow_card_note",
@@ -6342,22 +7678,18 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
+          "Name": "created_at",
+          "Type": "date_time",
           "Description": null
         },
         {
           "Name": "note",
           "Type": "string",
           "Description": null
-        },
-        {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
         }
       ],
       "Relationships": [],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [
         {
@@ -6367,7 +7699,10 @@
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
         }
       ],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": true,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "workflow_category",
@@ -6377,18 +7712,13 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
+          "Name": "created_at",
+          "Type": "date_time",
           "Description": null
         },
         {
           "Name": "name",
           "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "created_at",
-          "Type": "date_time",
           "Description": null
         },
         {
@@ -6398,6 +7728,7 @@
         }
       ],
       "Relationships": [],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [
         {
@@ -6441,7 +7772,10 @@
           "Description": "Query on a specific updated_at",
           "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
         }
-      ]
+      ],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "workflow_share",
@@ -6450,11 +7784,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "group",
           "Type": "string",
@@ -6485,6 +7814,17 @@
           "Note": null
         }
       ],
+      "Children": [
+        {
+          "Name": "person",
+          "Type": "person",
+          "Description": null,
+          "Slug": "person",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [
         {
           "Parameter": "include",
@@ -6503,7 +7843,10 @@
           "Description": "Query on a specific permission\n\nPossible values: \u0060view\u0060, \u0060manage_cards\u0060, or \u0060manage\u0060",
           "Example": "?where[permission]=value"
         }
-      ]
+      ],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "workflow_step",
@@ -6513,18 +7856,28 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
-          "Name": "sequence",
+          "Name": "auto_snooze_days",
           "Type": "integer",
           "Description": null
         },
         {
-          "Name": "name",
+          "Name": "auto_snooze_interval",
           "Type": "string",
+          "Description": "Valid values are \u0060day\u0060, \u0060week\u0060, or \u0060month\u0060\n\nPossible values: \u0060day\u0060, \u0060week\u0060, or \u0060month\u0060"
+        },
+        {
+          "Name": "auto_snooze_value",
+          "Type": "integer",
+          "Description": "Must be a positive number"
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "default_assignee_id",
+          "Type": "primary_key",
           "Description": null
         },
         {
@@ -6538,32 +7891,17 @@
           "Description": null
         },
         {
-          "Name": "auto_snooze_value",
-          "Type": "integer",
-          "Description": "Must be a positive number"
-        },
-        {
-          "Name": "auto_snooze_interval",
-          "Type": "string",
-          "Description": "Valid values are \u0060day\u0060, \u0060week\u0060, or \u0060month\u0060\n\nPossible values: \u0060day\u0060, \u0060week\u0060, or \u0060month\u0060"
-        },
-        {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "auto_snooze_days",
-          "Type": "integer",
-          "Description": null
-        },
-        {
           "Name": "my_ready_card_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "sequence",
           "Type": "integer",
           "Description": null
         },
@@ -6573,8 +7911,8 @@
           "Description": null
         },
         {
-          "Name": "default_assignee_id",
-          "Type": "primary_key",
+          "Name": "updated_at",
+          "Type": "date_time",
           "Description": null
         }
       ],
@@ -6590,6 +7928,26 @@
           "Type": "Workflow",
           "AssociationType": "to_one",
           "Note": null
+        }
+      ],
+      "Children": [
+        {
+          "Name": "assignee_summaries",
+          "Type": "workflow_step_assignee_summary",
+          "Description": null,
+          "Slug": "assignee_summaries",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "default_assignee",
+          "Type": "person",
+          "Description": null,
+          "Slug": "default_assignee",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
         }
       ],
       "CanInclude": [
@@ -6649,7 +8007,10 @@
           "Description": "Query on a specific updated_at",
           "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
         }
-      ]
+      ],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "workflow_step_assignee_summary",
@@ -6658,11 +8019,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "ready_count",
           "Type": "integer",
@@ -6688,6 +8044,17 @@
           "Note": null
         }
       ],
+      "Children": [
+        {
+          "Name": "person",
+          "Type": "person",
+          "Description": null,
+          "Slug": "person",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [
         {
           "Parameter": "include",
@@ -6698,7 +8065,10 @@
         }
       ],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     }
   ]
 }

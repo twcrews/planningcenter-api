@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace Crews.PlanningCenter.Api.DocParser.Models;
 
-class Attribute
+public class Attribute
 {
   [JsonPropertyName("name")]
   public required string Name { get; set; }
@@ -22,24 +22,24 @@ class Attribute
   public string? Description { get; set; }
 }
 
-class AttributeResource : JsonApiResource
+public class AttributeResource : JsonApiResource
 {
   [JsonPropertyName("attributes")]
   public required new Attribute Attributes { get; set; }
 }
 
-class AttributeRelationship : JsonApiRelationship
+public class AttributeRelationship : JsonApiRelationship
 {
   [JsonPropertyName("data")]
   public required new AttributeResource Data { get; set; }
 }
 
-class AttributeCollectionRelationship : JsonApiRelationship
+public class AttributeCollectionRelationship : JsonApiRelationship
 {
   [JsonPropertyName("data")]
   public required new IEnumerable<AttributeResource> Data { get; set; }
 }
-class TypeAnnotation
+public class TypeAnnotation
 {
   [JsonPropertyName("name")]
   public required string Name { get; set; }

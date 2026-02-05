@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace Crews.PlanningCenter.Api.DocParser.Models;
 
-class GraphVersion : Graph 
+public class GraphVersion : Graph 
 {
   [JsonPropertyName("beta")]
   public bool Beta { get; set; }
@@ -12,13 +12,13 @@ class GraphVersion : Graph
   public string? Details { get; set; }
 }
 
-class GraphVersionDocument : JsonApiDocument
+public class GraphVersionDocument : JsonApiDocument
 {
   [JsonPropertyName("data")]
   public required new GraphVersionResource Data { get; set; }
 }
 
-class GraphVersionResource : JsonApiResource
+public class GraphVersionResource : JsonApiResource
 {
   [JsonPropertyName("attributes")]
   public required new GraphVersion Attributes { get; set; }
@@ -27,7 +27,7 @@ class GraphVersionResource : JsonApiResource
   public required new GraphVersionRelationships Relationships { get; set; }
 }
 
-class GraphVersionRelationships
+public class GraphVersionRelationships
 {
   [JsonPropertyName("previous_version")]
   public required JsonApiRelationship PreviousVersion { get; set; }

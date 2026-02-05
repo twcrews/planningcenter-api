@@ -11,29 +11,14 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
+          "Name": "activate_episode_minutes_before",
+          "Type": "integer",
+          "Description": "The activation time for an episode, expressed in minutes before its start\n"
         },
         {
           "Name": "art",
           "Type": "hash",
           "Description": null
-        },
-        {
-          "Name": "podcast_art",
-          "Type": "hash",
-          "Description": null
-        },
-        {
-          "Name": "podcast_settings",
-          "Type": "hash",
-          "Description": null
-        },
-        {
-          "Name": "activate_episode_minutes_before",
-          "Type": "integer",
-          "Description": "The activation time for an episode, expressed in minutes before its start\n"
         },
         {
           "Name": "can_enable_chat",
@@ -51,27 +36,22 @@
           "Description": null
         },
         {
-          "Name": "default_video_embed_code",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "description",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "url",
-          "Type": "string",
-          "Description": null
-        },
-        {
           "Name": "default_video_duration",
           "Type": "integer",
           "Description": null
         },
         {
+          "Name": "default_video_embed_code",
+          "Type": "string",
+          "Description": null
+        },
+        {
           "Name": "default_video_url",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "description",
           "Type": "string",
           "Description": null
         },
@@ -106,8 +86,18 @@
           "Description": null
         },
         {
+          "Name": "podcast_art",
+          "Type": "hash",
+          "Description": null
+        },
+        {
           "Name": "podcast_feed_url",
           "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "podcast_settings",
+          "Type": "hash",
           "Description": null
         },
         {
@@ -134,9 +124,96 @@
           "Name": "updated_at",
           "Type": "date_time",
           "Description": null
+        },
+        {
+          "Name": "url",
+          "Type": "string",
+          "Description": null
         }
       ],
       "Relationships": [],
+      "Children": [
+        {
+          "Name": "channel_default_episode_resources",
+          "Type": "channel_default_episode_resource",
+          "Description": null,
+          "Slug": "channel_default_episode_resources",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "channel_default_times",
+          "Type": "channel_default_time",
+          "Description": null,
+          "Slug": "channel_default_times",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "current_episode",
+          "Type": "episode",
+          "Description": null,
+          "Slug": "current_episode",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "episodes",
+          "Type": "episode",
+          "Description": null,
+          "Slug": "episodes",
+          "Filters": [
+            {
+              "Name": "connected_to_services",
+              "Description": null
+            },
+            {
+              "Name": "not_connected_to_services",
+              "Description": null
+            },
+            {
+              "Name": "not_published",
+              "Description": null
+            },
+            {
+              "Name": "published",
+              "Description": null
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "next_times",
+          "Type": "channel_next_time",
+          "Description": null,
+          "Slug": "next_times",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "series",
+          "Type": "series",
+          "Description": null,
+          "Slug": "series",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "statistics",
+          "Type": "episode_statistics",
+          "Description": null,
+          "Slug": "statistics",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [
         {
           "Parameter": "include",
@@ -174,7 +251,10 @@
           "Description": "prefix with a hyphen (-position) to reverse the order"
         }
       ],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "channel_default_episode_resource",
@@ -183,11 +263,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "featured",
           "Type": "boolean",
@@ -225,9 +300,13 @@
         }
       ],
       "Relationships": [],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "channel_default_time",
@@ -237,14 +316,14 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
           "Name": "day_of_week",
           "Type": "integer",
           "Description": "The day of the week. 0 is Sunday, 1 is Monday, etc.\n"
+        },
+        {
+          "Name": "frequency",
+          "Type": "string",
+          "Description": "Possible values: \u0060weekly\u0060\n"
         },
         {
           "Name": "hour",
@@ -257,17 +336,13 @@
           "Description": null
         },
         {
-          "Name": "frequency",
-          "Type": "string",
-          "Description": "Possible values: \u0060weekly\u0060\n"
-        },
-        {
           "Name": "position",
           "Type": "integer",
           "Description": null
         }
       ],
       "Relationships": [],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [
         {
@@ -277,7 +352,10 @@
           "Description": "prefix with a hyphen (-position) to reverse the order"
         }
       ],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "channel_next_time",
@@ -287,20 +365,19 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
           "Name": "starts_at",
           "Type": "date_time",
           "Description": null
         }
       ],
       "Relationships": [],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "episode",
@@ -309,11 +386,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "art",
           "Type": "hash",
@@ -395,6 +467,16 @@
           "Description": null
         },
         {
+          "Name": "services_plan_remote_identifier",
+          "Type": "string",
+          "Description": "The id for the associated Services Plan\n(https://developer.planning.center/docs/#/apps/services/2018-08-01/vertices/plan)\n"
+        },
+        {
+          "Name": "services_service_type_remote_identifier",
+          "Type": "string",
+          "Description": "The id for the associated Services Service Type\n(https://developer.planning.center/docs/#/apps/services/2018-08-01/vertices/service_type)\n"
+        },
+        {
           "Name": "stream_type",
           "Type": "string",
           "Description": "Possible values: \u0060channel_default_livestream\u0060, \u0060livestream\u0060, or \u0060prerecorded\u0060"
@@ -415,12 +497,12 @@
           "Description": null
         },
         {
-          "Name": "video_thumbnail_url",
+          "Name": "video_embed_code",
           "Type": "string",
           "Description": null
         },
         {
-          "Name": "video_embed_code",
+          "Name": "video_thumbnail_url",
           "Type": "string",
           "Description": null
         },
@@ -428,16 +510,6 @@
           "Name": "video_url",
           "Type": "string",
           "Description": null
-        },
-        {
-          "Name": "services_plan_remote_identifier",
-          "Type": "string",
-          "Description": "The id for the associated Services Plan\n(https://developer.planning.center/docs/#/apps/services/2018-08-01/vertices/plan)\n"
-        },
-        {
-          "Name": "services_service_type_remote_identifier",
-          "Type": "string",
-          "Description": "The id for the associated Services Service Type\n(https://developer.planning.center/docs/#/apps/services/2018-08-01/vertices/service_type)\n"
         }
       ],
       "Relationships": [
@@ -446,6 +518,62 @@
           "Type": "Series",
           "AssociationType": "to_one",
           "Note": null
+        }
+      ],
+      "Children": [
+        {
+          "Name": "channel",
+          "Type": "channel",
+          "Description": null,
+          "Slug": "channel",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "episode_resources",
+          "Type": "episode_resource",
+          "Description": null,
+          "Slug": "episode_resources",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "episode_times",
+          "Type": "episode_time",
+          "Description": null,
+          "Slug": "episode_times",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "note_template",
+          "Type": "note_template",
+          "Description": null,
+          "Slug": "note_template",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "series",
+          "Type": "series",
+          "Description": null,
+          "Slug": "series",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "speakerships",
+          "Type": "speakership",
+          "Description": null,
+          "Slug": "speakerships",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
         }
       ],
       "CanInclude": [
@@ -533,7 +661,10 @@
           "Description": "Query on a specific services_service_type_remote_identifier",
           "Example": "?where[services_service_type_remote_identifier]=string"
         }
-      ]
+      ],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "episode_resource",
@@ -542,11 +673,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "featured",
           "Type": "boolean",
@@ -584,6 +710,7 @@
         }
       ],
       "Relationships": [],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [
         {
@@ -593,7 +720,10 @@
           "Description": "prefix with a hyphen (-position) to reverse the order"
         }
       ],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "episode_statistics",
@@ -602,16 +732,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
-          "Name": "times",
-          "Type": "array",
-          "Description": "\u0060watch_count\u0060 per EpisodeTime"
-        },
         {
           "Name": "library_watch_count",
           "Type": "boolean",
@@ -623,14 +743,19 @@
           "Description": null
         },
         {
+          "Name": "published_live_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
           "Name": "published_to_library_at",
           "Type": "date_time",
           "Description": null
         },
         {
-          "Name": "published_live_at",
-          "Type": "date_time",
-          "Description": null
+          "Name": "times",
+          "Type": "array",
+          "Description": "\u0060watch_count\u0060 per EpisodeTime"
         },
         {
           "Name": "title",
@@ -639,9 +764,13 @@
         }
       ],
       "Relationships": [],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "episode_time",
@@ -651,33 +780,8 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
-          "Name": "starts_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "ends_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "video_url",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "video_embed_code",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "current_timestamp",
-          "Type": "float",
+          "Name": "caveats",
+          "Type": "array",
           "Description": null
         },
         {
@@ -686,17 +790,38 @@
           "Description": "Possible values: \u0060upcoming\u0060, \u0060active\u0060, \u0060over\u0060\n"
         },
         {
+          "Name": "current_timestamp",
+          "Type": "float",
+          "Description": null
+        },
+        {
+          "Name": "ends_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "starts_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
           "Name": "streaming_service",
           "Type": "string",
           "Description": "Possible values: \u0060vimeo\u0060, \u0060youtube\u0060, \u0060livestream_com\u0060, \u0060resi\u0060, \u0060facebook\u0060, \u0060boxcast\u0060\n"
         },
         {
-          "Name": "caveats",
-          "Type": "array",
+          "Name": "video_embed_code",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "video_url",
+          "Type": "string",
           "Description": null
         }
       ],
       "Relationships": [],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [
         {
@@ -706,7 +831,10 @@
           "Description": "prefix with a hyphen (-starts_at) to reverse the order"
         }
       ],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "note_template",
@@ -716,8 +844,8 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
+          "Name": "auto_create_free_form_notes",
+          "Type": "boolean",
           "Description": null
         },
         {
@@ -726,25 +854,24 @@
           "Description": null
         },
         {
-          "Name": "template",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "auto_create_free_form_notes",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
           "Name": "published_at",
           "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "template",
+          "Type": "string",
           "Description": null
         }
       ],
       "Relationships": [],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": true,
+      "Deletable": false
     },
     {
       "Id": "organization",
@@ -754,9 +881,9 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
+          "Name": "downloads_used",
+          "Type": "integer",
+          "Description": "Only available when requested with the \u0060?fields\u0060 param"
         },
         {
           "Name": "name",
@@ -767,17 +894,83 @@
           "Name": "subdomain",
           "Type": "string",
           "Description": null
-        },
-        {
-          "Name": "downloads_used",
-          "Type": "integer",
-          "Description": "Only available when requested with the \u0060?fields\u0060 param"
         }
       ],
       "Relationships": [],
+      "Children": [
+        {
+          "Name": "channels",
+          "Type": "channel",
+          "Description": null,
+          "Slug": "channels",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "episodes",
+          "Type": "episode",
+          "Description": null,
+          "Slug": "episodes",
+          "Filters": [
+            {
+              "Name": "connected_to_services",
+              "Description": null
+            },
+            {
+              "Name": "not_connected_to_services",
+              "Description": null
+            },
+            {
+              "Name": "not_published_live",
+              "Description": null
+            },
+            {
+              "Name": "published_live",
+              "Description": null
+            },
+            {
+              "Name": "published_on_church_center",
+              "Description": null
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "series",
+          "Type": "series",
+          "Description": null,
+          "Slug": "series",
+          "Filters": [
+            {
+              "Name": "not_published",
+              "Description": null
+            },
+            {
+              "Name": "published",
+              "Description": null
+            }
+          ],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "speakers",
+          "Type": "speaker",
+          "Description": null,
+          "Slug": "speakers",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "series",
@@ -787,11 +980,6 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
           "Name": "art",
           "Type": "hash",
           "Description": null
@@ -799,6 +987,11 @@
         {
           "Name": "church_center_url",
           "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
           "Description": null
         },
         {
@@ -832,17 +1025,23 @@
           "Description": null
         },
         {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
           "Name": "updated_at",
           "Type": "date_time",
           "Description": null
         }
       ],
       "Relationships": [],
+      "Children": [
+        {
+          "Name": "channel",
+          "Type": "channel",
+          "Description": null,
+          "Slug": "channel",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [
         {
           "Parameter": "include",
@@ -886,7 +1085,10 @@
           "Description": "Query on a specific id",
           "Example": "?where[id]=primary_key"
         }
-      ]
+      ],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     },
     {
       "Id": "speaker",
@@ -895,11 +1097,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "avatar_url",
           "Type": "string",
@@ -942,6 +1139,7 @@
         }
       ],
       "Relationships": [],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [
         {
@@ -951,7 +1149,10 @@
           "Description": "prefix with a hyphen (-first_name) to reverse the order"
         }
       ],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "speakership",
@@ -959,19 +1160,24 @@
       "Description": null,
       "Deprecated": false,
       "CollectionOnly": false,
-      "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        }
-      ],
+      "Attributes": [],
       "Relationships": [
         {
           "Name": "speaker",
           "Type": "Speaker",
           "AssociationType": "to_one",
           "Note": null
+        }
+      ],
+      "Children": [
+        {
+          "Name": "speaker",
+          "Type": "speaker",
+          "Description": null,
+          "Slug": "speaker",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
         }
       ],
       "CanInclude": [
@@ -984,7 +1190,10 @@
         }
       ],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true
     }
   ]
 }

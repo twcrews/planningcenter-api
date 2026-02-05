@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace Crews.PlanningCenter.Api.DocParser.Models;
 
-class Edge
+public class Edge
 {
   [JsonPropertyName("name")]
   public required string Name { get; set; }
@@ -24,7 +24,7 @@ class Edge
   public bool Deprecated { get; set; }
 }
 
-class EdgeResource : JsonApiResource
+public class EdgeResource : JsonApiResource
 {
   [JsonPropertyName("attributes")]
   public required new Edge Attributes { get; set; }
@@ -33,13 +33,13 @@ class EdgeResource : JsonApiResource
   public required new EdgeRelationships Relationships { get; set; }
 }
 
-class EdgeCollectionRelationship : JsonApiRelationship
+public class EdgeCollectionRelationship : JsonApiRelationship
 {
   [JsonPropertyName("data")]
   public required new IEnumerable<EdgeResource> Data { get; set; }
 }
 
-class EdgeRelationships
+public class EdgeRelationships
 {
   [JsonPropertyName("head")]
   public required VertexRelationship Head { get; set; }
@@ -51,7 +51,7 @@ class EdgeRelationships
   public required JsonApiRelationship RateLimits { get; set; }
 }
 
-class Scope
+public class Scope
 {
   [JsonPropertyName("name")]
   public required string Name { get; set; }

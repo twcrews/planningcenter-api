@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace Crews.PlanningCenter.Api.DocParser.Models;
 
-class Vertex
+public class Vertex
 {
   [JsonPropertyName("name")]
   public required string Name { get; set; }
@@ -24,13 +24,13 @@ class Vertex
   public bool Deprecated { get; set; }
 }
 
-class VertexDocument : JsonApiDocument
+public class VertexDocument : JsonApiDocument
 {
   [JsonPropertyName("data")]
   public required new VertexResource Data { get; set; }
 }
 
-class VertexResource : JsonApiResource
+public class VertexResource : JsonApiResource
 {
   [JsonPropertyName("attributes")]
   public new Vertex? Attributes { get; set; }
@@ -39,7 +39,7 @@ class VertexResource : JsonApiResource
   public new VertexRelationships? Relationships { get; set; }
 }
 
-class VertexRelationships
+public class VertexRelationships
 {
   [JsonPropertyName("attributes")]
   public required AttributeCollectionRelationship Attributes { get; set; }
@@ -78,13 +78,13 @@ class VertexRelationships
   public required JsonApiRelationship RateLimits { get; set; }
 }
 
-class VertexRelationship : JsonApiRelationship
+public class VertexRelationship : JsonApiRelationship
 {
   [JsonPropertyName("data")]
   public required new VertexResource Data { get; set; }
 }
 
-class VertexCollectionRelationship : JsonApiRelationship
+public class VertexCollectionRelationship : JsonApiRelationship
 {
   [JsonPropertyName("data")]
   public required new IEnumerable<VertexResource> Data { get; set; }

@@ -8,10 +8,10 @@ public static class StringExtensions
 	{
 		return string.Join("\n", target
 			.Trim()
-			.RemoveNewLines()
 			.FixAmpersands()
-			.FixLinks()
 			.FixTagBrackets()
+			.FixLinks()
+			.ReplaceNewLines()
 			.FixInlineCode());
 	}
 
@@ -31,7 +31,7 @@ public static class StringExtensions
         _ => "JsonElement"
     };
 
-	private static string RemoveNewLines(this string target) => Regex.Replace(target, @"[\r\n]+", " ");
+	private static string ReplaceNewLines(this string target) => Regex.Replace(target, @"[\r\n]", "<br/>");
 
 	private static string FixAmpersands(this string target) => Regex.Replace(target, @"&(?!amp;)", "&amp;");
 

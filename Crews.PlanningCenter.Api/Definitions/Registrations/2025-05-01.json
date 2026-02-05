@@ -11,11 +11,6 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
           "Name": "complete",
           "Type": "boolean",
           "Description": "Whether or not attendee has completed all necessary items (personal information, questions, forms, add ons).\n\n\nOnly available when requested with the \u0060?fields\u0060 param"
@@ -52,6 +47,44 @@
         }
       ],
       "Relationships": [],
+      "Children": [
+        {
+          "Name": "emergency_contact",
+          "Type": "emergency_contact",
+          "Description": null,
+          "Slug": "emergency_contact",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "person",
+          "Type": "person",
+          "Description": null,
+          "Slug": "person",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "registration",
+          "Type": "registration",
+          "Description": null,
+          "Slug": "registration",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "selection_type",
+          "Type": "selection_type",
+          "Description": null,
+          "Slug": "selection_type",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [
         {
           "Parameter": "include",
@@ -83,7 +116,10 @@
         }
       ],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "campus",
@@ -92,11 +128,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "name",
           "Type": "string",
@@ -144,9 +175,13 @@
         }
       ],
       "Relationships": [],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "category",
@@ -155,11 +190,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "name",
           "Type": "string",
@@ -177,9 +207,13 @@
         }
       ],
       "Relationships": [],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "emergency_contact",
@@ -188,11 +222,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "name",
           "Type": "string",
@@ -205,9 +234,13 @@
         }
       ],
       "Relationships": [],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "organization",
@@ -216,11 +249,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "name",
           "Type": "string",
@@ -238,9 +266,50 @@
         }
       ],
       "Relationships": [],
+      "Children": [
+        {
+          "Name": "campuses",
+          "Type": "campus",
+          "Description": null,
+          "Slug": "campuses",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "categories",
+          "Type": "category",
+          "Description": null,
+          "Slug": "categories",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "signups",
+          "Type": "signup",
+          "Description": null,
+          "Slug": "signups",
+          "Filters": [
+            {
+              "Name": "archived",
+              "Description": null
+            },
+            {
+              "Name": "unarchived",
+              "Description": null
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "person",
@@ -249,11 +318,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "first_name",
           "Type": "string",
@@ -271,9 +335,13 @@
         }
       ],
       "Relationships": [],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "registration",
@@ -282,11 +350,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "created_at",
           "Type": "date_time",
@@ -299,6 +362,26 @@
         }
       ],
       "Relationships": [],
+      "Children": [
+        {
+          "Name": "created_by",
+          "Type": "person",
+          "Description": null,
+          "Slug": "created_by",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "registrant_contact",
+          "Type": "person",
+          "Description": null,
+          "Slug": "registrant_contact",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [
         {
           "Parameter": "include",
@@ -316,7 +399,10 @@
         }
       ],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "selection_type",
@@ -325,11 +411,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "name",
           "Type": "string",
@@ -372,9 +453,13 @@
         }
       ],
       "Relationships": [],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "signup",
@@ -383,11 +468,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "archived",
           "Type": "boolean",
@@ -435,6 +515,107 @@
         }
       ],
       "Relationships": [],
+      "Children": [
+        {
+          "Name": "attendees",
+          "Type": "attendee",
+          "Description": null,
+          "Slug": "attendees",
+          "Filters": [
+            {
+              "Name": "active",
+              "Description": null
+            },
+            {
+              "Name": "canceled",
+              "Description": null
+            },
+            {
+              "Name": "waitlist",
+              "Description": null
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "campuses",
+          "Type": "campus",
+          "Description": null,
+          "Slug": "campuses",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "categories",
+          "Type": "category",
+          "Description": null,
+          "Slug": "categories",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "next_signup_time",
+          "Type": "signup_time",
+          "Description": null,
+          "Slug": "next_signup_time",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "registrations",
+          "Type": "registration",
+          "Description": null,
+          "Slug": "registrations",
+          "Filters": [],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "selection_types",
+          "Type": "selection_type",
+          "Description": null,
+          "Slug": "selection_types",
+          "Filters": [
+            {
+              "Name": "publicly_available",
+              "Description": null
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "signup_location",
+          "Type": "signup_location",
+          "Description": null,
+          "Slug": "signup_location",
+          "Filters": [],
+          "IsCollection": false,
+          "IsDeprecated": false
+        },
+        {
+          "Name": "signup_times",
+          "Type": "signup_time",
+          "Description": null,
+          "Slug": "signup_times",
+          "Filters": [
+            {
+              "Name": "future",
+              "Description": null
+            },
+            {
+              "Name": "past",
+              "Description": null
+            }
+          ],
+          "IsCollection": true,
+          "IsDeprecated": false
+        }
+      ],
       "CanInclude": [
         {
           "Parameter": "include",
@@ -481,7 +662,10 @@
           "Description": "Query on a specific id",
           "Example": "?where[id]=primary_key"
         }
-      ]
+      ],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "signup_location",
@@ -490,11 +674,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "name",
           "Type": "string",
@@ -552,9 +731,13 @@
         }
       ],
       "Relationships": [],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     },
     {
       "Id": "signup_time",
@@ -563,11 +746,6 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
-        {
-          "Name": "id",
-          "Type": "primary_key",
-          "Description": null
-        },
         {
           "Name": "starts_at",
           "Type": "date_time",
@@ -595,9 +773,13 @@
         }
       ],
       "Relationships": [],
+      "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false
     }
   ]
 }

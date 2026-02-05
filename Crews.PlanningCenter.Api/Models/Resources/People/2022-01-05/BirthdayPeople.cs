@@ -1,7 +1,7 @@
 using System.Text.Json.Serialization;
 using Crews.Web.JsonApiClient;
 
-namespace Crews.PlanningCenter.Api.People.V2025_11_10;
+namespace Crews.PlanningCenter.Api.People.V2022_01_05;
 
 /// <summary>
 /// Wrapper for the BirthdayPeople resource.

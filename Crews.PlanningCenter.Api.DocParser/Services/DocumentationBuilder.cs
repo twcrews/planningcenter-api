@@ -43,12 +43,10 @@ class DocumentationBuilder(
             _semaphore.Release();
         }
 
-        Task<Api.Models.Version>[] versionTasks = 
+        Task<Api.Models.Version>[] versionTasks =
         [
             .. graphDocument.Data.Relationships.Versions.Data
-            .Where(version => !options.Value.ExcludedVersions.Any(e => product.ToString().Equals(
-                e.Product, StringComparison.OrdinalIgnoreCase) && e.Version == version.Id)
-                && !options.Value.ExcludedVersions.Any(e => e.Product == null && e.Version == version.Id))
+            .Where(version => !IsVersionExcluded(product, version.Id))
             .Select(version => BuildVersionAsync(product, version))
         ];
 
@@ -81,14 +79,7 @@ class DocumentationBuilder(
         Task<Resource>[] resourceTasks =
         [
             .. versionDocument.Data.Relationships.Vertices.Data
-            .Where(versionVertex => !options.Value.ExcludedVertices.Any(e => product.ToString().Equals(e.Product, StringComparison.OrdinalIgnoreCase)
-                    && e.Version == version.Id && e.Vertex.Equals(versionVertex.Id, StringComparison.OrdinalIgnoreCase))
-                && !options.Value.ExcludedVertices.Any(e => product.ToString().Equals(e.Product, StringComparison.OrdinalIgnoreCase)
-                    && e.Version == null && e.Vertex.Equals(versionVertex.Id, StringComparison.OrdinalIgnoreCase))
-                && !options.Value.ExcludedVertices.Any(e => e.Product == null 
-                    && e.Version == version.Id && e.Vertex.Equals(versionVertex.Id, StringComparison.OrdinalIgnoreCase))
-                && !options.Value.ExcludedVertices.Any(e => e.Product == null 
-                    && e.Version == null && e.Vertex.Equals(versionVertex.Id, StringComparison.OrdinalIgnoreCase)))
+            .Where(versionVertex => !IsVertexExcluded(product, version.Id, versionVertex.Id))
             .Select(versionVertex => BuildResourceAsync(product, version.Id!, versionVertex))
         ];
 
@@ -101,6 +92,50 @@ class DocumentationBuilder(
             Details = versionDocument.Data.Attributes.Details,
             Resources = resources
         };
+    }
+
+    private bool IsVersionExcluded(ProductDefinition product, string? versionId)
+    {
+        string productName = product.ToString();
+
+        return options.Value.ExcludedVersions.Any(e =>
+            // Match: Product + Version
+            productName.Equals(e.Product, StringComparison.OrdinalIgnoreCase)
+            && e.Version == versionId)
+
+            || options.Value.ExcludedVersions.Any(e =>
+            // Match: Any Product + Version
+            e.Product == null
+            && e.Version == versionId);
+    }
+
+    private bool IsVertexExcluded(ProductDefinition product, string? versionId, string? vertexId)
+    {
+        string productName = product.ToString();
+
+        return options.Value.ExcludedVertices.Any(e =>
+            // Match: Product + Version + Vertex
+            productName.Equals(e.Product, StringComparison.OrdinalIgnoreCase)
+            && e.Version == versionId
+            && e.Vertex.Equals(vertexId, StringComparison.OrdinalIgnoreCase))
+
+            || options.Value.ExcludedVertices.Any(e =>
+            // Match: Product + Any Version + Vertex
+            productName.Equals(e.Product, StringComparison.OrdinalIgnoreCase)
+            && e.Version == null
+            && e.Vertex.Equals(vertexId, StringComparison.OrdinalIgnoreCase))
+
+            || options.Value.ExcludedVertices.Any(e =>
+            // Match: Any Product + Version + Vertex
+            e.Product == null
+            && e.Version == versionId
+            && e.Vertex.Equals(vertexId, StringComparison.OrdinalIgnoreCase))
+
+            || options.Value.ExcludedVertices.Any(e =>
+            // Match: Any Product + Any Version + Vertex
+            e.Product == null
+            && e.Version == null
+            && e.Vertex.Equals(vertexId, StringComparison.OrdinalIgnoreCase));
     }
 
     private async Task<Resource> BuildResourceAsync(
@@ -117,10 +152,10 @@ class DocumentationBuilder(
             _semaphore.Release();
         }
 
-        return BuildResource(vertexDocument.Data);
+        return BuildResource(vertexDocument.Data, product, versionId);
     }
 
-    private Resource BuildResource(VertexResource vertex)
+    private Resource BuildResource(VertexResource vertex, ProductDefinition product, string versionId)
     {
         _logger.LogTrace("Building resource for vertex with ID: {VertexId}", vertex.Id);
         return new()
@@ -137,7 +172,7 @@ class DocumentationBuilder(
             CanInclude = vertex.Relationships.CanInclude.Data.Select(inc => BuildIncludable(inc.Attributes)),
             CanOrderBy = vertex.Relationships.CanOrder.Data.Select(ord => BuildOrderable(ord.Attributes)),
             CanQueryBy = vertex.Relationships.CanQuery.Data.Select(qry => BuildQueryable(qry.Attributes)),
-            Children = vertex.Relationships.OutboundEdges.Data.Select(BuildChild),
+            Children = vertex.Relationships.OutboundEdges.Data.Select(edge => BuildChild(edge, product, versionId, vertex.Id!)),
             Postable = vertex.Relationships.Permissions.Data.Attributes.CanCreate,
             Patchable = vertex.Relationships.Permissions.Data.Attributes.CanUpdate,
             Deletable = vertex.Relationships.Permissions.Data.Attributes.CanDestroy
@@ -205,7 +240,7 @@ class DocumentationBuilder(
         };
     }
 
-    private ResourceChild BuildChild(EdgeResource edge)
+    private ResourceChild BuildChild(EdgeResource edge, ProductDefinition product, string versionId, string vertex)
     {
         _logger.LogTrace("Building associated resource: {EdgeName}", edge.Attributes.Name);
 
@@ -213,6 +248,28 @@ class DocumentationBuilder(
         bool isCollection = edge.Attributes.Name.IsPlural();
         IEnumerable<ResourceChildFilter> filters = edge.Attributes.Scopes
             .Select(s => new ResourceChildFilter { Name = s.Name, Description = s.ScopeHelp });
+
+        string type = edge.Relationships.Head.Data.Id!;
+        
+        if ("services".Equals(product.ToString(), StringComparison.OrdinalIgnoreCase) 
+            && vertex.Equals("organization", StringComparison.OrdinalIgnoreCase)
+            && edge.Attributes.Name.Equals("plans", StringComparison.OrdinalIgnoreCase))
+        {
+            _logger.LogDebug("Plans");
+        }
+
+        AppSettings.DocumentationBuilderOptions.EdgeTypeOverrideEntry? overrideEntry = options.Value.EdgeTypeOverrides
+            .FirstOrDefault(e => (e.Product is null || e.Product.Equals(product.ToString(), StringComparison.OrdinalIgnoreCase))
+                && (e.Version is null || e.Version == versionId)
+                && (e.Vertex is null || e.Vertex.Equals(vertex, StringComparison.OrdinalIgnoreCase))
+                && e.Edge.Equals(edge.Attributes.Name, StringComparison.OrdinalIgnoreCase));
+
+        if (overrideEntry is not null)
+        {
+            _logger.LogInformation("Applying edge type override for edge: {EdgeName} in product: {Product}, version: {Version}, vertex: {Vertex}",
+                edge.Attributes.Name, product, versionId, vertex);
+            type = overrideEntry.Type;
+        }
 
         return new()
         {
@@ -222,7 +279,7 @@ class DocumentationBuilder(
             Filters = filters,
             IsCollection = isCollection,
             IsDeprecated = edge.Attributes.Deprecated,
-            Type = edge.Relationships.Head.Data.Id!
+            Type = type
         };
     }
 }

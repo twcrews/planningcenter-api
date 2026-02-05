@@ -2869,7 +2869,7 @@
         },
         {
           "Name": "plans",
-          "Type": "organization",
+          "Type": "plan",
           "Description": null,
           "Slug": "plans",
           "Filters": [],

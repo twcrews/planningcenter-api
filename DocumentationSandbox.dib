@@ -1,0 +1,45 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"csharp","items":[{"name":"csharp","languageName":"csharp"},{"name":"fsharp","languageName":"F#","aliases":["f#","fs"]},{"name":"html","languageName":"HTML"},{"name":"http","languageName":"HTTP"},{"name":"javascript","languageName":"JavaScript","aliases":["js"]},{"name":"mermaid","languageName":"Mermaid"},{"name":"pwsh","languageName":"PowerShell","aliases":["powershell"]},{"name":"value"}]}}
+
+#!csharp
+
+#r "Crews.PlanningCenter.Api.DocParser/bin/Debug/net10.0/Crews.PlanningCenter.Api.DocParser.dll"
+
+using Crews.PlanningCenter.Api.DocParser.Services;
+using System.Net.Http;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using Crews.PlanningCenter.Api.DocParser.Configuration;
+using Crews.PlanningCenter.Api.Models;
+using Crews.PlanningCenter.Api.DocParser.Models;
+
+#!csharp
+
+PlanningCenterClient client = new(httpClient, logger, options);
+
+HttpClient httpClient = new();
+ILogger<PlanningCenterClient> logger = LoggerFactory.Create(builder => builder.AddConsole()).CreateLogger<PlanningCenterClient>();
+IOptions<AppSettings.PlanningCenterClientOptions> options = Options.Create(new AppSettings.PlanningCenterClientOptions
+{
+    BaseAddress = "https://api.planningcenteronline.com"
+});
+
+#!csharp
+
+foreach (ProductDefinition product in ProductDefinition.All)
+{
+    GraphDocument productDocument = await client.GetGraphAsync(product);
+    foreach (VersionResource version in productDocument.Data.Relationships.Versions.Data)
+    {
+        GraphVersionDocument versionDocument = await client.GetGraphVersionAsync(product, version.Id);
+        foreach (VertexResource vertex in versionDocument.Data.Relationships.Vertices.Data)
+        {
+            VertexDocument vertexDocument = await client.GetVertexAsync(product, version.Id, vertex.Id);
+            if (vertexDocument.Data.Attributes.CollectionOnly)
+            {
+                Console.WriteLine($"{product.ToString()}.{version.Id}.{vertex.Attributes.Name}");
+            }
+        }
+    }
+}

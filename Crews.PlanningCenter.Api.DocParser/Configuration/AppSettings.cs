@@ -18,6 +18,7 @@ public class AppSettings
         public IEnumerable<ExcludedVersionEntry> ExcludedVersions { get; set; } = [];
         public IEnumerable<ExcludedVertexEntry> ExcludedVertices { get; set; } = [];
         public IEnumerable<EdgeTypeOverrideEntry> EdgeTypeOverrides { get; set; } = [];
+        public IEnumerable<CollectionOverrideEntry> CollectionOverrides { get; set; } = [];
 
         public class ExcludedVersionEntry
         {
@@ -39,6 +40,15 @@ public class AppSettings
             public string? Vertex { get; set; }
             public required string Edge { get; set; }
             public required string Type { get; set; }
+        }
+
+        public class CollectionOverrideEntry
+        {
+            public string? Product { get; set; }
+            public string? Version { get; set; }
+            public string? Vertex { get; set; }
+            public required string Edge { get; set; }
+            public bool IsCollection { get; set; }
         }
     }
 }

@@ -138,6 +138,29 @@ class DocumentationBuilder(
             && e.Vertex.Equals(vertexId, StringComparison.OrdinalIgnoreCase));
     }
 
+    private bool? GetCollectionOverride(ProductDefinition product, string? versionId, string? vertexId, string edge)
+    {
+        string productName = product.ToString();
+
+        AppSettings.DocumentationBuilderOptions.CollectionOverrideEntry? overrideEntry = options
+            .Value.CollectionOverrides
+            .FirstOrDefault(e => (e.Product is null || e.Product.Equals(
+                productName, StringComparison.OrdinalIgnoreCase))
+                && (e.Version is null || e.Version == versionId)
+                && (e.Vertex is null || e.Vertex.Equals(vertexId, StringComparison.OrdinalIgnoreCase))
+                && e.Edge.Equals(edge, StringComparison.OrdinalIgnoreCase));
+
+        if (overrideEntry is not null)
+        {
+            _logger.LogInformation(
+                "Applying collection override for {Product}.{Version}.{Vertex}.{Edge}: {IsCollection}",
+                product, versionId, vertexId, edge, overrideEntry.IsCollection);
+            return overrideEntry.IsCollection;
+        }
+
+        return null;
+    }
+
     private async Task<Resource> BuildResourceAsync(
         ProductDefinition product, string versionId, VertexResource versionVertex)
     {
@@ -172,7 +195,8 @@ class DocumentationBuilder(
             CanInclude = vertex.Relationships.CanInclude.Data.Select(inc => BuildIncludable(inc.Attributes)),
             CanOrderBy = vertex.Relationships.CanOrder.Data.Select(ord => BuildOrderable(ord.Attributes)),
             CanQueryBy = vertex.Relationships.CanQuery.Data.Select(qry => BuildQueryable(qry.Attributes)),
-            Children = vertex.Relationships.OutboundEdges.Data.Select(edge => BuildChild(edge, product, versionId, vertex.Id!)),
+            Children = vertex.Relationships.OutboundEdges.Data
+                .Select(edge => BuildChild(edge, product, versionId, vertex.Id!)),
             Postable = vertex.Relationships.Permissions.Data.Attributes.CanCreate,
             Patchable = vertex.Relationships.Permissions.Data.Attributes.CanUpdate,
             Deletable = vertex.Relationships.Permissions.Data.Attributes.CanDestroy
@@ -245,7 +269,8 @@ class DocumentationBuilder(
         _logger.LogTrace("Building associated resource: {EdgeName}", edge.Attributes.Name);
 
         string slug = new Uri(edge.Attributes.Path).Segments[^1];
-        bool isCollection = edge.Attributes.Name.IsPlural();
+        bool isCollection = GetCollectionOverride(product, versionId, vertex, edge.Attributes.Name) 
+            ?? edge.Attributes.Name.IsPlural();
         IEnumerable<ResourceChildFilter> filters = edge.Attributes.Scopes
             .Select(s => new ResourceChildFilter { Name = s.Name, Description = s.ScopeHelp });
 
@@ -266,8 +291,9 @@ class DocumentationBuilder(
 
         if (overrideEntry is not null)
         {
-            _logger.LogInformation("Applying edge type override for edge: {EdgeName} in product: {Product}, version: {Version}, vertex: {Vertex}",
-                edge.Attributes.Name, product, versionId, vertex);
+            _logger.LogInformation(
+                "Applying edge type override for {Product}.{Version}.{Vertex}.{Edge}: {Type}",
+                product, versionId, vertex, edge.Attributes.Name, overrideEntry.Type);
             type = overrideEntry.Type;
         }
 

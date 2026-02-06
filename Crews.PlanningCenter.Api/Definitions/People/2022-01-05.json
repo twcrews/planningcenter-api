@@ -4375,7 +4375,7 @@
           "Description": null,
           "Slug": "birthday_people",
           "Filters": [],
-          "IsCollection": true,
+          "IsCollection": false,
           "IsDeprecated": false
         },
         {
@@ -4697,7 +4697,7 @@
           "Description": null,
           "Slug": "stats",
           "Filters": [],
-          "IsCollection": true,
+          "IsCollection": false,
           "IsDeprecated": false
         },
         {

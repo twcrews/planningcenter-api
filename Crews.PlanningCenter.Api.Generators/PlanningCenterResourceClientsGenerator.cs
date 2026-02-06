@@ -27,8 +27,8 @@ class PlanningCenterResourceClientsGenerator
         if (child.IsDeprecated) summary = $"DEPRECATED: {summary}";
         summary = summary.ToXmlSummary();
 
-        string type = child.Type.ToPascalCase() + "Resource";
-        if (child.IsCollection) type += "Collection";
+        string type = child.Type.ToPascalCase() + "Client";
+        if (child.IsCollection) type = "Paginated" + type;
 
         writer.WriteLine("/// <summary>");
         writer.WriteLine($"/// {summary}");

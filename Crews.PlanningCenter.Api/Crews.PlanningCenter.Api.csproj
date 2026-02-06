@@ -56,10 +56,4 @@
     <PackageReference Include="Microsoft.Extensions.Options" Version="10.0.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Models/Resources/" />
-    <Folder Include="Models/Resources/People/" />
-    <Folder Include="Models/Resources/People/2025-11-10/" />
-  </ItemGroup>
-
 </Project>

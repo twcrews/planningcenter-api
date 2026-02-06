@@ -49,7 +49,7 @@ class PlanningCenterResourceClientsGenerator
         writer.WriteLine("/// <summary>");
         writer.WriteLine($"/// {summary}");
         writer.WriteLine("/// </summary>");
-        writer.WriteLine($"public {resourceClrType} {methodName}() => AddQueryParameter({includable.Parameter}, {includable.Value});");
+        writer.WriteLine($"public {resourceClrType} {methodName}() => SetQueryParameter({includable.Parameter}, {includable.Value});");
     }
 
     private void GenerateOrderable(IndentedTextWriter writer, ResourceOrderable orderable, string resourceClrType)
@@ -62,7 +62,7 @@ class PlanningCenterResourceClientsGenerator
         writer.WriteLine("/// <summary>");
         writer.WriteLine($"/// {summary}");
         writer.WriteLine("/// </summary>");
-        writer.WriteLine($"public {resourceClrType} {methodName}() => AddQueryParameter({orderable.Parameter}, {orderable.Value});");
+        writer.WriteLine($"public {resourceClrType} {methodName}() => SetQueryParameter({orderable.Parameter}, {orderable.Value});");
     }
 
     private void GenerateQueryable(IndentedTextWriter writer, ResourceQueryable queryable, string resourceClrType)
@@ -81,7 +81,7 @@ class PlanningCenterResourceClientsGenerator
         writer.WriteLine("/// <summary>");
         writer.WriteLine($"/// {summary}");
         writer.WriteLine("/// </summary>");
-        writer.WriteLine($"public {resourceClrType} {methodName}(string value) => AddQueryParameter({queryable.Parameter}, value);");
+        writer.WriteLine($"public {resourceClrType} {methodName}(string value) => SetQueryParameter({queryable.Parameter}, value);");
     }
 
     private void GenerateCollectionFetchMethod(IndentedTextWriter writer, Resource resource, string resourceClrType)

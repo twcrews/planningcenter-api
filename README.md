@@ -1,322 +1,429 @@
 # .NET Planning Center API Library
 
-A client library for the Planning Center API built on the 
-[JSON:API Framework](https://github.com/scott-mcdonald/JsonApiFramework).
+A strongly-typed .NET client library for the [Planning Center API](https://developer.planning.center/docs/), featuring automatic code generation and comprehensive authentication support.
+
+## Features
+
+✨ **Strongly-Typed API Clients** - Auto-generated from Planning Center API documentation
+🔐 **Multiple Authentication Methods** - Personal Access Token, OAuth Bearer, and OIDC
+🪶 **Lightweight** - Minimal dependencies, you control HttpClient configuration
+📦 **All Planning Center Products** - Calendar, Check-Ins, Giving, Groups, People, Publishing, Registrations, Services
+🔄 **Version Support** - Works with all API versions
+
+## Quick Links
 
 - [Installation](#installation)
-- [Configuration](#configuration)
-  - [Basic Setup](#basic-setup)
-  - [Advanced Configuration](#advanced-configuration)
-- [Usage](#usage)
-  - [Standalone](#standalone)
-- [Examples](#examples)
-  - [Fluent API Example](#fluent-api-example)
-  - [Querying Example](#querying-example)
-  - [Pagination Example](#pagination-example)
-  - [Mutation Example](#mutation-example)
-  - [Custom Resource Example](#custom-resource-example)
+- [Quick Start](#quick-start)
+- [Authentication](#authentication)
+- [Usage Examples](#usage-examples)
+- [Advanced Topics](#advanced-topics)
+- [Documentation](#documentation)
 
 ## Installation
 
-`Crews.PlanningCenter.Api` is available on [NuGet](https://www.nuget.org/packages/Crews.PlanningCenter.Api):
+Install via NuGet:
 
 ```sh
 dotnet add package Crews.PlanningCenter.Api
 ```
 
-## Configuration
+## Quick Start
 
-This library uses the [options pattern](https://learn.microsoft.com/en-us/dotnet/core/extensions/options). By default, the following configuration sections are defined:
+### Standalone Usage
 
-- `Authentication:PlanningCenter`: Mapped to the [`OpenIdConnectOptions`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.openidconnect.openidconnectoptions) class. Used for defining [OIDC](https://developer.planning.center/docs/#/overview/authentication%23oidc) options.
-- `PlanningCenterClient`: mapped to the `PlanningCenterClientOptions` class. Used for defining all other options for the library.
+```csharp
+using Crews.PlanningCenter.Api.Authentication;
+using Crews.PlanningCenter.Api.People.V2025_11_10;
 
-### Basic Setup
+// Configure HttpClient with helper methods
+var httpClient = new HttpClient()
+    .ConfigureForPlanningCenter()
+    .AddPlanningCenterAuth(new PlanningCenterPersonalAccessToken
+    {
+        AppId = "your-app-id",
+        Secret = "your-secret"
+    });
 
-Add the following to `appsettings.json`:
+// Use generated clients
+var client = new PersonClient(httpClient,
+    new Uri("/people/v2/people/123", UriKind.Relative));
 
+var response = await client.GetAsync();
+Console.WriteLine($"Person name: {response.Data?.Attributes.Name}");
+```
+
+### ASP.NET Core with Dependency Injection
+
+```csharp
+// Program.cs
+using Crews.PlanningCenter.Api.Authentication;
+
+var builder = WebApplication.CreateBuilder(args);
+
+// Configure HttpClient for Planning Center API
+builder.Services.AddHttpClient("PlanningCenterApi", client =>
+{
+    client.ConfigureForPlanningCenter()
+          .AddPlanningCenterAuth(new PlanningCenterPersonalAccessToken
+          {
+              AppId = builder.Configuration["PlanningCenter:AppId"]!,
+              Secret = builder.Configuration["PlanningCenter:Secret"]!
+          });
+});
+
+var app = builder.Build();
+app.Run();
+```
+
+**appsettings.json:**
 ```json
 {
-  "Authentication": {
-    "PlanningCenter": {
-      "ClientId": "your-client-id",
-      "ClientSecret": "your-client-secret",
-      "Scope": [
-        "calendar",
-        "people",
-        "registrations"
-      ]
-    }
+  "PlanningCenter": {
+    "AppId": "your-app-id",
+    "Secret": "your-secret"
   }
 }
 ```
 
-Then, add authentication services to `Program.cs`. This example uses cookies:
+### Using in Your Services
 
-```cs
-builder.Services.AddAuthentication(options =>
+```csharp
+using Crews.PlanningCenter.Api.People.V2025_11_10;
+
+public class PeopleService
 {
-  options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-  options.DefaultChallengeScheme = PlanningCenterOAuthDefaults.AuthenticationScheme;
-})
-.AddCookie()
-.AddPlanningCenter();
+    private readonly HttpClient _httpClient;
 
-// Don't forget to register the client itself!
-builder.Services.AddPlanningCenterClient();
-```
-
-### Advanced Configuration
-
-You can configure the `PlanningCenterClient` configuration section with the following options:
-
-| Option Name | Type | Description | Default |
-| ----------- | ---- | ----------- | ------- |
-| `ApiBaseAddress` | `Uri` | The base URL of the Planning Center API. | `https://api.planningcenteronline.com` |
-| `HttpClientName` | `string` | The [name](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/http-requests#named-clients) of the internal `HttpClient` instance. | `__defaultPlanningCenterClient` |
-| `UserAgent` | `string` | The user agent string to send on API requests as [required](https://developer.planning.center/docs/#/overview/authentication%23specifying-user-agent) by Planning Center. | `Generic .NET Planning Center API Client` |
-| `PersonalAccessToken` | `PlanningCenterPersonalAccessToken` | An optional Planning Center [personal access token](https://developer.planning.center/docs/#/overview/authentication%23personal-access-token). | N/A |
-
-`appsettings.json` example:
-
-```json
-{
-  "PlanningCenterClient": {
-    "ApiBaseAddress": "http://some-address.com",
-    "HttpClientName": "my-custom-client",
-    "UserAgent": "Some custom user agent string",
-    "PersonalAccessToken": {
-      "AppId": "my-app-id",
-      "Secret": "my-secret"
+    public PeopleService(IHttpClientFactory httpClientFactory)
+    {
+        _httpClient = httpClientFactory.CreateClient("PlanningCenterApi");
     }
-  }
+
+    public async Task<Person?> GetPersonAsync(string personId)
+    {
+        var client = new PersonClient(_httpClient,
+            new Uri($"/people/v2/people/{personId}", UriKind.Relative));
+
+        var response = await client.GetAsync();
+        return response.Data?.Attributes;
+    }
 }
 ```
 
-Manual configuration example:
+## Authentication
 
-```cs
-builder.Services.AddPlanningCenterClient(options =>
+The library provides helper extension methods to configure authentication on your HttpClient.
+
+### 1. Personal Access Token (Server-to-Server)
+
+Best for server-to-server integrations and development:
+
+```csharp
+using Crews.PlanningCenter.Api.Authentication;
+
+var httpClient = new HttpClient()
+    .ConfigureForPlanningCenter()
+    .AddPlanningCenterAuth(new PlanningCenterPersonalAccessToken
+    {
+        AppId = "your-app-id",
+        Secret = "your-secret"
+    });
+```
+
+### 2. OAuth Bearer Token
+
+When you already have an access token:
+
+```csharp
+var httpClient = new HttpClient()
+    .ConfigureForPlanningCenter()
+    .AddPlanningCenterAuth("your-access-token");
+```
+
+### 3. OIDC Authentication (Web Applications)
+
+For web applications with user authentication, add Planning Center OIDC authentication:
+
+```csharp
+using Crews.PlanningCenter.Api.Authentication;
+
+// Add Planning Center OIDC authentication
+builder.Services.AddPlanningCenterAuthentication(options =>
 {
-  options.ApiBaseAddress = new("http://some-address.com");
-  options.HttpClientName = "my-custom-client";
-  options.UserAgent = "Some custom user agent string";
+    options.ClientId = builder.Configuration["PlanningCenter:ClientId"]!;
+    options.ClientSecret = builder.Configuration["PlanningCenter:ClientSecret"]!;
+    options.Scopes = PlanningCenterOAuthScope.OpenId | PlanningCenterOAuthScope.People;
+});
 
-  // The strings here are hardcoded for example.
-  // These credentials should never be stored in your code.
-  options.PersonalAccessToken = new()
-  {
-    AppId = "my-app-id",
-    Secret = "my-secret"
-  };
+// Configure HttpClient for API calls
+// Note: For per-request authentication, implement a custom DelegatingHandler
+// to extract the token from HttpContext and add it to each request
+builder.Services.AddHttpClient("PlanningCenterApi", client =>
+{
+    client.ConfigureForPlanningCenter();
 });
 ```
 
-## Usage
+### Authentication Helpers Reference
 
-You can inject `IPlanningCenterClient` into your controllers or services.
+- **`ConfigureForPlanningCenter()`** - Sets base URL and JSON:API accept header
+- **`AddPlanningCenterAuth(PlanningCenterPersonalAccessToken)`** - Adds PAT authentication
+- **`AddPlanningCenterAuth(string bearerToken)`** - Adds OAuth bearer token authentication
 
-```cs
-[Authorize]
-public class MyController(IPlanningCenterClient _planningCenterClient) : Controller
+## Adding Resilience Policies
+
+You control HttpClient configuration, including resilience policies. Add retry, circuit breaker, and timeout policies using .NET's built-in resilience handler or Polly.
+
+### Option 1: .NET 8+ Built-in Resilience (Recommended)
+
+```csharp
+builder.Services.AddHttpClient("PlanningCenterApi", client =>
 {
-  public async Task<IActionResult> Profile()
-  {
-    // API calls automatically use the authenticated user's OAuth token, or your personal access token
-    var currentUser = await _planningCenterClient.People.LatestVersion
-      .GetRelated<PersonResource>("me")
-      .GetAsync();
+    client.ConfigureForPlanningCenter()
+          .AddPlanningCenterAuth(token);
+})
+.AddStandardResilienceHandler(); // Built-in retry, circuit breaker, timeout
+```
 
-    return View(currentUser.Data);
-  }
+### Option 2: Custom Polly Policies
+
+First, add the Polly package:
+
+```sh
+dotnet add package Microsoft.Extensions.Http.Polly
+```
+
+Then configure policies:
+
+```csharp
+using Polly;
+using Polly.Extensions.Http;
+
+builder.Services.AddHttpClient("PlanningCenterApi", client =>
+{
+    client.ConfigureForPlanningCenter()
+          .AddPlanningCenterAuth(token);
+})
+.AddTransientHttpErrorPolicy(policy =>
+    policy.WaitAndRetryAsync(3, retryAttempt =>
+        TimeSpan.FromSeconds(Math.Pow(2, retryAttempt))))
+.AddTransientHttpErrorPolicy(policy =>
+    policy.CircuitBreakerAsync(5, TimeSpan.FromSeconds(30)));
+```
+
+## Usage Examples
+
+### Fetching a Single Resource
+
+```csharp
+public async Task<Person?> GetPersonAsync(string personId)
+{
+    var client = new PersonClient(_httpClient,
+        new Uri($"/people/v2/people/{personId}", UriKind.Relative));
+
+    try
+    {
+        var response = await client.GetAsync();
+        return response.Data?.Attributes;
+    }
+    catch (JsonApiException ex) when (ex.StatusCode == 404)
+    {
+        return null;
+    }
 }
 ```
 
-### Standalone
+### Fetching a Collection
 
-Start by creating an `HttpClient` instance:
-
-```cs
-HttpClient client = new();
-client.SafelySetBaseAddress(new("https://api.planningcenteronline.com"));
-
-// This example uses a personal access token.
-// If you want to use OAuth in a standalone client, you're on your own.
-PlanningCenterPersonalAccessToken token = new()
+```csharp
+public async Task<IEnumerable<Person>> GetPeopleAsync(int limit = 25)
 {
-  AppID = "yourAppIdHere",
-  Secret = "superSecretPasswordHere"
-};
-client.DefaultRequestHeaders.Authorization = token;
-```
+    var client = new PeopleClient(_httpClient,
+        new Uri("/people/v2/people", UriKind.Relative))
+        .Take(limit);
 
-Use this `HttpClient` to create a new API client of your choice, and you're off to the races!
-
-```cs
-CalendarClient calendar = new(client);
-
-var myEvent = await calendar.LatestVersion.Events.WithID("123").GetAsync();
-Console.WriteLine($"My event is called {myEvent.Data.Name}!");
-```
-
-## Examples
-
-### Fluent API Example
-
-You can chain API resource calls to navigate the API:
-
-```cs
-var myEvent = await calendar.LatestVersion
-  .Events
-  .WithID("123")
-  .Owner
-  .EventResourceRequests
-  .WithID("456")
-  .ResourceBookings
-  .WithID("789")
-  .EventInstance
-  .Event
-  .GetAsync();
-```
-
-### Querying Example
-
-You can easily _include_ related resources, or _sort_ and _query_ collections:
-
-```cs
-var myAttachments = await calendar.LatestVersion.Attachments
-  .Include(AttachmentIncludable.Event)
-  .OrderBy(AttachmentOrderable.FileSize, Order.Descending)
-  .Query((AttachmentQueryable.Name, "myAttachment"), (AttachmentQueryable.Description, "The best attachment."))
-  .GetAllAsync();
-
-// Reading included resources must be done manually.
-var includedResources = myAttachments.JsonApiDocument.GetIncludedResources();
-```
-
-### Pagination Example
-
-You can specify a count and an offset for collections of resources:
-
-```cs
-var myAttachments = await calendar.LatestVersion.Attachments.GetAllAsync();
-
-Console.WriteLine(myAttachments.Metadata.TotalCount);  // Get total count of items available on the API
-Console.WriteLine(myAttachments.Metadata.Next.Offset);  // Get item offset for next page of items
-
-// Get only first five items
-myAttachments = await calendar.LatestVersion.Attachments.GetAllAsync(count: 5);
-
-// Get ten items, offset by five items
-myAttachments = await calendar.LatestVersion.Attachments.GetAllAsync(count: 10, offset: 5);
-```
-
-### Mutation Example
-
-You can also `POST`, `PATCH`, and `DELETE` resources with these options:
-
-```cs
-var myEventConnection = calendar.LatestVersion
-  .Events
-  .WithID("123")
-  .EventConnections
-  .WithID("456");
-
-EventConnection newConnection = new()
-{
-  ConectedToId = "123",
-  ConnectedToName = "Test"
-};
-
-// POST
-var postResult = await myEventConnection.PostAsync(newConnection);
-
-// PATCH
-var patchResult = await myEventConnection.PatchAsync(newConnection);
-
-// DELETE
-await myEventConnection.DeleteAsync();
-```
-
-### Custom Resource Example
-
-You can define your own resource types by inheriting from either `PlanningCenterSingletonFetchableResource` or `PlanningCenterPaginatedFetchableResource`.
-
-This provides forward compatibility by allowing you to define and fetch any resources not yet implemented in this library.
-
-#### Model Creation
-
-First, create a model class:
-
-```cs
-[JsonApiName("my_custom_resource")]
-public record MyCustomModel
-{
-  [JsonApiName("my_first_property")]
-  public string? MyFirstProperty { get; init; }
-
-  [JsonProperty("my_second_property")]
-  public int? MySecondProperty { get; init; }
+    var response = await client.GetAsync();
+    return response.Data.Select(r => r.Attributes);
 }
 ```
 
-Next, you can create your resource class.
+### Creating, Updating, and Deleting Resources
 
-#### Singleton Resource
+```csharp
+// POST - Create a new resource
+var newPerson = new Person { FirstName = "John", LastName = "Doe" };
+var createClient = new PeopleClient(_httpClient,
+    new Uri("/people/v2/people", UriKind.Relative));
+var createResponse = await createClient.PostAsync(newPerson);
 
-```cs
-public class MyCustomResource 
-  : PlanningCenterSingletonFetchableResource<MyCustomModel, MyCustomResource, PeopleDocumentContext>,
-  IIncludable<MyCustomResource, MyCustomResourceIncludable>
+// PATCH - Update an existing resource
+var updatePerson = new Person { FirstName = "Jane" };
+var updateClient = new PersonClient(_httpClient,
+    new Uri($"/people/v2/people/{personId}", UriKind.Relative));
+var updateResponse = await updateClient.PatchAsync(updatePerson);
+
+// DELETE - Remove a resource
+var deleteClient = new PersonClient(_httpClient,
+    new Uri($"/people/v2/people/{personId}", UriKind.Relative));
+await deleteClient.DeleteAsync();
+```
+
+## Advanced Topics
+
+### Querying and Filtering
+
+Use fluent methods to filter, sort, and include related resources:
+
+```csharp
+// Include related resources
+var client = new PeopleClient(_httpClient,
+    new Uri("/people/v2/people", UriKind.Relative))
+    .Include("emails", "phone_numbers")
+    .Take(25);
+
+var response = await client.GetAsync();
+
+// Sort results
+var sortedClient = new PeopleClient(_httpClient,
+    new Uri("/people/v2/people", UriKind.Relative))
+    .OrderBy("last_name")
+    .Take(100);
+
+// Filter with query parameters
+var filteredClient = new PeopleClient(_httpClient,
+    new Uri("/people/v2/people", UriKind.Relative))
+    .Where("first_name", "John")
+    .Take(50);
+```
+
+### Pagination
+
+Handle pagination with offset and limit:
+
+```csharp
+public async Task<IEnumerable<Person>> GetAllPeopleAsync()
 {
-  // In this example, your resource has child resources of type "people"
-  public PeopleResourceCollection People => GetRelated<PeopleResourceCollection>("people");
+    var allPeople = new List<Person>();
+    int offset = 0;
+    const int pageSize = 100;
+    bool hasMore = true;
 
-  public MyCustomSingletonResource(Uri uri, HttpClient client) : base(uri, client) { }
+    while (hasMore)
+    {
+        var client = new PeopleClient(_httpClient,
+            new Uri("/people/v2/people", UriKind.Relative))
+            .Skip(offset)
+            .Take(pageSize);
 
-  // In this example, your resource has certain includable resources
-  public MyCustomResource Include(params MyCustomResourceIncludable[] included) => base.Include(included);
+        var response = await client.GetAsync();
+        allPeople.AddRange(response.Data.Select(r => r.Attributes));
+
+        offset += pageSize;
+        hasMore = response.Data.Count == pageSize;
+    }
+
+    return allPeople;
 }
 ```
 
-#### Paginated Resource
+### Error Handling
 
-> [!IMPORTANT]
-> Creating a paginated resource type requires the existence of a singleton resource type for the same model.
+Handle Planning Center API errors:
 
-```cs
-public class MyCustomResourceCollection 
-  : PlanningCenterPaginatedFetchableResource<MyCustomModel, MyCustomResourceCollection, MyCustomResource, PeopleDocumentContext>,
-  IIncludable<MyCustomResourceCollection, MyCustomResourceIncludable>,
-  IOrderable<MyCustomResourceCollection, MyCustomResourceOrderable>,
-  IFilterable<MyCustomResourceCollection, MyCustomResourceQueryable>
+```csharp
+using Crews.PlanningCenter.Api.Exceptions;
+
+try
 {
-  public MyCustomResourceCollection(Uri uri, HttpClient client) : base(uri, client) { }
-
-  // In this example, your resource has certain includable resources
-  public MyCustomResourceCollection Include(params MyCustomResourceIncludable[] included) => base.Include(included);
-
-  // In this example, your resource has certain orderable properties
-  public MyCustomResourceCollection OrderBy(MyCustomResourceOrderable orderable, Order order = Order.Ascending) => base.OrderBy(orderable, order);
-
-  // In this example, your resource has certain queryable properties
-  public MyCustomResourceCollection Query(params (MyCustomResourceQueryable, string)[] queries) => base.Query(queries);
+    var response = await client.GetAsync();
+}
+catch (JsonApiException ex) when (ex.StatusCode == 404)
+{
+    // Resource not found
+    Console.WriteLine("Resource not found");
+}
+catch (JsonApiException ex) when (ex.StatusCode == 429)
+{
+    // Rate limit exceeded
+    var retryAfter = ex.RetryAfter ?? TimeSpan.FromSeconds(60);
+    await Task.Delay(retryAfter);
+    // Retry the request
+}
+catch (JsonApiException ex)
+{
+    // Other API errors
+    Console.WriteLine($"API Error: {ex.StatusCode} - {ex.Message}");
 }
 ```
 
-#### Accessing your custom resources
+### Working with Multiple API Versions
 
-Simply call the `GetRelated<T>()` method on any singleton resource to access your custom resource:
+Each product client supports multiple API versions:
 
-```cs
-// Singleton
-var currentUser = await planningCenterApi.People.LatestVersion
-  .GetRelated<MyCustomResource>("my_custom_resource");
+```csharp
+using Crews.PlanningCenter.Api.People.V2024_09_01;
+using Crews.PlanningCenter.Api.People.V2025_11_10;
 
-// Paginated
-var customResources = await planningCenterApi.People.LatestVersion
-  .GetRelated<MyCustomResourceCollection>("my_custom_resources");
+// Use a specific version
+var oldClient = new V2024_09_01.PersonClient(_httpClient, uri);
+var newClient = new V2025_11_10.PersonClient(_httpClient, uri);
 ```
+
+## Documentation
+
+### Detailed Guides
+
+- **[Sandbox Application](Crews.PlanningCenter.Api.Sandbox/README.md)** - Working Blazor example with OIDC authentication
+- **[CLAUDE.md](CLAUDE.md)** - Developer guide for contributing to this project
+- **[MIGRATION_V3.md](MIGRATION_V3.md)** - Migration guide from v2.x to v3.0
+
+### External Resources
+
+- [Planning Center API Documentation](https://developer.planning.center/docs/)
+- [Planning Center API Explorer](https://api.planningcenteronline.com/)
+- [JSON:API Specification](https://jsonapi.org/)
+
+## Supported Products
+
+All Planning Center products are supported with auto-generated clients:
+
+- **Calendar** - Event scheduling and room booking
+- **Check-Ins** - Event check-in management
+- **Giving** - Donation tracking and management
+- **Groups** - Small group organization
+- **People** - Contact and member management
+- **Publishing** - Content publishing workflows
+- **Registrations** - Event registration forms
+- **Services** - Service planning and scheduling
+
+Each product supports multiple API versions, with clients auto-generated for each version.
+
+## Best Practices
+
+1. **Use IHttpClientFactory** - Always use `IHttpClientFactory` in ASP.NET Core applications for proper HttpClient lifetime management
+2. **Add Resilience Policies** - Use `.AddStandardResilienceHandler()` or Polly policies in production for retry and circuit breaker support
+3. **Store Credentials Securely** - Use User Secrets for development and environment variables or Key Vault for production
+4. **Handle Rate Limits** - Planning Center APIs have rate limits; implement appropriate retry logic with exponential backoff
+5. **Use Specific API Versions** - Pin to specific API versions for stability; test before upgrading
+
+## Testing
+
+Try the library quickly with the included Sandbox application:
+
+```bash
+cd Crews.PlanningCenter.Api.Sandbox
+dotnet run
+```
+
+See the [Sandbox README](Crews.PlanningCenter.Api.Sandbox/README.md) for setup instructions.
+
+## Contributing
+
+Contributions are welcome! Please read [CLAUDE.md](CLAUDE.md) for development guidelines and project architecture.
+
+## License
+
+This project is open source. See the repository for license details.
 
 ***
 

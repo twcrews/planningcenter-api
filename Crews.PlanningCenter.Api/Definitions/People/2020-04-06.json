@@ -6,6 +6,7 @@
     {
       "Id": "address",
       "Name": "Address",
+      "ResourceName": "AddressResource",
       "Description": "An address represents a physical and/or mailing address for a person.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -77,66 +78,6 @@
           "Value": "city",
           "Type": "string",
           "Description": "prefix with a hyphen (-city) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "country_code",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-country_code) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "created_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-created_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "location",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-location) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "primary",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-primary) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "state",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-state) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "street",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-street) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "street_line_1",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-street_line_1) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "street_line_2",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-street_line_2) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "updated_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "zip",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-zip) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -192,11 +133,14 @@
       ],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "app",
       "Name": "App",
+      "ResourceName": "AppResource",
       "Description": "An app is one of the handful of apps that Planning Center offers that organizations can subscribe to, e.g. Services, Registrations, etc.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -221,12 +165,6 @@
           "Value": "name",
           "Type": "string",
           "Description": "prefix with a hyphen (-name) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "url",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-url) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -247,11 +185,33 @@
       ],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
+    },
+    {
+      "Id": "birthday_people",
+      "Name": "BirthdayPeople",
+      "ResourceName": "BirthdayPeopleResource",
+      "Description": "Returns upcoming birthdays for the organization.\n\nNote: This endpoint will always only return the first 15 people having a birthday in the next 30 days, ordered by birthday, ascending.\n",
+      "Deprecated": false,
+      "CollectionOnly": true,
+      "Attributes": [],
+      "Relationships": [],
+      "Children": [],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "GenerateResource": false,
+      "GenerateClients": true
     },
     {
       "Id": "campus",
       "Name": "Campus",
+      "ResourceName": "CampusResource",
       "Description": "A Campus is a location belonging to an Organization",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -397,13 +357,6 @@
           "Description": "include associated lists",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "service_times",
-          "Description": "include associated service_times",
-          "CanAssignOnCreate": true,
-          "CanAssignOnUpdate": true
         }
       ],
       "CanOrderBy": [
@@ -412,18 +365,6 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-name) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "updated_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -451,11 +392,14 @@
       ],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "carrier",
       "Name": "Carrier",
+      "ResourceName": "CarrierResource",
       "Description": null,
       "Deprecated": false,
       "CollectionOnly": true,
@@ -485,22 +429,19 @@
           "Value": "international",
           "Type": "string",
           "Description": "prefix with a hyphen (-international) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-name) to reverse the order"
         }
       ],
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "condition",
       "Name": "Condition",
+      "ResourceName": "ConditionResource",
       "Description": "A condition is an individual criterion used by a List Rule.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -580,48 +521,6 @@
           "Value": "application",
           "Type": "string",
           "Description": "prefix with a hyphen (-application) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "comparison",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-comparison) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "created_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-created_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "definition_class",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-definition_class) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "definition_identifier",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-definition_identifier) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "description",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-description) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "settings",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-settings) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "updated_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -684,11 +583,14 @@
       ],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "connected_person",
       "Name": "ConnectedPerson",
+      "ResourceName": "ConnectedPersonResource",
       "Description": "A Connected Person is an account from a different organization linked to an account in this organization.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -748,11 +650,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "custom_sender",
       "Name": "CustomSender",
+      "ResourceName": "CustomSenderResource",
       "Description": "A custom sender that can be used when sending emails.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -819,40 +724,19 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-name) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "updated_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "verification_requested_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-verification_requested_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "verified_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-verified_at) to reverse the order"
         }
       ],
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "email",
       "Name": "Email",
+      "ResourceName": "EmailResource",
       "Description": "An email represents an email address and location.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -914,30 +798,6 @@
           "Value": "address",
           "Type": "string",
           "Description": "prefix with a hyphen (-address) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "created_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-created_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "location",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-location) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "primary",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-primary) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "updated_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -986,11 +846,14 @@
       ],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "field_datum",
       "Name": "FieldDatum",
+      "ResourceName": "FieldDatumResource",
       "Description": "A field datum is an individual piece of data for a custom field.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -1080,20 +943,6 @@
           "Description": "include associated field_definition",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
-        },
-        {
-          "Parameter": "include",
-          "Value": "field_option",
-          "Description": "include associated field_option",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "tab",
-          "Description": "include associated tab",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [
@@ -1102,30 +951,6 @@
           "Value": "file",
           "Type": "string",
           "Description": "prefix with a hyphen (-file) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "file_content_type",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-file_content_type) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "file_name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-file_name) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "file_size",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-file_size) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "value",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-value) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -1174,11 +999,14 @@
       ],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "field_definition",
       "Name": "FieldDefinition",
+      "ResourceName": "FieldDefinitionResource",
       "Description": "A field definition represents a custom field -- its name, data type, etc.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -1254,13 +1082,6 @@
           "Description": "include associated field_options",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "tab",
-          "Description": "include associated tab",
-          "CanAssignOnCreate": true,
-          "CanAssignOnUpdate": true
         }
       ],
       "CanOrderBy": [
@@ -1269,42 +1090,6 @@
           "Value": "config",
           "Type": "string",
           "Description": "prefix with a hyphen (-config) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "data_type",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-data_type) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "deleted_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-deleted_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-name) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "sequence",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-sequence) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "slug",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-slug) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "tab_id",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-tab_id) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -1360,11 +1145,14 @@
       ],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "field_option",
       "Name": "FieldOption",
+      "ResourceName": "FieldOptionResource",
       "Description": "A field option represents an individual option for a custom field of type \u0022select\u0022 or \u0022checkboxes\u0022.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -1396,12 +1184,6 @@
           "Value": "sequence",
           "Type": "string",
           "Description": "prefix with a hyphen (-sequence) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "value",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-value) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -1422,11 +1204,14 @@
       ],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "form",
       "Name": "Form",
+      "ResourceName": "FormResource",
       "Description": "A custom form for people to fill out.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -1556,13 +1341,6 @@
           "Description": "include associated campus",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
-        },
-        {
-          "Parameter": "include",
-          "Value": "category",
-          "Description": "include associated category",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [
@@ -1571,42 +1349,6 @@
           "Value": "active",
           "Type": "string",
           "Description": "prefix with a hyphen (-active) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "archived_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-archived_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "created_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-created_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "deleted_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-deleted_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "description",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-description) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-name) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "updated_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -1627,11 +1369,14 @@
       ],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "form_category",
       "Name": "FormCategory",
+      "ResourceName": "FormCategoryResource",
       "Description": "A Form Category",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -1661,18 +1406,6 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-name) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "updated_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -1700,11 +1433,14 @@
       ],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "form_field",
       "Name": "FormField",
+      "ResourceName": "FormFieldResource",
       "Description": "A field in a custom form.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -1802,28 +1538,19 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "sequence",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-sequence) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "updated_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "form_field_option",
       "Name": "FormFieldOption",
+      "ResourceName": "FormFieldOptionResource",
       "Description": "A field option on a custom form field.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -1871,28 +1598,19 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "sequence",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-sequence) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "updated_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "form_submission",
       "Name": "FormSubmission",
+      "ResourceName": "FormSubmissionResource",
       "Description": "A form submission.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -1972,27 +1690,6 @@
           "Description": "include associated form",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
-        },
-        {
-          "Parameter": "include",
-          "Value": "form_fields",
-          "Description": "include associated form_fields",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "form_submission_values",
-          "Description": "include associated form_submission_values",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "person",
-          "Description": "include associated person",
-          "CanAssignOnCreate": true,
-          "CanAssignOnUpdate": true
         }
       ],
       "CanOrderBy": [
@@ -2001,28 +1698,19 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "person.first_name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-person.first_name) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "person.last_name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-person.last_name) to reverse the order"
         }
       ],
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "form_submission_value",
       "Name": "FormSubmissionValue",
+      "ResourceName": "FormSubmissionValueResource",
       "Description": "A form submission value.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -2064,11 +1752,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "grade",
       "Name": "Grade",
+      "ResourceName": "GradeResource",
       "Description": null,
       "Deprecated": false,
       "CollectionOnly": true,
@@ -2091,11 +1782,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "household",
       "Name": "Household",
+      "ResourceName": "HouseholdResource",
       "Description": "A household links people together and can have a primary contact. To add a person to an existing household, use the HouseholdMemberships endpoint.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -2194,30 +1888,6 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "member_count",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-member_count) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-name) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "primary_contact_name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-primary_contact_name) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "updated_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -2259,11 +1929,14 @@
       ],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "household_membership",
       "Name": "HouseholdMembership",
+      "ResourceName": "HouseholdMembershipResource",
       "Description": "A household membership is the linking record between a household and a person.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -2319,13 +1992,6 @@
           "Description": "include associated household",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "person",
-          "Description": "include associated person",
-          "CanAssignOnCreate": true,
-          "CanAssignOnUpdate": true
         }
       ],
       "CanOrderBy": [
@@ -2334,12 +2000,6 @@
           "Value": "pending",
           "Type": "string",
           "Description": "prefix with a hyphen (-pending) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "person_name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-person_name) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -2360,11 +2020,14 @@
       ],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "inactive_reason",
       "Name": "InactiveReason",
+      "ResourceName": "InactiveReasonResource",
       "Description": "An inactive reason is a small bit of text indicating why a member is no longer active.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -2397,11 +2060,14 @@
       ],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "list",
       "Name": "List",
+      "ResourceName": "ListResource",
       "Description": "A list is a powerful tool for finding and grouping people together using any criteria imaginable.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -2617,55 +2283,6 @@
           "Description": "include associated campus",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
-        },
-        {
-          "Parameter": "include",
-          "Value": "category",
-          "Description": "include associated category",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "created_by",
-          "Description": "include associated created_by",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "mailchimp_sync_status",
-          "Description": "include associated mailchimp_sync_status",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "people",
-          "Description": "include associated people",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "rules",
-          "Description": "include associated rules",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "shares",
-          "Description": "include associated shares",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "updated_by",
-          "Description": "include associated updated_by",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [
@@ -2674,48 +2291,6 @@
           "Value": "batch_completed_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-batch_completed_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "campus_id",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-campus_id) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "created_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-created_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "list_categories.name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-list_categories.name) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "list_category_id",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-list_category_id) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-name) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "name_or_description",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-name_or_description) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "updated_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -2757,11 +2332,14 @@
       ],
       "Postable": false,
       "Patchable": true,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "list_category",
       "Name": "ListCategory",
+      "ResourceName": "ListCategoryResource",
       "Description": "A List Category",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -2821,24 +2399,6 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-name) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "organization_id",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-organization_id) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "updated_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -2873,11 +2433,14 @@
       ],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "list_result",
       "Name": "ListResult",
+      "ResourceName": "ListResultResource",
       "Description": "A list result",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -2915,22 +2478,19 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "updated_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "list_share",
       "Name": "ListShare",
+      "ResourceName": "ListShareResource",
       "Description": "A list share indicates who has access to edit a list.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -2990,12 +2550,6 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "group",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-group) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -3030,11 +2584,14 @@
       ],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "list_star",
       "Name": "ListStar",
+      "ResourceName": "ListStarResource",
       "Description": "A starred list for a person indicates it is special in some way",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -3052,11 +2609,14 @@
       "CanQueryBy": [],
       "Postable": true,
       "Patchable": false,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "mailchimp_sync_status",
       "Name": "MailchimpSyncStatus",
+      "ResourceName": "MailchimpSyncStatusResource",
       "Description": "The status of syncing a List with Mailchimp.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -3094,11 +2654,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "marital_status",
       "Name": "MaritalStatus",
+      "ResourceName": "MaritalStatusResource",
       "Description": "A martial status represents a member\u0027s current status, e.g. married, single, etc.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -3118,12 +2681,6 @@
           "Value": "sequence",
           "Type": "string",
           "Description": "prefix with a hyphen (-sequence) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "value",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-value) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -3137,11 +2694,14 @@
       ],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "message",
       "Name": "Message",
+      "ResourceName": "MessageResource",
       "Description": "A message is an individual email or sms text sent to a member. Every message has a parent message group.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -3269,13 +2829,6 @@
           "Description": "include associated message_group",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
-        },
-        {
-          "Parameter": "include",
-          "Value": "to",
-          "Description": "include associated to",
-          "CanAssignOnCreate": true,
-          "CanAssignOnUpdate": true
         }
       ],
       "CanOrderBy": [
@@ -3284,78 +2837,6 @@
           "Value": "app_name",
           "Type": "string",
           "Description": "prefix with a hyphen (-app_name) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "bounced_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-bounced_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "created_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-created_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "delivery_status",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-delivery_status) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "file",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-file) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "from_address",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-from_address) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "from_name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-from_name) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "kind",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-kind) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "reject_reason",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-reject_reason) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "rejection_notification_sent_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-rejection_notification_sent_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "sent_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-sent_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "subject",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-subject) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "to_addresses",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-to_addresses) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -3446,11 +2927,14 @@
       ],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "message_group",
       "Name": "MessageGroup",
+      "ResourceName": "MessageGroupResource",
       "Description": "A message group represents one or more emails or text messages sent from one of the Planning Center apps. The message group indicates the from person, app, etc.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -3548,20 +3032,6 @@
           "Description": "include associated app",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "from",
-          "Description": "include associated from",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "messages",
-          "Description": "include associated messages",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [
@@ -3570,66 +3040,6 @@
           "Value": "contains_user_generated_content",
           "Type": "string",
           "Description": "prefix with a hyphen (-contains_user_generated_content) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "created_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-created_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "from_address",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-from_address) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "message_count",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-message_count) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "message_type",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-message_type) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "reply_to_address",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-reply_to_address) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "reply_to_name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-reply_to_name) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "subject",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-subject) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "system_message",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-system_message) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "transactional_message",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-transactional_message) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "uuid",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-uuid) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -3713,11 +3123,14 @@
       ],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "name_prefix",
       "Name": "NamePrefix",
+      "ResourceName": "NamePrefixResource",
       "Description": "A name prefix is one of Mr., Mrs., etc.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -3750,11 +3163,14 @@
       ],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "name_suffix",
       "Name": "NameSuffix",
+      "ResourceName": "NameSuffixResource",
       "Description": "A name suffix is one of Sr., Jr., etc.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -3787,11 +3203,14 @@
       ],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "note",
       "Name": "Note",
+      "ResourceName": "NoteResource",
       "Description": "A note is text with a category connected to a person\u2019s profile.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -3899,20 +3318,6 @@
           "Description": "include associated category",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "created_by",
-          "Description": "include associated created_by",
-          "CanAssignOnCreate": true,
-          "CanAssignOnUpdate": true
-        },
-        {
-          "Parameter": "include",
-          "Value": "person",
-          "Description": "include associated person",
-          "CanAssignOnCreate": true,
-          "CanAssignOnUpdate": true
         }
       ],
       "CanOrderBy": [
@@ -3921,36 +3326,6 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "display_date",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-display_date) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "id",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-id) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "note",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-note) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "note_category_id",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-note_category_id) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "updated_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -3971,11 +3346,14 @@
       ],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "note_category",
       "Name": "NoteCategory",
+      "ResourceName": "NoteCategoryResource",
       "Description": "A Note Category",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -4060,20 +3438,6 @@
           "Description": "include associated shares",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "subscribers",
-          "Description": "include associated subscribers",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "subscriptions",
-          "Description": "include associated subscriptions",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [
@@ -4082,30 +3446,6 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "locked",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-locked) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-name) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "organization_id",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-organization_id) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "updated_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -4147,11 +3487,14 @@
       ],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "note_category_share",
       "Name": "NoteCategoryShare",
+      "ResourceName": "NoteCategoryShareResource",
       "Description": "A note category share defines who can view notes in a category.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -4218,11 +3561,14 @@
       ],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "note_category_subscription",
       "Name": "NoteCategorySubscription",
+      "ResourceName": "NoteCategorySubscriptionResource",
       "Description": "A subscription for note categories",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -4278,12 +3624,6 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "updated_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -4304,11 +3644,14 @@
       ],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "organization",
       "Name": "Organization",
+      "ResourceName": "OrganizationResource",
       "Description": "The organization represents a single church. Every other resource is scoped to this record.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -4780,11 +4123,33 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
+    },
+    {
+      "Id": "organization_statistics",
+      "Name": "OrganizationStatistics",
+      "ResourceName": "OrganizationStatisticsResource",
+      "Description": "Returns statistics for the organization.",
+      "Deprecated": false,
+      "CollectionOnly": true,
+      "Attributes": [],
+      "Relationships": [],
+      "Children": [],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": [],
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "GenerateResource": false,
+      "GenerateClients": true
     },
     {
       "Id": "people_import",
       "Name": "PeopleImport",
+      "ResourceName": "PeopleImportResource",
       "Description": "A PeopleImport is a record of an ongoing or previous import from a CSV file.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -4925,11 +4290,14 @@
       ],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "people_import_conflict",
       "Name": "PeopleImportConflict",
+      "ResourceName": "PeopleImportConflictResource",
       "Description": "A PeopleImportConflict is a record of change that will occur if the parent PeopleImport is completed.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -4997,11 +4365,14 @@
       ],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "people_import_history",
       "Name": "PeopleImportHistory",
+      "ResourceName": "PeopleImportHistoryResource",
       "Description": "A PeopleImportHistory is a record of change that occurred when the parent PeopleImport was completed.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -5060,13 +4431,6 @@
           "Description": "include associated household",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "person",
-          "Description": "include associated person",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [],
@@ -5081,11 +4445,14 @@
       ],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "person",
       "Name": "Person",
+      "ResourceName": "PersonResource",
       "Description": "A person record represents a single member/user of the application. Each person has different permissions that determine how the user can use this app (if at all).",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -5519,104 +4886,6 @@
           "Description": "include associated addresses",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
-        },
-        {
-          "Parameter": "include",
-          "Value": "emails",
-          "Description": "include associated emails",
-          "CanAssignOnCreate": true,
-          "CanAssignOnUpdate": true
-        },
-        {
-          "Parameter": "include",
-          "Value": "field_data",
-          "Description": "include associated field_data",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "households",
-          "Description": "include associated households",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "inactive_reason",
-          "Description": "include associated inactive_reason",
-          "CanAssignOnCreate": true,
-          "CanAssignOnUpdate": true
-        },
-        {
-          "Parameter": "include",
-          "Value": "marital_status",
-          "Description": "include associated marital_status",
-          "CanAssignOnCreate": true,
-          "CanAssignOnUpdate": true
-        },
-        {
-          "Parameter": "include",
-          "Value": "name_prefix",
-          "Description": "include associated name_prefix",
-          "CanAssignOnCreate": true,
-          "CanAssignOnUpdate": true
-        },
-        {
-          "Parameter": "include",
-          "Value": "name_suffix",
-          "Description": "include associated name_suffix",
-          "CanAssignOnCreate": true,
-          "CanAssignOnUpdate": true
-        },
-        {
-          "Parameter": "include",
-          "Value": "organization",
-          "Description": "include associated organization",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "person_apps",
-          "Description": "include associated person_apps",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "phone_numbers",
-          "Description": "include associated phone_numbers",
-          "CanAssignOnCreate": true,
-          "CanAssignOnUpdate": true
-        },
-        {
-          "Parameter": "include",
-          "Value": "platform_notifications",
-          "Description": "include associated platform_notifications",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "primary_campus",
-          "Description": "include associated primary_campus",
-          "CanAssignOnCreate": true,
-          "CanAssignOnUpdate": true
-        },
-        {
-          "Parameter": "include",
-          "Value": "school",
-          "Description": "include associated school",
-          "CanAssignOnCreate": true,
-          "CanAssignOnUpdate": true
-        },
-        {
-          "Parameter": "include",
-          "Value": "social_profiles",
-          "Description": "include associated social_profiles",
-          "CanAssignOnCreate": true,
-          "CanAssignOnUpdate": true
         }
       ],
       "CanOrderBy": [
@@ -5625,120 +4894,6 @@
           "Value": "accounting_administrator",
           "Type": "string",
           "Description": "prefix with a hyphen (-accounting_administrator) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "anniversary",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-anniversary) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "birthdate",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-birthdate) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "child",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-child) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "created_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-created_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "first_name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-first_name) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "gender",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-gender) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "given_name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-given_name) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "grade",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-grade) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "graduation_year",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-graduation_year) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "inactivated_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-inactivated_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "last_name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-last_name) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "membership",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-membership) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "middle_name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-middle_name) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "nickname",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-nickname) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "people_permissions",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-people_permissions) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "remote_id",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-remote_id) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "site_administrator",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-site_administrator) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "status",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-status) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "updated_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -5948,11 +5103,14 @@
       ],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "person_app",
       "Name": "PersonApp",
+      "ResourceName": "PersonAppResource",
       "Description": "A Person App is the relationship between a Person and an App.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -6006,11 +5164,14 @@
       "CanQueryBy": [],
       "Postable": true,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "person_merger",
       "Name": "PersonMerger",
+      "ResourceName": "PersonMergerResource",
       "Description": "A Person Merger is the history of profiles that were merged into other profiles.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -6080,11 +5241,14 @@
       ],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "phone_number",
       "Name": "PhoneNumber",
+      "ResourceName": "PhoneNumberResource",
       "Description": "A phone number represents a single telephone number and location.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -6161,36 +5325,6 @@
           "Value": "carrier",
           "Type": "string",
           "Description": "prefix with a hyphen (-carrier) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "created_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-created_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "location",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-location) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "number",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-number) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "primary",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-primary) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "updated_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -6239,11 +5373,14 @@
       ],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "platform_notification",
       "Name": "PlatformNotification",
+      "ResourceName": "PlatformNotificationResource",
       "Description": "A Platform Notification is a suite-wide notification that shows at the top of each application\u0027s screen until dismissed by the user.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -6261,11 +5398,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "report",
       "Name": "Report",
+      "ResourceName": "ReportResource",
       "Description": "A report is editable liquid syntax that provides a powerful tool for presenting your Lists however you want.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -6319,13 +5459,6 @@
           "Description": "include associated created_by",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "updated_by",
-          "Description": "include associated updated_by",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [
@@ -6334,24 +5467,6 @@
           "Value": "body",
           "Type": "string",
           "Description": "prefix with a hyphen (-body) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "created_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-created_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-name) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "updated_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -6386,11 +5501,14 @@
       ],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "rule",
       "Name": "Rule",
+      "ResourceName": "RuleResource",
       "Description": "A rule belongs to a List and groups conditions together.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -6438,18 +5556,6 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "subset",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-subset) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "updated_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -6477,11 +5583,14 @@
       ],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "school_option",
       "Name": "SchoolOption",
+      "ResourceName": "SchoolOptionResource",
       "Description": "A school option represents a school name, school type, grades, etc. and can be selected for a person.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -6531,24 +5640,6 @@
           "Value": "beginning_grade",
           "Type": "string",
           "Description": "prefix with a hyphen (-beginning_grade) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "ending_grade",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-ending_grade) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "sequence",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-sequence) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "value",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-value) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -6590,11 +5681,14 @@
       ],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "service_time",
       "Name": "ServiceTime",
+      "ResourceName": "ServiceTimeResource",
       "Description": "A ServiceTime Resource",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -6642,11 +5736,14 @@
       "CanQueryBy": [],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "social_profile",
       "Name": "SocialProfile",
+      "ResourceName": "SocialProfileResource",
       "Description": "A social profile represents a members\u0027s Twitter, Facebook, or other social media account.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -6704,30 +5801,6 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "site",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-site) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "updated_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "url",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-url) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "verified",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-verified) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -6769,11 +5842,14 @@
       ],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "spam_email_address",
       "Name": "SpamEmailAddress",
+      "ResourceName": "SpamEmailAddressResource",
       "Description": "An email address that is marked as spam",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -6801,11 +5877,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "tab",
       "Name": "Tab",
+      "ResourceName": "TabResource",
       "Description": "A tab is a custom tab and groups like field definitions.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -6859,13 +5938,6 @@
           "Description": "include associated field_definitions",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "field_options",
-          "Description": "include associated field_options",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [
@@ -6874,24 +5946,6 @@
           "Value": "name",
           "Type": "string",
           "Description": "prefix with a hyphen (-name) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "sequence",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-sequence) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "slug",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-slug) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "slug",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-slug) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -6919,11 +5973,14 @@
       ],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "workflow",
       "Name": "Workflow",
+      "ResourceName": "WorkflowResource",
       "Description": "A Workflow",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -7092,20 +6149,6 @@
           "Description": "include associated category",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "shares",
-          "Description": "include associated shares",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "steps",
-          "Description": "include associated steps",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [
@@ -7114,42 +6157,6 @@
           "Value": "archived_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-archived_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "campus_id",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-campus_id) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "created_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-created_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "deleted_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-deleted_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-name) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "updated_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "workflow_category_id",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-workflow_category_id) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -7212,11 +6219,14 @@
       ],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "workflow_card",
       "Name": "WorkflowCard",
+      "ResourceName": "WorkflowCardResource",
       "Description": "A Card",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -7366,27 +6376,6 @@
           "Description": "include associated assignee",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
-        },
-        {
-          "Parameter": "include",
-          "Value": "current_step",
-          "Description": "include associated current_step",
-          "CanAssignOnCreate": true,
-          "CanAssignOnUpdate": true
-        },
-        {
-          "Parameter": "include",
-          "Value": "person",
-          "Description": "include associated person",
-          "CanAssignOnCreate": true,
-          "CanAssignOnUpdate": true
-        },
-        {
-          "Parameter": "include",
-          "Value": "workflow",
-          "Description": "include associated workflow",
-          "CanAssignOnCreate": true,
-          "CanAssignOnUpdate": true
         }
       ],
       "CanOrderBy": [
@@ -7395,54 +6384,6 @@
           "Value": "completed_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-completed_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "created_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-created_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "first_name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-first_name) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "flagged_for_notification_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-flagged_for_notification_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "last_name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-last_name) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "moved_to_step_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-moved_to_step_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "removed_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-removed_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "stage",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-stage) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "updated_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -7470,11 +6411,14 @@
       ],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "workflow_card_activity",
       "Name": "WorkflowCardActivity",
+      "ResourceName": "WorkflowCardActivityResource",
       "Description": "Workflow Card Activity is a record of an action performed on a card",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -7567,11 +6511,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "workflow_card_note",
       "Name": "WorkflowCardNote",
+      "ResourceName": "WorkflowCardNoteResource",
       "Description": "Workflow Note is a note that has been made on a Workflow Card",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -7608,11 +6555,14 @@
       "CanQueryBy": [],
       "Postable": true,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "workflow_category",
       "Name": "WorkflowCategory",
+      "ResourceName": "WorkflowCategoryResource",
       "Description": "A Workflow Category",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -7642,18 +6592,6 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-name) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "updated_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -7681,11 +6619,14 @@
       ],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "workflow_share",
       "Name": "WorkflowShare",
+      "ResourceName": "WorkflowShareResource",
       "Description": "A workflow share defines who can access a workflow.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -7752,11 +6693,14 @@
       ],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "workflow_step",
       "Name": "WorkflowStep",
+      "ResourceName": "WorkflowStepResource",
       "Description": "A Step",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -7871,24 +6815,6 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-name) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "sequence",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-sequence) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "updated_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -7916,11 +6842,14 @@
       ],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "workflow_step_assignee_summary",
       "Name": "WorkflowStepAssigneeSummary",
+      "ResourceName": "WorkflowStepAssigneeSummaryResource",
       "Description": "The ready and snoozed count for an assignee \u0026 step",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -7974,7 +6903,9 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     }
   ]
 }

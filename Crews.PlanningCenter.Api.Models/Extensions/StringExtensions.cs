@@ -11,7 +11,7 @@ public static class StringExtensions
   {
     if (string.IsNullOrWhiteSpace(input)) return input;
 
-        StringBuilder result = new();
+    StringBuilder result = new();
     bool capitalizeNext = true;
     bool previousWasUpper = false;
 

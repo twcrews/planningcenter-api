@@ -1,5 +1,3 @@
-using Crews.Web.JsonApiClient;
-
 namespace Crews.PlanningCenter.Api.Models;
 
 /// <summary>
@@ -10,9 +8,8 @@ namespace Crews.PlanningCenter.Api.Models;
 /// <typeparam name="TResponse">The type of the response being returned.</typeparam>
 /// <param name="client">The HTTP client to use for making requests.</param>
 /// <param name="uri">The URI of the paginated resource endpoint.</param>
-abstract class PaginatedResourceClient<TModel, TResource, TResponse>(HttpClient client, Uri uri) 
+public abstract class PaginatedResourceClient<TModel, TResource, TResponse>(HttpClient client, Uri uri) 
     : ResourceClient<TModel, TResource, TResponse>(client, uri) 
-    where TResource : JsonApiResource 
     where TResponse : ResourceResponse<TResource>
 {
     /// <summary>

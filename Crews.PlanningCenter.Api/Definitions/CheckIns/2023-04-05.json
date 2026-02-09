@@ -6,6 +6,7 @@
     {
       "Id": "attendance_type",
       "Name": "AttendanceType",
+      "ResourceName": "AttendanceTypeResource",
       "Description": "A kind of attendee which is tracked by _headcount_, not by check-in.\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -92,11 +93,14 @@
       ],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "check_in",
       "Name": "CheckIn",
+      "ResourceName": "CheckInResource",
       "Description": "An attendance record for an event.\n\nIf someone was checked out, \u0060checked_out_at\u0060 will be present.\n\nYou can scope check-ins in a few ways:\n\n- \u0060regular\u0060s, \u0060guest\u0060s, and \u0060volunteer\u0060s correspond to the option selected when checking in.\n- \u0060attendee\u0060s are \u0060regular\u0060s and \u0060guest\u0060s together.\n- \u0060one_time_guest\u0060s are check-ins which were created without a corresponding person record.\n- \u0060not_one_time_guest\u0060s are check-ins which had a corresponding person record when they were created.\n- \u0060checked_out\u0060 are check-ins where \u0060checked_out_at\u0060 is present (meaning they were checked out from a station).\n- \u0060first_time\u0060s are check-ins which are the person\u0027s first for a given event. (Label-only visitors are not included here.)\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -289,69 +293,6 @@
           "Description": "include associated check_in_times",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "checked_in_at",
-          "Description": "include associated checked_in_at",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "checked_in_by",
-          "Description": "include associated checked_in_by",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "checked_out_by",
-          "Description": "include associated checked_out_by",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "event",
-          "Description": "include associated event",
-          "CanAssignOnCreate": true,
-          "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "event_period",
-          "Description": "include associated event_period",
-          "CanAssignOnCreate": true,
-          "CanAssignOnUpdate": true
-        },
-        {
-          "Parameter": "include",
-          "Value": "event_times",
-          "Description": "include associated event_times",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "locations",
-          "Description": "include associated locations",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "options",
-          "Description": "include associated options",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "person",
-          "Description": "include associated person",
-          "CanAssignOnCreate": true,
-          "CanAssignOnUpdate": true
         }
       ],
       "CanOrderBy": [
@@ -360,36 +301,6 @@
           "Value": "checked_out_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-checked_out_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "created_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-created_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "first_name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-first_name) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "last_name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-last_name) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "number",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-number) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "updated_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -424,11 +335,14 @@
       ],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "check_in_group",
       "Name": "CheckInGroup",
+      "ResourceName": "CheckInGroupResource",
       "Description": "When one or more people check in, they\u0027re grouped in a \u0060CheckInGroup\u0060.\nThese check-ins all have the same \u0022checked-in by\u0022 person.\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -501,31 +415,20 @@
           "Description": "include associated check_ins",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "event_period",
-          "Description": "include associated event_period",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "print_station",
-          "Description": "include associated print_station",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [],
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "check_in_time",
       "Name": "CheckInTime",
+      "ResourceName": "CheckInTimeResource",
       "Description": "A CheckInTime combines an EventTime and a Location, and associates it with\nthe parent CheckIn.\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -583,11 +486,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "event",
       "Name": "Event",
+      "ResourceName": "EventResource",
       "Description": "A recurring event which people may attend.\n\nEach recurrence is an _event period_ (which often corresponds to a week).\n\nEvent periods have _event times_ where people may actually check in.\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -786,12 +692,6 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-name) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -812,11 +712,14 @@
       ],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "event_label",
       "Name": "EventLabel",
+      "ResourceName": "EventLabelResource",
       "Description": "Says how many of a given label to print for this event and\nwhether to print it for regulars, guests, and/or volunteers.\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -880,24 +783,20 @@
           "Description": "include associated event",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "label",
-          "Description": "include associated label",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [],
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "event_period",
       "Name": "EventPeriod",
+      "ResourceName": "EventPeriodResource",
       "Description": "A recurrence of an event, sometimes called a \u0022session\u0022.\nFor weekly events, an event period is a week. For daily events, an event period is a day.\nAn event period has event times, which is what people select\nwhen they actually check in. When new sessions are created, times\nare copied from one session to the next.\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -1038,13 +937,6 @@
           "Description": "include associated event",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
-        },
-        {
-          "Parameter": "include",
-          "Value": "event_times",
-          "Description": "include associated event_times",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [
@@ -1073,11 +965,14 @@
       ],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "event_time",
       "Name": "EventTime",
+      "ResourceName": "EventTimeResource",
       "Description": "A time that someone may check in. Times are copied from session to session.\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -1267,20 +1162,6 @@
           "Description": "include associated event",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
-        },
-        {
-          "Parameter": "include",
-          "Value": "event_period",
-          "Description": "include associated event_period",
-          "CanAssignOnCreate": true,
-          "CanAssignOnUpdate": true
-        },
-        {
-          "Parameter": "include",
-          "Value": "headcounts",
-          "Description": "include associated headcounts",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [
@@ -1289,12 +1170,6 @@
           "Value": "shows_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-shows_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "starts_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-starts_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -1315,11 +1190,14 @@
       ],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "headcount",
       "Name": "Headcount",
+      "ResourceName": "HeadcountResource",
       "Description": "A tally of attendees for a given event time and attendance type.\nIf one does not exist, the count may have been zero.\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -1381,13 +1259,6 @@
           "Description": "include associated attendance_type",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
-        },
-        {
-          "Parameter": "include",
-          "Value": "event_time",
-          "Description": "include associated event_time",
-          "CanAssignOnCreate": true,
-          "CanAssignOnUpdate": true
         }
       ],
       "CanOrderBy": [
@@ -1396,18 +1267,6 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "total",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-total) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "updated_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -1428,11 +1287,14 @@
       ],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "integration_link",
       "Name": "IntegrationLink",
+      "ResourceName": "IntegrationLinkResource",
       "Description": "A record linking another product\u0027s resource to a Check-Ins resource.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -1485,11 +1347,14 @@
       ],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "label",
       "Name": "Label",
+      "ResourceName": "LabelResource",
       "Description": "Labels can be set to print for events (through \u0060EventLabel\u0060s),\nlocations (through \u0060LocationLabel\u0060s) or options.\nLabel type (security label / name label) is expressed with the\n\u0060prints_for\u0060 attribute. \u0060prints_for=\u0022Person\u0022\u0060 is a name label,\n\u0060prints_for=\u0022Group\u0022\u0060 is a security label.\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -1551,11 +1416,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "location",
       "Name": "Location",
+      "ResourceName": "LocationResource",
       "Description": "A place where people may check in to for a given event.\nSome locations have \u0060kind=\u0022Folder\u0022\u0060, which means that people\ncan\u0027t check-in here, but this location contains other locations.\nYou can get its contents from the \u0060locations\u0060 attribute.\nYou can get a location\u0027s parent folder from the \u0060parent\u0060 attribute.\n(If it\u0027s not in a folder, \u0060parent\u0060 will be empty.)\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -1796,27 +1664,6 @@
           "Description": "include associated event",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "locations",
-          "Description": "include associated locations",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "options",
-          "Description": "include associated options",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "parent",
-          "Description": "include associated parent",
-          "CanAssignOnCreate": true,
-          "CanAssignOnUpdate": true
         }
       ],
       "CanOrderBy": [
@@ -1825,28 +1672,19 @@
           "Value": "kind",
           "Type": "string",
           "Description": "prefix with a hyphen (-kind) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-name) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "position",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-position) to reverse the order"
         }
       ],
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "location_event_period",
       "Name": "LocationEventPeriod",
+      "ResourceName": "LocationEventPeriodResource",
       "Description": "Counts check-ins for a location during a certain event period.\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -1951,24 +1789,20 @@
           "Description": "include associated event_period",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "location",
-          "Description": "include associated location",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [],
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "location_event_time",
       "Name": "LocationEventTime",
+      "ResourceName": "LocationEventTimeResource",
       "Description": "Counts check-ins for a location for a given event time.\nThis is useful for checking occupancy.\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -2073,13 +1907,6 @@
           "Description": "include associated event_time",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "location",
-          "Description": "include associated location",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [],
@@ -2101,11 +1928,14 @@
       ],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "location_label",
       "Name": "LocationLabel",
+      "ResourceName": "LocationLabelResource",
       "Description": "Says how many of a given label to print for this location and\nwhether to print it for regulars, guests, and/or volunteers.\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -2169,24 +1999,20 @@
           "Description": "include associated label",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "location",
-          "Description": "include associated location",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [],
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "option",
       "Name": "Option",
+      "ResourceName": "OptionResource",
       "Description": "An option which an attendee may select when checking in.\n\nOptions may have extra labels associated with them, denoted by \u0060label\u0060 and \u0060quantity\u0060.\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -2246,11 +2072,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "organization",
       "Name": "Organization",
+      "ResourceName": "OrganizationResource",
       "Description": "An organization which has people and events.\nThis contains its date format \u0026 time zone preferences.\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -2461,11 +2290,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "pass",
       "Name": "Pass",
+      "ResourceName": "PassResource",
       "Description": "Enables quick lookup of a person via barcode reader.\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -2524,11 +2356,14 @@
       ],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "person",
       "Name": "Person",
+      "ResourceName": "PersonResource",
       "Description": "An attendee, volunteer or administrator.\n\n_Usually_, a person who checked in will be present as a \u0060Person\u0060. In some cases, they may not be present:\n- The person was manually deleted from the admin interface\n- The check-in was created as a \u0022Visitor - Label Only\u0022 (which doesn\u0027t create a corresponding person record)\n\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -2750,24 +2585,6 @@
           "Value": "check_in_count",
           "Type": "string",
           "Description": "prefix with a hyphen (-check_in_count) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "first_name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-first_name) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "last_checked_in_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-last_checked_in_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "last_name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-last_name) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -2802,11 +2619,14 @@
       ],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "person_event",
       "Name": "PersonEvent",
+      "ResourceName": "PersonEventResource",
       "Description": "Counts a person\u0027s attendence for a given event.\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -2873,38 +2693,20 @@
           "Description": "include associated event",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "first_check_in",
-          "Description": "include associated first_check_in",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "last_check_in",
-          "Description": "include associated last_check_in",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "person",
-          "Description": "include associated person",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [],
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "pre_check",
       "Name": "PreCheck",
+      "ResourceName": "PreCheckResource",
       "Description": null,
       "Deprecated": false,
       "CollectionOnly": false,
@@ -2916,11 +2718,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "roster_list_person",
       "Name": "RosterListPerson",
+      "ResourceName": "RosterListPersonResource",
       "Description": null,
       "Deprecated": false,
       "CollectionOnly": false,
@@ -2973,11 +2778,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "station",
       "Name": "Station",
+      "ResourceName": "StationResource",
       "Description": "A device where people can be checked in.\nA device may also be connected to a printer\nand print labels for itself or other stations.\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -3161,38 +2969,20 @@
           "Description": "include associated event",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "location",
-          "Description": "include associated location",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "print_station",
-          "Description": "include associated print_station",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "theme",
-          "Description": "include associated theme",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [],
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "theme",
       "Name": "Theme",
+      "ResourceName": "ThemeResource",
       "Description": "A custom style which may be applied to stations.\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -3250,7 +3040,9 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     }
   ]
 }

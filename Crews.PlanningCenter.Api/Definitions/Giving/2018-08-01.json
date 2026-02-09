@@ -6,6 +6,7 @@
     {
       "Id": "batch",
       "Name": "Batch",
+      "ResourceName": "BatchResource",
       "Description": "A \u0060Batch\u0060 is a collection of \u0060Donation\u0060s. When creating \u0060Donation\u0060\u0027s via the API, you\u0027re required to put them in a \u0060Batch\u0060.\n\nWhen a \u0060Batch\u0060 is first created, it\u0027s in the \u0060in_progress\u0060 or \u0022uncommitted\u0022 state. You can freely add/remove/modify \u0060Donation\u0060s in this \u0060Batch\u0060 and they won\u0027t show up in a donor\u0027s donation history online, they won\u0027t appear in any donor statements issued by the Giving admin, and changes to these donations are not flagged in the system log. Think of it as a staging area for donations.\n\nWhen a \u0060Batch\u0060 is committed (see more in the Actions section), all of the \u0060Donation\u0060s within it are also marked as \u0022committed\u0022. At that point, they\u0027re visible to donors in their online history, and any further edits made to those \u0060Donation\u0060s are logged and visible to Giving admins.\n\nWith all of that in mind, you can use \u0060Batch\u0060es in one of two ways:\n\n  1.  Create an uncommitted \u0060Batch\u0060, add \u0060Donation\u0060s to it, then commit the \u0060Batch\u0060.\n  2.  Create a \u0060Batch\u0060 with a least one donation, commit it, then add more \u0060Donation\u0060s to it.\n\nIn both cases, the end result is the same. The main difference is that option #2 does not provide you/other admins the opportunity to fix any mistakes before changes are logged and \u0060Donation\u0060s are made visible to donors. Any \u0060Donation\u0060s added to a committed \u0060Batch\u0060 will automatically be committed as well. Note, batches can\u0027t be committed until they have at least one donation.\n\nWhichever route you decide to take, it\u0027s helpful to make use of the \u0060Batch\u0060\u0027s description to help differentiate these groupings from each other and from other \u0060Batch\u0060es that the Giving admins might be creating on their own.\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -95,13 +96,6 @@
           "Description": "include associated batch_group",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
-        },
-        {
-          "Parameter": "include",
-          "Value": "owner",
-          "Description": "include associated owner",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [
@@ -123,11 +117,14 @@
       ],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "batch_group",
       "Name": "BatchGroup",
+      "ResourceName": "BatchGroupResource",
       "Description": "A \u0060BatchGroup\u0060 is a collection of \u0060Batch\u0060es.\n\n\u0060BatchGroup\u0060s are an optional way of organizing your \u0060Batch\u0060es into groups that share common characteristics. These are completely customizable and can be used in whatever way makes sense to your organization\u0027s workflow.\n\nSimilarly to \u0060Batch\u0060es, you can \u0060commit\u0060 (see more in the Actions section) a \u0060BatchGroup\u0060, and by doing so, all \u0060Batches\u0060 and \u0060Donations\u0060 contained in the \u0060BatchGroup\u0060 will also be committed.\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -226,11 +223,14 @@
       ],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "campus",
       "Name": "Campus",
+      "ResourceName": "CampusResource",
       "Description": "A \u0060Campus\u0060 that has been added to your \u0060Organization\u0060.\n\n\u0060Campus\u0060es can be especially useful in filtering \u0060Donation\u0060s across the various locations of your \u0060Organization\u0060.\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -263,11 +263,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "designation",
       "Name": "Designation",
+      "ResourceName": "DesignationResource",
       "Description": "A \u0060Designation\u0060 conveys how much of a \u0060Donation\u0060 goes to a particular \u0060Fund\u0060.\n\n\u0060Designation\u0060 details are required when creating a \u0060Donation\u0060. If all of a \u0060Donation\u0060 is going to a single \u0060Fund\u0060, it will only have one \u0060Designation\u0060. Similarly, to split a \u0060Donation\u0060 between multiple \u0060Fund\u0060s, you can use multiple \u0060Designation\u0060s.\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -312,11 +315,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "designation_refund",
       "Name": "DesignationRefund",
+      "ResourceName": "DesignationRefundResource",
       "Description": "A record that links a \u0060Refund\u0060 with a \u0060Designation\u0060\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -364,11 +370,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "donation",
       "Name": "Donation",
+      "ResourceName": "DonationResource",
       "Description": "A \u0060Donation\u0060 record corresponds to a gift given to an \u0060Organization\u0060 at a particular point in time.\n\n\u0060Donation\u0060s are added by first associating them to a \u0060Batch\u0060 of donations, and then committing the \u0060Batch\u0060. When adding a \u0060Donation\u0060 to an already-committed \u0060Batch\u0060, the \u0060Donation\u0060 will automatically be committed as well, and immediately added to the donor\u0027s online history.\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -561,27 +570,6 @@
           "Description": "include associated designations",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
-        },
-        {
-          "Parameter": "include",
-          "Value": "labels",
-          "Description": "include associated labels",
-          "CanAssignOnCreate": true,
-          "CanAssignOnUpdate": true
-        },
-        {
-          "Parameter": "include",
-          "Value": "note",
-          "Description": "include associated note",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "refund",
-          "Description": "include associated refund",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [
@@ -590,24 +578,6 @@
           "Value": "completed_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-completed_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "created_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-created_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "received_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-received_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "updated_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -649,11 +619,14 @@
       ],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "fund",
       "Name": "Fund",
+      "ResourceName": "FundResource",
       "Description": "A \u0060Fund\u0060 is a way of tracking the intent of \u0060Donation\u0060.\n\nAll \u0060Organization\u0060s have a default \u0060Fund\u0060 (usually named \u0022General\u0022), and creating additional \u0060Fund\u0060s allows donors to allocate their gift to a particular cause/effort.\n\nYou can query for the default \u0060Fund\u0060 using the \u0060default\u0060 param:\n\u0060\u0060\u0060\nGET https://api.planningcenteronline.com/giving/v2/funds?where[default]=true\n\u0060\u0060\u0060\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -745,11 +718,14 @@
       ],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "in_kind_donation",
       "Name": "InKindDonation",
+      "ResourceName": "InKindDonationResource",
       "Description": "An \u0060InKindDonation\u0060 record represents a non-cash gift given to an \u0060Organization\u0060 at a specific time.\n\nThese include items like furniture, vehicles, services, or stocks. \u0060InKindDonations\u0060 do not trigger\nacknowledgment letter emails via the API \u2014 these must be sent from the Giving Admin UI.\n\n[More info](https://pcogiving.zendesk.com/hc/en-us/articles/360040772154-In-kind-donations#enter-an-in-kind-donation-0)\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -856,20 +832,6 @@
           "Description": "include associated campus",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
-        },
-        {
-          "Parameter": "include",
-          "Value": "fund",
-          "Description": "include associated fund",
-          "CanAssignOnCreate": true,
-          "CanAssignOnUpdate": true
-        },
-        {
-          "Parameter": "include",
-          "Value": "person",
-          "Description": "include associated person",
-          "CanAssignOnCreate": true,
-          "CanAssignOnUpdate": true
         }
       ],
       "CanOrderBy": [
@@ -878,18 +840,6 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "received_on",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-received_on) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "updated_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -931,11 +881,14 @@
       ],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "label",
       "Name": "Label",
+      "ResourceName": "LabelResource",
       "Description": "A \u0060Label\u0060 is a way for Admins to manage and categorize \u0060Donation\u0060s.\n\nMultiple \u0060Label\u0060s can be added for each \u0060Donation\u0060, and these will only be displayed in the Giving admin interface, so donors never see them.\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -961,11 +914,14 @@
       ],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "note",
       "Name": "Note",
+      "ResourceName": "NoteResource",
       "Description": "A \u0060Note\u0060 is a way for Giving Admins and Bookkeepers to communicate internally about a donation.\nNotes are only visible in the Giving admin interface, not shown to donors. Each \u0060Donation\u0060 can only\nhave a single note associated with it.\n\nTo record notes from donors, consider using the [Memo Line feature](https://pcogiving.zendesk.com/hc/en-us/articles/44484564313883-Manage-your-online-donation-form) instead.\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -983,11 +939,14 @@
       "CanQueryBy": [],
       "Postable": true,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "organization",
       "Name": "Organization",
+      "ResourceName": "OrganizationResource",
       "Description": "The root level \u0060Organization\u0060 record which serves as a link to \u0060Donation\u0060s, \u0060People\u0060, \u0060Fund\u0060s, etc.\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -1134,11 +1093,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "payment_method",
       "Name": "PaymentMethod",
+      "ResourceName": "PaymentMethodResource",
       "Description": "Stored \u0060PaymentMethod\u0060 information (\u0060card\u0060 or \u0060bank_account\u0060) used by donors to make online \u0060Donation\u0060s.\n\n\u0060PaymentMethod\u0060 data is for informational purposes only and cannot be used to create charges through the API.\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -1201,11 +1163,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "payment_source",
       "Name": "PaymentSource",
+      "ResourceName": "PaymentSourceResource",
       "Description": "A donation\u0027s \u0060PaymentSource\u0060 refers to the platform it originated from.\n\n\u0060Donation\u0060s made through Giving will be assigned the built-in \u0060PaymentSource\u0060 \u0022Planning Center\u0022. \u0060Donation\u0060s made through external platforms (Square, Pushpay, ect.) can be assigned a \u0060PaymentSource\u0060 identifying them as such.\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -1248,11 +1213,14 @@
       "CanQueryBy": [],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "person",
       "Name": "Person",
+      "ResourceName": "PersonResource",
       "Description": "A Planning Center \u0060Person\u0060 record that has been added to Giving.\n\nThe \u0060Person\u0060 object in Planning Center is so crucial that we have an entire product dedicated to managing, keeping track of, editing, and creating these records and metadata around them. For additional info, take a look at the [Planning Center People API Docs](https://developer.planning.center/docs/#/apps/people).\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -1409,11 +1377,14 @@
       ],
       "Postable": false,
       "Patchable": true,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "recurring_donation",
       "Name": "RecurringDonation",
+      "ResourceName": "RecurringDonationResource",
       "Description": "A \u0060RecurringDonation\u0060 is represents a \u0060Donation\u0060 that repeats on a set schedule (weekly, monthly, etc.)\n\nData for \u0060RecurringDonation\u0060s is read-only; they can not be created or edited through the API.\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -1505,11 +1476,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "recurring_donation_designation",
       "Name": "RecurringDonationDesignation",
+      "ResourceName": "RecurringDonationDesignationResource",
       "Description": "Much like a \u0060Designation\u0060, A \u0060RecurringDonationDesignation\u0060 conveys how much of a \u0060RecurringDonation\u0060 goes to a particular \u0060Fund\u0060.\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -1550,11 +1524,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "refund",
       "Name": "Refund",
+      "ResourceName": "RefundResource",
       "Description": "A \u0060Refund\u0060 record holds information pertaining to a refunded \u0060Donation\u0060.\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -1620,7 +1597,9 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     }
   ]
 }

@@ -6,6 +6,7 @@
     {
       "Id": "channel",
       "Name": "Channel",
+      "ResourceName": "ChannelResource",
       "Description": "A collection of sermons",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -221,20 +222,6 @@
           "Description": "include associated channel_default_episode_resources",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
-        },
-        {
-          "Parameter": "include",
-          "Value": "channel_default_times",
-          "Description": "include associated channel_default_times",
-          "CanAssignOnCreate": true,
-          "CanAssignOnUpdate": true
-        },
-        {
-          "Parameter": "include",
-          "Value": "current_episode",
-          "Description": "include associated current_episode",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [
@@ -243,22 +230,19 @@
           "Value": "name",
           "Type": "string",
           "Description": "prefix with a hyphen (-name) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "position",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-position) to reverse the order"
         }
       ],
       "CanQueryBy": [],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "channel_default_episode_resource",
       "Name": "ChannelDefaultEpisodeResource",
+      "ResourceName": "ChannelDefaultEpisodeResourceResource",
       "Description": "The default EpisodeResources for a Channel",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -306,11 +290,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "channel_default_time",
       "Name": "ChannelDefaultTime",
+      "ResourceName": "ChannelDefaultTimeResource",
       "Description": "The default times for a channel",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -355,11 +342,14 @@
       "CanQueryBy": [],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "channel_next_time",
       "Name": "ChannelNextTime",
+      "ResourceName": "ChannelNextTimeResource",
       "Description": "The next default time for a channel",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -377,11 +367,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "episode",
       "Name": "Episode",
+      "ResourceName": "EpisodeApiResource",
       "Description": null,
       "Deprecated": false,
       "CollectionOnly": false,
@@ -583,34 +576,6 @@
           "Description": "include associated channel",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
-        },
-        {
-          "Parameter": "include",
-          "Value": "episode_resources",
-          "Description": "include associated episode_resources",
-          "CanAssignOnCreate": true,
-          "CanAssignOnUpdate": true
-        },
-        {
-          "Parameter": "include",
-          "Value": "episode_times",
-          "Description": "include associated episode_times",
-          "CanAssignOnCreate": true,
-          "CanAssignOnUpdate": true
-        },
-        {
-          "Parameter": "include",
-          "Value": "series",
-          "Description": "include associated series",
-          "CanAssignOnCreate": true,
-          "CanAssignOnUpdate": true
-        },
-        {
-          "Parameter": "include",
-          "Value": "speakerships",
-          "Description": "include associated speakerships",
-          "CanAssignOnCreate": true,
-          "CanAssignOnUpdate": true
         }
       ],
       "CanOrderBy": [
@@ -619,24 +584,6 @@
           "Value": "published_live_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-published_live_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "published_to_library_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-published_to_library_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "stream_type",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-stream_type) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "title",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-title) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -664,11 +611,14 @@
       ],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "episode_resource",
       "Name": "EpisodeResource",
+      "ResourceName": "EpisodeResourceResource",
       "Description": null,
       "Deprecated": false,
       "CollectionOnly": false,
@@ -723,11 +673,14 @@
       "CanQueryBy": [],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "episode_statistics",
       "Name": "EpisodeStatistics",
+      "ResourceName": "EpisodeStatisticsResource",
       "Description": "Viewership statistics for an episode",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -770,11 +723,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "episode_time",
       "Name": "EpisodeTime",
+      "ResourceName": "EpisodeTimeResource",
       "Description": "Live schedule times for an Episode",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -834,11 +790,14 @@
       "CanQueryBy": [],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "note_template",
       "Name": "NoteTemplate",
+      "ResourceName": "NoteTemplateResource",
       "Description": null,
       "Deprecated": false,
       "CollectionOnly": false,
@@ -871,11 +830,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": true,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "organization",
       "Name": "Organization",
+      "ResourceName": "OrganizationResource",
       "Description": null,
       "Deprecated": false,
       "CollectionOnly": false,
@@ -970,11 +932,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "series",
       "Name": "Series",
+      "ResourceName": "SeriesResource",
       "Description": null,
       "Deprecated": false,
       "CollectionOnly": false,
@@ -1057,24 +1022,6 @@
           "Value": "ended_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-ended_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "episodes_count",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-episodes_count) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "started_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-started_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "title",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-title) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -1088,11 +1035,14 @@
       ],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "speaker",
       "Name": "Speaker",
+      "ResourceName": "SpeakerResource",
       "Description": null,
       "Deprecated": false,
       "CollectionOnly": false,
@@ -1152,11 +1102,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "speakership",
       "Name": "Speakership",
+      "ResourceName": "SpeakershipResource",
       "Description": null,
       "Deprecated": false,
       "CollectionOnly": false,
@@ -1193,7 +1146,9 @@
       "CanQueryBy": [],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     }
   ]
 }

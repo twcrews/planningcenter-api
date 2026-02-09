@@ -2,6 +2,7 @@
 using Crews.PlanningCenter.Api.DocParser.Extensions;
 using Crews.PlanningCenter.Api.DocParser.Models;
 using Crews.PlanningCenter.Api.Models;
+using Crews.PlanningCenter.Api.Models.Extensions;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
@@ -22,7 +23,6 @@ class DocumentationBuilder(
         _logger.LogDebug("Building documentation for all products");
 
         Task<Product>[] productTasks = [.. ProductDefinition.All
-            .Where(p => !options.Value.ExcludedProducts.Contains(p.ToString()))
             .Select(BuildProductAsync)];
 
         return await Task.WhenAll(productTasks);
@@ -46,7 +46,6 @@ class DocumentationBuilder(
         Task<Api.Models.Version>[] versionTasks =
         [
             .. graphDocument.Data.Relationships.Versions.Data
-            .Where(version => !IsVersionExcluded(product, version.Id))
             .Select(version => BuildVersionAsync(product, version))
         ];
 
@@ -79,7 +78,6 @@ class DocumentationBuilder(
         Task<Resource>[] resourceTasks =
         [
             .. versionDocument.Data.Relationships.Vertices.Data
-            .Where(versionVertex => !IsVertexExcluded(product, version.Id, versionVertex.Id))
             .Select(versionVertex => BuildResourceAsync(product, version.Id!, versionVertex))
         ];
 
@@ -94,48 +92,38 @@ class DocumentationBuilder(
         };
     }
 
-    private bool IsVersionExcluded(ProductDefinition product, string? versionId)
+    private AppSettings.DocumentationBuilderOptions.ExcludedVertexEntry? FindExcludedVertex(
+        ProductDefinition product, string? versionId, string? vertexId)
     {
         string productName = product.ToString();
 
-        return options.Value.ExcludedVersions.Any(e =>
-            // Match: Product + Version
-            productName.Equals(e.Product, StringComparison.OrdinalIgnoreCase)
-            && e.Version == versionId)
-
-            || options.Value.ExcludedVersions.Any(e =>
-            // Match: Any Product + Version
-            e.Product == null
-            && e.Version == versionId);
+        return options.Value.ExcludedVertices.FirstOrDefault(e =>
+            MatchesVertex(e, productName, versionId, vertexId));
     }
 
-    private bool IsVertexExcluded(ProductDefinition product, string? versionId, string? vertexId)
+    private static bool MatchesVertex(
+        AppSettings.DocumentationBuilderOptions.ExcludedVertexEntry entry,
+        string productName,
+        string? versionId,
+        string? vertexId)
     {
-        string productName = product.ToString();
+        return (entry.Product is null || entry.Product.Equals(productName, StringComparison.OrdinalIgnoreCase))
+            && (entry.Version is null || entry.Version == versionId)
+            && entry.Vertex.Equals(vertexId, StringComparison.OrdinalIgnoreCase);
+    }
 
-        return options.Value.ExcludedVertices.Any(e =>
-            // Match: Product + Version + Vertex
-            productName.Equals(e.Product, StringComparison.OrdinalIgnoreCase)
-            && e.Version == versionId
-            && e.Vertex.Equals(vertexId, StringComparison.OrdinalIgnoreCase))
+    private bool IsResourceGenerationExcluded(ProductDefinition product, string? versionId, string? vertexId)
+    {
+        AppSettings.DocumentationBuilderOptions.ExcludedVertexEntry? excludedVertex 
+            = FindExcludedVertex(product, versionId, vertexId);
+        return excludedVertex?.GenerateResource == false;
+    }
 
-            || options.Value.ExcludedVertices.Any(e =>
-            // Match: Product + Any Version + Vertex
-            productName.Equals(e.Product, StringComparison.OrdinalIgnoreCase)
-            && e.Version == null
-            && e.Vertex.Equals(vertexId, StringComparison.OrdinalIgnoreCase))
-
-            || options.Value.ExcludedVertices.Any(e =>
-            // Match: Any Product + Version + Vertex
-            e.Product == null
-            && e.Version == versionId
-            && e.Vertex.Equals(vertexId, StringComparison.OrdinalIgnoreCase))
-
-            || options.Value.ExcludedVertices.Any(e =>
-            // Match: Any Product + Any Version + Vertex
-            e.Product == null
-            && e.Version == null
-            && e.Vertex.Equals(vertexId, StringComparison.OrdinalIgnoreCase));
+    private bool IsClientGenerationExcluded(ProductDefinition product, string? versionId, string? vertexId)
+    {
+        AppSettings.DocumentationBuilderOptions.ExcludedVertexEntry? excludedVertex 
+            = FindExcludedVertex(product, versionId, vertexId);
+        return excludedVertex?.GenerateClients == false;
     }
 
     private bool? GetCollectionOverride(ProductDefinition product, string? versionId, string? vertexId, string edge)
@@ -156,6 +144,50 @@ class DocumentationBuilder(
                 "Applying collection override for {Product}.{Version}.{Vertex}.{Edge}: {IsCollection}",
                 product, versionId, vertexId, edge, overrideEntry.IsCollection);
             return overrideEntry.IsCollection;
+        }
+
+        return null;
+    }
+
+    private AppSettings.DocumentationBuilderOptions.NameOverrideEntry? FindNameOverride(
+        ProductDefinition product, string? versionId, string? vertexId)
+    {
+        string productName = product.ToString();
+
+        return options.Value.NameOverrides
+            .FirstOrDefault(e => (e.Product is null || e.Product.Equals(
+                productName, StringComparison.OrdinalIgnoreCase))
+                && (e.Version is null || e.Version == versionId)
+                && (e.Vertex is null || e.Vertex.Equals(vertexId, StringComparison.OrdinalIgnoreCase)));
+    }
+
+    private string? GetModelNameOverride(ProductDefinition product, string? versionId, string? vertexId)
+    {
+        AppSettings.DocumentationBuilderOptions.NameOverrideEntry? overrideEntry =
+            FindNameOverride(product, versionId, vertexId);
+
+        if (overrideEntry is not null)
+        {
+            _logger.LogInformation(
+                "Applying model name override for {Product}.{Version}.{Vertex}: {ModelName}",
+                product, versionId, vertexId, overrideEntry.ModelName);
+            return overrideEntry.ModelName;
+        }
+
+        return null;
+    }
+
+    private string? GetResourceNameOverride(ProductDefinition product, string? versionId, string? vertexId)
+    {
+        AppSettings.DocumentationBuilderOptions.NameOverrideEntry? overrideEntry =
+            FindNameOverride(product, versionId, vertexId);
+
+        if (overrideEntry is not null)
+        {
+            _logger.LogInformation(
+                "Applying resource name override for {Product}.{Version}.{Vertex}: {ResourceName}",
+                product, versionId, vertexId, overrideEntry.ResourceName);
+            return overrideEntry.ResourceName;
         }
 
         return null;
@@ -184,22 +216,32 @@ class DocumentationBuilder(
         return new()
         {
             Id = vertex.Id!,
-            Name = vertex.Attributes!.Name!,
-            Description = vertex.Attributes.Description,
-            Deprecated = vertex.Attributes.Deprecated,
-            CollectionOnly = vertex.Attributes.CollectionOnly,
+            Name = GetModelNameOverride(product, versionId, vertex.Id!) ?? vertex.Attributes!.Name!,
+            ResourceName = GetResourceNameOverride(product, versionId, vertex.Id!) 
+                ?? vertex.Attributes!.Name!.ToPascalCase() + "Resource",
+            Description = vertex.Attributes!.Description,
+            Deprecated = vertex.Attributes!.Deprecated,
+            CollectionOnly = vertex.Attributes!.CollectionOnly,
             Attributes = vertex.Relationships!.Attributes.Data
                 .Where(attr => attr.Attributes.Name != "id")
                 .Select(attr => BuildAttribute(attr.Attributes)),
             Relationships = vertex.Relationships.Relationships.Data.Select(rel => BuildRelationship(rel.Attributes)),
-            CanInclude = vertex.Relationships.CanInclude.Data.Select(inc => BuildIncludable(inc.Attributes)),
-            CanOrderBy = vertex.Relationships.CanOrder.Data.Select(ord => BuildOrderable(ord.Attributes)),
-            CanQueryBy = vertex.Relationships.CanQuery.Data.Select(qry => BuildQueryable(qry.Attributes)),
+            CanInclude = vertex.Relationships.CanInclude.Data
+                .Select(inc => BuildIncludable(inc.Attributes))
+                .DistinctBy(i => i.Parameter),
+            CanOrderBy = vertex.Relationships.CanOrder.Data
+                .Select(ord => BuildOrderable(ord.Attributes))
+                .DistinctBy(o => o.Parameter),
+            CanQueryBy = vertex.Relationships.CanQuery.Data
+                .Select(qry => BuildQueryable(qry.Attributes))
+                .DistinctBy(q => q.Parameter),
             Children = vertex.Relationships.OutboundEdges.Data
                 .Select(edge => BuildChild(edge, product, versionId, vertex.Id!)),
             Postable = vertex.Relationships.Permissions.Data.Attributes.CanCreate,
             Patchable = vertex.Relationships.Permissions.Data.Attributes.CanUpdate,
-            Deletable = vertex.Relationships.Permissions.Data.Attributes.CanDestroy
+            Deletable = vertex.Relationships.Permissions.Data.Attributes.CanDestroy,
+            GenerateClients = !IsClientGenerationExcluded(product, versionId, vertex.Id!),
+            GenerateResource = !IsResourceGenerationExcluded(product, versionId, vertex.Id!)
         };
     }
 

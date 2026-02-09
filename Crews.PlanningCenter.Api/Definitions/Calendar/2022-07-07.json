@@ -6,6 +6,7 @@
     {
       "Id": "attachment",
       "Name": "Attachment",
+      "ResourceName": "AttachmentResource",
       "Description": "An uploaded file attached to an event.\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -80,36 +81,6 @@
           "Value": "content_type",
           "Type": "string",
           "Description": "prefix with a hyphen (-content_type) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "created_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-created_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "description",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-description) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "file_size",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-file_size) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-name) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "updated_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -158,11 +129,14 @@
       ],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "conflict",
       "Name": "Conflict",
+      "ResourceName": "ConflictResource",
       "Description": "A conflict between two events caused by overlapping event resource\nrequests.\n\nIf the conflict has been resolved, \u0060resolved_at\u0060 will be present.\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -244,20 +218,6 @@
           "Description": "include associated resolved_by",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
-        },
-        {
-          "Parameter": "include",
-          "Value": "resource",
-          "Description": "include associated resource",
-          "CanAssignOnCreate": true,
-          "CanAssignOnUpdate": true
-        },
-        {
-          "Parameter": "include",
-          "Value": "winner",
-          "Description": "include associated winner",
-          "CanAssignOnCreate": true,
-          "CanAssignOnUpdate": true
         }
       ],
       "CanOrderBy": [
@@ -271,11 +231,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "containing_resource",
       "Name": "ContainingResource",
+      "ResourceName": "ContainingResourceResource",
       "Description": "The containing record for a RoomSetup. Can be a Resource or\nan Organization\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -287,11 +250,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "event",
       "Name": "Event",
+      "ResourceName": "EventResource",
       "Description": "An event.\n\nMay contain information such as who owns\nthe event, visibility on Church Center and a public-facing summary.\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -471,27 +437,6 @@
           "Description": "include associated attachments",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "feed",
-          "Description": "include associated feed",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "owner",
-          "Description": "include associated owner",
-          "CanAssignOnCreate": true,
-          "CanAssignOnUpdate": true
-        },
-        {
-          "Parameter": "include",
-          "Value": "tags",
-          "Description": "include associated tags",
-          "CanAssignOnCreate": true,
-          "CanAssignOnUpdate": true
         }
       ],
       "CanOrderBy": [],
@@ -555,11 +500,14 @@
       ],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "event_connection",
       "Name": "EventConnection",
+      "ResourceName": "EventConnectionResource",
       "Description": "A connection between a Calendar event and a record in another product\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -631,11 +579,14 @@
       ],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "event_instance",
       "Name": "EventInstance",
+      "ResourceName": "EventInstanceResource",
       "Description": "A specific occurrence of an event.\n\nIf the event is recurring, \u0060recurrence\u0060 will be set and\n\u0060recurrence_description\u0060 will provide an overview of the recurrence pattern.\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -782,27 +733,6 @@
           "Description": "include associated event",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
-        },
-        {
-          "Parameter": "include",
-          "Value": "event_times",
-          "Description": "include associated event_times",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "resource_bookings",
-          "Description": "include associated resource_bookings",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "tags",
-          "Description": "include associated tags",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [
@@ -811,24 +741,6 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "ends_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-ends_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "starts_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-starts_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "updated_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -863,11 +775,14 @@
       ],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "event_resource_answer",
       "Name": "EventResourceAnswer",
+      "ResourceName": "EventResourceAnswerResource",
       "Description": "An answer to a question in a room or resource request.\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -930,11 +845,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "event_resource_request",
       "Name": "EventResourceRequest",
+      "ResourceName": "EventResourceRequestResource",
       "Description": "A room or resource request for a specific event.\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -1118,34 +1036,6 @@
           "Description": "include associated created_by",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
-        },
-        {
-          "Parameter": "include",
-          "Value": "event",
-          "Description": "include associated event",
-          "CanAssignOnCreate": true,
-          "CanAssignOnUpdate": true
-        },
-        {
-          "Parameter": "include",
-          "Value": "resource",
-          "Description": "include associated resource",
-          "CanAssignOnCreate": true,
-          "CanAssignOnUpdate": true
-        },
-        {
-          "Parameter": "include",
-          "Value": "room_setup",
-          "Description": "include associated room_setup",
-          "CanAssignOnCreate": true,
-          "CanAssignOnUpdate": true
-        },
-        {
-          "Parameter": "include",
-          "Value": "updated_by",
-          "Description": "include associated updated_by",
-          "CanAssignOnCreate": true,
-          "CanAssignOnUpdate": true
         }
       ],
       "CanOrderBy": [],
@@ -1181,11 +1071,14 @@
       ],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "event_time",
       "Name": "EventTime",
+      "ResourceName": "EventTimeResource",
       "Description": "Start and end times for each event instance.\n\nIn the Calendar UI, these are represented under the \u0022Schedule\u0022 section and\nmay include \u0022Setup\u0022 and \u0022Teardown\u0022 times for the instance.\n",
       "Deprecated": false,
       "CollectionOnly": true,
@@ -1250,12 +1143,6 @@
           "Value": "ends_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-ends_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "starts_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-starts_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -1297,11 +1184,14 @@
       ],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "feed",
       "Name": "Feed",
+      "ResourceName": "FeedResource",
       "Description": "A feed belonging to an organization.\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -1394,11 +1284,14 @@
       ],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "job_status",
       "Name": "JobStatus",
+      "ResourceName": "JobStatusResource",
       "Description": null,
       "Deprecated": false,
       "CollectionOnly": false,
@@ -1436,11 +1329,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "organization",
       "Name": "Organization",
+      "ResourceName": "OrganizationResource",
       "Description": "An administrative structure, usually representing a single church.\nContains date/time formatting and time zone preferences.\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -1851,11 +1747,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "person",
       "Name": "Person",
+      "ResourceName": "PersonResource",
       "Description": "The people in your organization with access to Calendar.\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -2048,30 +1947,6 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "first_name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-first_name) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "last_name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-last_name) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "resolves_conflicts",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-resolves_conflicts) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "updated_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -2113,11 +1988,14 @@
       ],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "report_template",
       "Name": "ReportTemplate",
+      "ResourceName": "ReportTemplateResource",
       "Description": "A template for generating a report.\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -2155,11 +2033,14 @@
       "CanQueryBy": [],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "required_approval",
       "Name": "RequiredApproval",
+      "ResourceName": "RequiredApprovalResource",
       "Description": "Represents the relationship between a Resource and a Resource Approval Group.\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -2189,11 +2070,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "resource",
       "Name": "Resource",
+      "ResourceName": "ResourceResource",
       "Description": "A room or resource that can be requested for use as part of\nan event.\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -2369,27 +2253,6 @@
           "Description": "include associated resource_approval_groups",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "resource_folder",
-          "Description": "include associated resource_folder",
-          "CanAssignOnCreate": true,
-          "CanAssignOnUpdate": true
-        },
-        {
-          "Parameter": "include",
-          "Value": "resource_questions",
-          "Description": "include associated resource_questions",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "room_setups",
-          "Description": "include associated room_setups",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [
@@ -2398,24 +2261,6 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "expires_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-expires_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-name) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "updated_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -2464,11 +2309,14 @@
       ],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "resource_approval_group",
       "Name": "ResourceApprovalGroup",
+      "ResourceName": "ResourceApprovalGroupResource",
       "Description": "A group of people that can be attached to a room or resource\nin order to require their approval for booking.\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -2589,13 +2437,6 @@
           "Description": "include associated people",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "resources",
-          "Description": "include associated resources",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [
@@ -2604,18 +2445,6 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-name) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "updated_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -2650,11 +2479,14 @@
       ],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "resource_booking",
       "Name": "ResourceBooking",
+      "ResourceName": "ResourceBookingResource",
       "Description": "A specific booking of a room or resource for an event instance.\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -2741,20 +2573,6 @@
           "Description": "include associated event_instance",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
-        },
-        {
-          "Parameter": "include",
-          "Value": "event_resource_request",
-          "Description": "include associated event_resource_request",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "resource",
-          "Description": "include associated resource",
-          "CanAssignOnCreate": true,
-          "CanAssignOnUpdate": true
         }
       ],
       "CanOrderBy": [
@@ -2763,24 +2581,6 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "ends_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-ends_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "starts_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-starts_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "updated_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -2815,11 +2615,14 @@
       ],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "resource_folder",
       "Name": "ResourceFolder",
+      "ResourceName": "ResourceFolderResource",
       "Description": "An organizational folder containing rooms or resources.\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -2882,24 +2685,6 @@
           "Value": "ancestry",
           "Type": "string",
           "Description": "prefix with a hyphen (-ancestry) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "created_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-created_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-name) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "updated_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -2941,11 +2726,14 @@
       ],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "resource_question",
       "Name": "ResourceQuestion",
+      "ResourceName": "ResourceQuestionResource",
       "Description": "A question to answer when requesting to book a room or resource.\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -3032,11 +2820,14 @@
       ],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "resource_suggestion",
       "Name": "ResourceSuggestion",
+      "ResourceName": "ResourceSuggestionResource",
       "Description": "A resource and quantity suggested by a room setup.\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -3095,11 +2886,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "room_setup",
       "Name": "RoomSetup",
+      "ResourceName": "RoomSetupResource",
       "Description": "A diagram and list of suggested resources useful for predefined room setups.\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -3187,13 +2981,6 @@
           "Description": "include associated containing_resource",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
-        },
-        {
-          "Parameter": "include",
-          "Value": "resource_suggestions",
-          "Description": "include associated resource_suggestions",
-          "CanAssignOnCreate": true,
-          "CanAssignOnUpdate": true
         }
       ],
       "CanOrderBy": [
@@ -3202,18 +2989,6 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-name) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "updated_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -3241,11 +3016,14 @@
       ],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "tag",
       "Name": "Tag",
+      "ResourceName": "TagResource",
       "Description": "An organizational tag that can be applied to events.\n\nApplied tags can be used to filter events on the calendar or\nfilter events for reports, iCal feeds, kiosk, and the widget.\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -3326,12 +3104,6 @@
           "Value": "name",
           "Type": "string",
           "Description": "prefix with a hyphen (-name) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "position",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-position) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -3387,11 +3159,14 @@
       ],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "tag_group",
       "Name": "TagGroup",
+      "ResourceName": "TagGroupResource",
       "Description": "A grouping of tags for organizational purposes.\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -3445,13 +3220,6 @@
           "Description": "include associated events",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "tags",
-          "Description": "include associated tags",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [
@@ -3487,7 +3255,9 @@
       ],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     }
   ]
 }

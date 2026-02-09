@@ -15,9 +15,6 @@ public static class StringExtensions
 			.FixInlineCode());
 	}
 
-	public static string ToSnakeCase(this string target) => target.Replace('-', '_');
-
-
     public static string ToClrType(this string jsonType) => jsonType.ToLowerInvariant() switch
     {
         "string" or "primary_key" or "currency_abbreviation" => "string",

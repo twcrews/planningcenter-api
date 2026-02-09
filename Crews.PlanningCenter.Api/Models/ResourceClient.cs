@@ -21,24 +21,34 @@ namespace Crews.PlanningCenter.Api.Models;
 /// The HTTP client instance used to send requests to the resource endpoint. Must not be null.
 /// </param>
 /// <param name="uri">The URI of the resource endpoint to which requests will be sent. Must not be null.</param>
-abstract class ResourceClient<TModel, TResource, TResponse>(HttpClient httpClient, Uri uri) 
-    where TResource : JsonApiResource 
+public abstract class ResourceClient<TModel, TResource, TResponse>(HttpClient httpClient, Uri uri) 
     where TResponse : ResourceResponse<TResource>
 {
+    /// <summary>
+    /// The URI of the resource endpoint to which requests will be sent. 
+    /// This property is initialized in the constructor and can be modified using the provided methods for managing query 
+    /// parameters.
+    /// </summary>
     protected Uri Uri { get; set; } = uri;
+
+    /// <summary>
+    /// The HTTP client instance used to send requests to the resource endpoint.
+    /// </summary>
+    protected HttpClient HttpClient { get; } = httpClient;
 
     /// <summary>
     /// Sets a query parameter and its associated value in the instance's URI.
     /// </summary>
     /// <param name="parameter">The name of the query parameter.</param>
     /// <param name="value">The value associated with the parameter.</param>
-    protected void SetQueryParameter(string parameter, string value)
+    protected ResourceClient<TModel, TResource, TResponse> SetQueryParameter(string parameter, string value)
     {
         UriBuilder builder = new(Uri);
         NameValueCollection query = HttpUtility.ParseQueryString(builder.Query);
         query[parameter] = value;
         builder.Query = query.ToString() ?? string.Empty;
         Uri = builder.Uri;
+        return this;
     }
 
     /// <summary>
@@ -72,7 +82,7 @@ abstract class ResourceClient<TModel, TResource, TResponse>(HttpClient httpClien
     /// <exception cref="JsonApiException">Thrown when the HTTP response indicates a failure status code.</exception>
     protected async Task<TResponse> GetAsync(CancellationToken cancellationToken = default)
     {
-        HttpResponseMessage response = await httpClient.GetAsync(Uri, cancellationToken);
+        HttpResponseMessage response = await HttpClient.GetAsync(Uri, cancellationToken);
         return await DeserializeResponseAsync(response, cancellationToken);
     }
 
@@ -92,7 +102,7 @@ abstract class ResourceClient<TModel, TResource, TResponse>(HttpClient httpClien
         CancellationToken cancellationToken = default)
     {
         StringContent content = new(JsonSerializer.Serialize(resource));
-        HttpResponseMessage response = await httpClient.PostAsync(Uri, content, cancellationToken);
+        HttpResponseMessage response = await HttpClient.PostAsync(Uri, content, cancellationToken);
         return await DeserializeResponseAsync(response, cancellationToken);
     }
 
@@ -112,7 +122,7 @@ abstract class ResourceClient<TModel, TResource, TResponse>(HttpClient httpClien
         CancellationToken cancellationToken = default)
     {
         StringContent content = new(JsonSerializer.Serialize(resource));
-        HttpResponseMessage response = await httpClient.PatchAsync(Uri, content, cancellationToken);
+        HttpResponseMessage response = await HttpClient.PatchAsync(Uri, content, cancellationToken);
         return await DeserializeResponseAsync(response, cancellationToken);
     }
 
@@ -124,7 +134,7 @@ abstract class ResourceClient<TModel, TResource, TResponse>(HttpClient httpClien
     /// <exception cref="JsonApiException">Thrown when the HTTP response indicates a failure status code.</exception>
     protected async Task DeleteAsync(CancellationToken cancellationToken = default)
     {
-        HttpResponseMessage response = await httpClient.DeleteAsync(Uri, cancellationToken);
+        HttpResponseMessage response = await HttpClient.DeleteAsync(Uri, cancellationToken);
         await EnsureSuccessAsync(response, cancellationToken);
     }
 

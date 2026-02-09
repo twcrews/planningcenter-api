@@ -6,6 +6,7 @@
     {
       "Id": "attendee",
       "Name": "Attendee",
+      "ResourceName": "AttendeeResource",
       "Description": "An \u0060Attendee\u0060 is a person registered for a signup.\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -92,38 +93,20 @@
           "Description": "include associated emergency_contact",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "person",
-          "Description": "include associated person",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "registration",
-          "Description": "include associated registration",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "selection_type",
-          "Description": "include associated selection_type",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [],
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "campus",
       "Name": "Campus",
+      "ResourceName": "CampusResource",
       "Description": "A \u0060Campus\u0060 is a location belonging to an Organization.\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -181,11 +164,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "category",
       "Name": "Category",
+      "ResourceName": "CategoryResource",
       "Description": "A \u0060Category\u0060 is a label used to group together and find signups more easily.\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -213,11 +199,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "emergency_contact",
       "Name": "EmergencyContact",
+      "ResourceName": "EmergencyContactResource",
       "Description": "\u0060Emergency_Contact\u0060 is the person assigned as the emergency contact for an attendee.\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -240,11 +229,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "organization",
       "Name": "Organization",
+      "ResourceName": "OrganizationResource",
       "Description": "The root level \u0060Organization\u0060 record which serves as a link to \u0060Signup\u0060s.\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -309,11 +301,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "person",
       "Name": "Person",
+      "ResourceName": "PersonResource",
       "Description": null,
       "Deprecated": false,
       "CollectionOnly": false,
@@ -341,11 +336,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "registration",
       "Name": "Registration",
+      "ResourceName": "RegistrationResource",
       "Description": null,
       "Deprecated": false,
       "CollectionOnly": false,
@@ -389,24 +387,20 @@
           "Description": "include associated created_by",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "registrant_contact",
-          "Description": "include associated registrant_contact",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [],
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "selection_type",
       "Name": "SelectionType",
+      "ResourceName": "SelectionTypeResource",
       "Description": "\u0060Selection_Types\u0060 are used to present the options people register for in a signup.\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -459,11 +453,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "signup",
       "Name": "Signup",
+      "ResourceName": "SignupResource",
       "Description": "A \u0060Signup\u0060 is an organization signup that people can register for.\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -623,34 +620,6 @@
           "Description": "include associated campuses",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "categories",
-          "Description": "include associated categories",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "next_signup_time",
-          "Description": "include associated next_signup_time",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "signup_location",
-          "Description": "include associated signup_location",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "signup_times",
-          "Description": "include associated signup_times",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [],
@@ -665,11 +634,14 @@
       ],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "signup_location",
       "Name": "SignupLocation",
+      "ResourceName": "SignupLocationResource",
       "Description": "\u0060Signup_location\u0060 is the location of a signup.\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -737,11 +709,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "signup_time",
       "Name": "SignupTime",
+      "ResourceName": "SignupTimeResource",
       "Description": "\u0060Signup_time\u0060s are associated with a signup, which can have multiple signup times.\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -779,7 +754,9 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     }
   ]
 }

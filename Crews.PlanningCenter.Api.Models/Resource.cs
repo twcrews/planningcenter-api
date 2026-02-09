@@ -6,6 +6,7 @@ public class Resource
 {
     public string Id { get; set; } = null!;
     public string Name { get; set; } = null!;
+    public string ResourceName { get; set; } = null!;
     public string? Description { get; set; }
     public bool Deprecated { get; set; }
     public bool CollectionOnly { get; set; }
@@ -18,6 +19,8 @@ public class Resource
     public bool Postable { get; set; }
     public bool Patchable { get; set; }
     public bool Deletable { get; set; }
+    public bool GenerateResource { get; set; }
+    public bool GenerateClients { get; set; }
 }
 
 public class ResourceAttribute

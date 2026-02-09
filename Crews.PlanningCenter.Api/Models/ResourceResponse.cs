@@ -14,12 +14,12 @@ public abstract class ResourceResponse<T>
     /// <remarks>
     /// This is the equivalent of the <see cref="JsonApiDocument.Data"/> property deserialized to its specific type.
     /// </remarks>
-    public required T Data { get; init; }
+    public T? Data { get; init; }
 
     /// <summary>
     /// The deserialized JSON:API document from the response body.
     /// </summary>
-    public required JsonApiDocument ResponseBody { get; init; }
+    public JsonApiDocument? ResponseBody { get; init; }
 
     /// <summary>
     /// The original <see cref="HttpResponseMessage"/> instance.

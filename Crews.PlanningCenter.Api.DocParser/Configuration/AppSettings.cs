@@ -14,23 +14,18 @@ public class AppSettings
     public class DocumentationBuilderOptions
     {
         public int ConcurrentConnections { get; set; }
-        public IEnumerable<string> ExcludedProducts { get; set; } = [];
-        public IEnumerable<ExcludedVersionEntry> ExcludedVersions { get; set; } = [];
         public IEnumerable<ExcludedVertexEntry> ExcludedVertices { get; set; } = [];
         public IEnumerable<EdgeTypeOverrideEntry> EdgeTypeOverrides { get; set; } = [];
         public IEnumerable<CollectionOverrideEntry> CollectionOverrides { get; set; } = [];
-
-        public class ExcludedVersionEntry
-        {
-            public string? Product { get; set; }
-            public string Version { get; set; } = null!;
-        }
+        public IEnumerable<NameOverrideEntry> NameOverrides { get; set; } = [];
 
         public class ExcludedVertexEntry
         {
             public string? Product { get; set; }
             public string? Version { get; set; }
             public string Vertex { get; set; } = null!;
+            public bool GenerateResource { get; set; }
+            public bool GenerateClients { get; set; }
         }
 
         public class EdgeTypeOverrideEntry
@@ -49,6 +44,15 @@ public class AppSettings
             public string? Vertex { get; set; }
             public required string Edge { get; set; }
             public bool IsCollection { get; set; }
+        }
+
+        public class NameOverrideEntry
+        {
+            public string? Product { get; set; }
+            public string? Version { get; set; }
+            public string? Vertex { get; set; }
+            public required string ModelName { get; set; }
+            public required string ResourceName { get; set; }
         }
     }
 }

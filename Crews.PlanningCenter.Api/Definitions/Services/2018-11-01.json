@@ -6,6 +6,7 @@
     {
       "Id": "arrangement",
       "Name": "Arrangement",
+      "ResourceName": "ArrangementResource",
       "Description": "Each arrangement belongs to a song and is a different version of that song.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -206,24 +207,20 @@
           "Description": "include associated keys",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "sections",
-          "Description": "include associated sections",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [],
       "CanQueryBy": [],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "arrangement_sections",
       "Name": "ArrangementSections",
+      "ResourceName": "ArrangementSectionsResource",
       "Description": "Sections of an Arrangement, derived from its chord chart",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -241,11 +238,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "attachment",
       "Name": "Attachment",
+      "ResourceName": "AttachmentResource",
       "Description": "A file, whether it\u0027s stored on Planning Center or linked from another location.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -439,36 +439,6 @@
           "Value": "attachable_type",
           "Type": "string",
           "Description": "prefix with a hyphen (-attachable_type) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "created_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-created_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "deleted_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-deleted_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "filename",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-filename) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "filetype",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-filetype) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "size",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-size) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -489,11 +459,14 @@
       ],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "attachment_activity",
       "Name": "AttachmentActivity",
+      "ResourceName": "AttachmentActivityResource",
       "Description": "Returned from the \u0060open\u0060 attachment action.",
       "Deprecated": false,
       "CollectionOnly": true,
@@ -528,11 +501,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "attachment_type",
       "Name": "AttachmentType",
+      "ResourceName": "AttachmentTypeResource",
       "Description": "Create an Attachment Type for each type of file you might want only specific people to see. When you attach a file, you can specify an attachment type to then be able to link the file to a position.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -604,11 +580,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "attachment_type_group",
       "Name": "AttachmentTypeGroup",
+      "ResourceName": "AttachmentTypeGroupResource",
       "Description": null,
       "Deprecated": false,
       "CollectionOnly": false,
@@ -638,11 +617,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "attendance",
       "Name": "Attendance",
+      "ResourceName": "AttendanceResource",
       "Description": null,
       "Deprecated": false,
       "CollectionOnly": false,
@@ -683,11 +665,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "available_signup",
       "Name": "AvailableSignup",
+      "ResourceName": "AvailableSignupResource",
       "Description": "Signups that are available.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -757,11 +742,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "blockout",
       "Name": "Blockout",
+      "ResourceName": "BlockoutResource",
       "Description": "An object representing a blockout date, and an optional recurrence pattern",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -889,11 +877,14 @@
       ],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "blockout_date",
       "Name": "BlockoutDate",
+      "ResourceName": "BlockoutDateResource",
       "Description": "The actual dates generated by the blockout or its recurrence pattern. Generated up to a year in advance",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -959,11 +950,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "blockout_exception",
       "Name": "BlockoutException",
+      "ResourceName": "BlockoutExceptionResource",
       "Description": "A single exception for the dates generated from the blockout",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -998,11 +992,14 @@
       "CanQueryBy": [],
       "Postable": true,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "blockout_schedule_conflict",
       "Name": "BlockoutScheduleConflict",
+      "ResourceName": "BlockoutScheduleConflictResource",
       "Description": null,
       "Deprecated": false,
       "CollectionOnly": false,
@@ -1106,11 +1103,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "chat",
       "Name": "Chat",
+      "ResourceName": "ChatResource",
       "Description": null,
       "Deprecated": false,
       "CollectionOnly": false,
@@ -1158,11 +1158,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "contributor",
       "Name": "Contributor",
+      "ResourceName": "ContributorResource",
       "Description": "A Contributor Resource",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -1225,22 +1228,19 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "updated_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "custom_slide",
       "Name": "CustomSlide",
+      "ResourceName": "CustomSlideResource",
       "Description": "A CustomSlide is used for adding text intended for display on a screen.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -1286,11 +1286,14 @@
       "CanQueryBy": [],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "email",
       "Name": "Email",
+      "ResourceName": "EmailResource",
       "Description": "A persons email",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -1313,11 +1316,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "email_template",
       "Name": "EmailTemplate",
+      "ResourceName": "EmailTemplateResource",
       "Description": "A EmailTemplate Resource",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -1362,11 +1368,14 @@
       "CanQueryBy": [],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "email_template_rendered_response",
       "Name": "EmailTemplateRenderedResponse",
+      "ResourceName": "EmailTemplateRenderedResponseResource",
       "Description": "A EmailTemplateRenderedResponse Resource",
       "Deprecated": false,
       "CollectionOnly": true,
@@ -1402,11 +1411,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "folder",
       "Name": "Folder",
+      "ResourceName": "FolderResource",
       "Description": "A folder is a container used to organize multiple Service Types or other Folders.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -1500,11 +1512,14 @@
       ],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "folder_path",
       "Name": "FolderPath",
+      "ResourceName": "FolderPathResource",
       "Description": "The Folder path of a Folder",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -1522,11 +1537,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "item",
       "Name": "Item",
+      "ResourceName": "ItemResource",
       "Description": "An item in a plan.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -1734,59 +1752,20 @@
           "Description": "include associated arrangement",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
-        },
-        {
-          "Parameter": "include",
-          "Value": "item_notes",
-          "Description": "include associated item_notes",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "item_times",
-          "Description": "include associated item_times",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "key",
-          "Description": "include associated key",
-          "CanAssignOnCreate": true,
-          "CanAssignOnUpdate": true
-        },
-        {
-          "Parameter": "include",
-          "Value": "media",
-          "Description": "include associated media",
-          "CanAssignOnCreate": true,
-          "CanAssignOnUpdate": true
-        },
-        {
-          "Parameter": "include",
-          "Value": "selected_attachment",
-          "Description": "include associated selected_attachment",
-          "CanAssignOnCreate": true,
-          "CanAssignOnUpdate": true
-        },
-        {
-          "Parameter": "include",
-          "Value": "song",
-          "Description": "include associated song",
-          "CanAssignOnCreate": true,
-          "CanAssignOnUpdate": true
         }
       ],
       "CanOrderBy": [],
       "CanQueryBy": [],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "item_note",
       "Name": "ItemNote",
+      "ResourceName": "ItemNoteResource",
       "Description": "A plan item note that belongs to a category.\n\nNote: You can only assign the category on create. If you want to change category; delete the current note, and create a new one passing in the \u0060item_note_category_id\u0060 then.\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -1850,11 +1829,14 @@
       "CanQueryBy": [],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "item_note_category",
       "Name": "ItemNoteCategory",
+      "ResourceName": "ItemNoteCategoryResource",
       "Description": "A category of plan item notes for an entire Service Type.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -1904,11 +1886,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "item_time",
       "Name": "ItemTime",
+      "ResourceName": "ItemTimeResource",
       "Description": null,
       "Deprecated": false,
       "CollectionOnly": false,
@@ -1965,11 +1950,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "key",
       "Name": "Key",
+      "ResourceName": "KeyResource",
       "Description": "Each song arrangement can have multiple keys. A key is the pitch center of the song.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -2041,22 +2029,19 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "updated_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "live",
       "Name": "Live",
+      "ResourceName": "LiveResource",
       "Description": null,
       "Deprecated": false,
       "CollectionOnly": false,
@@ -2171,45 +2156,20 @@
           "Description": "include associated controller",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "current_item_time",
-          "Description": "include associated current_item_time",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "items",
-          "Description": "include associated items",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "next_item_time",
-          "Description": "include associated next_item_time",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "service_type",
-          "Description": "include associated service_type",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [],
       "CanQueryBy": [],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "live_controller",
       "Name": "LiveController",
+      "ResourceName": "LiveControllerResource",
       "Description": "A person who can control Services LIVE without the required permissions",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -2251,22 +2211,19 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "updated_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "media",
       "Name": "Media",
+      "ResourceName": "MediaResource",
       "Description": "A piece of media",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -2412,18 +2369,6 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "title",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-title) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "updated_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -2458,11 +2403,14 @@
       ],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "media_schedule",
       "Name": "MediaSchedule",
+      "ResourceName": "MediaScheduleResource",
       "Description": null,
       "Deprecated": false,
       "CollectionOnly": false,
@@ -2508,11 +2456,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "needed_position",
       "Name": "NeededPosition",
+      "ResourceName": "NeededPositionResource",
       "Description": "An amount of unfilled positions needed within a team in a plan.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -2586,24 +2537,20 @@
           "Description": "include associated team",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
-        },
-        {
-          "Parameter": "include",
-          "Value": "time",
-          "Description": "include associated time",
-          "CanAssignOnCreate": true,
-          "CanAssignOnUpdate": true
         }
       ],
       "CanOrderBy": [],
       "CanQueryBy": [],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "organization",
       "Name": "Organization",
+      "ResourceName": "OrganizationResource",
       "Description": "The root level of an organization where account-level settings are applied.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -2984,11 +2931,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "person",
       "Name": "Person",
+      "ResourceName": "PersonResource",
       "Description": "A person added to Planning Center Services.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -3409,20 +3359,6 @@
           "Description": "include associated emails",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "tags",
-          "Description": "include associated tags",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "team_leaders",
-          "Description": "include associated team_leaders",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [
@@ -3431,24 +3367,6 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "first_name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-first_name) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "last_name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-last_name) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "updated_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -3469,11 +3387,14 @@
       ],
       "Postable": false,
       "Patchable": true,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "person_team_position_assignment",
       "Name": "PersonTeamPositionAssignment",
+      "ResourceName": "PersonTeamPositionAssignmentResource",
       "Description": "A person\u0027s assignment to a position within a team.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -3546,13 +3467,6 @@
           "Description": "include associated person",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
-        },
-        {
-          "Parameter": "include",
-          "Value": "team_position",
-          "Description": "include associated team_position",
-          "CanAssignOnCreate": true,
-          "CanAssignOnUpdate": true
         }
       ],
       "CanOrderBy": [
@@ -3561,22 +3475,19 @@
           "Value": "first_name",
           "Type": "string",
           "Description": "prefix with a hyphen (-first_name) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "last_name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-last_name) to reverse the order"
         }
       ],
       "CanQueryBy": [],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "plan",
       "Name": "Plan",
+      "ResourceName": "PlanResource",
       "Description": "A single plan within a Service Type.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -3932,27 +3843,6 @@
           "Description": "include associated contributors",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "my_schedules",
-          "Description": "include associated my_schedules",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "plan_times",
-          "Description": "include associated plan_times",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "series",
-          "Description": "include associated series",
-          "CanAssignOnCreate": true,
-          "CanAssignOnUpdate": true
         }
       ],
       "CanOrderBy": [
@@ -3961,24 +3851,6 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "sort_date",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-sort_date) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "title",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-title) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "updated_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -4020,11 +3892,14 @@
       ],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "plan_note",
       "Name": "PlanNote",
+      "ResourceName": "PlanNoteResource",
       "Description": "A specific plan note within a single plan.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -4096,12 +3971,6 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "updated_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -4122,11 +3991,14 @@
       ],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "plan_note_category",
       "Name": "PlanNoteCategory",
+      "ResourceName": "PlanNoteCategoryResource",
       "Description": "A category of plan notes for an entire Service Type.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -4177,11 +4049,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "plan_person",
       "Name": "PlanPerson",
+      "ResourceName": "PlanPersonResource",
       "Description": "A person scheduled within a specific plan.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -4401,27 +4276,6 @@
           "Description": "include associated declined_plan_times",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
-        },
-        {
-          "Parameter": "include",
-          "Value": "person",
-          "Description": "include associated person",
-          "CanAssignOnCreate": true,
-          "CanAssignOnUpdate": true
-        },
-        {
-          "Parameter": "include",
-          "Value": "plan",
-          "Description": "include associated plan",
-          "CanAssignOnCreate": true,
-          "CanAssignOnUpdate": true
-        },
-        {
-          "Parameter": "include",
-          "Value": "team",
-          "Description": "include associated team",
-          "CanAssignOnCreate": true,
-          "CanAssignOnUpdate": true
         }
       ],
       "CanOrderBy": [],
@@ -4436,11 +4290,14 @@
       ],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "plan_person_time",
       "Name": "PlanPersonTime",
+      "ResourceName": "PlanPersonTimeResource",
       "Description": null,
       "Deprecated": false,
       "CollectionOnly": false,
@@ -4487,11 +4344,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "plan_template",
       "Name": "PlanTemplate",
+      "ResourceName": "PlanTemplateResource",
       "Description": "A PlanTemplate Resource",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -4620,46 +4480,19 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "item_count",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-item_count) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-name) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "note_count",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-note_count) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "team_count",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-team_count) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "updated_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "plan_time",
       "Name": "PlanTime",
+      "ResourceName": "PlanTimeResource",
       "Description": "A time in a plan.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -4768,11 +4601,14 @@
       ],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "public_view",
       "Name": "PublicView",
+      "ResourceName": "PublicViewResource",
       "Description": "Manage options for a public plan",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -4855,11 +4691,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "report_template",
       "Name": "ReportTemplate",
+      "ResourceName": "ReportTemplateResource",
       "Description": "A template for generating reports",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -4892,11 +4731,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "schedule",
       "Name": "Schedule",
+      "ResourceName": "ScheduleResource",
       "Description": "An instance of a PlanPerson with included data for displaying in a user\u0027s schedule",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -5113,11 +4955,14 @@
       ],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "scheduled_person",
       "Name": "ScheduledPerson",
+      "ResourceName": "ScheduledPersonResource",
       "Description": "A person already scheduled to a SignupSheet",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -5158,11 +5003,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "scheduling_preference",
       "Name": "SchedulingPreference",
+      "ResourceName": "SchedulingPreferenceResource",
       "Description": "Household member scheduling preference",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -5187,11 +5035,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "series",
       "Name": "Series",
+      "ResourceName": "SeriesResource",
       "Description": "A Series can be specified for each plan to tie plans with similar messages together, even across Service Types.\n\n*Note*: A series is not created until artwork is added from the plan.  You can use \u0060series_title\u0060 included in \u0060Plan\u0060 attributes to get titles for series without artwork.\n",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -5284,11 +5135,14 @@
       ],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "service_type",
       "Name": "ServiceType",
+      "ResourceName": "ServiceTypeResource",
       "Description": "A Service Type is a container for plans.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -5541,12 +5395,6 @@
           "Value": "name",
           "Type": "string",
           "Description": "prefix with a hyphen (-name) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "sequence",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-sequence) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -5574,11 +5422,14 @@
       ],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "service_type_path",
       "Name": "ServiceTypePath",
+      "ResourceName": "ServiceTypePathResource",
       "Description": "The Folder path of a Service Type",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -5596,11 +5447,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "signup_sheet",
       "Name": "SignupSheet",
+      "ResourceName": "SignupSheetResource",
       "Description": "Available positions to sign up for",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -5688,24 +5542,20 @@
           "Description": "include associated scheduled_people",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "signup_sheet_metadata",
-          "Description": "include associated signup_sheet_metadata",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [],
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "signup_sheet_metadata",
       "Name": "SignupSheetMetadata",
+      "ResourceName": "SignupSheetMetadataResource",
       "Description": "A SignupSheetMetadata Resource",
       "Deprecated": false,
       "CollectionOnly": true,
@@ -5750,11 +5600,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "skipped_attachment",
       "Name": "SkippedAttachment",
+      "ResourceName": "SkippedAttachmentResource",
       "Description": "a skipped attachment",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -5785,11 +5638,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "song",
       "Name": "Song",
+      "ResourceName": "SongResource",
       "Description": "A song",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -5915,24 +5771,6 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "last_scheduled_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-last_scheduled_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "title",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-title) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "updated_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -5974,11 +5812,14 @@
       ],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "song_schedule",
       "Name": "SongSchedule",
+      "ResourceName": "SongScheduleResource",
       "Description": "A upcoming schedule for a song",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -6059,11 +5900,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "songbook_status",
       "Name": "SongbookStatus",
+      "ResourceName": "SongbookStatusResource",
       "Description": "Used to get the status of an in progress songbook action. When FINISHED, will contain the url of the songbook.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -6096,11 +5940,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "split_team_rehearsal_assignment",
       "Name": "SplitTeamRehearsalAssignment",
+      "ResourceName": "SplitTeamRehearsalAssignmentResource",
       "Description": "For Rehearsal/Other Times, maps a Split Team to selected Time Preference Options. For example, used to assign 8am Ushers to 7:30am call time, and 11am Ushers to 10:30am call time.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -6141,11 +5988,14 @@
       "CanQueryBy": [],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "tag",
       "Name": "Tag",
+      "ResourceName": "TagResource",
       "Description": "A tag belonging to a tag group.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -6170,11 +6020,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "tag_group",
       "Name": "TagGroup",
+      "ResourceName": "TagGroupResource",
       "Description": "A tag group contains tags",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -6233,13 +6086,6 @@
           "Description": "include associated folder",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "tags",
-          "Description": "include associated tags",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [],
@@ -6261,11 +6107,14 @@
       ],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "team",
       "Name": "Team",
+      "ResourceName": "TeamResource",
       "Description": "A Team within a Service Type.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -6425,34 +6274,6 @@
           "Description": "include associated people",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "person_team_position_assignments",
-          "Description": "include associated person_team_position_assignments",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "service_types",
-          "Description": "include associated service_types",
-          "CanAssignOnCreate": true,
-          "CanAssignOnUpdate": true
-        },
-        {
-          "Parameter": "include",
-          "Value": "team_leaders",
-          "Description": "include associated team_leaders",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "team_positions",
-          "Description": "include associated team_positions",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [
@@ -6461,18 +6282,6 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-name) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "updated_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -6486,11 +6295,14 @@
       ],
       "Postable": true,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "team_leader",
       "Name": "TeamLeader",
+      "ResourceName": "TeamLeaderResource",
       "Description": "A leader of a specific Team in a Service Type.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -6552,13 +6364,6 @@
           "Description": "include associated people",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
-        },
-        {
-          "Parameter": "include",
-          "Value": "team",
-          "Description": "include associated team",
-          "CanAssignOnCreate": true,
-          "CanAssignOnUpdate": true
         }
       ],
       "CanOrderBy": [
@@ -6567,22 +6372,19 @@
           "Value": "first_name",
           "Type": "string",
           "Description": "prefix with a hyphen (-first_name) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "last_name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-last_name) to reverse the order"
         }
       ],
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "team_position",
       "Name": "TeamPosition",
+      "ResourceName": "TeamPositionResource",
       "Description": "A position within a team.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -6674,13 +6476,6 @@
           "Description": "include associated tags",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
-        },
-        {
-          "Parameter": "include",
-          "Value": "team",
-          "Description": "include associated team",
-          "CanAssignOnCreate": true,
-          "CanAssignOnUpdate": true
         }
       ],
       "CanOrderBy": [
@@ -6694,11 +6489,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "text_setting",
       "Name": "TextSetting",
+      "ResourceName": "TextSettingResource",
       "Description": null,
       "Deprecated": false,
       "CollectionOnly": false,
@@ -6746,11 +6544,14 @@
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": true,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "time_preference_option",
       "Name": "TimePreferenceOption",
+      "ResourceName": "TimePreferenceOptionResource",
       "Description": "A Service Time a person prefers to be scheduled to.",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -6805,22 +6606,19 @@
           "Value": "day_of_week",
           "Type": "string",
           "Description": "prefix with a hyphen (-day_of_week) to reverse the order"
-        },
-        {
-          "Parameter": "order",
-          "Value": "hour_of_day",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-hour_of_day) to reverse the order"
         }
       ],
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
-      "Deletable": false
+      "Deletable": false,
+      "GenerateResource": true,
+      "GenerateClients": true
     },
     {
       "Id": "zoom",
       "Name": "Zoom",
+      "ResourceName": "ZoomResource",
       "Description": "Describes a zoom level for an attachment",
       "Deprecated": false,
       "CollectionOnly": false,
@@ -6872,7 +6670,9 @@
       "CanQueryBy": [],
       "Postable": true,
       "Patchable": true,
-      "Deletable": true
+      "Deletable": true,
+      "GenerateResource": true,
+      "GenerateClients": true
     }
   ]
 }

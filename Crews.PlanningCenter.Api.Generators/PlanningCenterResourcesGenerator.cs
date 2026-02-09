@@ -23,7 +23,7 @@ class PlanningCenterResourcesGenerator : IIncrementalGenerator
             static (context, tuple) =>
             {
                 StringBuilder sb = new();
-                (ProductDefinition product, Models.Version? version) = tuple;
+                (ProductDefinition product, Version? version) = tuple;
                 string productName = product.ToString().ToPascalCase();
 
                 if (version is null) return;
@@ -38,7 +38,7 @@ class PlanningCenterResourcesGenerator : IIncrementalGenerator
             });
     }
 
-    private static void GenerateVersionModels(IndentedTextWriter writer, string productName, Models.Version version)
+    private static void GenerateVersionModels(IndentedTextWriter writer, string productName, Version version)
     {
         string versionString = "V" + version.Id.Replace('-', '_');
 
@@ -56,7 +56,7 @@ class PlanningCenterResourcesGenerator : IIncrementalGenerator
         writer.WriteLine($"namespace Crews.PlanningCenter.Api.{productName}.{versionString};");
         writer.WriteLine();
 
-        foreach (Resource resource in version.Resources)
+        foreach (Resource resource in version.Resources.Where(r => r.GenerateResource))
         {
             GenerateResourceModel(writer, resource);
             GenerateResourceAttributesModel(writer, resource);
@@ -69,25 +69,26 @@ class PlanningCenterResourcesGenerator : IIncrementalGenerator
         string summary = resource.Description is null 
             ? "Planning Center does not provide a description for this resource." 
             : resource.Description.ToXmlSummary();
-        string resourceAttributesName = resource.Name.EndsWith("Resource") 
-            ? resource.Name + "Attributes" 
-            : resource.Name;
+
+        string modelType = resource.Name.ToPascalCase();
+        string resourceType = resource.ResourceName.ToPascalCase();
+        string relationshipsType = modelType + "Relationships";
 
         writer.WriteLine("/// <summary>");
         writer.WriteLine($"/// {summary}");
         writer.WriteLine("/// </summary>");
-        writer.WriteLine($"public class {resource.Name}Resource : JsonApiResource");
+        writer.WriteLine($"public class {resourceType} : JsonApiResource");
         writer.WriteLine("{");
         writer.Indent++;
         writer.WriteLine("/// <inheritdoc/>");
         writer.WriteLine($"[JsonPropertyName(\"attributes\")]");
-        writer.WriteLine($"public required new {resourceAttributesName} Attributes {{ get; init; }}");
+        writer.WriteLine($"public required new {modelType} Attributes {{ get; init; }}");
         if (resource.Relationships.Any())
         {
             writer.WriteLine();
             writer.WriteLine("/// <inheritdoc/>");
             writer.WriteLine($"[JsonPropertyName(\"relationships\")]");
-            writer.WriteLine($"public new {resource.Name}Relationships? Relationships {{ get; init; }}");
+            writer.WriteLine($"public new {relationshipsType}? Relationships {{ get; init; }}");
         }
         writer.Indent--;
         writer.WriteLine("}");
@@ -98,12 +99,7 @@ class PlanningCenterResourcesGenerator : IIncrementalGenerator
     {
         string summary = $"Attributes for the {resource.Name} resource.";
 
-        string className = resource.Name;
-        if (className.EndsWith("Resource"))
-        {
-            className += "Attributes";
-            summary += "\nNOTE: The name of this class has been modified because it shares its original name with the resource class.";
-        }
+        string className = resource.Name.ToPascalCase();;
         summary = summary.ToXmlSummary();
 
         writer.WriteLine("/// <summary>");
@@ -114,7 +110,7 @@ class PlanningCenterResourcesGenerator : IIncrementalGenerator
         writer.Indent++;
         foreach (ResourceAttribute attribute in resource.Attributes)
         {
-            if (attribute.Name.ToPascalCase() == resource.Name)
+            if (attribute.Name.ToPascalCase() == className)
             {
                 attribute.Name += "_attribute";
                 attribute.Description = (attribute.Description 
@@ -149,7 +145,7 @@ class PlanningCenterResourcesGenerator : IIncrementalGenerator
         writer.WriteLine("/// <summary>");
         writer.WriteLine($"/// {summary}");
         writer.WriteLine("/// </summary>");
-        writer.WriteLine($"public class {resource.Name}Relationships");
+        writer.WriteLine($"public class {resource.Name.ToPascalCase()}Relationships");
         writer.WriteLine("{");
         writer.Indent++;
         foreach (ResourceRelationship relationship in resource.Relationships)

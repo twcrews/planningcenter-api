@@ -1,5 +1,5 @@
 using System.Net.Http.Headers;
-using Crews.Extensions.Primitives;
+using System.Text;
 
 namespace Crews.PlanningCenter.Api.Authentication;
 
@@ -24,5 +24,5 @@ public readonly record struct PlanningCenterPersonalAccessToken
 	/// </summary>
 	/// <param name="token">The current instance.</param>
 	public static implicit operator AuthenticationHeaderValue(PlanningCenterPersonalAccessToken token)
-		=> new("Basic", $"{token.AppId}:{token.Secret}".Base64Encode());
+		=> new("Basic", Convert.ToBase64String(Encoding.UTF8.GetBytes($"{token.AppId}:{token.Secret}")));
 }

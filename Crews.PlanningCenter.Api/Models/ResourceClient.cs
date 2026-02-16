@@ -29,12 +29,12 @@ public abstract class ResourceClient<TModel, TResource, TResponse>(HttpClient ht
     /// This property is initialized in the constructor and can be modified using the provided methods for managing query 
     /// parameters.
     /// </summary>
-    protected Uri Uri { get; set; } = uri;
+    protected Uri Uri { get; set; } = uri ?? throw new ArgumentNullException(nameof(uri));
 
     /// <summary>
     /// The HTTP client instance used to send requests to the resource endpoint.
     /// </summary>
-    protected HttpClient HttpClient { get; } = httpClient;
+    protected HttpClient HttpClient { get; } = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
 
     /// <summary>
     /// Sets a query parameter and its associated value in the instance's URI.

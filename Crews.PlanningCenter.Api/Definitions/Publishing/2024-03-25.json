@@ -222,6 +222,20 @@
           "Description": "include associated channel_default_episode_resources",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "channel_default_times",
+          "Description": "include associated channel_default_times",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "current_episode",
+          "Description": "include associated current_episode",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [
@@ -230,6 +244,12 @@
           "Value": "name",
           "Type": "string",
           "Description": "prefix with a hyphen (-name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "position",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-position) to reverse the order"
         }
       ],
       "CanQueryBy": [],
@@ -576,6 +596,34 @@
           "Description": "include associated channel",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "episode_resources",
+          "Description": "include associated episode_resources",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "episode_times",
+          "Description": "include associated episode_times",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "series",
+          "Description": "include associated series",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "speakerships",
+          "Description": "include associated speakerships",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
         }
       ],
       "CanOrderBy": [
@@ -584,6 +632,24 @@
           "Value": "published_live_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-published_live_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "published_to_library_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-published_to_library_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "stream_type",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-stream_type) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "title",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-title) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -1022,6 +1088,24 @@
           "Value": "ended_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-ended_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "episodes_count",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-episodes_count) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "started_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-started_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "title",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-title) to reverse the order"
         }
       ],
       "CanQueryBy": [

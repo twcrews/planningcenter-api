@@ -293,6 +293,69 @@
           "Description": "include associated check_in_times",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "checked_in_at",
+          "Description": "include associated checked_in_at",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "checked_in_by",
+          "Description": "include associated checked_in_by",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "checked_out_by",
+          "Description": "include associated checked_out_by",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "event",
+          "Description": "include associated event",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "event_period",
+          "Description": "include associated event_period",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "event_times",
+          "Description": "include associated event_times",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "locations",
+          "Description": "include associated locations",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "options",
+          "Description": "include associated options",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "person",
+          "Description": "include associated person",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
         }
       ],
       "CanOrderBy": [
@@ -301,6 +364,36 @@
           "Value": "checked_out_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-checked_out_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "first_name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-first_name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "last_name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-last_name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "number",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-number) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -413,6 +506,20 @@
           "Parameter": "include",
           "Value": "check_ins",
           "Description": "include associated check_ins",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "event_period",
+          "Description": "include associated event_period",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "print_station",
+          "Description": "include associated print_station",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         }
@@ -692,6 +799,12 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -781,6 +894,13 @@
           "Parameter": "include",
           "Value": "event",
           "Description": "include associated event",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "label",
+          "Description": "include associated label",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         }
@@ -937,6 +1057,13 @@
           "Description": "include associated event",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "event_times",
+          "Description": "include associated event_times",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [
@@ -1162,6 +1289,20 @@
           "Description": "include associated event",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "event_period",
+          "Description": "include associated event_period",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "headcounts",
+          "Description": "include associated headcounts",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [
@@ -1170,6 +1311,12 @@
           "Value": "shows_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-shows_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "starts_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-starts_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -1259,6 +1406,13 @@
           "Description": "include associated attendance_type",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "event_time",
+          "Description": "include associated event_time",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
         }
       ],
       "CanOrderBy": [
@@ -1267,6 +1421,18 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "total",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-total) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -1664,6 +1830,27 @@
           "Description": "include associated event",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "locations",
+          "Description": "include associated locations",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "options",
+          "Description": "include associated options",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "parent",
+          "Description": "include associated parent",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
         }
       ],
       "CanOrderBy": [
@@ -1672,6 +1859,18 @@
           "Value": "kind",
           "Type": "string",
           "Description": "prefix with a hyphen (-kind) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "position",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-position) to reverse the order"
         }
       ],
       "CanQueryBy": [],
@@ -1787,6 +1986,13 @@
           "Parameter": "include",
           "Value": "event_period",
           "Description": "include associated event_period",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "location",
+          "Description": "include associated location",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         }
@@ -1907,6 +2113,13 @@
           "Description": "include associated event_time",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "location",
+          "Description": "include associated location",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [],
@@ -1997,6 +2210,13 @@
           "Parameter": "include",
           "Value": "label",
           "Description": "include associated label",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "location",
+          "Description": "include associated location",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         }
@@ -2580,6 +2800,24 @@
           "Value": "check_in_count",
           "Type": "string",
           "Description": "prefix with a hyphen (-check_in_count) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "first_name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-first_name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "last_checked_in_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-last_checked_in_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "last_name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-last_name) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -2686,6 +2924,27 @@
           "Parameter": "include",
           "Value": "event",
           "Description": "include associated event",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "first_check_in",
+          "Description": "include associated first_check_in",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "last_check_in",
+          "Description": "include associated last_check_in",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "person",
+          "Description": "include associated person",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         }
@@ -2962,6 +3221,27 @@
           "Parameter": "include",
           "Value": "event",
           "Description": "include associated event",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "location",
+          "Description": "include associated location",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "print_station",
+          "Description": "include associated print_station",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "theme",
+          "Description": "include associated theme",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         }

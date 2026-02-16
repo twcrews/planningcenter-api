@@ -93,6 +93,27 @@
           "Description": "include associated emergency_contact",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "person",
+          "Description": "include associated person",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "registration",
+          "Description": "include associated registration",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "selection_type",
+          "Description": "include associated selection_type",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [],
@@ -387,6 +408,13 @@
           "Description": "include associated created_by",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "registrant_contact",
+          "Description": "include associated registrant_contact",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [],
@@ -618,6 +646,34 @@
           "Parameter": "include",
           "Value": "campuses",
           "Description": "include associated campuses",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "categories",
+          "Description": "include associated categories",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "next_signup_time",
+          "Description": "include associated next_signup_time",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "signup_location",
+          "Description": "include associated signup_location",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "signup_times",
+          "Description": "include associated signup_times",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         }

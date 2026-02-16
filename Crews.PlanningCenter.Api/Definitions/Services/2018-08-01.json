@@ -12,13 +12,53 @@
       "CollectionOnly": false,
       "Attributes": [
         {
+          "Name": "archived_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
           "Name": "bpm",
           "Type": "float",
           "Description": null
         },
         {
+          "Name": "chord_chart",
+          "Type": "string",
+          "Description": "A string of lyrics and chords. Supports standard and ChordPro formats.\n"
+        },
+        {
+          "Name": "chord_chart_chord_color",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "chord_chart_columns",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "chord_chart_font",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "chord_chart_font_size",
+          "Type": "integer",
+          "Description": "Possible Values:\n\n\u006010\u0060, \u006011\u0060, \u006012\u0060, \u006013\u0060, \u006014\u0060, \u006015\u0060, \u006016\u0060, \u006018\u0060, \u006020\u0060, \u006022\u0060, \u006024\u0060, \u006026\u0060, \u006028\u0060, \u006032\u0060, \u006036\u0060, \u006042\u0060, \u006048\u0060\n"
+        },
+        {
+          "Name": "chord_chart_key",
+          "Type": "string",
+          "Description": null
+        },
+        {
           "Name": "created_at",
           "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "has_chord_chart",
+          "Type": "boolean",
           "Description": null
         },
         {
@@ -29,6 +69,16 @@
         {
           "Name": "length",
           "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "lyrics",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "lyrics_enabled",
+          "Type": "boolean",
           "Description": null
         },
         {
@@ -47,6 +97,16 @@
           "Description": null
         },
         {
+          "Name": "number_chart_enabled",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "numeral_chart_enabled",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
           "Name": "print_margin",
           "Type": "string",
           "Description": "Possible Values:\n\n- \u00600.0in\u0060\n\n- \u00600.25in\u0060\n\n- \u00600.5in\u0060\n\n- \u00600.75in\u0060\n\n- \u00601.0in\u0060\n"
@@ -62,64 +122,9 @@
           "Description": "Possible Values:\n\n- \u0060Widescreen (16x9)\u0060\n\n- \u0060Fullscreen (4x3)\u0060\n\n- \u0060A4\u0060\n\n- \u0060Letter\u0060\n\n- \u0060Legal\u0060\n\n- \u006011x17\u0060\n"
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "chord_chart",
-          "Type": "string",
-          "Description": "A string of lyrics and chords. Supports standard and ChordPro formats.\n"
-        },
-        {
-          "Name": "chord_chart_font",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "chord_chart_key",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "chord_chart_columns",
-          "Type": "integer",
-          "Description": null
-        },
-        {
-          "Name": "chord_chart_font_size",
-          "Type": "integer",
-          "Description": "Possible Values:\n\n\u006010\u0060, \u006011\u0060, \u006012\u0060, \u006013\u0060, \u006014\u0060, \u006015\u0060, \u006016\u0060, \u006018\u0060, \u006020\u0060, \u006022\u0060, \u006024\u0060, \u006026\u0060, \u006028\u0060, \u006032\u0060, \u006036\u0060, \u006042\u0060, \u006048\u0060\n"
-        },
-        {
-          "Name": "has_chord_chart",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
-          "Name": "lyrics_enabled",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
-          "Name": "number_chart_enabled",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
-          "Name": "numeral_chart_enabled",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
           "Name": "sequence",
           "Type": "array",
           "Description": "An array of strings containing a label and a number describing the section:\n\n[\u0027Verse 1\u0027, \u0027Chorus 1\u0027, \u0027Verse 2\u0027]\n"
-        },
-        {
-          "Name": "sequence_short",
-          "Type": "array",
-          "Description": null
         },
         {
           "Name": "sequence_full",
@@ -127,18 +132,13 @@
           "Description": null
         },
         {
-          "Name": "chord_chart_chord_color",
-          "Type": "integer",
+          "Name": "sequence_short",
+          "Type": "array",
           "Description": null
         },
         {
-          "Name": "archived_at",
+          "Name": "updated_at",
           "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "lyrics",
-          "Type": "string",
           "Description": null
         }
       ],
@@ -207,6 +207,13 @@
           "Description": "include associated keys",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "sections",
+          "Description": "include associated sections",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [],
@@ -251,19 +258,49 @@
       "CollectionOnly": false,
       "Attributes": [
         {
+          "Name": "allow_mp3_download",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "content",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "content_type",
+          "Type": "string",
+          "Description": null
+        },
+        {
           "Name": "created_at",
           "Type": "date_time",
           "Description": null
         },
         {
-          "Name": "page_order",
+          "Name": "deleted_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "display_name",
           "Type": "string",
           "Description": null
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
+          "Name": "downloadable",
+          "Type": "boolean",
           "Description": null
+        },
+        {
+          "Name": "file_size",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "file_upload_identifier",
+          "Type": "string",
+          "Description": "Planning Center File UUID. Required only when creating a file attachment. See the \u0022File Uploads\u0022 section of the API documentation for more information.\n\nOnly available when requested with the \u0060?fields\u0060 param"
         },
         {
           "Name": "filename",
@@ -271,8 +308,18 @@
           "Description": null
         },
         {
-          "Name": "file_size",
-          "Type": "integer",
+          "Name": "filetype",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "has_preview",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "import_to_item_details",
+          "Type": "boolean",
           "Description": null
         },
         {
@@ -291,27 +338,12 @@
           "Description": null
         },
         {
-          "Name": "content",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "content_type",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "display_name",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "filetype",
-          "Type": "string",
-          "Description": null
-        },
-        {
           "Name": "linked_url",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "page_order",
           "Type": "string",
           "Description": null
         },
@@ -326,28 +358,13 @@
           "Description": null
         },
         {
+          "Name": "streamable",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
           "Name": "thumbnail_url",
           "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "url",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "allow_mp3_download",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
-          "Name": "web_streamable",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
-          "Name": "downloadable",
-          "Type": "boolean",
           "Description": null
         },
         {
@@ -356,28 +373,18 @@
           "Description": null
         },
         {
-          "Name": "import_to_item_details",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
-          "Name": "streamable",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
-          "Name": "has_preview",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
-          "Name": "file_upload_identifier",
-          "Type": "string",
-          "Description": "Planning Center File UUID. Required only when creating a file attachment. See the \u0022File Uploads\u0022 section of the API documentation for more information.\n\nOnly available when requested with the \u0060?fields\u0060 param"
-        },
-        {
-          "Name": "deleted_at",
+          "Name": "updated_at",
           "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "url",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "web_streamable",
+          "Type": "boolean",
           "Description": null
         }
       ],
@@ -439,6 +446,36 @@
           "Value": "attachable_type",
           "Type": "string",
           "Description": "prefix with a hyphen (-attachable_type) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "deleted_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-deleted_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "filename",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-filename) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "filetype",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-filetype) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "size",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-size) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -472,8 +509,8 @@
       "CollectionOnly": true,
       "Attributes": [
         {
-          "Name": "date",
-          "Type": "date",
+          "Name": "activity_type",
+          "Type": "string",
           "Description": null
         },
         {
@@ -482,8 +519,8 @@
           "Description": null
         },
         {
-          "Name": "activity_type",
-          "Type": "string",
+          "Name": "date",
+          "Type": "date",
           "Description": null
         }
       ],
@@ -514,13 +551,13 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "name",
+          "Name": "aliases",
           "Type": "string",
           "Description": null
         },
         {
-          "Name": "aliases",
-          "Type": "string",
+          "Name": "built_in",
+          "Type": "boolean",
           "Description": null
         },
         {
@@ -544,17 +581,17 @@
           "Description": null
         },
         {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
           "Name": "number_charts",
           "Type": "boolean",
           "Description": null
         },
         {
           "Name": "numeral_charts",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
-          "Name": "built_in",
           "Type": "boolean",
           "Description": null
         }
@@ -630,11 +667,6 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "checked_in_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
           "Name": "check_ins_event_id",
           "Type": "primary_key",
           "Description": null
@@ -642,6 +674,11 @@
         {
           "Name": "check_ins_event_period_id",
           "Type": "primary_key",
+          "Description": null
+        },
+        {
+          "Name": "checked_in_at",
+          "Type": "date_time",
           "Description": null
         }
       ],
@@ -755,8 +792,18 @@
       "CollectionOnly": false,
       "Attributes": [
         {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
           "Name": "description",
           "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "ends_at",
+          "Type": "date_time",
           "Description": null
         },
         {
@@ -790,28 +837,18 @@
           "Description": "Possible values:\n\n- daily\n\n- weekly\n\n- monthly\n\n- yearly"
         },
         {
+          "Name": "repeat_until",
+          "Type": "date",
+          "Description": null
+        },
+        {
           "Name": "settings",
           "Type": "string",
           "Description": null
         },
         {
-          "Name": "time_zone",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "repeat_until",
-          "Type": "date",
+          "Name": "share",
+          "Type": "boolean",
           "Description": null
         },
         {
@@ -820,13 +857,13 @@
           "Description": null
         },
         {
-          "Name": "ends_at",
-          "Type": "date_time",
+          "Name": "time_zone",
+          "Type": "string",
           "Description": null
         },
         {
-          "Name": "share",
-          "Type": "boolean",
+          "Name": "updated_at",
+          "Type": "date_time",
           "Description": null
         }
       ],
@@ -890,17 +927,22 @@
       "CollectionOnly": false,
       "Attributes": [
         {
+          "Name": "ends_at",
+          "Type": "date_time",
+          "Description": "End time as a \u0027wall-clock\u0027 timestamp"
+        },
+        {
+          "Name": "ends_at_utc",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
           "Name": "group_identifier",
           "Type": "string",
           "Description": null
         },
         {
           "Name": "reason",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "time_zone",
           "Type": "string",
           "Description": null
         },
@@ -915,18 +957,13 @@
           "Description": "Start time as a \u0027wall-clock\u0027 timestamp"
         },
         {
-          "Name": "ends_at",
-          "Type": "date_time",
-          "Description": "End time as a \u0027wall-clock\u0027 timestamp"
-        },
-        {
-          "Name": "ends_at_utc",
+          "Name": "starts_at_utc",
           "Type": "date_time",
           "Description": null
         },
         {
-          "Name": "starts_at_utc",
-          "Type": "date_time",
+          "Name": "time_zone",
+          "Type": "string",
           "Description": null
         }
       ],
@@ -963,13 +1000,13 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "date",
-          "Type": "date",
+          "Name": "created_at",
+          "Type": "date_time",
           "Description": null
         },
         {
-          "Name": "created_at",
-          "Type": "date_time",
+          "Name": "date",
+          "Type": "date",
           "Description": null
         },
         {
@@ -1004,6 +1041,11 @@
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
+        {
+          "Name": "can_accept_partial",
+          "Type": "boolean",
+          "Description": null
+        },
         {
           "Name": "dates",
           "Type": "string",
@@ -1040,6 +1082,11 @@
           "Description": null
         },
         {
+          "Name": "sort_date",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
           "Name": "status",
           "Type": "string",
           "Description": null
@@ -1052,16 +1099,6 @@
         {
           "Name": "team_position_name",
           "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "sort_date",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "can_accept_partial",
-          "Type": "boolean",
           "Description": null
         }
       ],
@@ -1116,13 +1153,18 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "payload",
-          "Type": "string",
+          "Name": "group_identifiers",
+          "Type": "array",
           "Description": "Only available when requested with the \u0060?fields\u0060 param"
         },
         {
-          "Name": "group_identifiers",
+          "Name": "my_teams",
           "Type": "array",
+          "Description": "Only available when requested with the \u0060?fields\u0060 param"
+        },
+        {
+          "Name": "payload",
+          "Type": "string",
           "Description": "Only available when requested with the \u0060?fields\u0060 param"
         },
         {
@@ -1142,11 +1184,6 @@
         },
         {
           "Name": "teams_i_lead",
-          "Type": "array",
-          "Description": "Only available when requested with the \u0060?fields\u0060 param"
-        },
-        {
-          "Name": "my_teams",
           "Type": "array",
           "Description": "Only available when requested with the \u0060?fields\u0060 param"
         }
@@ -1171,16 +1208,6 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
           "Name": "contributable_action",
           "Type": "string",
           "Description": null
@@ -1196,6 +1223,11 @@
           "Description": null
         },
         {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
           "Name": "full_name",
           "Type": "string",
           "Description": null
@@ -1203,6 +1235,11 @@
         {
           "Name": "photo_thumbnail_url",
           "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
           "Description": null
         }
       ],
@@ -1228,6 +1265,12 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [],
@@ -1251,6 +1294,11 @@
           "Description": null
         },
         {
+          "Name": "enabled",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
           "Name": "label",
           "Type": "string",
           "Description": null
@@ -1258,11 +1306,6 @@
         {
           "Name": "order",
           "Type": "integer",
-          "Description": null
-        },
-        {
-          "Name": "enabled",
-          "Type": "boolean",
           "Description": null
         }
       ],
@@ -1299,13 +1342,13 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "primary",
-          "Type": "boolean",
+          "Name": "address",
+          "Type": "string",
           "Description": null
         },
         {
-          "Name": "address",
-          "Type": "string",
+          "Name": "primary",
+          "Type": "boolean",
           "Description": null
         }
       ],
@@ -1329,17 +1372,7 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "kind",
-          "Type": "string",
-          "Description": null
-        },
-        {
           "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "updated_at",
           "Type": "date_time",
           "Description": null
         },
@@ -1349,8 +1382,18 @@
           "Description": null
         },
         {
+          "Name": "kind",
+          "Type": "string",
+          "Description": null
+        },
+        {
           "Name": "subject",
           "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
           "Description": null
         }
       ],
@@ -1424,6 +1467,11 @@
       "CollectionOnly": false,
       "Attributes": [
         {
+          "Name": "container",
+          "Type": "string",
+          "Description": null
+        },
+        {
           "Name": "created_at",
           "Type": "date_time",
           "Description": null
@@ -1436,11 +1484,6 @@
         {
           "Name": "updated_at",
           "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "container",
-          "Type": "string",
           "Description": null
         }
       ],
@@ -1550,53 +1593,8 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "title",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "sequence",
-          "Type": "integer",
-          "Description": null
-        },
-        {
           "Name": "created_at",
           "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "length",
-          "Type": "integer",
-          "Description": null
-        },
-        {
-          "Name": "item_type",
-          "Type": "string",
-          "Description": "There are 4 possible values:\n\n- \u0060song\u0060: The item is a song\n\n- \u0060header\u0060: The item is a header\n\n- \u0060media\u0060: The item is a piece of media\n\n- \u0060item\u0060: The default item type\n\nThis value can only be set when an item is created. The only value that you can pass is \u0060header\u0060. If no value is passed then \u0060item\u0060 will be used. To create a media item you\u0027ll attach a video media to the item, and to create a song item, you\u0027ll attach a song.\n"
-        },
-        {
-          "Name": "html_details",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "service_position",
-          "Type": "string",
-          "Description": "There are 3 possible values:\n\n- \u0060pre\u0060: the item happens before the service starts\n\n- \u0060post\u0060: the item happens after the service ends\n\n- \u0060during\u0060: the item happens during the service\n"
-        },
-        {
-          "Name": "description",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "key_name",
-          "Type": "string",
           "Description": null
         },
         {
@@ -1605,13 +1603,58 @@
           "Description": "An array of strings containing a label and a number describing the section:\n\n[\u0027Verse 1\u0027, \u0027Chorus 1\u0027, \u0027Verse 2\u0027]\n"
         },
         {
+          "Name": "custom_arrangement_sequence_full",
+          "Type": "array",
+          "Description": null
+        },
+        {
           "Name": "custom_arrangement_sequence_short",
           "Type": "array",
           "Description": null
         },
         {
-          "Name": "custom_arrangement_sequence_full",
-          "Type": "array",
+          "Name": "description",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "html_details",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "item_type",
+          "Type": "string",
+          "Description": "There are 4 possible values:\n\n- \u0060song\u0060: The item is a song\n\n- \u0060header\u0060: The item is a header\n\n- \u0060media\u0060: The item is a piece of media\n\n- \u0060item\u0060: The default item type\n\nThis value can only be set when an item is created. The only value that you can pass is \u0060header\u0060. If no value is passed then \u0060item\u0060 will be used. To create a media item you\u0027ll attach a video media to the item, and to create a song item, you\u0027ll attach a song.\n"
+        },
+        {
+          "Name": "key_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "length",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "sequence",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "service_position",
+          "Type": "string",
+          "Description": "There are 3 possible values:\n\n- \u0060pre\u0060: the item happens before the service starts\n\n- \u0060post\u0060: the item happens after the service ends\n\n- \u0060during\u0060: the item happens during the service\n"
+        },
+        {
+          "Name": "title",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
           "Description": null
         }
       ],
@@ -1752,6 +1795,48 @@
           "Description": "include associated arrangement",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "item_notes",
+          "Description": "include associated item_notes",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "item_times",
+          "Description": "include associated item_times",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "key",
+          "Description": "include associated key",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "media",
+          "Description": "include associated media",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "selected_attachment",
+          "Description": "include associated selected_attachment",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "song",
+          "Description": "include associated song",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
         }
       ],
       "CanOrderBy": [],
@@ -1771,13 +1856,8 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "updated_at",
-          "Type": "date_time",
+          "Name": "category_name",
+          "Type": "string",
           "Description": null
         },
         {
@@ -1786,8 +1866,13 @@
           "Description": null
         },
         {
-          "Name": "category_name",
-          "Type": "string",
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
           "Description": null
         }
       ],
@@ -1852,6 +1937,11 @@
           "Description": null
         },
         {
+          "Name": "frequently_used",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
           "Name": "name",
           "Type": "string",
           "Description": null
@@ -1864,11 +1954,6 @@
         {
           "Name": "updated_at",
           "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "frequently_used",
-          "Type": "boolean",
           "Description": null
         }
       ],
@@ -1899,16 +1984,6 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "live_start_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "live_end_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
           "Name": "exclude",
           "Type": "boolean",
           "Description": null
@@ -1921,6 +1996,16 @@
         {
           "Name": "length_offset",
           "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "live_end_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "live_start_at",
+          "Type": "date_time",
           "Description": null
         }
       ],
@@ -1963,29 +2048,29 @@
       "CollectionOnly": false,
       "Attributes": [
         {
+          "Name": "alternate_keys",
+          "Type": "string",
+          "Description": "An array of objects.\n\n\u0060\n{\n  \u0022name\u0022: \u0022My Alternate Key\u0022,\n  \u0022key\u0022: \u0022B\u0022\n}\n\u0060\n"
+        },
+        {
           "Name": "created_at",
           "Type": "date_time",
           "Description": null
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
+          "Name": "ending_key",
+          "Type": "string",
+          "Description": "Possible Values:\n\n\u0060Ab\u0060, \u0060A\u0060, \u0060A#\u0060, \u0060Bb\u0060, \u0060B\u0060, \u0060C\u0060, \u0060C#\u0060, \u0060Db\u0060, \u0060D\u0060, \u0060D#\u0060, \u0060Eb\u0060, \u0060E\u0060, \u0060F\u0060, \u0060F#\u0060, \u0060Gb\u0060, \u0060G\u0060, \u0060G#\u0060, \u0060Abm\u0060, \u0060Am\u0060, \u0060A#m\u0060, \u0060Bbm\u0060, \u0060Bm\u0060, \u0060Cm\u0060, \u0060C#m\u0060, \u0060Dbm\u0060, \u0060Dm\u0060, \u0060D#m\u0060, \u0060Ebm\u0060, \u0060Em\u0060, \u0060Fm\u0060, \u0060F#m\u0060, \u0060Gbm\u0060, \u0060Gm\u0060, \u0060G#m\u0060\n\nTo set the key to minor append \u0060m\u0060 to the key. e.g. \u0060Cm\u0060\n"
+        },
+        {
+          "Name": "ending_minor",
+          "Type": "boolean",
           "Description": null
         },
         {
           "Name": "name",
           "Type": "string",
           "Description": null
-        },
-        {
-          "Name": "alternate_keys",
-          "Type": "string",
-          "Description": "An array of objects.\n\n\u0060\n{\n  \u0022name\u0022: \u0022My Alternate Key\u0022,\n  \u0022key\u0022: \u0022B\u0022\n}\n\u0060\n"
-        },
-        {
-          "Name": "ending_key",
-          "Type": "string",
-          "Description": "Possible Values:\n\n\u0060Ab\u0060, \u0060A\u0060, \u0060A#\u0060, \u0060Bb\u0060, \u0060B\u0060, \u0060C\u0060, \u0060C#\u0060, \u0060Db\u0060, \u0060D\u0060, \u0060D#\u0060, \u0060Eb\u0060, \u0060E\u0060, \u0060F\u0060, \u0060F#\u0060, \u0060Gb\u0060, \u0060G\u0060, \u0060G#\u0060, \u0060Abm\u0060, \u0060Am\u0060, \u0060A#m\u0060, \u0060Bbm\u0060, \u0060Bm\u0060, \u0060Cm\u0060, \u0060C#m\u0060, \u0060Dbm\u0060, \u0060Dm\u0060, \u0060D#m\u0060, \u0060Ebm\u0060, \u0060Em\u0060, \u0060Fm\u0060, \u0060F#m\u0060, \u0060Gbm\u0060, \u0060Gm\u0060, \u0060G#m\u0060\n\nTo set the key to minor append \u0060m\u0060 to the key. e.g. \u0060Cm\u0060\n"
         },
         {
           "Name": "starting_key",
@@ -1998,8 +2083,8 @@
           "Description": null
         },
         {
-          "Name": "ending_minor",
-          "Type": "boolean",
+          "Name": "updated_at",
+          "Type": "date_time",
           "Description": null
         }
       ],
@@ -2029,6 +2114,12 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [],
@@ -2047,12 +2138,27 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "series_title",
-          "Type": "string",
+          "Name": "can_chat",
+          "Type": "boolean",
           "Description": null
         },
         {
-          "Name": "title",
+          "Name": "can_control",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "can_control_video_feed",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "can_take_control",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "chat_room_channel",
           "Type": "string",
           "Description": null
         },
@@ -2067,28 +2173,13 @@
           "Description": null
         },
         {
-          "Name": "chat_room_channel",
+          "Name": "series_title",
           "Type": "string",
           "Description": null
         },
         {
-          "Name": "can_control",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
-          "Name": "can_take_control",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
-          "Name": "can_chat",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
-          "Name": "can_control_video_feed",
-          "Type": "boolean",
+          "Name": "title",
+          "Type": "string",
           "Description": null
         }
       ],
@@ -2156,6 +2247,34 @@
           "Description": "include associated controller",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "current_item_time",
+          "Description": "include associated current_item_time",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "items",
+          "Description": "include associated items",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "next_item_time",
+          "Description": "include associated next_item_time",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "service_type",
+          "Description": "include associated service_type",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [],
@@ -2180,11 +2299,6 @@
           "Description": null
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
           "Name": "full_name",
           "Type": "string",
           "Description": null
@@ -2192,6 +2306,11 @@
         {
           "Name": "photo_thumbnail_url",
           "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
           "Description": null
         }
       ],
@@ -2211,6 +2330,12 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [],
@@ -2234,58 +2359,13 @@
           "Description": null
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "themes",
+          "Name": "creator_name",
           "Type": "string",
           "Description": null
         },
         {
-          "Name": "title",
+          "Name": "image_url",
           "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "thumbnail_file_name",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "thumbnail_content_type",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "thumbnail_file_size",
-          "Type": "integer",
-          "Description": null
-        },
-        {
-          "Name": "thumbnail_updated_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "preview_file_name",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "preview_content_type",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "preview_file_size",
-          "Type": "integer",
-          "Description": null
-        },
-        {
-          "Name": "preview_updated_at",
-          "Type": "date_time",
           "Description": null
         },
         {
@@ -2304,13 +2384,23 @@
           "Description": null
         },
         {
-          "Name": "thumbnail_url",
+          "Name": "preview_content_type",
           "Type": "string",
           "Description": null
         },
         {
-          "Name": "creator_name",
+          "Name": "preview_file_name",
           "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "preview_file_size",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "preview_updated_at",
+          "Type": "date_time",
           "Description": null
         },
         {
@@ -2319,8 +2409,43 @@
           "Description": null
         },
         {
-          "Name": "image_url",
+          "Name": "themes",
           "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "thumbnail_content_type",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "thumbnail_file_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "thumbnail_file_size",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "thumbnail_updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "thumbnail_url",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "title",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
           "Description": null
         }
       ],
@@ -2369,6 +2494,18 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "title",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-title) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -2426,13 +2563,13 @@
           "Description": null
         },
         {
-          "Name": "service_type_name",
-          "Type": "string",
+          "Name": "plan_sort_date",
+          "Type": "date_time",
           "Description": null
         },
         {
-          "Name": "plan_sort_date",
-          "Type": "date_time",
+          "Name": "service_type_name",
+          "Type": "string",
           "Description": null
         }
       ],
@@ -2474,12 +2611,12 @@
           "Description": null
         },
         {
-          "Name": "team_position_name",
+          "Name": "scheduled_to",
           "Type": "string",
           "Description": null
         },
         {
-          "Name": "scheduled_to",
+          "Name": "team_position_name",
           "Type": "string",
           "Description": null
         }
@@ -2537,6 +2674,13 @@
           "Description": "include associated team",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "time",
+          "Description": "include associated time",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
         }
       ],
       "CanOrderBy": [],
@@ -2556,8 +2700,38 @@
       "CollectionOnly": false,
       "Attributes": [
         {
+          "Name": "allow_mp3_download",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "beta",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "calendar_starts_on_sunday",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
           "Name": "ccli",
           "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "ccli_auto_reporting_enabled",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "ccli_connected",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "ccli_reporting_enabled",
+          "Type": "boolean",
           "Description": null
         },
         {
@@ -2571,6 +2745,41 @@
           "Description": "Two possible values, \u0060US\u0060 \u0060EU\u0060"
         },
         {
+          "Name": "extra_file_storage_allowed",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "file_storage_exceeded",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "file_storage_extra_charges",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "file_storage_extra_enabled",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "file_storage_size",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "file_storage_size_used",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "legacy_id",
+          "Type": "primary_key",
+          "Description": null
+        },
+        {
           "Name": "music_stand_enabled",
           "Type": "boolean",
           "Description": null
@@ -2581,8 +2790,43 @@
           "Description": null
         },
         {
+          "Name": "owner_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "people_allowed",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "people_remaining",
+          "Type": "integer",
+          "Description": null
+        },
+        {
           "Name": "projector_enabled",
           "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "rehearsal_mix_enabled",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "rehearsal_pack_connected",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "required_to_set_download_permission",
+          "Type": "string",
+          "Description": "Possible values: \u0060editor\u0060, \u0060administrator\u0060, \u0060site_administrator\u0060"
+        },
+        {
+          "Name": "secret",
+          "Type": "string",
           "Description": null
         },
         {
@@ -2598,106 +2842,6 @@
         {
           "Name": "updated_at",
           "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "owner_name",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "required_to_set_download_permission",
-          "Type": "string",
-          "Description": "Possible values: \u0060editor\u0060, \u0060administrator\u0060, \u0060site_administrator\u0060"
-        },
-        {
-          "Name": "secret",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "allow_mp3_download",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
-          "Name": "calendar_starts_on_sunday",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
-          "Name": "ccli_connected",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
-          "Name": "ccli_auto_reporting_enabled",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
-          "Name": "ccli_reporting_enabled",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
-          "Name": "extra_file_storage_allowed",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
-          "Name": "file_storage_exceeded",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
-          "Name": "file_storage_size",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
-          "Name": "file_storage_size_used",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
-          "Name": "file_storage_extra_enabled",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
-          "Name": "rehearsal_mix_enabled",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
-          "Name": "rehearsal_pack_connected",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
-          "Name": "legacy_id",
-          "Type": "primary_key",
-          "Description": null
-        },
-        {
-          "Name": "file_storage_extra_charges",
-          "Type": "integer",
-          "Description": null
-        },
-        {
-          "Name": "people_allowed",
-          "Type": "integer",
-          "Description": null
-        },
-        {
-          "Name": "people_remaining",
-          "Type": "integer",
-          "Description": null
-        },
-        {
-          "Name": "beta",
-          "Type": "boolean",
           "Description": null
         }
       ],
@@ -2944,171 +3088,6 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "photo_url",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "photo_thumbnail_url",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "preferred_app",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "assigned_to_rehearsal_team",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
-          "Name": "archived_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "first_name",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "last_name",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "name_prefix",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "name_suffix",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "facebook_id",
-          "Type": "primary_key",
-          "Description": "DEPRECATED: this attribute will be removed in the next release and will return the string \u0022DEPRECATED\u0022 in this version"
-        },
-        {
-          "Name": "legacy_id",
-          "Type": "primary_key",
-          "Description": "If you\u0027ve used Person.id from API v1 this attribute can be used to map from those old IDs to the new IDs used in API v2"
-        },
-        {
-          "Name": "anniversary",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "birthdate",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "signature",
-          "Type": "string",
-          "Description": "Only available when requested with the \u0060?fields\u0060 param"
-        },
-        {
-          "Name": "full_name",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "media_permissions",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "permissions",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "song_permissions",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "status",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "profile_name",
-          "Type": "string",
-          "Description": "Only available when requested with the \u0060?fields\u0060 param"
-        },
-        {
-          "Name": "max_permissions",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "max_plan_permissions",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "given_name",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "middle_name",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "nickname",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "archived",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
-          "Name": "site_administrator",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
-          "Name": "logged_in_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "notes",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "passed_background_check",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
-          "Name": "ical_code",
-          "Type": "string",
-          "Description": null
-        },
-        {
           "Name": "access_media_attachments",
           "Type": "boolean",
           "Description": null
@@ -3124,43 +3103,28 @@
           "Description": null
         },
         {
-          "Name": "preferred_max_plans_per_day",
-          "Type": "integer",
+          "Name": "anniversary",
+          "Type": "date_time",
           "Description": null
         },
         {
-          "Name": "preferred_max_plans_per_month",
-          "Type": "integer",
-          "Description": null
-        },
-        {
-          "Name": "praise_charts_enabled",
+          "Name": "archived",
           "Type": "boolean",
           "Description": null
         },
         {
-          "Name": "me_tab",
-          "Type": "string",
+          "Name": "archived_at",
+          "Type": "date_time",
           "Description": null
         },
         {
-          "Name": "plans_tab",
-          "Type": "string",
+          "Name": "assigned_to_rehearsal_team",
+          "Type": "boolean",
           "Description": null
         },
         {
-          "Name": "songs_tab",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "media_tab",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "people_tab",
-          "Type": "string",
+          "Name": "birthdate",
+          "Type": "date_time",
           "Description": null
         },
         {
@@ -3174,8 +3138,188 @@
           "Description": null
         },
         {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "facebook_id",
+          "Type": "primary_key",
+          "Description": "DEPRECATED: this attribute will be removed in the next release and will return the string \u0022DEPRECATED\u0022 in this version"
+        },
+        {
+          "Name": "first_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "full_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "given_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "ical_code",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "last_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "legacy_id",
+          "Type": "primary_key",
+          "Description": "If you\u0027ve used Person.id from API v1 this attribute can be used to map from those old IDs to the new IDs used in API v2"
+        },
+        {
+          "Name": "logged_in_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "max_permissions",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "max_plan_permissions",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "me_tab",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "media_permissions",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "media_tab",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "middle_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "name_prefix",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "name_suffix",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "nickname",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "notes",
+          "Type": "string",
+          "Description": null
+        },
+        {
           "Name": "onboardings",
           "Type": "array",
+          "Description": null
+        },
+        {
+          "Name": "passed_background_check",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "people_tab",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "permissions",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "photo_thumbnail_url",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "photo_url",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "plans_tab",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "praise_charts_enabled",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "preferred_app",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "preferred_max_plans_per_day",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "preferred_max_plans_per_month",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "profile_name",
+          "Type": "string",
+          "Description": "Only available when requested with the \u0060?fields\u0060 param"
+        },
+        {
+          "Name": "signature",
+          "Type": "string",
+          "Description": "Only available when requested with the \u0060?fields\u0060 param"
+        },
+        {
+          "Name": "site_administrator",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "song_permissions",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "songs_tab",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "status",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
           "Description": null
         }
       ],
@@ -3359,6 +3503,20 @@
           "Description": "include associated emails",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "tags",
+          "Description": "include associated tags",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "team_leaders",
+          "Description": "include associated team_leaders",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [
@@ -3367,6 +3525,24 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "first_name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-first_name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "last_name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-last_name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -3405,9 +3581,9 @@
           "Description": null
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": null
+          "Name": "preferred_weeks",
+          "Type": "array",
+          "Description": "When \u0060schedule_preference\u0060 is set to \u0022Choose Weeks\u0022 then this\nindicates which weeks are preferred (checked).\n\ne.g. [\u00271\u0027, \u00273\u0027, \u00275\u0027] to prefer odd numbered weeks.\n"
         },
         {
           "Name": "schedule_preference",
@@ -3415,9 +3591,9 @@
           "Description": "Possible Values:\n  \u0022Every week\u0022\n  \u0022Every other week\u0022\n  \u0022Every 3rd week\u0022\n  \u0022Every 4th week\u0022\n  \u0022Every 5th week\u0022\n  \u0022Every 6th week\u0022\n  \u0022Once a month\u0022\n  \u0022Twice a month\u0022\n  \u0022Three times a month\u0022\n  \u0022Choose Weeks\u0022\n"
         },
         {
-          "Name": "preferred_weeks",
-          "Type": "array",
-          "Description": "When \u0060schedule_preference\u0060 is set to \u0022Choose Weeks\u0022 then this\nindicates which weeks are preferred (checked).\n\ne.g. [\u00271\u0027, \u00273\u0027, \u00275\u0027] to prefer odd numbered weeks.\n"
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
         }
       ],
       "Relationships": [
@@ -3467,6 +3643,13 @@
           "Description": "include associated person",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "team_position",
+          "Description": "include associated team_position",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
         }
       ],
       "CanOrderBy": [
@@ -3475,6 +3658,12 @@
           "Value": "first_name",
           "Type": "string",
           "Description": "prefix with a hyphen (-first_name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "last_name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-last_name) to reverse the order"
         }
       ],
       "CanQueryBy": [],
@@ -3498,14 +3687,19 @@
           "Description": null
         },
         {
-          "Name": "prefers_order_view",
-          "Type": "boolean",
+          "Name": "created_at",
+          "Type": "date_time",
           "Description": null
         },
         {
-          "Name": "rehearsable",
-          "Type": "boolean",
-          "Description": null
+          "Name": "dates",
+          "Type": "string",
+          "Description": "The full date string representing all Service Time dates."
+        },
+        {
+          "Name": "files_expire_at",
+          "Type": "date_time",
+          "Description": "A date 15 days after the last service time. ___Returns in the time zone specified in your organization\u0027s localization settings___"
         },
         {
           "Name": "items_count",
@@ -3513,37 +3707,17 @@
           "Description": "The total number of items, including regular items, songs, media, and headers, that the current user can see in the plan."
         },
         {
-          "Name": "permissions",
-          "Type": "string",
-          "Description": "The current user\u0027s permissions for this plan\u0027s Service Type."
-        },
-        {
-          "Name": "created_at",
+          "Name": "last_time_at",
           "Type": "date_time",
-          "Description": null
+          "Description": "___Returns in the time zone specified in your organization\u0027s localization settings___"
         },
         {
-          "Name": "title",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "public",
+          "Name": "multi_day",
           "Type": "boolean",
-          "Description": "True if Public Access has been enabled."
-        },
-        {
-          "Name": "series_title",
-          "Type": "string",
           "Description": null
         },
         {
-          "Name": "plan_notes_count",
+          "Name": "needed_positions_count",
           "Type": "integer",
           "Description": null
         },
@@ -3553,12 +3727,12 @@
           "Description": null
         },
         {
-          "Name": "rehearsal_time_count",
-          "Type": "integer",
-          "Description": null
+          "Name": "permissions",
+          "Type": "string",
+          "Description": "The current user\u0027s permissions for this plan\u0027s Service Type."
         },
         {
-          "Name": "service_time_count",
+          "Name": "plan_notes_count",
           "Type": "integer",
           "Description": null
         },
@@ -3568,8 +3742,58 @@
           "Description": null
         },
         {
-          "Name": "needed_positions_count",
+          "Name": "planning_center_url",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "prefers_order_view",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "public",
+          "Type": "boolean",
+          "Description": "True if Public Access has been enabled."
+        },
+        {
+          "Name": "rehearsable",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "rehearsal_time_count",
           "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "reminders_disabled",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "series_title",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "service_time_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "short_dates",
+          "Type": "string",
+          "Description": "The shortened date string representing all Service Time dates. Months are abbreviated, and the year is omitted."
+        },
+        {
+          "Name": "sort_date",
+          "Type": "date_time",
+          "Description": "A time representing the chronological first Service Time, used to sort plan chronologically. If no Service Times exist, it uses Rehearsal Times, then Other Times, then NOW. ___Returns in the time zone specified in your organization\u0027s localization settings___"
+        },
+        {
+          "Name": "title",
+          "Type": "string",
           "Description": null
         },
         {
@@ -3578,43 +3802,8 @@
           "Description": "The total of length of all items, excluding pre-service and post-service items."
         },
         {
-          "Name": "multi_day",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
-          "Name": "files_expire_at",
+          "Name": "updated_at",
           "Type": "date_time",
-          "Description": "A date 15 days after the last service time. ___Returns in the time zone specified in your organization\u0027s localization settings___"
-        },
-        {
-          "Name": "sort_date",
-          "Type": "date_time",
-          "Description": "A time representing the chronological first Service Time, used to sort plan chronologically. If no Service Times exist, it uses Rehearsal Times, then Other Times, then NOW. ___Returns in the time zone specified in your organization\u0027s localization settings___"
-        },
-        {
-          "Name": "last_time_at",
-          "Type": "date_time",
-          "Description": "___Returns in the time zone specified in your organization\u0027s localization settings___"
-        },
-        {
-          "Name": "dates",
-          "Type": "string",
-          "Description": "The full date string representing all Service Time dates."
-        },
-        {
-          "Name": "short_dates",
-          "Type": "string",
-          "Description": "The shortened date string representing all Service Time dates. Months are abbreviated, and the year is omitted."
-        },
-        {
-          "Name": "planning_center_url",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "reminders_disabled",
-          "Type": "boolean",
           "Description": null
         }
       ],
@@ -3843,6 +4032,27 @@
           "Description": "include associated contributors",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "my_schedules",
+          "Description": "include associated my_schedules",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "plan_times",
+          "Description": "include associated plan_times",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "series",
+          "Description": "include associated series",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
         }
       ],
       "CanOrderBy": [
@@ -3851,6 +4061,24 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "sort_date",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-sort_date) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "title",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-title) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -3905,16 +4133,6 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
           "Name": "category_name",
           "Type": "string",
           "Description": null
@@ -3922,6 +4140,16 @@
         {
           "Name": "content",
           "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
           "Description": null
         }
       ],
@@ -3971,6 +4199,12 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -4062,23 +4296,13 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "status",
-          "Type": "string",
-          "Description": "Accepts one of \u0027C\u0027, \u0027U\u0027, \u0027D\u0027, or \u0027Confirmed\u0027, \u0027Unconfirmed\u0027, or \u0027Declined\u0027"
+          "Name": "can_accept_partial",
+          "Type": "boolean",
+          "Description": "If the person is scheduled to a split team where they could potentially accept 1 time and decline another."
         },
         {
           "Name": "created_at",
           "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "notes",
-          "Type": "string",
           "Description": null
         },
         {
@@ -4092,43 +4316,18 @@
           "Description": null
         },
         {
-          "Name": "notification_changed_by_name",
+          "Name": "notes",
           "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "notification_sender_name",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "team_position_name",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "photo_thumbnail",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "scheduled_by_name",
-          "Type": "string",
-          "Description": "Only available when requested with the \u0060?fields\u0060 param"
-        },
-        {
-          "Name": "scheduled_by_is_eligible_for_responds_to",
-          "Type": "boolean",
-          "Description": "Only available when requested with the \u0060?fields\u0060 param"
-        },
-        {
-          "Name": "status_updated_at",
-          "Type": "date_time",
           "Description": null
         },
         {
           "Name": "notification_changed_at",
           "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "notification_changed_by_name",
+          "Type": "string",
           "Description": null
         },
         {
@@ -4142,8 +4341,18 @@
           "Description": null
         },
         {
+          "Name": "notification_sender_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
           "Name": "notification_sent_at",
           "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "photo_thumbnail",
+          "Type": "string",
           "Description": null
         },
         {
@@ -4152,9 +4361,34 @@
           "Description": null
         },
         {
-          "Name": "can_accept_partial",
+          "Name": "scheduled_by_is_eligible_for_responds_to",
           "Type": "boolean",
-          "Description": "If the person is scheduled to a split team where they could potentially accept 1 time and decline another."
+          "Description": "Only available when requested with the \u0060?fields\u0060 param"
+        },
+        {
+          "Name": "scheduled_by_name",
+          "Type": "string",
+          "Description": "Only available when requested with the \u0060?fields\u0060 param"
+        },
+        {
+          "Name": "status",
+          "Type": "string",
+          "Description": "Accepts one of \u0027C\u0027, \u0027U\u0027, \u0027D\u0027, or \u0027Confirmed\u0027, \u0027Unconfirmed\u0027, or \u0027Declined\u0027"
+        },
+        {
+          "Name": "status_updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "team_position_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
         }
       ],
       "Relationships": [
@@ -4276,6 +4510,27 @@
           "Description": "include associated declined_plan_times",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "person",
+          "Description": "include associated person",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "plan",
+          "Description": "include associated plan",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "team",
+          "Description": "include associated team",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
         }
       ],
       "CanOrderBy": [],
@@ -4303,13 +4558,13 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "status",
-          "Type": "string",
+          "Name": "created_at",
+          "Type": "date_time",
           "Description": null
         },
         {
-          "Name": "created_at",
-          "Type": "date_time",
+          "Name": "status",
+          "Type": "string",
           "Description": null
         },
         {
@@ -4357,17 +4612,12 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "name",
-          "Type": "string",
+          "Name": "can_view_order",
+          "Type": "boolean",
           "Description": null
         },
         {
           "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "updated_at",
           "Type": "date_time",
           "Description": null
         },
@@ -4377,8 +4627,13 @@
           "Description": null
         },
         {
-          "Name": "team_count",
-          "Type": "integer",
+          "Name": "multi_day",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
           "Description": null
         },
         {
@@ -4387,12 +4642,7 @@
           "Description": null
         },
         {
-          "Name": "can_view_order",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
-          "Name": "multi_day",
+          "Name": "prefers_order_view",
           "Type": "boolean",
           "Description": null
         },
@@ -4402,8 +4652,13 @@
           "Description": null
         },
         {
-          "Name": "prefers_order_view",
-          "Type": "boolean",
+          "Name": "team_count",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
           "Description": null
         }
       ],
@@ -4480,6 +4735,36 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "item_count",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-item_count) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "note_count",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-note_count) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "team_count",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-team_count) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [],
@@ -4503,39 +4788,14 @@
           "Description": null
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "name",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "time_type",
-          "Type": "string",
-          "Description": "Possible values are:\n\n- rehearsal\n\n- service\n\n- other\n"
-        },
-        {
-          "Name": "recorded",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
-          "Name": "team_reminders",
-          "Type": "array",
-          "Description": "A Hash that maps a Team ID to a reminder value. If nothing is specified, no reminder is set for that team. A reminder value is an integer (0-7) equal to the number of days before the selected time a reminder should be sent."
-        },
-        {
-          "Name": "starts_at",
-          "Type": "date_time",
-          "Description": "Planned start time."
-        },
-        {
           "Name": "ends_at",
           "Type": "date_time",
           "Description": "Planned end time."
+        },
+        {
+          "Name": "live_ends_at",
+          "Type": "date_time",
+          "Description": "End time as recorded by Services LIVE."
         },
         {
           "Name": "live_starts_at",
@@ -4543,9 +4803,34 @@
           "Description": "Start time as recorded by Services LIVE."
         },
         {
-          "Name": "live_ends_at",
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "recorded",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "starts_at",
           "Type": "date_time",
-          "Description": "End time as recorded by Services LIVE."
+          "Description": "Planned start time."
+        },
+        {
+          "Name": "team_reminders",
+          "Type": "array",
+          "Description": "A Hash that maps a Team ID to a reminder value. If nothing is specified, no reminder is set for that team. A reminder value is an integer (0-7) equal to the number of days before the selected time a reminder should be sent."
+        },
+        {
+          "Name": "time_type",
+          "Type": "string",
+          "Description": "Possible values are:\n\n- rehearsal\n\n- service\n\n- other\n"
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
         }
       ],
       "Relationships": [
@@ -4614,12 +4899,12 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "series_artwork",
+          "Name": "amazon",
           "Type": "boolean",
           "Description": null
         },
         {
-          "Name": "series_and_plan_titles",
+          "Name": "headers",
           "Type": "boolean",
           "Description": null
         },
@@ -4634,12 +4919,7 @@
           "Description": null
         },
         {
-          "Name": "service_times",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
-          "Name": "song_items",
+          "Name": "itunes",
           "Type": "boolean",
           "Description": null
         },
@@ -4654,17 +4934,22 @@
           "Description": null
         },
         {
-          "Name": "headers",
+          "Name": "series_and_plan_titles",
           "Type": "boolean",
           "Description": null
         },
         {
-          "Name": "itunes",
+          "Name": "series_artwork",
           "Type": "boolean",
           "Description": null
         },
         {
-          "Name": "amazon",
+          "Name": "service_times",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "song_items",
           "Type": "boolean",
           "Description": null
         },
@@ -4674,12 +4959,12 @@
           "Description": null
         },
         {
-          "Name": "youtube",
+          "Name": "vimeo",
           "Type": "boolean",
           "Description": null
         },
         {
-          "Name": "vimeo",
+          "Name": "youtube",
           "Type": "boolean",
           "Description": null
         }
@@ -4709,6 +4994,11 @@
           "Description": null
         },
         {
+          "Name": "default",
+          "Type": "boolean",
+          "Description": "A template provided by Planning Center"
+        },
+        {
           "Name": "title",
           "Type": "string",
           "Description": null
@@ -4717,11 +5007,6 @@
           "Name": "type",
           "Type": "string",
           "Description": "Possible values: \u0060ReportMatrix\u0060, \u0060ReportPeople\u0060, \u0060ReportPlan\u0060"
-        },
-        {
-          "Name": "default",
-          "Type": "boolean",
-          "Description": "A template provided by Planning Center"
         }
       ],
       "Relationships": [],
@@ -4744,8 +5029,18 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "sort_date",
-          "Type": "date_time",
+          "Name": "can_accept_partial",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "can_accept_partial_one_time",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "can_rehearse",
+          "Type": "boolean",
           "Description": null
         },
         {
@@ -4779,6 +5074,16 @@
           "Description": null
         },
         {
+          "Name": "plan_visible",
+          "Type": "boolean",
+          "Description": "True if the scheduled Plan is visible to the scheduled Person"
+        },
+        {
+          "Name": "plan_visible_to_me",
+          "Type": "boolean",
+          "Description": "True if the scheduled Plan is visible to the current Person"
+        },
+        {
           "Name": "position_display_times",
           "Type": "string",
           "Description": null
@@ -4799,6 +5104,11 @@
           "Description": null
         },
         {
+          "Name": "sort_date",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
           "Name": "status",
           "Type": "string",
           "Description": null
@@ -4812,31 +5122,6 @@
           "Name": "team_position_name",
           "Type": "string",
           "Description": null
-        },
-        {
-          "Name": "can_accept_partial",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
-          "Name": "can_accept_partial_one_time",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
-          "Name": "can_rehearse",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
-          "Name": "plan_visible",
-          "Type": "boolean",
-          "Description": "True if the scheduled Plan is visible to the scheduled Person"
-        },
-        {
-          "Name": "plan_visible_to_me",
-          "Type": "boolean",
-          "Description": "True if the scheduled Plan is visible to the current Person"
         }
       ],
       "Relationships": [
@@ -5048,13 +5333,8 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "updated_at",
-          "Type": "date_time",
+          "Name": "artwork_content_type",
+          "Type": "string",
           "Description": null
         },
         {
@@ -5063,18 +5343,8 @@
           "Description": null
         },
         {
-          "Name": "artwork_content_type",
-          "Type": "string",
-          "Description": null
-        },
-        {
           "Name": "artwork_file_size",
           "Type": "integer",
-          "Description": null
-        },
-        {
-          "Name": "title",
-          "Type": "string",
           "Description": null
         },
         {
@@ -5098,8 +5368,23 @@
           "Description": null
         },
         {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
           "Name": "has_artwork",
           "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "title",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
           "Description": null
         }
       ],
@@ -5153,54 +5438,9 @@
           "Description": null
         },
         {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "deleted_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "name",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "sequence",
-          "Type": "integer",
-          "Description": null
-        },
-        {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "permissions",
-          "Type": "string",
-          "Description": null
-        },
-        {
           "Name": "attachment_types_enabled",
           "Type": "boolean",
           "Description": null
-        },
-        {
-          "Name": "scheduled_publish",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
-          "Name": "custom_item_types",
-          "Type": "array",
-          "Description": "A array of hashes that maps an item title substring matcher to a color:\n\n[{ name: \u0022Announcements\u0022, color: \u0022#FFFFFF\u0022 }]\n\nValid substring matchers are any string that could be used as an item title.\n\nA color is the hexadecimal value of a valid color e.g. #FFFFFF\nValid colors values are #e8f6df, #e0f7ff, #e6e2fd, #ffe0e8, #ffedd1, #cfcfcf, #eaebeb, and #ffffff\n"
-        },
-        {
-          "Name": "standard_item_types",
-          "Type": "array",
-          "Description": "An array of hashes that maps an item type to a color:\n\n[{ name: \u0022Header\u0022, color: \u0022#FFFFFF\u0022 }]\n\nValid names are Header, Song, and Media.\n\nA color is the hexadecimal value of a valid color e.g. #FFFFFF\nValid colors values are #e8f6df, #e0f7ff, #e6e2fd, #ffe0e8, #ffedd1, #cfcfcf, #eaebeb, and #ffffff\n"
         },
         {
           "Name": "background_check_permissions",
@@ -5213,6 +5453,21 @@
           "Description": null
         },
         {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "custom_item_types",
+          "Type": "array",
+          "Description": "A array of hashes that maps an item title substring matcher to a color:\n\n[{ name: \u0022Announcements\u0022, color: \u0022#FFFFFF\u0022 }]\n\nValid substring matchers are any string that could be used as an item title.\n\nA color is the hexadecimal value of a valid color e.g. #FFFFFF\nValid colors values are #e8f6df, #e0f7ff, #e6e2fd, #ffe0e8, #ffedd1, #cfcfcf, #eaebeb, and #ffffff\n"
+        },
+        {
+          "Name": "deleted_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
           "Name": "frequency",
           "Type": "string",
           "Description": null
@@ -5220,6 +5475,36 @@
         {
           "Name": "last_plan_from",
           "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "permissions",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "scheduled_publish",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "sequence",
+          "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "standard_item_types",
+          "Type": "array",
+          "Description": "An array of hashes that maps an item type to a color:\n\n[{ name: \u0022Header\u0022, color: \u0022#FFFFFF\u0022 }]\n\nValid names are Header, Song, and Media.\n\nA color is the hexadecimal value of a valid color e.g. #FFFFFF\nValid colors values are #e8f6df, #e0f7ff, #e6e2fd, #ffe0e8, #ffedd1, #cfcfcf, #eaebeb, and #ffffff\n"
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
           "Description": null
         }
       ],
@@ -5289,6 +5574,10 @@
             },
             {
               "Name": "named",
+              "Description": null
+            },
+            {
+              "Name": "not_deleted",
               "Description": null
             },
             {
@@ -5395,6 +5684,12 @@
           "Value": "name",
           "Type": "string",
           "Description": "prefix with a hyphen (-name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "sequence",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-sequence) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -5460,22 +5755,12 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "sort_date",
-          "Type": "date_time",
+          "Name": "display_times",
+          "Type": "string",
           "Description": null
         },
         {
           "Name": "group_key",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "team_name",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "display_times",
           "Type": "string",
           "Description": null
         },
@@ -5485,13 +5770,23 @@
           "Description": null
         },
         {
-          "Name": "title",
-          "Type": "string",
+          "Name": "sort_date",
+          "Type": "date_time",
           "Description": null
         },
         {
           "Name": "sort_index",
           "Type": "integer",
+          "Description": null
+        },
+        {
+          "Name": "team_name",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "title",
+          "Type": "string",
           "Description": null
         }
       ],
@@ -5542,6 +5837,13 @@
           "Description": "include associated scheduled_people",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "signup_sheet_metadata",
+          "Description": "include associated signup_sheet_metadata",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [],
@@ -5566,8 +5868,13 @@
           "Description": null
         },
         {
-          "Name": "time_type",
-          "Type": "string",
+          "Name": "ends_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "starts_at",
+          "Type": "date_time",
           "Description": null
         },
         {
@@ -5576,13 +5883,8 @@
           "Description": null
         },
         {
-          "Name": "ends_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "starts_at",
-          "Type": "date_time",
+          "Name": "time_type",
+          "Type": "string",
           "Description": null
         }
       ],
@@ -5651,21 +5953,6 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "title",
-          "Type": "string",
-          "Description": "The name of the song.\n\nWhen setting this value on a create you can pass a CCLI number and Services will fetch the song metadata for you.\n"
-        },
-        {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
           "Name": "admin",
           "Type": "string",
           "Description": null
@@ -5676,13 +5963,33 @@
           "Description": null
         },
         {
+          "Name": "ccli_number",
+          "Type": "integer",
+          "Description": null
+        },
+        {
           "Name": "copyright",
           "Type": "string",
           "Description": null
         },
         {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
           "Name": "hidden",
           "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "last_scheduled_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "last_scheduled_short_dates",
+          "Type": "string",
           "Description": null
         },
         {
@@ -5696,18 +6003,13 @@
           "Description": null
         },
         {
-          "Name": "last_scheduled_short_dates",
+          "Name": "title",
           "Type": "string",
-          "Description": null
+          "Description": "The name of the song.\n\nWhen setting this value on a create you can pass a CCLI number and Services will fetch the song metadata for you.\n"
         },
         {
-          "Name": "last_scheduled_at",
+          "Name": "updated_at",
           "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "ccli_number",
-          "Type": "integer",
           "Description": null
         }
       ],
@@ -5771,6 +6073,24 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "last_scheduled_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-last_scheduled_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "title",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-title) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -5840,11 +6160,6 @@
           "Description": null
         },
         {
-          "Name": "service_type_name",
-          "Type": "string",
-          "Description": null
-        },
-        {
           "Name": "plan_sort_date",
           "Type": "string",
           "Description": null
@@ -5852,6 +6167,11 @@
         {
           "Name": "plan_visible",
           "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "service_type_name",
+          "Type": "string",
           "Description": null
         }
       ],
@@ -6033,6 +6353,11 @@
       "CollectionOnly": false,
       "Attributes": [
         {
+          "Name": "allow_multiple_selections",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
           "Name": "name",
           "Type": "string",
           "Description": null
@@ -6043,19 +6368,14 @@
           "Description": null
         },
         {
-          "Name": "allow_multiple_selections",
-          "Type": "boolean",
+          "Name": "service_type_folder_name",
+          "Type": "string",
           "Description": null
         },
         {
           "Name": "tags_for",
           "Type": "string",
           "Description": "Scopes a tag group to \u0060person\u0060, \u0060song\u0060, \u0060arrangement\u0060, \u0060media\u0060"
-        },
-        {
-          "Name": "service_type_folder_name",
-          "Type": "string",
-          "Description": null
         }
       ],
       "Relationships": [],
@@ -6084,6 +6404,13 @@
           "Parameter": "include",
           "Value": "folder",
           "Description": "include associated folder",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "tags",
+          "Description": "include associated tags",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         }
@@ -6120,6 +6447,41 @@
       "CollectionOnly": false,
       "Attributes": [
         {
+          "Name": "archived_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "assigned_directly",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "default_prepare_notifications",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "default_status",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "deleted_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "last_plan_from",
+          "Type": "string",
+          "Description": null
+        },
+        {
           "Name": "name",
           "Type": "string",
           "Description": null
@@ -6130,54 +6492,9 @@
           "Description": null
         },
         {
-          "Name": "sequence",
-          "Type": "integer",
-          "Description": null
-        },
-        {
           "Name": "schedule_to",
           "Type": "string",
           "Description": "This determines whether a team is a split team or not.Accepted values: 1. \u0022plan\u0022 (default) 2. \u0022time\u0022 (designates as a split team)"
-        },
-        {
-          "Name": "default_status",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "default_prepare_notifications",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "archived_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "deleted_at",
-          "Type": "date_time",
-          "Description": null
-        },
-        {
-          "Name": "viewers_see",
-          "Type": "integer",
-          "Description": null
-        },
-        {
-          "Name": "assigned_directly",
-          "Type": "boolean",
-          "Description": null
         },
         {
           "Name": "secure_team",
@@ -6185,8 +6502,8 @@
           "Description": null
         },
         {
-          "Name": "last_plan_from",
-          "Type": "string",
+          "Name": "sequence",
+          "Type": "integer",
           "Description": null
         },
         {
@@ -6197,6 +6514,16 @@
         {
           "Name": "stage_variant",
           "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "viewers_see",
+          "Type": "integer",
           "Description": null
         }
       ],
@@ -6274,6 +6601,34 @@
           "Description": "include associated people",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "person_team_position_assignments",
+          "Description": "include associated person_team_position_assignments",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "service_types",
+          "Description": "include associated service_types",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "team_leaders",
+          "Description": "include associated team_leaders",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "team_positions",
+          "Description": "include associated team_positions",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [
@@ -6282,6 +6637,18 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -6313,12 +6680,12 @@
           "Description": null
         },
         {
-          "Name": "send_responses_for_declines",
+          "Name": "send_responses_for_blockouts",
           "Type": "boolean",
           "Description": null
         },
         {
-          "Name": "send_responses_for_blockouts",
+          "Name": "send_responses_for_declines",
           "Type": "boolean",
           "Description": null
         }
@@ -6364,6 +6731,13 @@
           "Description": "include associated people",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "team",
+          "Description": "include associated team",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
         }
       ],
       "CanOrderBy": [
@@ -6372,6 +6746,12 @@
           "Value": "first_name",
           "Type": "string",
           "Description": "prefix with a hyphen (-first_name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "last_name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-last_name) to reverse the order"
         }
       ],
       "CanQueryBy": [],
@@ -6395,24 +6775,24 @@
           "Description": null
         },
         {
-          "Name": "sequence",
-          "Type": "integer",
-          "Description": null
-        },
-        {
-          "Name": "tags",
-          "Type": "array",
-          "Description": "If the Team is assigned via tags, these are specific Tags that are specified."
-        },
-        {
           "Name": "negative_tag_groups",
           "Type": "array",
           "Description": "If the Team is assigned via tags, these are Tags where the option \u0022None\u0022 is specified."
         },
         {
+          "Name": "sequence",
+          "Type": "integer",
+          "Description": null
+        },
+        {
           "Name": "tag_groups",
           "Type": "array",
           "Description": "If the Team is assigned via tags, these are Tags where the option \u0022Any\u0022 is specified."
+        },
+        {
+          "Name": "tags",
+          "Type": "array",
+          "Description": "If the Team is assigned via tags, these are specific Tags that are specified."
         }
       ],
       "Relationships": [
@@ -6476,6 +6856,13 @@
           "Description": "include associated tags",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "team",
+          "Description": "include associated team",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
         }
       ],
       "CanOrderBy": [
@@ -6502,26 +6889,6 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "scheduling_requests_enabled",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
-          "Name": "general_emails_enabled",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
-          "Name": "scheduling_replies_enabled",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
-          "Name": "reminders_enabled",
-          "Type": "boolean",
-          "Description": null
-        },
-        {
           "Name": "carrier",
           "Type": "string",
           "Description": null
@@ -6532,8 +6899,28 @@
           "Description": null
         },
         {
+          "Name": "general_emails_enabled",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
           "Name": "normalized_number",
           "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "reminders_enabled",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "scheduling_replies_enabled",
+          "Type": "boolean",
+          "Description": null
+        },
+        {
+          "Name": "scheduling_requests_enabled",
+          "Type": "boolean",
           "Description": null
         }
       ],
@@ -6557,32 +6944,17 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "day_of_week",
-          "Type": "integer",
-          "Description": null
-        },
-        {
           "Name": "created_at",
           "Type": "date_time",
           "Description": null
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
+          "Name": "day_of_week",
+          "Type": "integer",
           "Description": null
         },
         {
           "Name": "description",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "sort_index",
-          "Type": "string",
-          "Description": null
-        },
-        {
-          "Name": "time_type",
           "Type": "string",
           "Description": null
         },
@@ -6592,7 +6964,22 @@
           "Description": "0 for 12:00 am, 1 for 12:01 am, 100 for 1:00 am, through 2359 for 11:59pm"
         },
         {
+          "Name": "sort_index",
+          "Type": "string",
+          "Description": null
+        },
+        {
           "Name": "starts_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
+          "Name": "time_type",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "updated_at",
           "Type": "date_time",
           "Description": null
         }
@@ -6606,6 +6993,12 @@
           "Value": "day_of_week",
           "Type": "string",
           "Description": "prefix with a hyphen (-day_of_week) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "hour_of_day",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-hour_of_day) to reverse the order"
         }
       ],
       "CanQueryBy": [],
@@ -6629,11 +7022,6 @@
           "Description": "The aspect ratio of the device this zoom is for. It is rounded to the nearest 3 decimal places."
         },
         {
-          "Name": "zoom_level",
-          "Type": "float",
-          "Description": "The percentage of the zoom. Must be a value between 1.0 and 5.0"
-        },
-        {
           "Name": "x_offset",
           "Type": "float",
           "Description": "The percentage of the document\u0027s width the zoomed document should be offset by horizontally."
@@ -6642,6 +7030,11 @@
           "Name": "y_offset",
           "Type": "float",
           "Description": "The percentage of the document\u0027s height the zoomed document should be offset by vertically."
+        },
+        {
+          "Name": "zoom_level",
+          "Type": "float",
+          "Description": "The percentage of the zoom. Must be a value between 1.0 and 5.0"
         }
       ],
       "Relationships": [

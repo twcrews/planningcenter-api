@@ -83,6 +83,60 @@
           "Value": "city",
           "Type": "string",
           "Description": "prefix with a hyphen (-city) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "country_code",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-country_code) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "location",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-location) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "primary",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-primary) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "state",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-state) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "street_line_1",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-street_line_1) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "street_line_2",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-street_line_2) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "zip",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-zip) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -177,6 +231,12 @@
           "Value": "name",
           "Type": "string",
           "Description": "prefix with a hyphen (-name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "url",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-url) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -455,6 +515,13 @@
           "Description": "include associated lists",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "service_times",
+          "Description": "include associated service_times",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
         }
       ],
       "CanOrderBy": [
@@ -463,6 +530,18 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -527,6 +606,12 @@
           "Value": "international",
           "Type": "string",
           "Description": "prefix with a hyphen (-international) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
         }
       ],
       "CanQueryBy": [],
@@ -619,6 +704,48 @@
           "Value": "application",
           "Type": "string",
           "Description": "prefix with a hyphen (-application) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "comparison",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-comparison) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "definition_class",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-definition_class) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "definition_identifier",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-definition_identifier) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "description",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-description) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "settings",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-settings) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -822,6 +949,30 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "verification_requested_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-verification_requested_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "verified_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-verified_at) to reverse the order"
         }
       ],
       "CanQueryBy": [],
@@ -896,6 +1047,30 @@
           "Value": "address",
           "Type": "string",
           "Description": "prefix with a hyphen (-address) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "location",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-location) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "primary",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-primary) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -1041,6 +1216,20 @@
           "Description": "include associated field_definition",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "field_option",
+          "Description": "include associated field_option",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "tab",
+          "Description": "include associated tab",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [
@@ -1049,6 +1238,30 @@
           "Value": "file",
           "Type": "string",
           "Description": "prefix with a hyphen (-file) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "file_content_type",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-file_content_type) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "file_name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-file_name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "file_size",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-file_size) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "value",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-value) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -1180,6 +1393,13 @@
           "Description": "include associated field_options",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "tab",
+          "Description": "include associated tab",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
         }
       ],
       "CanOrderBy": [
@@ -1188,6 +1408,42 @@
           "Value": "config",
           "Type": "string",
           "Description": "prefix with a hyphen (-config) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "data_type",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-data_type) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "deleted_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-deleted_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "sequence",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-sequence) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "slug",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-slug) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "tab_id",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-tab_id) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -1282,6 +1538,12 @@
           "Value": "sequence",
           "Type": "string",
           "Description": "prefix with a hyphen (-sequence) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "value",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-value) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -1439,6 +1701,13 @@
           "Description": "include associated campus",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "category",
+          "Description": "include associated category",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [
@@ -1447,6 +1716,42 @@
           "Value": "active",
           "Type": "string",
           "Description": "prefix with a hyphen (-active) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "archived_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-archived_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "deleted_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-deleted_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "description",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-description) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -1504,6 +1809,18 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -1636,6 +1953,18 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "sequence",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-sequence) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [],
@@ -1696,6 +2025,18 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "sequence",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-sequence) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [],
@@ -1788,6 +2129,27 @@
           "Description": "include associated form",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "form_fields",
+          "Description": "include associated form_fields",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "form_submission_values",
+          "Description": "include associated form_submission_values",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "person",
+          "Description": "include associated person",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
         }
       ],
       "CanOrderBy": [
@@ -1796,6 +2158,18 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "person.first_name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-person.first_name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "person.last_name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-person.last_name) to reverse the order"
         }
       ],
       "CanQueryBy": [],
@@ -1986,6 +2360,30 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "member_count",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-member_count) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "primary_contact_name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-primary_contact_name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -2090,6 +2488,13 @@
           "Description": "include associated household",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "person",
+          "Description": "include associated person",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
         }
       ],
       "CanOrderBy": [
@@ -2098,6 +2503,12 @@
           "Value": "pending",
           "Type": "string",
           "Description": "prefix with a hyphen (-pending) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "person_name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-person_name) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -2381,6 +2792,55 @@
           "Description": "include associated campus",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "category",
+          "Description": "include associated category",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "created_by",
+          "Description": "include associated created_by",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "mailchimp_sync_status",
+          "Description": "include associated mailchimp_sync_status",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "people",
+          "Description": "include associated people",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "rules",
+          "Description": "include associated rules",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "shares",
+          "Description": "include associated shares",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "updated_by",
+          "Description": "include associated updated_by",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [
@@ -2389,6 +2849,48 @@
           "Value": "batch_completed_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-batch_completed_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "campus_id",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-campus_id) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "list_categories.name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-list_categories.name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "list_category_id",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-list_category_id) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "name_or_description",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name_or_description) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -2497,6 +2999,24 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "organization_id",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-organization_id) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -2576,6 +3096,12 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [],
@@ -2648,6 +3174,12 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "group",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-group) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -2779,6 +3311,12 @@
           "Value": "sequence",
           "Type": "string",
           "Description": "prefix with a hyphen (-sequence) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "value",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-value) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -2927,6 +3465,13 @@
           "Description": "include associated message_group",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "to",
+          "Description": "include associated to",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
         }
       ],
       "CanOrderBy": [
@@ -2935,6 +3480,78 @@
           "Value": "app_name",
           "Type": "string",
           "Description": "prefix with a hyphen (-app_name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "bounced_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-bounced_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "delivery_status",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-delivery_status) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "file",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-file) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "from_address",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-from_address) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "from_name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-from_name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "kind",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-kind) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "reject_reason",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-reject_reason) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "rejection_notification_sent_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-rejection_notification_sent_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "sent_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-sent_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "subject",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-subject) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "to_addresses",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-to_addresses) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -3130,6 +3747,20 @@
           "Description": "include associated app",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "from",
+          "Description": "include associated from",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "messages",
+          "Description": "include associated messages",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [
@@ -3138,6 +3769,66 @@
           "Value": "contains_user_generated_content",
           "Type": "string",
           "Description": "prefix with a hyphen (-contains_user_generated_content) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "from_address",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-from_address) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "message_count",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-message_count) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "message_type",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-message_type) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "reply_to_address",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-reply_to_address) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "reply_to_name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-reply_to_name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "subject",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-subject) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "system_message",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-system_message) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "transactional_message",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-transactional_message) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "uuid",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-uuid) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -3416,6 +4107,20 @@
           "Description": "include associated category",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "created_by",
+          "Description": "include associated created_by",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "person",
+          "Description": "include associated person",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
         }
       ],
       "CanOrderBy": [
@@ -3424,6 +4129,36 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "display_date",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-display_date) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "id",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-id) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "note",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-note) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "note_category_id",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-note_category_id) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -3526,6 +4261,20 @@
           "Description": "include associated shares",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "subscribers",
+          "Description": "include associated subscribers",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "subscriptions",
+          "Description": "include associated subscriptions",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [
@@ -3534,6 +4283,30 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "locked",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-locked) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "organization_id",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-organization_id) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -3712,6 +4485,12 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -4533,6 +5312,13 @@
           "Description": "include associated household",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "person",
+          "Description": "include associated person",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [],
@@ -4997,6 +5783,104 @@
           "Description": "include associated addresses",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "emails",
+          "Description": "include associated emails",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "field_data",
+          "Description": "include associated field_data",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "households",
+          "Description": "include associated households",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "inactive_reason",
+          "Description": "include associated inactive_reason",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "marital_status",
+          "Description": "include associated marital_status",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "name_prefix",
+          "Description": "include associated name_prefix",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "name_suffix",
+          "Description": "include associated name_suffix",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "organization",
+          "Description": "include associated organization",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "person_apps",
+          "Description": "include associated person_apps",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "phone_numbers",
+          "Description": "include associated phone_numbers",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "platform_notifications",
+          "Description": "include associated platform_notifications",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "primary_campus",
+          "Description": "include associated primary_campus",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "school",
+          "Description": "include associated school",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "social_profiles",
+          "Description": "include associated social_profiles",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
         }
       ],
       "CanOrderBy": [
@@ -5005,6 +5889,120 @@
           "Value": "accounting_administrator",
           "Type": "string",
           "Description": "prefix with a hyphen (-accounting_administrator) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "anniversary",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-anniversary) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "birthdate",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-birthdate) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "child",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-child) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "first_name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-first_name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "gender",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-gender) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "given_name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-given_name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "grade",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-grade) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "graduation_year",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-graduation_year) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "inactivated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-inactivated_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "last_name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-last_name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "membership",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-membership) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "middle_name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-middle_name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "nickname",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-nickname) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "people_permissions",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-people_permissions) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "remote_id",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-remote_id) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "site_administrator",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-site_administrator) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "status",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-status) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -5436,6 +6434,36 @@
           "Value": "carrier",
           "Type": "string",
           "Description": "prefix with a hyphen (-carrier) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "location",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-location) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "number",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-number) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "primary",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-primary) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -5570,6 +6598,13 @@
           "Description": "include associated created_by",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "updated_by",
+          "Description": "include associated updated_by",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [
@@ -5578,6 +6613,24 @@
           "Value": "body",
           "Type": "string",
           "Description": "prefix with a hyphen (-body) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -5667,6 +6720,18 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "subset",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-subset) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -5751,6 +6816,24 @@
           "Value": "beginning_grade",
           "Type": "string",
           "Description": "prefix with a hyphen (-beginning_grade) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "ending_grade",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-ending_grade) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "sequence",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-sequence) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "value",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-value) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -5912,6 +6995,30 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "site",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-site) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "url",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-url) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "verified",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-verified) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -6049,6 +7156,13 @@
           "Description": "include associated field_definitions",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "field_options",
+          "Description": "include associated field_options",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [
@@ -6057,6 +7171,18 @@
           "Value": "name",
           "Type": "string",
           "Description": "prefix with a hyphen (-name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "sequence",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-sequence) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "slug",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-slug) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -6260,6 +7386,20 @@
           "Description": "include associated category",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "shares",
+          "Description": "include associated shares",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "steps",
+          "Description": "include associated steps",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [
@@ -6268,6 +7408,42 @@
           "Value": "archived_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-archived_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "campus_id",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-campus_id) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "deleted_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-deleted_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "workflow_category_id",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-workflow_category_id) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -6487,6 +7663,27 @@
           "Description": "include associated assignee",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "current_step",
+          "Description": "include associated current_step",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "person",
+          "Description": "include associated person",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "workflow",
+          "Description": "include associated workflow",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
         }
       ],
       "CanOrderBy": [
@@ -6495,6 +7692,54 @@
           "Value": "completed_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-completed_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "first_name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-first_name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "flagged_for_notification_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-flagged_for_notification_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "last_name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-last_name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "moved_to_step_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-moved_to_step_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "removed_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-removed_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "stage",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-stage) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -6703,6 +7948,18 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -6926,6 +8183,24 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "sequence",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-sequence) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [

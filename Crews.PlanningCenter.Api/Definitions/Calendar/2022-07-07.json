@@ -81,6 +81,36 @@
           "Value": "content_type",
           "Type": "string",
           "Description": "prefix with a hyphen (-content_type) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "description",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-description) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "file_size",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-file_size) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -216,6 +246,20 @@
           "Parameter": "include",
           "Value": "resolved_by",
           "Description": "include associated resolved_by",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "resource",
+          "Description": "include associated resource",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "winner",
+          "Description": "include associated winner",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
         }
@@ -437,6 +481,27 @@
           "Description": "include associated attachments",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "feed",
+          "Description": "include associated feed",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "owner",
+          "Description": "include associated owner",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "tags",
+          "Description": "include associated tags",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
         }
       ],
       "CanOrderBy": [],
@@ -733,6 +798,27 @@
           "Description": "include associated event",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "event_times",
+          "Description": "include associated event_times",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "resource_bookings",
+          "Description": "include associated resource_bookings",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "tags",
+          "Description": "include associated tags",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [
@@ -741,6 +827,24 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "ends_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-ends_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "starts_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-starts_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -1036,6 +1140,34 @@
           "Description": "include associated created_by",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "event",
+          "Description": "include associated event",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "resource",
+          "Description": "include associated resource",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "room_setup",
+          "Description": "include associated room_setup",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "updated_by",
+          "Description": "include associated updated_by",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
         }
       ],
       "CanOrderBy": [],
@@ -1143,6 +1275,12 @@
           "Value": "ends_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-ends_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "starts_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-starts_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -1445,6 +1583,10 @@
             },
             {
               "Name": "lost",
+              "Description": null
+            },
+            {
+              "Name": "lost_due_to_blockout",
               "Description": null
             },
             {
@@ -1947,6 +2089,30 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "first_name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-first_name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "last_name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-last_name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "resolves_conflicts",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-resolves_conflicts) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -2253,6 +2419,27 @@
           "Description": "include associated resource_approval_groups",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "resource_folder",
+          "Description": "include associated resource_folder",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "resource_questions",
+          "Description": "include associated resource_questions",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "room_setups",
+          "Description": "include associated room_setups",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [
@@ -2261,6 +2448,24 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "expires_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-expires_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -2437,6 +2642,13 @@
           "Description": "include associated people",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "resources",
+          "Description": "include associated resources",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [
@@ -2445,6 +2657,18 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -2573,6 +2797,20 @@
           "Description": "include associated event_instance",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "event_resource_request",
+          "Description": "include associated event_resource_request",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "resource",
+          "Description": "include associated resource",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
         }
       ],
       "CanOrderBy": [
@@ -2581,6 +2819,24 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "ends_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-ends_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "starts_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-starts_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -2685,6 +2941,24 @@
           "Value": "ancestry",
           "Type": "string",
           "Description": "prefix with a hyphen (-ancestry) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -2981,6 +3255,13 @@
           "Description": "include associated containing_resource",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "resource_suggestions",
+          "Description": "include associated resource_suggestions",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
         }
       ],
       "CanOrderBy": [
@@ -2989,6 +3270,18 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "name",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -3104,6 +3397,12 @@
           "Value": "name",
           "Type": "string",
           "Description": "prefix with a hyphen (-name) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "position",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-position) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -3218,6 +3517,13 @@
           "Parameter": "include",
           "Value": "events",
           "Description": "include associated events",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "tags",
+          "Description": "include associated tags",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         }

@@ -228,10 +228,10 @@ class DocumentationBuilder(
             Relationships = vertex.Relationships.Relationships.Data.Select(rel => BuildRelationship(rel.Attributes)),
             CanInclude = vertex.Relationships.CanInclude.Data
                 .Select(inc => BuildIncludable(inc.Attributes))
-                .DistinctBy(i => i.Parameter),
+                .DistinctBy(i => i.Value),
             CanOrderBy = vertex.Relationships.CanOrder.Data
                 .Select(ord => BuildOrderable(ord.Attributes))
-                .DistinctBy(o => o.Parameter),
+                .DistinctBy(o => o.Value),
             CanQueryBy = vertex.Relationships.CanQuery.Data
                 .Select(qry => BuildQueryable(qry.Attributes))
                 .DistinctBy(q => q.Parameter),

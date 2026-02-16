@@ -96,6 +96,13 @@
           "Description": "include associated batch_group",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "owner",
+          "Description": "include associated owner",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [
@@ -570,6 +577,27 @@
           "Description": "include associated designations",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "labels",
+          "Description": "include associated labels",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "note",
+          "Description": "include associated note",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "Parameter": "include",
+          "Value": "refund",
+          "Description": "include associated refund",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [
@@ -578,6 +606,24 @@
           "Value": "completed_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-completed_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "created_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "received_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-received_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [
@@ -832,6 +878,20 @@
           "Description": "include associated campus",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "fund",
+          "Description": "include associated fund",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "Parameter": "include",
+          "Value": "person",
+          "Description": "include associated person",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
         }
       ],
       "CanOrderBy": [
@@ -840,6 +900,18 @@
           "Value": "created_at",
           "Type": "string",
           "Description": "prefix with a hyphen (-created_at) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "received_on",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-received_on) to reverse the order"
+        },
+        {
+          "Parameter": "order",
+          "Value": "updated_at",
+          "Type": "string",
+          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
         }
       ],
       "CanQueryBy": [

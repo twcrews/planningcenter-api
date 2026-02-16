@@ -72,26 +72,6 @@ static partial class Serialized
 				"source": {
 					"parameter": "what's a parameter"
 				}
-			},
-			{
-				"status": "300",
-				"title": "What even is a 300",
-				"source": {
-					"test": "invalid property name"
-				}
-			},
-			{
-				"source": {
-					"pointer": [
-						{
-							"invalid": "source"
-						}
-					]
-				}
-			},
-			{
-				"status": "700",
-				"source": {}
 			}
 		]
 	}

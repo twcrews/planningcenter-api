@@ -56,14 +56,14 @@ public class HttpClientAuthenticationExtensionsTests
 	}
 
 	[Fact]
-	public void AddPlanningCenterAuth_WithNullBearerToken_ThrowsArgumentException()
+	public void AddPlanningCenterAuth_WithNullBearerToken_ThrowsArgumentNullException()
 	{
 		// Arrange
 		var client = new HttpClient();
 		string? bearerToken = null;
 
 		// Act & Assert
-		Assert.Throws<ArgumentException>(() => client.AddPlanningCenterAuth(bearerToken!));
+		Assert.Throws<ArgumentNullException>(() => client.AddPlanningCenterAuth(bearerToken!));
 	}
 
 	[Fact]
@@ -119,14 +119,14 @@ public class HttpClientAuthenticationExtensionsTests
 	}
 
 	[Fact]
-	public void ConfigureForPlanningCenter_WithNullBaseUrl_ThrowsArgumentException()
+	public void ConfigureForPlanningCenter_WithNullBaseUrl_ThrowsArgumentNullException()
 	{
 		// Arrange
 		var client = new HttpClient();
 		string? baseUrl = null;
 
 		// Act & Assert
-		Assert.Throws<ArgumentException>(() => client.ConfigureForPlanningCenter(baseUrl!));
+		Assert.Throws<ArgumentNullException>(() => client.ConfigureForPlanningCenter(baseUrl!));
 	}
 
 	[Fact]

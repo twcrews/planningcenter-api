@@ -1,5 +1,5 @@
 using System.Net.Http.Headers;
-using Crews.Extensions.Primitives;
+using System.Text;
 using Crews.PlanningCenter.Api.Authentication;
 
 namespace Crews.PlanningCenter.Api.Tests.Models;
@@ -17,7 +17,7 @@ public class PlanningCenterPersonalAccessTokenTests
 
 		AuthenticationHeaderValue authHeader = token;
 
-		string expectedParam = $"{token.AppId}:{token.Secret}".Base64Encode();
+		string expectedParam = Convert.ToBase64String(Encoding.UTF8.GetBytes($"{token.AppId}:{token.Secret}"));
 		string? actualParam = authHeader.Parameter;
 		
 		Assert.Equal(expectedParam, actualParam);

@@ -200,8 +200,7 @@ class PlanningCenterResourceClientsGenerator : IIncrementalGenerator
 
     private static void GenerateOrderable(IndentedTextWriter writer, ResourceOrderable orderable, string modelType)
     {
-        string summary = orderable.Description ?? $"Order by {orderable.Value.ToPascalCase()}.";
-        summary = summary.ToXmlSummary();
+        string summary = $"Order by {orderable.Value.ToPascalCase()}.";
 
         string methodName = "OrderBy" + orderable.Value.Replace(".", "").ToPascalCase();
         string clientType = modelType + "Client";
@@ -211,6 +210,15 @@ class PlanningCenterResourceClientsGenerator : IIncrementalGenerator
         writer.WriteLine("/// </summary>");
         writer.WriteLine($"public {clientType} {methodName}() => ({clientType})SetQueryParameter(\"{orderable.Parameter}\", \"{orderable.Value}\");");
         writer.WriteLine();
+
+        summary += " Use reverse order.";
+        methodName += "Descending";
+
+        writer.WriteLine("/// <summary>");
+        writer.WriteLine($"/// {summary}");
+        writer.WriteLine("/// </summary>");
+        writer.WriteLine($"public {clientType} {methodName}() => ({clientType})SetQueryParameter(\"{orderable.Parameter}\", \"-{orderable.Value}\");");
+        writer.WriteLine(); 
     }
 
     private static void GenerateQueryable(IndentedTextWriter writer, ResourceQueryable queryable, string modelType)

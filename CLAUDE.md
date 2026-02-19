@@ -8,16 +8,16 @@ This is a multi-project .NET solution. The primary project in the solution (`Cre
 
 ## Project Structure
 
-The solution contains six projects:
+The solution contains seven projects:
 
-1. **Crews.PlanningCenter.Api** (.NET 8.0): Main library project
+1. **Crews.PlanningCenter.Api** (.NET 8.0): Main library project - includes authentication helpers and auto-generated API clients
 2. **Crews.PlanningCenter.Api.DocParser** (.NET 10.0): Console application for downloading and parsing API documentation
 3. **Crews.PlanningCenter.Api.Generators** (.NET Standard 2.0): Roslyn incremental source generator for code generation
 4. **Crews.PlanningCenter.Api.Tests** (.NET 8.0): Unit tests for the main library
 5. **Crews.PlanningCenter.Api.DocParser.Tests** (.NET 10.0): Unit tests for the doc parser
 6. **Crews.PlanningCenter.Api.Generators.Tests** (.NET Standard 2.0): Unit tests for the source generators
 
-**Current Development State:** The main API project has been cleared of generated code to prepare for the new source generator implementation. After the generators are fully implemented, client and resource classes will be automatically generated at compile time.
+The source generators are **complete and fully functional**. Client and resource classes are automatically generated at compile time from the JSON definition files in the `Definitions/` directory.
 
 ## Build and Test Commands
 
@@ -105,7 +105,60 @@ Contains utilities and services for generating strongly-typed client code from t
 - AdditionalFiles include for `Definitions/**/*.json`
 - EmitCompilerGeneratedFiles is enabled to output generated code to `obj/Generated`
 
-Client and resource classes will be auto-generated at compile time and include a header comment indicating they are generated code.
+Client and resource classes are auto-generated at compile time and include a header comment indicating they are generated code.
+
+### Authentication
+
+The library provides authentication helpers that consumers can use to configure their HttpClient. Consumers control HttpClient configuration, including authentication and resilience policies.
+
+#### Authentication Helpers
+
+Three authentication methods are supported via extension methods:
+
+1. **Personal Access Token** - For server-to-server integrations and development
+   ```csharp
+   var httpClient = new HttpClient()
+       .ConfigureForPlanningCenter()
+       .AddPlanningCenterAuth(new PlanningCenterPersonalAccessToken
+       {
+           AppId = "app-id",
+           Secret = "secret"
+       });
+   ```
+
+2. **OAuth Bearer Token** - When you already have an access token
+   ```csharp
+   var httpClient = new HttpClient()
+       .ConfigureForPlanningCenter()
+       .AddPlanningCenterAuth("access-token");
+   ```
+
+3. **OIDC Authentication** (Recommended for web apps) - Integrated ASP.NET Core authentication
+   ```csharp
+   // Add OIDC authentication
+   builder.Services.AddPlanningCenterAuthentication(options =>
+   {
+       options.ClientId = "client-id";
+       options.ClientSecret = "client-secret";
+       options.Scopes = PlanningCenterOAuthScope.OpenId | PlanningCenterOAuthScope.People;
+   });
+
+   // Configure HttpClient (consumers handle token extraction from HttpContext)
+   builder.Services.AddHttpClient("PlanningCenterApi", client =>
+   {
+       client.ConfigureForPlanningCenter();
+   });
+   ```
+
+#### Key Classes
+
+- **[HttpClientAuthenticationExtensions.cs](Crews.PlanningCenter.Api/Authentication/HttpClientAuthenticationExtensions.cs)** - Extension methods for configuring HttpClient with Planning Center authentication
+- **[PlanningCenterAuthenticationExtensions.cs](Crews.PlanningCenter.Api/Authentication/PlanningCenterAuthenticationExtensions.cs)** - OIDC authentication setup for ASP.NET Core
+- **[PlanningCenterOAuthClient.cs](Crews.PlanningCenter.Api/Authentication/PlanningCenterOAuthClient.cs)** - OAuth client for token exchange
+- **[PlanningCenterOAuthClientFactory.cs](Crews.PlanningCenter.Api/Authentication/PlanningCenterOAuthClientFactory.cs)** - Factory for creating OAuth client instances
+- **[PlanningCenterPersonalAccessToken.cs](Crews.PlanningCenter.Api/Authentication/PlanningCenterPersonalAccessToken.cs)** - Record struct for Personal Access Token authentication
+
+#### Documentation
 
 ### Tests
 
@@ -116,6 +169,81 @@ Unit tests for the documentation parser console application. Tests the parsing a
 Unit tests for the incremental source generator. Tests the code generation logic that creates client and resource classes from JSON definition files.
 
 ## Important Patterns
+
+### Using the API Client in ASP.NET Core
+
+Consumers configure their own HttpClient with authentication and resilience policies:
+
+**1. Configure HttpClient in Program.cs:**
+
+```csharp
+using Crews.PlanningCenter.Api.Authentication;
+
+builder.Services.AddHttpClient("PlanningCenterApi", client =>
+{
+    client.ConfigureForPlanningCenter()
+          .AddPlanningCenterAuth(new PlanningCenterPersonalAccessToken
+          {
+              AppId = builder.Configuration["PlanningCenter:AppId"]!,
+              Secret = builder.Configuration["PlanningCenter:Secret"]!
+          });
+})
+.AddStandardResilienceHandler(); // Optional: add .NET 8+ built-in resilience
+```
+
+**2. Use HttpClient in services:**
+
+```csharp
+public class PeopleService
+{
+    private readonly HttpClient _httpClient;
+
+    public PeopleService(IHttpClientFactory httpClientFactory)
+    {
+        _httpClient = httpClientFactory.CreateClient("PlanningCenterApi");
+    }
+
+    public async Task<PersonResource> GetPersonAsync(string personId)
+    {
+        var client = new PersonClient(_httpClient,
+            new Uri($"/people/v2/people/{personId}", UriKind.Relative));
+
+        var response = await client.GetAsync();
+        return response.Data;
+    }
+}
+```
+
+### Standalone Usage (Without Dependency Injection)
+
+For console applications or simple scenarios:
+
+```csharp
+using Crews.PlanningCenter.Api.Authentication;
+using Crews.PlanningCenter.Api.People.V2025_11_10;
+
+var httpClient = new HttpClient()
+    .ConfigureForPlanningCenter()
+    .AddPlanningCenterAuth(new PlanningCenterPersonalAccessToken
+    {
+        AppId = "your-app-id",
+        Secret = "your-secret"
+    });
+
+var client = new PersonClient(httpClient,
+    new Uri("/people/v2/people/123", UriKind.Relative));
+
+var response = await client.GetAsync();
+Console.WriteLine($"Person: {response.Data?.Attributes.Name}");
+```
+
+**Best Practices:**
+- Always use `IHttpClientFactory` in ASP.NET Core for proper HttpClient lifetime management
+- Add resilience policies in production (`.AddStandardResilienceHandler()` or custom Polly policies)
+- Store credentials securely (User Secrets for dev, environment variables for production)
+- Never commit credentials to source control
+
+See the [README.md](README.md) for complete usage examples and patterns.
 
 ### Adding New API Products
 When Planning Center adds a new product API:

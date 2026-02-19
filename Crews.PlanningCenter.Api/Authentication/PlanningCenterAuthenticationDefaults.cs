@@ -6,6 +6,11 @@ namespace Crews.PlanningCenter.Api.Authentication;
 public static class PlanningCenterAuthenticationDefaults
 {
 	/// <summary>
+	/// The configuration section to use when configuring the OIDC client options.
+	/// </summary>
+	public const string ConfigurationSection = "Authentication:PlanningCenter";
+
+	/// <summary>
 	/// The base URL for the Planning Center API.
 	/// </summary>
 	public const string BaseUrl = "https://api.planningcenteronline.com";

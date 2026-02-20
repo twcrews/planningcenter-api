@@ -77,7 +77,7 @@ class PlanningCenterResourcesGenerator : IIncrementalGenerator
         writer.WriteLine("/// <summary>");
         writer.WriteLine($"/// {summary}");
         writer.WriteLine("/// </summary>");
-        writer.WriteLine($"public class {resourceType} : JsonApiResource");
+        writer.WriteLine($"public record {resourceType} : JsonApiResource");
         writer.WriteLine("{");
         writer.Indent++;
         writer.WriteLine("/// <inheritdoc/>");
@@ -99,23 +99,23 @@ class PlanningCenterResourcesGenerator : IIncrementalGenerator
     {
         string summary = $"Attributes for the {resource.Name} resource.";
 
-        string className = resource.Name.ToPascalCase();;
+        string typeName = resource.Name.ToPascalCase();;
         summary = summary.ToXmlSummary();
 
         writer.WriteLine("/// <summary>");
         writer.WriteLine($"/// {summary}");
         writer.WriteLine("/// </summary>");
-        writer.WriteLine($"public class {className}");
+        writer.WriteLine($"public record {typeName}");
         writer.WriteLine("{");
         writer.Indent++;
         foreach (ResourceAttribute attribute in resource.Attributes)
         {
-            if (attribute.Name.ToPascalCase() == className)
+            if (attribute.Name.ToPascalCase() == typeName)
             {
                 attribute.Name += "_attribute";
                 attribute.Description = (attribute.Description 
                     ?? "Planning Center does not provide a description for this attribute.") 
-                    + "\nNOTE: The name of this property has been modified because the class shares its original name.";
+                    + "\nNOTE: The name of this property has been modified because the type shares its original name.";
             }
             GenerateAttributeProperty(writer, attribute);
         }
@@ -133,7 +133,7 @@ class PlanningCenterResourcesGenerator : IIncrementalGenerator
         writer.WriteLine($"/// {summary}");
         writer.WriteLine("/// </summary>");
         writer.WriteLine($"[JsonPropertyName(\"{attribute.Name}\")]");
-        writer.WriteLine($"public {attribute.Type.ToClrType()}? {attribute.Name.ToPascalCase()} {{ get; set; }}");
+        writer.WriteLine($"public {attribute.Type.ToClrType()}? {attribute.Name.ToPascalCase()} {{ get; init; }}");
         writer.WriteLine();
     }
 
@@ -145,7 +145,7 @@ class PlanningCenterResourcesGenerator : IIncrementalGenerator
         writer.WriteLine("/// <summary>");
         writer.WriteLine($"/// {summary}");
         writer.WriteLine("/// </summary>");
-        writer.WriteLine($"public class {resource.Name.ToPascalCase()}Relationships");
+        writer.WriteLine($"public record {resource.Name.ToPascalCase()}Relationships");
         writer.WriteLine("{");
         writer.Indent++;
         foreach (ResourceRelationship relationship in resource.Relationships)
@@ -165,7 +165,7 @@ class PlanningCenterResourcesGenerator : IIncrementalGenerator
         writer.WriteLine($"/// {summary}");
         writer.WriteLine("/// </summary>");
         writer.WriteLine($"[JsonPropertyName(\"{relationship.Name}\")]");
-        writer.WriteLine($"public JsonApiRelationship? {relationship.Name.ToPascalCase()} {{ get; set; }}");
+        writer.WriteLine($"public JsonApiRelationship? {relationship.Name.ToPascalCase()} {{ get; init; }}");
         writer.WriteLine();
     }
 }

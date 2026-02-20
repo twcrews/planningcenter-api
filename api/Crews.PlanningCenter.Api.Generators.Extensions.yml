@@ -2,8 +2,8 @@
 items:
 - uid: Crews.PlanningCenter.Api.Generators.Extensions
   commentId: N:Crews.PlanningCenter.Api.Generators.Extensions
-  id: Extensions
-  parent: Crews.PlanningCenter.Api.Generators
+  id: Generators.Extensions
+  parent: Crews.PlanningCenter.Api
   children:
   - Crews.PlanningCenter.Api.Generators.Extensions.StringExtensions
   langs:

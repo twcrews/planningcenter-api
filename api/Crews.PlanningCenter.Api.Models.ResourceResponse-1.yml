@@ -36,8 +36,6 @@ items:
     content.vb: Public MustInherit Class ResourceResponse(Of T)
   inheritance:
   - System.Object
-  derivedClasses:
-  - Crews.PlanningCenter.Api.Tests.Dummies.TestResourceResponse
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)

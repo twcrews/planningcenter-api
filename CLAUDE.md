@@ -57,6 +57,28 @@ dotnet run
 
 The DocParser downloads the latest API documentation from Planning Center and saves it to `Crews.PlanningCenter.Api/Definitions/`. Run this manually when you need to synchronize with Planning Center API updates.
 
+### Generating Documentation
+```bash
+# Generate documentation site using DocFX
+docfx docfx.json
+
+# Serve documentation locally for preview (with hot reload)
+docfx docfx.json --serve
+
+# Generate documentation in a specific output directory
+docfx docfx.json -o <output-directory>
+```
+
+The documentation is generated using [DocFX](https://dotnet.github.io/docfx/), which:
+- Extracts API documentation from XML comments in the codebase
+- Processes all `.csproj` files to generate API reference documentation
+- Builds a static documentation site from markdown files
+- Outputs to the `_site/` directory (excluded from source control)
+- Uses the default and modern templates for a clean, searchable interface
+- Supports PDF generation
+
+**Configuration:** Documentation generation is configured in [docfx.json](docfx.json) at the repository root.
+
 ## Architecture
 
 ### Code Generation

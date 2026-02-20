@@ -41,8 +41,6 @@ items:
   inheritance:
   - System.Object
   - Crews.PlanningCenter.Api.Models.ResourceClient{{TModel},{TResource},{TResponse}}
-  derivedClasses:
-  - Crews.PlanningCenter.Api.Tests.Dummies.TestPaginatedResourceClient
   inheritedMembers:
   - Crews.PlanningCenter.Api.Models.ResourceClient{{TModel},{TResource},{TResponse}}.Uri
   - Crews.PlanningCenter.Api.Models.ResourceClient{{TModel},{TResource},{TResponse}}.HttpClient

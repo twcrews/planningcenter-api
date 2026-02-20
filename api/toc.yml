@@ -223,27 +223,6 @@ items:
       - uid: Crews.PlanningCenter.Api.DocParser.Services.PlanningCenterClient
         name: PlanningCenterClient
         type: Class
-    - uid: Crews.PlanningCenter.Api.DocParser.Tests
-      name: Tests
-      type: Namespace
-      items:
-      - uid: Crews.PlanningCenter.Api.DocParser.Tests.Extensions
-        name: Extensions
-        type: Namespace
-        items:
-        - uid: Crews.PlanningCenter.Api.DocParser.Tests.Extensions.StringExtensionsTests
-          name: StringExtensionsTests
-          type: Class
-      - uid: Crews.PlanningCenter.Api.DocParser.Tests.Services
-        name: Services
-        type: Namespace
-        items:
-        - uid: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests
-          name: DocumentationBuilderTests
-          type: Class
-        - uid: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests
-          name: PlanningCenterClientTests
-          type: Class
   - uid: Crews.PlanningCenter.Api.Extensions
     name: Extensions
     type: Namespace
@@ -251,53 +230,13 @@ items:
     - uid: Crews.PlanningCenter.Api.Extensions.AuthenticationBuilderExtensions
       name: AuthenticationBuilderExtensions
       type: Class
-  - uid: Crews.PlanningCenter.Api.Generators
-    name: Generators
+  - uid: Crews.PlanningCenter.Api.Generators.Extensions
+    name: Generators.Extensions
     type: Namespace
     items:
-    - uid: Crews.PlanningCenter.Api.Generators.Extensions
-      name: Extensions
-      type: Namespace
-      items:
-      - uid: Crews.PlanningCenter.Api.Generators.Extensions.StringExtensions
-        name: StringExtensions
-        type: Class
-    - uid: Crews.PlanningCenter.Api.Generators.Tests
-      name: Tests
-      type: Namespace
-      items:
-      - uid: Crews.PlanningCenter.Api.Generators.Tests.Extensions
-        name: Extensions
-        type: Namespace
-        items:
-        - uid: Crews.PlanningCenter.Api.Generators.Tests.Extensions.StringExtensionsTests
-          name: StringExtensionsTests
-          type: Class
-        - uid: Crews.PlanningCenter.Api.Generators.Tests.Extensions.StringExtensionsTests.ToClrType
-          name: StringExtensionsTests.ToClrType
-          type: Class
-        - uid: Crews.PlanningCenter.Api.Generators.Tests.Extensions.StringExtensionsTests.ToXmlSummary
-          name: StringExtensionsTests.ToXmlSummary
-          type: Class
-      - uid: Crews.PlanningCenter.Api.Generators.Tests.TestData
-        name: TestData
-        type: Namespace
-        items:
-        - uid: Crews.PlanningCenter.Api.Generators.Tests.TestData.GeneratorTestHelper
-          name: GeneratorTestHelper
-          type: Class
-        - uid: Crews.PlanningCenter.Api.Generators.Tests.TestData.SampleVersionData
-          name: SampleVersionData
-          type: Class
-      - uid: Crews.PlanningCenter.Api.Generators.Tests.PlanningCenterResourceClientsGeneratorTests
-        name: PlanningCenterResourceClientsGeneratorTests
-        type: Class
-      - uid: Crews.PlanningCenter.Api.Generators.Tests.PlanningCenterResourcesGeneratorTests
-        name: PlanningCenterResourcesGeneratorTests
-        type: Class
-      - uid: Crews.PlanningCenter.Api.Generators.Tests.PlanningCenterRootClientsGeneratorTests
-        name: PlanningCenterRootClientsGeneratorTests
-        type: Class
+    - uid: Crews.PlanningCenter.Api.Generators.Extensions.StringExtensions
+      name: StringExtensions
+      type: Class
   - uid: Crews.PlanningCenter.Api.Models
     name: Models
     type: Namespace
@@ -901,67 +840,5 @@ items:
         type: Class
       - uid: Crews.PlanningCenter.Api.People.V2025_11_10.OrganizationStatisticsResource
         name: OrganizationStatisticsResource
-        type: Class
-  - uid: Crews.PlanningCenter.Api.Tests
-    name: Tests
-    type: Namespace
-    items:
-    - uid: Crews.PlanningCenter.Api.Tests.Dummies
-      name: Dummies
-      type: Namespace
-      items:
-      - uid: Crews.PlanningCenter.Api.Tests.Dummies.OAuth
-        name: OAuth
-        type: Namespace
-        items:
-        - uid: Crews.PlanningCenter.Api.Tests.Dummies.OAuth.SampleClaims
-          name: SampleClaims
-          type: Class
-        - uid: Crews.PlanningCenter.Api.Tests.Dummies.OAuth.SampleTokenResponses
-          name: SampleTokenResponses
-          type: Class
-      - uid: Crews.PlanningCenter.Api.Tests.Dummies.ClaimsPrincipalBuilder
-        name: ClaimsPrincipalBuilder
-        type: Class
-      - uid: Crews.PlanningCenter.Api.Tests.Dummies.TestModel
-        name: TestModel
-        type: Class
-      - uid: Crews.PlanningCenter.Api.Tests.Dummies.TestPaginatedResourceClient
-        name: TestPaginatedResourceClient
-        type: Class
-      - uid: Crews.PlanningCenter.Api.Tests.Dummies.TestResource
-        name: TestResource
-        type: Class
-      - uid: Crews.PlanningCenter.Api.Tests.Dummies.TestResourceClient
-        name: TestResourceClient
-        type: Class
-      - uid: Crews.PlanningCenter.Api.Tests.Dummies.TestResourceResponse
-        name: TestResourceResponse
-        type: Class
-    - uid: Crews.PlanningCenter.Api.Tests.Extensions
-      name: Extensions
-      type: Namespace
-      items:
-      - uid: Crews.PlanningCenter.Api.Tests.Extensions.HttpHeadersExtensionsTests
-        name: HttpHeadersExtensionsTests
-        type: Class
-    - uid: Crews.PlanningCenter.Api.Tests.Models
-      name: Models
-      type: Namespace
-      items:
-      - uid: Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests
-        name: JsonApiExceptionTests
-        type: Class
-      - uid: Crews.PlanningCenter.Api.Tests.Models.PaginatedResourceClientTests
-        name: PaginatedResourceClientTests
-        type: Class
-      - uid: Crews.PlanningCenter.Api.Tests.Models.PlanningCenterPersonalAccessTokenTests
-        name: PlanningCenterPersonalAccessTokenTests
-        type: Class
-      - uid: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests
-        name: ResourceClientTests
-        type: Class
-      - uid: Crews.PlanningCenter.Api.Tests.Models.ResourceResponseTests
-        name: ResourceResponseTests
         type: Class
 memberLayout: SamePage

@@ -136,8 +136,7 @@ references:
   fullName: Crews.PlanningCenter.Api.Models.ProductDefinition
 - uid: Crews.PlanningCenter.Api.Models.Resource
   commentId: T:Crews.PlanningCenter.Api.Models.Resource
-  parent: Crews.PlanningCenter.Api.Models
-  href: https://github.com/twcrews/planningcenter-api/blob/79dbe0b4574e21868ea7d5f615bd877a3e3cf88d/Crews.PlanningCenter.Api.Models/Resource.cs
+  href: Crews.PlanningCenter.Api.Models.Resource.html
   name: Resource
   nameWithType: Resource
   fullName: Crews.PlanningCenter.Api.Models.Resource
@@ -248,8 +247,7 @@ references:
   - name: )
 - uid: Crews.PlanningCenter.Api.Models.Version
   commentId: T:Crews.PlanningCenter.Api.Models.Version
-  parent: Crews.PlanningCenter.Api.Models
-  href: https://github.com/twcrews/planningcenter-api/blob/79dbe0b4574e21868ea7d5f615bd877a3e3cf88d/Crews.PlanningCenter.Api.Models/Version.cs
+  href: Crews.PlanningCenter.Api.Models.Version.html
   name: Version
   nameWithType: Version
   fullName: Crews.PlanningCenter.Api.Models.Version

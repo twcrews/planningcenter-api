@@ -8,7 +8,6 @@ items:
   - Crews.PlanningCenter.Api.DocParser.Extensions
   - Crews.PlanningCenter.Api.DocParser.Models
   - Crews.PlanningCenter.Api.DocParser.Services
-  - Crews.PlanningCenter.Api.DocParser.Tests
   langs:
   - csharp
   - vb
@@ -199,5 +198,3 @@ references:
   - uid: Crews.PlanningCenter.Api.DocParser.Services
     name: Services
     href: Crews.PlanningCenter.Api.DocParser.Services.html
-- uid: Crews.PlanningCenter.Api.DocParser.Tests
-  isExternal: true

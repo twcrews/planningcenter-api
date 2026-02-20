@@ -57,7 +57,6 @@ items:
   - System.Object
   derivedClasses:
   - Crews.PlanningCenter.Api.Models.PaginatedResourceClient`3
-  - Crews.PlanningCenter.Api.Tests.Dummies.TestResourceClient
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)

@@ -135,19 +135,47 @@ Three authentication methods are supported via extension methods:
 
 3. **OIDC Authentication** (Recommended for web apps) - Integrated ASP.NET Core authentication
    ```csharp
-   // Add OIDC authentication
-   builder.Services.AddPlanningCenterAuthentication(options =>
-   {
-       options.ClientId = "client-id";
-       options.ClientSecret = "client-secret";
-       options.Scopes = PlanningCenterOAuthScope.OpenId | PlanningCenterOAuthScope.People;
-   });
+   // Configure authentication with cookie support
+   builder.Services
+       .AddAuthentication(options =>
+       {
+           options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+           options.DefaultChallengeScheme = PlanningCenterAuthenticationDefaults.AuthenticationScheme;
+           options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+       })
+       .AddCookie()
+       .AddPlanningCenterAuthentication();  // Reads from appsettings.json automatically
 
    // Configure HttpClient (consumers handle token extraction from HttpContext)
    builder.Services.AddHttpClient("PlanningCenterApi", client =>
    {
        client.ConfigureForPlanningCenter();
    });
+   ```
+
+   **appsettings.json:**
+   ```json
+   {
+     "PlanningCenter": {
+       "Authority": "https://api.planningcenteronline.com",
+       "ClientId": "your-client-id",
+       "ClientSecret": "your-client-secret",
+       "Scopes": ["openid", "people"]
+     }
+   }
+   ```
+
+   Note: `ClientId` and `ClientSecret` are required. `Authority` defaults to Planning Center's base URL, and `Scopes` defaults to `["openid", "people"]`.
+
+   Alternatively, configure options manually:
+   ```csharp
+   builder.Services
+       .AddAuthentication()
+       .AddPlanningCenterAuthentication(options =>
+       {
+           options.ClientId = "your-client-id";
+           options.ClientSecret = "your-client-secret";
+       });
    ```
 
 #### Key Classes

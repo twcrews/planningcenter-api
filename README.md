@@ -146,14 +146,18 @@ For web applications with user authentication, add Planning Center OIDC authenti
 
 ```csharp
 using Crews.PlanningCenter.Api.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
-// Add Planning Center OIDC authentication
-builder.Services.AddPlanningCenterAuthentication(options =>
-{
-    options.ClientId = builder.Configuration["PlanningCenter:ClientId"]!;
-    options.ClientSecret = builder.Configuration["PlanningCenter:ClientSecret"]!;
-    options.Scopes = PlanningCenterOAuthScope.OpenId | PlanningCenterOAuthScope.People;
-});
+// Configure authentication with cookie support
+builder.Services
+    .AddAuthentication(options =>
+    {
+        options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+        options.DefaultChallengeScheme = PlanningCenterAuthenticationDefaults.AuthenticationScheme;
+        options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    })
+    .AddCookie()
+    .AddPlanningCenterAuthentication();  // Reads from appsettings.json automatically
 
 // Configure HttpClient for API calls
 // Note: For per-request authentication, implement a custom DelegatingHandler
@@ -162,6 +166,32 @@ builder.Services.AddHttpClient("PlanningCenterApi", client =>
 {
     client.ConfigureForPlanningCenter();
 });
+```
+
+**appsettings.json:**
+```json
+{
+  "PlanningCenter": {
+    "Authority": "https://api.planningcenteronline.com",
+    "ClientId": "your-client-id",
+    "ClientSecret": "your-client-secret",
+    "Scopes": ["openid", "people"]
+  }
+}
+```
+
+**Note:** `ClientId` and `ClientSecret` are required. `Authority` defaults to Planning Center's base URL, and `Scopes` defaults to `["openid", "people"]`.
+
+**Alternatively, configure options manually:**
+```csharp
+builder.Services
+    .AddAuthentication()
+    .AddPlanningCenterAuthentication(options =>
+    {
+        options.ClientId = builder.Configuration["PlanningCenter:ClientId"]!;
+        options.ClientSecret = builder.Configuration["PlanningCenter:ClientSecret"]!;
+        // Override other settings as needed
+    });
 ```
 
 ### Authentication Helpers Reference

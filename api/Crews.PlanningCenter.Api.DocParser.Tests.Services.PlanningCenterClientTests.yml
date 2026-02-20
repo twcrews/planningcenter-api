@@ -1,0 +1,777 @@
+### YamlMime:ManagedReference
+items:
+- uid: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests
+  commentId: T:Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests
+  id: PlanningCenterClientTests
+  parent: Crews.PlanningCenter.Api.DocParser.Tests.Services
+  children:
+  - Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.#ctor
+  - Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.Dispose
+  - Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.GetGraphAsync_SendsRequestToCorrectEndpoint
+  - Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.GetGraphAsync_ThrowsWhenResponseIsNull
+  - Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.GetGraphVersionAsync_HandlesDifferentProducts
+  - Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.GetGraphVersionAsync_SendsRequestToCorrectEndpoint
+  - Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.GetVertexAsync_DeserializesComplexVertexDocument
+  - Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.GetVertexAsync_SendsRequestToCorrectEndpoint
+  langs:
+  - csharp
+  - vb
+  name: PlanningCenterClientTests
+  nameWithType: PlanningCenterClientTests
+  fullName: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests
+  type: Class
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.DocParser.Tests/Services/PlanningCenterClientTests.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: PlanningCenterClientTests
+    path: Crews.PlanningCenter.Api.DocParser.Tests/Services/PlanningCenterClientTests.cs
+    startLine: 13
+  assemblies:
+  - Crews.PlanningCenter.Api.DocParser.Tests
+  namespace: Crews.PlanningCenter.Api.DocParser.Tests.Services
+  syntax:
+    content: 'public class PlanningCenterClientTests : IDisposable'
+    content.vb: Public Class PlanningCenterClientTests Implements IDisposable
+  inheritance:
+  - System.Object
+  implements:
+  - System.IDisposable
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.#ctor
+  commentId: M:Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.#ctor
+  id: '#ctor'
+  parent: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests
+  langs:
+  - csharp
+  - vb
+  name: PlanningCenterClientTests()
+  nameWithType: PlanningCenterClientTests.PlanningCenterClientTests()
+  fullName: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.PlanningCenterClientTests()
+  type: Constructor
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.DocParser.Tests/Services/PlanningCenterClientTests.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: .ctor
+    path: Crews.PlanningCenter.Api.DocParser.Tests/Services/PlanningCenterClientTests.cs
+    startLine: 20
+  assemblies:
+  - Crews.PlanningCenter.Api.DocParser.Tests
+  namespace: Crews.PlanningCenter.Api.DocParser.Tests.Services
+  syntax:
+    content: public PlanningCenterClientTests()
+    content.vb: Public Sub New()
+  overload: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.#ctor*
+  nameWithType.vb: PlanningCenterClientTests.New()
+  fullName.vb: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.New()
+  name.vb: New()
+- uid: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.GetGraphAsync_SendsRequestToCorrectEndpoint
+  commentId: M:Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.GetGraphAsync_SendsRequestToCorrectEndpoint
+  id: GetGraphAsync_SendsRequestToCorrectEndpoint
+  parent: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests
+  langs:
+  - csharp
+  - vb
+  name: GetGraphAsync_SendsRequestToCorrectEndpoint()
+  nameWithType: PlanningCenterClientTests.GetGraphAsync_SendsRequestToCorrectEndpoint()
+  fullName: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.GetGraphAsync_SendsRequestToCorrectEndpoint()
+  type: Method
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.DocParser.Tests/Services/PlanningCenterClientTests.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: GetGraphAsync_SendsRequestToCorrectEndpoint
+    path: Crews.PlanningCenter.Api.DocParser.Tests/Services/PlanningCenterClientTests.cs
+    startLine: 32
+  assemblies:
+  - Crews.PlanningCenter.Api.DocParser.Tests
+  namespace: Crews.PlanningCenter.Api.DocParser.Tests.Services
+  syntax:
+    content: >-
+      [Fact(DisplayName = "GetGraphAsync sends request to correct endpoint")]
+
+      public Task GetGraphAsync_SendsRequestToCorrectEndpoint()
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: >-
+      <Fact(DisplayName:="GetGraphAsync sends request to correct endpoint")>
+
+      Public Function GetGraphAsync_SendsRequestToCorrectEndpoint() As Task
+  overload: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.GetGraphAsync_SendsRequestToCorrectEndpoint*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+    namedArguments:
+    - name: DisplayName
+      type: System.String
+      value: GetGraphAsync sends request to correct endpoint
+- uid: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.GetGraphVersionAsync_SendsRequestToCorrectEndpoint
+  commentId: M:Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.GetGraphVersionAsync_SendsRequestToCorrectEndpoint
+  id: GetGraphVersionAsync_SendsRequestToCorrectEndpoint
+  parent: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests
+  langs:
+  - csharp
+  - vb
+  name: GetGraphVersionAsync_SendsRequestToCorrectEndpoint()
+  nameWithType: PlanningCenterClientTests.GetGraphVersionAsync_SendsRequestToCorrectEndpoint()
+  fullName: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.GetGraphVersionAsync_SendsRequestToCorrectEndpoint()
+  type: Method
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.DocParser.Tests/Services/PlanningCenterClientTests.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: GetGraphVersionAsync_SendsRequestToCorrectEndpoint
+    path: Crews.PlanningCenter.Api.DocParser.Tests/Services/PlanningCenterClientTests.cs
+    startLine: 55
+  assemblies:
+  - Crews.PlanningCenter.Api.DocParser.Tests
+  namespace: Crews.PlanningCenter.Api.DocParser.Tests.Services
+  syntax:
+    content: >-
+      [Fact(DisplayName = "GetGraphVersionAsync sends request to correct endpoint")]
+
+      public Task GetGraphVersionAsync_SendsRequestToCorrectEndpoint()
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: >-
+      <Fact(DisplayName:="GetGraphVersionAsync sends request to correct endpoint")>
+
+      Public Function GetGraphVersionAsync_SendsRequestToCorrectEndpoint() As Task
+  overload: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.GetGraphVersionAsync_SendsRequestToCorrectEndpoint*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+    namedArguments:
+    - name: DisplayName
+      type: System.String
+      value: GetGraphVersionAsync sends request to correct endpoint
+- uid: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.GetVertexAsync_SendsRequestToCorrectEndpoint
+  commentId: M:Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.GetVertexAsync_SendsRequestToCorrectEndpoint
+  id: GetVertexAsync_SendsRequestToCorrectEndpoint
+  parent: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests
+  langs:
+  - csharp
+  - vb
+  name: GetVertexAsync_SendsRequestToCorrectEndpoint()
+  nameWithType: PlanningCenterClientTests.GetVertexAsync_SendsRequestToCorrectEndpoint()
+  fullName: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.GetVertexAsync_SendsRequestToCorrectEndpoint()
+  type: Method
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.DocParser.Tests/Services/PlanningCenterClientTests.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: GetVertexAsync_SendsRequestToCorrectEndpoint
+    path: Crews.PlanningCenter.Api.DocParser.Tests/Services/PlanningCenterClientTests.cs
+    startLine: 82
+  assemblies:
+  - Crews.PlanningCenter.Api.DocParser.Tests
+  namespace: Crews.PlanningCenter.Api.DocParser.Tests.Services
+  syntax:
+    content: >-
+      [Fact(DisplayName = "GetVertexAsync sends request to correct endpoint")]
+
+      public Task GetVertexAsync_SendsRequestToCorrectEndpoint()
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: >-
+      <Fact(DisplayName:="GetVertexAsync sends request to correct endpoint")>
+
+      Public Function GetVertexAsync_SendsRequestToCorrectEndpoint() As Task
+  overload: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.GetVertexAsync_SendsRequestToCorrectEndpoint*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+    namedArguments:
+    - name: DisplayName
+      type: System.String
+      value: GetVertexAsync sends request to correct endpoint
+- uid: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.GetGraphAsync_ThrowsWhenResponseIsNull
+  commentId: M:Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.GetGraphAsync_ThrowsWhenResponseIsNull
+  id: GetGraphAsync_ThrowsWhenResponseIsNull
+  parent: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests
+  langs:
+  - csharp
+  - vb
+  name: GetGraphAsync_ThrowsWhenResponseIsNull()
+  nameWithType: PlanningCenterClientTests.GetGraphAsync_ThrowsWhenResponseIsNull()
+  fullName: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.GetGraphAsync_ThrowsWhenResponseIsNull()
+  type: Method
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.DocParser.Tests/Services/PlanningCenterClientTests.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: GetGraphAsync_ThrowsWhenResponseIsNull
+    path: Crews.PlanningCenter.Api.DocParser.Tests/Services/PlanningCenterClientTests.cs
+    startLine: 108
+  assemblies:
+  - Crews.PlanningCenter.Api.DocParser.Tests
+  namespace: Crews.PlanningCenter.Api.DocParser.Tests.Services
+  syntax:
+    content: >-
+      [Fact(DisplayName = "GetGraphAsync throws when response is null")]
+
+      public Task GetGraphAsync_ThrowsWhenResponseIsNull()
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: >-
+      <Fact(DisplayName:="GetGraphAsync throws when response is null")>
+
+      Public Function GetGraphAsync_ThrowsWhenResponseIsNull() As Task
+  overload: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.GetGraphAsync_ThrowsWhenResponseIsNull*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+    namedArguments:
+    - name: DisplayName
+      type: System.String
+      value: GetGraphAsync throws when response is null
+- uid: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.GetGraphVersionAsync_HandlesDifferentProducts
+  commentId: M:Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.GetGraphVersionAsync_HandlesDifferentProducts
+  id: GetGraphVersionAsync_HandlesDifferentProducts
+  parent: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests
+  langs:
+  - csharp
+  - vb
+  name: GetGraphVersionAsync_HandlesDifferentProducts()
+  nameWithType: PlanningCenterClientTests.GetGraphVersionAsync_HandlesDifferentProducts()
+  fullName: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.GetGraphVersionAsync_HandlesDifferentProducts()
+  type: Method
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.DocParser.Tests/Services/PlanningCenterClientTests.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: GetGraphVersionAsync_HandlesDifferentProducts
+    path: Crews.PlanningCenter.Api.DocParser.Tests/Services/PlanningCenterClientTests.cs
+    startLine: 120
+  assemblies:
+  - Crews.PlanningCenter.Api.DocParser.Tests
+  namespace: Crews.PlanningCenter.Api.DocParser.Tests.Services
+  syntax:
+    content: >-
+      [Fact(DisplayName = "GetGraphVersionAsync handles different products")]
+
+      public Task GetGraphVersionAsync_HandlesDifferentProducts()
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: >-
+      <Fact(DisplayName:="GetGraphVersionAsync handles different products")>
+
+      Public Function GetGraphVersionAsync_HandlesDifferentProducts() As Task
+  overload: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.GetGraphVersionAsync_HandlesDifferentProducts*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+    namedArguments:
+    - name: DisplayName
+      type: System.String
+      value: GetGraphVersionAsync handles different products
+- uid: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.GetVertexAsync_DeserializesComplexVertexDocument
+  commentId: M:Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.GetVertexAsync_DeserializesComplexVertexDocument
+  id: GetVertexAsync_DeserializesComplexVertexDocument
+  parent: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests
+  langs:
+  - csharp
+  - vb
+  name: GetVertexAsync_DeserializesComplexVertexDocument()
+  nameWithType: PlanningCenterClientTests.GetVertexAsync_DeserializesComplexVertexDocument()
+  fullName: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.GetVertexAsync_DeserializesComplexVertexDocument()
+  type: Method
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.DocParser.Tests/Services/PlanningCenterClientTests.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: GetVertexAsync_DeserializesComplexVertexDocument
+    path: Crews.PlanningCenter.Api.DocParser.Tests/Services/PlanningCenterClientTests.cs
+    startLine: 153
+  assemblies:
+  - Crews.PlanningCenter.Api.DocParser.Tests
+  namespace: Crews.PlanningCenter.Api.DocParser.Tests.Services
+  syntax:
+    content: >-
+      [Fact(DisplayName = "GetVertexAsync deserializes complex vertex document")]
+
+      public Task GetVertexAsync_DeserializesComplexVertexDocument()
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: >-
+      <Fact(DisplayName:="GetVertexAsync deserializes complex vertex document")>
+
+      Public Function GetVertexAsync_DeserializesComplexVertexDocument() As Task
+  overload: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.GetVertexAsync_DeserializesComplexVertexDocument*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+    namedArguments:
+    - name: DisplayName
+      type: System.String
+      value: GetVertexAsync deserializes complex vertex document
+- uid: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.Dispose
+  commentId: M:Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.Dispose
+  id: Dispose
+  parent: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests
+  langs:
+  - csharp
+  - vb
+  name: Dispose()
+  nameWithType: PlanningCenterClientTests.Dispose()
+  fullName: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.Dispose()
+  type: Method
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.DocParser.Tests/Services/PlanningCenterClientTests.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: Dispose
+    path: Crews.PlanningCenter.Api.DocParser.Tests/Services/PlanningCenterClientTests.cs
+    startLine: 206
+  assemblies:
+  - Crews.PlanningCenter.Api.DocParser.Tests
+  namespace: Crews.PlanningCenter.Api.DocParser.Tests.Services
+  summary: Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+  example: []
+  syntax:
+    content: public void Dispose()
+    content.vb: Public Sub Dispose()
+  overload: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.Dispose*
+  implements:
+  - System.IDisposable.Dispose
+references:
+- uid: Crews.PlanningCenter.Api.DocParser.Tests.Services
+  commentId: N:Crews.PlanningCenter.Api.DocParser.Tests.Services
+  href: Crews.html
+  name: Crews.PlanningCenter.Api.DocParser.Tests.Services
+  nameWithType: Crews.PlanningCenter.Api.DocParser.Tests.Services
+  fullName: Crews.PlanningCenter.Api.DocParser.Tests.Services
+  spec.csharp:
+  - uid: Crews
+    name: Crews
+    href: Crews.html
+  - name: .
+  - uid: Crews.PlanningCenter
+    name: PlanningCenter
+    href: Crews.PlanningCenter.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api
+    name: Api
+    href: Crews.PlanningCenter.Api.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.DocParser
+    name: DocParser
+    href: Crews.PlanningCenter.Api.DocParser.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.DocParser.Tests
+    name: Tests
+    href: Crews.PlanningCenter.Api.DocParser.Tests.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.DocParser.Tests.Services
+    name: Services
+    href: Crews.PlanningCenter.Api.DocParser.Tests.Services.html
+  spec.vb:
+  - uid: Crews
+    name: Crews
+    href: Crews.html
+  - name: .
+  - uid: Crews.PlanningCenter
+    name: PlanningCenter
+    href: Crews.PlanningCenter.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api
+    name: Api
+    href: Crews.PlanningCenter.Api.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.DocParser
+    name: DocParser
+    href: Crews.PlanningCenter.Api.DocParser.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.DocParser.Tests
+    name: Tests
+    href: Crews.PlanningCenter.Api.DocParser.Tests.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.DocParser.Tests.Services
+    name: Services
+    href: Crews.PlanningCenter.Api.DocParser.Tests.Services.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.#ctor*
+  commentId: Overload:Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.#ctor
+  href: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.html#Crews_PlanningCenter_Api_DocParser_Tests_Services_PlanningCenterClientTests__ctor
+  name: PlanningCenterClientTests
+  nameWithType: PlanningCenterClientTests.PlanningCenterClientTests
+  fullName: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.PlanningCenterClientTests
+  nameWithType.vb: PlanningCenterClientTests.New
+  fullName.vb: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.New
+  name.vb: New
+- uid: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.GetGraphAsync_SendsRequestToCorrectEndpoint*
+  commentId: Overload:Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.GetGraphAsync_SendsRequestToCorrectEndpoint
+  href: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.html#Crews_PlanningCenter_Api_DocParser_Tests_Services_PlanningCenterClientTests_GetGraphAsync_SendsRequestToCorrectEndpoint
+  name: GetGraphAsync_SendsRequestToCorrectEndpoint
+  nameWithType: PlanningCenterClientTests.GetGraphAsync_SendsRequestToCorrectEndpoint
+  fullName: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.GetGraphAsync_SendsRequestToCorrectEndpoint
+- uid: System.Threading.Tasks.Task
+  commentId: T:System.Threading.Tasks.Task
+  parent: System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task
+  name: Task
+  nameWithType: Task
+  fullName: System.Threading.Tasks.Task
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+- uid: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.GetGraphVersionAsync_SendsRequestToCorrectEndpoint*
+  commentId: Overload:Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.GetGraphVersionAsync_SendsRequestToCorrectEndpoint
+  href: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.html#Crews_PlanningCenter_Api_DocParser_Tests_Services_PlanningCenterClientTests_GetGraphVersionAsync_SendsRequestToCorrectEndpoint
+  name: GetGraphVersionAsync_SendsRequestToCorrectEndpoint
+  nameWithType: PlanningCenterClientTests.GetGraphVersionAsync_SendsRequestToCorrectEndpoint
+  fullName: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.GetGraphVersionAsync_SendsRequestToCorrectEndpoint
+- uid: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.GetVertexAsync_SendsRequestToCorrectEndpoint*
+  commentId: Overload:Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.GetVertexAsync_SendsRequestToCorrectEndpoint
+  href: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.html#Crews_PlanningCenter_Api_DocParser_Tests_Services_PlanningCenterClientTests_GetVertexAsync_SendsRequestToCorrectEndpoint
+  name: GetVertexAsync_SendsRequestToCorrectEndpoint
+  nameWithType: PlanningCenterClientTests.GetVertexAsync_SendsRequestToCorrectEndpoint
+  fullName: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.GetVertexAsync_SendsRequestToCorrectEndpoint
+- uid: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.GetGraphAsync_ThrowsWhenResponseIsNull*
+  commentId: Overload:Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.GetGraphAsync_ThrowsWhenResponseIsNull
+  href: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.html#Crews_PlanningCenter_Api_DocParser_Tests_Services_PlanningCenterClientTests_GetGraphAsync_ThrowsWhenResponseIsNull
+  name: GetGraphAsync_ThrowsWhenResponseIsNull
+  nameWithType: PlanningCenterClientTests.GetGraphAsync_ThrowsWhenResponseIsNull
+  fullName: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.GetGraphAsync_ThrowsWhenResponseIsNull
+- uid: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.GetGraphVersionAsync_HandlesDifferentProducts*
+  commentId: Overload:Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.GetGraphVersionAsync_HandlesDifferentProducts
+  href: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.html#Crews_PlanningCenter_Api_DocParser_Tests_Services_PlanningCenterClientTests_GetGraphVersionAsync_HandlesDifferentProducts
+  name: GetGraphVersionAsync_HandlesDifferentProducts
+  nameWithType: PlanningCenterClientTests.GetGraphVersionAsync_HandlesDifferentProducts
+  fullName: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.GetGraphVersionAsync_HandlesDifferentProducts
+- uid: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.GetVertexAsync_DeserializesComplexVertexDocument*
+  commentId: Overload:Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.GetVertexAsync_DeserializesComplexVertexDocument
+  href: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.html#Crews_PlanningCenter_Api_DocParser_Tests_Services_PlanningCenterClientTests_GetVertexAsync_DeserializesComplexVertexDocument
+  name: GetVertexAsync_DeserializesComplexVertexDocument
+  nameWithType: PlanningCenterClientTests.GetVertexAsync_DeserializesComplexVertexDocument
+  fullName: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.GetVertexAsync_DeserializesComplexVertexDocument
+- uid: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.Dispose*
+  commentId: Overload:Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.Dispose
+  href: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.html#Crews_PlanningCenter_Api_DocParser_Tests_Services_PlanningCenterClientTests_Dispose
+  name: Dispose
+  nameWithType: PlanningCenterClientTests.Dispose
+  fullName: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.Dispose
+- uid: System.IDisposable.Dispose
+  commentId: M:System.IDisposable.Dispose
+  parent: System.IDisposable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable.dispose
+  name: Dispose()
+  nameWithType: IDisposable.Dispose()
+  fullName: System.IDisposable.Dispose()
+  spec.csharp:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.idisposable.dispose
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.idisposable.dispose
+  - name: (
+  - name: )

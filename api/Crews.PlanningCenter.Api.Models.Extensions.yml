@@ -1,0 +1,24 @@
+### YamlMime:ManagedReference
+items:
+- uid: Crews.PlanningCenter.Api.Models.Extensions
+  commentId: N:Crews.PlanningCenter.Api.Models.Extensions
+  id: Extensions
+  parent: Crews.PlanningCenter.Api.Models
+  children:
+  - Crews.PlanningCenter.Api.Models.Extensions.StringExtensions
+  langs:
+  - csharp
+  - vb
+  name: Crews.PlanningCenter.Api.Models.Extensions
+  nameWithType: Crews.PlanningCenter.Api.Models.Extensions
+  fullName: Crews.PlanningCenter.Api.Models.Extensions
+  type: Namespace
+  assemblies:
+  - Crews.PlanningCenter.Api.Generators
+references:
+- uid: Crews.PlanningCenter.Api.Models.Extensions.StringExtensions
+  commentId: T:Crews.PlanningCenter.Api.Models.Extensions.StringExtensions
+  href: Crews.PlanningCenter.Api.Models.Extensions.StringExtensions.html
+  name: StringExtensions
+  nameWithType: StringExtensions
+  fullName: Crews.PlanningCenter.Api.Models.Extensions.StringExtensions

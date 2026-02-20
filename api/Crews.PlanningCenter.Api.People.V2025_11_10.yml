@@ -1,0 +1,138 @@
+### YamlMime:ManagedReference
+items:
+- uid: Crews.PlanningCenter.Api.People.V2025_11_10
+  commentId: N:Crews.PlanningCenter.Api.People.V2025_11_10
+  id: V2025_11_10
+  parent: Crews.PlanningCenter.Api.People
+  children:
+  - Crews.PlanningCenter.Api.People.V2025_11_10.AgeCounts
+  - Crews.PlanningCenter.Api.People.V2025_11_10.BirthdayPeople
+  - Crews.PlanningCenter.Api.People.V2025_11_10.BirthdayPeopleResource
+  - Crews.PlanningCenter.Api.People.V2025_11_10.BirthdayPerson
+  - Crews.PlanningCenter.Api.People.V2025_11_10.CampusCount
+  - Crews.PlanningCenter.Api.People.V2025_11_10.GenderCounts
+  - Crews.PlanningCenter.Api.People.V2025_11_10.GenderIds
+  - Crews.PlanningCenter.Api.People.V2025_11_10.MembershipCount
+  - Crews.PlanningCenter.Api.People.V2025_11_10.OrganizationStatistics
+  - Crews.PlanningCenter.Api.People.V2025_11_10.OrganizationStatisticsResource
+  langs:
+  - csharp
+  - vb
+  name: Crews.PlanningCenter.Api.People.V2025_11_10
+  nameWithType: Crews.PlanningCenter.Api.People.V2025_11_10
+  fullName: Crews.PlanningCenter.Api.People.V2025_11_10
+  type: Namespace
+  assemblies:
+  - Crews.PlanningCenter.Api
+references:
+- uid: Crews.PlanningCenter.Api.People.V2025_11_10.AgeCounts
+  commentId: T:Crews.PlanningCenter.Api.People.V2025_11_10.AgeCounts
+  parent: Crews.PlanningCenter.Api.People.V2025_11_10
+  href: Crews.PlanningCenter.Api.People.V2025_11_10.AgeCounts.html
+  name: AgeCounts
+  nameWithType: AgeCounts
+  fullName: Crews.PlanningCenter.Api.People.V2025_11_10.AgeCounts
+- uid: Crews.PlanningCenter.Api.People.V2025_11_10.BirthdayPeople
+  commentId: T:Crews.PlanningCenter.Api.People.V2025_11_10.BirthdayPeople
+  parent: Crews.PlanningCenter.Api.People.V2025_11_10
+  href: Crews.PlanningCenter.Api.People.V2025_11_10.BirthdayPeople.html
+  name: BirthdayPeople
+  nameWithType: BirthdayPeople
+  fullName: Crews.PlanningCenter.Api.People.V2025_11_10.BirthdayPeople
+- uid: Crews.PlanningCenter.Api.People.V2025_11_10.BirthdayPeopleResource
+  commentId: T:Crews.PlanningCenter.Api.People.V2025_11_10.BirthdayPeopleResource
+  href: Crews.PlanningCenter.Api.People.V2025_11_10.BirthdayPeopleResource.html
+  name: BirthdayPeopleResource
+  nameWithType: BirthdayPeopleResource
+  fullName: Crews.PlanningCenter.Api.People.V2025_11_10.BirthdayPeopleResource
+- uid: Crews.PlanningCenter.Api.People.V2025_11_10.BirthdayPerson
+  commentId: T:Crews.PlanningCenter.Api.People.V2025_11_10.BirthdayPerson
+  href: Crews.PlanningCenter.Api.People.V2025_11_10.BirthdayPerson.html
+  name: BirthdayPerson
+  nameWithType: BirthdayPerson
+  fullName: Crews.PlanningCenter.Api.People.V2025_11_10.BirthdayPerson
+- uid: Crews.PlanningCenter.Api.People.V2025_11_10.CampusCount
+  commentId: T:Crews.PlanningCenter.Api.People.V2025_11_10.CampusCount
+  href: Crews.PlanningCenter.Api.People.V2025_11_10.CampusCount.html
+  name: CampusCount
+  nameWithType: CampusCount
+  fullName: Crews.PlanningCenter.Api.People.V2025_11_10.CampusCount
+- uid: Crews.PlanningCenter.Api.People.V2025_11_10.GenderCounts
+  commentId: T:Crews.PlanningCenter.Api.People.V2025_11_10.GenderCounts
+  parent: Crews.PlanningCenter.Api.People.V2025_11_10
+  href: Crews.PlanningCenter.Api.People.V2025_11_10.GenderCounts.html
+  name: GenderCounts
+  nameWithType: GenderCounts
+  fullName: Crews.PlanningCenter.Api.People.V2025_11_10.GenderCounts
+- uid: Crews.PlanningCenter.Api.People.V2025_11_10.GenderIds
+  commentId: T:Crews.PlanningCenter.Api.People.V2025_11_10.GenderIds
+  parent: Crews.PlanningCenter.Api.People.V2025_11_10
+  href: Crews.PlanningCenter.Api.People.V2025_11_10.GenderIds.html
+  name: GenderIds
+  nameWithType: GenderIds
+  fullName: Crews.PlanningCenter.Api.People.V2025_11_10.GenderIds
+- uid: Crews.PlanningCenter.Api.People.V2025_11_10.MembershipCount
+  commentId: T:Crews.PlanningCenter.Api.People.V2025_11_10.MembershipCount
+  href: Crews.PlanningCenter.Api.People.V2025_11_10.MembershipCount.html
+  name: MembershipCount
+  nameWithType: MembershipCount
+  fullName: Crews.PlanningCenter.Api.People.V2025_11_10.MembershipCount
+- uid: Crews.PlanningCenter.Api.People.V2025_11_10.OrganizationStatistics
+  commentId: T:Crews.PlanningCenter.Api.People.V2025_11_10.OrganizationStatistics
+  parent: Crews.PlanningCenter.Api.People.V2025_11_10
+  href: Crews.PlanningCenter.Api.People.V2025_11_10.OrganizationStatistics.html
+  name: OrganizationStatistics
+  nameWithType: OrganizationStatistics
+  fullName: Crews.PlanningCenter.Api.People.V2025_11_10.OrganizationStatistics
+- uid: Crews.PlanningCenter.Api.People.V2025_11_10.OrganizationStatisticsResource
+  commentId: T:Crews.PlanningCenter.Api.People.V2025_11_10.OrganizationStatisticsResource
+  href: Crews.PlanningCenter.Api.People.V2025_11_10.OrganizationStatisticsResource.html
+  name: OrganizationStatisticsResource
+  nameWithType: OrganizationStatisticsResource
+  fullName: Crews.PlanningCenter.Api.People.V2025_11_10.OrganizationStatisticsResource
+- uid: Crews.PlanningCenter.Api.People.V2025_11_10
+  commentId: N:Crews.PlanningCenter.Api.People.V2025_11_10
+  href: Crews.html
+  name: Crews.PlanningCenter.Api.People.V2025_11_10
+  nameWithType: Crews.PlanningCenter.Api.People.V2025_11_10
+  fullName: Crews.PlanningCenter.Api.People.V2025_11_10
+  spec.csharp:
+  - uid: Crews
+    name: Crews
+    href: Crews.html
+  - name: .
+  - uid: Crews.PlanningCenter
+    name: PlanningCenter
+    href: Crews.PlanningCenter.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api
+    name: Api
+    href: Crews.PlanningCenter.Api.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People
+    name: People
+    href: Crews.PlanningCenter.Api.People.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People.V2025_11_10
+    name: V2025_11_10
+    href: Crews.PlanningCenter.Api.People.V2025_11_10.html
+  spec.vb:
+  - uid: Crews
+    name: Crews
+    href: Crews.html
+  - name: .
+  - uid: Crews.PlanningCenter
+    name: PlanningCenter
+    href: Crews.PlanningCenter.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api
+    name: Api
+    href: Crews.PlanningCenter.Api.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People
+    name: People
+    href: Crews.PlanningCenter.Api.People.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People.V2025_11_10
+    name: V2025_11_10
+    href: Crews.PlanningCenter.Api.People.V2025_11_10.html

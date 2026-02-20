@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>.NET Planning Center API Library | Planning Ceneter API </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content=".NET Planning Center API Library | Planning Ceneter API ">
+      
+      
+      <link rel="icon" href="favicon.ico">
+      <link rel="stylesheet" href="public/docfx.min.css">
+      <link rel="stylesheet" href="public/main.css">
+      <meta name="docfx:navrel" content="toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/twcrews/planningcenter-api/blob/dev/README.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="index.html">
+            <img id="logo" class="svg" src="logo.svg" alt="Planning Ceneter API">
+            Planning Ceneter API
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="net-planning-center-api-library">.NET Planning Center API Library</h1>
+
+<p>A strongly-typed .NET client library for the <a href="https://developer.planning.center/docs/">Planning Center API</a>, featuring automatic code generation and comprehensive authentication support.</p>
+<h2 id="features">Features</h2>
+<p>✨ <strong>Strongly-Typed API Clients</strong> - Auto-generated from Planning Center API documentation
+🔐 <strong>Multiple Authentication Methods</strong> - Personal Access Token, OAuth Bearer, and OIDC
+🪶 <strong>Lightweight</strong> - Minimal dependencies, you control HttpClient configuration
+📦 <strong>All Planning Center Products</strong> - Calendar, Check-Ins, Giving, Groups, People, Publishing, Registrations, Services
+🔄 <strong>Version Support</strong> - Works with all API versions</p>
+<h2 id="quick-links">Quick Links</h2>
+<ul>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#quick-start">Quick Start</a></li>
+<li><a href="#authentication">Authentication</a></li>
+<li><a href="#usage-examples">Usage Examples</a></li>
+<li><a href="#advanced-topics">Advanced Topics</a></li>
+<li><a href="#documentation">Documentation</a></li>
+</ul>
+<h2 id="installation">Installation</h2>
+<p>Install via NuGet:</p>
+<pre><code class="lang-sh">dotnet add package Crews.PlanningCenter.Api
+</code></pre>
+<h2 id="quick-start">Quick Start</h2>
+<h3 id="standalone-usage">Standalone Usage</h3>
+<pre><code class="lang-csharp">using Crews.PlanningCenter.Api.Authentication;
+using Crews.PlanningCenter.Api.People.V2025_11_10;
+
+// Configure HttpClient with helper methods
+var httpClient = new HttpClient()
+    .ConfigureForPlanningCenter()
+    .AddPlanningCenterAuth(new PlanningCenterPersonalAccessToken
+    {
+        AppId = &quot;your-app-id&quot;,
+        Secret = &quot;your-secret&quot;
+    });
+
+// Use generated clients
+var client = new PersonClient(httpClient,
+    new Uri(&quot;/people/v2/people/123&quot;, UriKind.Relative));
+
+var response = await client.GetAsync();
+Console.WriteLine($&quot;Person name: {response.Data?.Attributes.Name}&quot;);
+</code></pre>
+<h3 id="aspnet-core-with-dependency-injection">ASP.NET Core with Dependency Injection</h3>
+<pre><code class="lang-csharp">// Program.cs
+using Crews.PlanningCenter.Api.Authentication;
+
+var builder = WebApplication.CreateBuilder(args);
+
+// Configure HttpClient for Planning Center API
+builder.Services.AddHttpClient(&quot;PlanningCenterApi&quot;, client =&gt;
+{
+    client.ConfigureForPlanningCenter()
+          .AddPlanningCenterAuth(new PlanningCenterPersonalAccessToken
+          {
+              AppId = builder.Configuration[&quot;PlanningCenter:AppId&quot;]!,
+              Secret = builder.Configuration[&quot;PlanningCenter:Secret&quot;]!
+          });
+});
+
+var app = builder.Build();
+app.Run();
+</code></pre>
+<p><strong>appsettings.json:</strong></p>
+<pre><code class="lang-json">{
+  &quot;PlanningCenter&quot;: {
+    &quot;AppId&quot;: &quot;your-app-id&quot;,
+    &quot;Secret&quot;: &quot;your-secret&quot;
+  }
+}
+</code></pre>
+<h3 id="using-in-your-services">Using in Your Services</h3>
+<pre><code class="lang-csharp">using Crews.PlanningCenter.Api.People.V2025_11_10;
+
+public class PeopleService
+{
+    private readonly HttpClient _httpClient;
+
+    public PeopleService(IHttpClientFactory httpClientFactory)
+    {
+        _httpClient = httpClientFactory.CreateClient(&quot;PlanningCenterApi&quot;);
+    }
+
+    public async Task&lt;Person?&gt; GetPersonAsync(string personId)
+    {
+        var client = new PersonClient(_httpClient,
+            new Uri($&quot;/people/v2/people/{personId}&quot;, UriKind.Relative));
+
+        var response = await client.GetAsync();
+        return response.Data?.Attributes;
+    }
+}
+</code></pre>
+<h2 id="authentication">Authentication</h2>
+<p>The library provides helper extension methods to configure authentication on your HttpClient.</p>
+<h3 id="1-personal-access-token-server-to-server">1. Personal Access Token (Server-to-Server)</h3>
+<p>Best for server-to-server integrations and development:</p>
+<pre><code class="lang-csharp">using Crews.PlanningCenter.Api.Authentication;
+
+var httpClient = new HttpClient()
+    .ConfigureForPlanningCenter()
+    .AddPlanningCenterAuth(new PlanningCenterPersonalAccessToken
+    {
+        AppId = &quot;your-app-id&quot;,
+        Secret = &quot;your-secret&quot;
+    });
+</code></pre>
+<h3 id="2-oauth-bearer-token">2. OAuth Bearer Token</h3>
+<p>When you already have an access token:</p>
+<pre><code class="lang-csharp">var httpClient = new HttpClient()
+    .ConfigureForPlanningCenter()
+    .AddPlanningCenterAuth(&quot;your-access-token&quot;);
+</code></pre>
+<h3 id="3-oidc-authentication-web-applications">3. OIDC Authentication (Web Applications)</h3>
+<p>For web applications with user authentication, add Planning Center OIDC authentication:</p>
+<pre><code class="lang-csharp">using Crews.PlanningCenter.Api.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+
+// Configure authentication with cookie support
+builder.Services
+    .AddAuthentication(options =&gt;
+    {
+        options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+        options.DefaultChallengeScheme = PlanningCenterAuthenticationDefaults.AuthenticationScheme;
+        options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    })
+    .AddCookie()
+    .AddPlanningCenterAuthentication();  // Reads from appsettings.json automatically
+
+// Configure HttpClient for API calls
+// Note: For per-request authentication, implement a custom DelegatingHandler
+// to extract the token from HttpContext and add it to each request
+builder.Services.AddHttpClient(&quot;PlanningCenterApi&quot;, client =&gt;
+{
+    client.ConfigureForPlanningCenter();
+});
+</code></pre>
+<p><strong>appsettings.json:</strong></p>
+<pre><code class="lang-json">{
+  &quot;PlanningCenter&quot;: {
+    &quot;Authority&quot;: &quot;https://api.planningcenteronline.com&quot;,
+    &quot;ClientId&quot;: &quot;your-client-id&quot;,
+    &quot;ClientSecret&quot;: &quot;your-client-secret&quot;,
+    &quot;Scopes&quot;: [&quot;openid&quot;, &quot;people&quot;]
+  }
+}
+</code></pre>
+<p><strong>Note:</strong> <code>ClientId</code> and <code>ClientSecret</code> are required. <code>Authority</code> defaults to Planning Center's base URL, and <code>Scopes</code> defaults to <code>[&quot;openid&quot;, &quot;people&quot;]</code>.</p>
+<p><strong>Alternatively, configure options manually:</strong></p>
+<pre><code class="lang-csharp">builder.Services
+    .AddAuthentication()
+    .AddPlanningCenterAuthentication(options =&gt;
+    {
+        options.ClientId = builder.Configuration[&quot;PlanningCenter:ClientId&quot;]!;
+        options.ClientSecret = builder.Configuration[&quot;PlanningCenter:ClientSecret&quot;]!;
+        // Override other settings as needed
+    });
+</code></pre>
+<h3 id="authentication-helpers-reference">Authentication Helpers Reference</h3>
+<ul>
+<li><strong><code>ConfigureForPlanningCenter()</code></strong> - Sets base URL and JSON:API accept header</li>
+<li><strong><code>AddPlanningCenterAuth(PlanningCenterPersonalAccessToken)</code></strong> - Adds PAT authentication</li>
+<li><strong><code>AddPlanningCenterAuth(string bearerToken)</code></strong> - Adds OAuth bearer token authentication</li>
+</ul>
+<h2 id="adding-resilience-policies">Adding Resilience Policies</h2>
+<p>You control HttpClient configuration, including resilience policies. Add retry, circuit breaker, and timeout policies using .NET's built-in resilience handler or Polly.</p>
+<h3 id="option-1-net-8-built-in-resilience-recommended">Option 1: .NET 8+ Built-in Resilience (Recommended)</h3>
+<pre><code class="lang-csharp">builder.Services.AddHttpClient(&quot;PlanningCenterApi&quot;, client =&gt;
+{
+    client.ConfigureForPlanningCenter()
+          .AddPlanningCenterAuth(token);
+})
+.AddStandardResilienceHandler(); // Built-in retry, circuit breaker, timeout
+</code></pre>
+<h3 id="option-2-custom-polly-policies">Option 2: Custom Polly Policies</h3>
+<p>First, add the Polly package:</p>
+<pre><code class="lang-sh">dotnet add package Microsoft.Extensions.Http.Polly
+</code></pre>
+<p>Then configure policies:</p>
+<pre><code class="lang-csharp">using Polly;
+using Polly.Extensions.Http;
+
+builder.Services.AddHttpClient(&quot;PlanningCenterApi&quot;, client =&gt;
+{
+    client.ConfigureForPlanningCenter()
+          .AddPlanningCenterAuth(token);
+})
+.AddTransientHttpErrorPolicy(policy =&gt;
+    policy.WaitAndRetryAsync(3, retryAttempt =&gt;
+        TimeSpan.FromSeconds(Math.Pow(2, retryAttempt))))
+.AddTransientHttpErrorPolicy(policy =&gt;
+    policy.CircuitBreakerAsync(5, TimeSpan.FromSeconds(30)));
+</code></pre>
+<h2 id="usage-examples">Usage Examples</h2>
+<h3 id="fetching-a-single-resource">Fetching a Single Resource</h3>
+<pre><code class="lang-csharp">public async Task&lt;Person?&gt; GetPersonAsync(string personId)
+{
+    var client = new PersonClient(_httpClient,
+        new Uri($&quot;/people/v2/people/{personId}&quot;, UriKind.Relative));
+
+    try
+    {
+        var response = await client.GetAsync();
+        return response.Data?.Attributes;
+    }
+    catch (JsonApiException ex) when (ex.StatusCode == 404)
+    {
+        return null;
+    }
+}
+</code></pre>
+<h3 id="fetching-a-collection">Fetching a Collection</h3>
+<pre><code class="lang-csharp">public async Task&lt;IEnumerable&lt;Person&gt;&gt; GetPeopleAsync(int limit = 25)
+{
+    var client = new PeopleClient(_httpClient,
+        new Uri(&quot;/people/v2/people&quot;, UriKind.Relative))
+        .Take(limit);
+
+    var response = await client.GetAsync();
+    return response.Data.Select(r =&gt; r.Attributes);
+}
+</code></pre>
+<h3 id="creating-updating-and-deleting-resources">Creating, Updating, and Deleting Resources</h3>
+<pre><code class="lang-csharp">// POST - Create a new resource
+var newPerson = new Person { FirstName = &quot;John&quot;, LastName = &quot;Doe&quot; };
+var createClient = new PeopleClient(_httpClient,
+    new Uri(&quot;/people/v2/people&quot;, UriKind.Relative));
+var createResponse = await createClient.PostAsync(newPerson);
+
+// PATCH - Update an existing resource
+var updatePerson = new Person { FirstName = &quot;Jane&quot; };
+var updateClient = new PersonClient(_httpClient,
+    new Uri($&quot;/people/v2/people/{personId}&quot;, UriKind.Relative));
+var updateResponse = await updateClient.PatchAsync(updatePerson);
+
+// DELETE - Remove a resource
+var deleteClient = new PersonClient(_httpClient,
+    new Uri($&quot;/people/v2/people/{personId}&quot;, UriKind.Relative));
+await deleteClient.DeleteAsync();
+</code></pre>
+<h2 id="advanced-topics">Advanced Topics</h2>
+<h3 id="querying-and-filtering">Querying and Filtering</h3>
+<p>Use fluent methods to filter, sort, and include related resources:</p>
+<pre><code class="lang-csharp">// Include related resources
+var client = new PeopleClient(_httpClient,
+    new Uri(&quot;/people/v2/people&quot;, UriKind.Relative))
+    .Include(&quot;emails&quot;, &quot;phone_numbers&quot;)
+    .Take(25);
+
+var response = await client.GetAsync();
+
+// Sort results
+var sortedClient = new PeopleClient(_httpClient,
+    new Uri(&quot;/people/v2/people&quot;, UriKind.Relative))
+    .OrderBy(&quot;last_name&quot;)
+    .Take(100);
+
+// Filter with query parameters
+var filteredClient = new PeopleClient(_httpClient,
+    new Uri(&quot;/people/v2/people&quot;, UriKind.Relative))
+    .Where(&quot;first_name&quot;, &quot;John&quot;)
+    .Take(50);
+</code></pre>
+<h3 id="pagination">Pagination</h3>
+<p>Handle pagination with offset and limit:</p>
+<pre><code class="lang-csharp">public async Task&lt;IEnumerable&lt;Person&gt;&gt; GetAllPeopleAsync()
+{
+    var allPeople = new List&lt;Person&gt;();
+    int offset = 0;
+    const int pageSize = 100;
+    bool hasMore = true;
+
+    while (hasMore)
+    {
+        var client = new PeopleClient(_httpClient,
+            new Uri(&quot;/people/v2/people&quot;, UriKind.Relative))
+            .Skip(offset)
+            .Take(pageSize);
+
+        var response = await client.GetAsync();
+        allPeople.AddRange(response.Data.Select(r =&gt; r.Attributes));
+
+        offset += pageSize;
+        hasMore = response.Data.Count == pageSize;
+    }
+
+    return allPeople;
+}
+</code></pre>
+<h3 id="error-handling">Error Handling</h3>
+<p>Handle Planning Center API errors:</p>
+<pre><code class="lang-csharp">using Crews.PlanningCenter.Api.Exceptions;
+
+try
+{
+    var response = await client.GetAsync();
+}
+catch (JsonApiException ex) when (ex.StatusCode == 404)
+{
+    // Resource not found
+    Console.WriteLine(&quot;Resource not found&quot;);
+}
+catch (JsonApiException ex) when (ex.StatusCode == 429)
+{
+    // Rate limit exceeded
+    var retryAfter = ex.RetryAfter ?? TimeSpan.FromSeconds(60);
+    await Task.Delay(retryAfter);
+    // Retry the request
+}
+catch (JsonApiException ex)
+{
+    // Other API errors
+    Console.WriteLine($&quot;API Error: {ex.StatusCode} - {ex.Message}&quot;);
+}
+</code></pre>
+<h3 id="working-with-multiple-api-versions">Working with Multiple API Versions</h3>
+<p>Each product client supports multiple API versions:</p>
+<pre><code class="lang-csharp">using Crews.PlanningCenter.Api.People.V2024_09_01;
+using Crews.PlanningCenter.Api.People.V2025_11_10;
+
+// Use a specific version
+var oldClient = new V2024_09_01.PersonClient(_httpClient, uri);
+var newClient = new V2025_11_10.PersonClient(_httpClient, uri);
+</code></pre>
+<h2 id="documentation">Documentation</h2>
+<h3 id="detailed-guides">Detailed Guides</h3>
+<ul>
+<li><strong><a href="Crews.PlanningCenter.Api.Sandbox/README.md">Sandbox Application</a></strong> - Working Blazor example with OIDC authentication</li>
+<li><strong><a href="CLAUDE.html">CLAUDE.md</a></strong> - Developer guide for contributing to this project</li>
+<li><strong><a href="MIGRATION_V3.md">MIGRATION_V3.md</a></strong> - Migration guide from v2.x to v3.0</li>
+</ul>
+<h3 id="external-resources">External Resources</h3>
+<ul>
+<li><a href="https://developer.planning.center/docs/">Planning Center API Documentation</a></li>
+<li><a href="https://api.planningcenteronline.com/">Planning Center API Explorer</a></li>
+<li><a href="https://jsonapi.org/">JSON:API Specification</a></li>
+</ul>
+<h2 id="supported-products">Supported Products</h2>
+<p>All Planning Center products are supported with auto-generated clients:</p>
+<ul>
+<li><strong>Calendar</strong> - Event scheduling and room booking</li>
+<li><strong>Check-Ins</strong> - Event check-in management</li>
+<li><strong>Giving</strong> - Donation tracking and management</li>
+<li><strong>Groups</strong> - Small group organization</li>
+<li><strong>People</strong> - Contact and member management</li>
+<li><strong>Publishing</strong> - Content publishing workflows</li>
+<li><strong>Registrations</strong> - Event registration forms</li>
+<li><strong>Services</strong> - Service planning and scheduling</li>
+</ul>
+<p>Each product supports multiple API versions, with clients auto-generated for each version.</p>
+<h2 id="best-practices">Best Practices</h2>
+<ol>
+<li><strong>Use IHttpClientFactory</strong> - Always use <code>IHttpClientFactory</code> in ASP.NET Core applications for proper HttpClient lifetime management</li>
+<li><strong>Add Resilience Policies</strong> - Use <code>.AddStandardResilienceHandler()</code> or Polly policies in production for retry and circuit breaker support</li>
+<li><strong>Store Credentials Securely</strong> - Use User Secrets for development and environment variables or Key Vault for production</li>
+<li><strong>Handle Rate Limits</strong> - Planning Center APIs have rate limits; implement appropriate retry logic with exponential backoff</li>
+<li><strong>Use Specific API Versions</strong> - Pin to specific API versions for stability; test before upgrading</li>
+</ol>
+<h2 id="testing">Testing</h2>
+<p>Try the library quickly with the included Sandbox application:</p>
+<pre><code class="lang-bash">cd Crews.PlanningCenter.Api.Sandbox
+dotnet run
+</code></pre>
+<p>See the <a href="Crews.PlanningCenter.Api.Sandbox/README.md">Sandbox README</a> for setup instructions.</p>
+<h2 id="contributing">Contributing</h2>
+<p>Contributions are welcome! Please read <a href="CLAUDE.html">CLAUDE.md</a> for development guidelines and project architecture.</p>
+<h2 id="license">License</h2>
+<p>This project is open source. See the repository for license details.</p>
+<hr>
+<blockquote>
+<p>S.D.G.</p>
+</blockquote>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/twcrews/planningcenter-api/blob/dev/README.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,293 @@
+### YamlMime:ManagedReference
+items:
+- uid: Crews.PlanningCenter.Api.Models
+  commentId: N:Crews.PlanningCenter.Api.Models
+  id: Models
+  parent: Crews.PlanningCenter.Api
+  children:
+  - Crews.PlanningCenter.Api.Models.Extensions
+  - Crews.PlanningCenter.Api.Models.JsonApiException
+  - Crews.PlanningCenter.Api.Models.PaginatedResourceClient`3
+  - Crews.PlanningCenter.Api.Models.Product
+  - Crews.PlanningCenter.Api.Models.ProductDefinition
+  - Crews.PlanningCenter.Api.Models.Resource
+  - Crews.PlanningCenter.Api.Models.ResourceAttribute
+  - Crews.PlanningCenter.Api.Models.ResourceChild
+  - Crews.PlanningCenter.Api.Models.ResourceChildFilter
+  - Crews.PlanningCenter.Api.Models.ResourceClient`3
+  - Crews.PlanningCenter.Api.Models.ResourceIncludable
+  - Crews.PlanningCenter.Api.Models.ResourceOrderable
+  - Crews.PlanningCenter.Api.Models.ResourceQueryable
+  - Crews.PlanningCenter.Api.Models.ResourceRelationship
+  - Crews.PlanningCenter.Api.Models.ResourceResponse`1
+  - Crews.PlanningCenter.Api.Models.Version
+  langs:
+  - csharp
+  - vb
+  name: Crews.PlanningCenter.Api.Models
+  nameWithType: Crews.PlanningCenter.Api.Models
+  fullName: Crews.PlanningCenter.Api.Models
+  type: Namespace
+  assemblies:
+  - Crews.PlanningCenter.Api
+references:
+- uid: Crews.PlanningCenter.Api.Models.Extensions
+  commentId: N:Crews.PlanningCenter.Api.Models.Extensions
+  href: Crews.html
+  name: Crews.PlanningCenter.Api.Models.Extensions
+  nameWithType: Crews.PlanningCenter.Api.Models.Extensions
+  fullName: Crews.PlanningCenter.Api.Models.Extensions
+  spec.csharp:
+  - uid: Crews
+    name: Crews
+    href: Crews.html
+  - name: .
+  - uid: Crews.PlanningCenter
+    name: PlanningCenter
+    href: Crews.PlanningCenter.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api
+    name: Api
+    href: Crews.PlanningCenter.Api.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.Models
+    name: Models
+    href: Crews.PlanningCenter.Api.Models.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.Models.Extensions
+    name: Extensions
+    href: Crews.PlanningCenter.Api.Models.Extensions.html
+  spec.vb:
+  - uid: Crews
+    name: Crews
+    href: Crews.html
+  - name: .
+  - uid: Crews.PlanningCenter
+    name: PlanningCenter
+    href: Crews.PlanningCenter.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api
+    name: Api
+    href: Crews.PlanningCenter.Api.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.Models
+    name: Models
+    href: Crews.PlanningCenter.Api.Models.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.Models.Extensions
+    name: Extensions
+    href: Crews.PlanningCenter.Api.Models.Extensions.html
+- uid: Crews.PlanningCenter.Api.Models.JsonApiException
+  commentId: T:Crews.PlanningCenter.Api.Models.JsonApiException
+  href: Crews.PlanningCenter.Api.Models.JsonApiException.html
+  name: JsonApiException
+  nameWithType: JsonApiException
+  fullName: Crews.PlanningCenter.Api.Models.JsonApiException
+- uid: Crews.PlanningCenter.Api.Models.PaginatedResourceClient`3
+  commentId: T:Crews.PlanningCenter.Api.Models.PaginatedResourceClient`3
+  parent: Crews.PlanningCenter.Api.Models
+  href: Crews.PlanningCenter.Api.Models.PaginatedResourceClient-3.html
+  name: PaginatedResourceClient<TModel, TResource, TResponse>
+  nameWithType: PaginatedResourceClient<TModel, TResource, TResponse>
+  fullName: Crews.PlanningCenter.Api.Models.PaginatedResourceClient<TModel, TResource, TResponse>
+  nameWithType.vb: PaginatedResourceClient(Of TModel, TResource, TResponse)
+  fullName.vb: Crews.PlanningCenter.Api.Models.PaginatedResourceClient(Of TModel, TResource, TResponse)
+  name.vb: PaginatedResourceClient(Of TModel, TResource, TResponse)
+  spec.csharp:
+  - uid: Crews.PlanningCenter.Api.Models.PaginatedResourceClient`3
+    name: PaginatedResourceClient
+    href: Crews.PlanningCenter.Api.Models.PaginatedResourceClient-3.html
+  - name: <
+  - name: TModel
+  - name: ','
+  - name: " "
+  - name: TResource
+  - name: ','
+  - name: " "
+  - name: TResponse
+  - name: '>'
+  spec.vb:
+  - uid: Crews.PlanningCenter.Api.Models.PaginatedResourceClient`3
+    name: PaginatedResourceClient
+    href: Crews.PlanningCenter.Api.Models.PaginatedResourceClient-3.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TModel
+  - name: ','
+  - name: " "
+  - name: TResource
+  - name: ','
+  - name: " "
+  - name: TResponse
+  - name: )
+- uid: Crews.PlanningCenter.Api.Models.Product
+  commentId: T:Crews.PlanningCenter.Api.Models.Product
+  href: Crews.PlanningCenter.Api.Models.Product.html
+  name: Product
+  nameWithType: Product
+  fullName: Crews.PlanningCenter.Api.Models.Product
+- uid: Crews.PlanningCenter.Api.Models.ProductDefinition
+  commentId: T:Crews.PlanningCenter.Api.Models.ProductDefinition
+  parent: Crews.PlanningCenter.Api.Models
+  href: Crews.PlanningCenter.Api.Models.ProductDefinition.html
+  name: ProductDefinition
+  nameWithType: ProductDefinition
+  fullName: Crews.PlanningCenter.Api.Models.ProductDefinition
+- uid: Crews.PlanningCenter.Api.Models.Resource
+  commentId: T:Crews.PlanningCenter.Api.Models.Resource
+  parent: Crews.PlanningCenter.Api.Models
+  href: https://github.com/twcrews/planningcenter-api/blob/79dbe0b4574e21868ea7d5f615bd877a3e3cf88d/Crews.PlanningCenter.Api.Models/Resource.cs
+  name: Resource
+  nameWithType: Resource
+  fullName: Crews.PlanningCenter.Api.Models.Resource
+- uid: Crews.PlanningCenter.Api.Models.ResourceAttribute
+  commentId: T:Crews.PlanningCenter.Api.Models.ResourceAttribute
+  href: Crews.PlanningCenter.Api.Models.ResourceAttribute.html
+  name: ResourceAttribute
+  nameWithType: ResourceAttribute
+  fullName: Crews.PlanningCenter.Api.Models.ResourceAttribute
+- uid: Crews.PlanningCenter.Api.Models.ResourceChild
+  commentId: T:Crews.PlanningCenter.Api.Models.ResourceChild
+  href: Crews.PlanningCenter.Api.Models.ResourceChild.html
+  name: ResourceChild
+  nameWithType: ResourceChild
+  fullName: Crews.PlanningCenter.Api.Models.ResourceChild
+- uid: Crews.PlanningCenter.Api.Models.ResourceChildFilter
+  commentId: T:Crews.PlanningCenter.Api.Models.ResourceChildFilter
+  href: Crews.PlanningCenter.Api.Models.ResourceChildFilter.html
+  name: ResourceChildFilter
+  nameWithType: ResourceChildFilter
+  fullName: Crews.PlanningCenter.Api.Models.ResourceChildFilter
+- uid: Crews.PlanningCenter.Api.Models.ResourceClient`3
+  commentId: T:Crews.PlanningCenter.Api.Models.ResourceClient`3
+  parent: Crews.PlanningCenter.Api.Models
+  href: Crews.PlanningCenter.Api.Models.ResourceClient-3.html
+  name: ResourceClient<TModel, TResource, TResponse>
+  nameWithType: ResourceClient<TModel, TResource, TResponse>
+  fullName: Crews.PlanningCenter.Api.Models.ResourceClient<TModel, TResource, TResponse>
+  nameWithType.vb: ResourceClient(Of TModel, TResource, TResponse)
+  fullName.vb: Crews.PlanningCenter.Api.Models.ResourceClient(Of TModel, TResource, TResponse)
+  name.vb: ResourceClient(Of TModel, TResource, TResponse)
+  spec.csharp:
+  - uid: Crews.PlanningCenter.Api.Models.ResourceClient`3
+    name: ResourceClient
+    href: Crews.PlanningCenter.Api.Models.ResourceClient-3.html
+  - name: <
+  - name: TModel
+  - name: ','
+  - name: " "
+  - name: TResource
+  - name: ','
+  - name: " "
+  - name: TResponse
+  - name: '>'
+  spec.vb:
+  - uid: Crews.PlanningCenter.Api.Models.ResourceClient`3
+    name: ResourceClient
+    href: Crews.PlanningCenter.Api.Models.ResourceClient-3.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TModel
+  - name: ','
+  - name: " "
+  - name: TResource
+  - name: ','
+  - name: " "
+  - name: TResponse
+  - name: )
+- uid: Crews.PlanningCenter.Api.Models.ResourceIncludable
+  commentId: T:Crews.PlanningCenter.Api.Models.ResourceIncludable
+  href: Crews.PlanningCenter.Api.Models.ResourceIncludable.html
+  name: ResourceIncludable
+  nameWithType: ResourceIncludable
+  fullName: Crews.PlanningCenter.Api.Models.ResourceIncludable
+- uid: Crews.PlanningCenter.Api.Models.ResourceOrderable
+  commentId: T:Crews.PlanningCenter.Api.Models.ResourceOrderable
+  href: Crews.PlanningCenter.Api.Models.ResourceOrderable.html
+  name: ResourceOrderable
+  nameWithType: ResourceOrderable
+  fullName: Crews.PlanningCenter.Api.Models.ResourceOrderable
+- uid: Crews.PlanningCenter.Api.Models.ResourceQueryable
+  commentId: T:Crews.PlanningCenter.Api.Models.ResourceQueryable
+  href: Crews.PlanningCenter.Api.Models.ResourceQueryable.html
+  name: ResourceQueryable
+  nameWithType: ResourceQueryable
+  fullName: Crews.PlanningCenter.Api.Models.ResourceQueryable
+- uid: Crews.PlanningCenter.Api.Models.ResourceRelationship
+  commentId: T:Crews.PlanningCenter.Api.Models.ResourceRelationship
+  href: Crews.PlanningCenter.Api.Models.ResourceRelationship.html
+  name: ResourceRelationship
+  nameWithType: ResourceRelationship
+  fullName: Crews.PlanningCenter.Api.Models.ResourceRelationship
+- uid: Crews.PlanningCenter.Api.Models.ResourceResponse`1
+  commentId: T:Crews.PlanningCenter.Api.Models.ResourceResponse`1
+  href: Crews.PlanningCenter.Api.Models.ResourceResponse-1.html
+  name: ResourceResponse<T>
+  nameWithType: ResourceResponse<T>
+  fullName: Crews.PlanningCenter.Api.Models.ResourceResponse<T>
+  nameWithType.vb: ResourceResponse(Of T)
+  fullName.vb: Crews.PlanningCenter.Api.Models.ResourceResponse(Of T)
+  name.vb: ResourceResponse(Of T)
+  spec.csharp:
+  - uid: Crews.PlanningCenter.Api.Models.ResourceResponse`1
+    name: ResourceResponse
+    href: Crews.PlanningCenter.Api.Models.ResourceResponse-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: Crews.PlanningCenter.Api.Models.ResourceResponse`1
+    name: ResourceResponse
+    href: Crews.PlanningCenter.Api.Models.ResourceResponse-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: Crews.PlanningCenter.Api.Models.Version
+  commentId: T:Crews.PlanningCenter.Api.Models.Version
+  parent: Crews.PlanningCenter.Api.Models
+  href: https://github.com/twcrews/planningcenter-api/blob/79dbe0b4574e21868ea7d5f615bd877a3e3cf88d/Crews.PlanningCenter.Api.Models/Version.cs
+  name: Version
+  nameWithType: Version
+  fullName: Crews.PlanningCenter.Api.Models.Version
+- uid: Crews.PlanningCenter.Api.Models
+  commentId: N:Crews.PlanningCenter.Api.Models
+  href: Crews.html
+  name: Crews.PlanningCenter.Api.Models
+  nameWithType: Crews.PlanningCenter.Api.Models
+  fullName: Crews.PlanningCenter.Api.Models
+  spec.csharp:
+  - uid: Crews
+    name: Crews
+    href: Crews.html
+  - name: .
+  - uid: Crews.PlanningCenter
+    name: PlanningCenter
+    href: Crews.PlanningCenter.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api
+    name: Api
+    href: Crews.PlanningCenter.Api.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.Models
+    name: Models
+    href: Crews.PlanningCenter.Api.Models.html
+  spec.vb:
+  - uid: Crews
+    name: Crews
+    href: Crews.html
+  - name: .
+  - uid: Crews.PlanningCenter
+    name: PlanningCenter
+    href: Crews.PlanningCenter.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api
+    name: Api
+    href: Crews.PlanningCenter.Api.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.Models
+    name: Models
+    href: Crews.PlanningCenter.Api.Models.html

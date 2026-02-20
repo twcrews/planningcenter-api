@@ -1,0 +1,580 @@
+### YamlMime:ManagedReference
+items:
+- uid: Crews.PlanningCenter.Api.DocParser.Models.Attribute
+  commentId: T:Crews.PlanningCenter.Api.DocParser.Models.Attribute
+  id: Attribute
+  parent: Crews.PlanningCenter.Api.DocParser.Models
+  children:
+  - Crews.PlanningCenter.Api.DocParser.Models.Attribute.Description
+  - Crews.PlanningCenter.Api.DocParser.Models.Attribute.Name
+  - Crews.PlanningCenter.Api.DocParser.Models.Attribute.Note
+  - Crews.PlanningCenter.Api.DocParser.Models.Attribute.PermissionLevel
+  - Crews.PlanningCenter.Api.DocParser.Models.Attribute.TypeAnnotation
+  langs:
+  - csharp
+  - vb
+  name: Attribute
+  nameWithType: Attribute
+  fullName: Crews.PlanningCenter.Api.DocParser.Models.Attribute
+  type: Class
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.DocParser/Models/Attribute.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: Attribute
+    path: Crews.PlanningCenter.Api.DocParser/Models/Attribute.cs
+    startLine: 6
+  assemblies:
+  - Crews.PlanningCenter.Api.DocParser
+  namespace: Crews.PlanningCenter.Api.DocParser.Models
+  syntax:
+    content: public class Attribute
+    content.vb: Public Class Attribute
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Crews.PlanningCenter.Api.DocParser.Models.Attribute.Name
+  commentId: P:Crews.PlanningCenter.Api.DocParser.Models.Attribute.Name
+  id: Name
+  parent: Crews.PlanningCenter.Api.DocParser.Models.Attribute
+  langs:
+  - csharp
+  - vb
+  name: Name
+  nameWithType: Attribute.Name
+  fullName: Crews.PlanningCenter.Api.DocParser.Models.Attribute.Name
+  type: Property
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.DocParser/Models/Attribute.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: Name
+    path: Crews.PlanningCenter.Api.DocParser/Models/Attribute.cs
+    startLine: 8
+  assemblies:
+  - Crews.PlanningCenter.Api.DocParser
+  namespace: Crews.PlanningCenter.Api.DocParser.Models
+  syntax:
+    content: >-
+      [JsonPropertyName("name")]
+
+      public required string Name { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonPropertyName("name")>
+
+      Public Property Name As String
+  overload: Crews.PlanningCenter.Api.DocParser.Models.Attribute.Name*
+  attributes:
+  - type: System.Text.Json.Serialization.JsonPropertyNameAttribute
+    ctor: System.Text.Json.Serialization.JsonPropertyNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: name
+- uid: Crews.PlanningCenter.Api.DocParser.Models.Attribute.TypeAnnotation
+  commentId: P:Crews.PlanningCenter.Api.DocParser.Models.Attribute.TypeAnnotation
+  id: TypeAnnotation
+  parent: Crews.PlanningCenter.Api.DocParser.Models.Attribute
+  langs:
+  - csharp
+  - vb
+  name: TypeAnnotation
+  nameWithType: Attribute.TypeAnnotation
+  fullName: Crews.PlanningCenter.Api.DocParser.Models.Attribute.TypeAnnotation
+  type: Property
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.DocParser/Models/Attribute.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: TypeAnnotation
+    path: Crews.PlanningCenter.Api.DocParser/Models/Attribute.cs
+    startLine: 11
+  assemblies:
+  - Crews.PlanningCenter.Api.DocParser
+  namespace: Crews.PlanningCenter.Api.DocParser.Models
+  syntax:
+    content: >-
+      [JsonPropertyName("type_annotation")]
+
+      public required TypeAnnotation TypeAnnotation { get; set; }
+    parameters: []
+    return:
+      type: Crews.PlanningCenter.Api.DocParser.Models.TypeAnnotation
+    content.vb: >-
+      <JsonPropertyName("type_annotation")>
+
+      Public Property TypeAnnotation As TypeAnnotation
+  overload: Crews.PlanningCenter.Api.DocParser.Models.Attribute.TypeAnnotation*
+  attributes:
+  - type: System.Text.Json.Serialization.JsonPropertyNameAttribute
+    ctor: System.Text.Json.Serialization.JsonPropertyNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: type_annotation
+- uid: Crews.PlanningCenter.Api.DocParser.Models.Attribute.Note
+  commentId: P:Crews.PlanningCenter.Api.DocParser.Models.Attribute.Note
+  id: Note
+  parent: Crews.PlanningCenter.Api.DocParser.Models.Attribute
+  langs:
+  - csharp
+  - vb
+  name: Note
+  nameWithType: Attribute.Note
+  fullName: Crews.PlanningCenter.Api.DocParser.Models.Attribute.Note
+  type: Property
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.DocParser/Models/Attribute.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: Note
+    path: Crews.PlanningCenter.Api.DocParser/Models/Attribute.cs
+    startLine: 14
+  assemblies:
+  - Crews.PlanningCenter.Api.DocParser
+  namespace: Crews.PlanningCenter.Api.DocParser.Models
+  syntax:
+    content: >-
+      [JsonPropertyName("note")]
+
+      public string? Note { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonPropertyName("note")>
+
+      Public Property Note As String
+  overload: Crews.PlanningCenter.Api.DocParser.Models.Attribute.Note*
+  attributes:
+  - type: System.Text.Json.Serialization.JsonPropertyNameAttribute
+    ctor: System.Text.Json.Serialization.JsonPropertyNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: note
+- uid: Crews.PlanningCenter.Api.DocParser.Models.Attribute.PermissionLevel
+  commentId: P:Crews.PlanningCenter.Api.DocParser.Models.Attribute.PermissionLevel
+  id: PermissionLevel
+  parent: Crews.PlanningCenter.Api.DocParser.Models.Attribute
+  langs:
+  - csharp
+  - vb
+  name: PermissionLevel
+  nameWithType: Attribute.PermissionLevel
+  fullName: Crews.PlanningCenter.Api.DocParser.Models.Attribute.PermissionLevel
+  type: Property
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.DocParser/Models/Attribute.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: PermissionLevel
+    path: Crews.PlanningCenter.Api.DocParser/Models/Attribute.cs
+    startLine: 17
+  assemblies:
+  - Crews.PlanningCenter.Api.DocParser
+  namespace: Crews.PlanningCenter.Api.DocParser.Models
+  syntax:
+    content: >-
+      [JsonPropertyName("permission_level")]
+
+      public required string PermissionLevel { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonPropertyName("permission_level")>
+
+      Public Property PermissionLevel As String
+  overload: Crews.PlanningCenter.Api.DocParser.Models.Attribute.PermissionLevel*
+  attributes:
+  - type: System.Text.Json.Serialization.JsonPropertyNameAttribute
+    ctor: System.Text.Json.Serialization.JsonPropertyNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: permission_level
+- uid: Crews.PlanningCenter.Api.DocParser.Models.Attribute.Description
+  commentId: P:Crews.PlanningCenter.Api.DocParser.Models.Attribute.Description
+  id: Description
+  parent: Crews.PlanningCenter.Api.DocParser.Models.Attribute
+  langs:
+  - csharp
+  - vb
+  name: Description
+  nameWithType: Attribute.Description
+  fullName: Crews.PlanningCenter.Api.DocParser.Models.Attribute.Description
+  type: Property
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.DocParser/Models/Attribute.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: Description
+    path: Crews.PlanningCenter.Api.DocParser/Models/Attribute.cs
+    startLine: 20
+  assemblies:
+  - Crews.PlanningCenter.Api.DocParser
+  namespace: Crews.PlanningCenter.Api.DocParser.Models
+  syntax:
+    content: >-
+      [JsonPropertyName("description")]
+
+      public string? Description { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonPropertyName("description")>
+
+      Public Property Description As String
+  overload: Crews.PlanningCenter.Api.DocParser.Models.Attribute.Description*
+  attributes:
+  - type: System.Text.Json.Serialization.JsonPropertyNameAttribute
+    ctor: System.Text.Json.Serialization.JsonPropertyNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: description
+references:
+- uid: Crews.PlanningCenter.Api.DocParser.Models
+  commentId: N:Crews.PlanningCenter.Api.DocParser.Models
+  href: Crews.html
+  name: Crews.PlanningCenter.Api.DocParser.Models
+  nameWithType: Crews.PlanningCenter.Api.DocParser.Models
+  fullName: Crews.PlanningCenter.Api.DocParser.Models
+  spec.csharp:
+  - uid: Crews
+    name: Crews
+    href: Crews.html
+  - name: .
+  - uid: Crews.PlanningCenter
+    name: PlanningCenter
+    href: Crews.PlanningCenter.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api
+    name: Api
+    href: Crews.PlanningCenter.Api.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.DocParser
+    name: DocParser
+    href: Crews.PlanningCenter.Api.DocParser.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.DocParser.Models
+    name: Models
+    href: Crews.PlanningCenter.Api.DocParser.Models.html
+  spec.vb:
+  - uid: Crews
+    name: Crews
+    href: Crews.html
+  - name: .
+  - uid: Crews.PlanningCenter
+    name: PlanningCenter
+    href: Crews.PlanningCenter.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api
+    name: Api
+    href: Crews.PlanningCenter.Api.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.DocParser
+    name: DocParser
+    href: Crews.PlanningCenter.Api.DocParser.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.DocParser.Models
+    name: Models
+    href: Crews.PlanningCenter.Api.DocParser.Models.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Crews.PlanningCenter.Api.DocParser.Models.Attribute.Name*
+  commentId: Overload:Crews.PlanningCenter.Api.DocParser.Models.Attribute.Name
+  href: Crews.PlanningCenter.Api.DocParser.Models.Attribute.html#Crews_PlanningCenter_Api_DocParser_Models_Attribute_Name
+  name: Name
+  nameWithType: Attribute.Name
+  fullName: Crews.PlanningCenter.Api.DocParser.Models.Attribute.Name
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Crews.PlanningCenter.Api.DocParser.Models.Attribute.TypeAnnotation*
+  commentId: Overload:Crews.PlanningCenter.Api.DocParser.Models.Attribute.TypeAnnotation
+  href: Crews.PlanningCenter.Api.DocParser.Models.Attribute.html#Crews_PlanningCenter_Api_DocParser_Models_Attribute_TypeAnnotation
+  name: TypeAnnotation
+  nameWithType: Attribute.TypeAnnotation
+  fullName: Crews.PlanningCenter.Api.DocParser.Models.Attribute.TypeAnnotation
+- uid: Crews.PlanningCenter.Api.DocParser.Models.TypeAnnotation
+  commentId: T:Crews.PlanningCenter.Api.DocParser.Models.TypeAnnotation
+  parent: Crews.PlanningCenter.Api.DocParser.Models
+  href: Crews.PlanningCenter.Api.DocParser.Models.TypeAnnotation.html
+  name: TypeAnnotation
+  nameWithType: TypeAnnotation
+  fullName: Crews.PlanningCenter.Api.DocParser.Models.TypeAnnotation
+- uid: Crews.PlanningCenter.Api.DocParser.Models.Attribute.Note*
+  commentId: Overload:Crews.PlanningCenter.Api.DocParser.Models.Attribute.Note
+  href: Crews.PlanningCenter.Api.DocParser.Models.Attribute.html#Crews_PlanningCenter_Api_DocParser_Models_Attribute_Note
+  name: Note
+  nameWithType: Attribute.Note
+  fullName: Crews.PlanningCenter.Api.DocParser.Models.Attribute.Note
+- uid: Crews.PlanningCenter.Api.DocParser.Models.Attribute.PermissionLevel*
+  commentId: Overload:Crews.PlanningCenter.Api.DocParser.Models.Attribute.PermissionLevel
+  href: Crews.PlanningCenter.Api.DocParser.Models.Attribute.html#Crews_PlanningCenter_Api_DocParser_Models_Attribute_PermissionLevel
+  name: PermissionLevel
+  nameWithType: Attribute.PermissionLevel
+  fullName: Crews.PlanningCenter.Api.DocParser.Models.Attribute.PermissionLevel
+- uid: Crews.PlanningCenter.Api.DocParser.Models.Attribute.Description*
+  commentId: Overload:Crews.PlanningCenter.Api.DocParser.Models.Attribute.Description
+  href: Crews.PlanningCenter.Api.DocParser.Models.Attribute.html#Crews_PlanningCenter_Api_DocParser_Models_Attribute_Description
+  name: Description
+  nameWithType: Attribute.Description
+  fullName: Crews.PlanningCenter.Api.DocParser.Models.Attribute.Description

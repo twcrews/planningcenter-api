@@ -1,0 +1,984 @@
+### YamlMime:ManagedReference
+items:
+- uid: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships
+  commentId: T:Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships
+  id: VertexRelationships
+  parent: Crews.PlanningCenter.Api.DocParser.Models
+  children:
+  - Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.Actions
+  - Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.Attributes
+  - Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.CanInclude
+  - Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.CanOrder
+  - Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.CanQuery
+  - Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.InboundEdges
+  - Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.Offset
+  - Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.OutboundEdges
+  - Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.PerPage
+  - Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.Permissions
+  - Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.RateLimits
+  - Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.Relationships
+  langs:
+  - csharp
+  - vb
+  name: VertexRelationships
+  nameWithType: VertexRelationships
+  fullName: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships
+  type: Class
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.DocParser/Models/Vertex.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: VertexRelationships
+    path: Crews.PlanningCenter.Api.DocParser/Models/Vertex.cs
+    startLine: 41
+  assemblies:
+  - Crews.PlanningCenter.Api.DocParser
+  namespace: Crews.PlanningCenter.Api.DocParser.Models
+  syntax:
+    content: public class VertexRelationships
+    content.vb: Public Class VertexRelationships
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.Attributes
+  commentId: P:Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.Attributes
+  id: Attributes
+  parent: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships
+  langs:
+  - csharp
+  - vb
+  name: Attributes
+  nameWithType: VertexRelationships.Attributes
+  fullName: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.Attributes
+  type: Property
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.DocParser/Models/Vertex.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: Attributes
+    path: Crews.PlanningCenter.Api.DocParser/Models/Vertex.cs
+    startLine: 43
+  assemblies:
+  - Crews.PlanningCenter.Api.DocParser
+  namespace: Crews.PlanningCenter.Api.DocParser.Models
+  syntax:
+    content: >-
+      [JsonPropertyName("attributes")]
+
+      public required AttributeCollectionRelationship Attributes { get; set; }
+    parameters: []
+    return:
+      type: Crews.PlanningCenter.Api.DocParser.Models.AttributeCollectionRelationship
+    content.vb: >-
+      <JsonPropertyName("attributes")>
+
+      Public Property Attributes As AttributeCollectionRelationship
+  overload: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.Attributes*
+  attributes:
+  - type: System.Text.Json.Serialization.JsonPropertyNameAttribute
+    ctor: System.Text.Json.Serialization.JsonPropertyNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: attributes
+- uid: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.Relationships
+  commentId: P:Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.Relationships
+  id: Relationships
+  parent: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships
+  langs:
+  - csharp
+  - vb
+  name: Relationships
+  nameWithType: VertexRelationships.Relationships
+  fullName: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.Relationships
+  type: Property
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.DocParser/Models/Vertex.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: Relationships
+    path: Crews.PlanningCenter.Api.DocParser/Models/Vertex.cs
+    startLine: 46
+  assemblies:
+  - Crews.PlanningCenter.Api.DocParser
+  namespace: Crews.PlanningCenter.Api.DocParser.Models
+  syntax:
+    content: >-
+      [JsonPropertyName("relationships")]
+
+      public required RelationshipCollectionRelationship Relationships { get; set; }
+    parameters: []
+    return:
+      type: Crews.PlanningCenter.Api.DocParser.Models.RelationshipCollectionRelationship
+    content.vb: >-
+      <JsonPropertyName("relationships")>
+
+      Public Property Relationships As RelationshipCollectionRelationship
+  overload: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.Relationships*
+  attributes:
+  - type: System.Text.Json.Serialization.JsonPropertyNameAttribute
+    ctor: System.Text.Json.Serialization.JsonPropertyNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: relationships
+- uid: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.Permissions
+  commentId: P:Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.Permissions
+  id: Permissions
+  parent: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships
+  langs:
+  - csharp
+  - vb
+  name: Permissions
+  nameWithType: VertexRelationships.Permissions
+  fullName: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.Permissions
+  type: Property
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.DocParser/Models/Vertex.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: Permissions
+    path: Crews.PlanningCenter.Api.DocParser/Models/Vertex.cs
+    startLine: 49
+  assemblies:
+  - Crews.PlanningCenter.Api.DocParser
+  namespace: Crews.PlanningCenter.Api.DocParser.Models
+  syntax:
+    content: >-
+      [JsonPropertyName("permissions")]
+
+      public required PermissionsRelationship Permissions { get; set; }
+    parameters: []
+    return:
+      type: Crews.PlanningCenter.Api.DocParser.Models.PermissionsRelationship
+    content.vb: >-
+      <JsonPropertyName("permissions")>
+
+      Public Property Permissions As PermissionsRelationship
+  overload: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.Permissions*
+  attributes:
+  - type: System.Text.Json.Serialization.JsonPropertyNameAttribute
+    ctor: System.Text.Json.Serialization.JsonPropertyNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: permissions
+- uid: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.Actions
+  commentId: P:Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.Actions
+  id: Actions
+  parent: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships
+  langs:
+  - csharp
+  - vb
+  name: Actions
+  nameWithType: VertexRelationships.Actions
+  fullName: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.Actions
+  type: Property
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.DocParser/Models/Vertex.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: Actions
+    path: Crews.PlanningCenter.Api.DocParser/Models/Vertex.cs
+    startLine: 52
+  assemblies:
+  - Crews.PlanningCenter.Api.DocParser
+  namespace: Crews.PlanningCenter.Api.DocParser.Models
+  syntax:
+    content: >-
+      [JsonPropertyName("actions")]
+
+      public required ActionRelationship Actions { get; set; }
+    parameters: []
+    return:
+      type: Crews.PlanningCenter.Api.DocParser.Models.ActionRelationship
+    content.vb: >-
+      <JsonPropertyName("actions")>
+
+      Public Property Actions As ActionRelationship
+  overload: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.Actions*
+  attributes:
+  - type: System.Text.Json.Serialization.JsonPropertyNameAttribute
+    ctor: System.Text.Json.Serialization.JsonPropertyNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: actions
+- uid: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.OutboundEdges
+  commentId: P:Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.OutboundEdges
+  id: OutboundEdges
+  parent: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships
+  langs:
+  - csharp
+  - vb
+  name: OutboundEdges
+  nameWithType: VertexRelationships.OutboundEdges
+  fullName: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.OutboundEdges
+  type: Property
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.DocParser/Models/Vertex.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: OutboundEdges
+    path: Crews.PlanningCenter.Api.DocParser/Models/Vertex.cs
+    startLine: 55
+  assemblies:
+  - Crews.PlanningCenter.Api.DocParser
+  namespace: Crews.PlanningCenter.Api.DocParser.Models
+  syntax:
+    content: >-
+      [JsonPropertyName("outbound_edges")]
+
+      public required EdgeCollectionRelationship OutboundEdges { get; set; }
+    parameters: []
+    return:
+      type: Crews.PlanningCenter.Api.DocParser.Models.EdgeCollectionRelationship
+    content.vb: >-
+      <JsonPropertyName("outbound_edges")>
+
+      Public Property OutboundEdges As EdgeCollectionRelationship
+  overload: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.OutboundEdges*
+  attributes:
+  - type: System.Text.Json.Serialization.JsonPropertyNameAttribute
+    ctor: System.Text.Json.Serialization.JsonPropertyNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: outbound_edges
+- uid: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.InboundEdges
+  commentId: P:Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.InboundEdges
+  id: InboundEdges
+  parent: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships
+  langs:
+  - csharp
+  - vb
+  name: InboundEdges
+  nameWithType: VertexRelationships.InboundEdges
+  fullName: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.InboundEdges
+  type: Property
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.DocParser/Models/Vertex.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: InboundEdges
+    path: Crews.PlanningCenter.Api.DocParser/Models/Vertex.cs
+    startLine: 58
+  assemblies:
+  - Crews.PlanningCenter.Api.DocParser
+  namespace: Crews.PlanningCenter.Api.DocParser.Models
+  syntax:
+    content: >-
+      [JsonPropertyName("inbound_edges")]
+
+      public required EdgeCollectionRelationship InboundEdges { get; set; }
+    parameters: []
+    return:
+      type: Crews.PlanningCenter.Api.DocParser.Models.EdgeCollectionRelationship
+    content.vb: >-
+      <JsonPropertyName("inbound_edges")>
+
+      Public Property InboundEdges As EdgeCollectionRelationship
+  overload: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.InboundEdges*
+  attributes:
+  - type: System.Text.Json.Serialization.JsonPropertyNameAttribute
+    ctor: System.Text.Json.Serialization.JsonPropertyNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: inbound_edges
+- uid: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.CanInclude
+  commentId: P:Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.CanInclude
+  id: CanInclude
+  parent: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships
+  langs:
+  - csharp
+  - vb
+  name: CanInclude
+  nameWithType: VertexRelationships.CanInclude
+  fullName: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.CanInclude
+  type: Property
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.DocParser/Models/Vertex.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: CanInclude
+    path: Crews.PlanningCenter.Api.DocParser/Models/Vertex.cs
+    startLine: 61
+  assemblies:
+  - Crews.PlanningCenter.Api.DocParser
+  namespace: Crews.PlanningCenter.Api.DocParser.Models
+  syntax:
+    content: >-
+      [JsonPropertyName("can_include")]
+
+      public required UrlParameterCollectionRelationship CanInclude { get; set; }
+    parameters: []
+    return:
+      type: Crews.PlanningCenter.Api.DocParser.Models.UrlParameterCollectionRelationship
+    content.vb: >-
+      <JsonPropertyName("can_include")>
+
+      Public Property CanInclude As UrlParameterCollectionRelationship
+  overload: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.CanInclude*
+  attributes:
+  - type: System.Text.Json.Serialization.JsonPropertyNameAttribute
+    ctor: System.Text.Json.Serialization.JsonPropertyNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: can_include
+- uid: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.CanOrder
+  commentId: P:Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.CanOrder
+  id: CanOrder
+  parent: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships
+  langs:
+  - csharp
+  - vb
+  name: CanOrder
+  nameWithType: VertexRelationships.CanOrder
+  fullName: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.CanOrder
+  type: Property
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.DocParser/Models/Vertex.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: CanOrder
+    path: Crews.PlanningCenter.Api.DocParser/Models/Vertex.cs
+    startLine: 64
+  assemblies:
+  - Crews.PlanningCenter.Api.DocParser
+  namespace: Crews.PlanningCenter.Api.DocParser.Models
+  syntax:
+    content: >-
+      [JsonPropertyName("can_order")]
+
+      public required UrlParameterCollectionRelationship CanOrder { get; set; }
+    parameters: []
+    return:
+      type: Crews.PlanningCenter.Api.DocParser.Models.UrlParameterCollectionRelationship
+    content.vb: >-
+      <JsonPropertyName("can_order")>
+
+      Public Property CanOrder As UrlParameterCollectionRelationship
+  overload: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.CanOrder*
+  attributes:
+  - type: System.Text.Json.Serialization.JsonPropertyNameAttribute
+    ctor: System.Text.Json.Serialization.JsonPropertyNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: can_order
+- uid: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.CanQuery
+  commentId: P:Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.CanQuery
+  id: CanQuery
+  parent: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships
+  langs:
+  - csharp
+  - vb
+  name: CanQuery
+  nameWithType: VertexRelationships.CanQuery
+  fullName: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.CanQuery
+  type: Property
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.DocParser/Models/Vertex.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: CanQuery
+    path: Crews.PlanningCenter.Api.DocParser/Models/Vertex.cs
+    startLine: 67
+  assemblies:
+  - Crews.PlanningCenter.Api.DocParser
+  namespace: Crews.PlanningCenter.Api.DocParser.Models
+  syntax:
+    content: >-
+      [JsonPropertyName("can_query")]
+
+      public required UrlParameterCollectionRelationship CanQuery { get; set; }
+    parameters: []
+    return:
+      type: Crews.PlanningCenter.Api.DocParser.Models.UrlParameterCollectionRelationship
+    content.vb: >-
+      <JsonPropertyName("can_query")>
+
+      Public Property CanQuery As UrlParameterCollectionRelationship
+  overload: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.CanQuery*
+  attributes:
+  - type: System.Text.Json.Serialization.JsonPropertyNameAttribute
+    ctor: System.Text.Json.Serialization.JsonPropertyNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: can_query
+- uid: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.PerPage
+  commentId: P:Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.PerPage
+  id: PerPage
+  parent: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships
+  langs:
+  - csharp
+  - vb
+  name: PerPage
+  nameWithType: VertexRelationships.PerPage
+  fullName: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.PerPage
+  type: Property
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.DocParser/Models/Vertex.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: PerPage
+    path: Crews.PlanningCenter.Api.DocParser/Models/Vertex.cs
+    startLine: 70
+  assemblies:
+  - Crews.PlanningCenter.Api.DocParser
+  namespace: Crews.PlanningCenter.Api.DocParser.Models
+  syntax:
+    content: >-
+      [JsonPropertyName("per_page")]
+
+      public required UrlParameterRelationship PerPage { get; set; }
+    parameters: []
+    return:
+      type: Crews.PlanningCenter.Api.DocParser.Models.UrlParameterRelationship
+    content.vb: >-
+      <JsonPropertyName("per_page")>
+
+      Public Property PerPage As UrlParameterRelationship
+  overload: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.PerPage*
+  attributes:
+  - type: System.Text.Json.Serialization.JsonPropertyNameAttribute
+    ctor: System.Text.Json.Serialization.JsonPropertyNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: per_page
+- uid: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.Offset
+  commentId: P:Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.Offset
+  id: Offset
+  parent: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships
+  langs:
+  - csharp
+  - vb
+  name: Offset
+  nameWithType: VertexRelationships.Offset
+  fullName: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.Offset
+  type: Property
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.DocParser/Models/Vertex.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: Offset
+    path: Crews.PlanningCenter.Api.DocParser/Models/Vertex.cs
+    startLine: 73
+  assemblies:
+  - Crews.PlanningCenter.Api.DocParser
+  namespace: Crews.PlanningCenter.Api.DocParser.Models
+  syntax:
+    content: >-
+      [JsonPropertyName("offset")]
+
+      public required UrlParameterRelationship Offset { get; set; }
+    parameters: []
+    return:
+      type: Crews.PlanningCenter.Api.DocParser.Models.UrlParameterRelationship
+    content.vb: >-
+      <JsonPropertyName("offset")>
+
+      Public Property Offset As UrlParameterRelationship
+  overload: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.Offset*
+  attributes:
+  - type: System.Text.Json.Serialization.JsonPropertyNameAttribute
+    ctor: System.Text.Json.Serialization.JsonPropertyNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: offset
+- uid: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.RateLimits
+  commentId: P:Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.RateLimits
+  id: RateLimits
+  parent: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships
+  langs:
+  - csharp
+  - vb
+  name: RateLimits
+  nameWithType: VertexRelationships.RateLimits
+  fullName: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.RateLimits
+  type: Property
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.DocParser/Models/Vertex.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: RateLimits
+    path: Crews.PlanningCenter.Api.DocParser/Models/Vertex.cs
+    startLine: 76
+  assemblies:
+  - Crews.PlanningCenter.Api.DocParser
+  namespace: Crews.PlanningCenter.Api.DocParser.Models
+  syntax:
+    content: >-
+      [JsonPropertyName("rate_limits")]
+
+      public required JsonApiRelationship RateLimits { get; set; }
+    parameters: []
+    return:
+      type: Crews.Web.JsonApiClient.JsonApiRelationship
+    content.vb: >-
+      <JsonPropertyName("rate_limits")>
+
+      Public Property RateLimits As JsonApiRelationship
+  overload: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.RateLimits*
+  attributes:
+  - type: System.Text.Json.Serialization.JsonPropertyNameAttribute
+    ctor: System.Text.Json.Serialization.JsonPropertyNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: rate_limits
+references:
+- uid: Crews.PlanningCenter.Api.DocParser.Models
+  commentId: N:Crews.PlanningCenter.Api.DocParser.Models
+  href: Crews.html
+  name: Crews.PlanningCenter.Api.DocParser.Models
+  nameWithType: Crews.PlanningCenter.Api.DocParser.Models
+  fullName: Crews.PlanningCenter.Api.DocParser.Models
+  spec.csharp:
+  - uid: Crews
+    name: Crews
+    href: Crews.html
+  - name: .
+  - uid: Crews.PlanningCenter
+    name: PlanningCenter
+    href: Crews.PlanningCenter.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api
+    name: Api
+    href: Crews.PlanningCenter.Api.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.DocParser
+    name: DocParser
+    href: Crews.PlanningCenter.Api.DocParser.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.DocParser.Models
+    name: Models
+    href: Crews.PlanningCenter.Api.DocParser.Models.html
+  spec.vb:
+  - uid: Crews
+    name: Crews
+    href: Crews.html
+  - name: .
+  - uid: Crews.PlanningCenter
+    name: PlanningCenter
+    href: Crews.PlanningCenter.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api
+    name: Api
+    href: Crews.PlanningCenter.Api.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.DocParser
+    name: DocParser
+    href: Crews.PlanningCenter.Api.DocParser.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.DocParser.Models
+    name: Models
+    href: Crews.PlanningCenter.Api.DocParser.Models.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.Attributes*
+  commentId: Overload:Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.Attributes
+  href: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.html#Crews_PlanningCenter_Api_DocParser_Models_VertexRelationships_Attributes
+  name: Attributes
+  nameWithType: VertexRelationships.Attributes
+  fullName: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.Attributes
+- uid: Crews.PlanningCenter.Api.DocParser.Models.AttributeCollectionRelationship
+  commentId: T:Crews.PlanningCenter.Api.DocParser.Models.AttributeCollectionRelationship
+  parent: Crews.PlanningCenter.Api.DocParser.Models
+  href: Crews.PlanningCenter.Api.DocParser.Models.AttributeCollectionRelationship.html
+  name: AttributeCollectionRelationship
+  nameWithType: AttributeCollectionRelationship
+  fullName: Crews.PlanningCenter.Api.DocParser.Models.AttributeCollectionRelationship
+- uid: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.Relationships*
+  commentId: Overload:Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.Relationships
+  href: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.html#Crews_PlanningCenter_Api_DocParser_Models_VertexRelationships_Relationships
+  name: Relationships
+  nameWithType: VertexRelationships.Relationships
+  fullName: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.Relationships
+- uid: Crews.PlanningCenter.Api.DocParser.Models.RelationshipCollectionRelationship
+  commentId: T:Crews.PlanningCenter.Api.DocParser.Models.RelationshipCollectionRelationship
+  parent: Crews.PlanningCenter.Api.DocParser.Models
+  href: Crews.PlanningCenter.Api.DocParser.Models.RelationshipCollectionRelationship.html
+  name: RelationshipCollectionRelationship
+  nameWithType: RelationshipCollectionRelationship
+  fullName: Crews.PlanningCenter.Api.DocParser.Models.RelationshipCollectionRelationship
+- uid: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.Permissions*
+  commentId: Overload:Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.Permissions
+  href: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.html#Crews_PlanningCenter_Api_DocParser_Models_VertexRelationships_Permissions
+  name: Permissions
+  nameWithType: VertexRelationships.Permissions
+  fullName: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.Permissions
+- uid: Crews.PlanningCenter.Api.DocParser.Models.PermissionsRelationship
+  commentId: T:Crews.PlanningCenter.Api.DocParser.Models.PermissionsRelationship
+  parent: Crews.PlanningCenter.Api.DocParser.Models
+  href: Crews.PlanningCenter.Api.DocParser.Models.PermissionsRelationship.html
+  name: PermissionsRelationship
+  nameWithType: PermissionsRelationship
+  fullName: Crews.PlanningCenter.Api.DocParser.Models.PermissionsRelationship
+- uid: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.Actions*
+  commentId: Overload:Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.Actions
+  href: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.html#Crews_PlanningCenter_Api_DocParser_Models_VertexRelationships_Actions
+  name: Actions
+  nameWithType: VertexRelationships.Actions
+  fullName: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.Actions
+- uid: Crews.PlanningCenter.Api.DocParser.Models.ActionRelationship
+  commentId: T:Crews.PlanningCenter.Api.DocParser.Models.ActionRelationship
+  parent: Crews.PlanningCenter.Api.DocParser.Models
+  href: Crews.PlanningCenter.Api.DocParser.Models.ActionRelationship.html
+  name: ActionRelationship
+  nameWithType: ActionRelationship
+  fullName: Crews.PlanningCenter.Api.DocParser.Models.ActionRelationship
+- uid: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.OutboundEdges*
+  commentId: Overload:Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.OutboundEdges
+  href: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.html#Crews_PlanningCenter_Api_DocParser_Models_VertexRelationships_OutboundEdges
+  name: OutboundEdges
+  nameWithType: VertexRelationships.OutboundEdges
+  fullName: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.OutboundEdges
+- uid: Crews.PlanningCenter.Api.DocParser.Models.EdgeCollectionRelationship
+  commentId: T:Crews.PlanningCenter.Api.DocParser.Models.EdgeCollectionRelationship
+  parent: Crews.PlanningCenter.Api.DocParser.Models
+  href: Crews.PlanningCenter.Api.DocParser.Models.EdgeCollectionRelationship.html
+  name: EdgeCollectionRelationship
+  nameWithType: EdgeCollectionRelationship
+  fullName: Crews.PlanningCenter.Api.DocParser.Models.EdgeCollectionRelationship
+- uid: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.InboundEdges*
+  commentId: Overload:Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.InboundEdges
+  href: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.html#Crews_PlanningCenter_Api_DocParser_Models_VertexRelationships_InboundEdges
+  name: InboundEdges
+  nameWithType: VertexRelationships.InboundEdges
+  fullName: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.InboundEdges
+- uid: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.CanInclude*
+  commentId: Overload:Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.CanInclude
+  href: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.html#Crews_PlanningCenter_Api_DocParser_Models_VertexRelationships_CanInclude
+  name: CanInclude
+  nameWithType: VertexRelationships.CanInclude
+  fullName: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.CanInclude
+- uid: Crews.PlanningCenter.Api.DocParser.Models.UrlParameterCollectionRelationship
+  commentId: T:Crews.PlanningCenter.Api.DocParser.Models.UrlParameterCollectionRelationship
+  parent: Crews.PlanningCenter.Api.DocParser.Models
+  href: Crews.PlanningCenter.Api.DocParser.Models.UrlParameterCollectionRelationship.html
+  name: UrlParameterCollectionRelationship
+  nameWithType: UrlParameterCollectionRelationship
+  fullName: Crews.PlanningCenter.Api.DocParser.Models.UrlParameterCollectionRelationship
+- uid: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.CanOrder*
+  commentId: Overload:Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.CanOrder
+  href: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.html#Crews_PlanningCenter_Api_DocParser_Models_VertexRelationships_CanOrder
+  name: CanOrder
+  nameWithType: VertexRelationships.CanOrder
+  fullName: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.CanOrder
+- uid: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.CanQuery*
+  commentId: Overload:Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.CanQuery
+  href: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.html#Crews_PlanningCenter_Api_DocParser_Models_VertexRelationships_CanQuery
+  name: CanQuery
+  nameWithType: VertexRelationships.CanQuery
+  fullName: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.CanQuery
+- uid: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.PerPage*
+  commentId: Overload:Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.PerPage
+  href: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.html#Crews_PlanningCenter_Api_DocParser_Models_VertexRelationships_PerPage
+  name: PerPage
+  nameWithType: VertexRelationships.PerPage
+  fullName: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.PerPage
+- uid: Crews.PlanningCenter.Api.DocParser.Models.UrlParameterRelationship
+  commentId: T:Crews.PlanningCenter.Api.DocParser.Models.UrlParameterRelationship
+  parent: Crews.PlanningCenter.Api.DocParser.Models
+  href: Crews.PlanningCenter.Api.DocParser.Models.UrlParameterRelationship.html
+  name: UrlParameterRelationship
+  nameWithType: UrlParameterRelationship
+  fullName: Crews.PlanningCenter.Api.DocParser.Models.UrlParameterRelationship
+- uid: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.Offset*
+  commentId: Overload:Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.Offset
+  href: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.html#Crews_PlanningCenter_Api_DocParser_Models_VertexRelationships_Offset
+  name: Offset
+  nameWithType: VertexRelationships.Offset
+  fullName: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.Offset
+- uid: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.RateLimits*
+  commentId: Overload:Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.RateLimits
+  href: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.html#Crews_PlanningCenter_Api_DocParser_Models_VertexRelationships_RateLimits
+  name: RateLimits
+  nameWithType: VertexRelationships.RateLimits
+  fullName: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.RateLimits
+- uid: Crews.Web.JsonApiClient.JsonApiRelationship
+  commentId: T:Crews.Web.JsonApiClient.JsonApiRelationship
+  parent: Crews.Web.JsonApiClient
+  isExternal: true
+  name: JsonApiRelationship
+  nameWithType: JsonApiRelationship
+  fullName: Crews.Web.JsonApiClient.JsonApiRelationship
+- uid: Crews.Web.JsonApiClient
+  commentId: N:Crews.Web.JsonApiClient
+  isExternal: true
+  name: Crews.Web.JsonApiClient
+  nameWithType: Crews.Web.JsonApiClient
+  fullName: Crews.Web.JsonApiClient
+  spec.csharp:
+  - uid: Crews
+    name: Crews
+    isExternal: true
+  - name: .
+  - uid: Crews.Web
+    name: Web
+    isExternal: true
+  - name: .
+  - uid: Crews.Web.JsonApiClient
+    name: JsonApiClient
+    isExternal: true
+  spec.vb:
+  - uid: Crews
+    name: Crews
+    isExternal: true
+  - name: .
+  - uid: Crews.Web
+    name: Web
+    isExternal: true
+  - name: .
+  - uid: Crews.Web.JsonApiClient
+    name: JsonApiClient
+    isExternal: true

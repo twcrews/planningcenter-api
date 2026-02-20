@@ -1,0 +1,70 @@
+### YamlMime:ManagedReference
+items:
+- uid: Crews.PlanningCenter.Api.Generators.Tests.Extensions
+  commentId: N:Crews.PlanningCenter.Api.Generators.Tests.Extensions
+  id: Extensions
+  parent: Crews.PlanningCenter.Api.Generators.Tests
+  children:
+  - Crews.PlanningCenter.Api.Generators.Tests.Extensions.StringExtensionsTests
+  - Crews.PlanningCenter.Api.Generators.Tests.Extensions.StringExtensionsTests.ToClrType
+  - Crews.PlanningCenter.Api.Generators.Tests.Extensions.StringExtensionsTests.ToXmlSummary
+  langs:
+  - csharp
+  - vb
+  name: Crews.PlanningCenter.Api.Generators.Tests.Extensions
+  nameWithType: Crews.PlanningCenter.Api.Generators.Tests.Extensions
+  fullName: Crews.PlanningCenter.Api.Generators.Tests.Extensions
+  type: Namespace
+  assemblies:
+  - Crews.PlanningCenter.Api.Generators.Tests
+references:
+- uid: Crews.PlanningCenter.Api.Generators.Tests.Extensions.StringExtensionsTests
+  commentId: T:Crews.PlanningCenter.Api.Generators.Tests.Extensions.StringExtensionsTests
+  href: Crews.PlanningCenter.Api.Generators.Tests.Extensions.StringExtensionsTests.html
+  name: StringExtensionsTests
+  nameWithType: StringExtensionsTests
+  fullName: Crews.PlanningCenter.Api.Generators.Tests.Extensions.StringExtensionsTests
+- uid: Crews.PlanningCenter.Api.Generators.Tests.Extensions.StringExtensionsTests.ToClrType
+  commentId: T:Crews.PlanningCenter.Api.Generators.Tests.Extensions.StringExtensionsTests.ToClrType
+  href: Crews.PlanningCenter.Api.Generators.Tests.Extensions.StringExtensionsTests.html
+  name: StringExtensionsTests.ToClrType
+  nameWithType: StringExtensionsTests.ToClrType
+  fullName: Crews.PlanningCenter.Api.Generators.Tests.Extensions.StringExtensionsTests.ToClrType
+  spec.csharp:
+  - uid: Crews.PlanningCenter.Api.Generators.Tests.Extensions.StringExtensionsTests
+    name: StringExtensionsTests
+    href: Crews.PlanningCenter.Api.Generators.Tests.Extensions.StringExtensionsTests.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.Generators.Tests.Extensions.StringExtensionsTests.ToClrType
+    name: ToClrType
+    href: Crews.PlanningCenter.Api.Generators.Tests.Extensions.StringExtensionsTests.ToClrType.html
+  spec.vb:
+  - uid: Crews.PlanningCenter.Api.Generators.Tests.Extensions.StringExtensionsTests
+    name: StringExtensionsTests
+    href: Crews.PlanningCenter.Api.Generators.Tests.Extensions.StringExtensionsTests.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.Generators.Tests.Extensions.StringExtensionsTests.ToClrType
+    name: ToClrType
+    href: Crews.PlanningCenter.Api.Generators.Tests.Extensions.StringExtensionsTests.ToClrType.html
+- uid: Crews.PlanningCenter.Api.Generators.Tests.Extensions.StringExtensionsTests.ToXmlSummary
+  commentId: T:Crews.PlanningCenter.Api.Generators.Tests.Extensions.StringExtensionsTests.ToXmlSummary
+  href: Crews.PlanningCenter.Api.Generators.Tests.Extensions.StringExtensionsTests.html
+  name: StringExtensionsTests.ToXmlSummary
+  nameWithType: StringExtensionsTests.ToXmlSummary
+  fullName: Crews.PlanningCenter.Api.Generators.Tests.Extensions.StringExtensionsTests.ToXmlSummary
+  spec.csharp:
+  - uid: Crews.PlanningCenter.Api.Generators.Tests.Extensions.StringExtensionsTests
+    name: StringExtensionsTests
+    href: Crews.PlanningCenter.Api.Generators.Tests.Extensions.StringExtensionsTests.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.Generators.Tests.Extensions.StringExtensionsTests.ToXmlSummary
+    name: ToXmlSummary
+    href: Crews.PlanningCenter.Api.Generators.Tests.Extensions.StringExtensionsTests.ToXmlSummary.html
+  spec.vb:
+  - uid: Crews.PlanningCenter.Api.Generators.Tests.Extensions.StringExtensionsTests
+    name: StringExtensionsTests
+    href: Crews.PlanningCenter.Api.Generators.Tests.Extensions.StringExtensionsTests.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.Generators.Tests.Extensions.StringExtensionsTests.ToXmlSummary
+    name: ToXmlSummary
+    href: Crews.PlanningCenter.Api.Generators.Tests.Extensions.StringExtensionsTests.ToXmlSummary.html

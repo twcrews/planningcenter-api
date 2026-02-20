@@ -1,0 +1,24 @@
+### YamlMime:ManagedReference
+items:
+- uid: Crews.PlanningCenter.Api.Extensions
+  commentId: N:Crews.PlanningCenter.Api.Extensions
+  id: Extensions
+  parent: Crews.PlanningCenter.Api
+  children:
+  - Crews.PlanningCenter.Api.Extensions.AuthenticationBuilderExtensions
+  langs:
+  - csharp
+  - vb
+  name: Crews.PlanningCenter.Api.Extensions
+  nameWithType: Crews.PlanningCenter.Api.Extensions
+  fullName: Crews.PlanningCenter.Api.Extensions
+  type: Namespace
+  assemblies:
+  - Crews.PlanningCenter.Api
+references:
+- uid: Crews.PlanningCenter.Api.Extensions.AuthenticationBuilderExtensions
+  commentId: T:Crews.PlanningCenter.Api.Extensions.AuthenticationBuilderExtensions
+  href: Crews.PlanningCenter.Api.Extensions.AuthenticationBuilderExtensions.html
+  name: AuthenticationBuilderExtensions
+  nameWithType: AuthenticationBuilderExtensions
+  fullName: Crews.PlanningCenter.Api.Extensions.AuthenticationBuilderExtensions

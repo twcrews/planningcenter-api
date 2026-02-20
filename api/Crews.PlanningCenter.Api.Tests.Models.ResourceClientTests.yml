@@ -1,0 +1,1560 @@
+### YamlMime:ManagedReference
+items:
+- uid: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests
+  commentId: T:Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests
+  id: ResourceClientTests
+  parent: Crews.PlanningCenter.Api.Tests.Models
+  children:
+  - Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.AddCustomParameter_AddsParameter
+  - Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.ClearParameters_PreservesBaseUri
+  - Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.ClearParameters_RemovesAllParameters
+  - Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.ClearParameters_WithNoParameters_DoesNothing
+  - Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.Constructor_WithNullHttpClient_ThrowsArgumentNullException
+  - Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.Constructor_WithNullUri_ThrowsArgumentNullException
+  - Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.Constructor_WithValidParameters_CreatesClient
+  - Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.DeleteAsync_SendsDeleteRequest_ToCorrectUri
+  - Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.DeleteAsync_WithCancellationToken_PassesToken
+  - Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.DeleteAsync_WithErrorResponse_ThrowsJsonApiException
+  - Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.DeleteAsync_WithSuccessResponse_Completes
+  - Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.GetAsync_SendsGetRequest_ToCorrectUri
+  - Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.GetAsync_WithCancellationToken_PassesToken
+  - Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.GetAsync_WithErrorResponse_ThrowsJsonApiException
+  - Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.GetAsync_WithSuccessResponse_ReturnsDeserializedData
+  - Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PatchAsync_SendsPatchRequest_ToCorrectUri
+  - Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PatchAsync_WithCancellationToken_PassesToken
+  - Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PatchAsync_WithErrorResponse_ThrowsJsonApiException
+  - Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PatchAsync_WithSuccessResponse_ReturnsDeserializedData
+  - Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PostAsync_SendsPostRequest_ToCorrectUri
+  - Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PostAsync_WithCancellationToken_PassesToken
+  - Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PostAsync_WithErrorResponse_ThrowsJsonApiException
+  - Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PostAsync_WithSuccessResponse_ReturnsDeserializedData
+  - Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.SetQueryParameter_AddsNewParameter
+  - Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.SetQueryParameter_ReturnsClientInstance_ForChaining
+  - Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.SetQueryParameter_UpdatesExistingParameter
+  - Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.SetQueryParameter_WithMultipleParameters_MaintainsAll
+  langs:
+  - csharp
+  - vb
+  name: ResourceClientTests
+  nameWithType: ResourceClientTests
+  fullName: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests
+  type: Class
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.Tests/Models/ResourceClientTests.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: ResourceClientTests
+    path: Crews.PlanningCenter.Api.Tests/Models/ResourceClientTests.cs
+    startLine: 8
+  assemblies:
+  - Crews.PlanningCenter.Api.Tests
+  namespace: Crews.PlanningCenter.Api.Tests.Models
+  syntax:
+    content: public class ResourceClientTests
+    content.vb: Public Class ResourceClientTests
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.Constructor_WithValidParameters_CreatesClient
+  commentId: M:Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.Constructor_WithValidParameters_CreatesClient
+  id: Constructor_WithValidParameters_CreatesClient
+  parent: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests
+  langs:
+  - csharp
+  - vb
+  name: Constructor_WithValidParameters_CreatesClient()
+  nameWithType: ResourceClientTests.Constructor_WithValidParameters_CreatesClient()
+  fullName: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.Constructor_WithValidParameters_CreatesClient()
+  type: Method
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.Tests/Models/ResourceClientTests.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: Constructor_WithValidParameters_CreatesClient
+    path: Crews.PlanningCenter.Api.Tests/Models/ResourceClientTests.cs
+    startLine: 10
+  assemblies:
+  - Crews.PlanningCenter.Api.Tests
+  namespace: Crews.PlanningCenter.Api.Tests.Models
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Constructor_WithValidParameters_CreatesClient()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Constructor_WithValidParameters_CreatesClient()
+  overload: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.Constructor_WithValidParameters_CreatesClient*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.Constructor_WithNullHttpClient_ThrowsArgumentNullException
+  commentId: M:Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.Constructor_WithNullHttpClient_ThrowsArgumentNullException
+  id: Constructor_WithNullHttpClient_ThrowsArgumentNullException
+  parent: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests
+  langs:
+  - csharp
+  - vb
+  name: Constructor_WithNullHttpClient_ThrowsArgumentNullException()
+  nameWithType: ResourceClientTests.Constructor_WithNullHttpClient_ThrowsArgumentNullException()
+  fullName: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.Constructor_WithNullHttpClient_ThrowsArgumentNullException()
+  type: Method
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.Tests/Models/ResourceClientTests.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: Constructor_WithNullHttpClient_ThrowsArgumentNullException
+    path: Crews.PlanningCenter.Api.Tests/Models/ResourceClientTests.cs
+    startLine: 24
+  assemblies:
+  - Crews.PlanningCenter.Api.Tests
+  namespace: Crews.PlanningCenter.Api.Tests.Models
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Constructor_WithNullHttpClient_ThrowsArgumentNullException()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Constructor_WithNullHttpClient_ThrowsArgumentNullException()
+  overload: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.Constructor_WithNullHttpClient_ThrowsArgumentNullException*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.Constructor_WithNullUri_ThrowsArgumentNullException
+  commentId: M:Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.Constructor_WithNullUri_ThrowsArgumentNullException
+  id: Constructor_WithNullUri_ThrowsArgumentNullException
+  parent: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests
+  langs:
+  - csharp
+  - vb
+  name: Constructor_WithNullUri_ThrowsArgumentNullException()
+  nameWithType: ResourceClientTests.Constructor_WithNullUri_ThrowsArgumentNullException()
+  fullName: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.Constructor_WithNullUri_ThrowsArgumentNullException()
+  type: Method
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.Tests/Models/ResourceClientTests.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: Constructor_WithNullUri_ThrowsArgumentNullException
+    path: Crews.PlanningCenter.Api.Tests/Models/ResourceClientTests.cs
+    startLine: 35
+  assemblies:
+  - Crews.PlanningCenter.Api.Tests
+  namespace: Crews.PlanningCenter.Api.Tests.Models
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Constructor_WithNullUri_ThrowsArgumentNullException()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Constructor_WithNullUri_ThrowsArgumentNullException()
+  overload: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.Constructor_WithNullUri_ThrowsArgumentNullException*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.SetQueryParameter_AddsNewParameter
+  commentId: M:Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.SetQueryParameter_AddsNewParameter
+  id: SetQueryParameter_AddsNewParameter
+  parent: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests
+  langs:
+  - csharp
+  - vb
+  name: SetQueryParameter_AddsNewParameter()
+  nameWithType: ResourceClientTests.SetQueryParameter_AddsNewParameter()
+  fullName: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.SetQueryParameter_AddsNewParameter()
+  type: Method
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.Tests/Models/ResourceClientTests.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: SetQueryParameter_AddsNewParameter
+    path: Crews.PlanningCenter.Api.Tests/Models/ResourceClientTests.cs
+    startLine: 46
+  assemblies:
+  - Crews.PlanningCenter.Api.Tests
+  namespace: Crews.PlanningCenter.Api.Tests.Models
+  syntax:
+    content: >-
+      [Fact]
+
+      public void SetQueryParameter_AddsNewParameter()
+    content.vb: >-
+      <Fact>
+
+      Public Sub SetQueryParameter_AddsNewParameter()
+  overload: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.SetQueryParameter_AddsNewParameter*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.SetQueryParameter_UpdatesExistingParameter
+  commentId: M:Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.SetQueryParameter_UpdatesExistingParameter
+  id: SetQueryParameter_UpdatesExistingParameter
+  parent: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests
+  langs:
+  - csharp
+  - vb
+  name: SetQueryParameter_UpdatesExistingParameter()
+  nameWithType: ResourceClientTests.SetQueryParameter_UpdatesExistingParameter()
+  fullName: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.SetQueryParameter_UpdatesExistingParameter()
+  type: Method
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.Tests/Models/ResourceClientTests.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: SetQueryParameter_UpdatesExistingParameter
+    path: Crews.PlanningCenter.Api.Tests/Models/ResourceClientTests.cs
+    startLine: 61
+  assemblies:
+  - Crews.PlanningCenter.Api.Tests
+  namespace: Crews.PlanningCenter.Api.Tests.Models
+  syntax:
+    content: >-
+      [Fact]
+
+      public void SetQueryParameter_UpdatesExistingParameter()
+    content.vb: >-
+      <Fact>
+
+      Public Sub SetQueryParameter_UpdatesExistingParameter()
+  overload: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.SetQueryParameter_UpdatesExistingParameter*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.SetQueryParameter_WithMultipleParameters_MaintainsAll
+  commentId: M:Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.SetQueryParameter_WithMultipleParameters_MaintainsAll
+  id: SetQueryParameter_WithMultipleParameters_MaintainsAll
+  parent: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests
+  langs:
+  - csharp
+  - vb
+  name: SetQueryParameter_WithMultipleParameters_MaintainsAll()
+  nameWithType: ResourceClientTests.SetQueryParameter_WithMultipleParameters_MaintainsAll()
+  fullName: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.SetQueryParameter_WithMultipleParameters_MaintainsAll()
+  type: Method
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.Tests/Models/ResourceClientTests.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: SetQueryParameter_WithMultipleParameters_MaintainsAll
+    path: Crews.PlanningCenter.Api.Tests/Models/ResourceClientTests.cs
+    startLine: 77
+  assemblies:
+  - Crews.PlanningCenter.Api.Tests
+  namespace: Crews.PlanningCenter.Api.Tests.Models
+  syntax:
+    content: >-
+      [Fact]
+
+      public void SetQueryParameter_WithMultipleParameters_MaintainsAll()
+    content.vb: >-
+      <Fact>
+
+      Public Sub SetQueryParameter_WithMultipleParameters_MaintainsAll()
+  overload: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.SetQueryParameter_WithMultipleParameters_MaintainsAll*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.SetQueryParameter_ReturnsClientInstance_ForChaining
+  commentId: M:Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.SetQueryParameter_ReturnsClientInstance_ForChaining
+  id: SetQueryParameter_ReturnsClientInstance_ForChaining
+  parent: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests
+  langs:
+  - csharp
+  - vb
+  name: SetQueryParameter_ReturnsClientInstance_ForChaining()
+  nameWithType: ResourceClientTests.SetQueryParameter_ReturnsClientInstance_ForChaining()
+  fullName: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.SetQueryParameter_ReturnsClientInstance_ForChaining()
+  type: Method
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.Tests/Models/ResourceClientTests.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: SetQueryParameter_ReturnsClientInstance_ForChaining
+    path: Crews.PlanningCenter.Api.Tests/Models/ResourceClientTests.cs
+    startLine: 97
+  assemblies:
+  - Crews.PlanningCenter.Api.Tests
+  namespace: Crews.PlanningCenter.Api.Tests.Models
+  syntax:
+    content: >-
+      [Fact]
+
+      public void SetQueryParameter_ReturnsClientInstance_ForChaining()
+    content.vb: >-
+      <Fact>
+
+      Public Sub SetQueryParameter_ReturnsClientInstance_ForChaining()
+  overload: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.SetQueryParameter_ReturnsClientInstance_ForChaining*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.AddCustomParameter_AddsParameter
+  commentId: M:Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.AddCustomParameter_AddsParameter
+  id: AddCustomParameter_AddsParameter
+  parent: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests
+  langs:
+  - csharp
+  - vb
+  name: AddCustomParameter_AddsParameter()
+  nameWithType: ResourceClientTests.AddCustomParameter_AddsParameter()
+  fullName: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.AddCustomParameter_AddsParameter()
+  type: Method
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.Tests/Models/ResourceClientTests.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: AddCustomParameter_AddsParameter
+    path: Crews.PlanningCenter.Api.Tests/Models/ResourceClientTests.cs
+    startLine: 112
+  assemblies:
+  - Crews.PlanningCenter.Api.Tests
+  namespace: Crews.PlanningCenter.Api.Tests.Models
+  syntax:
+    content: >-
+      [Fact]
+
+      public void AddCustomParameter_AddsParameter()
+    content.vb: >-
+      <Fact>
+
+      Public Sub AddCustomParameter_AddsParameter()
+  overload: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.AddCustomParameter_AddsParameter*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.ClearParameters_RemovesAllParameters
+  commentId: M:Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.ClearParameters_RemovesAllParameters
+  id: ClearParameters_RemovesAllParameters
+  parent: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests
+  langs:
+  - csharp
+  - vb
+  name: ClearParameters_RemovesAllParameters()
+  nameWithType: ResourceClientTests.ClearParameters_RemovesAllParameters()
+  fullName: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.ClearParameters_RemovesAllParameters()
+  type: Method
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.Tests/Models/ResourceClientTests.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: ClearParameters_RemovesAllParameters
+    path: Crews.PlanningCenter.Api.Tests/Models/ResourceClientTests.cs
+    startLine: 127
+  assemblies:
+  - Crews.PlanningCenter.Api.Tests
+  namespace: Crews.PlanningCenter.Api.Tests.Models
+  syntax:
+    content: >-
+      [Fact]
+
+      public void ClearParameters_RemovesAllParameters()
+    content.vb: >-
+      <Fact>
+
+      Public Sub ClearParameters_RemovesAllParameters()
+  overload: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.ClearParameters_RemovesAllParameters*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.ClearParameters_PreservesBaseUri
+  commentId: M:Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.ClearParameters_PreservesBaseUri
+  id: ClearParameters_PreservesBaseUri
+  parent: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests
+  langs:
+  - csharp
+  - vb
+  name: ClearParameters_PreservesBaseUri()
+  nameWithType: ResourceClientTests.ClearParameters_PreservesBaseUri()
+  fullName: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.ClearParameters_PreservesBaseUri()
+  type: Method
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.Tests/Models/ResourceClientTests.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: ClearParameters_PreservesBaseUri
+    path: Crews.PlanningCenter.Api.Tests/Models/ResourceClientTests.cs
+    startLine: 144
+  assemblies:
+  - Crews.PlanningCenter.Api.Tests
+  namespace: Crews.PlanningCenter.Api.Tests.Models
+  syntax:
+    content: >-
+      [Fact]
+
+      public void ClearParameters_PreservesBaseUri()
+    content.vb: >-
+      <Fact>
+
+      Public Sub ClearParameters_PreservesBaseUri()
+  overload: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.ClearParameters_PreservesBaseUri*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.ClearParameters_WithNoParameters_DoesNothing
+  commentId: M:Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.ClearParameters_WithNoParameters_DoesNothing
+  id: ClearParameters_WithNoParameters_DoesNothing
+  parent: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests
+  langs:
+  - csharp
+  - vb
+  name: ClearParameters_WithNoParameters_DoesNothing()
+  nameWithType: ResourceClientTests.ClearParameters_WithNoParameters_DoesNothing()
+  fullName: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.ClearParameters_WithNoParameters_DoesNothing()
+  type: Method
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.Tests/Models/ResourceClientTests.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: ClearParameters_WithNoParameters_DoesNothing
+    path: Crews.PlanningCenter.Api.Tests/Models/ResourceClientTests.cs
+    startLine: 159
+  assemblies:
+  - Crews.PlanningCenter.Api.Tests
+  namespace: Crews.PlanningCenter.Api.Tests.Models
+  syntax:
+    content: >-
+      [Fact]
+
+      public void ClearParameters_WithNoParameters_DoesNothing()
+    content.vb: >-
+      <Fact>
+
+      Public Sub ClearParameters_WithNoParameters_DoesNothing()
+  overload: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.ClearParameters_WithNoParameters_DoesNothing*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.GetAsync_SendsGetRequest_ToCorrectUri
+  commentId: M:Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.GetAsync_SendsGetRequest_ToCorrectUri
+  id: GetAsync_SendsGetRequest_ToCorrectUri
+  parent: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests
+  langs:
+  - csharp
+  - vb
+  name: GetAsync_SendsGetRequest_ToCorrectUri()
+  nameWithType: ResourceClientTests.GetAsync_SendsGetRequest_ToCorrectUri()
+  fullName: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.GetAsync_SendsGetRequest_ToCorrectUri()
+  type: Method
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.Tests/Models/ResourceClientTests.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: GetAsync_SendsGetRequest_ToCorrectUri
+    path: Crews.PlanningCenter.Api.Tests/Models/ResourceClientTests.cs
+    startLine: 174
+  assemblies:
+  - Crews.PlanningCenter.Api.Tests
+  namespace: Crews.PlanningCenter.Api.Tests.Models
+  syntax:
+    content: >-
+      [Fact]
+
+      public Task GetAsync_SendsGetRequest_ToCorrectUri()
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: >-
+      <Fact>
+
+      Public Function GetAsync_SendsGetRequest_ToCorrectUri() As Task
+  overload: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.GetAsync_SendsGetRequest_ToCorrectUri*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.GetAsync_WithSuccessResponse_ReturnsDeserializedData
+  commentId: M:Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.GetAsync_WithSuccessResponse_ReturnsDeserializedData
+  id: GetAsync_WithSuccessResponse_ReturnsDeserializedData
+  parent: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests
+  langs:
+  - csharp
+  - vb
+  name: GetAsync_WithSuccessResponse_ReturnsDeserializedData()
+  nameWithType: ResourceClientTests.GetAsync_WithSuccessResponse_ReturnsDeserializedData()
+  fullName: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.GetAsync_WithSuccessResponse_ReturnsDeserializedData()
+  type: Method
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.Tests/Models/ResourceClientTests.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: GetAsync_WithSuccessResponse_ReturnsDeserializedData
+    path: Crews.PlanningCenter.Api.Tests/Models/ResourceClientTests.cs
+    startLine: 193
+  assemblies:
+  - Crews.PlanningCenter.Api.Tests
+  namespace: Crews.PlanningCenter.Api.Tests.Models
+  syntax:
+    content: >-
+      [Fact]
+
+      public Task GetAsync_WithSuccessResponse_ReturnsDeserializedData()
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: >-
+      <Fact>
+
+      Public Function GetAsync_WithSuccessResponse_ReturnsDeserializedData() As Task
+  overload: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.GetAsync_WithSuccessResponse_ReturnsDeserializedData*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.GetAsync_WithErrorResponse_ThrowsJsonApiException
+  commentId: M:Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.GetAsync_WithErrorResponse_ThrowsJsonApiException
+  id: GetAsync_WithErrorResponse_ThrowsJsonApiException
+  parent: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests
+  langs:
+  - csharp
+  - vb
+  name: GetAsync_WithErrorResponse_ThrowsJsonApiException()
+  nameWithType: ResourceClientTests.GetAsync_WithErrorResponse_ThrowsJsonApiException()
+  fullName: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.GetAsync_WithErrorResponse_ThrowsJsonApiException()
+  type: Method
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.Tests/Models/ResourceClientTests.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: GetAsync_WithErrorResponse_ThrowsJsonApiException
+    path: Crews.PlanningCenter.Api.Tests/Models/ResourceClientTests.cs
+    startLine: 214
+  assemblies:
+  - Crews.PlanningCenter.Api.Tests
+  namespace: Crews.PlanningCenter.Api.Tests.Models
+  syntax:
+    content: >-
+      [Fact]
+
+      public Task GetAsync_WithErrorResponse_ThrowsJsonApiException()
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: >-
+      <Fact>
+
+      Public Function GetAsync_WithErrorResponse_ThrowsJsonApiException() As Task
+  overload: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.GetAsync_WithErrorResponse_ThrowsJsonApiException*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.GetAsync_WithCancellationToken_PassesToken
+  commentId: M:Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.GetAsync_WithCancellationToken_PassesToken
+  id: GetAsync_WithCancellationToken_PassesToken
+  parent: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests
+  langs:
+  - csharp
+  - vb
+  name: GetAsync_WithCancellationToken_PassesToken()
+  nameWithType: ResourceClientTests.GetAsync_WithCancellationToken_PassesToken()
+  fullName: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.GetAsync_WithCancellationToken_PassesToken()
+  type: Method
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.Tests/Models/ResourceClientTests.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: GetAsync_WithCancellationToken_PassesToken
+    path: Crews.PlanningCenter.Api.Tests/Models/ResourceClientTests.cs
+    startLine: 230
+  assemblies:
+  - Crews.PlanningCenter.Api.Tests
+  namespace: Crews.PlanningCenter.Api.Tests.Models
+  syntax:
+    content: >-
+      [Fact]
+
+      public Task GetAsync_WithCancellationToken_PassesToken()
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: >-
+      <Fact>
+
+      Public Function GetAsync_WithCancellationToken_PassesToken() As Task
+  overload: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.GetAsync_WithCancellationToken_PassesToken*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PostAsync_SendsPostRequest_ToCorrectUri
+  commentId: M:Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PostAsync_SendsPostRequest_ToCorrectUri
+  id: PostAsync_SendsPostRequest_ToCorrectUri
+  parent: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests
+  langs:
+  - csharp
+  - vb
+  name: PostAsync_SendsPostRequest_ToCorrectUri()
+  nameWithType: ResourceClientTests.PostAsync_SendsPostRequest_ToCorrectUri()
+  fullName: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PostAsync_SendsPostRequest_ToCorrectUri()
+  type: Method
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.Tests/Models/ResourceClientTests.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: PostAsync_SendsPostRequest_ToCorrectUri
+    path: Crews.PlanningCenter.Api.Tests/Models/ResourceClientTests.cs
+    startLine: 256
+  assemblies:
+  - Crews.PlanningCenter.Api.Tests
+  namespace: Crews.PlanningCenter.Api.Tests.Models
+  syntax:
+    content: >-
+      [Fact]
+
+      public Task PostAsync_SendsPostRequest_ToCorrectUri()
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: >-
+      <Fact>
+
+      Public Function PostAsync_SendsPostRequest_ToCorrectUri() As Task
+  overload: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PostAsync_SendsPostRequest_ToCorrectUri*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PostAsync_WithSuccessResponse_ReturnsDeserializedData
+  commentId: M:Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PostAsync_WithSuccessResponse_ReturnsDeserializedData
+  id: PostAsync_WithSuccessResponse_ReturnsDeserializedData
+  parent: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests
+  langs:
+  - csharp
+  - vb
+  name: PostAsync_WithSuccessResponse_ReturnsDeserializedData()
+  nameWithType: ResourceClientTests.PostAsync_WithSuccessResponse_ReturnsDeserializedData()
+  fullName: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PostAsync_WithSuccessResponse_ReturnsDeserializedData()
+  type: Method
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.Tests/Models/ResourceClientTests.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: PostAsync_WithSuccessResponse_ReturnsDeserializedData
+    path: Crews.PlanningCenter.Api.Tests/Models/ResourceClientTests.cs
+    startLine: 275
+  assemblies:
+  - Crews.PlanningCenter.Api.Tests
+  namespace: Crews.PlanningCenter.Api.Tests.Models
+  syntax:
+    content: >-
+      [Fact]
+
+      public Task PostAsync_WithSuccessResponse_ReturnsDeserializedData()
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: >-
+      <Fact>
+
+      Public Function PostAsync_WithSuccessResponse_ReturnsDeserializedData() As Task
+  overload: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PostAsync_WithSuccessResponse_ReturnsDeserializedData*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PostAsync_WithErrorResponse_ThrowsJsonApiException
+  commentId: M:Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PostAsync_WithErrorResponse_ThrowsJsonApiException
+  id: PostAsync_WithErrorResponse_ThrowsJsonApiException
+  parent: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests
+  langs:
+  - csharp
+  - vb
+  name: PostAsync_WithErrorResponse_ThrowsJsonApiException()
+  nameWithType: ResourceClientTests.PostAsync_WithErrorResponse_ThrowsJsonApiException()
+  fullName: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PostAsync_WithErrorResponse_ThrowsJsonApiException()
+  type: Method
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.Tests/Models/ResourceClientTests.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: PostAsync_WithErrorResponse_ThrowsJsonApiException
+    path: Crews.PlanningCenter.Api.Tests/Models/ResourceClientTests.cs
+    startLine: 294
+  assemblies:
+  - Crews.PlanningCenter.Api.Tests
+  namespace: Crews.PlanningCenter.Api.Tests.Models
+  syntax:
+    content: >-
+      [Fact]
+
+      public Task PostAsync_WithErrorResponse_ThrowsJsonApiException()
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: >-
+      <Fact>
+
+      Public Function PostAsync_WithErrorResponse_ThrowsJsonApiException() As Task
+  overload: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PostAsync_WithErrorResponse_ThrowsJsonApiException*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PostAsync_WithCancellationToken_PassesToken
+  commentId: M:Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PostAsync_WithCancellationToken_PassesToken
+  id: PostAsync_WithCancellationToken_PassesToken
+  parent: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests
+  langs:
+  - csharp
+  - vb
+  name: PostAsync_WithCancellationToken_PassesToken()
+  nameWithType: ResourceClientTests.PostAsync_WithCancellationToken_PassesToken()
+  fullName: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PostAsync_WithCancellationToken_PassesToken()
+  type: Method
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.Tests/Models/ResourceClientTests.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: PostAsync_WithCancellationToken_PassesToken
+    path: Crews.PlanningCenter.Api.Tests/Models/ResourceClientTests.cs
+    startLine: 310
+  assemblies:
+  - Crews.PlanningCenter.Api.Tests
+  namespace: Crews.PlanningCenter.Api.Tests.Models
+  syntax:
+    content: >-
+      [Fact]
+
+      public Task PostAsync_WithCancellationToken_PassesToken()
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: >-
+      <Fact>
+
+      Public Function PostAsync_WithCancellationToken_PassesToken() As Task
+  overload: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PostAsync_WithCancellationToken_PassesToken*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PatchAsync_SendsPatchRequest_ToCorrectUri
+  commentId: M:Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PatchAsync_SendsPatchRequest_ToCorrectUri
+  id: PatchAsync_SendsPatchRequest_ToCorrectUri
+  parent: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests
+  langs:
+  - csharp
+  - vb
+  name: PatchAsync_SendsPatchRequest_ToCorrectUri()
+  nameWithType: ResourceClientTests.PatchAsync_SendsPatchRequest_ToCorrectUri()
+  fullName: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PatchAsync_SendsPatchRequest_ToCorrectUri()
+  type: Method
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.Tests/Models/ResourceClientTests.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: PatchAsync_SendsPatchRequest_ToCorrectUri
+    path: Crews.PlanningCenter.Api.Tests/Models/ResourceClientTests.cs
+    startLine: 336
+  assemblies:
+  - Crews.PlanningCenter.Api.Tests
+  namespace: Crews.PlanningCenter.Api.Tests.Models
+  syntax:
+    content: >-
+      [Fact]
+
+      public Task PatchAsync_SendsPatchRequest_ToCorrectUri()
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: >-
+      <Fact>
+
+      Public Function PatchAsync_SendsPatchRequest_ToCorrectUri() As Task
+  overload: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PatchAsync_SendsPatchRequest_ToCorrectUri*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PatchAsync_WithSuccessResponse_ReturnsDeserializedData
+  commentId: M:Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PatchAsync_WithSuccessResponse_ReturnsDeserializedData
+  id: PatchAsync_WithSuccessResponse_ReturnsDeserializedData
+  parent: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests
+  langs:
+  - csharp
+  - vb
+  name: PatchAsync_WithSuccessResponse_ReturnsDeserializedData()
+  nameWithType: ResourceClientTests.PatchAsync_WithSuccessResponse_ReturnsDeserializedData()
+  fullName: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PatchAsync_WithSuccessResponse_ReturnsDeserializedData()
+  type: Method
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.Tests/Models/ResourceClientTests.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: PatchAsync_WithSuccessResponse_ReturnsDeserializedData
+    path: Crews.PlanningCenter.Api.Tests/Models/ResourceClientTests.cs
+    startLine: 355
+  assemblies:
+  - Crews.PlanningCenter.Api.Tests
+  namespace: Crews.PlanningCenter.Api.Tests.Models
+  syntax:
+    content: >-
+      [Fact]
+
+      public Task PatchAsync_WithSuccessResponse_ReturnsDeserializedData()
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: >-
+      <Fact>
+
+      Public Function PatchAsync_WithSuccessResponse_ReturnsDeserializedData() As Task
+  overload: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PatchAsync_WithSuccessResponse_ReturnsDeserializedData*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PatchAsync_WithErrorResponse_ThrowsJsonApiException
+  commentId: M:Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PatchAsync_WithErrorResponse_ThrowsJsonApiException
+  id: PatchAsync_WithErrorResponse_ThrowsJsonApiException
+  parent: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests
+  langs:
+  - csharp
+  - vb
+  name: PatchAsync_WithErrorResponse_ThrowsJsonApiException()
+  nameWithType: ResourceClientTests.PatchAsync_WithErrorResponse_ThrowsJsonApiException()
+  fullName: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PatchAsync_WithErrorResponse_ThrowsJsonApiException()
+  type: Method
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.Tests/Models/ResourceClientTests.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: PatchAsync_WithErrorResponse_ThrowsJsonApiException
+    path: Crews.PlanningCenter.Api.Tests/Models/ResourceClientTests.cs
+    startLine: 374
+  assemblies:
+  - Crews.PlanningCenter.Api.Tests
+  namespace: Crews.PlanningCenter.Api.Tests.Models
+  syntax:
+    content: >-
+      [Fact]
+
+      public Task PatchAsync_WithErrorResponse_ThrowsJsonApiException()
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: >-
+      <Fact>
+
+      Public Function PatchAsync_WithErrorResponse_ThrowsJsonApiException() As Task
+  overload: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PatchAsync_WithErrorResponse_ThrowsJsonApiException*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PatchAsync_WithCancellationToken_PassesToken
+  commentId: M:Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PatchAsync_WithCancellationToken_PassesToken
+  id: PatchAsync_WithCancellationToken_PassesToken
+  parent: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests
+  langs:
+  - csharp
+  - vb
+  name: PatchAsync_WithCancellationToken_PassesToken()
+  nameWithType: ResourceClientTests.PatchAsync_WithCancellationToken_PassesToken()
+  fullName: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PatchAsync_WithCancellationToken_PassesToken()
+  type: Method
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.Tests/Models/ResourceClientTests.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: PatchAsync_WithCancellationToken_PassesToken
+    path: Crews.PlanningCenter.Api.Tests/Models/ResourceClientTests.cs
+    startLine: 390
+  assemblies:
+  - Crews.PlanningCenter.Api.Tests
+  namespace: Crews.PlanningCenter.Api.Tests.Models
+  syntax:
+    content: >-
+      [Fact]
+
+      public Task PatchAsync_WithCancellationToken_PassesToken()
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: >-
+      <Fact>
+
+      Public Function PatchAsync_WithCancellationToken_PassesToken() As Task
+  overload: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PatchAsync_WithCancellationToken_PassesToken*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.DeleteAsync_SendsDeleteRequest_ToCorrectUri
+  commentId: M:Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.DeleteAsync_SendsDeleteRequest_ToCorrectUri
+  id: DeleteAsync_SendsDeleteRequest_ToCorrectUri
+  parent: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests
+  langs:
+  - csharp
+  - vb
+  name: DeleteAsync_SendsDeleteRequest_ToCorrectUri()
+  nameWithType: ResourceClientTests.DeleteAsync_SendsDeleteRequest_ToCorrectUri()
+  fullName: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.DeleteAsync_SendsDeleteRequest_ToCorrectUri()
+  type: Method
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.Tests/Models/ResourceClientTests.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: DeleteAsync_SendsDeleteRequest_ToCorrectUri
+    path: Crews.PlanningCenter.Api.Tests/Models/ResourceClientTests.cs
+    startLine: 416
+  assemblies:
+  - Crews.PlanningCenter.Api.Tests
+  namespace: Crews.PlanningCenter.Api.Tests.Models
+  syntax:
+    content: >-
+      [Fact]
+
+      public Task DeleteAsync_SendsDeleteRequest_ToCorrectUri()
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: >-
+      <Fact>
+
+      Public Function DeleteAsync_SendsDeleteRequest_ToCorrectUri() As Task
+  overload: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.DeleteAsync_SendsDeleteRequest_ToCorrectUri*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.DeleteAsync_WithSuccessResponse_Completes
+  commentId: M:Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.DeleteAsync_WithSuccessResponse_Completes
+  id: DeleteAsync_WithSuccessResponse_Completes
+  parent: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests
+  langs:
+  - csharp
+  - vb
+  name: DeleteAsync_WithSuccessResponse_Completes()
+  nameWithType: ResourceClientTests.DeleteAsync_WithSuccessResponse_Completes()
+  fullName: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.DeleteAsync_WithSuccessResponse_Completes()
+  type: Method
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.Tests/Models/ResourceClientTests.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: DeleteAsync_WithSuccessResponse_Completes
+    path: Crews.PlanningCenter.Api.Tests/Models/ResourceClientTests.cs
+    startLine: 435
+  assemblies:
+  - Crews.PlanningCenter.Api.Tests
+  namespace: Crews.PlanningCenter.Api.Tests.Models
+  syntax:
+    content: >-
+      [Fact]
+
+      public Task DeleteAsync_WithSuccessResponse_Completes()
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: >-
+      <Fact>
+
+      Public Function DeleteAsync_WithSuccessResponse_Completes() As Task
+  overload: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.DeleteAsync_WithSuccessResponse_Completes*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.DeleteAsync_WithErrorResponse_ThrowsJsonApiException
+  commentId: M:Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.DeleteAsync_WithErrorResponse_ThrowsJsonApiException
+  id: DeleteAsync_WithErrorResponse_ThrowsJsonApiException
+  parent: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests
+  langs:
+  - csharp
+  - vb
+  name: DeleteAsync_WithErrorResponse_ThrowsJsonApiException()
+  nameWithType: ResourceClientTests.DeleteAsync_WithErrorResponse_ThrowsJsonApiException()
+  fullName: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.DeleteAsync_WithErrorResponse_ThrowsJsonApiException()
+  type: Method
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.Tests/Models/ResourceClientTests.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: DeleteAsync_WithErrorResponse_ThrowsJsonApiException
+    path: Crews.PlanningCenter.Api.Tests/Models/ResourceClientTests.cs
+    startLine: 451
+  assemblies:
+  - Crews.PlanningCenter.Api.Tests
+  namespace: Crews.PlanningCenter.Api.Tests.Models
+  syntax:
+    content: >-
+      [Fact]
+
+      public Task DeleteAsync_WithErrorResponse_ThrowsJsonApiException()
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: >-
+      <Fact>
+
+      Public Function DeleteAsync_WithErrorResponse_ThrowsJsonApiException() As Task
+  overload: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.DeleteAsync_WithErrorResponse_ThrowsJsonApiException*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.DeleteAsync_WithCancellationToken_PassesToken
+  commentId: M:Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.DeleteAsync_WithCancellationToken_PassesToken
+  id: DeleteAsync_WithCancellationToken_PassesToken
+  parent: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests
+  langs:
+  - csharp
+  - vb
+  name: DeleteAsync_WithCancellationToken_PassesToken()
+  nameWithType: ResourceClientTests.DeleteAsync_WithCancellationToken_PassesToken()
+  fullName: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.DeleteAsync_WithCancellationToken_PassesToken()
+  type: Method
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.Tests/Models/ResourceClientTests.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: DeleteAsync_WithCancellationToken_PassesToken
+    path: Crews.PlanningCenter.Api.Tests/Models/ResourceClientTests.cs
+    startLine: 467
+  assemblies:
+  - Crews.PlanningCenter.Api.Tests
+  namespace: Crews.PlanningCenter.Api.Tests.Models
+  syntax:
+    content: >-
+      [Fact]
+
+      public Task DeleteAsync_WithCancellationToken_PassesToken()
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: >-
+      <Fact>
+
+      Public Function DeleteAsync_WithCancellationToken_PassesToken() As Task
+  overload: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.DeleteAsync_WithCancellationToken_PassesToken*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+references:
+- uid: Crews.PlanningCenter.Api.Tests.Models
+  commentId: N:Crews.PlanningCenter.Api.Tests.Models
+  href: Crews.html
+  name: Crews.PlanningCenter.Api.Tests.Models
+  nameWithType: Crews.PlanningCenter.Api.Tests.Models
+  fullName: Crews.PlanningCenter.Api.Tests.Models
+  spec.csharp:
+  - uid: Crews
+    name: Crews
+    href: Crews.html
+  - name: .
+  - uid: Crews.PlanningCenter
+    name: PlanningCenter
+    href: Crews.PlanningCenter.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api
+    name: Api
+    href: Crews.PlanningCenter.Api.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.Tests
+    name: Tests
+    href: Crews.PlanningCenter.Api.Tests.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.Tests.Models
+    name: Models
+    href: Crews.PlanningCenter.Api.Tests.Models.html
+  spec.vb:
+  - uid: Crews
+    name: Crews
+    href: Crews.html
+  - name: .
+  - uid: Crews.PlanningCenter
+    name: PlanningCenter
+    href: Crews.PlanningCenter.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api
+    name: Api
+    href: Crews.PlanningCenter.Api.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.Tests
+    name: Tests
+    href: Crews.PlanningCenter.Api.Tests.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.Tests.Models
+    name: Models
+    href: Crews.PlanningCenter.Api.Tests.Models.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.Constructor_WithValidParameters_CreatesClient*
+  commentId: Overload:Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.Constructor_WithValidParameters_CreatesClient
+  href: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.html#Crews_PlanningCenter_Api_Tests_Models_ResourceClientTests_Constructor_WithValidParameters_CreatesClient
+  name: Constructor_WithValidParameters_CreatesClient
+  nameWithType: ResourceClientTests.Constructor_WithValidParameters_CreatesClient
+  fullName: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.Constructor_WithValidParameters_CreatesClient
+- uid: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.Constructor_WithNullHttpClient_ThrowsArgumentNullException*
+  commentId: Overload:Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.Constructor_WithNullHttpClient_ThrowsArgumentNullException
+  href: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.html#Crews_PlanningCenter_Api_Tests_Models_ResourceClientTests_Constructor_WithNullHttpClient_ThrowsArgumentNullException
+  name: Constructor_WithNullHttpClient_ThrowsArgumentNullException
+  nameWithType: ResourceClientTests.Constructor_WithNullHttpClient_ThrowsArgumentNullException
+  fullName: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.Constructor_WithNullHttpClient_ThrowsArgumentNullException
+- uid: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.Constructor_WithNullUri_ThrowsArgumentNullException*
+  commentId: Overload:Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.Constructor_WithNullUri_ThrowsArgumentNullException
+  href: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.html#Crews_PlanningCenter_Api_Tests_Models_ResourceClientTests_Constructor_WithNullUri_ThrowsArgumentNullException
+  name: Constructor_WithNullUri_ThrowsArgumentNullException
+  nameWithType: ResourceClientTests.Constructor_WithNullUri_ThrowsArgumentNullException
+  fullName: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.Constructor_WithNullUri_ThrowsArgumentNullException
+- uid: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.SetQueryParameter_AddsNewParameter*
+  commentId: Overload:Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.SetQueryParameter_AddsNewParameter
+  href: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.html#Crews_PlanningCenter_Api_Tests_Models_ResourceClientTests_SetQueryParameter_AddsNewParameter
+  name: SetQueryParameter_AddsNewParameter
+  nameWithType: ResourceClientTests.SetQueryParameter_AddsNewParameter
+  fullName: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.SetQueryParameter_AddsNewParameter
+- uid: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.SetQueryParameter_UpdatesExistingParameter*
+  commentId: Overload:Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.SetQueryParameter_UpdatesExistingParameter
+  href: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.html#Crews_PlanningCenter_Api_Tests_Models_ResourceClientTests_SetQueryParameter_UpdatesExistingParameter
+  name: SetQueryParameter_UpdatesExistingParameter
+  nameWithType: ResourceClientTests.SetQueryParameter_UpdatesExistingParameter
+  fullName: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.SetQueryParameter_UpdatesExistingParameter
+- uid: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.SetQueryParameter_WithMultipleParameters_MaintainsAll*
+  commentId: Overload:Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.SetQueryParameter_WithMultipleParameters_MaintainsAll
+  href: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.html#Crews_PlanningCenter_Api_Tests_Models_ResourceClientTests_SetQueryParameter_WithMultipleParameters_MaintainsAll
+  name: SetQueryParameter_WithMultipleParameters_MaintainsAll
+  nameWithType: ResourceClientTests.SetQueryParameter_WithMultipleParameters_MaintainsAll
+  fullName: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.SetQueryParameter_WithMultipleParameters_MaintainsAll
+- uid: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.SetQueryParameter_ReturnsClientInstance_ForChaining*
+  commentId: Overload:Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.SetQueryParameter_ReturnsClientInstance_ForChaining
+  href: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.html#Crews_PlanningCenter_Api_Tests_Models_ResourceClientTests_SetQueryParameter_ReturnsClientInstance_ForChaining
+  name: SetQueryParameter_ReturnsClientInstance_ForChaining
+  nameWithType: ResourceClientTests.SetQueryParameter_ReturnsClientInstance_ForChaining
+  fullName: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.SetQueryParameter_ReturnsClientInstance_ForChaining
+- uid: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.AddCustomParameter_AddsParameter*
+  commentId: Overload:Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.AddCustomParameter_AddsParameter
+  href: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.html#Crews_PlanningCenter_Api_Tests_Models_ResourceClientTests_AddCustomParameter_AddsParameter
+  name: AddCustomParameter_AddsParameter
+  nameWithType: ResourceClientTests.AddCustomParameter_AddsParameter
+  fullName: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.AddCustomParameter_AddsParameter
+- uid: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.ClearParameters_RemovesAllParameters*
+  commentId: Overload:Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.ClearParameters_RemovesAllParameters
+  href: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.html#Crews_PlanningCenter_Api_Tests_Models_ResourceClientTests_ClearParameters_RemovesAllParameters
+  name: ClearParameters_RemovesAllParameters
+  nameWithType: ResourceClientTests.ClearParameters_RemovesAllParameters
+  fullName: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.ClearParameters_RemovesAllParameters
+- uid: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.ClearParameters_PreservesBaseUri*
+  commentId: Overload:Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.ClearParameters_PreservesBaseUri
+  href: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.html#Crews_PlanningCenter_Api_Tests_Models_ResourceClientTests_ClearParameters_PreservesBaseUri
+  name: ClearParameters_PreservesBaseUri
+  nameWithType: ResourceClientTests.ClearParameters_PreservesBaseUri
+  fullName: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.ClearParameters_PreservesBaseUri
+- uid: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.ClearParameters_WithNoParameters_DoesNothing*
+  commentId: Overload:Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.ClearParameters_WithNoParameters_DoesNothing
+  href: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.html#Crews_PlanningCenter_Api_Tests_Models_ResourceClientTests_ClearParameters_WithNoParameters_DoesNothing
+  name: ClearParameters_WithNoParameters_DoesNothing
+  nameWithType: ResourceClientTests.ClearParameters_WithNoParameters_DoesNothing
+  fullName: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.ClearParameters_WithNoParameters_DoesNothing
+- uid: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.GetAsync_SendsGetRequest_ToCorrectUri*
+  commentId: Overload:Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.GetAsync_SendsGetRequest_ToCorrectUri
+  href: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.html#Crews_PlanningCenter_Api_Tests_Models_ResourceClientTests_GetAsync_SendsGetRequest_ToCorrectUri
+  name: GetAsync_SendsGetRequest_ToCorrectUri
+  nameWithType: ResourceClientTests.GetAsync_SendsGetRequest_ToCorrectUri
+  fullName: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.GetAsync_SendsGetRequest_ToCorrectUri
+- uid: System.Threading.Tasks.Task
+  commentId: T:System.Threading.Tasks.Task
+  parent: System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task
+  name: Task
+  nameWithType: Task
+  fullName: System.Threading.Tasks.Task
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+- uid: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.GetAsync_WithSuccessResponse_ReturnsDeserializedData*
+  commentId: Overload:Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.GetAsync_WithSuccessResponse_ReturnsDeserializedData
+  href: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.html#Crews_PlanningCenter_Api_Tests_Models_ResourceClientTests_GetAsync_WithSuccessResponse_ReturnsDeserializedData
+  name: GetAsync_WithSuccessResponse_ReturnsDeserializedData
+  nameWithType: ResourceClientTests.GetAsync_WithSuccessResponse_ReturnsDeserializedData
+  fullName: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.GetAsync_WithSuccessResponse_ReturnsDeserializedData
+- uid: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.GetAsync_WithErrorResponse_ThrowsJsonApiException*
+  commentId: Overload:Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.GetAsync_WithErrorResponse_ThrowsJsonApiException
+  href: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.html#Crews_PlanningCenter_Api_Tests_Models_ResourceClientTests_GetAsync_WithErrorResponse_ThrowsJsonApiException
+  name: GetAsync_WithErrorResponse_ThrowsJsonApiException
+  nameWithType: ResourceClientTests.GetAsync_WithErrorResponse_ThrowsJsonApiException
+  fullName: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.GetAsync_WithErrorResponse_ThrowsJsonApiException
+- uid: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.GetAsync_WithCancellationToken_PassesToken*
+  commentId: Overload:Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.GetAsync_WithCancellationToken_PassesToken
+  href: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.html#Crews_PlanningCenter_Api_Tests_Models_ResourceClientTests_GetAsync_WithCancellationToken_PassesToken
+  name: GetAsync_WithCancellationToken_PassesToken
+  nameWithType: ResourceClientTests.GetAsync_WithCancellationToken_PassesToken
+  fullName: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.GetAsync_WithCancellationToken_PassesToken
+- uid: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PostAsync_SendsPostRequest_ToCorrectUri*
+  commentId: Overload:Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PostAsync_SendsPostRequest_ToCorrectUri
+  href: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.html#Crews_PlanningCenter_Api_Tests_Models_ResourceClientTests_PostAsync_SendsPostRequest_ToCorrectUri
+  name: PostAsync_SendsPostRequest_ToCorrectUri
+  nameWithType: ResourceClientTests.PostAsync_SendsPostRequest_ToCorrectUri
+  fullName: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PostAsync_SendsPostRequest_ToCorrectUri
+- uid: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PostAsync_WithSuccessResponse_ReturnsDeserializedData*
+  commentId: Overload:Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PostAsync_WithSuccessResponse_ReturnsDeserializedData
+  href: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.html#Crews_PlanningCenter_Api_Tests_Models_ResourceClientTests_PostAsync_WithSuccessResponse_ReturnsDeserializedData
+  name: PostAsync_WithSuccessResponse_ReturnsDeserializedData
+  nameWithType: ResourceClientTests.PostAsync_WithSuccessResponse_ReturnsDeserializedData
+  fullName: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PostAsync_WithSuccessResponse_ReturnsDeserializedData
+- uid: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PostAsync_WithErrorResponse_ThrowsJsonApiException*
+  commentId: Overload:Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PostAsync_WithErrorResponse_ThrowsJsonApiException
+  href: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.html#Crews_PlanningCenter_Api_Tests_Models_ResourceClientTests_PostAsync_WithErrorResponse_ThrowsJsonApiException
+  name: PostAsync_WithErrorResponse_ThrowsJsonApiException
+  nameWithType: ResourceClientTests.PostAsync_WithErrorResponse_ThrowsJsonApiException
+  fullName: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PostAsync_WithErrorResponse_ThrowsJsonApiException
+- uid: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PostAsync_WithCancellationToken_PassesToken*
+  commentId: Overload:Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PostAsync_WithCancellationToken_PassesToken
+  href: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.html#Crews_PlanningCenter_Api_Tests_Models_ResourceClientTests_PostAsync_WithCancellationToken_PassesToken
+  name: PostAsync_WithCancellationToken_PassesToken
+  nameWithType: ResourceClientTests.PostAsync_WithCancellationToken_PassesToken
+  fullName: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PostAsync_WithCancellationToken_PassesToken
+- uid: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PatchAsync_SendsPatchRequest_ToCorrectUri*
+  commentId: Overload:Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PatchAsync_SendsPatchRequest_ToCorrectUri
+  href: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.html#Crews_PlanningCenter_Api_Tests_Models_ResourceClientTests_PatchAsync_SendsPatchRequest_ToCorrectUri
+  name: PatchAsync_SendsPatchRequest_ToCorrectUri
+  nameWithType: ResourceClientTests.PatchAsync_SendsPatchRequest_ToCorrectUri
+  fullName: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PatchAsync_SendsPatchRequest_ToCorrectUri
+- uid: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PatchAsync_WithSuccessResponse_ReturnsDeserializedData*
+  commentId: Overload:Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PatchAsync_WithSuccessResponse_ReturnsDeserializedData
+  href: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.html#Crews_PlanningCenter_Api_Tests_Models_ResourceClientTests_PatchAsync_WithSuccessResponse_ReturnsDeserializedData
+  name: PatchAsync_WithSuccessResponse_ReturnsDeserializedData
+  nameWithType: ResourceClientTests.PatchAsync_WithSuccessResponse_ReturnsDeserializedData
+  fullName: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PatchAsync_WithSuccessResponse_ReturnsDeserializedData
+- uid: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PatchAsync_WithErrorResponse_ThrowsJsonApiException*
+  commentId: Overload:Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PatchAsync_WithErrorResponse_ThrowsJsonApiException
+  href: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.html#Crews_PlanningCenter_Api_Tests_Models_ResourceClientTests_PatchAsync_WithErrorResponse_ThrowsJsonApiException
+  name: PatchAsync_WithErrorResponse_ThrowsJsonApiException
+  nameWithType: ResourceClientTests.PatchAsync_WithErrorResponse_ThrowsJsonApiException
+  fullName: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PatchAsync_WithErrorResponse_ThrowsJsonApiException
+- uid: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PatchAsync_WithCancellationToken_PassesToken*
+  commentId: Overload:Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PatchAsync_WithCancellationToken_PassesToken
+  href: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.html#Crews_PlanningCenter_Api_Tests_Models_ResourceClientTests_PatchAsync_WithCancellationToken_PassesToken
+  name: PatchAsync_WithCancellationToken_PassesToken
+  nameWithType: ResourceClientTests.PatchAsync_WithCancellationToken_PassesToken
+  fullName: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.PatchAsync_WithCancellationToken_PassesToken
+- uid: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.DeleteAsync_SendsDeleteRequest_ToCorrectUri*
+  commentId: Overload:Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.DeleteAsync_SendsDeleteRequest_ToCorrectUri
+  href: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.html#Crews_PlanningCenter_Api_Tests_Models_ResourceClientTests_DeleteAsync_SendsDeleteRequest_ToCorrectUri
+  name: DeleteAsync_SendsDeleteRequest_ToCorrectUri
+  nameWithType: ResourceClientTests.DeleteAsync_SendsDeleteRequest_ToCorrectUri
+  fullName: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.DeleteAsync_SendsDeleteRequest_ToCorrectUri
+- uid: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.DeleteAsync_WithSuccessResponse_Completes*
+  commentId: Overload:Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.DeleteAsync_WithSuccessResponse_Completes
+  href: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.html#Crews_PlanningCenter_Api_Tests_Models_ResourceClientTests_DeleteAsync_WithSuccessResponse_Completes
+  name: DeleteAsync_WithSuccessResponse_Completes
+  nameWithType: ResourceClientTests.DeleteAsync_WithSuccessResponse_Completes
+  fullName: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.DeleteAsync_WithSuccessResponse_Completes
+- uid: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.DeleteAsync_WithErrorResponse_ThrowsJsonApiException*
+  commentId: Overload:Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.DeleteAsync_WithErrorResponse_ThrowsJsonApiException
+  href: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.html#Crews_PlanningCenter_Api_Tests_Models_ResourceClientTests_DeleteAsync_WithErrorResponse_ThrowsJsonApiException
+  name: DeleteAsync_WithErrorResponse_ThrowsJsonApiException
+  nameWithType: ResourceClientTests.DeleteAsync_WithErrorResponse_ThrowsJsonApiException
+  fullName: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.DeleteAsync_WithErrorResponse_ThrowsJsonApiException
+- uid: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.DeleteAsync_WithCancellationToken_PassesToken*
+  commentId: Overload:Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.DeleteAsync_WithCancellationToken_PassesToken
+  href: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.html#Crews_PlanningCenter_Api_Tests_Models_ResourceClientTests_DeleteAsync_WithCancellationToken_PassesToken
+  name: DeleteAsync_WithCancellationToken_PassesToken
+  nameWithType: ResourceClientTests.DeleteAsync_WithCancellationToken_PassesToken
+  fullName: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests.DeleteAsync_WithCancellationToken_PassesToken

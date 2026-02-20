@@ -1,0 +1,31 @@
+### YamlMime:ManagedReference
+items:
+- uid: Crews.PlanningCenter.Api.Tests.Dummies.OAuth
+  commentId: N:Crews.PlanningCenter.Api.Tests.Dummies.OAuth
+  id: OAuth
+  parent: Crews.PlanningCenter.Api.Tests.Dummies
+  children:
+  - Crews.PlanningCenter.Api.Tests.Dummies.OAuth.SampleClaims
+  - Crews.PlanningCenter.Api.Tests.Dummies.OAuth.SampleTokenResponses
+  langs:
+  - csharp
+  - vb
+  name: Crews.PlanningCenter.Api.Tests.Dummies.OAuth
+  nameWithType: Crews.PlanningCenter.Api.Tests.Dummies.OAuth
+  fullName: Crews.PlanningCenter.Api.Tests.Dummies.OAuth
+  type: Namespace
+  assemblies:
+  - Crews.PlanningCenter.Api.Tests
+references:
+- uid: Crews.PlanningCenter.Api.Tests.Dummies.OAuth.SampleClaims
+  commentId: T:Crews.PlanningCenter.Api.Tests.Dummies.OAuth.SampleClaims
+  href: Crews.PlanningCenter.Api.Tests.Dummies.OAuth.SampleClaims.html
+  name: SampleClaims
+  nameWithType: SampleClaims
+  fullName: Crews.PlanningCenter.Api.Tests.Dummies.OAuth.SampleClaims
+- uid: Crews.PlanningCenter.Api.Tests.Dummies.OAuth.SampleTokenResponses
+  commentId: T:Crews.PlanningCenter.Api.Tests.Dummies.OAuth.SampleTokenResponses
+  href: Crews.PlanningCenter.Api.Tests.Dummies.OAuth.SampleTokenResponses.html
+  name: SampleTokenResponses
+  nameWithType: SampleTokenResponses
+  fullName: Crews.PlanningCenter.Api.Tests.Dummies.OAuth.SampleTokenResponses

@@ -1,0 +1,764 @@
+### YamlMime:ManagedReference
+items:
+- uid: Crews.PlanningCenter.Api.People
+  id: People
+  parent: Crews.PlanningCenter.Api
+  children:
+  - Crews.PlanningCenter.Api.People.V2018_08_01
+  - Crews.PlanningCenter.Api.People.V2019_01_14
+  - Crews.PlanningCenter.Api.People.V2019_10_10
+  - Crews.PlanningCenter.Api.People.V2020_04_06
+  - Crews.PlanningCenter.Api.People.V2020_07_22
+  - Crews.PlanningCenter.Api.People.V2021_08_17
+  - Crews.PlanningCenter.Api.People.V2022_01_05
+  - Crews.PlanningCenter.Api.People.V2022_01_28
+  - Crews.PlanningCenter.Api.People.V2022_07_14
+  - Crews.PlanningCenter.Api.People.V2023_02_15
+  - Crews.PlanningCenter.Api.People.V2023_03_21
+  - Crews.PlanningCenter.Api.People.V2024_09_12
+  - Crews.PlanningCenter.Api.People.V2025_03_20
+  - Crews.PlanningCenter.Api.People.V2025_07_02
+  - Crews.PlanningCenter.Api.People.V2025_07_17
+  - Crews.PlanningCenter.Api.People.V2025_11_10
+  langs:
+  - csharp
+  - vb
+  name: Crews.PlanningCenter.Api.People
+  type: Namespace
+references:
+- uid: Crews.PlanningCenter.Api.People.V2018_08_01
+  commentId: N:Crews.PlanningCenter.Api.People.V2018_08_01
+  href: Crews.html
+  name: Crews.PlanningCenter.Api.People.V2018_08_01
+  nameWithType: Crews.PlanningCenter.Api.People.V2018_08_01
+  fullName: Crews.PlanningCenter.Api.People.V2018_08_01
+  spec.csharp:
+  - uid: Crews
+    name: Crews
+    href: Crews.html
+  - name: .
+  - uid: Crews.PlanningCenter
+    name: PlanningCenter
+    href: Crews.PlanningCenter.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api
+    name: Api
+    href: Crews.PlanningCenter.Api.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People
+    name: People
+    href: Crews.PlanningCenter.Api.People.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People.V2018_08_01
+    name: V2018_08_01
+    href: Crews.PlanningCenter.Api.People.V2018_08_01.html
+  spec.vb:
+  - uid: Crews
+    name: Crews
+    href: Crews.html
+  - name: .
+  - uid: Crews.PlanningCenter
+    name: PlanningCenter
+    href: Crews.PlanningCenter.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api
+    name: Api
+    href: Crews.PlanningCenter.Api.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People
+    name: People
+    href: Crews.PlanningCenter.Api.People.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People.V2018_08_01
+    name: V2018_08_01
+    href: Crews.PlanningCenter.Api.People.V2018_08_01.html
+- uid: Crews.PlanningCenter.Api.People.V2019_01_14
+  commentId: N:Crews.PlanningCenter.Api.People.V2019_01_14
+  href: Crews.html
+  name: Crews.PlanningCenter.Api.People.V2019_01_14
+  nameWithType: Crews.PlanningCenter.Api.People.V2019_01_14
+  fullName: Crews.PlanningCenter.Api.People.V2019_01_14
+  spec.csharp:
+  - uid: Crews
+    name: Crews
+    href: Crews.html
+  - name: .
+  - uid: Crews.PlanningCenter
+    name: PlanningCenter
+    href: Crews.PlanningCenter.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api
+    name: Api
+    href: Crews.PlanningCenter.Api.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People
+    name: People
+    href: Crews.PlanningCenter.Api.People.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People.V2019_01_14
+    name: V2019_01_14
+    href: Crews.PlanningCenter.Api.People.V2019_01_14.html
+  spec.vb:
+  - uid: Crews
+    name: Crews
+    href: Crews.html
+  - name: .
+  - uid: Crews.PlanningCenter
+    name: PlanningCenter
+    href: Crews.PlanningCenter.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api
+    name: Api
+    href: Crews.PlanningCenter.Api.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People
+    name: People
+    href: Crews.PlanningCenter.Api.People.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People.V2019_01_14
+    name: V2019_01_14
+    href: Crews.PlanningCenter.Api.People.V2019_01_14.html
+- uid: Crews.PlanningCenter.Api.People.V2019_10_10
+  commentId: N:Crews.PlanningCenter.Api.People.V2019_10_10
+  href: Crews.html
+  name: Crews.PlanningCenter.Api.People.V2019_10_10
+  nameWithType: Crews.PlanningCenter.Api.People.V2019_10_10
+  fullName: Crews.PlanningCenter.Api.People.V2019_10_10
+  spec.csharp:
+  - uid: Crews
+    name: Crews
+    href: Crews.html
+  - name: .
+  - uid: Crews.PlanningCenter
+    name: PlanningCenter
+    href: Crews.PlanningCenter.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api
+    name: Api
+    href: Crews.PlanningCenter.Api.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People
+    name: People
+    href: Crews.PlanningCenter.Api.People.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People.V2019_10_10
+    name: V2019_10_10
+    href: Crews.PlanningCenter.Api.People.V2019_10_10.html
+  spec.vb:
+  - uid: Crews
+    name: Crews
+    href: Crews.html
+  - name: .
+  - uid: Crews.PlanningCenter
+    name: PlanningCenter
+    href: Crews.PlanningCenter.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api
+    name: Api
+    href: Crews.PlanningCenter.Api.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People
+    name: People
+    href: Crews.PlanningCenter.Api.People.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People.V2019_10_10
+    name: V2019_10_10
+    href: Crews.PlanningCenter.Api.People.V2019_10_10.html
+- uid: Crews.PlanningCenter.Api.People.V2020_04_06
+  commentId: N:Crews.PlanningCenter.Api.People.V2020_04_06
+  href: Crews.html
+  name: Crews.PlanningCenter.Api.People.V2020_04_06
+  nameWithType: Crews.PlanningCenter.Api.People.V2020_04_06
+  fullName: Crews.PlanningCenter.Api.People.V2020_04_06
+  spec.csharp:
+  - uid: Crews
+    name: Crews
+    href: Crews.html
+  - name: .
+  - uid: Crews.PlanningCenter
+    name: PlanningCenter
+    href: Crews.PlanningCenter.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api
+    name: Api
+    href: Crews.PlanningCenter.Api.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People
+    name: People
+    href: Crews.PlanningCenter.Api.People.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People.V2020_04_06
+    name: V2020_04_06
+    href: Crews.PlanningCenter.Api.People.V2020_04_06.html
+  spec.vb:
+  - uid: Crews
+    name: Crews
+    href: Crews.html
+  - name: .
+  - uid: Crews.PlanningCenter
+    name: PlanningCenter
+    href: Crews.PlanningCenter.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api
+    name: Api
+    href: Crews.PlanningCenter.Api.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People
+    name: People
+    href: Crews.PlanningCenter.Api.People.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People.V2020_04_06
+    name: V2020_04_06
+    href: Crews.PlanningCenter.Api.People.V2020_04_06.html
+- uid: Crews.PlanningCenter.Api.People.V2020_07_22
+  commentId: N:Crews.PlanningCenter.Api.People.V2020_07_22
+  href: Crews.html
+  name: Crews.PlanningCenter.Api.People.V2020_07_22
+  nameWithType: Crews.PlanningCenter.Api.People.V2020_07_22
+  fullName: Crews.PlanningCenter.Api.People.V2020_07_22
+  spec.csharp:
+  - uid: Crews
+    name: Crews
+    href: Crews.html
+  - name: .
+  - uid: Crews.PlanningCenter
+    name: PlanningCenter
+    href: Crews.PlanningCenter.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api
+    name: Api
+    href: Crews.PlanningCenter.Api.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People
+    name: People
+    href: Crews.PlanningCenter.Api.People.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People.V2020_07_22
+    name: V2020_07_22
+    href: Crews.PlanningCenter.Api.People.V2020_07_22.html
+  spec.vb:
+  - uid: Crews
+    name: Crews
+    href: Crews.html
+  - name: .
+  - uid: Crews.PlanningCenter
+    name: PlanningCenter
+    href: Crews.PlanningCenter.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api
+    name: Api
+    href: Crews.PlanningCenter.Api.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People
+    name: People
+    href: Crews.PlanningCenter.Api.People.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People.V2020_07_22
+    name: V2020_07_22
+    href: Crews.PlanningCenter.Api.People.V2020_07_22.html
+- uid: Crews.PlanningCenter.Api.People.V2021_08_17
+  commentId: N:Crews.PlanningCenter.Api.People.V2021_08_17
+  href: Crews.html
+  name: Crews.PlanningCenter.Api.People.V2021_08_17
+  nameWithType: Crews.PlanningCenter.Api.People.V2021_08_17
+  fullName: Crews.PlanningCenter.Api.People.V2021_08_17
+  spec.csharp:
+  - uid: Crews
+    name: Crews
+    href: Crews.html
+  - name: .
+  - uid: Crews.PlanningCenter
+    name: PlanningCenter
+    href: Crews.PlanningCenter.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api
+    name: Api
+    href: Crews.PlanningCenter.Api.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People
+    name: People
+    href: Crews.PlanningCenter.Api.People.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People.V2021_08_17
+    name: V2021_08_17
+    href: Crews.PlanningCenter.Api.People.V2021_08_17.html
+  spec.vb:
+  - uid: Crews
+    name: Crews
+    href: Crews.html
+  - name: .
+  - uid: Crews.PlanningCenter
+    name: PlanningCenter
+    href: Crews.PlanningCenter.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api
+    name: Api
+    href: Crews.PlanningCenter.Api.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People
+    name: People
+    href: Crews.PlanningCenter.Api.People.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People.V2021_08_17
+    name: V2021_08_17
+    href: Crews.PlanningCenter.Api.People.V2021_08_17.html
+- uid: Crews.PlanningCenter.Api.People.V2022_01_05
+  commentId: N:Crews.PlanningCenter.Api.People.V2022_01_05
+  href: Crews.html
+  name: Crews.PlanningCenter.Api.People.V2022_01_05
+  nameWithType: Crews.PlanningCenter.Api.People.V2022_01_05
+  fullName: Crews.PlanningCenter.Api.People.V2022_01_05
+  spec.csharp:
+  - uid: Crews
+    name: Crews
+    href: Crews.html
+  - name: .
+  - uid: Crews.PlanningCenter
+    name: PlanningCenter
+    href: Crews.PlanningCenter.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api
+    name: Api
+    href: Crews.PlanningCenter.Api.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People
+    name: People
+    href: Crews.PlanningCenter.Api.People.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People.V2022_01_05
+    name: V2022_01_05
+    href: Crews.PlanningCenter.Api.People.V2022_01_05.html
+  spec.vb:
+  - uid: Crews
+    name: Crews
+    href: Crews.html
+  - name: .
+  - uid: Crews.PlanningCenter
+    name: PlanningCenter
+    href: Crews.PlanningCenter.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api
+    name: Api
+    href: Crews.PlanningCenter.Api.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People
+    name: People
+    href: Crews.PlanningCenter.Api.People.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People.V2022_01_05
+    name: V2022_01_05
+    href: Crews.PlanningCenter.Api.People.V2022_01_05.html
+- uid: Crews.PlanningCenter.Api.People.V2022_01_28
+  commentId: N:Crews.PlanningCenter.Api.People.V2022_01_28
+  href: Crews.html
+  name: Crews.PlanningCenter.Api.People.V2022_01_28
+  nameWithType: Crews.PlanningCenter.Api.People.V2022_01_28
+  fullName: Crews.PlanningCenter.Api.People.V2022_01_28
+  spec.csharp:
+  - uid: Crews
+    name: Crews
+    href: Crews.html
+  - name: .
+  - uid: Crews.PlanningCenter
+    name: PlanningCenter
+    href: Crews.PlanningCenter.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api
+    name: Api
+    href: Crews.PlanningCenter.Api.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People
+    name: People
+    href: Crews.PlanningCenter.Api.People.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People.V2022_01_28
+    name: V2022_01_28
+    href: Crews.PlanningCenter.Api.People.V2022_01_28.html
+  spec.vb:
+  - uid: Crews
+    name: Crews
+    href: Crews.html
+  - name: .
+  - uid: Crews.PlanningCenter
+    name: PlanningCenter
+    href: Crews.PlanningCenter.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api
+    name: Api
+    href: Crews.PlanningCenter.Api.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People
+    name: People
+    href: Crews.PlanningCenter.Api.People.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People.V2022_01_28
+    name: V2022_01_28
+    href: Crews.PlanningCenter.Api.People.V2022_01_28.html
+- uid: Crews.PlanningCenter.Api.People.V2022_07_14
+  commentId: N:Crews.PlanningCenter.Api.People.V2022_07_14
+  href: Crews.html
+  name: Crews.PlanningCenter.Api.People.V2022_07_14
+  nameWithType: Crews.PlanningCenter.Api.People.V2022_07_14
+  fullName: Crews.PlanningCenter.Api.People.V2022_07_14
+  spec.csharp:
+  - uid: Crews
+    name: Crews
+    href: Crews.html
+  - name: .
+  - uid: Crews.PlanningCenter
+    name: PlanningCenter
+    href: Crews.PlanningCenter.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api
+    name: Api
+    href: Crews.PlanningCenter.Api.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People
+    name: People
+    href: Crews.PlanningCenter.Api.People.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People.V2022_07_14
+    name: V2022_07_14
+    href: Crews.PlanningCenter.Api.People.V2022_07_14.html
+  spec.vb:
+  - uid: Crews
+    name: Crews
+    href: Crews.html
+  - name: .
+  - uid: Crews.PlanningCenter
+    name: PlanningCenter
+    href: Crews.PlanningCenter.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api
+    name: Api
+    href: Crews.PlanningCenter.Api.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People
+    name: People
+    href: Crews.PlanningCenter.Api.People.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People.V2022_07_14
+    name: V2022_07_14
+    href: Crews.PlanningCenter.Api.People.V2022_07_14.html
+- uid: Crews.PlanningCenter.Api.People.V2023_02_15
+  commentId: N:Crews.PlanningCenter.Api.People.V2023_02_15
+  href: Crews.html
+  name: Crews.PlanningCenter.Api.People.V2023_02_15
+  nameWithType: Crews.PlanningCenter.Api.People.V2023_02_15
+  fullName: Crews.PlanningCenter.Api.People.V2023_02_15
+  spec.csharp:
+  - uid: Crews
+    name: Crews
+    href: Crews.html
+  - name: .
+  - uid: Crews.PlanningCenter
+    name: PlanningCenter
+    href: Crews.PlanningCenter.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api
+    name: Api
+    href: Crews.PlanningCenter.Api.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People
+    name: People
+    href: Crews.PlanningCenter.Api.People.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People.V2023_02_15
+    name: V2023_02_15
+    href: Crews.PlanningCenter.Api.People.V2023_02_15.html
+  spec.vb:
+  - uid: Crews
+    name: Crews
+    href: Crews.html
+  - name: .
+  - uid: Crews.PlanningCenter
+    name: PlanningCenter
+    href: Crews.PlanningCenter.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api
+    name: Api
+    href: Crews.PlanningCenter.Api.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People
+    name: People
+    href: Crews.PlanningCenter.Api.People.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People.V2023_02_15
+    name: V2023_02_15
+    href: Crews.PlanningCenter.Api.People.V2023_02_15.html
+- uid: Crews.PlanningCenter.Api.People.V2023_03_21
+  commentId: N:Crews.PlanningCenter.Api.People.V2023_03_21
+  href: Crews.html
+  name: Crews.PlanningCenter.Api.People.V2023_03_21
+  nameWithType: Crews.PlanningCenter.Api.People.V2023_03_21
+  fullName: Crews.PlanningCenter.Api.People.V2023_03_21
+  spec.csharp:
+  - uid: Crews
+    name: Crews
+    href: Crews.html
+  - name: .
+  - uid: Crews.PlanningCenter
+    name: PlanningCenter
+    href: Crews.PlanningCenter.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api
+    name: Api
+    href: Crews.PlanningCenter.Api.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People
+    name: People
+    href: Crews.PlanningCenter.Api.People.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People.V2023_03_21
+    name: V2023_03_21
+    href: Crews.PlanningCenter.Api.People.V2023_03_21.html
+  spec.vb:
+  - uid: Crews
+    name: Crews
+    href: Crews.html
+  - name: .
+  - uid: Crews.PlanningCenter
+    name: PlanningCenter
+    href: Crews.PlanningCenter.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api
+    name: Api
+    href: Crews.PlanningCenter.Api.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People
+    name: People
+    href: Crews.PlanningCenter.Api.People.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People.V2023_03_21
+    name: V2023_03_21
+    href: Crews.PlanningCenter.Api.People.V2023_03_21.html
+- uid: Crews.PlanningCenter.Api.People.V2024_09_12
+  commentId: N:Crews.PlanningCenter.Api.People.V2024_09_12
+  href: Crews.html
+  name: Crews.PlanningCenter.Api.People.V2024_09_12
+  nameWithType: Crews.PlanningCenter.Api.People.V2024_09_12
+  fullName: Crews.PlanningCenter.Api.People.V2024_09_12
+  spec.csharp:
+  - uid: Crews
+    name: Crews
+    href: Crews.html
+  - name: .
+  - uid: Crews.PlanningCenter
+    name: PlanningCenter
+    href: Crews.PlanningCenter.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api
+    name: Api
+    href: Crews.PlanningCenter.Api.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People
+    name: People
+    href: Crews.PlanningCenter.Api.People.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People.V2024_09_12
+    name: V2024_09_12
+    href: Crews.PlanningCenter.Api.People.V2024_09_12.html
+  spec.vb:
+  - uid: Crews
+    name: Crews
+    href: Crews.html
+  - name: .
+  - uid: Crews.PlanningCenter
+    name: PlanningCenter
+    href: Crews.PlanningCenter.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api
+    name: Api
+    href: Crews.PlanningCenter.Api.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People
+    name: People
+    href: Crews.PlanningCenter.Api.People.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People.V2024_09_12
+    name: V2024_09_12
+    href: Crews.PlanningCenter.Api.People.V2024_09_12.html
+- uid: Crews.PlanningCenter.Api.People.V2025_03_20
+  commentId: N:Crews.PlanningCenter.Api.People.V2025_03_20
+  href: Crews.html
+  name: Crews.PlanningCenter.Api.People.V2025_03_20
+  nameWithType: Crews.PlanningCenter.Api.People.V2025_03_20
+  fullName: Crews.PlanningCenter.Api.People.V2025_03_20
+  spec.csharp:
+  - uid: Crews
+    name: Crews
+    href: Crews.html
+  - name: .
+  - uid: Crews.PlanningCenter
+    name: PlanningCenter
+    href: Crews.PlanningCenter.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api
+    name: Api
+    href: Crews.PlanningCenter.Api.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People
+    name: People
+    href: Crews.PlanningCenter.Api.People.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People.V2025_03_20
+    name: V2025_03_20
+    href: Crews.PlanningCenter.Api.People.V2025_03_20.html
+  spec.vb:
+  - uid: Crews
+    name: Crews
+    href: Crews.html
+  - name: .
+  - uid: Crews.PlanningCenter
+    name: PlanningCenter
+    href: Crews.PlanningCenter.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api
+    name: Api
+    href: Crews.PlanningCenter.Api.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People
+    name: People
+    href: Crews.PlanningCenter.Api.People.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People.V2025_03_20
+    name: V2025_03_20
+    href: Crews.PlanningCenter.Api.People.V2025_03_20.html
+- uid: Crews.PlanningCenter.Api.People.V2025_07_02
+  commentId: N:Crews.PlanningCenter.Api.People.V2025_07_02
+  href: Crews.html
+  name: Crews.PlanningCenter.Api.People.V2025_07_02
+  nameWithType: Crews.PlanningCenter.Api.People.V2025_07_02
+  fullName: Crews.PlanningCenter.Api.People.V2025_07_02
+  spec.csharp:
+  - uid: Crews
+    name: Crews
+    href: Crews.html
+  - name: .
+  - uid: Crews.PlanningCenter
+    name: PlanningCenter
+    href: Crews.PlanningCenter.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api
+    name: Api
+    href: Crews.PlanningCenter.Api.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People
+    name: People
+    href: Crews.PlanningCenter.Api.People.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People.V2025_07_02
+    name: V2025_07_02
+    href: Crews.PlanningCenter.Api.People.V2025_07_02.html
+  spec.vb:
+  - uid: Crews
+    name: Crews
+    href: Crews.html
+  - name: .
+  - uid: Crews.PlanningCenter
+    name: PlanningCenter
+    href: Crews.PlanningCenter.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api
+    name: Api
+    href: Crews.PlanningCenter.Api.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People
+    name: People
+    href: Crews.PlanningCenter.Api.People.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People.V2025_07_02
+    name: V2025_07_02
+    href: Crews.PlanningCenter.Api.People.V2025_07_02.html
+- uid: Crews.PlanningCenter.Api.People.V2025_07_17
+  commentId: N:Crews.PlanningCenter.Api.People.V2025_07_17
+  href: Crews.html
+  name: Crews.PlanningCenter.Api.People.V2025_07_17
+  nameWithType: Crews.PlanningCenter.Api.People.V2025_07_17
+  fullName: Crews.PlanningCenter.Api.People.V2025_07_17
+  spec.csharp:
+  - uid: Crews
+    name: Crews
+    href: Crews.html
+  - name: .
+  - uid: Crews.PlanningCenter
+    name: PlanningCenter
+    href: Crews.PlanningCenter.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api
+    name: Api
+    href: Crews.PlanningCenter.Api.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People
+    name: People
+    href: Crews.PlanningCenter.Api.People.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People.V2025_07_17
+    name: V2025_07_17
+    href: Crews.PlanningCenter.Api.People.V2025_07_17.html
+  spec.vb:
+  - uid: Crews
+    name: Crews
+    href: Crews.html
+  - name: .
+  - uid: Crews.PlanningCenter
+    name: PlanningCenter
+    href: Crews.PlanningCenter.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api
+    name: Api
+    href: Crews.PlanningCenter.Api.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People
+    name: People
+    href: Crews.PlanningCenter.Api.People.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People.V2025_07_17
+    name: V2025_07_17
+    href: Crews.PlanningCenter.Api.People.V2025_07_17.html
+- uid: Crews.PlanningCenter.Api.People.V2025_11_10
+  commentId: N:Crews.PlanningCenter.Api.People.V2025_11_10
+  href: Crews.html
+  name: Crews.PlanningCenter.Api.People.V2025_11_10
+  nameWithType: Crews.PlanningCenter.Api.People.V2025_11_10
+  fullName: Crews.PlanningCenter.Api.People.V2025_11_10
+  spec.csharp:
+  - uid: Crews
+    name: Crews
+    href: Crews.html
+  - name: .
+  - uid: Crews.PlanningCenter
+    name: PlanningCenter
+    href: Crews.PlanningCenter.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api
+    name: Api
+    href: Crews.PlanningCenter.Api.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People
+    name: People
+    href: Crews.PlanningCenter.Api.People.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People.V2025_11_10
+    name: V2025_11_10
+    href: Crews.PlanningCenter.Api.People.V2025_11_10.html
+  spec.vb:
+  - uid: Crews
+    name: Crews
+    href: Crews.html
+  - name: .
+  - uid: Crews.PlanningCenter
+    name: PlanningCenter
+    href: Crews.PlanningCenter.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api
+    name: Api
+    href: Crews.PlanningCenter.Api.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People
+    name: People
+    href: Crews.PlanningCenter.Api.People.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.People.V2025_11_10
+    name: V2025_11_10
+    href: Crews.PlanningCenter.Api.People.V2025_11_10.html

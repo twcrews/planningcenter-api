@@ -1,0 +1,623 @@
+### YamlMime:ManagedReference
+items:
+- uid: Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests
+  commentId: T:Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests
+  id: JsonApiExceptionTests
+  parent: Crews.PlanningCenter.Api.Tests.Models
+  children:
+  - Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.Constructor_WithInnerException_StoresInner
+  - Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.Constructor_WithMultipleErrors_ParsesAll
+  - Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.Constructor_WithNoErrors_CreatesEmptyArray
+  - Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.Constructor_WithNullInnerException_HandlesGracefully
+  - Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.Constructor_WithValidErrorJson_ParsesErrors
+  - Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.Errors_ContainsExpectedErrorDetails
+  - Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.Errors_WithValidJsonApiErrors_DeserializesCorrectly
+  langs:
+  - csharp
+  - vb
+  name: JsonApiExceptionTests
+  nameWithType: JsonApiExceptionTests
+  fullName: Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests
+  type: Class
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.Tests/Models/JsonApiExceptionTests.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: JsonApiExceptionTests
+    path: Crews.PlanningCenter.Api.Tests/Models/JsonApiExceptionTests.cs
+    startLine: 6
+  assemblies:
+  - Crews.PlanningCenter.Api.Tests
+  namespace: Crews.PlanningCenter.Api.Tests.Models
+  syntax:
+    content: public class JsonApiExceptionTests
+    content.vb: Public Class JsonApiExceptionTests
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.Constructor_WithValidErrorJson_ParsesErrors
+  commentId: M:Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.Constructor_WithValidErrorJson_ParsesErrors
+  id: Constructor_WithValidErrorJson_ParsesErrors
+  parent: Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests
+  langs:
+  - csharp
+  - vb
+  name: Constructor_WithValidErrorJson_ParsesErrors()
+  nameWithType: JsonApiExceptionTests.Constructor_WithValidErrorJson_ParsesErrors()
+  fullName: Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.Constructor_WithValidErrorJson_ParsesErrors()
+  type: Method
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.Tests/Models/JsonApiExceptionTests.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: Constructor_WithValidErrorJson_ParsesErrors
+    path: Crews.PlanningCenter.Api.Tests/Models/JsonApiExceptionTests.cs
+    startLine: 8
+  assemblies:
+  - Crews.PlanningCenter.Api.Tests
+  namespace: Crews.PlanningCenter.Api.Tests.Models
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Constructor_WithValidErrorJson_ParsesErrors()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Constructor_WithValidErrorJson_ParsesErrors()
+  overload: Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.Constructor_WithValidErrorJson_ParsesErrors*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.Constructor_WithMultipleErrors_ParsesAll
+  commentId: M:Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.Constructor_WithMultipleErrors_ParsesAll
+  id: Constructor_WithMultipleErrors_ParsesAll
+  parent: Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests
+  langs:
+  - csharp
+  - vb
+  name: Constructor_WithMultipleErrors_ParsesAll()
+  nameWithType: JsonApiExceptionTests.Constructor_WithMultipleErrors_ParsesAll()
+  fullName: Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.Constructor_WithMultipleErrors_ParsesAll()
+  type: Method
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.Tests/Models/JsonApiExceptionTests.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: Constructor_WithMultipleErrors_ParsesAll
+    path: Crews.PlanningCenter.Api.Tests/Models/JsonApiExceptionTests.cs
+    startLine: 22
+  assemblies:
+  - Crews.PlanningCenter.Api.Tests
+  namespace: Crews.PlanningCenter.Api.Tests.Models
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Constructor_WithMultipleErrors_ParsesAll()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Constructor_WithMultipleErrors_ParsesAll()
+  overload: Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.Constructor_WithMultipleErrors_ParsesAll*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.Constructor_WithInnerException_StoresInner
+  commentId: M:Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.Constructor_WithInnerException_StoresInner
+  id: Constructor_WithInnerException_StoresInner
+  parent: Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests
+  langs:
+  - csharp
+  - vb
+  name: Constructor_WithInnerException_StoresInner()
+  nameWithType: JsonApiExceptionTests.Constructor_WithInnerException_StoresInner()
+  fullName: Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.Constructor_WithInnerException_StoresInner()
+  type: Method
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.Tests/Models/JsonApiExceptionTests.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: Constructor_WithInnerException_StoresInner
+    path: Crews.PlanningCenter.Api.Tests/Models/JsonApiExceptionTests.cs
+    startLine: 36
+  assemblies:
+  - Crews.PlanningCenter.Api.Tests
+  namespace: Crews.PlanningCenter.Api.Tests.Models
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Constructor_WithInnerException_StoresInner()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Constructor_WithInnerException_StoresInner()
+  overload: Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.Constructor_WithInnerException_StoresInner*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.Constructor_WithNullInnerException_HandlesGracefully
+  commentId: M:Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.Constructor_WithNullInnerException_HandlesGracefully
+  id: Constructor_WithNullInnerException_HandlesGracefully
+  parent: Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests
+  langs:
+  - csharp
+  - vb
+  name: Constructor_WithNullInnerException_HandlesGracefully()
+  nameWithType: JsonApiExceptionTests.Constructor_WithNullInnerException_HandlesGracefully()
+  fullName: Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.Constructor_WithNullInnerException_HandlesGracefully()
+  type: Method
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.Tests/Models/JsonApiExceptionTests.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: Constructor_WithNullInnerException_HandlesGracefully
+    path: Crews.PlanningCenter.Api.Tests/Models/JsonApiExceptionTests.cs
+    startLine: 50
+  assemblies:
+  - Crews.PlanningCenter.Api.Tests
+  namespace: Crews.PlanningCenter.Api.Tests.Models
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Constructor_WithNullInnerException_HandlesGracefully()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Constructor_WithNullInnerException_HandlesGracefully()
+  overload: Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.Constructor_WithNullInnerException_HandlesGracefully*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.Constructor_WithNoErrors_CreatesEmptyArray
+  commentId: M:Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.Constructor_WithNoErrors_CreatesEmptyArray
+  id: Constructor_WithNoErrors_CreatesEmptyArray
+  parent: Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests
+  langs:
+  - csharp
+  - vb
+  name: Constructor_WithNoErrors_CreatesEmptyArray()
+  nameWithType: JsonApiExceptionTests.Constructor_WithNoErrors_CreatesEmptyArray()
+  fullName: Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.Constructor_WithNoErrors_CreatesEmptyArray()
+  type: Method
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.Tests/Models/JsonApiExceptionTests.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: Constructor_WithNoErrors_CreatesEmptyArray
+    path: Crews.PlanningCenter.Api.Tests/Models/JsonApiExceptionTests.cs
+    startLine: 61
+  assemblies:
+  - Crews.PlanningCenter.Api.Tests
+  namespace: Crews.PlanningCenter.Api.Tests.Models
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Constructor_WithNoErrors_CreatesEmptyArray()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Constructor_WithNoErrors_CreatesEmptyArray()
+  overload: Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.Constructor_WithNoErrors_CreatesEmptyArray*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.Errors_WithValidJsonApiErrors_DeserializesCorrectly
+  commentId: M:Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.Errors_WithValidJsonApiErrors_DeserializesCorrectly
+  id: Errors_WithValidJsonApiErrors_DeserializesCorrectly
+  parent: Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests
+  langs:
+  - csharp
+  - vb
+  name: Errors_WithValidJsonApiErrors_DeserializesCorrectly()
+  nameWithType: JsonApiExceptionTests.Errors_WithValidJsonApiErrors_DeserializesCorrectly()
+  fullName: Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.Errors_WithValidJsonApiErrors_DeserializesCorrectly()
+  type: Method
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.Tests/Models/JsonApiExceptionTests.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: Errors_WithValidJsonApiErrors_DeserializesCorrectly
+    path: Crews.PlanningCenter.Api.Tests/Models/JsonApiExceptionTests.cs
+    startLine: 75
+  assemblies:
+  - Crews.PlanningCenter.Api.Tests
+  namespace: Crews.PlanningCenter.Api.Tests.Models
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Errors_WithValidJsonApiErrors_DeserializesCorrectly()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Errors_WithValidJsonApiErrors_DeserializesCorrectly()
+  overload: Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.Errors_WithValidJsonApiErrors_DeserializesCorrectly*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.Errors_ContainsExpectedErrorDetails
+  commentId: M:Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.Errors_ContainsExpectedErrorDetails
+  id: Errors_ContainsExpectedErrorDetails
+  parent: Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests
+  langs:
+  - csharp
+  - vb
+  name: Errors_ContainsExpectedErrorDetails()
+  nameWithType: JsonApiExceptionTests.Errors_ContainsExpectedErrorDetails()
+  fullName: Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.Errors_ContainsExpectedErrorDetails()
+  type: Method
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.Tests/Models/JsonApiExceptionTests.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: Errors_ContainsExpectedErrorDetails
+    path: Crews.PlanningCenter.Api.Tests/Models/JsonApiExceptionTests.cs
+    startLine: 93
+  assemblies:
+  - Crews.PlanningCenter.Api.Tests
+  namespace: Crews.PlanningCenter.Api.Tests.Models
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Errors_ContainsExpectedErrorDetails()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Errors_ContainsExpectedErrorDetails()
+  overload: Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.Errors_ContainsExpectedErrorDetails*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+references:
+- uid: Crews.PlanningCenter.Api.Tests.Models
+  commentId: N:Crews.PlanningCenter.Api.Tests.Models
+  href: Crews.html
+  name: Crews.PlanningCenter.Api.Tests.Models
+  nameWithType: Crews.PlanningCenter.Api.Tests.Models
+  fullName: Crews.PlanningCenter.Api.Tests.Models
+  spec.csharp:
+  - uid: Crews
+    name: Crews
+    href: Crews.html
+  - name: .
+  - uid: Crews.PlanningCenter
+    name: PlanningCenter
+    href: Crews.PlanningCenter.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api
+    name: Api
+    href: Crews.PlanningCenter.Api.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.Tests
+    name: Tests
+    href: Crews.PlanningCenter.Api.Tests.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.Tests.Models
+    name: Models
+    href: Crews.PlanningCenter.Api.Tests.Models.html
+  spec.vb:
+  - uid: Crews
+    name: Crews
+    href: Crews.html
+  - name: .
+  - uid: Crews.PlanningCenter
+    name: PlanningCenter
+    href: Crews.PlanningCenter.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api
+    name: Api
+    href: Crews.PlanningCenter.Api.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.Tests
+    name: Tests
+    href: Crews.PlanningCenter.Api.Tests.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.Tests.Models
+    name: Models
+    href: Crews.PlanningCenter.Api.Tests.Models.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.Constructor_WithValidErrorJson_ParsesErrors*
+  commentId: Overload:Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.Constructor_WithValidErrorJson_ParsesErrors
+  href: Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.html#Crews_PlanningCenter_Api_Tests_Models_JsonApiExceptionTests_Constructor_WithValidErrorJson_ParsesErrors
+  name: Constructor_WithValidErrorJson_ParsesErrors
+  nameWithType: JsonApiExceptionTests.Constructor_WithValidErrorJson_ParsesErrors
+  fullName: Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.Constructor_WithValidErrorJson_ParsesErrors
+- uid: Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.Constructor_WithMultipleErrors_ParsesAll*
+  commentId: Overload:Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.Constructor_WithMultipleErrors_ParsesAll
+  href: Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.html#Crews_PlanningCenter_Api_Tests_Models_JsonApiExceptionTests_Constructor_WithMultipleErrors_ParsesAll
+  name: Constructor_WithMultipleErrors_ParsesAll
+  nameWithType: JsonApiExceptionTests.Constructor_WithMultipleErrors_ParsesAll
+  fullName: Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.Constructor_WithMultipleErrors_ParsesAll
+- uid: Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.Constructor_WithInnerException_StoresInner*
+  commentId: Overload:Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.Constructor_WithInnerException_StoresInner
+  href: Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.html#Crews_PlanningCenter_Api_Tests_Models_JsonApiExceptionTests_Constructor_WithInnerException_StoresInner
+  name: Constructor_WithInnerException_StoresInner
+  nameWithType: JsonApiExceptionTests.Constructor_WithInnerException_StoresInner
+  fullName: Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.Constructor_WithInnerException_StoresInner
+- uid: Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.Constructor_WithNullInnerException_HandlesGracefully*
+  commentId: Overload:Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.Constructor_WithNullInnerException_HandlesGracefully
+  href: Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.html#Crews_PlanningCenter_Api_Tests_Models_JsonApiExceptionTests_Constructor_WithNullInnerException_HandlesGracefully
+  name: Constructor_WithNullInnerException_HandlesGracefully
+  nameWithType: JsonApiExceptionTests.Constructor_WithNullInnerException_HandlesGracefully
+  fullName: Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.Constructor_WithNullInnerException_HandlesGracefully
+- uid: Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.Constructor_WithNoErrors_CreatesEmptyArray*
+  commentId: Overload:Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.Constructor_WithNoErrors_CreatesEmptyArray
+  href: Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.html#Crews_PlanningCenter_Api_Tests_Models_JsonApiExceptionTests_Constructor_WithNoErrors_CreatesEmptyArray
+  name: Constructor_WithNoErrors_CreatesEmptyArray
+  nameWithType: JsonApiExceptionTests.Constructor_WithNoErrors_CreatesEmptyArray
+  fullName: Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.Constructor_WithNoErrors_CreatesEmptyArray
+- uid: Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.Errors_WithValidJsonApiErrors_DeserializesCorrectly*
+  commentId: Overload:Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.Errors_WithValidJsonApiErrors_DeserializesCorrectly
+  href: Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.html#Crews_PlanningCenter_Api_Tests_Models_JsonApiExceptionTests_Errors_WithValidJsonApiErrors_DeserializesCorrectly
+  name: Errors_WithValidJsonApiErrors_DeserializesCorrectly
+  nameWithType: JsonApiExceptionTests.Errors_WithValidJsonApiErrors_DeserializesCorrectly
+  fullName: Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.Errors_WithValidJsonApiErrors_DeserializesCorrectly
+- uid: Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.Errors_ContainsExpectedErrorDetails*
+  commentId: Overload:Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.Errors_ContainsExpectedErrorDetails
+  href: Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.html#Crews_PlanningCenter_Api_Tests_Models_JsonApiExceptionTests_Errors_ContainsExpectedErrorDetails
+  name: Errors_ContainsExpectedErrorDetails
+  nameWithType: JsonApiExceptionTests.Errors_ContainsExpectedErrorDetails
+  fullName: Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests.Errors_ContainsExpectedErrorDetails

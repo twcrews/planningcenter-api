@@ -1,0 +1,31 @@
+### YamlMime:ManagedReference
+items:
+- uid: Crews.PlanningCenter.Api.DocParser.Tests.Services
+  commentId: N:Crews.PlanningCenter.Api.DocParser.Tests.Services
+  id: Services
+  parent: Crews.PlanningCenter.Api.DocParser.Tests
+  children:
+  - Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests
+  - Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests
+  langs:
+  - csharp
+  - vb
+  name: Crews.PlanningCenter.Api.DocParser.Tests.Services
+  nameWithType: Crews.PlanningCenter.Api.DocParser.Tests.Services
+  fullName: Crews.PlanningCenter.Api.DocParser.Tests.Services
+  type: Namespace
+  assemblies:
+  - Crews.PlanningCenter.Api.DocParser.Tests
+references:
+- uid: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests
+  commentId: T:Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests
+  href: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.html
+  name: DocumentationBuilderTests
+  nameWithType: DocumentationBuilderTests
+  fullName: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests
+- uid: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests
+  commentId: T:Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests
+  href: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests.html
+  name: PlanningCenterClientTests
+  nameWithType: PlanningCenterClientTests
+  fullName: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests

@@ -1,0 +1,967 @@
+### YamlMime:TableOfContent
+items:
+- uid: Crews.PlanningCenter.Api
+  name: Crews.PlanningCenter.Api
+  type: Namespace
+  items:
+  - uid: Crews.PlanningCenter.Api.Authentication
+    name: Authentication
+    type: Namespace
+    items:
+    - uid: Crews.PlanningCenter.Api.Authentication.PlanningCenterAuthenticationDefaults
+      name: PlanningCenterAuthenticationDefaults
+      type: Class
+    - uid: Crews.PlanningCenter.Api.Authentication.PlanningCenterPersonalAccessToken
+      name: PlanningCenterPersonalAccessToken
+      type: Struct
+  - uid: Crews.PlanningCenter.Api.DocParser
+    name: DocParser
+    type: Namespace
+    items:
+    - uid: Crews.PlanningCenter.Api.DocParser.Configuration
+      name: Configuration
+      type: Namespace
+      items:
+      - uid: Crews.PlanningCenter.Api.DocParser.Configuration.AppSettings
+        name: AppSettings
+        type: Class
+      - uid: Crews.PlanningCenter.Api.DocParser.Configuration.AppSettings.DocumentationBuilderOptions
+        name: AppSettings.DocumentationBuilderOptions
+        type: Class
+      - uid: Crews.PlanningCenter.Api.DocParser.Configuration.AppSettings.DocumentationBuilderOptions.CollectionOverrideEntry
+        name: AppSettings.DocumentationBuilderOptions.CollectionOverrideEntry
+        type: Class
+      - uid: Crews.PlanningCenter.Api.DocParser.Configuration.AppSettings.DocumentationBuilderOptions.EdgeTypeOverrideEntry
+        name: AppSettings.DocumentationBuilderOptions.EdgeTypeOverrideEntry
+        type: Class
+      - uid: Crews.PlanningCenter.Api.DocParser.Configuration.AppSettings.DocumentationBuilderOptions.ExcludedVertexEntry
+        name: AppSettings.DocumentationBuilderOptions.ExcludedVertexEntry
+        type: Class
+      - uid: Crews.PlanningCenter.Api.DocParser.Configuration.AppSettings.DocumentationBuilderOptions.NameOverrideEntry
+        name: AppSettings.DocumentationBuilderOptions.NameOverrideEntry
+        type: Class
+      - uid: Crews.PlanningCenter.Api.DocParser.Configuration.AppSettings.PlanningCenterClientOptions
+        name: AppSettings.PlanningCenterClientOptions
+        type: Class
+    - uid: Crews.PlanningCenter.Api.DocParser.Extensions
+      name: Extensions
+      type: Namespace
+      items:
+      - uid: Crews.PlanningCenter.Api.DocParser.Extensions.StringExtensions
+        name: StringExtensions
+        type: Class
+    - uid: Crews.PlanningCenter.Api.DocParser.Models
+      name: Models
+      type: Namespace
+      items:
+      - uid: Crews.PlanningCenter.Api.DocParser.Models.Action
+        name: Action
+        type: Class
+      - uid: Crews.PlanningCenter.Api.DocParser.Models.ActionRelationship
+        name: ActionRelationship
+        type: Class
+      - uid: Crews.PlanningCenter.Api.DocParser.Models.ActionRelationships
+        name: ActionRelationships
+        type: Class
+      - uid: Crews.PlanningCenter.Api.DocParser.Models.ActionResource
+        name: ActionResource
+        type: Class
+      - uid: Crews.PlanningCenter.Api.DocParser.Models.Attribute
+        name: Attribute
+        type: Class
+      - uid: Crews.PlanningCenter.Api.DocParser.Models.AttributeCollectionRelationship
+        name: AttributeCollectionRelationship
+        type: Class
+      - uid: Crews.PlanningCenter.Api.DocParser.Models.AttributeRelationship
+        name: AttributeRelationship
+        type: Class
+      - uid: Crews.PlanningCenter.Api.DocParser.Models.AttributeResource
+        name: AttributeResource
+        type: Class
+      - uid: Crews.PlanningCenter.Api.DocParser.Models.DeprecatedEdge
+        name: DeprecatedEdge
+        type: Class
+      - uid: Crews.PlanningCenter.Api.DocParser.Models.DeprecatedEdgeCollectionRelationship
+        name: DeprecatedEdgeCollectionRelationship
+        type: Class
+      - uid: Crews.PlanningCenter.Api.DocParser.Models.DeprecatedEdgeResource
+        name: DeprecatedEdgeResource
+        type: Class
+      - uid: Crews.PlanningCenter.Api.DocParser.Models.Edge
+        name: Edge
+        type: Class
+      - uid: Crews.PlanningCenter.Api.DocParser.Models.EdgeCollectionRelationship
+        name: EdgeCollectionRelationship
+        type: Class
+      - uid: Crews.PlanningCenter.Api.DocParser.Models.EdgeRelationships
+        name: EdgeRelationships
+        type: Class
+      - uid: Crews.PlanningCenter.Api.DocParser.Models.EdgeResource
+        name: EdgeResource
+        type: Class
+      - uid: Crews.PlanningCenter.Api.DocParser.Models.Graph
+        name: Graph
+        type: Class
+      - uid: Crews.PlanningCenter.Api.DocParser.Models.GraphDocument
+        name: GraphDocument
+        type: Class
+      - uid: Crews.PlanningCenter.Api.DocParser.Models.GraphRelationships
+        name: GraphRelationships
+        type: Class
+      - uid: Crews.PlanningCenter.Api.DocParser.Models.GraphResource
+        name: GraphResource
+        type: Class
+      - uid: Crews.PlanningCenter.Api.DocParser.Models.GraphVersion
+        name: GraphVersion
+        type: Class
+      - uid: Crews.PlanningCenter.Api.DocParser.Models.GraphVersionDocument
+        name: GraphVersionDocument
+        type: Class
+      - uid: Crews.PlanningCenter.Api.DocParser.Models.GraphVersionRelationships
+        name: GraphVersionRelationships
+        type: Class
+      - uid: Crews.PlanningCenter.Api.DocParser.Models.GraphVersionResource
+        name: GraphVersionResource
+        type: Class
+      - uid: Crews.PlanningCenter.Api.DocParser.Models.Permissions
+        name: Permissions
+        type: Class
+      - uid: Crews.PlanningCenter.Api.DocParser.Models.PermissionsRelationship
+        name: PermissionsRelationship
+        type: Class
+      - uid: Crews.PlanningCenter.Api.DocParser.Models.PermissionsResource
+        name: PermissionsResource
+        type: Class
+      - uid: Crews.PlanningCenter.Api.DocParser.Models.Relationship
+        name: Relationship
+        type: Class
+      - uid: Crews.PlanningCenter.Api.DocParser.Models.RelationshipCollectionRelationship
+        name: RelationshipCollectionRelationship
+        type: Class
+      - uid: Crews.PlanningCenter.Api.DocParser.Models.RelationshipRelationship
+        name: RelationshipRelationship
+        type: Class
+      - uid: Crews.PlanningCenter.Api.DocParser.Models.RelationshipResource
+        name: RelationshipResource
+        type: Class
+      - uid: Crews.PlanningCenter.Api.DocParser.Models.Scope
+        name: Scope
+        type: Class
+      - uid: Crews.PlanningCenter.Api.DocParser.Models.TypeAnnotation
+        name: TypeAnnotation
+        type: Class
+      - uid: Crews.PlanningCenter.Api.DocParser.Models.UrlParameter
+        name: UrlParameter
+        type: Class
+      - uid: Crews.PlanningCenter.Api.DocParser.Models.UrlParameterCollectionRelationship
+        name: UrlParameterCollectionRelationship
+        type: Class
+      - uid: Crews.PlanningCenter.Api.DocParser.Models.UrlParameterRelationship
+        name: UrlParameterRelationship
+        type: Class
+      - uid: Crews.PlanningCenter.Api.DocParser.Models.UrlParameterResource
+        name: UrlParameterResource
+        type: Class
+      - uid: Crews.PlanningCenter.Api.DocParser.Models.Version
+        name: Version
+        type: Class
+      - uid: Crews.PlanningCenter.Api.DocParser.Models.VersionRelationship
+        name: VersionRelationship
+        type: Class
+      - uid: Crews.PlanningCenter.Api.DocParser.Models.VersionRelationships
+        name: VersionRelationships
+        type: Class
+      - uid: Crews.PlanningCenter.Api.DocParser.Models.VersionResource
+        name: VersionResource
+        type: Class
+      - uid: Crews.PlanningCenter.Api.DocParser.Models.Vertex
+        name: Vertex
+        type: Class
+      - uid: Crews.PlanningCenter.Api.DocParser.Models.VertexChange
+        name: VertexChange
+        type: Class
+      - uid: Crews.PlanningCenter.Api.DocParser.Models.VertexChangeCollectionRelationship
+        name: VertexChangeCollectionRelationship
+        type: Class
+      - uid: Crews.PlanningCenter.Api.DocParser.Models.VertexChangeRelationships
+        name: VertexChangeRelationships
+        type: Class
+      - uid: Crews.PlanningCenter.Api.DocParser.Models.VertexChangeRelationships.Change
+        name: VertexChangeRelationships.Change
+        type: Class
+      - uid: Crews.PlanningCenter.Api.DocParser.Models.VertexChangeRelationships.ChangeRelationship
+        name: VertexChangeRelationships.ChangeRelationship
+        type: Class
+      - uid: Crews.PlanningCenter.Api.DocParser.Models.VertexChangeRelationships.ChangeResource
+        name: VertexChangeRelationships.ChangeResource
+        type: Class
+      - uid: Crews.PlanningCenter.Api.DocParser.Models.VertexChangeResource
+        name: VertexChangeResource
+        type: Class
+      - uid: Crews.PlanningCenter.Api.DocParser.Models.VertexCollectionRelationship
+        name: VertexCollectionRelationship
+        type: Class
+      - uid: Crews.PlanningCenter.Api.DocParser.Models.VertexDocument
+        name: VertexDocument
+        type: Class
+      - uid: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationship
+        name: VertexRelationship
+        type: Class
+      - uid: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships
+        name: VertexRelationships
+        type: Class
+      - uid: Crews.PlanningCenter.Api.DocParser.Models.VertexResource
+        name: VertexResource
+        type: Class
+    - uid: Crews.PlanningCenter.Api.DocParser.Services
+      name: Services
+      type: Namespace
+      items:
+      - uid: Crews.PlanningCenter.Api.DocParser.Services.IPlanningCenterClient
+        name: IPlanningCenterClient
+        type: Interface
+      - uid: Crews.PlanningCenter.Api.DocParser.Services.PlanningCenterClient
+        name: PlanningCenterClient
+        type: Class
+    - uid: Crews.PlanningCenter.Api.DocParser.Tests
+      name: Tests
+      type: Namespace
+      items:
+      - uid: Crews.PlanningCenter.Api.DocParser.Tests.Extensions
+        name: Extensions
+        type: Namespace
+        items:
+        - uid: Crews.PlanningCenter.Api.DocParser.Tests.Extensions.StringExtensionsTests
+          name: StringExtensionsTests
+          type: Class
+      - uid: Crews.PlanningCenter.Api.DocParser.Tests.Services
+        name: Services
+        type: Namespace
+        items:
+        - uid: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests
+          name: DocumentationBuilderTests
+          type: Class
+        - uid: Crews.PlanningCenter.Api.DocParser.Tests.Services.PlanningCenterClientTests
+          name: PlanningCenterClientTests
+          type: Class
+  - uid: Crews.PlanningCenter.Api.Extensions
+    name: Extensions
+    type: Namespace
+    items:
+    - uid: Crews.PlanningCenter.Api.Extensions.AuthenticationBuilderExtensions
+      name: AuthenticationBuilderExtensions
+      type: Class
+  - uid: Crews.PlanningCenter.Api.Generators
+    name: Generators
+    type: Namespace
+    items:
+    - uid: Crews.PlanningCenter.Api.Generators.Extensions
+      name: Extensions
+      type: Namespace
+      items:
+      - uid: Crews.PlanningCenter.Api.Generators.Extensions.StringExtensions
+        name: StringExtensions
+        type: Class
+    - uid: Crews.PlanningCenter.Api.Generators.Tests
+      name: Tests
+      type: Namespace
+      items:
+      - uid: Crews.PlanningCenter.Api.Generators.Tests.Extensions
+        name: Extensions
+        type: Namespace
+        items:
+        - uid: Crews.PlanningCenter.Api.Generators.Tests.Extensions.StringExtensionsTests
+          name: StringExtensionsTests
+          type: Class
+        - uid: Crews.PlanningCenter.Api.Generators.Tests.Extensions.StringExtensionsTests.ToClrType
+          name: StringExtensionsTests.ToClrType
+          type: Class
+        - uid: Crews.PlanningCenter.Api.Generators.Tests.Extensions.StringExtensionsTests.ToXmlSummary
+          name: StringExtensionsTests.ToXmlSummary
+          type: Class
+      - uid: Crews.PlanningCenter.Api.Generators.Tests.TestData
+        name: TestData
+        type: Namespace
+        items:
+        - uid: Crews.PlanningCenter.Api.Generators.Tests.TestData.GeneratorTestHelper
+          name: GeneratorTestHelper
+          type: Class
+        - uid: Crews.PlanningCenter.Api.Generators.Tests.TestData.SampleVersionData
+          name: SampleVersionData
+          type: Class
+      - uid: Crews.PlanningCenter.Api.Generators.Tests.PlanningCenterResourceClientsGeneratorTests
+        name: PlanningCenterResourceClientsGeneratorTests
+        type: Class
+      - uid: Crews.PlanningCenter.Api.Generators.Tests.PlanningCenterResourcesGeneratorTests
+        name: PlanningCenterResourcesGeneratorTests
+        type: Class
+      - uid: Crews.PlanningCenter.Api.Generators.Tests.PlanningCenterRootClientsGeneratorTests
+        name: PlanningCenterRootClientsGeneratorTests
+        type: Class
+  - uid: Crews.PlanningCenter.Api.Models
+    name: Models
+    type: Namespace
+    items:
+    - uid: Crews.PlanningCenter.Api.Models.Extensions
+      name: Extensions
+      type: Namespace
+      items:
+      - uid: Crews.PlanningCenter.Api.Models.Extensions.StringExtensions
+        name: StringExtensions
+        type: Class
+    - uid: Crews.PlanningCenter.Api.Models.JsonApiException
+      name: JsonApiException
+      type: Class
+    - uid: Crews.PlanningCenter.Api.Models.PaginatedResourceClient`3
+      name: PaginatedResourceClient<TModel, TResource, TResponse>
+      type: Class
+    - uid: Crews.PlanningCenter.Api.Models.Product
+      name: Product
+      type: Class
+    - uid: Crews.PlanningCenter.Api.Models.ProductDefinition
+      name: ProductDefinition
+      type: Class
+    - uid: Crews.PlanningCenter.Api.Models.Resource
+      name: Resource
+      type: Class
+    - uid: Crews.PlanningCenter.Api.Models.ResourceAttribute
+      name: ResourceAttribute
+      type: Class
+    - uid: Crews.PlanningCenter.Api.Models.ResourceChild
+      name: ResourceChild
+      type: Class
+    - uid: Crews.PlanningCenter.Api.Models.ResourceChildFilter
+      name: ResourceChildFilter
+      type: Class
+    - uid: Crews.PlanningCenter.Api.Models.ResourceClient`3
+      name: ResourceClient<TModel, TResource, TResponse>
+      type: Class
+    - uid: Crews.PlanningCenter.Api.Models.ResourceIncludable
+      name: ResourceIncludable
+      type: Class
+    - uid: Crews.PlanningCenter.Api.Models.ResourceOrderable
+      name: ResourceOrderable
+      type: Class
+    - uid: Crews.PlanningCenter.Api.Models.ResourceQueryable
+      name: ResourceQueryable
+      type: Class
+    - uid: Crews.PlanningCenter.Api.Models.ResourceRelationship
+      name: ResourceRelationship
+      type: Class
+    - uid: Crews.PlanningCenter.Api.Models.ResourceResponse`1
+      name: ResourceResponse<T>
+      type: Class
+    - uid: Crews.PlanningCenter.Api.Models.Version
+      name: Version
+      type: Class
+  - uid: Crews.PlanningCenter.Api.People
+    name: People
+    type: Namespace
+    items:
+    - uid: Crews.PlanningCenter.Api.People.V2018_08_01
+      name: V2018_08_01
+      type: Namespace
+      items:
+      - uid: Crews.PlanningCenter.Api.People.V2018_08_01.AgeCounts
+        name: AgeCounts
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2018_08_01.BirthdayPeople
+        name: BirthdayPeople
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2018_08_01.BirthdayPeopleResource
+        name: BirthdayPeopleResource
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2018_08_01.BirthdayPerson
+        name: BirthdayPerson
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2018_08_01.CampusCount
+        name: CampusCount
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2018_08_01.GenderCounts
+        name: GenderCounts
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2018_08_01.GenderIds
+        name: GenderIds
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2018_08_01.MembershipCount
+        name: MembershipCount
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2018_08_01.OrganizationStatistics
+        name: OrganizationStatistics
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2018_08_01.OrganizationStatisticsResource
+        name: OrganizationStatisticsResource
+        type: Class
+    - uid: Crews.PlanningCenter.Api.People.V2019_01_14
+      name: V2019_01_14
+      type: Namespace
+      items:
+      - uid: Crews.PlanningCenter.Api.People.V2019_01_14.AgeCounts
+        name: AgeCounts
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2019_01_14.BirthdayPeople
+        name: BirthdayPeople
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2019_01_14.BirthdayPeopleResource
+        name: BirthdayPeopleResource
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2019_01_14.BirthdayPerson
+        name: BirthdayPerson
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2019_01_14.CampusCount
+        name: CampusCount
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2019_01_14.GenderCounts
+        name: GenderCounts
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2019_01_14.GenderIds
+        name: GenderIds
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2019_01_14.MembershipCount
+        name: MembershipCount
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2019_01_14.OrganizationStatistics
+        name: OrganizationStatistics
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2019_01_14.OrganizationStatisticsResource
+        name: OrganizationStatisticsResource
+        type: Class
+    - uid: Crews.PlanningCenter.Api.People.V2019_10_10
+      name: V2019_10_10
+      type: Namespace
+      items:
+      - uid: Crews.PlanningCenter.Api.People.V2019_10_10.AgeCounts
+        name: AgeCounts
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2019_10_10.BirthdayPeople
+        name: BirthdayPeople
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2019_10_10.BirthdayPeopleResource
+        name: BirthdayPeopleResource
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2019_10_10.BirthdayPerson
+        name: BirthdayPerson
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2019_10_10.CampusCount
+        name: CampusCount
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2019_10_10.GenderCounts
+        name: GenderCounts
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2019_10_10.GenderIds
+        name: GenderIds
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2019_10_10.MembershipCount
+        name: MembershipCount
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2019_10_10.OrganizationStatistics
+        name: OrganizationStatistics
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2019_10_10.OrganizationStatisticsResource
+        name: OrganizationStatisticsResource
+        type: Class
+    - uid: Crews.PlanningCenter.Api.People.V2020_04_06
+      name: V2020_04_06
+      type: Namespace
+      items:
+      - uid: Crews.PlanningCenter.Api.People.V2020_04_06.AgeCounts
+        name: AgeCounts
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2020_04_06.BirthdayPeople
+        name: BirthdayPeople
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2020_04_06.BirthdayPeopleResource
+        name: BirthdayPeopleResource
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2020_04_06.BirthdayPerson
+        name: BirthdayPerson
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2020_04_06.CampusCount
+        name: CampusCount
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2020_04_06.GenderCounts
+        name: GenderCounts
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2020_04_06.GenderIds
+        name: GenderIds
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2020_04_06.MembershipCount
+        name: MembershipCount
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2020_04_06.OrganizationStatistics
+        name: OrganizationStatistics
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2020_04_06.OrganizationStatisticsResource
+        name: OrganizationStatisticsResource
+        type: Class
+    - uid: Crews.PlanningCenter.Api.People.V2020_07_22
+      name: V2020_07_22
+      type: Namespace
+      items:
+      - uid: Crews.PlanningCenter.Api.People.V2020_07_22.AgeCounts
+        name: AgeCounts
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2020_07_22.BirthdayPeople
+        name: BirthdayPeople
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2020_07_22.BirthdayPeopleResource
+        name: BirthdayPeopleResource
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2020_07_22.BirthdayPerson
+        name: BirthdayPerson
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2020_07_22.CampusCount
+        name: CampusCount
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2020_07_22.GenderCounts
+        name: GenderCounts
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2020_07_22.GenderIds
+        name: GenderIds
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2020_07_22.MembershipCount
+        name: MembershipCount
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2020_07_22.OrganizationStatistics
+        name: OrganizationStatistics
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2020_07_22.OrganizationStatisticsResource
+        name: OrganizationStatisticsResource
+        type: Class
+    - uid: Crews.PlanningCenter.Api.People.V2021_08_17
+      name: V2021_08_17
+      type: Namespace
+      items:
+      - uid: Crews.PlanningCenter.Api.People.V2021_08_17.AgeCounts
+        name: AgeCounts
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2021_08_17.BirthdayPeople
+        name: BirthdayPeople
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2021_08_17.BirthdayPeopleResource
+        name: BirthdayPeopleResource
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2021_08_17.BirthdayPerson
+        name: BirthdayPerson
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2021_08_17.CampusCount
+        name: CampusCount
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2021_08_17.GenderCounts
+        name: GenderCounts
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2021_08_17.GenderIds
+        name: GenderIds
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2021_08_17.MembershipCount
+        name: MembershipCount
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2021_08_17.OrganizationStatistics
+        name: OrganizationStatistics
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2021_08_17.OrganizationStatisticsResource
+        name: OrganizationStatisticsResource
+        type: Class
+    - uid: Crews.PlanningCenter.Api.People.V2022_01_05
+      name: V2022_01_05
+      type: Namespace
+      items:
+      - uid: Crews.PlanningCenter.Api.People.V2022_01_05.AgeCounts
+        name: AgeCounts
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2022_01_05.BirthdayPeople
+        name: BirthdayPeople
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2022_01_05.BirthdayPeopleResource
+        name: BirthdayPeopleResource
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2022_01_05.BirthdayPerson
+        name: BirthdayPerson
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2022_01_05.CampusCount
+        name: CampusCount
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2022_01_05.GenderCounts
+        name: GenderCounts
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2022_01_05.GenderIds
+        name: GenderIds
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2022_01_05.MembershipCount
+        name: MembershipCount
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2022_01_05.OrganizationStatistics
+        name: OrganizationStatistics
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2022_01_05.OrganizationStatisticsResource
+        name: OrganizationStatisticsResource
+        type: Class
+    - uid: Crews.PlanningCenter.Api.People.V2022_01_28
+      name: V2022_01_28
+      type: Namespace
+      items:
+      - uid: Crews.PlanningCenter.Api.People.V2022_01_28.AgeCounts
+        name: AgeCounts
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2022_01_28.BirthdayPeople
+        name: BirthdayPeople
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2022_01_28.BirthdayPeopleResource
+        name: BirthdayPeopleResource
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2022_01_28.BirthdayPerson
+        name: BirthdayPerson
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2022_01_28.CampusCount
+        name: CampusCount
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2022_01_28.GenderCounts
+        name: GenderCounts
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2022_01_28.GenderIds
+        name: GenderIds
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2022_01_28.MembershipCount
+        name: MembershipCount
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2022_01_28.OrganizationStatistics
+        name: OrganizationStatistics
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2022_01_28.OrganizationStatisticsResource
+        name: OrganizationStatisticsResource
+        type: Class
+    - uid: Crews.PlanningCenter.Api.People.V2022_07_14
+      name: V2022_07_14
+      type: Namespace
+      items:
+      - uid: Crews.PlanningCenter.Api.People.V2022_07_14.AgeCounts
+        name: AgeCounts
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2022_07_14.BirthdayPeople
+        name: BirthdayPeople
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2022_07_14.BirthdayPeopleResource
+        name: BirthdayPeopleResource
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2022_07_14.BirthdayPerson
+        name: BirthdayPerson
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2022_07_14.CampusCount
+        name: CampusCount
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2022_07_14.GenderCounts
+        name: GenderCounts
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2022_07_14.GenderIds
+        name: GenderIds
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2022_07_14.MembershipCount
+        name: MembershipCount
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2022_07_14.OrganizationStatistics
+        name: OrganizationStatistics
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2022_07_14.OrganizationStatisticsResource
+        name: OrganizationStatisticsResource
+        type: Class
+    - uid: Crews.PlanningCenter.Api.People.V2023_02_15
+      name: V2023_02_15
+      type: Namespace
+      items:
+      - uid: Crews.PlanningCenter.Api.People.V2023_02_15.AgeCounts
+        name: AgeCounts
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2023_02_15.BirthdayPeople
+        name: BirthdayPeople
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2023_02_15.BirthdayPeopleResource
+        name: BirthdayPeopleResource
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2023_02_15.BirthdayPerson
+        name: BirthdayPerson
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2023_02_15.CampusCount
+        name: CampusCount
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2023_02_15.GenderCounts
+        name: GenderCounts
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2023_02_15.GenderIds
+        name: GenderIds
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2023_02_15.MembershipCount
+        name: MembershipCount
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2023_02_15.OrganizationStatistics
+        name: OrganizationStatistics
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2023_02_15.OrganizationStatisticsResource
+        name: OrganizationStatisticsResource
+        type: Class
+    - uid: Crews.PlanningCenter.Api.People.V2023_03_21
+      name: V2023_03_21
+      type: Namespace
+      items:
+      - uid: Crews.PlanningCenter.Api.People.V2023_03_21.AgeCounts
+        name: AgeCounts
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2023_03_21.BirthdayPeople
+        name: BirthdayPeople
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2023_03_21.BirthdayPeopleResource
+        name: BirthdayPeopleResource
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2023_03_21.BirthdayPerson
+        name: BirthdayPerson
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2023_03_21.CampusCount
+        name: CampusCount
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2023_03_21.GenderCounts
+        name: GenderCounts
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2023_03_21.GenderIds
+        name: GenderIds
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2023_03_21.MembershipCount
+        name: MembershipCount
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2023_03_21.OrganizationStatistics
+        name: OrganizationStatistics
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2023_03_21.OrganizationStatisticsResource
+        name: OrganizationStatisticsResource
+        type: Class
+    - uid: Crews.PlanningCenter.Api.People.V2024_09_12
+      name: V2024_09_12
+      type: Namespace
+      items:
+      - uid: Crews.PlanningCenter.Api.People.V2024_09_12.AgeCounts
+        name: AgeCounts
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2024_09_12.BirthdayPeople
+        name: BirthdayPeople
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2024_09_12.BirthdayPeopleResource
+        name: BirthdayPeopleResource
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2024_09_12.BirthdayPerson
+        name: BirthdayPerson
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2024_09_12.CampusCount
+        name: CampusCount
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2024_09_12.GenderCounts
+        name: GenderCounts
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2024_09_12.GenderIds
+        name: GenderIds
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2024_09_12.MembershipCount
+        name: MembershipCount
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2024_09_12.OrganizationStatistics
+        name: OrganizationStatistics
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2024_09_12.OrganizationStatisticsResource
+        name: OrganizationStatisticsResource
+        type: Class
+    - uid: Crews.PlanningCenter.Api.People.V2025_03_20
+      name: V2025_03_20
+      type: Namespace
+      items:
+      - uid: Crews.PlanningCenter.Api.People.V2025_03_20.AgeCounts
+        name: AgeCounts
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2025_03_20.BirthdayPeople
+        name: BirthdayPeople
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2025_03_20.BirthdayPeopleResource
+        name: BirthdayPeopleResource
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2025_03_20.BirthdayPerson
+        name: BirthdayPerson
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2025_03_20.CampusCount
+        name: CampusCount
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2025_03_20.GenderCounts
+        name: GenderCounts
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2025_03_20.GenderIds
+        name: GenderIds
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2025_03_20.MembershipCount
+        name: MembershipCount
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2025_03_20.OrganizationStatistics
+        name: OrganizationStatistics
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2025_03_20.OrganizationStatisticsResource
+        name: OrganizationStatisticsResource
+        type: Class
+    - uid: Crews.PlanningCenter.Api.People.V2025_07_02
+      name: V2025_07_02
+      type: Namespace
+      items:
+      - uid: Crews.PlanningCenter.Api.People.V2025_07_02.AgeCounts
+        name: AgeCounts
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2025_07_02.BirthdayPeople
+        name: BirthdayPeople
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2025_07_02.BirthdayPeopleResource
+        name: BirthdayPeopleResource
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2025_07_02.BirthdayPerson
+        name: BirthdayPerson
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2025_07_02.CampusCount
+        name: CampusCount
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2025_07_02.GenderCounts
+        name: GenderCounts
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2025_07_02.GenderIds
+        name: GenderIds
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2025_07_02.MembershipCount
+        name: MembershipCount
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2025_07_02.OrganizationStatistics
+        name: OrganizationStatistics
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2025_07_02.OrganizationStatisticsResource
+        name: OrganizationStatisticsResource
+        type: Class
+    - uid: Crews.PlanningCenter.Api.People.V2025_07_17
+      name: V2025_07_17
+      type: Namespace
+      items:
+      - uid: Crews.PlanningCenter.Api.People.V2025_07_17.AgeCounts
+        name: AgeCounts
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2025_07_17.BirthdayPeople
+        name: BirthdayPeople
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2025_07_17.BirthdayPeopleResource
+        name: BirthdayPeopleResource
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2025_07_17.BirthdayPerson
+        name: BirthdayPerson
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2025_07_17.CampusCount
+        name: CampusCount
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2025_07_17.GenderCounts
+        name: GenderCounts
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2025_07_17.GenderIds
+        name: GenderIds
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2025_07_17.MembershipCount
+        name: MembershipCount
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2025_07_17.OrganizationStatistics
+        name: OrganizationStatistics
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2025_07_17.OrganizationStatisticsResource
+        name: OrganizationStatisticsResource
+        type: Class
+    - uid: Crews.PlanningCenter.Api.People.V2025_11_10
+      name: V2025_11_10
+      type: Namespace
+      items:
+      - uid: Crews.PlanningCenter.Api.People.V2025_11_10.AgeCounts
+        name: AgeCounts
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2025_11_10.BirthdayPeople
+        name: BirthdayPeople
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2025_11_10.BirthdayPeopleResource
+        name: BirthdayPeopleResource
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2025_11_10.BirthdayPerson
+        name: BirthdayPerson
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2025_11_10.CampusCount
+        name: CampusCount
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2025_11_10.GenderCounts
+        name: GenderCounts
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2025_11_10.GenderIds
+        name: GenderIds
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2025_11_10.MembershipCount
+        name: MembershipCount
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2025_11_10.OrganizationStatistics
+        name: OrganizationStatistics
+        type: Class
+      - uid: Crews.PlanningCenter.Api.People.V2025_11_10.OrganizationStatisticsResource
+        name: OrganizationStatisticsResource
+        type: Class
+  - uid: Crews.PlanningCenter.Api.Tests
+    name: Tests
+    type: Namespace
+    items:
+    - uid: Crews.PlanningCenter.Api.Tests.Dummies
+      name: Dummies
+      type: Namespace
+      items:
+      - uid: Crews.PlanningCenter.Api.Tests.Dummies.OAuth
+        name: OAuth
+        type: Namespace
+        items:
+        - uid: Crews.PlanningCenter.Api.Tests.Dummies.OAuth.SampleClaims
+          name: SampleClaims
+          type: Class
+        - uid: Crews.PlanningCenter.Api.Tests.Dummies.OAuth.SampleTokenResponses
+          name: SampleTokenResponses
+          type: Class
+      - uid: Crews.PlanningCenter.Api.Tests.Dummies.ClaimsPrincipalBuilder
+        name: ClaimsPrincipalBuilder
+        type: Class
+      - uid: Crews.PlanningCenter.Api.Tests.Dummies.TestModel
+        name: TestModel
+        type: Class
+      - uid: Crews.PlanningCenter.Api.Tests.Dummies.TestPaginatedResourceClient
+        name: TestPaginatedResourceClient
+        type: Class
+      - uid: Crews.PlanningCenter.Api.Tests.Dummies.TestResource
+        name: TestResource
+        type: Class
+      - uid: Crews.PlanningCenter.Api.Tests.Dummies.TestResourceClient
+        name: TestResourceClient
+        type: Class
+      - uid: Crews.PlanningCenter.Api.Tests.Dummies.TestResourceResponse
+        name: TestResourceResponse
+        type: Class
+    - uid: Crews.PlanningCenter.Api.Tests.Extensions
+      name: Extensions
+      type: Namespace
+      items:
+      - uid: Crews.PlanningCenter.Api.Tests.Extensions.HttpHeadersExtensionsTests
+        name: HttpHeadersExtensionsTests
+        type: Class
+    - uid: Crews.PlanningCenter.Api.Tests.Models
+      name: Models
+      type: Namespace
+      items:
+      - uid: Crews.PlanningCenter.Api.Tests.Models.JsonApiExceptionTests
+        name: JsonApiExceptionTests
+        type: Class
+      - uid: Crews.PlanningCenter.Api.Tests.Models.PaginatedResourceClientTests
+        name: PaginatedResourceClientTests
+        type: Class
+      - uid: Crews.PlanningCenter.Api.Tests.Models.PlanningCenterPersonalAccessTokenTests
+        name: PlanningCenterPersonalAccessTokenTests
+        type: Class
+      - uid: Crews.PlanningCenter.Api.Tests.Models.ResourceClientTests
+        name: ResourceClientTests
+        type: Class
+      - uid: Crews.PlanningCenter.Api.Tests.Models.ResourceResponseTests
+        name: ResourceResponseTests
+        type: Class
+memberLayout: SamePage

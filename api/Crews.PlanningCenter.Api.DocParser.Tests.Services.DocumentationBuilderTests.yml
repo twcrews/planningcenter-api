@@ -1,0 +1,1051 @@
+### YamlMime:ManagedReference
+items:
+- uid: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests
+  commentId: T:Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests
+  id: DocumentationBuilderTests
+  parent: Crews.PlanningCenter.Api.DocParser.Tests.Services
+  children:
+  - Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.#ctor
+  - Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildAllProductsAsync_BuildsAllProducts
+  - Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_HandlesCollectionOnlyResources
+  - Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_HandlesDeprecatedResources
+  - Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_MapsIncludableParameters
+  - Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_MapsOrderableParameters
+  - Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_MapsQueryableParameters
+  - Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_MapsResourceAttributes
+  - Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_MapsResourceRelationships
+  - Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_ProcessesAllResources
+  - Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_ProcessesAllVersions
+  - Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_RespectsConcurrentCallLimit
+  - Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_ReturnsProductWithMetadata
+  - Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.ConcurrentConnectionsConfiguration_LimitsParallelApiCalls
+  langs:
+  - csharp
+  - vb
+  name: DocumentationBuilderTests
+  nameWithType: DocumentationBuilderTests
+  fullName: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests
+  type: Class
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.DocParser.Tests/Services/DocumentationBuilderTests.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: DocumentationBuilderTests
+    path: Crews.PlanningCenter.Api.DocParser.Tests/Services/DocumentationBuilderTests.cs
+    startLine: 11
+  assemblies:
+  - Crews.PlanningCenter.Api.DocParser.Tests
+  namespace: Crews.PlanningCenter.Api.DocParser.Tests.Services
+  syntax:
+    content: public class DocumentationBuilderTests
+    content.vb: Public Class DocumentationBuilderTests
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.#ctor
+  commentId: M:Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.#ctor
+  id: '#ctor'
+  parent: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests
+  langs:
+  - csharp
+  - vb
+  name: DocumentationBuilderTests()
+  nameWithType: DocumentationBuilderTests.DocumentationBuilderTests()
+  fullName: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.DocumentationBuilderTests()
+  type: Constructor
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.DocParser.Tests/Services/DocumentationBuilderTests.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: .ctor
+    path: Crews.PlanningCenter.Api.DocParser.Tests/Services/DocumentationBuilderTests.cs
+    startLine: 17
+  assemblies:
+  - Crews.PlanningCenter.Api.DocParser.Tests
+  namespace: Crews.PlanningCenter.Api.DocParser.Tests.Services
+  syntax:
+    content: public DocumentationBuilderTests()
+    content.vb: Public Sub New()
+  overload: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.#ctor*
+  nameWithType.vb: DocumentationBuilderTests.New()
+  fullName.vb: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.New()
+  name.vb: New()
+- uid: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildAllProductsAsync_BuildsAllProducts
+  commentId: M:Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildAllProductsAsync_BuildsAllProducts
+  id: BuildAllProductsAsync_BuildsAllProducts
+  parent: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests
+  langs:
+  - csharp
+  - vb
+  name: BuildAllProductsAsync_BuildsAllProducts()
+  nameWithType: DocumentationBuilderTests.BuildAllProductsAsync_BuildsAllProducts()
+  fullName: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildAllProductsAsync_BuildsAllProducts()
+  type: Method
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.DocParser.Tests/Services/DocumentationBuilderTests.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: BuildAllProductsAsync_BuildsAllProducts
+    path: Crews.PlanningCenter.Api.DocParser.Tests/Services/DocumentationBuilderTests.cs
+    startLine: 25
+  assemblies:
+  - Crews.PlanningCenter.Api.DocParser.Tests
+  namespace: Crews.PlanningCenter.Api.DocParser.Tests.Services
+  syntax:
+    content: >-
+      [Fact(DisplayName = "BuildAllProductsAsync builds all products concurrently")]
+
+      public Task BuildAllProductsAsync_BuildsAllProducts()
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: >-
+      <Fact(DisplayName:="BuildAllProductsAsync builds all products concurrently")>
+
+      Public Function BuildAllProductsAsync_BuildsAllProducts() As Task
+  overload: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildAllProductsAsync_BuildsAllProducts*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+    namedArguments:
+    - name: DisplayName
+      type: System.String
+      value: BuildAllProductsAsync builds all products concurrently
+- uid: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_ReturnsProductWithMetadata
+  commentId: M:Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_ReturnsProductWithMetadata
+  id: BuildProductAsync_ReturnsProductWithMetadata
+  parent: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests
+  langs:
+  - csharp
+  - vb
+  name: BuildProductAsync_ReturnsProductWithMetadata()
+  nameWithType: DocumentationBuilderTests.BuildProductAsync_ReturnsProductWithMetadata()
+  fullName: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_ReturnsProductWithMetadata()
+  type: Method
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.DocParser.Tests/Services/DocumentationBuilderTests.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: BuildProductAsync_ReturnsProductWithMetadata
+    path: Crews.PlanningCenter.Api.DocParser.Tests/Services/DocumentationBuilderTests.cs
+    startLine: 50
+  assemblies:
+  - Crews.PlanningCenter.Api.DocParser.Tests
+  namespace: Crews.PlanningCenter.Api.DocParser.Tests.Services
+  syntax:
+    content: >-
+      [Fact(DisplayName = "BuildProductAsync returns product with correct metadata")]
+
+      public Task BuildProductAsync_ReturnsProductWithMetadata()
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: >-
+      <Fact(DisplayName:="BuildProductAsync returns product with correct metadata")>
+
+      Public Function BuildProductAsync_ReturnsProductWithMetadata() As Task
+  overload: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_ReturnsProductWithMetadata*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+    namedArguments:
+    - name: DisplayName
+      type: System.String
+      value: BuildProductAsync returns product with correct metadata
+- uid: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_ProcessesAllVersions
+  commentId: M:Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_ProcessesAllVersions
+  id: BuildProductAsync_ProcessesAllVersions
+  parent: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests
+  langs:
+  - csharp
+  - vb
+  name: BuildProductAsync_ProcessesAllVersions()
+  nameWithType: DocumentationBuilderTests.BuildProductAsync_ProcessesAllVersions()
+  fullName: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_ProcessesAllVersions()
+  type: Method
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.DocParser.Tests/Services/DocumentationBuilderTests.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: BuildProductAsync_ProcessesAllVersions
+    path: Crews.PlanningCenter.Api.DocParser.Tests/Services/DocumentationBuilderTests.cs
+    startLine: 70
+  assemblies:
+  - Crews.PlanningCenter.Api.DocParser.Tests
+  namespace: Crews.PlanningCenter.Api.DocParser.Tests.Services
+  syntax:
+    content: >-
+      [Fact(DisplayName = "BuildProductAsync processes all versions")]
+
+      public Task BuildProductAsync_ProcessesAllVersions()
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: >-
+      <Fact(DisplayName:="BuildProductAsync processes all versions")>
+
+      Public Function BuildProductAsync_ProcessesAllVersions() As Task
+  overload: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_ProcessesAllVersions*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+    namedArguments:
+    - name: DisplayName
+      type: System.String
+      value: BuildProductAsync processes all versions
+- uid: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_ProcessesAllResources
+  commentId: M:Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_ProcessesAllResources
+  id: BuildProductAsync_ProcessesAllResources
+  parent: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests
+  langs:
+  - csharp
+  - vb
+  name: BuildProductAsync_ProcessesAllResources()
+  nameWithType: DocumentationBuilderTests.BuildProductAsync_ProcessesAllResources()
+  fullName: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_ProcessesAllResources()
+  type: Method
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.DocParser.Tests/Services/DocumentationBuilderTests.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: BuildProductAsync_ProcessesAllResources
+    path: Crews.PlanningCenter.Api.DocParser.Tests/Services/DocumentationBuilderTests.cs
+    startLine: 104
+  assemblies:
+  - Crews.PlanningCenter.Api.DocParser.Tests
+  namespace: Crews.PlanningCenter.Api.DocParser.Tests.Services
+  syntax:
+    content: >-
+      [Fact(DisplayName = "BuildProductAsync processes all resources in a version")]
+
+      public Task BuildProductAsync_ProcessesAllResources()
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: >-
+      <Fact(DisplayName:="BuildProductAsync processes all resources in a version")>
+
+      Public Function BuildProductAsync_ProcessesAllResources() As Task
+  overload: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_ProcessesAllResources*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+    namedArguments:
+    - name: DisplayName
+      type: System.String
+      value: BuildProductAsync processes all resources in a version
+- uid: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_MapsResourceAttributes
+  commentId: M:Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_MapsResourceAttributes
+  id: BuildProductAsync_MapsResourceAttributes
+  parent: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests
+  langs:
+  - csharp
+  - vb
+  name: BuildProductAsync_MapsResourceAttributes()
+  nameWithType: DocumentationBuilderTests.BuildProductAsync_MapsResourceAttributes()
+  fullName: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_MapsResourceAttributes()
+  type: Method
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.DocParser.Tests/Services/DocumentationBuilderTests.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: BuildProductAsync_MapsResourceAttributes
+    path: Crews.PlanningCenter.Api.DocParser.Tests/Services/DocumentationBuilderTests.cs
+    startLine: 153
+  assemblies:
+  - Crews.PlanningCenter.Api.DocParser.Tests
+  namespace: Crews.PlanningCenter.Api.DocParser.Tests.Services
+  syntax:
+    content: >-
+      [Fact(DisplayName = "BuildProductAsync maps resource attributes correctly")]
+
+      public Task BuildProductAsync_MapsResourceAttributes()
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: >-
+      <Fact(DisplayName:="BuildProductAsync maps resource attributes correctly")>
+
+      Public Function BuildProductAsync_MapsResourceAttributes() As Task
+  overload: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_MapsResourceAttributes*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+    namedArguments:
+    - name: DisplayName
+      type: System.String
+      value: BuildProductAsync maps resource attributes correctly
+- uid: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_MapsResourceRelationships
+  commentId: M:Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_MapsResourceRelationships
+  id: BuildProductAsync_MapsResourceRelationships
+  parent: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests
+  langs:
+  - csharp
+  - vb
+  name: BuildProductAsync_MapsResourceRelationships()
+  nameWithType: DocumentationBuilderTests.BuildProductAsync_MapsResourceRelationships()
+  fullName: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_MapsResourceRelationships()
+  type: Method
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.DocParser.Tests/Services/DocumentationBuilderTests.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: BuildProductAsync_MapsResourceRelationships
+    path: Crews.PlanningCenter.Api.DocParser.Tests/Services/DocumentationBuilderTests.cs
+    startLine: 193
+  assemblies:
+  - Crews.PlanningCenter.Api.DocParser.Tests
+  namespace: Crews.PlanningCenter.Api.DocParser.Tests.Services
+  syntax:
+    content: >-
+      [Fact(DisplayName = "BuildProductAsync maps resource relationships correctly")]
+
+      public Task BuildProductAsync_MapsResourceRelationships()
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: >-
+      <Fact(DisplayName:="BuildProductAsync maps resource relationships correctly")>
+
+      Public Function BuildProductAsync_MapsResourceRelationships() As Task
+  overload: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_MapsResourceRelationships*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+    namedArguments:
+    - name: DisplayName
+      type: System.String
+      value: BuildProductAsync maps resource relationships correctly
+- uid: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_MapsIncludableParameters
+  commentId: M:Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_MapsIncludableParameters
+  id: BuildProductAsync_MapsIncludableParameters
+  parent: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests
+  langs:
+  - csharp
+  - vb
+  name: BuildProductAsync_MapsIncludableParameters()
+  nameWithType: DocumentationBuilderTests.BuildProductAsync_MapsIncludableParameters()
+  fullName: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_MapsIncludableParameters()
+  type: Method
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.DocParser.Tests/Services/DocumentationBuilderTests.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: BuildProductAsync_MapsIncludableParameters
+    path: Crews.PlanningCenter.Api.DocParser.Tests/Services/DocumentationBuilderTests.cs
+    startLine: 230
+  assemblies:
+  - Crews.PlanningCenter.Api.DocParser.Tests
+  namespace: Crews.PlanningCenter.Api.DocParser.Tests.Services
+  syntax:
+    content: >-
+      [Fact(DisplayName = "BuildProductAsync maps includable parameters correctly")]
+
+      public Task BuildProductAsync_MapsIncludableParameters()
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: >-
+      <Fact(DisplayName:="BuildProductAsync maps includable parameters correctly")>
+
+      Public Function BuildProductAsync_MapsIncludableParameters() As Task
+  overload: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_MapsIncludableParameters*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+    namedArguments:
+    - name: DisplayName
+      type: System.String
+      value: BuildProductAsync maps includable parameters correctly
+- uid: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_MapsOrderableParameters
+  commentId: M:Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_MapsOrderableParameters
+  id: BuildProductAsync_MapsOrderableParameters
+  parent: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests
+  langs:
+  - csharp
+  - vb
+  name: BuildProductAsync_MapsOrderableParameters()
+  nameWithType: DocumentationBuilderTests.BuildProductAsync_MapsOrderableParameters()
+  fullName: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_MapsOrderableParameters()
+  type: Method
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.DocParser.Tests/Services/DocumentationBuilderTests.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: BuildProductAsync_MapsOrderableParameters
+    path: Crews.PlanningCenter.Api.DocParser.Tests/Services/DocumentationBuilderTests.cs
+    startLine: 267
+  assemblies:
+  - Crews.PlanningCenter.Api.DocParser.Tests
+  namespace: Crews.PlanningCenter.Api.DocParser.Tests.Services
+  syntax:
+    content: >-
+      [Fact(DisplayName = "BuildProductAsync maps orderable parameters correctly")]
+
+      public Task BuildProductAsync_MapsOrderableParameters()
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: >-
+      <Fact(DisplayName:="BuildProductAsync maps orderable parameters correctly")>
+
+      Public Function BuildProductAsync_MapsOrderableParameters() As Task
+  overload: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_MapsOrderableParameters*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+    namedArguments:
+    - name: DisplayName
+      type: System.String
+      value: BuildProductAsync maps orderable parameters correctly
+- uid: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_MapsQueryableParameters
+  commentId: M:Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_MapsQueryableParameters
+  id: BuildProductAsync_MapsQueryableParameters
+  parent: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests
+  langs:
+  - csharp
+  - vb
+  name: BuildProductAsync_MapsQueryableParameters()
+  nameWithType: DocumentationBuilderTests.BuildProductAsync_MapsQueryableParameters()
+  fullName: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_MapsQueryableParameters()
+  type: Method
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.DocParser.Tests/Services/DocumentationBuilderTests.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: BuildProductAsync_MapsQueryableParameters
+    path: Crews.PlanningCenter.Api.DocParser.Tests/Services/DocumentationBuilderTests.cs
+    startLine: 304
+  assemblies:
+  - Crews.PlanningCenter.Api.DocParser.Tests
+  namespace: Crews.PlanningCenter.Api.DocParser.Tests.Services
+  syntax:
+    content: >-
+      [Fact(DisplayName = "BuildProductAsync maps queryable parameters correctly")]
+
+      public Task BuildProductAsync_MapsQueryableParameters()
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: >-
+      <Fact(DisplayName:="BuildProductAsync maps queryable parameters correctly")>
+
+      Public Function BuildProductAsync_MapsQueryableParameters() As Task
+  overload: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_MapsQueryableParameters*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+    namedArguments:
+    - name: DisplayName
+      type: System.String
+      value: BuildProductAsync maps queryable parameters correctly
+- uid: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_HandlesDeprecatedResources
+  commentId: M:Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_HandlesDeprecatedResources
+  id: BuildProductAsync_HandlesDeprecatedResources
+  parent: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests
+  langs:
+  - csharp
+  - vb
+  name: BuildProductAsync_HandlesDeprecatedResources()
+  nameWithType: DocumentationBuilderTests.BuildProductAsync_HandlesDeprecatedResources()
+  fullName: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_HandlesDeprecatedResources()
+  type: Method
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.DocParser.Tests/Services/DocumentationBuilderTests.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: BuildProductAsync_HandlesDeprecatedResources
+    path: Crews.PlanningCenter.Api.DocParser.Tests/Services/DocumentationBuilderTests.cs
+    startLine: 338
+  assemblies:
+  - Crews.PlanningCenter.Api.DocParser.Tests
+  namespace: Crews.PlanningCenter.Api.DocParser.Tests.Services
+  syntax:
+    content: >-
+      [Fact(DisplayName = "BuildProductAsync handles resources with deprecated flag")]
+
+      public Task BuildProductAsync_HandlesDeprecatedResources()
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: >-
+      <Fact(DisplayName:="BuildProductAsync handles resources with deprecated flag")>
+
+      Public Function BuildProductAsync_HandlesDeprecatedResources() As Task
+  overload: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_HandlesDeprecatedResources*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+    namedArguments:
+    - name: DisplayName
+      type: System.String
+      value: BuildProductAsync handles resources with deprecated flag
+- uid: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_HandlesCollectionOnlyResources
+  commentId: M:Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_HandlesCollectionOnlyResources
+  id: BuildProductAsync_HandlesCollectionOnlyResources
+  parent: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests
+  langs:
+  - csharp
+  - vb
+  name: BuildProductAsync_HandlesCollectionOnlyResources()
+  nameWithType: DocumentationBuilderTests.BuildProductAsync_HandlesCollectionOnlyResources()
+  fullName: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_HandlesCollectionOnlyResources()
+  type: Method
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.DocParser.Tests/Services/DocumentationBuilderTests.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: BuildProductAsync_HandlesCollectionOnlyResources
+    path: Crews.PlanningCenter.Api.DocParser.Tests/Services/DocumentationBuilderTests.cs
+    startLine: 368
+  assemblies:
+  - Crews.PlanningCenter.Api.DocParser.Tests
+  namespace: Crews.PlanningCenter.Api.DocParser.Tests.Services
+  syntax:
+    content: >-
+      [Fact(DisplayName = "BuildProductAsync handles resources with collection only flag")]
+
+      public Task BuildProductAsync_HandlesCollectionOnlyResources()
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: >-
+      <Fact(DisplayName:="BuildProductAsync handles resources with collection only flag")>
+
+      Public Function BuildProductAsync_HandlesCollectionOnlyResources() As Task
+  overload: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_HandlesCollectionOnlyResources*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+    namedArguments:
+    - name: DisplayName
+      type: System.String
+      value: BuildProductAsync handles resources with collection only flag
+- uid: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_RespectsConcurrentCallLimit
+  commentId: M:Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_RespectsConcurrentCallLimit
+  id: BuildProductAsync_RespectsConcurrentCallLimit
+  parent: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests
+  langs:
+  - csharp
+  - vb
+  name: BuildProductAsync_RespectsConcurrentCallLimit()
+  nameWithType: DocumentationBuilderTests.BuildProductAsync_RespectsConcurrentCallLimit()
+  fullName: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_RespectsConcurrentCallLimit()
+  type: Method
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.DocParser.Tests/Services/DocumentationBuilderTests.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: BuildProductAsync_RespectsConcurrentCallLimit
+    path: Crews.PlanningCenter.Api.DocParser.Tests/Services/DocumentationBuilderTests.cs
+    startLine: 398
+  assemblies:
+  - Crews.PlanningCenter.Api.DocParser.Tests
+  namespace: Crews.PlanningCenter.Api.DocParser.Tests.Services
+  syntax:
+    content: >-
+      [Fact(DisplayName = "BuildProductAsync respects concurrent call limit")]
+
+      public Task BuildProductAsync_RespectsConcurrentCallLimit()
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: >-
+      <Fact(DisplayName:="BuildProductAsync respects concurrent call limit")>
+
+      Public Function BuildProductAsync_RespectsConcurrentCallLimit() As Task
+  overload: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_RespectsConcurrentCallLimit*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+    namedArguments:
+    - name: DisplayName
+      type: System.String
+      value: BuildProductAsync respects concurrent call limit
+- uid: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.ConcurrentConnectionsConfiguration_LimitsParallelApiCalls
+  commentId: M:Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.ConcurrentConnectionsConfiguration_LimitsParallelApiCalls
+  id: ConcurrentConnectionsConfiguration_LimitsParallelApiCalls
+  parent: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests
+  langs:
+  - csharp
+  - vb
+  name: ConcurrentConnectionsConfiguration_LimitsParallelApiCalls()
+  nameWithType: DocumentationBuilderTests.ConcurrentConnectionsConfiguration_LimitsParallelApiCalls()
+  fullName: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.ConcurrentConnectionsConfiguration_LimitsParallelApiCalls()
+  type: Method
+  source:
+    remote:
+      path: Crews.PlanningCenter.Api.DocParser.Tests/Services/DocumentationBuilderTests.cs
+      branch: dev
+      repo: https://github.com/twcrews/planningcenter-api.git
+    id: ConcurrentConnectionsConfiguration_LimitsParallelApiCalls
+    path: Crews.PlanningCenter.Api.DocParser.Tests/Services/DocumentationBuilderTests.cs
+    startLine: 433
+  assemblies:
+  - Crews.PlanningCenter.Api.DocParser.Tests
+  namespace: Crews.PlanningCenter.Api.DocParser.Tests.Services
+  syntax:
+    content: >-
+      [Fact(DisplayName = "ConcurrentConnections configuration limits parallel API calls")]
+
+      public Task ConcurrentConnectionsConfiguration_LimitsParallelApiCalls()
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: >-
+      <Fact(DisplayName:="ConcurrentConnections configuration limits parallel API calls")>
+
+      Public Function ConcurrentConnectionsConfiguration_LimitsParallelApiCalls() As Task
+  overload: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.ConcurrentConnectionsConfiguration_LimitsParallelApiCalls*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+    namedArguments:
+    - name: DisplayName
+      type: System.String
+      value: ConcurrentConnections configuration limits parallel API calls
+references:
+- uid: Crews.PlanningCenter.Api.DocParser.Tests.Services
+  commentId: N:Crews.PlanningCenter.Api.DocParser.Tests.Services
+  href: Crews.html
+  name: Crews.PlanningCenter.Api.DocParser.Tests.Services
+  nameWithType: Crews.PlanningCenter.Api.DocParser.Tests.Services
+  fullName: Crews.PlanningCenter.Api.DocParser.Tests.Services
+  spec.csharp:
+  - uid: Crews
+    name: Crews
+    href: Crews.html
+  - name: .
+  - uid: Crews.PlanningCenter
+    name: PlanningCenter
+    href: Crews.PlanningCenter.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api
+    name: Api
+    href: Crews.PlanningCenter.Api.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.DocParser
+    name: DocParser
+    href: Crews.PlanningCenter.Api.DocParser.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.DocParser.Tests
+    name: Tests
+    href: Crews.PlanningCenter.Api.DocParser.Tests.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.DocParser.Tests.Services
+    name: Services
+    href: Crews.PlanningCenter.Api.DocParser.Tests.Services.html
+  spec.vb:
+  - uid: Crews
+    name: Crews
+    href: Crews.html
+  - name: .
+  - uid: Crews.PlanningCenter
+    name: PlanningCenter
+    href: Crews.PlanningCenter.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api
+    name: Api
+    href: Crews.PlanningCenter.Api.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.DocParser
+    name: DocParser
+    href: Crews.PlanningCenter.Api.DocParser.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.DocParser.Tests
+    name: Tests
+    href: Crews.PlanningCenter.Api.DocParser.Tests.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.DocParser.Tests.Services
+    name: Services
+    href: Crews.PlanningCenter.Api.DocParser.Tests.Services.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.#ctor*
+  commentId: Overload:Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.#ctor
+  href: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.html#Crews_PlanningCenter_Api_DocParser_Tests_Services_DocumentationBuilderTests__ctor
+  name: DocumentationBuilderTests
+  nameWithType: DocumentationBuilderTests.DocumentationBuilderTests
+  fullName: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.DocumentationBuilderTests
+  nameWithType.vb: DocumentationBuilderTests.New
+  fullName.vb: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.New
+  name.vb: New
+- uid: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildAllProductsAsync_BuildsAllProducts*
+  commentId: Overload:Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildAllProductsAsync_BuildsAllProducts
+  href: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.html#Crews_PlanningCenter_Api_DocParser_Tests_Services_DocumentationBuilderTests_BuildAllProductsAsync_BuildsAllProducts
+  name: BuildAllProductsAsync_BuildsAllProducts
+  nameWithType: DocumentationBuilderTests.BuildAllProductsAsync_BuildsAllProducts
+  fullName: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildAllProductsAsync_BuildsAllProducts
+- uid: System.Threading.Tasks.Task
+  commentId: T:System.Threading.Tasks.Task
+  parent: System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task
+  name: Task
+  nameWithType: Task
+  fullName: System.Threading.Tasks.Task
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+- uid: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_ReturnsProductWithMetadata*
+  commentId: Overload:Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_ReturnsProductWithMetadata
+  href: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.html#Crews_PlanningCenter_Api_DocParser_Tests_Services_DocumentationBuilderTests_BuildProductAsync_ReturnsProductWithMetadata
+  name: BuildProductAsync_ReturnsProductWithMetadata
+  nameWithType: DocumentationBuilderTests.BuildProductAsync_ReturnsProductWithMetadata
+  fullName: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_ReturnsProductWithMetadata
+- uid: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_ProcessesAllVersions*
+  commentId: Overload:Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_ProcessesAllVersions
+  href: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.html#Crews_PlanningCenter_Api_DocParser_Tests_Services_DocumentationBuilderTests_BuildProductAsync_ProcessesAllVersions
+  name: BuildProductAsync_ProcessesAllVersions
+  nameWithType: DocumentationBuilderTests.BuildProductAsync_ProcessesAllVersions
+  fullName: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_ProcessesAllVersions
+- uid: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_ProcessesAllResources*
+  commentId: Overload:Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_ProcessesAllResources
+  href: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.html#Crews_PlanningCenter_Api_DocParser_Tests_Services_DocumentationBuilderTests_BuildProductAsync_ProcessesAllResources
+  name: BuildProductAsync_ProcessesAllResources
+  nameWithType: DocumentationBuilderTests.BuildProductAsync_ProcessesAllResources
+  fullName: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_ProcessesAllResources
+- uid: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_MapsResourceAttributes*
+  commentId: Overload:Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_MapsResourceAttributes
+  href: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.html#Crews_PlanningCenter_Api_DocParser_Tests_Services_DocumentationBuilderTests_BuildProductAsync_MapsResourceAttributes
+  name: BuildProductAsync_MapsResourceAttributes
+  nameWithType: DocumentationBuilderTests.BuildProductAsync_MapsResourceAttributes
+  fullName: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_MapsResourceAttributes
+- uid: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_MapsResourceRelationships*
+  commentId: Overload:Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_MapsResourceRelationships
+  href: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.html#Crews_PlanningCenter_Api_DocParser_Tests_Services_DocumentationBuilderTests_BuildProductAsync_MapsResourceRelationships
+  name: BuildProductAsync_MapsResourceRelationships
+  nameWithType: DocumentationBuilderTests.BuildProductAsync_MapsResourceRelationships
+  fullName: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_MapsResourceRelationships
+- uid: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_MapsIncludableParameters*
+  commentId: Overload:Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_MapsIncludableParameters
+  href: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.html#Crews_PlanningCenter_Api_DocParser_Tests_Services_DocumentationBuilderTests_BuildProductAsync_MapsIncludableParameters
+  name: BuildProductAsync_MapsIncludableParameters
+  nameWithType: DocumentationBuilderTests.BuildProductAsync_MapsIncludableParameters
+  fullName: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_MapsIncludableParameters
+- uid: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_MapsOrderableParameters*
+  commentId: Overload:Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_MapsOrderableParameters
+  href: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.html#Crews_PlanningCenter_Api_DocParser_Tests_Services_DocumentationBuilderTests_BuildProductAsync_MapsOrderableParameters
+  name: BuildProductAsync_MapsOrderableParameters
+  nameWithType: DocumentationBuilderTests.BuildProductAsync_MapsOrderableParameters
+  fullName: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_MapsOrderableParameters
+- uid: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_MapsQueryableParameters*
+  commentId: Overload:Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_MapsQueryableParameters
+  href: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.html#Crews_PlanningCenter_Api_DocParser_Tests_Services_DocumentationBuilderTests_BuildProductAsync_MapsQueryableParameters
+  name: BuildProductAsync_MapsQueryableParameters
+  nameWithType: DocumentationBuilderTests.BuildProductAsync_MapsQueryableParameters
+  fullName: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_MapsQueryableParameters
+- uid: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_HandlesDeprecatedResources*
+  commentId: Overload:Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_HandlesDeprecatedResources
+  href: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.html#Crews_PlanningCenter_Api_DocParser_Tests_Services_DocumentationBuilderTests_BuildProductAsync_HandlesDeprecatedResources
+  name: BuildProductAsync_HandlesDeprecatedResources
+  nameWithType: DocumentationBuilderTests.BuildProductAsync_HandlesDeprecatedResources
+  fullName: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_HandlesDeprecatedResources
+- uid: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_HandlesCollectionOnlyResources*
+  commentId: Overload:Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_HandlesCollectionOnlyResources
+  href: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.html#Crews_PlanningCenter_Api_DocParser_Tests_Services_DocumentationBuilderTests_BuildProductAsync_HandlesCollectionOnlyResources
+  name: BuildProductAsync_HandlesCollectionOnlyResources
+  nameWithType: DocumentationBuilderTests.BuildProductAsync_HandlesCollectionOnlyResources
+  fullName: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_HandlesCollectionOnlyResources
+- uid: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_RespectsConcurrentCallLimit*
+  commentId: Overload:Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_RespectsConcurrentCallLimit
+  href: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.html#Crews_PlanningCenter_Api_DocParser_Tests_Services_DocumentationBuilderTests_BuildProductAsync_RespectsConcurrentCallLimit
+  name: BuildProductAsync_RespectsConcurrentCallLimit
+  nameWithType: DocumentationBuilderTests.BuildProductAsync_RespectsConcurrentCallLimit
+  fullName: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.BuildProductAsync_RespectsConcurrentCallLimit
+- uid: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.ConcurrentConnectionsConfiguration_LimitsParallelApiCalls*
+  commentId: Overload:Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.ConcurrentConnectionsConfiguration_LimitsParallelApiCalls
+  href: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.html#Crews_PlanningCenter_Api_DocParser_Tests_Services_DocumentationBuilderTests_ConcurrentConnectionsConfiguration_LimitsParallelApiCalls
+  name: ConcurrentConnectionsConfiguration_LimitsParallelApiCalls
+  nameWithType: DocumentationBuilderTests.ConcurrentConnectionsConfiguration_LimitsParallelApiCalls
+  fullName: Crews.PlanningCenter.Api.DocParser.Tests.Services.DocumentationBuilderTests.ConcurrentConnectionsConfiguration_LimitsParallelApiCalls

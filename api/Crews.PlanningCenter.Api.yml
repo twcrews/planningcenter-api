@@ -1,0 +1,140 @@
+### YamlMime:ManagedReference
+items:
+- uid: Crews.PlanningCenter.Api
+  id: Crews.PlanningCenter.Api
+  children:
+  - Crews.PlanningCenter.Api.Authentication
+  - Crews.PlanningCenter.Api.DocParser
+  - Crews.PlanningCenter.Api.Extensions
+  - Crews.PlanningCenter.Api.Generators
+  - Crews.PlanningCenter.Api.Models
+  - Crews.PlanningCenter.Api.People
+  - Crews.PlanningCenter.Api.Tests
+  langs:
+  - csharp
+  - vb
+  name: Crews.PlanningCenter.Api
+  type: Namespace
+references:
+- uid: Crews.PlanningCenter.Api.Authentication
+  commentId: N:Crews.PlanningCenter.Api.Authentication
+  href: Crews.html
+  name: Crews.PlanningCenter.Api.Authentication
+  nameWithType: Crews.PlanningCenter.Api.Authentication
+  fullName: Crews.PlanningCenter.Api.Authentication
+  spec.csharp:
+  - uid: Crews
+    name: Crews
+    href: Crews.html
+  - name: .
+  - uid: Crews.PlanningCenter
+    name: PlanningCenter
+    href: Crews.PlanningCenter.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api
+    name: Api
+    href: Crews.PlanningCenter.Api.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.Authentication
+    name: Authentication
+    href: Crews.PlanningCenter.Api.Authentication.html
+  spec.vb:
+  - uid: Crews
+    name: Crews
+    href: Crews.html
+  - name: .
+  - uid: Crews.PlanningCenter
+    name: PlanningCenter
+    href: Crews.PlanningCenter.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api
+    name: Api
+    href: Crews.PlanningCenter.Api.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.Authentication
+    name: Authentication
+    href: Crews.PlanningCenter.Api.Authentication.html
+- uid: Crews.PlanningCenter.Api.DocParser
+  isExternal: true
+- uid: Crews.PlanningCenter.Api.Extensions
+  commentId: N:Crews.PlanningCenter.Api.Extensions
+  href: Crews.html
+  name: Crews.PlanningCenter.Api.Extensions
+  nameWithType: Crews.PlanningCenter.Api.Extensions
+  fullName: Crews.PlanningCenter.Api.Extensions
+  spec.csharp:
+  - uid: Crews
+    name: Crews
+    href: Crews.html
+  - name: .
+  - uid: Crews.PlanningCenter
+    name: PlanningCenter
+    href: Crews.PlanningCenter.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api
+    name: Api
+    href: Crews.PlanningCenter.Api.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.Extensions
+    name: Extensions
+    href: Crews.PlanningCenter.Api.Extensions.html
+  spec.vb:
+  - uid: Crews
+    name: Crews
+    href: Crews.html
+  - name: .
+  - uid: Crews.PlanningCenter
+    name: PlanningCenter
+    href: Crews.PlanningCenter.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api
+    name: Api
+    href: Crews.PlanningCenter.Api.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.Extensions
+    name: Extensions
+    href: Crews.PlanningCenter.Api.Extensions.html
+- uid: Crews.PlanningCenter.Api.Generators
+  isExternal: true
+- uid: Crews.PlanningCenter.Api.Models
+  commentId: N:Crews.PlanningCenter.Api.Models
+  href: Crews.html
+  name: Crews.PlanningCenter.Api.Models
+  nameWithType: Crews.PlanningCenter.Api.Models
+  fullName: Crews.PlanningCenter.Api.Models
+  spec.csharp:
+  - uid: Crews
+    name: Crews
+    href: Crews.html
+  - name: .
+  - uid: Crews.PlanningCenter
+    name: PlanningCenter
+    href: Crews.PlanningCenter.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api
+    name: Api
+    href: Crews.PlanningCenter.Api.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.Models
+    name: Models
+    href: Crews.PlanningCenter.Api.Models.html
+  spec.vb:
+  - uid: Crews
+    name: Crews
+    href: Crews.html
+  - name: .
+  - uid: Crews.PlanningCenter
+    name: PlanningCenter
+    href: Crews.PlanningCenter.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api
+    name: Api
+    href: Crews.PlanningCenter.Api.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.Models
+    name: Models
+    href: Crews.PlanningCenter.Api.Models.html
+- uid: Crews.PlanningCenter.Api.People
+  isExternal: true
+- uid: Crews.PlanningCenter.Api.Tests
+  isExternal: true

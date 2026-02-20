@@ -1,0 +1,106 @@
+### YamlMime:ManagedReference
+items:
+- uid: Crews.PlanningCenter.Api.Generators
+  id: Generators
+  parent: Crews.PlanningCenter.Api
+  children:
+  - Crews.PlanningCenter.Api.Generators.Extensions
+  - Crews.PlanningCenter.Api.Generators.Tests
+  langs:
+  - csharp
+  - vb
+  name: Crews.PlanningCenter.Api.Generators
+  type: Namespace
+references:
+- uid: Crews.PlanningCenter.Api.Generators.Extensions
+  commentId: N:Crews.PlanningCenter.Api.Generators.Extensions
+  href: Crews.html
+  name: Crews.PlanningCenter.Api.Generators.Extensions
+  nameWithType: Crews.PlanningCenter.Api.Generators.Extensions
+  fullName: Crews.PlanningCenter.Api.Generators.Extensions
+  spec.csharp:
+  - uid: Crews
+    name: Crews
+    href: Crews.html
+  - name: .
+  - uid: Crews.PlanningCenter
+    name: PlanningCenter
+    href: Crews.PlanningCenter.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api
+    name: Api
+    href: Crews.PlanningCenter.Api.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.Generators
+    name: Generators
+    href: Crews.PlanningCenter.Api.Generators.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.Generators.Extensions
+    name: Extensions
+    href: Crews.PlanningCenter.Api.Generators.Extensions.html
+  spec.vb:
+  - uid: Crews
+    name: Crews
+    href: Crews.html
+  - name: .
+  - uid: Crews.PlanningCenter
+    name: PlanningCenter
+    href: Crews.PlanningCenter.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api
+    name: Api
+    href: Crews.PlanningCenter.Api.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.Generators
+    name: Generators
+    href: Crews.PlanningCenter.Api.Generators.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.Generators.Extensions
+    name: Extensions
+    href: Crews.PlanningCenter.Api.Generators.Extensions.html
+- uid: Crews.PlanningCenter.Api.Generators.Tests
+  commentId: N:Crews.PlanningCenter.Api.Generators.Tests
+  href: Crews.html
+  name: Crews.PlanningCenter.Api.Generators.Tests
+  nameWithType: Crews.PlanningCenter.Api.Generators.Tests
+  fullName: Crews.PlanningCenter.Api.Generators.Tests
+  spec.csharp:
+  - uid: Crews
+    name: Crews
+    href: Crews.html
+  - name: .
+  - uid: Crews.PlanningCenter
+    name: PlanningCenter
+    href: Crews.PlanningCenter.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api
+    name: Api
+    href: Crews.PlanningCenter.Api.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.Generators
+    name: Generators
+    href: Crews.PlanningCenter.Api.Generators.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.Generators.Tests
+    name: Tests
+    href: Crews.PlanningCenter.Api.Generators.Tests.html
+  spec.vb:
+  - uid: Crews
+    name: Crews
+    href: Crews.html
+  - name: .
+  - uid: Crews.PlanningCenter
+    name: PlanningCenter
+    href: Crews.PlanningCenter.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api
+    name: Api
+    href: Crews.PlanningCenter.Api.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.Generators
+    name: Generators
+    href: Crews.PlanningCenter.Api.Generators.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.Generators.Tests
+    name: Tests
+    href: Crews.PlanningCenter.Api.Generators.Tests.html

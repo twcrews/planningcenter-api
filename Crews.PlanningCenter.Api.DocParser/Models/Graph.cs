@@ -3,32 +3,32 @@ using System.Text.Json.Serialization;
 
 namespace Crews.PlanningCenter.Api.DocParser.Models;
 
-public class Graph
+public record Graph
 {
   [JsonPropertyName("title")]
-  public string? Title { get; set; }
+  public string? Title { get; init; }
 
   [JsonPropertyName("description")]
-  public string? Description { get; set; }
+  public string? Description { get; init; }
 }
 
-public class GraphDocument : JsonApiDocument
+public record GraphDocument : JsonApiDocument
 {
   [JsonPropertyName("data")]
-  public required new GraphResource Data { get; set; }
+  public required new GraphResource Data { get; init; }
 }
 
-public class GraphResource : JsonApiResource
+public record GraphResource : JsonApiResource
 {
   [JsonPropertyName("attributes")]
-  public required new Graph Attributes { get; set; }
+  public required new Graph Attributes { get; init; }
 
   [JsonPropertyName("relationships")]
-  public required new GraphRelationships Relationships { get; set; }
+  public required new GraphRelationships Relationships { get; init; }
 }
 
-public class GraphRelationships
+public record GraphRelationships
 {
   [JsonPropertyName("versions")]
-  public required VersionRelationship Versions { get; set; }
+  public required VersionRelationship Versions { get; init; }
 }

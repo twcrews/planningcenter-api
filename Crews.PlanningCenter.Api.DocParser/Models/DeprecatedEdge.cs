@@ -3,26 +3,26 @@ using System.Text.Json.Serialization;
 
 namespace Crews.PlanningCenter.Api.DocParser.Models;
 
-public class DeprecatedEdge
+public record DeprecatedEdge
 {
   [JsonPropertyName("name")]
-  public required string Name { get; set; }
+  public required string Name { get; init; }
 
    [JsonPropertyName("deprecated_in")]
-  public DateOnly DeprecatedIn { get; set; }
+  public DateOnly DeprecatedIn { get; init; }
 
   [JsonPropertyName("removed_in")]
-  public DateOnly RemovedIn { get; set; }
+  public DateOnly RemovedIn { get; init; }
 }
 
-public class DeprecatedEdgeResource : JsonApiResource
+public record DeprecatedEdgeResource : JsonApiResource
 {
   [JsonPropertyName("attributes")]
-  public required new DeprecatedEdge Attributes { get; set; }
+  public required new DeprecatedEdge Attributes { get; init; }
 }
 
-public class DeprecatedEdgeCollectionRelationship : JsonApiRelationship
+public record DeprecatedEdgeCollectionRelationship : JsonApiRelationship
 {
   [JsonPropertyName("data")]
-  public required new IEnumerable<DeprecatedEdgeResource> Data { get; set; }
+  public required new IEnumerable<DeprecatedEdgeResource> Data { get; init; }
 }

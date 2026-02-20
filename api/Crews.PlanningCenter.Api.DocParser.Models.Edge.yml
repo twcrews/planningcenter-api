@@ -30,10 +30,12 @@ items:
   - Crews.PlanningCenter.Api.DocParser
   namespace: Crews.PlanningCenter.Api.DocParser.Models
   syntax:
-    content: public class Edge
-    content.vb: Public Class Edge
+    content: 'public record Edge : IEquatable<Edge>'
+    content.vb: Public Class Edge Implements IEquatable(Of Edge)
   inheritance:
   - System.Object
+  implements:
+  - System.IEquatable{Crews.PlanningCenter.Api.DocParser.Models.Edge}
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -68,7 +70,7 @@ items:
     content: >-
       [JsonPropertyName("name")]
 
-      public required string Name { get; set; }
+      public required string Name { get; init; }
     parameters: []
     return:
       type: System.String
@@ -109,7 +111,7 @@ items:
     content: >-
       [JsonPropertyName("details")]
 
-      public string? Details { get; set; }
+      public string? Details { get; init; }
     parameters: []
     return:
       type: System.String
@@ -150,7 +152,7 @@ items:
     content: >-
       [JsonPropertyName("path")]
 
-      public required string Path { get; set; }
+      public required string Path { get; init; }
     parameters: []
     return:
       type: System.String
@@ -191,7 +193,7 @@ items:
     content: >-
       [JsonPropertyName("filters")]
 
-      public IEnumerable<string> Filters { get; set; }
+      public IEnumerable<string> Filters { get; init; }
     parameters: []
     return:
       type: System.Collections.Generic.IEnumerable{System.String}
@@ -232,7 +234,7 @@ items:
     content: >-
       [JsonPropertyName("scopes")]
 
-      public IEnumerable<Scope> Scopes { get; set; }
+      public IEnumerable<Scope> Scopes { get; init; }
     parameters: []
     return:
       type: System.Collections.Generic.IEnumerable{Crews.PlanningCenter.Api.DocParser.Models.Scope}
@@ -273,7 +275,7 @@ items:
     content: >-
       [JsonPropertyName("deprecated")]
 
-      public bool Deprecated { get; set; }
+      public bool Deprecated { get; init; }
     parameters: []
     return:
       type: System.Boolean
@@ -346,6 +348,39 @@ references:
   nameWithType.vb: Object
   fullName.vb: Object
   name.vb: Object
+- uid: System.IEquatable{Crews.PlanningCenter.Api.DocParser.Models.Edge}
+  commentId: T:System.IEquatable{Crews.PlanningCenter.Api.DocParser.Models.Edge}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<Edge>
+  nameWithType: IEquatable<Edge>
+  fullName: System.IEquatable<Crews.PlanningCenter.Api.DocParser.Models.Edge>
+  nameWithType.vb: IEquatable(Of Edge)
+  fullName.vb: System.IEquatable(Of Crews.PlanningCenter.Api.DocParser.Models.Edge)
+  name.vb: IEquatable(Of Edge)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: Crews.PlanningCenter.Api.DocParser.Models.Edge
+    name: Edge
+    href: Crews.PlanningCenter.Api.DocParser.Models.Edge.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Crews.PlanningCenter.Api.DocParser.Models.Edge
+    name: Edge
+    href: Crews.PlanningCenter.Api.DocParser.Models.Edge.html
+  - name: )
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -572,6 +607,34 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
 - uid: Crews.PlanningCenter.Api.DocParser.Models.Edge.Name*
   commentId: Overload:Crews.PlanningCenter.Api.DocParser.Models.Edge.Name
   href: Crews.PlanningCenter.Api.DocParser.Models.Edge.html#Crews_PlanningCenter_Api_DocParser_Models_Edge_Name

@@ -6,22 +6,22 @@ using Crews.Web.JsonApiClient;
 
 namespace Crews.PlanningCenter.Api.Tests.Dummies;
 
-public class TestModel
+public record TestModel
 {	
 	[JsonPropertyName("name")]
-	public string? Name { get; set; }
+	public string? Name { get; init; }
 
 	[JsonPropertyName("age")]
-	public int Age { get; set; }
+	public int Age { get; init; }
 }
 
 /// <summary>
 /// Test model for resource client testing.
 /// </summary>
-public class TestResource : JsonApiResource
+public record TestResource : JsonApiResource
 {
 	[JsonPropertyName("attributes")]
-	public new TestModel? Attributes { get; set; }
+	public new TestModel? Attributes { get; init; }
 }
 
 /// <summary>

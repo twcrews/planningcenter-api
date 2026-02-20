@@ -27,10 +27,12 @@ items:
   - Crews.PlanningCenter.Api.DocParser
   namespace: Crews.PlanningCenter.Api.DocParser.Models
   syntax:
-    content: public class DeprecatedEdge
-    content.vb: Public Class DeprecatedEdge
+    content: 'public record DeprecatedEdge : IEquatable<DeprecatedEdge>'
+    content.vb: Public Class DeprecatedEdge Implements IEquatable(Of DeprecatedEdge)
   inheritance:
   - System.Object
+  implements:
+  - System.IEquatable{Crews.PlanningCenter.Api.DocParser.Models.DeprecatedEdge}
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -65,7 +67,7 @@ items:
     content: >-
       [JsonPropertyName("name")]
 
-      public required string Name { get; set; }
+      public required string Name { get; init; }
     parameters: []
     return:
       type: System.String
@@ -106,7 +108,7 @@ items:
     content: >-
       [JsonPropertyName("deprecated_in")]
 
-      public DateOnly DeprecatedIn { get; set; }
+      public DateOnly DeprecatedIn { get; init; }
     parameters: []
     return:
       type: System.DateOnly
@@ -147,7 +149,7 @@ items:
     content: >-
       [JsonPropertyName("removed_in")]
 
-      public DateOnly RemovedIn { get; set; }
+      public DateOnly RemovedIn { get; init; }
     parameters: []
     return:
       type: System.DateOnly
@@ -220,6 +222,39 @@ references:
   nameWithType.vb: Object
   fullName.vb: Object
   name.vb: Object
+- uid: System.IEquatable{Crews.PlanningCenter.Api.DocParser.Models.DeprecatedEdge}
+  commentId: T:System.IEquatable{Crews.PlanningCenter.Api.DocParser.Models.DeprecatedEdge}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<DeprecatedEdge>
+  nameWithType: IEquatable<DeprecatedEdge>
+  fullName: System.IEquatable<Crews.PlanningCenter.Api.DocParser.Models.DeprecatedEdge>
+  nameWithType.vb: IEquatable(Of DeprecatedEdge)
+  fullName.vb: System.IEquatable(Of Crews.PlanningCenter.Api.DocParser.Models.DeprecatedEdge)
+  name.vb: IEquatable(Of DeprecatedEdge)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: Crews.PlanningCenter.Api.DocParser.Models.DeprecatedEdge
+    name: DeprecatedEdge
+    href: Crews.PlanningCenter.Api.DocParser.Models.DeprecatedEdge.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Crews.PlanningCenter.Api.DocParser.Models.DeprecatedEdge
+    name: DeprecatedEdge
+    href: Crews.PlanningCenter.Api.DocParser.Models.DeprecatedEdge.html
+  - name: )
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -446,6 +481,34 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
 - uid: Crews.PlanningCenter.Api.DocParser.Models.DeprecatedEdge.Name*
   commentId: Overload:Crews.PlanningCenter.Api.DocParser.Models.DeprecatedEdge.Name
   href: Crews.PlanningCenter.Api.DocParser.Models.DeprecatedEdge.html#Crews_PlanningCenter_Api_DocParser_Models_DeprecatedEdge_Name

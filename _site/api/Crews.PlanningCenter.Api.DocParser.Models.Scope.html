@@ -101,7 +101,7 @@ Class Scope  <a class="header-action link-secondary" title="View source" href="h
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Scope</code></pre>
+    <pre><code class="lang-csharp hljs">public record Scope : IEquatable&lt;Scope&gt;</code></pre>
   </div>
 
 
@@ -115,6 +115,12 @@ Class Scope  <a class="header-action link-secondary" title="View source" href="h
     </dd>
   </dl>
 
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="Crews.PlanningCenter.Api.DocParser.Models.Scope.html">Scope</a>&gt;</div>
+    </dd>
+  </dl>
 
 
   <dl class="typelist inheritedMembers">
@@ -164,7 +170,7 @@ Class Scope  <a class="header-action link-secondary" title="View source" href="h
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;name&quot;)]
-public required string Name { get; set; }</code></pre>
+public required string Name { get; init; }</code></pre>
   </div>
 
 
@@ -196,7 +202,7 @@ public required string Name { get; set; }</code></pre>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;scope_help&quot;)]
-public string? ScopeHelp { get; set; }</code></pre>
+public string? ScopeHelp { get; init; }</code></pre>
   </div>
 
 

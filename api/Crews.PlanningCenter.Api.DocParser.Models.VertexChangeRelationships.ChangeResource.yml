@@ -26,10 +26,12 @@ items:
   - Crews.PlanningCenter.Api.DocParser
   namespace: Crews.PlanningCenter.Api.DocParser.Models
   syntax:
-    content: public class VertexChangeRelationships.ChangeResource
-    content.vb: Public Class VertexChangeRelationships.ChangeResource
+    content: 'public record VertexChangeRelationships.ChangeResource : IEquatable<VertexChangeRelationships.ChangeResource>'
+    content.vb: Public Class VertexChangeRelationships.ChangeResource Implements IEquatable(Of VertexChangeRelationships.ChangeResource)
   inheritance:
   - System.Object
+  implements:
+  - System.IEquatable{Crews.PlanningCenter.Api.DocParser.Models.VertexChangeRelationships.ChangeResource}
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -64,7 +66,7 @@ items:
     content: >-
       [JsonPropertyName("id")]
 
-      public required string Id { get; set; }
+      public required string Id { get; init; }
     parameters: []
     return:
       type: System.String
@@ -105,7 +107,7 @@ items:
     content: >-
       [JsonPropertyName("attributes")]
 
-      public required VertexChangeRelationships.Change Attributes { get; set; }
+      public required VertexChangeRelationships.Change Attributes { get; init; }
     parameters: []
     return:
       type: Crews.PlanningCenter.Api.DocParser.Models.VertexChangeRelationships.Change
@@ -178,6 +180,47 @@ references:
   nameWithType.vb: Object
   fullName.vb: Object
   name.vb: Object
+- uid: System.IEquatable{Crews.PlanningCenter.Api.DocParser.Models.VertexChangeRelationships.ChangeResource}
+  commentId: T:System.IEquatable{Crews.PlanningCenter.Api.DocParser.Models.VertexChangeRelationships.ChangeResource}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<VertexChangeRelationships.ChangeResource>
+  nameWithType: IEquatable<VertexChangeRelationships.ChangeResource>
+  fullName: System.IEquatable<Crews.PlanningCenter.Api.DocParser.Models.VertexChangeRelationships.ChangeResource>
+  nameWithType.vb: IEquatable(Of VertexChangeRelationships.ChangeResource)
+  fullName.vb: System.IEquatable(Of Crews.PlanningCenter.Api.DocParser.Models.VertexChangeRelationships.ChangeResource)
+  name.vb: IEquatable(Of VertexChangeRelationships.ChangeResource)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: Crews.PlanningCenter.Api.DocParser.Models.VertexChangeRelationships
+    name: VertexChangeRelationships
+    href: Crews.PlanningCenter.Api.DocParser.Models.VertexChangeRelationships.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.DocParser.Models.VertexChangeRelationships.ChangeResource
+    name: ChangeResource
+    href: Crews.PlanningCenter.Api.DocParser.Models.VertexChangeRelationships.ChangeResource.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Crews.PlanningCenter.Api.DocParser.Models.VertexChangeRelationships
+    name: VertexChangeRelationships
+    href: Crews.PlanningCenter.Api.DocParser.Models.VertexChangeRelationships.html
+  - name: .
+  - uid: Crews.PlanningCenter.Api.DocParser.Models.VertexChangeRelationships.ChangeResource
+    name: ChangeResource
+    href: Crews.PlanningCenter.Api.DocParser.Models.VertexChangeRelationships.ChangeResource.html
+  - name: )
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -404,6 +447,34 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
 - uid: Crews.PlanningCenter.Api.DocParser.Models.VertexChangeRelationships.ChangeResource.Id*
   commentId: Overload:Crews.PlanningCenter.Api.DocParser.Models.VertexChangeRelationships.ChangeResource.Id
   href: Crews.PlanningCenter.Api.DocParser.Models.VertexChangeRelationships.ChangeResource.html#Crews_PlanningCenter_Api_DocParser_Models_VertexChangeRelationships_ChangeResource_Id

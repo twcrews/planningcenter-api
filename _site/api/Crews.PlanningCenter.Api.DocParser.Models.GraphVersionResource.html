@@ -101,7 +101,7 @@ Class GraphVersionResource  <a class="header-action link-secondary" title="View 
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class GraphVersionResource : JsonApiResource</code></pre>
+    <pre><code class="lang-csharp hljs">public record GraphVersionResource : JsonApiResource, IEquatable&lt;JsonApiResourceIdentifier&gt;, IEquatable&lt;JsonApiResource&gt;, IEquatable&lt;GraphVersionResource&gt;</code></pre>
   </div>
 
 
@@ -117,11 +117,43 @@ Class GraphVersionResource  <a class="header-action link-secondary" title="View 
     </dd>
   </dl>
 
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<span class="xref">JsonApiResourceIdentifier</span>&gt;</div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<span class="xref">JsonApiResource</span>&gt;</div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="Crews.PlanningCenter.Api.DocParser.Models.GraphVersionResource.html">GraphVersionResource</a>&gt;</div>
+    </dd>
+  </dl>
 
 
   <dl class="typelist inheritedMembers">
     <dt>Inherited Members</dt>
     <dd>
+    <div>
+      <span class="xref">JsonApiResource.ToString()</span>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.stringbuilder">JsonApiResource.PrintMembers(StringBuilder)</a>
+    </div>
+    <div>
+      <span class="xref">JsonApiResource.GetHashCode()</span>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">JsonApiResource.Equals(object)</a>
+    </div>
+    <div>
+      <span class="xref">JsonApiResource.Equals(JsonApiResourceIdentifier)</span>
+    </div>
+    <div>
+      <span class="xref">JsonApiResource.Equals(JsonApiResource)</span>
+    </div>
+    <div>
+      <span class="xref">JsonApiResource.&lt;Clone&gt;$()</span>
+    </div>
+    <div>
+      <span class="xref">JsonApiResource.EqualityContract</span>
+    </div>
     <div>
       <span class="xref">JsonApiResource.Links</span>
     </div>
@@ -138,13 +170,7 @@ Class GraphVersionResource  <a class="header-action link-secondary" title="View 
       <span class="xref">JsonApiResourceIdentifier.Type</span>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
-    </div>
-    <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
@@ -154,9 +180,6 @@ Class GraphVersionResource  <a class="header-action link-secondary" title="View 
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
     </div>
   </dd></dl>
 
@@ -181,7 +204,7 @@ Class GraphVersionResource  <a class="header-action link-secondary" title="View 
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;attributes&quot;)]
-public required GraphVersion Attributes { get; set; }</code></pre>
+public required GraphVersion Attributes { get; init; }</code></pre>
   </div>
 
 
@@ -213,7 +236,7 @@ public required GraphVersion Attributes { get; set; }</code></pre>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;relationships&quot;)]
-public required GraphVersionRelationships Relationships { get; set; }</code></pre>
+public required GraphVersionRelationships Relationships { get; init; }</code></pre>
   </div>
 
 

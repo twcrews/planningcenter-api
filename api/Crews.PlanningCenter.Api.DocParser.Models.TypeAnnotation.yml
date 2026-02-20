@@ -26,10 +26,12 @@ items:
   - Crews.PlanningCenter.Api.DocParser
   namespace: Crews.PlanningCenter.Api.DocParser.Models
   syntax:
-    content: public class TypeAnnotation
-    content.vb: Public Class TypeAnnotation
+    content: 'public record TypeAnnotation : IEquatable<TypeAnnotation>'
+    content.vb: Public Class TypeAnnotation Implements IEquatable(Of TypeAnnotation)
   inheritance:
   - System.Object
+  implements:
+  - System.IEquatable{Crews.PlanningCenter.Api.DocParser.Models.TypeAnnotation}
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -64,7 +66,7 @@ items:
     content: >-
       [JsonPropertyName("name")]
 
-      public required string Name { get; set; }
+      public required string Name { get; init; }
     parameters: []
     return:
       type: System.String
@@ -105,7 +107,7 @@ items:
     content: >-
       [JsonPropertyName("example")]
 
-      public JsonElement? Example { get; set; }
+      public JsonElement? Example { get; init; }
     parameters: []
     return:
       type: System.Nullable{System.Text.Json.JsonElement}
@@ -178,6 +180,39 @@ references:
   nameWithType.vb: Object
   fullName.vb: Object
   name.vb: Object
+- uid: System.IEquatable{Crews.PlanningCenter.Api.DocParser.Models.TypeAnnotation}
+  commentId: T:System.IEquatable{Crews.PlanningCenter.Api.DocParser.Models.TypeAnnotation}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<TypeAnnotation>
+  nameWithType: IEquatable<TypeAnnotation>
+  fullName: System.IEquatable<Crews.PlanningCenter.Api.DocParser.Models.TypeAnnotation>
+  nameWithType.vb: IEquatable(Of TypeAnnotation)
+  fullName.vb: System.IEquatable(Of Crews.PlanningCenter.Api.DocParser.Models.TypeAnnotation)
+  name.vb: IEquatable(Of TypeAnnotation)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: Crews.PlanningCenter.Api.DocParser.Models.TypeAnnotation
+    name: TypeAnnotation
+    href: Crews.PlanningCenter.Api.DocParser.Models.TypeAnnotation.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Crews.PlanningCenter.Api.DocParser.Models.TypeAnnotation
+    name: TypeAnnotation
+    href: Crews.PlanningCenter.Api.DocParser.Models.TypeAnnotation.html
+  - name: )
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -404,6 +439,34 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
 - uid: Crews.PlanningCenter.Api.DocParser.Models.TypeAnnotation.Name*
   commentId: Overload:Crews.PlanningCenter.Api.DocParser.Models.TypeAnnotation.Name
   href: Crews.PlanningCenter.Api.DocParser.Models.TypeAnnotation.html#Crews_PlanningCenter_Api_DocParser_Models_TypeAnnotation_Name

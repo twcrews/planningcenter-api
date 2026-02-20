@@ -3,51 +3,51 @@ using System.Text.Json.Serialization;
 
 namespace Crews.PlanningCenter.Api.DocParser.Models;
 
-public class VertexChange { }
+public record VertexChange { }
 
-public class VertexChangeResource : JsonApiResource
+public record VertexChangeResource : JsonApiResource
 {
   [JsonPropertyName("attributes")]
-  public required new VertexChange Attributes { get; set; }
+  public required new VertexChange Attributes { get; init; }
 
   [JsonPropertyName("relationships")]
-  public required new VertexChangeRelationships Relationships { get; set; }
+  public required new VertexChangeRelationships Relationships { get; init; }
 }
 
-public class VertexChangeRelationships
+public record VertexChangeRelationships
 {
   [JsonPropertyName("changes")]
-  public required ChangeRelationship Changes { get; set; }
+  public required ChangeRelationship Changes { get; init; }
 
-  public class Change
+  public record Change
   {
     [JsonPropertyName("message")]
-    public required string Message { get; set; }
+    public required string Message { get; init; }
 
     [JsonPropertyName("type")]
-    public string? Type { get; set; }
+    public string? Type { get; init; }
   }
 
   // The Planning Center API documentation breaks the JSON:API specification here by omitting the 'type' property
   // from this resource linkage, therefore we cannot inherit from 'JsonApiResource' in this case.
-  public class ChangeResource
+  public record ChangeResource
   {
     [JsonPropertyName("id")]
-    public required string Id { get; set; }
+    public required string Id { get; init; }
 
     [JsonPropertyName("attributes")]
-    public required Change Attributes { get; set; }
+    public required Change Attributes { get; init; }
   }
 
-  public class ChangeRelationship : JsonApiRelationship
+  public record ChangeRelationship : JsonApiRelationship
   {
     [JsonPropertyName("data")]
-    public required new IEnumerable<ChangeResource> Data { get; set; }
+    public required new IEnumerable<ChangeResource> Data { get; init; }
   }
 }
 
-public class VertexChangeCollectionRelationship : JsonApiRelationship
+public record VertexChangeCollectionRelationship : JsonApiRelationship
 {
   [JsonPropertyName("data")]
-  public required new IEnumerable<VertexChangeResource> Data { get; set; }
+  public required new IEnumerable<VertexChangeResource> Data { get; init; }
 }

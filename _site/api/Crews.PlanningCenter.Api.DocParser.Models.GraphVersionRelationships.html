@@ -101,7 +101,7 @@ Class GraphVersionRelationships  <a class="header-action link-secondary" title="
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class GraphVersionRelationships</code></pre>
+    <pre><code class="lang-csharp hljs">public record GraphVersionRelationships : IEquatable&lt;GraphVersionRelationships&gt;</code></pre>
   </div>
 
 
@@ -115,6 +115,12 @@ Class GraphVersionRelationships  <a class="header-action link-secondary" title="
     </dd>
   </dl>
 
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="Crews.PlanningCenter.Api.DocParser.Models.GraphVersionRelationships.html">GraphVersionRelationships</a>&gt;</div>
+    </dd>
+  </dl>
 
 
   <dl class="typelist inheritedMembers">
@@ -164,7 +170,7 @@ Class GraphVersionRelationships  <a class="header-action link-secondary" title="
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;changes&quot;)]
-public required VertexChangeCollectionRelationship Changes { get; set; }</code></pre>
+public required VertexChangeCollectionRelationship Changes { get; init; }</code></pre>
   </div>
 
 
@@ -196,7 +202,7 @@ public required VertexChangeCollectionRelationship Changes { get; set; }</code><
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;edges&quot;)]
-public required EdgeCollectionRelationship Edges { get; set; }</code></pre>
+public required EdgeCollectionRelationship Edges { get; init; }</code></pre>
   </div>
 
 
@@ -228,7 +234,7 @@ public required EdgeCollectionRelationship Edges { get; set; }</code></pre>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;entry&quot;)]
-public required VertexRelationship Entry { get; set; }</code></pre>
+public required VertexRelationship Entry { get; init; }</code></pre>
   </div>
 
 
@@ -260,7 +266,7 @@ public required VertexRelationship Entry { get; set; }</code></pre>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;next_version&quot;)]
-public required JsonApiRelationship NextVersion { get; set; }</code></pre>
+public required JsonApiRelationship NextVersion { get; init; }</code></pre>
   </div>
 
 
@@ -292,7 +298,7 @@ public required JsonApiRelationship NextVersion { get; set; }</code></pre>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;previous_version&quot;)]
-public required JsonApiRelationship PreviousVersion { get; set; }</code></pre>
+public required JsonApiRelationship PreviousVersion { get; init; }</code></pre>
   </div>
 
 
@@ -324,7 +330,7 @@ public required JsonApiRelationship PreviousVersion { get; set; }</code></pre>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;removed&quot;)]
-public required DeprecatedEdgeCollectionRelationship Removed { get; set; }</code></pre>
+public required DeprecatedEdgeCollectionRelationship Removed { get; init; }</code></pre>
   </div>
 
 
@@ -356,7 +362,7 @@ public required DeprecatedEdgeCollectionRelationship Removed { get; set; }</code
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;vertices&quot;)]
-public required VertexCollectionRelationship Vertices { get; set; }</code></pre>
+public required VertexCollectionRelationship Vertices { get; init; }</code></pre>
   </div>
 
 

@@ -101,7 +101,7 @@ Class VertexRelationships  <a class="header-action link-secondary" title="View s
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class VertexRelationships</code></pre>
+    <pre><code class="lang-csharp hljs">public record VertexRelationships : IEquatable&lt;VertexRelationships&gt;</code></pre>
   </div>
 
 
@@ -115,6 +115,12 @@ Class VertexRelationships  <a class="header-action link-secondary" title="View s
     </dd>
   </dl>
 
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.html">VertexRelationships</a>&gt;</div>
+    </dd>
+  </dl>
 
 
   <dl class="typelist inheritedMembers">
@@ -164,7 +170,7 @@ Class VertexRelationships  <a class="header-action link-secondary" title="View s
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;actions&quot;)]
-public required ActionRelationship Actions { get; set; }</code></pre>
+public required ActionRelationship Actions { get; init; }</code></pre>
   </div>
 
 
@@ -196,7 +202,7 @@ public required ActionRelationship Actions { get; set; }</code></pre>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;attributes&quot;)]
-public required AttributeCollectionRelationship Attributes { get; set; }</code></pre>
+public required AttributeCollectionRelationship Attributes { get; init; }</code></pre>
   </div>
 
 
@@ -228,7 +234,7 @@ public required AttributeCollectionRelationship Attributes { get; set; }</code><
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;can_include&quot;)]
-public required UrlParameterCollectionRelationship CanInclude { get; set; }</code></pre>
+public required UrlParameterCollectionRelationship CanInclude { get; init; }</code></pre>
   </div>
 
 
@@ -260,7 +266,7 @@ public required UrlParameterCollectionRelationship CanInclude { get; set; }</cod
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;can_order&quot;)]
-public required UrlParameterCollectionRelationship CanOrder { get; set; }</code></pre>
+public required UrlParameterCollectionRelationship CanOrder { get; init; }</code></pre>
   </div>
 
 
@@ -292,7 +298,7 @@ public required UrlParameterCollectionRelationship CanOrder { get; set; }</code>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;can_query&quot;)]
-public required UrlParameterCollectionRelationship CanQuery { get; set; }</code></pre>
+public required UrlParameterCollectionRelationship CanQuery { get; init; }</code></pre>
   </div>
 
 
@@ -324,7 +330,7 @@ public required UrlParameterCollectionRelationship CanQuery { get; set; }</code>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;inbound_edges&quot;)]
-public required EdgeCollectionRelationship InboundEdges { get; set; }</code></pre>
+public required EdgeCollectionRelationship InboundEdges { get; init; }</code></pre>
   </div>
 
 
@@ -356,7 +362,7 @@ public required EdgeCollectionRelationship InboundEdges { get; set; }</code></pr
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;offset&quot;)]
-public required UrlParameterRelationship Offset { get; set; }</code></pre>
+public required UrlParameterRelationship Offset { get; init; }</code></pre>
   </div>
 
 
@@ -388,7 +394,7 @@ public required UrlParameterRelationship Offset { get; set; }</code></pre>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;outbound_edges&quot;)]
-public required EdgeCollectionRelationship OutboundEdges { get; set; }</code></pre>
+public required EdgeCollectionRelationship OutboundEdges { get; init; }</code></pre>
   </div>
 
 
@@ -420,7 +426,7 @@ public required EdgeCollectionRelationship OutboundEdges { get; set; }</code></p
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;per_page&quot;)]
-public required UrlParameterRelationship PerPage { get; set; }</code></pre>
+public required UrlParameterRelationship PerPage { get; init; }</code></pre>
   </div>
 
 
@@ -452,7 +458,7 @@ public required UrlParameterRelationship PerPage { get; set; }</code></pre>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;permissions&quot;)]
-public required PermissionsRelationship Permissions { get; set; }</code></pre>
+public required PermissionsRelationship Permissions { get; init; }</code></pre>
   </div>
 
 
@@ -484,7 +490,7 @@ public required PermissionsRelationship Permissions { get; set; }</code></pre>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;rate_limits&quot;)]
-public required JsonApiRelationship RateLimits { get; set; }</code></pre>
+public required JsonApiRelationship RateLimits { get; init; }</code></pre>
   </div>
 
 
@@ -516,7 +522,7 @@ public required JsonApiRelationship RateLimits { get; set; }</code></pre>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;relationships&quot;)]
-public required RelationshipCollectionRelationship Relationships { get; set; }</code></pre>
+public required RelationshipCollectionRelationship Relationships { get; init; }</code></pre>
   </div>
 
 

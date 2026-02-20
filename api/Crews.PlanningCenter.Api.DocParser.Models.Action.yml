@@ -32,10 +32,12 @@ items:
   - Crews.PlanningCenter.Api.DocParser
   namespace: Crews.PlanningCenter.Api.DocParser.Models
   syntax:
-    content: public class Action
-    content.vb: Public Class Action
+    content: 'public record Action : IEquatable<Action>'
+    content.vb: Public Class Action Implements IEquatable(Of Action)
   inheritance:
   - System.Object
+  implements:
+  - System.IEquatable{Crews.PlanningCenter.Api.DocParser.Models.Action}
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -70,7 +72,7 @@ items:
     content: >-
       [JsonPropertyName("name")]
 
-      public required string Name { get; set; }
+      public required string Name { get; init; }
     parameters: []
     return:
       type: System.String
@@ -111,7 +113,7 @@ items:
     content: >-
       [JsonPropertyName("path")]
 
-      public required Uri Path { get; set; }
+      public required Uri Path { get; init; }
     parameters: []
     return:
       type: System.Uri
@@ -152,7 +154,7 @@ items:
     content: >-
       [JsonPropertyName("can_run")]
 
-      public JsonElement? CanRun { get; set; }
+      public JsonElement? CanRun { get; init; }
     parameters: []
     return:
       type: System.Nullable{System.Text.Json.JsonElement}
@@ -193,7 +195,7 @@ items:
     content: >-
       [JsonPropertyName("description")]
 
-      public string? Description { get; set; }
+      public string? Description { get; init; }
     parameters: []
     return:
       type: System.String
@@ -234,7 +236,7 @@ items:
     content: >-
       [JsonPropertyName("details")]
 
-      public string? Details { get; set; }
+      public string? Details { get; init; }
     parameters: []
     return:
       type: System.String
@@ -275,7 +277,7 @@ items:
     content: >-
       [JsonPropertyName("return_type")]
 
-      public JsonElement? ReturnType { get; set; }
+      public JsonElement? ReturnType { get; init; }
     parameters: []
     return:
       type: System.Nullable{System.Text.Json.JsonElement}
@@ -316,7 +318,7 @@ items:
     content: >-
       [JsonPropertyName("example_body")]
 
-      public JsonElement ExampleBody { get; set; }
+      public JsonElement ExampleBody { get; init; }
     parameters: []
     return:
       type: System.Text.Json.JsonElement
@@ -357,7 +359,7 @@ items:
     content: >-
       [JsonPropertyName("deprecated")]
 
-      public bool Deprecated { get; set; }
+      public bool Deprecated { get; init; }
     parameters: []
     return:
       type: System.Boolean
@@ -430,6 +432,39 @@ references:
   nameWithType.vb: Object
   fullName.vb: Object
   name.vb: Object
+- uid: System.IEquatable{Crews.PlanningCenter.Api.DocParser.Models.Action}
+  commentId: T:System.IEquatable{Crews.PlanningCenter.Api.DocParser.Models.Action}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<Action>
+  nameWithType: IEquatable<Action>
+  fullName: System.IEquatable<Crews.PlanningCenter.Api.DocParser.Models.Action>
+  nameWithType.vb: IEquatable(Of Action)
+  fullName.vb: System.IEquatable(Of Crews.PlanningCenter.Api.DocParser.Models.Action)
+  name.vb: IEquatable(Of Action)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: Crews.PlanningCenter.Api.DocParser.Models.Action
+    name: Action
+    href: Crews.PlanningCenter.Api.DocParser.Models.Action.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Crews.PlanningCenter.Api.DocParser.Models.Action
+    name: Action
+    href: Crews.PlanningCenter.Api.DocParser.Models.Action.html
+  - name: )
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -656,6 +691,34 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
 - uid: Crews.PlanningCenter.Api.DocParser.Models.Action.Name*
   commentId: Overload:Crews.PlanningCenter.Api.DocParser.Models.Action.Name
   href: Crews.PlanningCenter.Api.DocParser.Models.Action.html#Crews_PlanningCenter_Api_DocParser_Models_Action_Name

@@ -35,10 +35,12 @@ items:
   - Crews.PlanningCenter.Api.DocParser
   namespace: Crews.PlanningCenter.Api.DocParser.Models
   syntax:
-    content: public class UrlParameter
-    content.vb: Public Class UrlParameter
+    content: 'public record UrlParameter : IEquatable<UrlParameter>'
+    content.vb: Public Class UrlParameter Implements IEquatable(Of UrlParameter)
   inheritance:
   - System.Object
+  implements:
+  - System.IEquatable{Crews.PlanningCenter.Api.DocParser.Models.UrlParameter}
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -73,7 +75,7 @@ items:
     content: >-
       [JsonPropertyName("can_assign_on_create")]
 
-      public bool? CanAssignOnCreate { get; set; }
+      public bool? CanAssignOnCreate { get; init; }
     parameters: []
     return:
       type: System.Nullable{System.Boolean}
@@ -114,7 +116,7 @@ items:
     content: >-
       [JsonPropertyName("can_assign_on_update")]
 
-      public bool? CanAssignOnUpdate { get; set; }
+      public bool? CanAssignOnUpdate { get; init; }
     parameters: []
     return:
       type: System.Nullable{System.Boolean}
@@ -155,7 +157,7 @@ items:
     content: >-
       [JsonPropertyName("Minimum")]
 
-      public int? Minimum { get; set; }
+      public int? Minimum { get; init; }
     parameters: []
     return:
       type: System.Nullable{System.Int32}
@@ -196,7 +198,7 @@ items:
     content: >-
       [JsonPropertyName("Maximum")]
 
-      public int? Maximum { get; set; }
+      public int? Maximum { get; init; }
     parameters: []
     return:
       type: System.Nullable{System.Int32}
@@ -237,7 +239,7 @@ items:
     content: >-
       [JsonPropertyName("default")]
 
-      public int? Default { get; set; }
+      public int? Default { get; init; }
     parameters: []
     return:
       type: System.Nullable{System.Int32}
@@ -278,7 +280,7 @@ items:
     content: >-
       [JsonPropertyName("example")]
 
-      public string? Example { get; set; }
+      public string? Example { get; init; }
     parameters: []
     return:
       type: System.String
@@ -319,7 +321,7 @@ items:
     content: >-
       [JsonPropertyName("name")]
 
-      public required string Name { get; set; }
+      public required string Name { get; init; }
     parameters: []
     return:
       type: System.String
@@ -360,7 +362,7 @@ items:
     content: >-
       [JsonPropertyName("parameter")]
 
-      public required string Parameter { get; set; }
+      public required string Parameter { get; init; }
     parameters: []
     return:
       type: System.String
@@ -401,7 +403,7 @@ items:
     content: >-
       [JsonPropertyName("type")]
 
-      public required string Type { get; set; }
+      public required string Type { get; init; }
     parameters: []
     return:
       type: System.String
@@ -442,7 +444,7 @@ items:
     content: >-
       [JsonPropertyName("value")]
 
-      public string? Value { get; set; }
+      public string? Value { get; init; }
     parameters: []
     return:
       type: System.String
@@ -483,7 +485,7 @@ items:
     content: >-
       [JsonPropertyName("description")]
 
-      public string? Description { get; set; }
+      public string? Description { get; init; }
     parameters: []
     return:
       type: System.String
@@ -556,6 +558,39 @@ references:
   nameWithType.vb: Object
   fullName.vb: Object
   name.vb: Object
+- uid: System.IEquatable{Crews.PlanningCenter.Api.DocParser.Models.UrlParameter}
+  commentId: T:System.IEquatable{Crews.PlanningCenter.Api.DocParser.Models.UrlParameter}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<UrlParameter>
+  nameWithType: IEquatable<UrlParameter>
+  fullName: System.IEquatable<Crews.PlanningCenter.Api.DocParser.Models.UrlParameter>
+  nameWithType.vb: IEquatable(Of UrlParameter)
+  fullName.vb: System.IEquatable(Of Crews.PlanningCenter.Api.DocParser.Models.UrlParameter)
+  name.vb: IEquatable(Of UrlParameter)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: Crews.PlanningCenter.Api.DocParser.Models.UrlParameter
+    name: UrlParameter
+    href: Crews.PlanningCenter.Api.DocParser.Models.UrlParameter.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Crews.PlanningCenter.Api.DocParser.Models.UrlParameter
+    name: UrlParameter
+    href: Crews.PlanningCenter.Api.DocParser.Models.UrlParameter.html
+  - name: )
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -782,6 +817,34 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
 - uid: Crews.PlanningCenter.Api.DocParser.Models.UrlParameter.CanAssignOnCreate*
   commentId: Overload:Crews.PlanningCenter.Api.DocParser.Models.UrlParameter.CanAssignOnCreate
   href: Crews.PlanningCenter.Api.DocParser.Models.UrlParameter.html#Crews_PlanningCenter_Api_DocParser_Models_UrlParameter_CanAssignOnCreate

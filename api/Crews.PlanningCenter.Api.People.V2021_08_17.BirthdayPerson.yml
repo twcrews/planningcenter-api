@@ -31,10 +31,12 @@ items:
   summary: Represents the details of a person's birth date.
   example: []
   syntax:
-    content: public class BirthdayPerson
-    content.vb: Public Class BirthdayPerson
+    content: 'public record BirthdayPerson : IEquatable<BirthdayPerson>'
+    content.vb: Public Class BirthdayPerson Implements IEquatable(Of BirthdayPerson)
   inheritance:
   - System.Object
+  implements:
+  - System.IEquatable{Crews.PlanningCenter.Api.People.V2021_08_17.BirthdayPerson}
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -71,7 +73,7 @@ items:
     content: >-
       [JsonPropertyName("id")]
 
-      public required string Id { get; set; }
+      public required string Id { get; init; }
     parameters: []
     return:
       type: System.String
@@ -114,7 +116,7 @@ items:
     content: >-
       [JsonPropertyName("name")]
 
-      public required string Name { get; set; }
+      public required string Name { get; init; }
     parameters: []
     return:
       type: System.String
@@ -157,7 +159,7 @@ items:
     content: >-
       [JsonPropertyName("child")]
 
-      public bool Child { get; set; }
+      public bool Child { get; init; }
     parameters: []
     return:
       type: System.Boolean
@@ -200,7 +202,7 @@ items:
     content: >-
       [JsonPropertyName("birthdate")]
 
-      public DateOnly Birthdate { get; set; }
+      public DateOnly Birthdate { get; init; }
     parameters: []
     return:
       type: System.DateOnly
@@ -243,7 +245,7 @@ items:
     content: >-
       [JsonPropertyName("avatar")]
 
-      public required string Avatar { get; set; }
+      public required string Avatar { get; init; }
     parameters: []
     return:
       type: System.String
@@ -316,6 +318,39 @@ references:
   nameWithType.vb: Object
   fullName.vb: Object
   name.vb: Object
+- uid: System.IEquatable{Crews.PlanningCenter.Api.People.V2021_08_17.BirthdayPerson}
+  commentId: T:System.IEquatable{Crews.PlanningCenter.Api.People.V2021_08_17.BirthdayPerson}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<BirthdayPerson>
+  nameWithType: IEquatable<BirthdayPerson>
+  fullName: System.IEquatable<Crews.PlanningCenter.Api.People.V2021_08_17.BirthdayPerson>
+  nameWithType.vb: IEquatable(Of BirthdayPerson)
+  fullName.vb: System.IEquatable(Of Crews.PlanningCenter.Api.People.V2021_08_17.BirthdayPerson)
+  name.vb: IEquatable(Of BirthdayPerson)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: Crews.PlanningCenter.Api.People.V2021_08_17.BirthdayPerson
+    name: BirthdayPerson
+    href: Crews.PlanningCenter.Api.People.V2021_08_17.BirthdayPerson.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Crews.PlanningCenter.Api.People.V2021_08_17.BirthdayPerson
+    name: BirthdayPerson
+    href: Crews.PlanningCenter.Api.People.V2021_08_17.BirthdayPerson.html
+  - name: )
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -542,6 +577,34 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
 - uid: Crews.PlanningCenter.Api.People.V2021_08_17.BirthdayPerson.Id*
   commentId: Overload:Crews.PlanningCenter.Api.People.V2021_08_17.BirthdayPerson.Id
   href: Crews.PlanningCenter.Api.People.V2021_08_17.BirthdayPerson.html#Crews_PlanningCenter_Api_People_V2021_08_17_BirthdayPerson_Id

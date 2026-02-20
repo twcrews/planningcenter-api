@@ -29,10 +29,12 @@ items:
   - Crews.PlanningCenter.Api.DocParser
   namespace: Crews.PlanningCenter.Api.DocParser.Models
   syntax:
-    content: public class Attribute
-    content.vb: Public Class Attribute
+    content: 'public record Attribute : IEquatable<Attribute>'
+    content.vb: Public Class Attribute Implements IEquatable(Of Attribute)
   inheritance:
   - System.Object
+  implements:
+  - System.IEquatable{Crews.PlanningCenter.Api.DocParser.Models.Attribute}
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -67,7 +69,7 @@ items:
     content: >-
       [JsonPropertyName("name")]
 
-      public required string Name { get; set; }
+      public required string Name { get; init; }
     parameters: []
     return:
       type: System.String
@@ -108,7 +110,7 @@ items:
     content: >-
       [JsonPropertyName("type_annotation")]
 
-      public required TypeAnnotation TypeAnnotation { get; set; }
+      public required TypeAnnotation TypeAnnotation { get; init; }
     parameters: []
     return:
       type: Crews.PlanningCenter.Api.DocParser.Models.TypeAnnotation
@@ -149,7 +151,7 @@ items:
     content: >-
       [JsonPropertyName("note")]
 
-      public string? Note { get; set; }
+      public string? Note { get; init; }
     parameters: []
     return:
       type: System.String
@@ -190,7 +192,7 @@ items:
     content: >-
       [JsonPropertyName("permission_level")]
 
-      public required string PermissionLevel { get; set; }
+      public required string PermissionLevel { get; init; }
     parameters: []
     return:
       type: System.String
@@ -231,7 +233,7 @@ items:
     content: >-
       [JsonPropertyName("description")]
 
-      public string? Description { get; set; }
+      public string? Description { get; init; }
     parameters: []
     return:
       type: System.String
@@ -304,6 +306,39 @@ references:
   nameWithType.vb: Object
   fullName.vb: Object
   name.vb: Object
+- uid: System.IEquatable{Crews.PlanningCenter.Api.DocParser.Models.Attribute}
+  commentId: T:System.IEquatable{Crews.PlanningCenter.Api.DocParser.Models.Attribute}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<Attribute>
+  nameWithType: IEquatable<Attribute>
+  fullName: System.IEquatable<Crews.PlanningCenter.Api.DocParser.Models.Attribute>
+  nameWithType.vb: IEquatable(Of Attribute)
+  fullName.vb: System.IEquatable(Of Crews.PlanningCenter.Api.DocParser.Models.Attribute)
+  name.vb: IEquatable(Of Attribute)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: Crews.PlanningCenter.Api.DocParser.Models.Attribute
+    name: Attribute
+    href: Crews.PlanningCenter.Api.DocParser.Models.Attribute.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Crews.PlanningCenter.Api.DocParser.Models.Attribute
+    name: Attribute
+    href: Crews.PlanningCenter.Api.DocParser.Models.Attribute.html
+  - name: )
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -530,6 +565,34 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
 - uid: Crews.PlanningCenter.Api.DocParser.Models.Attribute.Name*
   commentId: Overload:Crews.PlanningCenter.Api.DocParser.Models.Attribute.Name
   href: Crews.PlanningCenter.Api.DocParser.Models.Attribute.html#Crews_PlanningCenter_Api_DocParser_Models_Attribute_Name

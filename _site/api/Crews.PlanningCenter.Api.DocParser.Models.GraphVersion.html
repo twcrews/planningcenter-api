@@ -101,7 +101,7 @@ Class GraphVersion  <a class="header-action link-secondary" title="View source" 
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class GraphVersion : Graph</code></pre>
+    <pre><code class="lang-csharp hljs">public record GraphVersion : Graph, IEquatable&lt;Graph&gt;, IEquatable&lt;GraphVersion&gt;</code></pre>
   </div>
 
 
@@ -116,6 +116,13 @@ Class GraphVersion  <a class="header-action link-secondary" title="View source" 
     </dd>
   </dl>
 
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="Crews.PlanningCenter.Api.DocParser.Models.Graph.html">Graph</a>&gt;</div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="Crews.PlanningCenter.Api.DocParser.Models.GraphVersion.html">GraphVersion</a>&gt;</div>
+    </dd>
+  </dl>
 
 
   <dl class="typelist inheritedMembers">
@@ -171,7 +178,7 @@ Class GraphVersion  <a class="header-action link-secondary" title="View source" 
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;beta&quot;)]
-public bool Beta { get; set; }</code></pre>
+public bool Beta { get; init; }</code></pre>
   </div>
 
 
@@ -203,7 +210,7 @@ public bool Beta { get; set; }</code></pre>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;details&quot;)]
-public string? Details { get; set; }</code></pre>
+public string? Details { get; init; }</code></pre>
   </div>
 
 

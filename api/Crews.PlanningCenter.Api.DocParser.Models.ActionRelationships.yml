@@ -26,10 +26,12 @@ items:
   - Crews.PlanningCenter.Api.DocParser
   namespace: Crews.PlanningCenter.Api.DocParser.Models
   syntax:
-    content: public class ActionRelationships
-    content.vb: Public Class ActionRelationships
+    content: 'public record ActionRelationships : IEquatable<ActionRelationships>'
+    content.vb: Public Class ActionRelationships Implements IEquatable(Of ActionRelationships)
   inheritance:
   - System.Object
+  implements:
+  - System.IEquatable{Crews.PlanningCenter.Api.DocParser.Models.ActionRelationships}
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -64,7 +66,7 @@ items:
     content: >-
       [JsonPropertyName("tail")]
 
-      public VertexRelationship? Tail { get; set; }
+      public VertexRelationship? Tail { get; init; }
     parameters: []
     return:
       type: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationship
@@ -105,7 +107,7 @@ items:
     content: >-
       [JsonPropertyName("rate_limits")]
 
-      public JsonApiRelationship? RateLimits { get; set; }
+      public JsonApiRelationship? RateLimits { get; init; }
     parameters: []
     return:
       type: Crews.Web.JsonApiClient.JsonApiRelationship
@@ -178,6 +180,39 @@ references:
   nameWithType.vb: Object
   fullName.vb: Object
   name.vb: Object
+- uid: System.IEquatable{Crews.PlanningCenter.Api.DocParser.Models.ActionRelationships}
+  commentId: T:System.IEquatable{Crews.PlanningCenter.Api.DocParser.Models.ActionRelationships}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<ActionRelationships>
+  nameWithType: IEquatable<ActionRelationships>
+  fullName: System.IEquatable<Crews.PlanningCenter.Api.DocParser.Models.ActionRelationships>
+  nameWithType.vb: IEquatable(Of ActionRelationships)
+  fullName.vb: System.IEquatable(Of Crews.PlanningCenter.Api.DocParser.Models.ActionRelationships)
+  name.vb: IEquatable(Of ActionRelationships)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: Crews.PlanningCenter.Api.DocParser.Models.ActionRelationships
+    name: ActionRelationships
+    href: Crews.PlanningCenter.Api.DocParser.Models.ActionRelationships.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Crews.PlanningCenter.Api.DocParser.Models.ActionRelationships
+    name: ActionRelationships
+    href: Crews.PlanningCenter.Api.DocParser.Models.ActionRelationships.html
+  - name: )
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -404,6 +439,34 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
 - uid: Crews.PlanningCenter.Api.DocParser.Models.ActionRelationships.Tail*
   commentId: Overload:Crews.PlanningCenter.Api.DocParser.Models.ActionRelationships.Tail
   href: Crews.PlanningCenter.Api.DocParser.Models.ActionRelationships.html#Crews_PlanningCenter_Api_DocParser_Models_ActionRelationships_Tail

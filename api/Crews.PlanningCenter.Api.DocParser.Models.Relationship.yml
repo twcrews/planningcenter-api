@@ -30,10 +30,12 @@ items:
   - Crews.PlanningCenter.Api.DocParser
   namespace: Crews.PlanningCenter.Api.DocParser.Models
   syntax:
-    content: public class Relationship
-    content.vb: Public Class Relationship
+    content: 'public record Relationship : IEquatable<Relationship>'
+    content.vb: Public Class Relationship Implements IEquatable(Of Relationship)
   inheritance:
   - System.Object
+  implements:
+  - System.IEquatable{Crews.PlanningCenter.Api.DocParser.Models.Relationship}
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -68,7 +70,7 @@ items:
     content: >-
       [JsonPropertyName("association")]
 
-      public required string Association { get; set; }
+      public required string Association { get; init; }
     parameters: []
     return:
       type: System.String
@@ -109,7 +111,7 @@ items:
     content: >-
       [JsonPropertyName("name")]
 
-      public required string Name { get; set; }
+      public required string Name { get; init; }
     parameters: []
     return:
       type: System.String
@@ -150,7 +152,7 @@ items:
     content: >-
       [JsonPropertyName("authorization_level")]
 
-      public required string AuthorizationLevel { get; set; }
+      public required string AuthorizationLevel { get; init; }
     parameters: []
     return:
       type: System.String
@@ -191,7 +193,7 @@ items:
     content: >-
       [JsonPropertyName("graph_type")]
 
-      public required string GraphType { get; set; }
+      public required string GraphType { get; init; }
     parameters: []
     return:
       type: System.String
@@ -232,7 +234,7 @@ items:
     content: >-
       [JsonPropertyName("polymorphic")]
 
-      public JsonElement? Polymorphic { get; set; }
+      public JsonElement? Polymorphic { get; init; }
     parameters: []
     return:
       type: System.Nullable{System.Text.Json.JsonElement}
@@ -273,7 +275,7 @@ items:
     content: >-
       [JsonPropertyName("note")]
 
-      public string? Note { get; set; }
+      public string? Note { get; init; }
     parameters: []
     return:
       type: System.String
@@ -346,6 +348,39 @@ references:
   nameWithType.vb: Object
   fullName.vb: Object
   name.vb: Object
+- uid: System.IEquatable{Crews.PlanningCenter.Api.DocParser.Models.Relationship}
+  commentId: T:System.IEquatable{Crews.PlanningCenter.Api.DocParser.Models.Relationship}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<Relationship>
+  nameWithType: IEquatable<Relationship>
+  fullName: System.IEquatable<Crews.PlanningCenter.Api.DocParser.Models.Relationship>
+  nameWithType.vb: IEquatable(Of Relationship)
+  fullName.vb: System.IEquatable(Of Crews.PlanningCenter.Api.DocParser.Models.Relationship)
+  name.vb: IEquatable(Of Relationship)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: Crews.PlanningCenter.Api.DocParser.Models.Relationship
+    name: Relationship
+    href: Crews.PlanningCenter.Api.DocParser.Models.Relationship.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Crews.PlanningCenter.Api.DocParser.Models.Relationship
+    name: Relationship
+    href: Crews.PlanningCenter.Api.DocParser.Models.Relationship.html
+  - name: )
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -572,6 +607,34 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
 - uid: Crews.PlanningCenter.Api.DocParser.Models.Relationship.Association*
   commentId: Overload:Crews.PlanningCenter.Api.DocParser.Models.Relationship.Association
   href: Crews.PlanningCenter.Api.DocParser.Models.Relationship.html#Crews_PlanningCenter_Api_DocParser_Models_Relationship_Association

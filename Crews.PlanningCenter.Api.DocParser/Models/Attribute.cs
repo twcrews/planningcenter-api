@@ -4,46 +4,46 @@ using System.Text.Json.Serialization;
 
 namespace Crews.PlanningCenter.Api.DocParser.Models;
 
-public class Attribute
+public record Attribute
 {
   [JsonPropertyName("name")]
-  public required string Name { get; set; }
+  public required string Name { get; init; }
 
   [JsonPropertyName("type_annotation")]
-  public required TypeAnnotation TypeAnnotation { get; set; }
+  public required TypeAnnotation TypeAnnotation { get; init; }
 
   [JsonPropertyName("note")]
-  public string? Note { get; set; }
+  public string? Note { get; init; }
 
   [JsonPropertyName("permission_level")]
-  public required string PermissionLevel { get; set; }
+  public required string PermissionLevel { get; init; }
 
   [JsonPropertyName("description")]
-  public string? Description { get; set; }
+  public string? Description { get; init; }
 }
 
-public class AttributeResource : JsonApiResource
+public record AttributeResource : JsonApiResource
 {
   [JsonPropertyName("attributes")]
-  public required new Attribute Attributes { get; set; }
+  public required new Attribute Attributes { get; init; }
 }
 
-public class AttributeRelationship : JsonApiRelationship
+public record AttributeRelationship : JsonApiRelationship
 {
   [JsonPropertyName("data")]
-  public required new AttributeResource Data { get; set; }
+  public required new AttributeResource Data { get; init; }
 }
 
-public class AttributeCollectionRelationship : JsonApiRelationship
+public record AttributeCollectionRelationship : JsonApiRelationship
 {
   [JsonPropertyName("data")]
-  public required new IEnumerable<AttributeResource> Data { get; set; }
+  public required new IEnumerable<AttributeResource> Data { get; init; }
 }
-public class TypeAnnotation
+public record TypeAnnotation
 {
   [JsonPropertyName("name")]
-  public required string Name { get; set; }
+  public required string Name { get; init; }
 
   [JsonPropertyName("example")]
-  public JsonElement? Example { get; set; }
+  public JsonElement? Example { get; init; }
 }

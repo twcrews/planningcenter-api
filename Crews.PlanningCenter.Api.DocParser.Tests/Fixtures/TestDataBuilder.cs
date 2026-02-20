@@ -128,7 +128,9 @@ internal static class TestDataBuilder
         UrlParameterResource[]? canQuery = null,
         bool canCreate = false,
         bool canUpdate = false,
-        bool canDestroy = false)
+        bool canDestroy = false,
+        bool collectionOnly = false,
+        bool deprecated = false)
     {
         return new VertexDocument
         {
@@ -140,8 +142,8 @@ internal static class TestDataBuilder
                 {
                     Name = name,
                     Description = $"Test {name} description",
-                    CollectionOnly = false,
-                    Deprecated = false
+                    CollectionOnly = collectionOnly,
+                    Deprecated = deprecated
                 },
                 Relationships = new VertexRelationships
                 {

@@ -27,26 +27,35 @@ items:
   summary: Wrapper for the BirthdayPeople resource.
   example: []
   syntax:
-    content: 'public class BirthdayPeopleResource : JsonApiResource'
-    content.vb: Public Class BirthdayPeopleResource Inherits JsonApiResource
+    content: 'public record BirthdayPeopleResource : JsonApiResource, IEquatable<JsonApiResourceIdentifier>, IEquatable<JsonApiResource>, IEquatable<BirthdayPeopleResource>'
+    content.vb: Public Class BirthdayPeopleResource Inherits JsonApiResource Implements IEquatable(Of JsonApiResourceIdentifier), IEquatable(Of JsonApiResource), IEquatable(Of BirthdayPeopleResource)
   inheritance:
   - System.Object
   - Crews.Web.JsonApiClient.JsonApiResourceIdentifier
   - Crews.Web.JsonApiClient.JsonApiResource
+  implements:
+  - System.IEquatable{Crews.Web.JsonApiClient.JsonApiResourceIdentifier}
+  - System.IEquatable{Crews.Web.JsonApiClient.JsonApiResource}
+  - System.IEquatable{Crews.PlanningCenter.Api.People.V2022_01_28.BirthdayPeopleResource}
   inheritedMembers:
+  - Crews.Web.JsonApiClient.JsonApiResource.ToString
+  - Crews.Web.JsonApiClient.JsonApiResource.PrintMembers(System.Text.StringBuilder)
+  - Crews.Web.JsonApiClient.JsonApiResource.GetHashCode
+  - Crews.Web.JsonApiClient.JsonApiResource.Equals(System.Object)
+  - Crews.Web.JsonApiClient.JsonApiResource.Equals(Crews.Web.JsonApiClient.JsonApiResourceIdentifier)
+  - Crews.Web.JsonApiClient.JsonApiResource.Equals(Crews.Web.JsonApiClient.JsonApiResource)
+  - Crews.Web.JsonApiClient.JsonApiResource.{Clone}$
+  - Crews.Web.JsonApiClient.JsonApiResource.EqualityContract
   - Crews.Web.JsonApiClient.JsonApiResource.Relationships
   - Crews.Web.JsonApiClient.JsonApiResource.Links
   - Crews.Web.JsonApiClient.JsonApiResource.Meta
   - Crews.Web.JsonApiClient.JsonApiResourceIdentifier.Id
   - Crews.Web.JsonApiClient.JsonApiResourceIdentifier.LId
   - Crews.Web.JsonApiClient.JsonApiResourceIdentifier.Type
-  - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
-  - System.Object.GetHashCode
   - System.Object.GetType
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
-  - System.Object.ToString
 - uid: Crews.PlanningCenter.Api.People.V2022_01_28.BirthdayPeopleResource.Attributes
   commentId: P:Crews.PlanningCenter.Api.People.V2022_01_28.BirthdayPeopleResource.Attributes
   id: Attributes
@@ -75,7 +84,7 @@ items:
     content: >-
       [JsonPropertyName("attributes")]
 
-      public required BirthdayPeople Attributes { get; set; }
+      public required BirthdayPeople Attributes { get; init; }
     parameters: []
     return:
       type: Crews.PlanningCenter.Api.People.V2022_01_28.BirthdayPeople
@@ -162,6 +171,278 @@ references:
   name: JsonApiResource
   nameWithType: JsonApiResource
   fullName: Crews.Web.JsonApiClient.JsonApiResource
+- uid: System.IEquatable{Crews.Web.JsonApiClient.JsonApiResourceIdentifier}
+  commentId: T:System.IEquatable{Crews.Web.JsonApiClient.JsonApiResourceIdentifier}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<JsonApiResourceIdentifier>
+  nameWithType: IEquatable<JsonApiResourceIdentifier>
+  fullName: System.IEquatable<Crews.Web.JsonApiClient.JsonApiResourceIdentifier>
+  nameWithType.vb: IEquatable(Of JsonApiResourceIdentifier)
+  fullName.vb: System.IEquatable(Of Crews.Web.JsonApiClient.JsonApiResourceIdentifier)
+  name.vb: IEquatable(Of JsonApiResourceIdentifier)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: Crews.Web.JsonApiClient.JsonApiResourceIdentifier
+    name: JsonApiResourceIdentifier
+    isExternal: true
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Crews.Web.JsonApiClient.JsonApiResourceIdentifier
+    name: JsonApiResourceIdentifier
+    isExternal: true
+  - name: )
+- uid: System.IEquatable{Crews.Web.JsonApiClient.JsonApiResource}
+  commentId: T:System.IEquatable{Crews.Web.JsonApiClient.JsonApiResource}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<JsonApiResource>
+  nameWithType: IEquatable<JsonApiResource>
+  fullName: System.IEquatable<Crews.Web.JsonApiClient.JsonApiResource>
+  nameWithType.vb: IEquatable(Of JsonApiResource)
+  fullName.vb: System.IEquatable(Of Crews.Web.JsonApiClient.JsonApiResource)
+  name.vb: IEquatable(Of JsonApiResource)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: Crews.Web.JsonApiClient.JsonApiResource
+    name: JsonApiResource
+    isExternal: true
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Crews.Web.JsonApiClient.JsonApiResource
+    name: JsonApiResource
+    isExternal: true
+  - name: )
+- uid: System.IEquatable{Crews.PlanningCenter.Api.People.V2022_01_28.BirthdayPeopleResource}
+  commentId: T:System.IEquatable{Crews.PlanningCenter.Api.People.V2022_01_28.BirthdayPeopleResource}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<BirthdayPeopleResource>
+  nameWithType: IEquatable<BirthdayPeopleResource>
+  fullName: System.IEquatable<Crews.PlanningCenter.Api.People.V2022_01_28.BirthdayPeopleResource>
+  nameWithType.vb: IEquatable(Of BirthdayPeopleResource)
+  fullName.vb: System.IEquatable(Of Crews.PlanningCenter.Api.People.V2022_01_28.BirthdayPeopleResource)
+  name.vb: IEquatable(Of BirthdayPeopleResource)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: Crews.PlanningCenter.Api.People.V2022_01_28.BirthdayPeopleResource
+    name: BirthdayPeopleResource
+    href: Crews.PlanningCenter.Api.People.V2022_01_28.BirthdayPeopleResource.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Crews.PlanningCenter.Api.People.V2022_01_28.BirthdayPeopleResource
+    name: BirthdayPeopleResource
+    href: Crews.PlanningCenter.Api.People.V2022_01_28.BirthdayPeopleResource.html
+  - name: )
+- uid: Crews.Web.JsonApiClient.JsonApiResource.ToString
+  commentId: M:Crews.Web.JsonApiClient.JsonApiResource.ToString
+  parent: Crews.Web.JsonApiClient.JsonApiResource
+  isExternal: true
+  name: ToString()
+  nameWithType: JsonApiResource.ToString()
+  fullName: Crews.Web.JsonApiClient.JsonApiResource.ToString()
+  spec.csharp:
+  - uid: Crews.Web.JsonApiClient.JsonApiResource.ToString
+    name: ToString
+    isExternal: true
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Crews.Web.JsonApiClient.JsonApiResource.ToString
+    name: ToString
+    isExternal: true
+  - name: (
+  - name: )
+- uid: Crews.Web.JsonApiClient.JsonApiResource.PrintMembers(System.Text.StringBuilder)
+  commentId: M:Crews.Web.JsonApiClient.JsonApiResource.PrintMembers(System.Text.StringBuilder)
+  parent: Crews.Web.JsonApiClient.JsonApiResource
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.text.stringbuilder
+  name: PrintMembers(StringBuilder)
+  nameWithType: JsonApiResource.PrintMembers(StringBuilder)
+  fullName: Crews.Web.JsonApiClient.JsonApiResource.PrintMembers(System.Text.StringBuilder)
+  spec.csharp:
+  - uid: Crews.Web.JsonApiClient.JsonApiResource.PrintMembers(System.Text.StringBuilder)
+    name: PrintMembers
+    isExternal: true
+  - name: (
+  - uid: System.Text.StringBuilder
+    name: StringBuilder
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.stringbuilder
+  - name: )
+  spec.vb:
+  - uid: Crews.Web.JsonApiClient.JsonApiResource.PrintMembers(System.Text.StringBuilder)
+    name: PrintMembers
+    isExternal: true
+  - name: (
+  - uid: System.Text.StringBuilder
+    name: StringBuilder
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.stringbuilder
+  - name: )
+- uid: Crews.Web.JsonApiClient.JsonApiResource.GetHashCode
+  commentId: M:Crews.Web.JsonApiClient.JsonApiResource.GetHashCode
+  parent: Crews.Web.JsonApiClient.JsonApiResource
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: JsonApiResource.GetHashCode()
+  fullName: Crews.Web.JsonApiClient.JsonApiResource.GetHashCode()
+  spec.csharp:
+  - uid: Crews.Web.JsonApiClient.JsonApiResource.GetHashCode
+    name: GetHashCode
+    isExternal: true
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Crews.Web.JsonApiClient.JsonApiResource.GetHashCode
+    name: GetHashCode
+    isExternal: true
+  - name: (
+  - name: )
+- uid: Crews.Web.JsonApiClient.JsonApiResource.Equals(System.Object)
+  commentId: M:Crews.Web.JsonApiClient.JsonApiResource.Equals(System.Object)
+  parent: Crews.Web.JsonApiClient.JsonApiResource
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: Equals(object)
+  nameWithType: JsonApiResource.Equals(object)
+  fullName: Crews.Web.JsonApiClient.JsonApiResource.Equals(object)
+  nameWithType.vb: JsonApiResource.Equals(Object)
+  fullName.vb: Crews.Web.JsonApiClient.JsonApiResource.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: Crews.Web.JsonApiClient.JsonApiResource.Equals(System.Object)
+    name: Equals
+    isExternal: true
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Crews.Web.JsonApiClient.JsonApiResource.Equals(System.Object)
+    name: Equals
+    isExternal: true
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Crews.Web.JsonApiClient.JsonApiResource.Equals(Crews.Web.JsonApiClient.JsonApiResourceIdentifier)
+  commentId: M:Crews.Web.JsonApiClient.JsonApiResource.Equals(Crews.Web.JsonApiClient.JsonApiResourceIdentifier)
+  parent: Crews.Web.JsonApiClient.JsonApiResource
+  isExternal: true
+  name: Equals(JsonApiResourceIdentifier)
+  nameWithType: JsonApiResource.Equals(JsonApiResourceIdentifier)
+  fullName: Crews.Web.JsonApiClient.JsonApiResource.Equals(Crews.Web.JsonApiClient.JsonApiResourceIdentifier)
+  spec.csharp:
+  - uid: Crews.Web.JsonApiClient.JsonApiResource.Equals(Crews.Web.JsonApiClient.JsonApiResourceIdentifier)
+    name: Equals
+    isExternal: true
+  - name: (
+  - uid: Crews.Web.JsonApiClient.JsonApiResourceIdentifier
+    name: JsonApiResourceIdentifier
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: Crews.Web.JsonApiClient.JsonApiResource.Equals(Crews.Web.JsonApiClient.JsonApiResourceIdentifier)
+    name: Equals
+    isExternal: true
+  - name: (
+  - uid: Crews.Web.JsonApiClient.JsonApiResourceIdentifier
+    name: JsonApiResourceIdentifier
+    isExternal: true
+  - name: )
+- uid: Crews.Web.JsonApiClient.JsonApiResource.Equals(Crews.Web.JsonApiClient.JsonApiResource)
+  commentId: M:Crews.Web.JsonApiClient.JsonApiResource.Equals(Crews.Web.JsonApiClient.JsonApiResource)
+  parent: Crews.Web.JsonApiClient.JsonApiResource
+  isExternal: true
+  name: Equals(JsonApiResource)
+  nameWithType: JsonApiResource.Equals(JsonApiResource)
+  fullName: Crews.Web.JsonApiClient.JsonApiResource.Equals(Crews.Web.JsonApiClient.JsonApiResource)
+  spec.csharp:
+  - uid: Crews.Web.JsonApiClient.JsonApiResource.Equals(Crews.Web.JsonApiClient.JsonApiResource)
+    name: Equals
+    isExternal: true
+  - name: (
+  - uid: Crews.Web.JsonApiClient.JsonApiResource
+    name: JsonApiResource
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: Crews.Web.JsonApiClient.JsonApiResource.Equals(Crews.Web.JsonApiClient.JsonApiResource)
+    name: Equals
+    isExternal: true
+  - name: (
+  - uid: Crews.Web.JsonApiClient.JsonApiResource
+    name: JsonApiResource
+    isExternal: true
+  - name: )
+- uid: Crews.Web.JsonApiClient.JsonApiResource.{Clone}$
+  commentId: M:Crews.Web.JsonApiClient.JsonApiResource.{Clone}$
+  parent: Crews.Web.JsonApiClient.JsonApiResource
+  isExternal: true
+  name: <Clone>$()
+  nameWithType: JsonApiResource.<Clone>$()
+  fullName: Crews.Web.JsonApiClient.JsonApiResource.<Clone>$()
+  spec.csharp:
+  - uid: Crews.Web.JsonApiClient.JsonApiResource.{Clone}$
+    name: <Clone>$
+    isExternal: true
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Crews.Web.JsonApiClient.JsonApiResource.{Clone}$
+    name: <Clone>$
+    isExternal: true
+  - name: (
+  - name: )
+- uid: Crews.Web.JsonApiClient.JsonApiResource.EqualityContract
+  commentId: P:Crews.Web.JsonApiClient.JsonApiResource.EqualityContract
+  parent: Crews.Web.JsonApiClient.JsonApiResource
+  isExternal: true
+  name: EqualityContract
+  nameWithType: JsonApiResource.EqualityContract
+  fullName: Crews.Web.JsonApiClient.JsonApiResource.EqualityContract
 - uid: Crews.Web.JsonApiClient.JsonApiResource.Relationships
   commentId: P:Crews.Web.JsonApiClient.JsonApiResource.Relationships
   parent: Crews.Web.JsonApiClient.JsonApiResource
@@ -204,39 +485,6 @@ references:
   name: Type
   nameWithType: JsonApiResourceIdentifier.Type
   fullName: Crews.Web.JsonApiClient.JsonApiResourceIdentifier.Type
-- uid: System.Object.Equals(System.Object)
-  commentId: M:System.Object.Equals(System.Object)
-  parent: System.Object
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
-  name: Equals(object)
-  nameWithType: object.Equals(object)
-  fullName: object.Equals(object)
-  nameWithType.vb: Object.Equals(Object)
-  fullName.vb: Object.Equals(Object)
-  name.vb: Equals(Object)
-  spec.csharp:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
-  - name: (
-  - uid: System.Object
-    name: object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: )
-  spec.vb:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
-  - name: (
-  - uid: System.Object
-    name: Object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: )
 - uid: System.Object.Equals(System.Object,System.Object)
   commentId: M:System.Object.Equals(System.Object,System.Object)
   parent: System.Object
@@ -281,30 +529,6 @@ references:
     name: Object
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: )
-- uid: System.Object.GetHashCode
-  commentId: M:System.Object.GetHashCode
-  parent: System.Object
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
-  name: GetHashCode()
-  nameWithType: object.GetHashCode()
-  fullName: object.GetHashCode()
-  nameWithType.vb: Object.GetHashCode()
-  fullName.vb: Object.GetHashCode()
-  spec.csharp:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
-  - name: (
-  - name: )
-  spec.vb:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
-  - name: (
   - name: )
 - uid: System.Object.GetType
   commentId: M:System.Object.GetType
@@ -399,30 +623,6 @@ references:
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-- uid: System.Object.ToString
-  commentId: M:System.Object.ToString
-  parent: System.Object
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
-  name: ToString()
-  nameWithType: object.ToString()
-  fullName: object.ToString()
-  nameWithType.vb: Object.ToString()
-  fullName.vb: Object.ToString()
-  spec.csharp:
-  - uid: System.Object.ToString
-    name: ToString
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
-  - name: (
-  - name: )
-  spec.vb:
-  - uid: System.Object.ToString
-    name: ToString
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
-  - name: (
-  - name: )
 - uid: System
   commentId: N:System
   isExternal: true
@@ -460,6 +660,34 @@ references:
   - uid: Crews.Web.JsonApiClient
     name: JsonApiClient
     isExternal: true
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
 - uid: Crews.PlanningCenter.Api.People.V2022_01_28.BirthdayPeopleResource.Attributes*
   commentId: Overload:Crews.PlanningCenter.Api.People.V2022_01_28.BirthdayPeopleResource.Attributes
   href: Crews.PlanningCenter.Api.People.V2022_01_28.BirthdayPeopleResource.html#Crews_PlanningCenter_Api_People_V2022_01_28_BirthdayPeopleResource_Attributes

@@ -34,10 +34,12 @@ items:
   summary: Attributes for the OrganizationStatistics resource.
   example: []
   syntax:
-    content: public class OrganizationStatistics
-    content.vb: Public Class OrganizationStatistics
+    content: 'public record OrganizationStatistics : IEquatable<OrganizationStatistics>'
+    content.vb: Public Class OrganizationStatistics Implements IEquatable(Of OrganizationStatistics)
   inheritance:
   - System.Object
+  implements:
+  - System.IEquatable{Crews.PlanningCenter.Api.People.V2023_03_21.OrganizationStatistics}
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -74,7 +76,7 @@ items:
     content: >-
       [JsonPropertyName("membership")]
 
-      public IEnumerable<MembershipCount> Membership { get; set; }
+      public IEnumerable<MembershipCount> Membership { get; init; }
     parameters: []
     return:
       type: System.Collections.Generic.IEnumerable{Crews.PlanningCenter.Api.People.V2023_03_21.MembershipCount}
@@ -117,7 +119,7 @@ items:
     content: >-
       [JsonPropertyName("gender")]
 
-      public required GenderCounts Gender { get; set; }
+      public required GenderCounts Gender { get; init; }
     parameters: []
     return:
       type: Crews.PlanningCenter.Api.People.V2023_03_21.GenderCounts
@@ -160,7 +162,7 @@ items:
     content: >-
       [JsonPropertyName("age")]
 
-      public required AgeCounts Age { get; set; }
+      public required AgeCounts Age { get; init; }
     parameters: []
     return:
       type: Crews.PlanningCenter.Api.People.V2023_03_21.AgeCounts
@@ -203,7 +205,7 @@ items:
     content: >-
       [JsonPropertyName("campuses")]
 
-      public IEnumerable<CampusCount> Campuses { get; set; }
+      public IEnumerable<CampusCount> Campuses { get; init; }
     parameters: []
     return:
       type: System.Collections.Generic.IEnumerable{Crews.PlanningCenter.Api.People.V2023_03_21.CampusCount}
@@ -246,7 +248,7 @@ items:
     content: >-
       [JsonPropertyName("total")]
 
-      public int Total { get; set; }
+      public int Total { get; init; }
     parameters: []
     return:
       type: System.Int32
@@ -289,7 +291,7 @@ items:
     content: >-
       [JsonPropertyName("created_last_30_days")]
 
-      public int CreatedLast30Days { get; set; }
+      public int CreatedLast30Days { get; init; }
     parameters: []
     return:
       type: System.Int32
@@ -332,7 +334,7 @@ items:
     content: >-
       [JsonPropertyName("elasticsearch")]
 
-      public bool ElasticSearch { get; set; }
+      public bool ElasticSearch { get; init; }
     parameters: []
     return:
       type: System.Boolean
@@ -375,7 +377,7 @@ items:
     content: >-
       [JsonPropertyName("gender_ids")]
 
-      public required GenderIds GenderIds { get; set; }
+      public required GenderIds GenderIds { get; init; }
     parameters: []
     return:
       type: Crews.PlanningCenter.Api.People.V2023_03_21.GenderIds
@@ -448,6 +450,39 @@ references:
   nameWithType.vb: Object
   fullName.vb: Object
   name.vb: Object
+- uid: System.IEquatable{Crews.PlanningCenter.Api.People.V2023_03_21.OrganizationStatistics}
+  commentId: T:System.IEquatable{Crews.PlanningCenter.Api.People.V2023_03_21.OrganizationStatistics}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<OrganizationStatistics>
+  nameWithType: IEquatable<OrganizationStatistics>
+  fullName: System.IEquatable<Crews.PlanningCenter.Api.People.V2023_03_21.OrganizationStatistics>
+  nameWithType.vb: IEquatable(Of OrganizationStatistics)
+  fullName.vb: System.IEquatable(Of Crews.PlanningCenter.Api.People.V2023_03_21.OrganizationStatistics)
+  name.vb: IEquatable(Of OrganizationStatistics)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: Crews.PlanningCenter.Api.People.V2023_03_21.OrganizationStatistics
+    name: OrganizationStatistics
+    href: Crews.PlanningCenter.Api.People.V2023_03_21.OrganizationStatistics.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Crews.PlanningCenter.Api.People.V2023_03_21.OrganizationStatistics
+    name: OrganizationStatistics
+    href: Crews.PlanningCenter.Api.People.V2023_03_21.OrganizationStatistics.html
+  - name: )
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -674,6 +709,34 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
 - uid: Crews.PlanningCenter.Api.People.V2023_03_21.OrganizationStatistics.Membership*
   commentId: Overload:Crews.PlanningCenter.Api.People.V2023_03_21.OrganizationStatistics.Membership
   href: Crews.PlanningCenter.Api.People.V2023_03_21.OrganizationStatistics.html#Crews_PlanningCenter_Api_People_V2023_03_21_OrganizationStatistics_Membership

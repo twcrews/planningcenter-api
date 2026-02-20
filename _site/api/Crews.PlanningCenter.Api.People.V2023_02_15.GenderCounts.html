@@ -102,7 +102,7 @@ Class GenderCounts  <a class="header-action link-secondary" title="View source" 
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class GenderCounts</code></pre>
+    <pre><code class="lang-csharp hljs">public record GenderCounts : IEquatable&lt;GenderCounts&gt;</code></pre>
   </div>
 
 
@@ -116,6 +116,12 @@ Class GenderCounts  <a class="header-action link-secondary" title="View source" 
     </dd>
   </dl>
 
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="Crews.PlanningCenter.Api.People.V2023_02_15.GenderCounts.html">GenderCounts</a>&gt;</div>
+    </dd>
+  </dl>
 
 
   <dl class="typelist inheritedMembers">
@@ -166,7 +172,7 @@ Class GenderCounts  <a class="header-action link-secondary" title="View source" 
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;female&quot;)]
-public int Female { get; set; }</code></pre>
+public int Female { get; init; }</code></pre>
   </div>
 
 
@@ -199,7 +205,7 @@ public int Female { get; set; }</code></pre>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;male&quot;)]
-public int Male { get; set; }</code></pre>
+public int Male { get; init; }</code></pre>
   </div>
 
 
@@ -232,7 +238,7 @@ public int Male { get; set; }</code></pre>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;unassigned&quot;)]
-public int Unassigned { get; set; }</code></pre>
+public int Unassigned { get; init; }</code></pre>
   </div>
 
 

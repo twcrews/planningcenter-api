@@ -31,10 +31,12 @@ items:
   - Crews.PlanningCenter.Api.DocParser
   namespace: Crews.PlanningCenter.Api.DocParser.Models
   syntax:
-    content: public class GraphVersionRelationships
-    content.vb: Public Class GraphVersionRelationships
+    content: 'public record GraphVersionRelationships : IEquatable<GraphVersionRelationships>'
+    content.vb: Public Class GraphVersionRelationships Implements IEquatable(Of GraphVersionRelationships)
   inheritance:
   - System.Object
+  implements:
+  - System.IEquatable{Crews.PlanningCenter.Api.DocParser.Models.GraphVersionRelationships}
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -69,7 +71,7 @@ items:
     content: >-
       [JsonPropertyName("previous_version")]
 
-      public required JsonApiRelationship PreviousVersion { get; set; }
+      public required JsonApiRelationship PreviousVersion { get; init; }
     parameters: []
     return:
       type: Crews.Web.JsonApiClient.JsonApiRelationship
@@ -110,7 +112,7 @@ items:
     content: >-
       [JsonPropertyName("next_version")]
 
-      public required JsonApiRelationship NextVersion { get; set; }
+      public required JsonApiRelationship NextVersion { get; init; }
     parameters: []
     return:
       type: Crews.Web.JsonApiClient.JsonApiRelationship
@@ -151,7 +153,7 @@ items:
     content: >-
       [JsonPropertyName("changes")]
 
-      public required VertexChangeCollectionRelationship Changes { get; set; }
+      public required VertexChangeCollectionRelationship Changes { get; init; }
     parameters: []
     return:
       type: Crews.PlanningCenter.Api.DocParser.Models.VertexChangeCollectionRelationship
@@ -192,7 +194,7 @@ items:
     content: >-
       [JsonPropertyName("removed")]
 
-      public required DeprecatedEdgeCollectionRelationship Removed { get; set; }
+      public required DeprecatedEdgeCollectionRelationship Removed { get; init; }
     parameters: []
     return:
       type: Crews.PlanningCenter.Api.DocParser.Models.DeprecatedEdgeCollectionRelationship
@@ -233,7 +235,7 @@ items:
     content: >-
       [JsonPropertyName("vertices")]
 
-      public required VertexCollectionRelationship Vertices { get; set; }
+      public required VertexCollectionRelationship Vertices { get; init; }
     parameters: []
     return:
       type: Crews.PlanningCenter.Api.DocParser.Models.VertexCollectionRelationship
@@ -274,7 +276,7 @@ items:
     content: >-
       [JsonPropertyName("edges")]
 
-      public required EdgeCollectionRelationship Edges { get; set; }
+      public required EdgeCollectionRelationship Edges { get; init; }
     parameters: []
     return:
       type: Crews.PlanningCenter.Api.DocParser.Models.EdgeCollectionRelationship
@@ -315,7 +317,7 @@ items:
     content: >-
       [JsonPropertyName("entry")]
 
-      public required VertexRelationship Entry { get; set; }
+      public required VertexRelationship Entry { get; init; }
     parameters: []
     return:
       type: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationship
@@ -388,6 +390,39 @@ references:
   nameWithType.vb: Object
   fullName.vb: Object
   name.vb: Object
+- uid: System.IEquatable{Crews.PlanningCenter.Api.DocParser.Models.GraphVersionRelationships}
+  commentId: T:System.IEquatable{Crews.PlanningCenter.Api.DocParser.Models.GraphVersionRelationships}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<GraphVersionRelationships>
+  nameWithType: IEquatable<GraphVersionRelationships>
+  fullName: System.IEquatable<Crews.PlanningCenter.Api.DocParser.Models.GraphVersionRelationships>
+  nameWithType.vb: IEquatable(Of GraphVersionRelationships)
+  fullName.vb: System.IEquatable(Of Crews.PlanningCenter.Api.DocParser.Models.GraphVersionRelationships)
+  name.vb: IEquatable(Of GraphVersionRelationships)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: Crews.PlanningCenter.Api.DocParser.Models.GraphVersionRelationships
+    name: GraphVersionRelationships
+    href: Crews.PlanningCenter.Api.DocParser.Models.GraphVersionRelationships.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Crews.PlanningCenter.Api.DocParser.Models.GraphVersionRelationships
+    name: GraphVersionRelationships
+    href: Crews.PlanningCenter.Api.DocParser.Models.GraphVersionRelationships.html
+  - name: )
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -614,6 +649,34 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
 - uid: Crews.PlanningCenter.Api.DocParser.Models.GraphVersionRelationships.PreviousVersion*
   commentId: Overload:Crews.PlanningCenter.Api.DocParser.Models.GraphVersionRelationships.PreviousVersion
   href: Crews.PlanningCenter.Api.DocParser.Models.GraphVersionRelationships.html#Crews_PlanningCenter_Api_DocParser_Models_GraphVersionRelationships_PreviousVersion

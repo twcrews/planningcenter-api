@@ -4,41 +4,41 @@ using System.Text.Json.Serialization;
 
 namespace Crews.PlanningCenter.Api.DocParser.Models;
 
-public class Permissions
+public record Permissions
 {
     [JsonPropertyName("can_create")]
-    public bool CanCreate { get; set; }
+    public bool CanCreate { get; init; }
 
     [JsonPropertyName("can_update")]
-    public bool CanUpdate { get; set; }
+    public bool CanUpdate { get; init; }
 
     [JsonPropertyName("can_destroy")]
-    public bool CanDestroy { get; set; }
+    public bool CanDestroy { get; init; }
 
     [JsonPropertyName("read")]
-    public JsonElement? Read { get; set; }
+    public JsonElement? Read { get; init; }
 
     [JsonPropertyName("create")]
-    public JsonElement? Create { get; set; }
+    public JsonElement? Create { get; init; }
 
     [JsonPropertyName("update")]
-    public JsonElement? Update { get; set; }
+    public JsonElement? Update { get; init; }
 
     [JsonPropertyName("destroy")]
-    public JsonElement? Destroy { get; set; }
+    public JsonElement? Destroy { get; init; }
 
     [JsonPropertyName("edges")]
-    public IEnumerable<string> Edges { get; set; } = [];
+    public IEnumerable<string> Edges { get; init; } = [];
 }
 
-public class PermissionsResource : JsonApiResource
+public record PermissionsResource : JsonApiResource
 {
     [JsonPropertyName("attributes")]
-    public required new Permissions Attributes { get; set; }
+    public required new Permissions Attributes { get; init; }
 }
 
-public class PermissionsRelationship : JsonApiRelationship
+public record PermissionsRelationship : JsonApiRelationship
 {
     [JsonPropertyName("data")]
-    public required new PermissionsResource Data { get; set; }
+    public required new PermissionsResource Data { get; init; }
 }

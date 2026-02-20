@@ -44,8 +44,7 @@
     "globalMetadata": {
       "_appName": "Planning Ceneter API",
       "_appTitle": "Planning Ceneter API",
-      "_enableSearch": true,
-      "pdf": true
+      "_enableSearch": true
     }
   }
 }

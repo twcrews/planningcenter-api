@@ -101,7 +101,7 @@ Class EdgeRelationships  <a class="header-action link-secondary" title="View sou
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class EdgeRelationships</code></pre>
+    <pre><code class="lang-csharp hljs">public record EdgeRelationships : IEquatable&lt;EdgeRelationships&gt;</code></pre>
   </div>
 
 
@@ -115,6 +115,12 @@ Class EdgeRelationships  <a class="header-action link-secondary" title="View sou
     </dd>
   </dl>
 
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="Crews.PlanningCenter.Api.DocParser.Models.EdgeRelationships.html">EdgeRelationships</a>&gt;</div>
+    </dd>
+  </dl>
 
 
   <dl class="typelist inheritedMembers">
@@ -164,7 +170,7 @@ Class EdgeRelationships  <a class="header-action link-secondary" title="View sou
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;head&quot;)]
-public required VertexRelationship Head { get; set; }</code></pre>
+public required VertexRelationship Head { get; init; }</code></pre>
   </div>
 
 
@@ -196,7 +202,7 @@ public required VertexRelationship Head { get; set; }</code></pre>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;rate_limits&quot;)]
-public required JsonApiRelationship RateLimits { get; set; }</code></pre>
+public required JsonApiRelationship RateLimits { get; init; }</code></pre>
   </div>
 
 
@@ -228,7 +234,7 @@ public required JsonApiRelationship RateLimits { get; set; }</code></pre>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;tail&quot;)]
-public required VertexRelationship Tail { get; set; }</code></pre>
+public required VertexRelationship Tail { get; init; }</code></pre>
   </div>
 
 

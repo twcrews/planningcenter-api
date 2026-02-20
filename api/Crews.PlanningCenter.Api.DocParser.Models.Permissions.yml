@@ -32,10 +32,12 @@ items:
   - Crews.PlanningCenter.Api.DocParser
   namespace: Crews.PlanningCenter.Api.DocParser.Models
   syntax:
-    content: public class Permissions
-    content.vb: Public Class Permissions
+    content: 'public record Permissions : IEquatable<Permissions>'
+    content.vb: Public Class Permissions Implements IEquatable(Of Permissions)
   inheritance:
   - System.Object
+  implements:
+  - System.IEquatable{Crews.PlanningCenter.Api.DocParser.Models.Permissions}
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -70,7 +72,7 @@ items:
     content: >-
       [JsonPropertyName("can_create")]
 
-      public bool CanCreate { get; set; }
+      public bool CanCreate { get; init; }
     parameters: []
     return:
       type: System.Boolean
@@ -111,7 +113,7 @@ items:
     content: >-
       [JsonPropertyName("can_update")]
 
-      public bool CanUpdate { get; set; }
+      public bool CanUpdate { get; init; }
     parameters: []
     return:
       type: System.Boolean
@@ -152,7 +154,7 @@ items:
     content: >-
       [JsonPropertyName("can_destroy")]
 
-      public bool CanDestroy { get; set; }
+      public bool CanDestroy { get; init; }
     parameters: []
     return:
       type: System.Boolean
@@ -193,7 +195,7 @@ items:
     content: >-
       [JsonPropertyName("read")]
 
-      public JsonElement? Read { get; set; }
+      public JsonElement? Read { get; init; }
     parameters: []
     return:
       type: System.Nullable{System.Text.Json.JsonElement}
@@ -234,7 +236,7 @@ items:
     content: >-
       [JsonPropertyName("create")]
 
-      public JsonElement? Create { get; set; }
+      public JsonElement? Create { get; init; }
     parameters: []
     return:
       type: System.Nullable{System.Text.Json.JsonElement}
@@ -275,7 +277,7 @@ items:
     content: >-
       [JsonPropertyName("update")]
 
-      public JsonElement? Update { get; set; }
+      public JsonElement? Update { get; init; }
     parameters: []
     return:
       type: System.Nullable{System.Text.Json.JsonElement}
@@ -316,7 +318,7 @@ items:
     content: >-
       [JsonPropertyName("destroy")]
 
-      public JsonElement? Destroy { get; set; }
+      public JsonElement? Destroy { get; init; }
     parameters: []
     return:
       type: System.Nullable{System.Text.Json.JsonElement}
@@ -357,7 +359,7 @@ items:
     content: >-
       [JsonPropertyName("edges")]
 
-      public IEnumerable<string> Edges { get; set; }
+      public IEnumerable<string> Edges { get; init; }
     parameters: []
     return:
       type: System.Collections.Generic.IEnumerable{System.String}
@@ -430,6 +432,39 @@ references:
   nameWithType.vb: Object
   fullName.vb: Object
   name.vb: Object
+- uid: System.IEquatable{Crews.PlanningCenter.Api.DocParser.Models.Permissions}
+  commentId: T:System.IEquatable{Crews.PlanningCenter.Api.DocParser.Models.Permissions}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<Permissions>
+  nameWithType: IEquatable<Permissions>
+  fullName: System.IEquatable<Crews.PlanningCenter.Api.DocParser.Models.Permissions>
+  nameWithType.vb: IEquatable(Of Permissions)
+  fullName.vb: System.IEquatable(Of Crews.PlanningCenter.Api.DocParser.Models.Permissions)
+  name.vb: IEquatable(Of Permissions)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: Crews.PlanningCenter.Api.DocParser.Models.Permissions
+    name: Permissions
+    href: Crews.PlanningCenter.Api.DocParser.Models.Permissions.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Crews.PlanningCenter.Api.DocParser.Models.Permissions
+    name: Permissions
+    href: Crews.PlanningCenter.Api.DocParser.Models.Permissions.html
+  - name: )
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -656,6 +691,34 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
 - uid: Crews.PlanningCenter.Api.DocParser.Models.Permissions.CanCreate*
   commentId: Overload:Crews.PlanningCenter.Api.DocParser.Models.Permissions.CanCreate
   href: Crews.PlanningCenter.Api.DocParser.Models.Permissions.html#Crews_PlanningCenter_Api_DocParser_Models_Permissions_CanCreate

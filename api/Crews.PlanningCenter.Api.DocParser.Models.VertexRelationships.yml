@@ -36,10 +36,12 @@ items:
   - Crews.PlanningCenter.Api.DocParser
   namespace: Crews.PlanningCenter.Api.DocParser.Models
   syntax:
-    content: public class VertexRelationships
-    content.vb: Public Class VertexRelationships
+    content: 'public record VertexRelationships : IEquatable<VertexRelationships>'
+    content.vb: Public Class VertexRelationships Implements IEquatable(Of VertexRelationships)
   inheritance:
   - System.Object
+  implements:
+  - System.IEquatable{Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships}
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -74,7 +76,7 @@ items:
     content: >-
       [JsonPropertyName("attributes")]
 
-      public required AttributeCollectionRelationship Attributes { get; set; }
+      public required AttributeCollectionRelationship Attributes { get; init; }
     parameters: []
     return:
       type: Crews.PlanningCenter.Api.DocParser.Models.AttributeCollectionRelationship
@@ -115,7 +117,7 @@ items:
     content: >-
       [JsonPropertyName("relationships")]
 
-      public required RelationshipCollectionRelationship Relationships { get; set; }
+      public required RelationshipCollectionRelationship Relationships { get; init; }
     parameters: []
     return:
       type: Crews.PlanningCenter.Api.DocParser.Models.RelationshipCollectionRelationship
@@ -156,7 +158,7 @@ items:
     content: >-
       [JsonPropertyName("permissions")]
 
-      public required PermissionsRelationship Permissions { get; set; }
+      public required PermissionsRelationship Permissions { get; init; }
     parameters: []
     return:
       type: Crews.PlanningCenter.Api.DocParser.Models.PermissionsRelationship
@@ -197,7 +199,7 @@ items:
     content: >-
       [JsonPropertyName("actions")]
 
-      public required ActionRelationship Actions { get; set; }
+      public required ActionRelationship Actions { get; init; }
     parameters: []
     return:
       type: Crews.PlanningCenter.Api.DocParser.Models.ActionRelationship
@@ -238,7 +240,7 @@ items:
     content: >-
       [JsonPropertyName("outbound_edges")]
 
-      public required EdgeCollectionRelationship OutboundEdges { get; set; }
+      public required EdgeCollectionRelationship OutboundEdges { get; init; }
     parameters: []
     return:
       type: Crews.PlanningCenter.Api.DocParser.Models.EdgeCollectionRelationship
@@ -279,7 +281,7 @@ items:
     content: >-
       [JsonPropertyName("inbound_edges")]
 
-      public required EdgeCollectionRelationship InboundEdges { get; set; }
+      public required EdgeCollectionRelationship InboundEdges { get; init; }
     parameters: []
     return:
       type: Crews.PlanningCenter.Api.DocParser.Models.EdgeCollectionRelationship
@@ -320,7 +322,7 @@ items:
     content: >-
       [JsonPropertyName("can_include")]
 
-      public required UrlParameterCollectionRelationship CanInclude { get; set; }
+      public required UrlParameterCollectionRelationship CanInclude { get; init; }
     parameters: []
     return:
       type: Crews.PlanningCenter.Api.DocParser.Models.UrlParameterCollectionRelationship
@@ -361,7 +363,7 @@ items:
     content: >-
       [JsonPropertyName("can_order")]
 
-      public required UrlParameterCollectionRelationship CanOrder { get; set; }
+      public required UrlParameterCollectionRelationship CanOrder { get; init; }
     parameters: []
     return:
       type: Crews.PlanningCenter.Api.DocParser.Models.UrlParameterCollectionRelationship
@@ -402,7 +404,7 @@ items:
     content: >-
       [JsonPropertyName("can_query")]
 
-      public required UrlParameterCollectionRelationship CanQuery { get; set; }
+      public required UrlParameterCollectionRelationship CanQuery { get; init; }
     parameters: []
     return:
       type: Crews.PlanningCenter.Api.DocParser.Models.UrlParameterCollectionRelationship
@@ -443,7 +445,7 @@ items:
     content: >-
       [JsonPropertyName("per_page")]
 
-      public required UrlParameterRelationship PerPage { get; set; }
+      public required UrlParameterRelationship PerPage { get; init; }
     parameters: []
     return:
       type: Crews.PlanningCenter.Api.DocParser.Models.UrlParameterRelationship
@@ -484,7 +486,7 @@ items:
     content: >-
       [JsonPropertyName("offset")]
 
-      public required UrlParameterRelationship Offset { get; set; }
+      public required UrlParameterRelationship Offset { get; init; }
     parameters: []
     return:
       type: Crews.PlanningCenter.Api.DocParser.Models.UrlParameterRelationship
@@ -525,7 +527,7 @@ items:
     content: >-
       [JsonPropertyName("rate_limits")]
 
-      public required JsonApiRelationship RateLimits { get; set; }
+      public required JsonApiRelationship RateLimits { get; init; }
     parameters: []
     return:
       type: Crews.Web.JsonApiClient.JsonApiRelationship
@@ -598,6 +600,39 @@ references:
   nameWithType.vb: Object
   fullName.vb: Object
   name.vb: Object
+- uid: System.IEquatable{Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships}
+  commentId: T:System.IEquatable{Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<VertexRelationships>
+  nameWithType: IEquatable<VertexRelationships>
+  fullName: System.IEquatable<Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships>
+  nameWithType.vb: IEquatable(Of VertexRelationships)
+  fullName.vb: System.IEquatable(Of Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships)
+  name.vb: IEquatable(Of VertexRelationships)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships
+    name: VertexRelationships
+    href: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships
+    name: VertexRelationships
+    href: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.html
+  - name: )
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -824,6 +859,34 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
 - uid: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.Attributes*
   commentId: Overload:Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.Attributes
   href: Crews.PlanningCenter.Api.DocParser.Models.VertexRelationships.html#Crews_PlanningCenter_Api_DocParser_Models_VertexRelationships_Attributes

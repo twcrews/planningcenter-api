@@ -29,10 +29,12 @@ items:
   summary: Represents people counts by gender.
   example: []
   syntax:
-    content: public class GenderCounts
-    content.vb: Public Class GenderCounts
+    content: 'public record GenderCounts : IEquatable<GenderCounts>'
+    content.vb: Public Class GenderCounts Implements IEquatable(Of GenderCounts)
   inheritance:
   - System.Object
+  implements:
+  - System.IEquatable{Crews.PlanningCenter.Api.People.V2020_04_06.GenderCounts}
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -69,7 +71,7 @@ items:
     content: >-
       [JsonPropertyName("male")]
 
-      public int Male { get; set; }
+      public int Male { get; init; }
     parameters: []
     return:
       type: System.Int32
@@ -112,7 +114,7 @@ items:
     content: >-
       [JsonPropertyName("female")]
 
-      public int Female { get; set; }
+      public int Female { get; init; }
     parameters: []
     return:
       type: System.Int32
@@ -155,7 +157,7 @@ items:
     content: >-
       [JsonPropertyName("unassigned")]
 
-      public int Unassigned { get; set; }
+      public int Unassigned { get; init; }
     parameters: []
     return:
       type: System.Int32
@@ -228,6 +230,39 @@ references:
   nameWithType.vb: Object
   fullName.vb: Object
   name.vb: Object
+- uid: System.IEquatable{Crews.PlanningCenter.Api.People.V2020_04_06.GenderCounts}
+  commentId: T:System.IEquatable{Crews.PlanningCenter.Api.People.V2020_04_06.GenderCounts}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<GenderCounts>
+  nameWithType: IEquatable<GenderCounts>
+  fullName: System.IEquatable<Crews.PlanningCenter.Api.People.V2020_04_06.GenderCounts>
+  nameWithType.vb: IEquatable(Of GenderCounts)
+  fullName.vb: System.IEquatable(Of Crews.PlanningCenter.Api.People.V2020_04_06.GenderCounts)
+  name.vb: IEquatable(Of GenderCounts)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: Crews.PlanningCenter.Api.People.V2020_04_06.GenderCounts
+    name: GenderCounts
+    href: Crews.PlanningCenter.Api.People.V2020_04_06.GenderCounts.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Crews.PlanningCenter.Api.People.V2020_04_06.GenderCounts
+    name: GenderCounts
+    href: Crews.PlanningCenter.Api.People.V2020_04_06.GenderCounts.html
+  - name: )
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -454,6 +489,34 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
 - uid: Crews.PlanningCenter.Api.People.V2020_04_06.GenderCounts.Male*
   commentId: Overload:Crews.PlanningCenter.Api.People.V2020_04_06.GenderCounts.Male
   href: Crews.PlanningCenter.Api.People.V2020_04_06.GenderCounts.html#Crews_PlanningCenter_Api_People_V2020_04_06_GenderCounts_Male

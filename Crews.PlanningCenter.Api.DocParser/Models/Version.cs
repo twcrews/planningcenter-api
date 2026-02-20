@@ -3,35 +3,35 @@ using System.Text.Json.Serialization;
 
 namespace Crews.PlanningCenter.Api.DocParser.Models;
 
-public class Version
+public record Version
 {
   [JsonPropertyName("beta")]
-  public bool Beta { get; set; }
+  public bool Beta { get; init; }
 
   [JsonPropertyName("details")]
-  public string? Details { get; set; }
+  public string? Details { get; init; }
 }
 
-public class VersionResource : JsonApiResource
+public record VersionResource : JsonApiResource
 {
   [JsonPropertyName("attributes")]
-  public required new Version Attributes { get; set; }
+  public required new Version Attributes { get; init; }
 
   [JsonPropertyName("relationships")]
-  public required new VersionRelationships Relationships { get; set; }
+  public required new VersionRelationships Relationships { get; init; }
 }
 
-public class VersionRelationships
+public record VersionRelationships
 {
   [JsonPropertyName("entry")]
-  public required VertexRelationship Entry { get; set; }
+  public required VertexRelationship Entry { get; init; }
 
   [JsonPropertyName("vertices")]
-  public required VertexCollectionRelationship Vertices { get; set; }
+  public required VertexCollectionRelationship Vertices { get; init; }
 }
 
-public class VersionRelationship : JsonApiRelationship
+public record VersionRelationship : JsonApiRelationship
 {
   [JsonPropertyName("data")]
-  public required new IEnumerable<VersionResource> Data { get; set; }
+  public required new IEnumerable<VersionResource> Data { get; init; }
 }

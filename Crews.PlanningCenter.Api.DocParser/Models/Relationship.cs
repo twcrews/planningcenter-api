@@ -4,41 +4,41 @@ using System.Text.Json.Serialization;
 
 namespace Crews.PlanningCenter.Api.DocParser.Models;
 
-public class Relationship
+public record Relationship
 {
   [JsonPropertyName("association")]
-  public required string Association { get; set; }
+  public required string Association { get; init; }
 
   [JsonPropertyName("name")]
-  public required string Name { get; set; }
+  public required string Name { get; init; }
 
   [JsonPropertyName("authorization_level")]
-  public required string AuthorizationLevel { get; set; }
+  public required string AuthorizationLevel { get; init; }
 
   [JsonPropertyName("graph_type")]
-  public required string GraphType { get; set; }
+  public required string GraphType { get; init; }
 
   [JsonPropertyName("polymorphic")]
-  public JsonElement? Polymorphic { get; set; }
+  public JsonElement? Polymorphic { get; init; }
 
   [JsonPropertyName("note")]
-  public string? Note { get; set; }
+  public string? Note { get; init; }
 }
 
-public class RelationshipResource : JsonApiResource
+public record RelationshipResource : JsonApiResource
 {
   [JsonPropertyName("attributes")]
-  public required new Relationship Attributes { get; set; }
+  public required new Relationship Attributes { get; init; }
 }
 
-public class RelationshipCollectionRelationship : JsonApiRelationship
+public record RelationshipCollectionRelationship : JsonApiRelationship
 {
   [JsonPropertyName("data")]
-  public required new IEnumerable<RelationshipResource> Data { get; set; }
+  public required new IEnumerable<RelationshipResource> Data { get; init; }
 }
 
-public class RelationshipRelationship : JsonApiRelationship
+public record RelationshipRelationship : JsonApiRelationship
 {
   [JsonPropertyName("data")]
-  public required new RelationshipResource Data { get; set; }
+  public required new RelationshipResource Data { get; init; }
 }

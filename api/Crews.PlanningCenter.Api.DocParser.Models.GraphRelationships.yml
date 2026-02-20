@@ -25,10 +25,12 @@ items:
   - Crews.PlanningCenter.Api.DocParser
   namespace: Crews.PlanningCenter.Api.DocParser.Models
   syntax:
-    content: public class GraphRelationships
-    content.vb: Public Class GraphRelationships
+    content: 'public record GraphRelationships : IEquatable<GraphRelationships>'
+    content.vb: Public Class GraphRelationships Implements IEquatable(Of GraphRelationships)
   inheritance:
   - System.Object
+  implements:
+  - System.IEquatable{Crews.PlanningCenter.Api.DocParser.Models.GraphRelationships}
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -63,7 +65,7 @@ items:
     content: >-
       [JsonPropertyName("versions")]
 
-      public required VersionRelationship Versions { get; set; }
+      public required VersionRelationship Versions { get; init; }
     parameters: []
     return:
       type: Crews.PlanningCenter.Api.DocParser.Models.VersionRelationship
@@ -136,6 +138,39 @@ references:
   nameWithType.vb: Object
   fullName.vb: Object
   name.vb: Object
+- uid: System.IEquatable{Crews.PlanningCenter.Api.DocParser.Models.GraphRelationships}
+  commentId: T:System.IEquatable{Crews.PlanningCenter.Api.DocParser.Models.GraphRelationships}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<GraphRelationships>
+  nameWithType: IEquatable<GraphRelationships>
+  fullName: System.IEquatable<Crews.PlanningCenter.Api.DocParser.Models.GraphRelationships>
+  nameWithType.vb: IEquatable(Of GraphRelationships)
+  fullName.vb: System.IEquatable(Of Crews.PlanningCenter.Api.DocParser.Models.GraphRelationships)
+  name.vb: IEquatable(Of GraphRelationships)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: Crews.PlanningCenter.Api.DocParser.Models.GraphRelationships
+    name: GraphRelationships
+    href: Crews.PlanningCenter.Api.DocParser.Models.GraphRelationships.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Crews.PlanningCenter.Api.DocParser.Models.GraphRelationships
+    name: GraphRelationships
+    href: Crews.PlanningCenter.Api.DocParser.Models.GraphRelationships.html
+  - name: )
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -362,6 +397,34 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
 - uid: Crews.PlanningCenter.Api.DocParser.Models.GraphRelationships.Versions*
   commentId: Overload:Crews.PlanningCenter.Api.DocParser.Models.GraphRelationships.Versions
   href: Crews.PlanningCenter.Api.DocParser.Models.GraphRelationships.html#Crews_PlanningCenter_Api_DocParser_Models_GraphRelationships_Versions

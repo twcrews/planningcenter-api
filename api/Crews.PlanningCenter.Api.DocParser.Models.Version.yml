@@ -26,10 +26,12 @@ items:
   - Crews.PlanningCenter.Api.DocParser
   namespace: Crews.PlanningCenter.Api.DocParser.Models
   syntax:
-    content: public class Version
-    content.vb: Public Class Version
+    content: 'public record Version : IEquatable<Version>'
+    content.vb: Public Class Version Implements IEquatable(Of Version)
   inheritance:
   - System.Object
+  implements:
+  - System.IEquatable{Crews.PlanningCenter.Api.DocParser.Models.Version}
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -64,7 +66,7 @@ items:
     content: >-
       [JsonPropertyName("beta")]
 
-      public bool Beta { get; set; }
+      public bool Beta { get; init; }
     parameters: []
     return:
       type: System.Boolean
@@ -105,7 +107,7 @@ items:
     content: >-
       [JsonPropertyName("details")]
 
-      public string? Details { get; set; }
+      public string? Details { get; init; }
     parameters: []
     return:
       type: System.String
@@ -178,6 +180,39 @@ references:
   nameWithType.vb: Object
   fullName.vb: Object
   name.vb: Object
+- uid: System.IEquatable{Crews.PlanningCenter.Api.DocParser.Models.Version}
+  commentId: T:System.IEquatable{Crews.PlanningCenter.Api.DocParser.Models.Version}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<Version>
+  nameWithType: IEquatable<Version>
+  fullName: System.IEquatable<Crews.PlanningCenter.Api.DocParser.Models.Version>
+  nameWithType.vb: IEquatable(Of Version)
+  fullName.vb: System.IEquatable(Of Crews.PlanningCenter.Api.DocParser.Models.Version)
+  name.vb: IEquatable(Of Version)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: Crews.PlanningCenter.Api.DocParser.Models.Version
+    name: Version
+    href: Crews.PlanningCenter.Api.DocParser.Models.Version.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Crews.PlanningCenter.Api.DocParser.Models.Version
+    name: Version
+    href: Crews.PlanningCenter.Api.DocParser.Models.Version.html
+  - name: )
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -404,6 +439,34 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
 - uid: Crews.PlanningCenter.Api.DocParser.Models.Version.Beta*
   commentId: Overload:Crews.PlanningCenter.Api.DocParser.Models.Version.Beta
   href: Crews.PlanningCenter.Api.DocParser.Models.Version.html#Crews_PlanningCenter_Api_DocParser_Models_Version_Beta

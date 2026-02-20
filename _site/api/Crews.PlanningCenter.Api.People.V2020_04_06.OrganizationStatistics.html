@@ -102,7 +102,7 @@ Class OrganizationStatistics  <a class="header-action link-secondary" title="Vie
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class OrganizationStatistics</code></pre>
+    <pre><code class="lang-csharp hljs">public record OrganizationStatistics : IEquatable&lt;OrganizationStatistics&gt;</code></pre>
   </div>
 
 
@@ -116,6 +116,12 @@ Class OrganizationStatistics  <a class="header-action link-secondary" title="Vie
     </dd>
   </dl>
 
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="Crews.PlanningCenter.Api.People.V2020_04_06.OrganizationStatistics.html">OrganizationStatistics</a>&gt;</div>
+    </dd>
+  </dl>
 
 
   <dl class="typelist inheritedMembers">
@@ -166,7 +172,7 @@ Class OrganizationStatistics  <a class="header-action link-secondary" title="Vie
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;age&quot;)]
-public required AgeCounts Age { get; set; }</code></pre>
+public required AgeCounts Age { get; init; }</code></pre>
   </div>
 
 
@@ -199,7 +205,7 @@ public required AgeCounts Age { get; set; }</code></pre>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;campuses&quot;)]
-public IEnumerable&lt;CampusCount&gt; Campuses { get; set; }</code></pre>
+public IEnumerable&lt;CampusCount&gt; Campuses { get; init; }</code></pre>
   </div>
 
 
@@ -232,7 +238,7 @@ public IEnumerable&lt;CampusCount&gt; Campuses { get; set; }</code></pre>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;created_last_30_days&quot;)]
-public int CreatedLast30Days { get; set; }</code></pre>
+public int CreatedLast30Days { get; init; }</code></pre>
   </div>
 
 
@@ -265,7 +271,7 @@ public int CreatedLast30Days { get; set; }</code></pre>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;elasticsearch&quot;)]
-public bool ElasticSearch { get; set; }</code></pre>
+public bool ElasticSearch { get; init; }</code></pre>
   </div>
 
 
@@ -298,7 +304,7 @@ public bool ElasticSearch { get; set; }</code></pre>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;gender&quot;)]
-public required GenderCounts Gender { get; set; }</code></pre>
+public required GenderCounts Gender { get; init; }</code></pre>
   </div>
 
 
@@ -331,7 +337,7 @@ public required GenderCounts Gender { get; set; }</code></pre>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;gender_ids&quot;)]
-public required GenderIds GenderIds { get; set; }</code></pre>
+public required GenderIds GenderIds { get; init; }</code></pre>
   </div>
 
 
@@ -364,7 +370,7 @@ public required GenderIds GenderIds { get; set; }</code></pre>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;membership&quot;)]
-public IEnumerable&lt;MembershipCount&gt; Membership { get; set; }</code></pre>
+public IEnumerable&lt;MembershipCount&gt; Membership { get; init; }</code></pre>
   </div>
 
 
@@ -397,7 +403,7 @@ public IEnumerable&lt;MembershipCount&gt; Membership { get; set; }</code></pre>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;total&quot;)]
-public int Total { get; set; }</code></pre>
+public int Total { get; init; }</code></pre>
   </div>
 
 

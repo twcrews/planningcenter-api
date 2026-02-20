@@ -1331,6 +1331,10 @@
           "Slug": "events",
           "Filters": [
             {
+              "Name": "campus",
+              "Description": "from specific campuses; provide an additional \u0060campus_id\u0060 param\nas a comma-separated list of IDs, ex: \u0060?filter=campus\u0026campus_id=1,2,3\u0060\n"
+            },
+            {
               "Name": "canceled",
               "Description": "has a \u0060canceled_at\u0060 date and time\n"
             },

@@ -34,10 +34,12 @@ items:
   summary: Represents people counts by age ranges, further divided by gender.
   example: []
   syntax:
-    content: public class AgeCounts
-    content.vb: Public Class AgeCounts
+    content: 'public record AgeCounts : IEquatable<AgeCounts>'
+    content.vb: Public Class AgeCounts Implements IEquatable(Of AgeCounts)
   inheritance:
   - System.Object
+  implements:
+  - System.IEquatable{Crews.PlanningCenter.Api.People.V2025_03_20.AgeCounts}
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -74,7 +76,7 @@ items:
     content: >-
       [JsonPropertyName("0-3")]
 
-      public required GenderCounts Age0To3 { get; set; }
+      public required GenderCounts Age0To3 { get; init; }
     parameters: []
     return:
       type: Crews.PlanningCenter.Api.People.V2025_03_20.GenderCounts
@@ -117,7 +119,7 @@ items:
     content: >-
       [JsonPropertyName("4-11")]
 
-      public required GenderCounts Age4To11 { get; set; }
+      public required GenderCounts Age4To11 { get; init; }
     parameters: []
     return:
       type: Crews.PlanningCenter.Api.People.V2025_03_20.GenderCounts
@@ -160,7 +162,7 @@ items:
     content: >-
       [JsonPropertyName("12-18")]
 
-      public required GenderCounts Age12To18 { get; set; }
+      public required GenderCounts Age12To18 { get; init; }
     parameters: []
     return:
       type: Crews.PlanningCenter.Api.People.V2025_03_20.GenderCounts
@@ -203,7 +205,7 @@ items:
     content: >-
       [JsonPropertyName("19-25")]
 
-      public required GenderCounts Age19To25 { get; set; }
+      public required GenderCounts Age19To25 { get; init; }
     parameters: []
     return:
       type: Crews.PlanningCenter.Api.People.V2025_03_20.GenderCounts
@@ -246,7 +248,7 @@ items:
     content: >-
       [JsonPropertyName("26-35")]
 
-      public required GenderCounts Age26To35 { get; set; }
+      public required GenderCounts Age26To35 { get; init; }
     parameters: []
     return:
       type: Crews.PlanningCenter.Api.People.V2025_03_20.GenderCounts
@@ -289,7 +291,7 @@ items:
     content: >-
       [JsonPropertyName("36-50")]
 
-      public required GenderCounts Age36To50 { get; set; }
+      public required GenderCounts Age36To50 { get; init; }
     parameters: []
     return:
       type: Crews.PlanningCenter.Api.People.V2025_03_20.GenderCounts
@@ -332,7 +334,7 @@ items:
     content: >-
       [JsonPropertyName("51-64")]
 
-      public required GenderCounts Age51To64 { get; set; }
+      public required GenderCounts Age51To64 { get; init; }
     parameters: []
     return:
       type: Crews.PlanningCenter.Api.People.V2025_03_20.GenderCounts
@@ -375,7 +377,7 @@ items:
     content: >-
       [JsonPropertyName("65+")]
 
-      public required GenderCounts Age65Plus { get; set; }
+      public required GenderCounts Age65Plus { get; init; }
     parameters: []
     return:
       type: Crews.PlanningCenter.Api.People.V2025_03_20.GenderCounts
@@ -448,6 +450,39 @@ references:
   nameWithType.vb: Object
   fullName.vb: Object
   name.vb: Object
+- uid: System.IEquatable{Crews.PlanningCenter.Api.People.V2025_03_20.AgeCounts}
+  commentId: T:System.IEquatable{Crews.PlanningCenter.Api.People.V2025_03_20.AgeCounts}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<AgeCounts>
+  nameWithType: IEquatable<AgeCounts>
+  fullName: System.IEquatable<Crews.PlanningCenter.Api.People.V2025_03_20.AgeCounts>
+  nameWithType.vb: IEquatable(Of AgeCounts)
+  fullName.vb: System.IEquatable(Of Crews.PlanningCenter.Api.People.V2025_03_20.AgeCounts)
+  name.vb: IEquatable(Of AgeCounts)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: Crews.PlanningCenter.Api.People.V2025_03_20.AgeCounts
+    name: AgeCounts
+    href: Crews.PlanningCenter.Api.People.V2025_03_20.AgeCounts.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Crews.PlanningCenter.Api.People.V2025_03_20.AgeCounts
+    name: AgeCounts
+    href: Crews.PlanningCenter.Api.People.V2025_03_20.AgeCounts.html
+  - name: )
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -674,6 +709,34 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
 - uid: Crews.PlanningCenter.Api.People.V2025_03_20.AgeCounts.Age0To3*
   commentId: Overload:Crews.PlanningCenter.Api.People.V2025_03_20.AgeCounts.Age0To3
   href: Crews.PlanningCenter.Api.People.V2025_03_20.AgeCounts.html#Crews_PlanningCenter_Api_People_V2025_03_20_AgeCounts_Age0To3

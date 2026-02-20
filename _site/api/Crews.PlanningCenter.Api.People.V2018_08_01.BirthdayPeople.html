@@ -102,7 +102,7 @@ Class BirthdayPeople  <a class="header-action link-secondary" title="View source
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class BirthdayPeople</code></pre>
+    <pre><code class="lang-csharp hljs">public record BirthdayPeople : IEquatable&lt;BirthdayPeople&gt;</code></pre>
   </div>
 
 
@@ -116,6 +116,12 @@ Class BirthdayPeople  <a class="header-action link-secondary" title="View source
     </dd>
   </dl>
 
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="Crews.PlanningCenter.Api.People.V2018_08_01.BirthdayPeople.html">BirthdayPeople</a>&gt;</div>
+    </dd>
+  </dl>
 
 
   <dl class="typelist inheritedMembers">
@@ -166,7 +172,7 @@ Class BirthdayPeople  <a class="header-action link-secondary" title="View source
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;people&quot;)]
-public IEnumerable&lt;BirthdayPerson&gt; People { get; set; }</code></pre>
+public IEnumerable&lt;BirthdayPerson&gt; People { get; init; }</code></pre>
   </div>
 
 

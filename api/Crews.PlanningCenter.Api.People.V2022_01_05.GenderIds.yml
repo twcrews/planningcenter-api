@@ -28,10 +28,12 @@ items:
   summary: Represents unique identifiers for each gender in the organization.
   example: []
   syntax:
-    content: public class GenderIds
-    content.vb: Public Class GenderIds
+    content: 'public record GenderIds : IEquatable<GenderIds>'
+    content.vb: Public Class GenderIds Implements IEquatable(Of GenderIds)
   inheritance:
   - System.Object
+  implements:
+  - System.IEquatable{Crews.PlanningCenter.Api.People.V2022_01_05.GenderIds}
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -68,7 +70,7 @@ items:
     content: >-
       [JsonPropertyName("male")]
 
-      public required string Male { get; set; }
+      public required string Male { get; init; }
     parameters: []
     return:
       type: System.String
@@ -111,7 +113,7 @@ items:
     content: >-
       [JsonPropertyName("female")]
 
-      public required string Female { get; set; }
+      public required string Female { get; init; }
     parameters: []
     return:
       type: System.String
@@ -184,6 +186,39 @@ references:
   nameWithType.vb: Object
   fullName.vb: Object
   name.vb: Object
+- uid: System.IEquatable{Crews.PlanningCenter.Api.People.V2022_01_05.GenderIds}
+  commentId: T:System.IEquatable{Crews.PlanningCenter.Api.People.V2022_01_05.GenderIds}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<GenderIds>
+  nameWithType: IEquatable<GenderIds>
+  fullName: System.IEquatable<Crews.PlanningCenter.Api.People.V2022_01_05.GenderIds>
+  nameWithType.vb: IEquatable(Of GenderIds)
+  fullName.vb: System.IEquatable(Of Crews.PlanningCenter.Api.People.V2022_01_05.GenderIds)
+  name.vb: IEquatable(Of GenderIds)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: Crews.PlanningCenter.Api.People.V2022_01_05.GenderIds
+    name: GenderIds
+    href: Crews.PlanningCenter.Api.People.V2022_01_05.GenderIds.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Crews.PlanningCenter.Api.People.V2022_01_05.GenderIds
+    name: GenderIds
+    href: Crews.PlanningCenter.Api.People.V2022_01_05.GenderIds.html
+  - name: )
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -410,6 +445,34 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
 - uid: Crews.PlanningCenter.Api.People.V2022_01_05.GenderIds.Male*
   commentId: Overload:Crews.PlanningCenter.Api.People.V2022_01_05.GenderIds.Male
   href: Crews.PlanningCenter.Api.People.V2022_01_05.GenderIds.html#Crews_PlanningCenter_Api_People_V2022_01_05_GenderIds_Male

@@ -182,6 +182,10 @@
             {
               "Name": "published",
               "Description": null
+            },
+            {
+              "Name": "published_to_library",
+              "Description": null
             }
           ],
           "IsCollection": true,

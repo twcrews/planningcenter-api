@@ -351,8 +351,8 @@ public class DocumentationBuilderTests
 
         VertexDocument planDoc = TestDataBuilder.CreateVertexDocument(
             id: "plan",
-            name: "Plan");
-        planDoc.Data.Attributes!.Deprecated = true;
+            name: "Plan",
+            deprecated: true);
 
         _mockClient.GetGraphAsync(productDef).Returns(graphDoc);
         _mockClient.GetGraphVersionAsync(productDef, "2024-01-01").Returns(versionDoc);
@@ -381,8 +381,8 @@ public class DocumentationBuilderTests
 
         VertexDocument eventDoc = TestDataBuilder.CreateVertexDocument(
             id: "event",
-            name: "Event");
-        eventDoc.Data.Attributes!.CollectionOnly = true;
+            name: "Event",
+            collectionOnly: true);
 
         _mockClient.GetGraphAsync(productDef).Returns(graphDoc);
         _mockClient.GetGraphVersionAsync(productDef, "2024-01-01").Returns(versionDoc);

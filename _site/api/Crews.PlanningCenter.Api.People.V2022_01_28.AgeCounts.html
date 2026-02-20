@@ -102,7 +102,7 @@ Class AgeCounts  <a class="header-action link-secondary" title="View source" hre
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class AgeCounts</code></pre>
+    <pre><code class="lang-csharp hljs">public record AgeCounts : IEquatable&lt;AgeCounts&gt;</code></pre>
   </div>
 
 
@@ -116,6 +116,12 @@ Class AgeCounts  <a class="header-action link-secondary" title="View source" hre
     </dd>
   </dl>
 
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="Crews.PlanningCenter.Api.People.V2022_01_28.AgeCounts.html">AgeCounts</a>&gt;</div>
+    </dd>
+  </dl>
 
 
   <dl class="typelist inheritedMembers">
@@ -166,7 +172,7 @@ Class AgeCounts  <a class="header-action link-secondary" title="View source" hre
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;0-3&quot;)]
-public required GenderCounts Age0To3 { get; set; }</code></pre>
+public required GenderCounts Age0To3 { get; init; }</code></pre>
   </div>
 
 
@@ -199,7 +205,7 @@ public required GenderCounts Age0To3 { get; set; }</code></pre>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;12-18&quot;)]
-public required GenderCounts Age12To18 { get; set; }</code></pre>
+public required GenderCounts Age12To18 { get; init; }</code></pre>
   </div>
 
 
@@ -232,7 +238,7 @@ public required GenderCounts Age12To18 { get; set; }</code></pre>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;19-25&quot;)]
-public required GenderCounts Age19To25 { get; set; }</code></pre>
+public required GenderCounts Age19To25 { get; init; }</code></pre>
   </div>
 
 
@@ -265,7 +271,7 @@ public required GenderCounts Age19To25 { get; set; }</code></pre>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;26-35&quot;)]
-public required GenderCounts Age26To35 { get; set; }</code></pre>
+public required GenderCounts Age26To35 { get; init; }</code></pre>
   </div>
 
 
@@ -298,7 +304,7 @@ public required GenderCounts Age26To35 { get; set; }</code></pre>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;36-50&quot;)]
-public required GenderCounts Age36To50 { get; set; }</code></pre>
+public required GenderCounts Age36To50 { get; init; }</code></pre>
   </div>
 
 
@@ -331,7 +337,7 @@ public required GenderCounts Age36To50 { get; set; }</code></pre>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;4-11&quot;)]
-public required GenderCounts Age4To11 { get; set; }</code></pre>
+public required GenderCounts Age4To11 { get; init; }</code></pre>
   </div>
 
 
@@ -364,7 +370,7 @@ public required GenderCounts Age4To11 { get; set; }</code></pre>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;51-64&quot;)]
-public required GenderCounts Age51To64 { get; set; }</code></pre>
+public required GenderCounts Age51To64 { get; init; }</code></pre>
   </div>
 
 
@@ -397,7 +403,7 @@ public required GenderCounts Age51To64 { get; set; }</code></pre>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;65+&quot;)]
-public required GenderCounts Age65Plus { get; set; }</code></pre>
+public required GenderCounts Age65Plus { get; init; }</code></pre>
   </div>
 
 

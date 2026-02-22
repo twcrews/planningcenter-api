@@ -600,3 +600,8 @@ FodyWeavers.xsd
 
 # Claude Code
 .claude/settings.local.json
+
+# DocFX generated files
+docs/api/
+docs/_site/
+docs/obj/

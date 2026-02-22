@@ -1,0 +1,26 @@
+- name: Overview
+  href: index.md
+- name: Getting Started
+  items:
+    - name: Installation
+      href: installation.md
+    - name: Quick Start
+      href: quickstart.md
+    - name: Authentication
+      href: authentication.md
+- name: Usage Guides
+  items:
+    - name: Using the API Client
+      href: usage.md
+    - name: Working with Resources
+      href: resources.md
+    - name: Error Handling
+      href: error-handling.md
+- name: Advanced Topics
+  items:
+    - name: Architecture
+      href: architecture.md
+    - name: Code Generation
+      href: code-generation.md
+    - name: Contributing
+      href: contributing.md

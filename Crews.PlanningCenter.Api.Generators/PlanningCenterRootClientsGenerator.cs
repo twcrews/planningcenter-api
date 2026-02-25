@@ -105,7 +105,7 @@ class PlanningCenterRootClientsGenerator : IIncrementalGenerator
         writer.WriteLine($"return new Crews.PlanningCenter.Api.{productName}.{latestVersionName}.OrganizationClient(");
         writer.Indent++;
         writer.WriteLine("httpClient,");
-        writer.WriteLine($"new(httpClient.BaseAddress ?? new(\"https://api.planningcenteronline.com/\"), \"{productName}/v2/\"));");
+        writer.WriteLine($"new(httpClient.BaseAddress ?? new(\"https://api.planningcenteronline.com/\"), \"{product.Name}/v2/\"));");
         writer.Indent--;
         writer.Indent--;
         writer.WriteLine("}");
@@ -115,7 +115,7 @@ class PlanningCenterRootClientsGenerator : IIncrementalGenerator
 
         foreach (Models.Version version in product.Versions)
         {
-            GenerateVersionNavProperty(writer, productName, version);
+            GenerateVersionNavProperty(writer, product.Name, version);
         }
 
         writer.Indent--;
@@ -123,8 +123,10 @@ class PlanningCenterRootClientsGenerator : IIncrementalGenerator
         writer.WriteLine();
     }
 
-    private static void GenerateVersionNavProperty(IndentedTextWriter writer, string productName, Models.Version version)
+    private static void GenerateVersionNavProperty(IndentedTextWriter writer, ProductDefinition product, Models.Version version)
     {
+        string productName = product.ToString().ToPascalCase();
+
         string versionString = "V" + version.Id.Replace('-', '_');
         
         writer.WriteLine("/// <summary>");
@@ -140,7 +142,7 @@ class PlanningCenterRootClientsGenerator : IIncrementalGenerator
         writer.WriteLine($"return new Crews.PlanningCenter.Api.{productName}.{versionString}.OrganizationClient(");
         writer.Indent++;
         writer.WriteLine("httpClient,");
-        writer.WriteLine($"new(httpClient.BaseAddress ?? new(\"https://api.planningcenteronline.com/\"), \"{productName}/v2/\"));");
+        writer.WriteLine($"new(httpClient.BaseAddress ?? new(\"https://api.planningcenteronline.com/\"), \"{product}/v2/\"));");
         writer.Indent--;
         writer.Indent--;
         writer.WriteLine("}");

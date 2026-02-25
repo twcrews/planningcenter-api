@@ -82,7 +82,7 @@ class PlanningCenterResourceClientsGenerator : IIncrementalGenerator
         writer.WriteLine("/// </summary>");
         writer.WriteLine($"public class {clientType}(HttpClient httpClient, Uri uri)");
         writer.Indent++;
-        writer.WriteLine($": ResourceClient<{modelType}, {resourceType}, {responseType}>(httpClient, uri)");
+        writer.WriteLine($": SingletonResourceClient<{modelType}, {resourceType}, {responseType}>(httpClient, uri)");
         writer.Indent--;
         writer.WriteLine("{");
         writer.Indent++;
@@ -101,8 +101,6 @@ class PlanningCenterResourceClientsGenerator : IIncrementalGenerator
         foreach (ResourceQueryable queryable in resource.CanQueryBy)
             GenerateQueryable(writer, queryable, modelType);
 
-        GenerateDeserializationMethod(writer, modelType, resourceType, responseType);
-
         writer.Indent--;
         writer.WriteLine("}");
         writer.WriteLine();
@@ -117,10 +115,23 @@ class PlanningCenterResourceClientsGenerator : IIncrementalGenerator
         writer.WriteLine("/// </summary>");
         writer.WriteLine($"public class Paginated{modelType}Client(HttpClient httpClient, Uri uri)");
         writer.Indent++;
-        writer.WriteLine($": PaginatedResourceClient<{modelType}, IEnumerable<{resourceType}>, {collectionResponseType}>(httpClient, uri)");
+        writer.WriteLine($": PaginatedResourceClient<{modelType}, {resourceType}, {collectionResponseType}, {responseType}>(httpClient, uri)");
         writer.Indent--;
         writer.WriteLine("{");
-        writer.Indent++;
+        writer.Indent++;        
+       
+        if (resource.Postable)
+        {
+            writer.WriteLine("/// <summary>");
+            writer.WriteLine($"/// Creates a new <see cref=\"{modelType}\"/> resource asynchronously.");
+            writer.WriteLine("/// </summary>");
+            writer.WriteLine("/// <param name=\"request\">The resource data to be sent in the POST request.</param>");
+            writer.WriteLine("/// <param name=\"cancellationToken\">A token to monitor for cancellation requests.</param>");
+            writer.WriteLine($"/// <returns>A task representing the asynchronous operation, containing the created <see cref=\"{modelType}\"/> resource.</returns>");
+            writer.WriteLine("/// <exception cref=\"JsonApiException\">Thrown when the HTTP response indicates a failure status code.</exception>");
+            writer.WriteLine($"public new Task<{responseType}> PostAsync({modelType} request, CancellationToken cancellationToken = default) => base.PostAsync(request, cancellationToken);");
+            writer.WriteLine();
+        }
 
         if (!resource.CollectionOnly)
         {
@@ -133,7 +144,6 @@ class PlanningCenterResourceClientsGenerator : IIncrementalGenerator
             writer.WriteLine();
         }
 
-        GenerateDeserializationMethod(writer, modelType, resourceType, collectionResponseType);
         writer.Indent--;
         writer.WriteLine("}");
         writer.WriteLine();
@@ -252,19 +262,6 @@ class PlanningCenterResourceClientsGenerator : IIncrementalGenerator
         writer.WriteLine("/// <exception cref=\"JsonApiException\">Thrown when the HTTP response indicates a failure status code.</exception>");
         writer.WriteLine($"public new Task<{responseType}> GetAsync(CancellationToken cancellationToken = default) => base.GetAsync(cancellationToken);");
         writer.WriteLine();
-       
-        if (resource.Postable)
-        {
-            writer.WriteLine("/// <summary>");
-            writer.WriteLine($"/// Creates a new <see cref=\"{modelType}\"/> resource asynchronously.");
-            writer.WriteLine("/// </summary>");
-            writer.WriteLine("/// <param name=\"request\">The resource data to be sent in the POST request.</param>");
-            writer.WriteLine("/// <param name=\"cancellationToken\">A token to monitor for cancellation requests.</param>");
-            writer.WriteLine($"/// <returns>A task representing the asynchronous operation, containing the created <see cref=\"{modelType}\"/> resource.</returns>");
-            writer.WriteLine("/// <exception cref=\"JsonApiException\">Thrown when the HTTP response indicates a failure status code.</exception>");
-            writer.WriteLine($"public new Task<{responseType}> PostAsync({modelType} request, CancellationToken cancellationToken = default) => base.PostAsync(request, cancellationToken);");
-            writer.WriteLine();
-        }
 
         if (resource.Patchable)
         {
@@ -290,67 +287,5 @@ class PlanningCenterResourceClientsGenerator : IIncrementalGenerator
             writer.WriteLine($"public new Task DeleteAsync(CancellationToken cancellationToken = default) => base.DeleteAsync(cancellationToken);");
             writer.WriteLine();
         }
-    }
-
-    private static void GenerateDeserializationMethod(IndentedTextWriter writer, string modelType, string resourceType, string responseType)
-    {
-        writer.WriteLine("/// <summary>");
-        writer.WriteLine("/// Deserializes the HTTP response message into the strongly-typed resource response.");
-        writer.WriteLine("/// </summary>");
-        writer.WriteLine("/// <param name=\"response\">The HTTP response message to deserialize.</param>");
-        writer.WriteLine("/// <param name=\"cancellationToken\">A token to monitor for cancellation requests.</param>");
-        writer.WriteLine("/// <returns>");
-        writer.WriteLine($"/// A task representing the asynchronous operation, containing a response object with the deserialized <see cref=\"{modelType}\"/> resource.");
-        writer.WriteLine("/// </returns>");
-        writer.WriteLine("/// <exception cref=\"JsonApiException\">Thrown when the HTTP response indicates a failure status code.</exception>");
-        writer.WriteLine($"protected override async Task<{responseType}> DeserializeResponseAsync(HttpResponseMessage response, CancellationToken cancellationToken = default)");
-        writer.WriteLine("{");
-        writer.Indent++;
-        writer.WriteLine("try");
-        writer.WriteLine("{");
-        writer.Indent++;
-        writer.WriteLine("response.EnsureSuccessStatusCode();");
-        writer.Indent--;
-        writer.WriteLine("}");
-        writer.WriteLine("catch (HttpRequestException e)");
-        writer.WriteLine("{");
-        writer.Indent++;
-        writer.WriteLine("string content = await response.Content.ReadAsStringAsync(cancellationToken);");
-        writer.WriteLine("throw new JsonApiException(content, e);");
-        writer.Indent--;
-        writer.WriteLine("}");
-        writer.WriteLine();
-        writer.WriteLine("JsonApiDocument? document = await response.Content.ReadFromJsonAsync<JsonApiDocument>(cancellationToken);");
-        writer.WriteLine("if (document is null) return new() { ResponseMessage = response };");
-        writer.WriteLine();
-        writer.WriteLine($"{responseType} result = new() {{ ResponseMessage = response, ResponseBody = document }};");
-        writer.WriteLine("if (document.Data is null) return result;");
-        writer.WriteLine();
-        writer.WriteLine("string? dataString = document!.Data!.ToString();");
-        writer.WriteLine("if (dataString is null) return result;");
-        writer.WriteLine();
-
-        if (responseType.EndsWith("CollectionResponse"))
-        {
-            writer.WriteLine($"IEnumerable<{resourceType}>? data = JsonSerializer.Deserialize<IEnumerable<{resourceType}>>(dataString);");
-        }
-        else
-        {
-            writer.WriteLine($"{resourceType}? data = JsonSerializer.Deserialize<{resourceType}>(dataString);");
-        }
-
-        writer.WriteLine("if (data is null) return result;");
-        writer.WriteLine();
-        writer.WriteLine($"return new {responseType}");
-        writer.WriteLine("{");
-        writer.Indent++;
-        writer.WriteLine("Data = data,");
-        writer.WriteLine("ResponseBody = document,");
-        writer.WriteLine("ResponseMessage = response");
-        writer.Indent--;
-        writer.WriteLine("};");
-        writer.Indent--;
-        writer.WriteLine("}");
-        writer.WriteLine();
-    }
+    } 
 }

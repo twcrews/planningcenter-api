@@ -77,21 +77,14 @@ class PlanningCenterResourcesGenerator : IIncrementalGenerator
         writer.WriteLine("/// <summary>");
         writer.WriteLine($"/// {summary}");
         writer.WriteLine("/// </summary>");
-        writer.WriteLine($"public record {resourceType} : JsonApiResource");
-        writer.WriteLine("{");
-        writer.Indent++;
-        writer.WriteLine("/// <inheritdoc/>");
-        writer.WriteLine($"[JsonPropertyName(\"attributes\")]");
-        writer.WriteLine($"public required new {modelType} Attributes {{ get; init; }}");
         if (resource.Relationships.Any())
         {
-            writer.WriteLine();
-            writer.WriteLine("/// <inheritdoc/>");
-            writer.WriteLine($"[JsonPropertyName(\"relationships\")]");
-            writer.WriteLine($"public new {relationshipsType}? Relationships {{ get; init; }}");
+            writer.WriteLine($"public record {resourceType} : JsonApiResource<{modelType}, {relationshipsType}> {{ }}");
         }
-        writer.Indent--;
-        writer.WriteLine("}");
+        else
+        {
+            writer.WriteLine($"public record {resourceType} : JsonApiResource<{modelType}> {{ }}");
+        }
         writer.WriteLine();
     }
 
@@ -132,6 +125,7 @@ class PlanningCenterResourcesGenerator : IIncrementalGenerator
         writer.WriteLine("/// <summary>");
         writer.WriteLine($"/// {summary}");
         writer.WriteLine("/// </summary>");
+        writer.WriteLine("[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]");
         writer.WriteLine($"[JsonPropertyName(\"{attribute.Name}\")]");
         writer.WriteLine($"public {attribute.Type.ToClrType()}? {attribute.Name.ToPascalCase()} {{ get; init; }}");
         writer.WriteLine();
@@ -150,13 +144,13 @@ class PlanningCenterResourcesGenerator : IIncrementalGenerator
         writer.Indent++;
         foreach (ResourceRelationship relationship in resource.Relationships)
         {
-            GenerateRelationshipProperty(writer, relationship);
+            GenerateRelationshipProperty(writer, resource, relationship);
         }
         writer.Indent--;
         writer.WriteLine("}");
         writer.WriteLine();
     }
-    private static void GenerateRelationshipProperty(IndentedTextWriter writer, ResourceRelationship relationship)
+    private static void GenerateRelationshipProperty(IndentedTextWriter writer, Resource resource, ResourceRelationship relationship)
     {
         string summary = relationship.Note is null
             ? $"Related {relationship.Name.ToPascalCase()}."
@@ -164,8 +158,9 @@ class PlanningCenterResourcesGenerator : IIncrementalGenerator
         writer.WriteLine("/// <summary>");
         writer.WriteLine($"/// {summary}");
         writer.WriteLine("/// </summary>");
+        writer.WriteLine("[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]");
         writer.WriteLine($"[JsonPropertyName(\"{relationship.Name}\")]");
-        writer.WriteLine($"public JsonApiRelationship? {relationship.Name.ToPascalCase()} {{ get; init; }}");
+        writer.WriteLine($"public JsonApiRelationship<{resource.ResourceName}>? {relationship.Name.ToPascalCase()} {{ get; init; }}");
         writer.WriteLine();
     }
 }

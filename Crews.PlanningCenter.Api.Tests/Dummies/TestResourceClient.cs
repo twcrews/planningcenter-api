@@ -18,24 +18,20 @@ public record TestModel
 /// <summary>
 /// Test model for resource client testing.
 /// </summary>
-public record TestResource : JsonApiResource
-{
-	[JsonPropertyName("attributes")]
-	public new TestModel? Attributes { get; init; }
-}
+public record TestResource : JsonApiResource<TestModel> { }
 
 /// <summary>
 /// Test response wrapper for resource client testing.
 /// </summary>
-public class TestResourceResponse : ResourceResponse<TestResource>
-{
-}
+public class TestResourceResponse : ResourceResponse<TestResource> { }
+
+public class TestResourceCollectionResponse : ResourceResponse<IEnumerable<TestResource>> { }
 
 /// <summary>
 /// Concrete implementation of ResourceClient for testing the abstract base class.
 /// Exposes protected methods publicly for test access.
 /// </summary>
-public class TestResourceClient : ResourceClient<TestModel, TestResource, TestResourceResponse>
+public class TestResourceClient : SingletonResourceClient<TestModel, TestResource, TestResourceResponse>
 {
 	public TestResourceClient(HttpClient httpClient, Uri uri)
 		: base(httpClient, uri)
@@ -52,12 +48,6 @@ public class TestResourceClient : ResourceClient<TestModel, TestResource, TestRe
 	/// </summary>
 	public new Task<TestResourceResponse> GetAsync(CancellationToken cancellationToken = default)
 		=> base.GetAsync(cancellationToken);
-
-	/// <summary>
-	/// Public wrapper for protected PostAsync method.
-	/// </summary>
-	public new Task<TestResourceResponse> PostAsync(TestModel model, CancellationToken cancellationToken = default)
-		=> base.PostAsync(model, cancellationToken);
 
 	/// <summary>
 	/// Public wrapper for protected PatchAsync method.
@@ -78,39 +68,5 @@ public class TestResourceClient : ResourceClient<TestModel, TestResource, TestRe
 	{
 		SetQueryParameter(parameter, value);
 		return this;
-	}
-
-	protected override async Task<TestResourceResponse> DeserializeResponseAsync(
-		HttpResponseMessage response,
-		CancellationToken cancellationToken)
-	{
-        try
-        {
-            response.EnsureSuccessStatusCode();
-        }
-        catch (HttpRequestException e)
-        {
-            string content = await response.Content.ReadAsStringAsync(cancellationToken);
-            throw new JsonApiException(content, e);
-        }
-        
-        JsonApiDocument? document = await response.Content.ReadFromJsonAsync<JsonApiDocument>(cancellationToken);
-        if (document is null) return new() { ResponseMessage = response };
-        
-        TestResourceResponse result = new() { ResponseMessage = response, ResponseBody = document };
-        if (document.Data is null) return result;
-        
-        string? dataString = document!.Data!.ToString();
-        if (dataString is null) return result;
-        
-        TestResource? data = JsonSerializer.Deserialize<TestResource>(dataString);
-        if (data is null) return result;
-        
-        return new TestResourceResponse
-        {
-            Data = data,
-            ResponseBody = document,
-            ResponseMessage = response
-        };
 	}
 }

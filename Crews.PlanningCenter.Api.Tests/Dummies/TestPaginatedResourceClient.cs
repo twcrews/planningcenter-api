@@ -6,7 +6,7 @@ namespace Crews.PlanningCenter.Api.Tests.Dummies;
 /// Concrete implementation of PaginatedResourceClient for testing the abstract base class.
 /// Exposes protected methods publicly for test access.
 /// </summary>
-public class TestPaginatedResourceClient : PaginatedResourceClient<TestResource, TestResource, TestResourceResponse>
+public class TestPaginatedResourceClient : PaginatedResourceClient<TestModel, TestResource, TestResourceCollectionResponse, TestResourceResponse>
 {
 	public TestPaginatedResourceClient(HttpClient httpClient, Uri uri)
 		: base(httpClient, uri)
@@ -21,8 +21,10 @@ public class TestPaginatedResourceClient : PaginatedResourceClient<TestResource,
 	/// <summary>
 	/// Public wrapper for protected GetAsync method.
 	/// </summary>
-	public new Task<TestResourceResponse> GetAsync(CancellationToken cancellationToken = default)
+	public new Task<TestResourceCollectionResponse> GetAsync(CancellationToken cancellationToken = default)
 		=> base.GetAsync(cancellationToken);
+
+	public new Task<TestResourceResponse> PostAsync(TestModel model, CancellationToken cancellationToken = default) => base.PostAsync(model, cancellationToken);
 
 	/// <summary>
 	/// Public wrapper for protected SetQueryParameter method.
@@ -31,17 +33,5 @@ public class TestPaginatedResourceClient : PaginatedResourceClient<TestResource,
 	{
 		SetQueryParameter(parameter, value);
 		return this;
-	}
-
-	protected override Task<TestResourceResponse> DeserializeResponseAsync(
-		HttpResponseMessage response,
-		CancellationToken cancellationToken)
-	{
-		// Reuse the same deserialization logic
-		var baseClient = new TestResourceClient(HttpClient, Uri);
-		return baseClient.GetType()
-			.GetMethod("DeserializeResponseAsync", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)!
-			.Invoke(baseClient, [response, cancellationToken]) as Task<TestResourceResponse>
-			?? Task.FromResult(new TestResourceResponse { ResponseMessage = response });
 	}
 }

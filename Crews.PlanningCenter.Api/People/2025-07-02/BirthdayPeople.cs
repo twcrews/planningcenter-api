@@ -6,14 +6,7 @@ namespace Crews.PlanningCenter.Api.People.V2025_07_02;
 /// <summary>
 /// Wrapper for the BirthdayPeople resource.
 /// </summary>
-public record BirthdayPeopleResource : JsonApiResource
-{
-    /// <summary>
-    /// The attributes of the BirthdayPeople resource.
-    /// </summary>
-    [JsonPropertyName("attributes")]
-    public required new BirthdayPeople Attributes { get; init; }
-}
+public record BirthdayPeopleResource : JsonApiResource<BirthdayPeople> { }
 
 /// <summary>
 /// Represents a collection of people with birthdays.

@@ -6,14 +6,7 @@ namespace Crews.PlanningCenter.Api.People.V2018_08_01;
 /// <summary>
 /// Resource wrapper for OrganizationStatistics.
 /// </summary>
-public record OrganizationStatisticsResource : JsonApiResource
-{
-    /// <summary>
-    /// Attributes for the OrganizationStatistics resource.
-    /// </summary>
-    [JsonPropertyName("attributes")]
-    public required new OrganizationStatistics Attributes { get; init; }
-}
+public record OrganizationStatisticsResource : JsonApiResource<OrganizationStatistics> { }
 
 /// <summary>
 /// Attributes for the OrganizationStatistics resource.

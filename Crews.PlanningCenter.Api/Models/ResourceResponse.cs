@@ -24,5 +24,5 @@ public abstract class ResourceResponse<T>
     /// <summary>
     /// The original <see cref="HttpResponseMessage"/> instance.
     /// </summary>
-    public required HttpResponseMessage ResponseMessage { get; init; }
+    public HttpResponseMessage? ResponseMessage { get; init; }
 }

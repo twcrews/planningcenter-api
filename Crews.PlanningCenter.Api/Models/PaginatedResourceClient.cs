@@ -1,4 +1,4 @@
-using System.Text.Json;
+using System.Net.Http.Json;
 using Crews.Web.JsonApiClient;
 
 namespace Crews.PlanningCenter.Api.Models;
@@ -68,14 +68,28 @@ public abstract class PaginatedResourceClient<TModel, TResource, TResponse, TSin
     /// <typeparamref name="TResponse"/> if deserialization is successful; otherwise, null.
     /// </returns>
     /// <exception cref="JsonApiException">Thrown when the HTTP response indicates a failure status code.</exception>
+    protected Task<TSingletonResponse> PostAsync(TModel resource, CancellationToken cancellationToken = default) 
+        => PostAsync(new JsonApiDocument<TResource> { Data = new() { Attributes = resource } }, cancellationToken);
+
+    /// <summary>
+    /// Sends an asynchronous POST request with a custom JSON:API document to the resource endpoint and deserializes
+    /// the response content.
+    /// </summary>
+    /// <param name="document">The JSON:API document to send in the request.</param>
+    /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
+    /// <returns>
+    /// A task representing the asynchronous operation, containing the deserialized resource of type
+    /// <typeparamref name="TResponse"/> if deserialization is successful; otherwise, null.
+    /// </returns>
+    /// <exception cref="JsonApiException">Thrown when the HTTP response indicates a failure status code.</exception>
     protected async Task<TSingletonResponse> PostAsync(
-        TModel resource,
-        CancellationToken cancellationToken = default)
+        JsonApiDocument<TResource> document, CancellationToken cancellationToken = default)
     {
-        JsonApiDocument<TResource> document = new() { Data = new() { Attributes = resource }};
-        string body = JsonSerializer.Serialize(document);
-        StringContent content = new(body);
-        HttpResponseMessage response = await HttpClient.PostAsync(Uri, content, cancellationToken);
+        HttpRequestMessage request = new(HttpMethod.Post, Uri)
+        {
+            Content = JsonContent.Create(document)
+        };
+        HttpResponseMessage response = await HttpClient.SendAsync(request, cancellationToken);
         return await DeserializeSingletonResponseAsync(response, cancellationToken);
     }
 
@@ -84,6 +98,7 @@ public abstract class PaginatedResourceClient<TModel, TResource, TResponse, TSin
     {
         await EnsureSuccessAsync(response, cancellationToken);
 
+        string json = await response.Content.ReadAsStringAsync();
         JsonApiDocument<TResource>? document = await response.ReadJsonApiDocumentAsync<TResource>(cancellationToken);
         if (document is null) return new() { ResponseMessage = response };
         if (document.Data is null) return new() { ResponseMessage = response, ResponseBody = document };

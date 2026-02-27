@@ -522,6 +522,11 @@
           "Description": "A boolean representing the current user\u0027s authorization to start a new conversation in the group.\n\n\nOnly available when requested with the \u0060?fields\u0060 param"
         },
         {
+          "Name": "can_create_conversation_reason_code",
+          "Type": "string",
+          "Description": "A code representing why the current user can or cannot start a new conversation in the group.\nPossible values: \u0060chat_disabled\u0060, \u0060group_archived\u0060, \u0060non_member\u0060, \u0060leaders_only\u0060.\nNil when the user is permitted to create a conversation.\n\n\nOnly available when requested with the \u0060?fields\u0060 param"
+        },
+        {
           "Name": "chat_enabled",
           "Type": "boolean",
           "Description": "A boolean representing whether or not the group has Chat enabled.\n"

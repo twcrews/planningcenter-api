@@ -1,4 +1,4 @@
-using System.Text.Json;
+using System.Net.Http.Json;
 using Crews.Web.JsonApiClient;
 
 namespace Crews.PlanningCenter.Api.Models;
@@ -50,14 +50,29 @@ public abstract class SingletonResourceClient<TModel, TResource, TResponse>(Http
     /// <typeparamref name="TResponse"/> if deserialization is successful; otherwise, null.
     /// </returns>
     /// <exception cref="JsonApiException">Thrown when the HTTP response indicates a failure status code.</exception>
+    protected Task<TResponse> PatchAsync(TModel resource, CancellationToken cancellationToken = default) 
+        => PatchAsync(new JsonApiDocument<TResource> { Data = new() { Attributes = resource } }, cancellationToken);
+
+    /// <summary>
+    /// Sends an asynchronous patch request with the specified JSON:API document to the resource endpoint and 
+    /// deserializes the response content.
+    /// </summary>
+    /// <param name="document">The JSON:API document to be sent in the patch request.</param>
+    /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
+    /// <returns>
+    /// A task representing the asynchronous operation, containing the deserialized resource of type
+    /// <typeparamref name="TResponse"/> if deserialization is successful; otherwise, null.
+    /// </returns>
+    /// <exception cref="JsonApiException">Thrown when the HTTP response indicates a failure status code.</exception>
     protected async Task<TResponse> PatchAsync(
-        TModel resource,
-        CancellationToken cancellationToken = default)
+        JsonApiDocument<TResource> document, CancellationToken cancellationToken = default)
     {
-        JsonApiDocument<TResource> document = new() { Data = new() { Attributes = resource }};
-        StringContent content = new(JsonSerializer.Serialize(document));
-        HttpResponseMessage response = await HttpClient.PatchAsync(Uri, content, cancellationToken);
-        return await SingletonResourceClient<TModel, TResource, TResponse>.DeserializeResponseAsync(response, cancellationToken);
+        HttpRequestMessage request = new(HttpMethod.Patch, Uri)
+        {
+            Content = JsonContent.Create(document)
+        };
+        HttpResponseMessage response = await HttpClient.SendAsync(request, cancellationToken);
+        return await DeserializeResponseAsync(response, cancellationToken);
     }
 
     /// <summary>
@@ -77,6 +92,7 @@ public abstract class SingletonResourceClient<TModel, TResource, TResponse>(Http
     {
         await EnsureSuccessAsync(response, cancellationToken);
 
+        string json = await response.Content.ReadAsStringAsync();
         JsonApiDocument<TResource>? document = await response.ReadJsonApiDocumentAsync<TResource>(cancellationToken);
         if (document is null) return new() { ResponseMessage = response };
         if (document.Data is null) return new() { ResponseMessage = response, ResponseBody = document };

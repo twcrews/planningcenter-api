@@ -675,6 +675,11 @@
           "Description": "Path to where the event image is stored\n\nOnly available when requested with the \u0060?fields\u0060 param"
         },
         {
+          "Name": "kind",
+          "Type": "string",
+          "Description": "The type of event: \u0060standard\u0060 or \u0060blockout\u0060\n\nOnly available when requested with the \u0060?fields\u0060 param"
+        },
+        {
           "Name": "location",
           "Type": "string",
           "Description": "Representation of where the event instance takes place"
@@ -844,6 +849,13 @@
           "Type": "date_time",
           "Description": "Query on a specific ends_at",
           "Example": "?where[ends_at]=2000-01-01T12:00:00Z"
+        },
+        {
+          "Name": "kind",
+          "Parameter": "where[kind]",
+          "Type": "string",
+          "Description": "Query on a specific kind",
+          "Example": "?where[kind]=string"
         },
         {
           "Name": "starts_at",
@@ -2258,7 +2270,7 @@
         },
         {
           "Name": "image",
-          "Type": "string",
+          "Type": "image",
           "Description": "Path to where resource image is stored"
         },
         {

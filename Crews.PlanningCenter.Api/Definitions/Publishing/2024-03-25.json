@@ -935,7 +935,16 @@
           "Type": "channel",
           "Description": null,
           "Slug": "channels",
-          "Filters": [],
+          "Filters": [
+            {
+              "Name": "podcast_enabled",
+              "Description": null
+            },
+            {
+              "Name": "published",
+              "Description": null
+            }
+          ],
           "IsCollection": true,
           "IsDeprecated": false
         },

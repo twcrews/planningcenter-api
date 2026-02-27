@@ -435,6 +435,11 @@
           "Description": "For cards, this is the card brand (eg Visa, Mastercard, etc). For checks and bank accounts, this is the bank name. For cash donations, this should be \u0060null\u0060."
         },
         {
+          "Name": "payment_channel",
+          "Type": "string",
+          "Description": "The channel through which the donation was created.\n\n Possible values: \u0060api\u0060, \u0060sms\u0060, \u0060mobile_app\u0060, \u0060web\u0060, \u0060admin\u0060, or \u0060other\u0060"
+        },
+        {
           "Name": "payment_check_dated_at",
           "Type": "date",
           "Description": "The check date for donations made by check. Example: \u00602000-01-01\u0060"

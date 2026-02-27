@@ -1,5 +1,4 @@
 using Crews.PlanningCenter.Api.Generators.Tests.TestData;
-using Crews.PlanningCenter.Api.Models;
 
 namespace Crews.PlanningCenter.Api.Generators.Tests;
 

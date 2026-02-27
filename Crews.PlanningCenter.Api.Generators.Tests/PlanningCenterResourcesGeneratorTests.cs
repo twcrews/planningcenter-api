@@ -1,7 +1,4 @@
 using Crews.PlanningCenter.Api.Generators.Tests.TestData;
-using Crews.PlanningCenter.Api.Models;
-using Microsoft.CodeAnalysis;
-using System.Collections.Immutable;
 
 namespace Crews.PlanningCenter.Api.Generators.Tests;
 

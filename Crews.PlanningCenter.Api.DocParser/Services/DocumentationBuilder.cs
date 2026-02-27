@@ -224,7 +224,7 @@ class DocumentationBuilder(
             CollectionOnly = vertex.Attributes!.CollectionOnly,
             Attributes = vertex.Relationships!.Attributes.Data
                 .Where(attr => attr.Attributes.Name != "id")
-                .Select(attr => BuildAttribute(attr.Attributes)),
+                .Select(attr => BuildAttribute(product, versionId, vertex.Id!, attr.Attributes)),
             Relationships = vertex.Relationships.Relationships.Data.Select(rel => BuildRelationship(rel.Attributes)),
             CanInclude = vertex.Relationships.CanInclude.Data
                 .Select(inc => BuildIncludable(inc.Attributes))
@@ -245,13 +245,29 @@ class DocumentationBuilder(
         };
     }
 
-    private ResourceAttribute BuildAttribute(Models.Attribute attribute)
+    private ResourceAttribute BuildAttribute(ProductDefinition product, string versionId, string vertex, Models.Attribute attribute)
     {
+        string type = attribute.TypeAnnotation.Name;
+
+        AppSettings.DocumentationBuilderOptions.AttributeTypeOverrideEntry? overrideEntry = options.Value.AttributeTypeOverrides
+            .FirstOrDefault(e => (e.Product is null || e.Product.Equals(product.ToString(), StringComparison.OrdinalIgnoreCase))
+                && (e.Version is null || e.Version == versionId)
+                && (e.Vertex is null || e.Vertex.Equals(vertex, StringComparison.OrdinalIgnoreCase))
+                && e.Attribute.Equals(attribute.Name, StringComparison.OrdinalIgnoreCase));
+
+        if (overrideEntry is not null)
+        {
+            _logger.LogInformation(
+                "Applying attribute type override for {Product}.{Version}.{Vertex}.{Attribute}: {Type}",
+                product, versionId, vertex, attribute.Name, overrideEntry.Type);
+            type = overrideEntry.Type;
+        }
+
         _logger.LogTrace("Building attribute: {AttributeName}", attribute.Name);
         return new()
         {
             Name = attribute.Name,
-            Type = attribute.TypeAnnotation.Name,
+            Type = type,
             Description = attribute.Description
         };
     }

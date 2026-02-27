@@ -18,6 +18,7 @@ public class AppSettings
         public IEnumerable<EdgeTypeOverrideEntry> EdgeTypeOverrides { get; set; } = [];
         public IEnumerable<CollectionOverrideEntry> CollectionOverrides { get; set; } = [];
         public IEnumerable<NameOverrideEntry> NameOverrides { get; set; } = [];
+        public IEnumerable<AttributeTypeOverrideEntry> AttributeTypeOverrides { get; set; } = [];
 
         public class ExcludedVertexEntry
         {
@@ -53,6 +54,15 @@ public class AppSettings
             public string? Vertex { get; set; }
             public required string ModelName { get; set; }
             public required string ResourceName { get; set; }
+        }
+
+        public class AttributeTypeOverrideEntry
+        {
+            public string? Product { get; set; }
+            public string? Version { get; set; }
+            public string? Vertex { get; set; }
+            public required string Attribute { get; set; }
+            public required string Type { get; set; }
         }
     }
 }

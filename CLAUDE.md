@@ -8,14 +8,16 @@ This is a multi-project .NET solution. The primary project in the solution (`Cre
 
 ## Project Structure
 
-The solution contains seven projects:
+The solution contains eight projects:
 
 1. **Crews.PlanningCenter.Api** (.NET 8.0): Main library project - includes authentication helpers and auto-generated API clients
-2. **Crews.PlanningCenter.Api.DocParser** (.NET 10.0): Console application for downloading and parsing API documentation
-3. **Crews.PlanningCenter.Api.Generators** (.NET Standard 2.0): Roslyn incremental source generator for code generation
-4. **Crews.PlanningCenter.Api.Tests** (.NET 8.0): Unit tests for the main library
-5. **Crews.PlanningCenter.Api.DocParser.Tests** (.NET 10.0): Unit tests for the doc parser
-6. **Crews.PlanningCenter.Api.Generators.Tests** (.NET Standard 2.0): Unit tests for the source generators
+2. **Crews.PlanningCenter.Api.Models** (.NET Standard 2.0): Shared model definitions used by both the generators and the doc parser
+3. **Crews.PlanningCenter.Api.DocParser** (.NET 10.0): Console application for downloading and parsing API documentation
+4. **Crews.PlanningCenter.Api.Generators** (.NET Standard 2.0): Roslyn incremental source generator for code generation
+5. **Crews.PlanningCenter.Api.Tests** (.NET 10.0): Unit tests for the main library
+6. **Crews.PlanningCenter.Api.DocParser.Tests** (.NET 10.0): Unit tests for the doc parser
+7. **Crews.PlanningCenter.Api.Generators.Tests** (.NET 10.0): Unit tests for the source generators
+8. **Crews.PlanningCenter.Api.IntegrationTests** (.NET 10.0): Integration tests that run against the live Planning Center API
 
 The source generators are **complete and fully functional**. Client and resource classes are automatically generated at compile time from the JSON definition files in the `Definitions/` directory.
 
@@ -35,6 +37,9 @@ dotnet test
 dotnet test Crews.PlanningCenter.Api.Tests
 dotnet test Crews.PlanningCenter.Api.DocParser.Tests
 dotnet test Crews.PlanningCenter.Api.Generators.Tests
+
+# Run integration tests (requires Planning Center credentials — see Integration Tests section)
+dotnet test Crews.PlanningCenter.Api.IntegrationTests
 
 # Run tests with code coverage (uses .runsettings configuration)
 dotnet test --settings Crews.PlanningCenter.Api.Tests/.runsettings --collect:"XPlat Code Coverage"
@@ -212,11 +217,37 @@ Three authentication methods are supported via extension methods:
 
 ### Tests
 
+#### Unit Tests (`Crews.PlanningCenter.Api.Tests`)
+Unit tests for the main library. Uses NSubstitute for mocking and RichardSzalay.MockHttp for HTTP mocking.
+
 #### DocParser Tests (`Crews.PlanningCenter.Api.DocParser.Tests`)
 Unit tests for the documentation parser console application. Tests the parsing and transpilation logic for Planning Center API documentation.
 
 #### Generator Tests (`Crews.PlanningCenter.Api.Generators.Tests`)
 Unit tests for the incremental source generator. Tests the code generation logic that creates client and resource classes from JSON definition files.
+
+#### Integration Tests (`Crews.PlanningCenter.Api.IntegrationTests`)
+Integration tests that run against the live Planning Center API. These tests verify end-to-end behavior including CRUD operations across all supported products.
+
+**Structure:**
+- `Infrastructure/` — Shared test fixtures and base classes
+  - `PlanningCenterFixture` — XUnit async fixture (`IAsyncLifetime`) that configures an authenticated `HttpClient`
+  - `PlanningCenterCollection` — XUnit collection definition for sharing the fixture across test classes
+  - `IntegrationTestBase` — Abstract base class providing `HttpClient` and `BaseUri` to tests
+- `Products/` — Test classes organized by Planning Center product, using `[Trait("Product", "...")]` for categorization
+
+**Credential Configuration:**
+Integration tests require a Planning Center Personal Access Token. Configure via any of:
+- **User secrets** (recommended for local development):
+  ```bash
+  cd Crews.PlanningCenter.Api.IntegrationTests
+  dotnet user-secrets set "PlanningCenter:AppId" "your-app-id"
+  dotnet user-secrets set "PlanningCenter:Secret" "your-secret"
+  ```
+- **Environment variables**: `PlanningCenter__AppId` and `PlanningCenter__Secret`
+- **appsettings.json** (not recommended — avoid committing credentials)
+
+**CI/CD:** Integration tests run in a separate GitHub Actions job using repository secrets `PLANNINGCENTER_APP_ID` and `PLANNINGCENTER_SECRET`.
 
 ## Important Patterns
 

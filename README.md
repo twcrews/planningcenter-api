@@ -399,11 +399,56 @@ var oldClient = new V2024_09_01.PersonClient(_httpClient, uri);
 var newClient = new V2025_11_10.PersonClient(_httpClient, uri);
 ```
 
+## Limitations
+
+This library aims to be flexible and covers nearly all API use cases. However, there are a few exceptions.
+
+### Household Creation
+
+Creating a new household in the `People` API requires assigning membership via relationships in the outbound JSON:API document. The built-in `PostAsync` methods of this library do not support sending documents with relationship data.
+
+Here's the workaround:
+
+```cs
+// Get the households URL
+Uri uri = PeopleClient.Latest.Households.Uri;
+
+// Create your document
+JsonApiDocument<HouseholdResource> document = new()
+{
+    Data = new()
+    {
+        Attributes = new()
+        {
+            Name = "Smith Household"
+        },
+        Relationships = new()
+        {
+            People = new()
+            {
+                // Use an identifier for each member's person ID
+                Data = [ new() { Id = 1 }, new() { Id = 2 } ]
+            },
+            PrimaryContact = new()
+            {
+                // Primary contact's person ID
+                Data = new() { Id = 3 }
+            }
+        }
+    }
+}
+
+// Prepare the document
+StringContent content = new(JsonSerializer.Serialize(document));
+
+// Send the request manually
+HttpResponseMessage response = await myHttpClient.SendAsync(new(uri, content));
+```
+
 ## Documentation
 
 ### Detailed Guides
 
-- **[Sandbox Application](Crews.PlanningCenter.Api.Sandbox/README.md)** - Working Blazor example with OIDC authentication
 - **[CLAUDE.md](CLAUDE.md)** - Developer guide for contributing to this project
 - **[MIGRATION_V3.md](MIGRATION_V3.md)** - Migration guide from v2.x to v3.0
 

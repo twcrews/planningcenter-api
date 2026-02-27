@@ -1,24 +1,20 @@
-using Crews.PlanningCenter.Api.IntegrationTests.Infrastructure;
 using Crews.PlanningCenter.Api.Giving.V2019_10_18;
+using Crews.PlanningCenter.Api.IntegrationTests.Infrastructure.ProductFixtures;
+using Crews.PlanningCenter.Api.IntegrationTests.Infrastructure.TestBases;
 
-namespace Crews.PlanningCenter.Api.IntegrationTests.Products;
+namespace Crews.PlanningCenter.Api.IntegrationTests.Products.Giving;
 
-[Trait("Product", "Giving")]
-public class GivingFundTests(PlanningCenterFixture fixture) : IntegrationTestBase(fixture)
+public class FundTests(GivingFixture fixture) : GivingTestBase(fixture)
 {
 	[Fact]
 	public async Task Fund_FullCrudLifecycle()
 	{
-		var givingClient = new GivingClient(HttpClient);
-		var org = givingClient.Latest;
-
 		string? fundId = null;
 
 		try
 		{
 			// -- Create --
-			var fundEndpoint = org.Funds; 
-			var createResult = await fundEndpoint.PostAsync(new Fund
+			var createResult = await Org.Funds.PostAsync(new Fund
 			{
 				Name = $"IntTest-Fund-{UniqueId}",
 				Description = "Integration test fund"
@@ -29,29 +25,25 @@ public class GivingFundTests(PlanningCenterFixture fixture) : IntegrationTestBas
 			Assert.Equal($"IntTest-Fund-{UniqueId}", createResult.Data.Attributes?.Name);
 
 			// -- Read --
-			var singleClient = org.Funds.WithId(fundId);
-			var readResult = await singleClient.GetAsync();
+			var readResult = await Org.Funds.WithId(fundId).GetAsync();
 			Assert.NotNull(readResult.Data);
 			Assert.Equal(fundId, readResult.Data.Id);
 			Assert.Equal($"IntTest-Fund-{UniqueId}", readResult.Data.Attributes?.Name);
 
 			// -- Update --
-			var updateClient = org.Funds.WithId(fundId);
-			var updateResult = await updateClient.PatchAsync(new Fund
+			var updateResult = await Org.Funds.WithId(fundId).PatchAsync(new Fund
 			{
 				Description = "Updated integration test fund"
 			});
 			Assert.NotNull(updateResult.Data);
 
 			// -- Verify Update --
-			var verifyClient = org.Funds.WithId(fundId);
-			var verifyResult = await verifyClient.GetAsync();
+			var verifyResult = await Org.Funds.WithId(fundId).GetAsync();
 			Assert.Equal("Updated integration test fund",
 				verifyResult.Data?.Attributes?.Description);
 
 			// -- Delete --
-			var deleteClient = org.Funds.WithId(fundId);
-			await deleteClient.DeleteAsync();
+			await Org.Funds.WithId(fundId).DeleteAsync();
 			fundId = null;
 		}
 		finally
@@ -60,8 +52,7 @@ public class GivingFundTests(PlanningCenterFixture fixture) : IntegrationTestBas
 			{
 				try
 				{
-					var cleanup = org.Funds.WithId(fundId);
-					await cleanup.DeleteAsync();
+					await Org.Funds.WithId(fundId).DeleteAsync();
 				}
 				catch { /* best effort */ }
 			}

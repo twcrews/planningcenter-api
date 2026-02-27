@@ -1,32 +1,28 @@
-using Crews.PlanningCenter.Api.IntegrationTests.Infrastructure;
 using Crews.PlanningCenter.Api.Calendar.V2022_07_07;
+using Crews.PlanningCenter.Api.IntegrationTests.Infrastructure.ProductFixtures;
+using Crews.PlanningCenter.Api.IntegrationTests.Infrastructure.TestBases;
 
-namespace Crews.PlanningCenter.Api.IntegrationTests.Products;
+namespace Crews.PlanningCenter.Api.IntegrationTests.Products.Calendar;
 
-[Trait("Product", "Calendar")]
-public class CalendarTagTests(PlanningCenterFixture fixture) : IntegrationTestBase(fixture)
+public class TagGroupTests(CalendarFixture fixture) : CalendarTestBase(fixture)
 {
 	[Fact]
 	public async Task TagGroup_And_Tag_FullCrudLifecycle()
 	{
-		var calendarClient = new CalendarClient(HttpClient);
-		var org = calendarClient.Latest;
-
 		string? tagGroupId = null;
 		string? tagId = null;
 
 		try
 		{
 			// -- Create TagGroup --
-			var tagGroupEndpoint = org.TagGroups;
-			var tagGroupResult = await tagGroupEndpoint.PostAsync(
+			var tagGroupResult = await Org.TagGroups.PostAsync(
 				new TagGroup { Name = $"IntTest-TG-{UniqueId}" });
 			Assert.NotNull(tagGroupResult.Data);
 			tagGroupId = tagGroupResult.Data.Id;
 			Assert.NotNull(tagGroupId);
 
 			// -- Create Tag under TagGroup --
-			var createResult = await tagGroupEndpoint.WithId(tagGroupId).Tags.PostAsync(
+			var createResult = await Org.TagGroups.WithId(tagGroupId).Tags.PostAsync(
 				new Tag { Name = $"IntTest-Tag-{UniqueId}" });
 			Assert.NotNull(createResult.Data);
 			tagId = createResult.Data.Id;
@@ -34,30 +30,26 @@ public class CalendarTagTests(PlanningCenterFixture fixture) : IntegrationTestBa
 			Assert.Equal($"IntTest-Tag-{UniqueId}", createResult.Data.Attributes?.Name);
 
 			// -- Read Tag --
-			var singleTagClient = org.TagGroups.WithId(tagGroupId).Tags.WithId(tagId);
-			var readResult = await singleTagClient.GetAsync();
+			var readResult = await Org.TagGroups.WithId(tagGroupId).Tags.WithId(tagId).GetAsync();
 			Assert.NotNull(readResult.Data);
 			Assert.Equal(tagId, readResult.Data.Id);
 			Assert.Equal($"IntTest-Tag-{UniqueId}", readResult.Data.Attributes?.Name);
 
 			// -- Update Tag --
-			var updateResult = await singleTagClient.PatchAsync(
+			var updateResult = await Org.TagGroups.WithId(tagGroupId).Tags.WithId(tagId).PatchAsync(
 				new Tag { Name = $"IntTest-Tag-Updated-{UniqueId}" });
 			Assert.NotNull(updateResult.Data);
 
 			// -- Verify Update --
-			var verifyClient = org.TagGroups.WithId(tagGroupId).Tags.WithId(tagId);
-			var verifyResult = await verifyClient.GetAsync();
+			var verifyResult = await Org.TagGroups.WithId(tagGroupId).Tags.WithId(tagId).GetAsync();
 			Assert.Equal($"IntTest-Tag-Updated-{UniqueId}", verifyResult.Data?.Attributes?.Name);
 
 			// -- Delete Tag --
-			var deleteTagClient = org.TagGroups.WithId(tagGroupId).Tags.WithId(tagId);
-			await deleteTagClient.DeleteAsync();
+			await Org.TagGroups.WithId(tagGroupId).Tags.WithId(tagId).DeleteAsync();
 			tagId = null;
 
 			// -- Delete TagGroup --
-			var deleteTagGroupClient = org.TagGroups.WithId(tagGroupId);
-			await deleteTagGroupClient.DeleteAsync();
+			await Org.TagGroups.WithId(tagGroupId).DeleteAsync();
 			tagGroupId = null;
 		}
 		finally
@@ -66,8 +58,7 @@ public class CalendarTagTests(PlanningCenterFixture fixture) : IntegrationTestBa
 			{
 				try
 				{
-					var cleanup = org.TagGroups.WithId(tagGroupId).Tags.WithId(tagId);
-					await cleanup.DeleteAsync();
+					await Org.TagGroups.WithId(tagGroupId).Tags.WithId(tagId).DeleteAsync();
 				}
 				catch { /* best effort */ }
 			}
@@ -76,8 +67,7 @@ public class CalendarTagTests(PlanningCenterFixture fixture) : IntegrationTestBa
 			{
 				try
 				{
-					var cleanup = org.TagGroups.WithId(tagGroupId);
-					await cleanup.DeleteAsync();
+					await Org.TagGroups.WithId(tagGroupId).DeleteAsync();
 				}
 				catch { /* best effort */ }
 			}

@@ -8,7 +8,7 @@ public class PlanningCenterFixture : IAsyncLifetime
 {
 	public HttpClient HttpClient { get; private set; } = null!;
 
-	public Task InitializeAsync()
+	public virtual Task InitializeAsync()
 	{
 		var configuration = new ConfigurationBuilder()
 			.AddJsonFile("appsettings.json", optional: true)
@@ -40,7 +40,7 @@ public class PlanningCenterFixture : IAsyncLifetime
 		return Task.CompletedTask;
 	}
 
-	public Task DisposeAsync()
+	public virtual Task DisposeAsync()
 	{
 		HttpClient?.Dispose();
 		return Task.CompletedTask;

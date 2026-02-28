@@ -156,17 +156,18 @@ public class PersonClient : ResourceClient<PersonResource, PersonAttributes, Per
 
 ### Overriding Generated Names
 
-Configure name overrides in DocParser's `appsettings.json`:
+Configure name overrides in DocParser's `overrides.json`:
 
 ```json
 {
-  "AppSettings": {
-    "DocumentationBuilder": {
-      "NameOverrides": {
-        "old-name": "NewName"
-      }
+  "NameOverrides": [
+    {
+      "Product": "publishing",
+      "Vertex": "episode",
+      "ModelName": "Episode",
+      "ResourceName": "EpisodeApiResource"
     }
-  }
+  ]
 }
 ```
 
@@ -176,11 +177,14 @@ Exclude specific resources from generation:
 
 ```json
 {
-  "AppSettings": {
-    "DocumentationBuilder": {
-      "ExcludedVertices": ["deprecated-resource"]
+  "ExcludedVertices": [
+    {
+      "Product": "people",
+      "Vertex": "birthday_people",
+      "GenerateResource": false,
+      "GenerateClients": true
     }
-  }
+  ]
 }
 ```
 

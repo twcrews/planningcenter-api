@@ -117,7 +117,7 @@ The DocParser:
 }
 ```
 
-See the [DocParser README](Crews.PlanningCenter.Api.DocParser/README.md) for detailed documentation.
+**Documentation Overrides:** Corrections for inaccuracies in the Planning Center API documentation are configured separately in `overrides.json`. This includes name overrides, excluded vertices, edge type overrides, collection overrides, and attribute type overrides. See the [DocParser README](Crews.PlanningCenter.Api.DocParser/README.md) for detailed documentation.
 
 #### Phase 2: Incremental Source Generation (`Crews.PlanningCenter.Api.Generators`)
 Contains utilities and services for generating strongly-typed client code from the JSON definition files. The generator uses [incremental source generation](https://github.com/dotnet/roslyn/blob/main/docs/features/incremental-generators.md#syntaxvalueprovider) to efficiently process the definition files at compile time.

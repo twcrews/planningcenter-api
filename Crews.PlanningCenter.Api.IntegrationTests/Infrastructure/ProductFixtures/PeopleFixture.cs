@@ -1,4 +1,6 @@
+using System.Text.Json;
 using Crews.PlanningCenter.Api.People.V2025_11_10;
+using Crews.Web.JsonApiClient;
 
 namespace Crews.PlanningCenter.Api.IntegrationTests.Infrastructure.ProductFixtures;
 
@@ -42,8 +44,33 @@ public class PeopleFixture : PlanningCenterFixture
 		});
 		PersonId = personResult.Data!.Id!;
 
-		var householdResult = await org.Households.PostAsync(
-			new Household { Name = $"Fixture-Household-{_fixtureId}" });
+		var householdResult = await org.Households.PostAsync(new JsonApiDocument<HouseholdResource>
+        {
+            Data = new() 
+            {
+                Attributes = new Household 
+                {
+                    Name = $"Fixture-Household-{_fixtureId}" 
+                },
+                Relationships = new()
+                {
+                    People = new()
+                    {
+                        Data = JsonSerializer.SerializeToElement<IEnumerable<JsonApiResourceIdentifier>>([
+                            new() { Type = "Person", Id = "188120583" }
+                        ])
+                    },
+                    PrimaryContact = new()
+                    {
+                        Data = JsonSerializer.SerializeToElement<JsonApiResourceIdentifier>(new()
+                        {
+                            Type = "Person",
+                            Id = "188120583"
+                        })
+                    }
+                }
+            }
+        });
 		HouseholdId = householdResult.Data!.Id!;
 
 		var workflowResult = await org.Workflows.PostAsync(
@@ -58,8 +85,17 @@ public class PeopleFixture : PlanningCenterFixture
 			new Tab { Name = $"Fixture-Tab-{_fixtureId}" });
 		TabId = tabResult.Data!.Id!;
 
-		var campusResult = await org.Campuses.PostAsync(
-			new Campus { Name = $"Fixture-Campus-{_fixtureId}" });
+		var campusResult = await org.Campuses.PostAsync(new Campus 
+        { 
+            Name = $"Fixture-Campus-{_fixtureId}", 
+            Street = "123 Easy Street", 
+            City = "Oklahoma City", 
+            State = "OK", 
+            Zip = "73013", 
+            Country = "United States", 
+            Latitude = (decimal)35.61839, 
+            Longitude = (decimal)-97.56967 
+        });
 		CampusId = campusResult.Data!.Id!;
 	}
 

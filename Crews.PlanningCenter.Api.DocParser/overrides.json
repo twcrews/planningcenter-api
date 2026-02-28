@@ -1,0 +1,89 @@
+{
+  "NameOverrides": [
+    {
+      "Product": "publishing",
+      "Version": null,
+      "Vertex": "episode",
+      "ModelName": "Episode",
+      "ResourceName": "EpisodeApiResource"
+    }
+  ],
+  "ExcludedVertices": [
+    {
+      "Product": "people",
+      "Version": null,
+      "Vertex": "birthday_people",
+      "GenerateResource": false,
+      "GenerateClients": true
+    },
+    {
+      "Product": "people",
+      "Version": null,
+      "Vertex": "organization_statistics",
+      "GenerateResource": false,
+      "GenerateClients": true
+    }
+  ],
+  "EdgeTypeOverrides": [
+    {
+      "Product": "services",
+      "Version": null,
+      "Vertex": "organization",
+      "Edge": "plans",
+      "Type": "plan"
+    }
+  ],
+  "CollectionOverrides": [
+    {
+      "Product": "people",
+      "Version": null,
+      "Vertex": "organization",
+      "Edge": "stats",
+      "IsCollection": false
+    },
+    {
+      "Product": "people",
+      "Version": null,
+      "Vertex": "organization",
+      "Edge": "birthday_people",
+      "IsCollection": false
+    }
+  ],
+  "AttributeTypeOverrides": [
+    {
+      "Product": "calendar",
+      "Version": null,
+      "Vertex": "resource",
+      "Attribute": "image",
+      "Type": "image"
+    },
+    {
+      "Product": "people",
+      "Version": null,
+      "Vertex": "note_category",
+      "Attribute": "organization_id",
+      "Type": "integer"
+    },
+    {
+      "Product": null,
+      "Version": null,
+      "Vertex": "organization",
+      "Attribute": "date_format",
+      "Type": "string"
+    },
+    {
+      "Product": null,
+      "Version": null,
+      "Vertex": "organization",
+      "Attribute": "file_storage_size",
+      "Type": "integer"
+    },
+    {
+      "Product": null,
+      "Version": null,
+      "Vertex": "organization",
+      "Attribute": "file_storage_size_used",
+      "Type": "integer"
+    }
+  ]
+}

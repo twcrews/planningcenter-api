@@ -2741,7 +2741,7 @@
         },
         {
           "Name": "date_format",
-          "Type": "integer",
+          "Type": "string",
           "Description": "Two possible values, \u0060US\u0060 \u0060EU\u0060"
         },
         {
@@ -2766,12 +2766,12 @@
         },
         {
           "Name": "file_storage_size",
-          "Type": "boolean",
+          "Type": "integer",
           "Description": null
         },
         {
           "Name": "file_storage_size_used",
-          "Type": "boolean",
+          "Type": "integer",
           "Description": null
         },
         {

@@ -12,11 +12,6 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "complete",
-          "Type": "boolean",
-          "Description": "Whether or not attendee has completed all necessary items (personal information, questions, forms, add ons).\n\n\nOnly available when requested with the \u0060?fields\u0060 param"
-        },
-        {
           "Name": "active",
           "Type": "boolean",
           "Description": "Whether or not the attendee is active.\n"
@@ -27,14 +22,9 @@
           "Description": "Whether or not the attendee is canceled.\n"
         },
         {
-          "Name": "waitlisted",
+          "Name": "complete",
           "Type": "boolean",
-          "Description": "Whether or not the attendee is waitlisted.\n"
-        },
-        {
-          "Name": "waitlisted_at",
-          "Type": "date_time",
-          "Description": "UTC time at which the attendee was waitlisted.\n"
+          "Description": "Whether or not attendee has completed all necessary items (personal information, questions, forms, add ons).\n\n\nOnly available when requested with the \u0060?fields\u0060 param"
         },
         {
           "Name": "created_at",
@@ -45,6 +35,16 @@
           "Name": "updated_at",
           "Type": "date_time",
           "Description": null
+        },
+        {
+          "Name": "waitlisted",
+          "Type": "boolean",
+          "Description": "Whether or not the attendee is waitlisted.\n"
+        },
+        {
+          "Name": "waitlisted_at",
+          "Type": "date_time",
+          "Description": "UTC time at which the attendee was waitlisted.\n"
         }
       ],
       "Relationships": [],
@@ -133,29 +133,9 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "name",
-          "Type": "string",
-          "Description": "Name of the campus.\n"
-        },
-        {
-          "Name": "street",
-          "Type": "string",
-          "Description": "Street address of the campus.\n"
-        },
-        {
           "Name": "city",
           "Type": "string",
           "Description": "City where the campus is located.\n"
-        },
-        {
-          "Name": "state",
-          "Type": "string",
-          "Description": "State or province where the campus is located.\n"
-        },
-        {
-          "Name": "zip",
-          "Type": "string",
-          "Description": "Zip code of the campus.\n"
         },
         {
           "Name": "country",
@@ -163,19 +143,39 @@
           "Description": "Country where the campus is located.\n"
         },
         {
-          "Name": "full_formatted_address",
-          "Type": "string",
-          "Description": null
-        },
-        {
           "Name": "created_at",
           "Type": "date_time",
           "Description": null
         },
         {
+          "Name": "full_formatted_address",
+          "Type": "string",
+          "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "Name of the campus.\n"
+        },
+        {
+          "Name": "state",
+          "Type": "string",
+          "Description": "State or province where the campus is located.\n"
+        },
+        {
+          "Name": "street",
+          "Type": "string",
+          "Description": "Street address of the campus.\n"
+        },
+        {
           "Name": "updated_at",
           "Type": "date_time",
           "Description": null
+        },
+        {
+          "Name": "zip",
+          "Type": "string",
+          "Description": "Zip code of the campus.\n"
         }
       ],
       "Relationships": [],
@@ -198,14 +198,14 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "name",
-          "Type": "string",
-          "Description": "Name of the category.\n"
-        },
-        {
           "Name": "created_at",
           "Type": "date_time",
           "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "Name of the category.\n"
         },
         {
           "Name": "updated_at",
@@ -263,14 +263,14 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "name",
-          "Type": "string",
-          "Description": "Name of the Organization.\n"
-        },
-        {
           "Name": "created_at",
           "Type": "date_time",
           "Description": null
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "Name of the Organization.\n"
         },
         {
           "Name": "updated_at",
@@ -434,14 +434,14 @@
       "CollectionOnly": false,
       "Attributes": [
         {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
           "Name": "name",
           "Type": "string",
           "Description": "Name of the selection type.\n"
-        },
-        {
-          "Name": "publicly_available",
-          "Type": "boolean",
-          "Description": "Whether or not the selection type is available to the public.\n"
         },
         {
           "Name": "price_cents",
@@ -464,9 +464,9 @@
           "Description": "Price of selection type with currency formatting (symbol not included).\n\n\nOnly available when requested with the \u0060?fields\u0060 param"
         },
         {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
+          "Name": "publicly_available",
+          "Type": "boolean",
+          "Description": "Whether or not the selection type is available to the public.\n"
         },
         {
           "Name": "updated_at",
@@ -504,6 +504,11 @@
           "Description": "UTC time at which regsitration closes.\n"
         },
         {
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
+        },
+        {
           "Name": "description",
           "Type": "string",
           "Description": "Decription of the signup.\n"
@@ -527,11 +532,6 @@
           "Name": "open_at",
           "Type": "date_time",
           "Description": "UTC time at which regsitration opens.\n"
-        },
-        {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
         },
         {
           "Name": "updated_at",
@@ -703,39 +703,14 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "name",
-          "Type": "string",
-          "Description": "The name of the signup location.\n"
-        },
-        {
           "Name": "address_data",
           "Type": "json",
           "Description": "The address data of the signup location, which includes details like street, city, state, and postal code.\n\n\nOnly available when requested with the \u0060?fields\u0060 param"
         },
         {
-          "Name": "subpremise",
-          "Type": "string",
-          "Description": "The subpremise of the signup location, such as an building or room number.\n"
-        },
-        {
-          "Name": "latitude",
-          "Type": "string",
-          "Description": "The latitude of the signup location.\n"
-        },
-        {
-          "Name": "longitude",
-          "Type": "string",
-          "Description": "The longitude of the signup location.\n"
-        },
-        {
-          "Name": "location_type",
-          "Type": "string",
-          "Description": "The type of location, such as \u0060address\u0060, \u0060coords\u0060, or \u0060online\u0060.\n"
-        },
-        {
-          "Name": "url",
-          "Type": "string",
-          "Description": "The URL for the signup location, if applicable (e.g., for online events).\n"
+          "Name": "created_at",
+          "Type": "date_time",
+          "Description": null
         },
         {
           "Name": "formatted_address",
@@ -748,14 +723,39 @@
           "Description": "The fully formatted address of the signup location, including subpremise details.\n"
         },
         {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
+          "Name": "latitude",
+          "Type": "string",
+          "Description": "The latitude of the signup location.\n"
+        },
+        {
+          "Name": "location_type",
+          "Type": "string",
+          "Description": "The type of location, such as \u0060address\u0060, \u0060coords\u0060, or \u0060online\u0060.\n"
+        },
+        {
+          "Name": "longitude",
+          "Type": "string",
+          "Description": "The longitude of the signup location.\n"
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "The name of the signup location.\n"
+        },
+        {
+          "Name": "subpremise",
+          "Type": "string",
+          "Description": "The subpremise of the signup location, such as an building or room number.\n"
         },
         {
           "Name": "updated_at",
           "Type": "date_time",
           "Description": null
+        },
+        {
+          "Name": "url",
+          "Type": "string",
+          "Description": "The URL for the signup location, if applicable (e.g., for online events).\n"
         }
       ],
       "Relationships": [],
@@ -778,16 +778,6 @@
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "starts_at",
-          "Type": "date_time",
-          "Description": "Start date and time of signup time.\n"
-        },
-        {
-          "Name": "ends_at",
-          "Type": "date_time",
-          "Description": "End date and time of signup time.\n"
-        },
-        {
           "Name": "all_day",
           "Type": "boolean",
           "Description": "Whether or not the signup time is all day.\n"
@@ -796,6 +786,16 @@
           "Name": "created_at",
           "Type": "date_time",
           "Description": null
+        },
+        {
+          "Name": "ends_at",
+          "Type": "date_time",
+          "Description": "End date and time of signup time.\n"
+        },
+        {
+          "Name": "starts_at",
+          "Type": "date_time",
+          "Description": "Start date and time of signup time.\n"
         },
         {
           "Name": "updated_at",

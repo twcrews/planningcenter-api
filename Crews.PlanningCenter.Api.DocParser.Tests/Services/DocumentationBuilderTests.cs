@@ -19,8 +19,9 @@ public class DocumentationBuilderTests
     {
         _mockClient = Substitute.For<IPlanningCenterClient>();
         _mockLogger = Substitute.For<ILogger<DocumentationBuilder>>();
-        _builder = new DocumentationBuilder(_mockLogger, _mockClient, 
-            Options.Create<AppSettings.DocumentationBuilderOptions>(new() { ConcurrentConnections = 10 }));
+        _builder = new DocumentationBuilder(_mockLogger, _mockClient,
+            Options.Create<AppSettings.DocumentationBuilderOptions>(new() { ConcurrentConnections = 10 }),
+            Options.Create<DocumentationOverrides>(new()));
     }
 
     [Fact(DisplayName = "BuildAllProductsAsync builds all products concurrently")]
@@ -447,7 +448,8 @@ public class DocumentationBuilderTests
             Options.Create<AppSettings.DocumentationBuilderOptions>(new()
             {
                 ConcurrentConnections = maxConcurrentRequests
-            }));
+            }),
+            Options.Create<DocumentationOverrides>(new()));
 
         // Create a product with multiple versions to trigger concurrent calls
         ProductDefinition productDef = ProductDefinition.Services;

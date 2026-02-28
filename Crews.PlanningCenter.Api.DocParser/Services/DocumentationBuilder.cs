@@ -1,4 +1,4 @@
-﻿using Crews.PlanningCenter.Api.DocParser.Configuration;
+using Crews.PlanningCenter.Api.DocParser.Configuration;
 using Crews.PlanningCenter.Api.DocParser.Extensions;
 using Crews.PlanningCenter.Api.DocParser.Models;
 using Crews.PlanningCenter.Api.Models;
@@ -9,9 +9,10 @@ using Microsoft.Extensions.Options;
 namespace Crews.PlanningCenter.Api.DocParser.Services;
 
 class DocumentationBuilder(
-    ILogger<DocumentationBuilder> logger, 
-    IPlanningCenterClient client, 
-    IOptions<AppSettings.DocumentationBuilderOptions> options) 
+    ILogger<DocumentationBuilder> logger,
+    IPlanningCenterClient client,
+    IOptions<AppSettings.DocumentationBuilderOptions> options,
+    IOptions<DocumentationOverrides> overrides)
     : IDocumentationBuilder
 {
     private readonly SemaphoreSlim _semaphore = new(options.Value.ConcurrentConnections);
@@ -92,17 +93,17 @@ class DocumentationBuilder(
         };
     }
 
-    private AppSettings.DocumentationBuilderOptions.ExcludedVertexEntry? FindExcludedVertex(
+    private DocumentationOverrides.ExcludedVertexEntry? FindExcludedVertex(
         ProductDefinition product, string? versionId, string? vertexId)
     {
         string productName = product.ToString();
 
-        return options.Value.ExcludedVertices.FirstOrDefault(e =>
+        return overrides.Value.ExcludedVertices.FirstOrDefault(e =>
             MatchesVertex(e, productName, versionId, vertexId));
     }
 
     private static bool MatchesVertex(
-        AppSettings.DocumentationBuilderOptions.ExcludedVertexEntry entry,
+        DocumentationOverrides.ExcludedVertexEntry entry,
         string productName,
         string? versionId,
         string? vertexId)
@@ -114,14 +115,14 @@ class DocumentationBuilder(
 
     private bool IsResourceGenerationExcluded(ProductDefinition product, string? versionId, string? vertexId)
     {
-        AppSettings.DocumentationBuilderOptions.ExcludedVertexEntry? excludedVertex 
+        DocumentationOverrides.ExcludedVertexEntry? excludedVertex
             = FindExcludedVertex(product, versionId, vertexId);
         return excludedVertex?.GenerateResource == false;
     }
 
     private bool IsClientGenerationExcluded(ProductDefinition product, string? versionId, string? vertexId)
     {
-        AppSettings.DocumentationBuilderOptions.ExcludedVertexEntry? excludedVertex 
+        DocumentationOverrides.ExcludedVertexEntry? excludedVertex
             = FindExcludedVertex(product, versionId, vertexId);
         return excludedVertex?.GenerateClients == false;
     }
@@ -130,7 +131,7 @@ class DocumentationBuilder(
     {
         string productName = product.ToString();
 
-        AppSettings.DocumentationBuilderOptions.CollectionOverrideEntry? overrideEntry = options
+        DocumentationOverrides.CollectionOverrideEntry? overrideEntry = overrides
             .Value.CollectionOverrides
             .FirstOrDefault(e => (e.Product is null || e.Product.Equals(
                 productName, StringComparison.OrdinalIgnoreCase))
@@ -149,12 +150,12 @@ class DocumentationBuilder(
         return null;
     }
 
-    private AppSettings.DocumentationBuilderOptions.NameOverrideEntry? FindNameOverride(
+    private DocumentationOverrides.NameOverrideEntry? FindNameOverride(
         ProductDefinition product, string? versionId, string? vertexId)
     {
         string productName = product.ToString();
 
-        return options.Value.NameOverrides
+        return overrides.Value.NameOverrides
             .FirstOrDefault(e => (e.Product is null || e.Product.Equals(
                 productName, StringComparison.OrdinalIgnoreCase))
                 && (e.Version is null || e.Version == versionId)
@@ -163,7 +164,7 @@ class DocumentationBuilder(
 
     private string? GetModelNameOverride(ProductDefinition product, string? versionId, string? vertexId)
     {
-        AppSettings.DocumentationBuilderOptions.NameOverrideEntry? overrideEntry =
+        DocumentationOverrides.NameOverrideEntry? overrideEntry =
             FindNameOverride(product, versionId, vertexId);
 
         if (overrideEntry is not null)
@@ -179,7 +180,7 @@ class DocumentationBuilder(
 
     private string? GetResourceNameOverride(ProductDefinition product, string? versionId, string? vertexId)
     {
-        AppSettings.DocumentationBuilderOptions.NameOverrideEntry? overrideEntry =
+        DocumentationOverrides.NameOverrideEntry? overrideEntry =
             FindNameOverride(product, versionId, vertexId);
 
         if (overrideEntry is not null)
@@ -217,7 +218,7 @@ class DocumentationBuilder(
         {
             Id = vertex.Id!,
             Name = GetModelNameOverride(product, versionId, vertex.Id!) ?? vertex.Attributes!.Name!,
-            ResourceName = GetResourceNameOverride(product, versionId, vertex.Id!) 
+            ResourceName = GetResourceNameOverride(product, versionId, vertex.Id!)
                 ?? vertex.Attributes!.Name!.ToPascalCase() + "Resource",
             Description = vertex.Attributes!.Description,
             Deprecated = vertex.Attributes!.Deprecated,
@@ -249,7 +250,7 @@ class DocumentationBuilder(
     {
         string type = attribute.TypeAnnotation.Name;
 
-        AppSettings.DocumentationBuilderOptions.AttributeTypeOverrideEntry? overrideEntry = options.Value.AttributeTypeOverrides
+        DocumentationOverrides.AttributeTypeOverrideEntry? overrideEntry = overrides.Value.AttributeTypeOverrides
             .FirstOrDefault(e => (e.Product is null || e.Product.Equals(product.ToString(), StringComparison.OrdinalIgnoreCase))
                 && (e.Version is null || e.Version == versionId)
                 && (e.Vertex is null || e.Vertex.Equals(vertex, StringComparison.OrdinalIgnoreCase))
@@ -327,21 +328,14 @@ class DocumentationBuilder(
         _logger.LogTrace("Building associated resource: {EdgeName}", edge.Attributes.Name);
 
         string slug = new Uri(edge.Attributes.Path).Segments[^1];
-        bool isCollection = GetCollectionOverride(product, versionId, vertex, edge.Attributes.Name) 
+        bool isCollection = GetCollectionOverride(product, versionId, vertex, edge.Attributes.Name)
             ?? edge.Attributes.Name.IsPlural();
         IEnumerable<ResourceChildFilter> filters = edge.Attributes.Scopes
             .Select(s => new ResourceChildFilter { Name = s.Name, Description = s.ScopeHelp });
 
         string type = edge.Relationships.Head.Data.Id!;
-        
-        if ("services".Equals(product.ToString(), StringComparison.OrdinalIgnoreCase) 
-            && vertex.Equals("organization", StringComparison.OrdinalIgnoreCase)
-            && edge.Attributes.Name.Equals("plans", StringComparison.OrdinalIgnoreCase))
-        {
-            _logger.LogDebug("Plans");
-        }
 
-        AppSettings.DocumentationBuilderOptions.EdgeTypeOverrideEntry? overrideEntry = options.Value.EdgeTypeOverrides
+        DocumentationOverrides.EdgeTypeOverrideEntry? overrideEntry = overrides.Value.EdgeTypeOverrides
             .FirstOrDefault(e => (e.Product is null || e.Product.Equals(product.ToString(), StringComparison.OrdinalIgnoreCase))
                 && (e.Version is null || e.Version == versionId)
                 && (e.Vertex is null || e.Vertex.Equals(vertex, StringComparison.OrdinalIgnoreCase))

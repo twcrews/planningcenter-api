@@ -4142,7 +4142,7 @@
         },
         {
           "Name": "organization_id",
-          "Type": "primary_key",
+          "Type": "integer",
           "Description": null
         },
         {
@@ -4484,7 +4484,7 @@
         },
         {
           "Name": "date_format",
-          "Type": "integer",
+          "Type": "string",
           "Description": null
         },
         {

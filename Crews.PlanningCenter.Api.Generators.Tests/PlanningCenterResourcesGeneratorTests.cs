@@ -26,8 +26,7 @@ public class PlanningCenterResourcesGeneratorTests
 
         GeneratorTestHelper.AssertContains(source,
             "namespace Crews.PlanningCenter.Api.People.V2024_12_01;",
-            "public class PersonResource : JsonApiResource",
-            "public required new Person Attributes { get; init; }");
+            "public record PersonResource : JsonApiResource<Person>");
     }
 
     [Fact]
@@ -50,14 +49,14 @@ public class PlanningCenterResourcesGeneratorTests
         var source = GeneratorTestHelper.GetGeneratedSource(result, "People.2025-01-01.Resources.g.cs");
 
         GeneratorTestHelper.AssertContains(source,
-            "public class Person",
-            "public string? FirstName { get; set; }",
-            "public string? LastName { get; set; }",
-            "public DateOnly? Birthdate { get; set; }",
-            "public DateTime? CreatedAt { get; set; }",
-            "public int? Age { get; set; }",
-            "public bool? Active { get; set; }",
-            "public JsonObject? Metadata { get; set; }");
+            "public record Person",
+            "public string? FirstName { get; init; }",
+            "public string? LastName { get; init; }",
+            "public DateOnly? Birthdate { get; init; }",
+            "public DateTime? CreatedAt { get; init; }",
+            "public int? Age { get; init; }",
+            "public bool? Active { get; init; }",
+            "public JsonObject? Metadata { get; init; }");
     }
 
     [Fact]
@@ -80,8 +79,8 @@ public class PlanningCenterResourcesGeneratorTests
         var source = GeneratorTestHelper.GetGeneratedSource(result, "People.2025-01-01.Resources.g.cs");
 
         GeneratorTestHelper.AssertContains(source,
-            "public class EmailRelationships",
-            "public JsonApiRelationship? Person { get; set; }");
+            "public record EmailRelationships",
+            "public JsonApiRelationship? Person { get; init; }");
     }
 
     [Fact]
@@ -182,8 +181,8 @@ public class PlanningCenterResourcesGeneratorTests
         var source = GeneratorTestHelper.GetGeneratedSource(result, "People.2025-01-01.Resources.g.cs");
 
         GeneratorTestHelper.AssertContains(source,
-            "public string? PersonAttribute { get; set; }",
-            "NOTE: The name of this property has been modified because the class shares its original name.");
+            "public string? PersonAttribute { get; init; }",
+            "NOTE: The name of this property has been modified because the type shares its original name.");
     }
 
     [Fact]
@@ -279,9 +278,7 @@ public class PlanningCenterResourcesGeneratorTests
 
         GeneratorTestHelper.AssertContains(source,
             "[JsonPropertyName(\"first_name\")]",
-            "[JsonPropertyName(\"last_name\")]",
-            "[JsonPropertyName(\"attributes\")]",
-            "[JsonPropertyName(\"relationships\")]");
+            "[JsonPropertyName(\"last_name\")]");
     }
 
     [Fact]
@@ -302,11 +299,11 @@ public class PlanningCenterResourcesGeneratorTests
                     GenerateResource = true,
                     GenerateClients = false,
                     Attributes = [new Crews.PlanningCenter.Api.Models.ResourceAttribute { Name = "name", Type = "string" }],
-                    Relationships = Array.Empty<Crews.PlanningCenter.Api.Models.ResourceRelationship>(),
-                    Children = Array.Empty<Crews.PlanningCenter.Api.Models.ResourceChild>(),
-                    CanInclude = Array.Empty<Crews.PlanningCenter.Api.Models.ResourceIncludable>(),
-                    CanOrderBy = Array.Empty<Crews.PlanningCenter.Api.Models.ResourceOrderable>(),
-                    CanQueryBy = Array.Empty<Crews.PlanningCenter.Api.Models.ResourceQueryable>()
+                    Relationships = [],
+                    Children = [],
+                    CanInclude = [],
+                    CanOrderBy = [],
+                    CanQueryBy = []
                 },
                 new Crews.PlanningCenter.Api.Models.Resource
                 {
@@ -316,11 +313,11 @@ public class PlanningCenterResourcesGeneratorTests
                     GenerateResource = false,
                     GenerateClients = false,
                     Attributes = [new Crews.PlanningCenter.Api.Models.ResourceAttribute { Name = "address", Type = "string" }],
-                    Relationships = Array.Empty<Crews.PlanningCenter.Api.Models.ResourceRelationship>(),
-                    Children = Array.Empty<Crews.PlanningCenter.Api.Models.ResourceChild>(),
-                    CanInclude = Array.Empty<Crews.PlanningCenter.Api.Models.ResourceIncludable>(),
-                    CanOrderBy = Array.Empty<Crews.PlanningCenter.Api.Models.ResourceOrderable>(),
-                    CanQueryBy = Array.Empty<Crews.PlanningCenter.Api.Models.ResourceQueryable>()
+                    Relationships = [],
+                    Children = [],
+                    CanInclude = [],
+                    CanOrderBy = [],
+                    CanQueryBy = []
                 }
             ]
         };
@@ -339,12 +336,12 @@ public class PlanningCenterResourcesGeneratorTests
         var source = GeneratorTestHelper.GetGeneratedSource(result, "People.2025-01-01.Resources.g.cs");
 
         GeneratorTestHelper.AssertContains(source,
-            "public class PersonResource",
-            "public class Person");
+            "public record PersonResource",
+            "public record Person");
 
         GeneratorTestHelper.AssertDoesNotContain(source,
-            "public class EmailResource",
-            "public class Email {");
+            "public record EmailResource",
+            "public record Email {");
     }
 
     [Fact]
@@ -366,11 +363,11 @@ public class PlanningCenterResourcesGeneratorTests
                     GenerateResource = true,
                     GenerateClients = false,
                     Attributes = [new Crews.PlanningCenter.Api.Models.ResourceAttribute { Name = "name", Type = "string", Description = null }],
-                    Relationships = Array.Empty<Crews.PlanningCenter.Api.Models.ResourceRelationship>(),
-                    Children = Array.Empty<Crews.PlanningCenter.Api.Models.ResourceChild>(),
-                    CanInclude = Array.Empty<Crews.PlanningCenter.Api.Models.ResourceIncludable>(),
-                    CanOrderBy = Array.Empty<Crews.PlanningCenter.Api.Models.ResourceOrderable>(),
-                    CanQueryBy = Array.Empty<Crews.PlanningCenter.Api.Models.ResourceQueryable>()
+                    Relationships = [],
+                    Children = [],
+                    CanInclude = [],
+                    CanOrderBy = [],
+                    CanQueryBy = []
                 }
             ]
         };

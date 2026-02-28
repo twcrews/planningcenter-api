@@ -76,11 +76,11 @@ public static class SampleVersionData
                             Description = "The person's name"
                         }
                     ],
-                    Relationships = Array.Empty<ApiResourceRelationship>(),
-                    Children = Array.Empty<ApiResourceChild>(),
-                    CanInclude = Array.Empty<ApiResourceIncludable>(),
-                    CanOrderBy = Array.Empty<ApiResourceOrderable>(),
-                    CanQueryBy = Array.Empty<ApiResourceQueryable>()
+                    Relationships = [],
+                    Children = [],
+                    CanInclude = [],
+                    CanOrderBy = [],
+                    CanQueryBy = []
                 }
             ]
         };
@@ -146,7 +146,7 @@ public static class SampleVersionData
                     Description = "Additional metadata"
                 }
             ],
-            Relationships = Array.Empty<ApiResourceRelationship>(),
+            Relationships = [],
             Children =
             [
                 new ApiResourceChild
@@ -157,7 +157,7 @@ public static class SampleVersionData
                     Slug = "emails",
                     IsCollection = true,
                     IsDeprecated = false,
-                    Filters = Array.Empty<ApiResourceChildFilter>()
+                    Filters = []
                 }
             ],
             CanInclude =
@@ -242,10 +242,10 @@ public static class SampleVersionData
                     Note = "The person this email belongs to"
                 }
             ],
-            Children = Array.Empty<ApiResourceChild>(),
-            CanInclude = Array.Empty<ApiResourceIncludable>(),
-            CanOrderBy = Array.Empty<ApiResourceOrderable>(),
-            CanQueryBy = Array.Empty<ApiResourceQueryable>()
+            Children = [],
+            CanInclude = [],
+            CanOrderBy = [],
+            CanQueryBy = []
         };
     }
 
@@ -273,11 +273,11 @@ public static class SampleVersionData
                     Description = "Report title"
                 }
             ],
-            Relationships = Array.Empty<ApiResourceRelationship>(),
-            Children = Array.Empty<ApiResourceChild>(),
-            CanInclude = Array.Empty<ApiResourceIncludable>(),
-            CanOrderBy = Array.Empty<ApiResourceOrderable>(),
-            CanQueryBy = Array.Empty<ApiResourceQueryable>()
+            Relationships = [],
+            Children = [],
+            CanInclude = [],
+            CanOrderBy = [],
+            CanQueryBy = []
         };
     }
 
@@ -307,11 +307,11 @@ public static class SampleVersionData
                     Description = "The name"
                 }
             ],
-            Relationships = Array.Empty<ApiResourceRelationship>(),
-            Children = Array.Empty<ApiResourceChild>(),
-            CanInclude = Array.Empty<ApiResourceIncludable>(),
-            CanOrderBy = Array.Empty<ApiResourceOrderable>(),
-            CanQueryBy = Array.Empty<ApiResourceQueryable>()
+            Relationships = [],
+            Children = [],
+            CanInclude = [],
+            CanOrderBy = [],
+            CanQueryBy = []
         };
     }
 }

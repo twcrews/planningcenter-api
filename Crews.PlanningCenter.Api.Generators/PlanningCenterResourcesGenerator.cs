@@ -160,7 +160,7 @@ class PlanningCenterResourcesGenerator : IIncrementalGenerator
         writer.WriteLine("/// </summary>");
         writer.WriteLine("[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]");
         writer.WriteLine($"[JsonPropertyName(\"{relationship.Name}\")]");
-        writer.WriteLine($"public JsonApiRelationship<{resource.ResourceName}>? {relationship.Name.ToPascalCase()} {{ get; init; }}");
+        writer.WriteLine($"public JsonApiRelationship? {relationship.Name.ToPascalCase()} {{ get; init; }}");
         writer.WriteLine();
     }
 }

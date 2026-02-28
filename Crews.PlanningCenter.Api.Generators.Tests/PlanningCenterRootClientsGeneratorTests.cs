@@ -255,7 +255,7 @@ public class PlanningCenterRootClientsGeneratorTests
         var source = GeneratorTestHelper.GetGeneratedSource(result, "People.Client.g.cs");
 
         GeneratorTestHelper.AssertContains(source,
-            "new(httpClient.BaseAddress ?? new(\"https://api.planningcenteronline.com/\"), \"People/v2/\")");
+            "new(httpClient.BaseAddress ?? new(\"https://api.planningcenteronline.com/\"), \"people/v2/\")");
     }
 
     [Fact]
@@ -318,11 +318,11 @@ public class PlanningCenterRootClientsGeneratorTests
             GenerateResource = true,
             GenerateClients = true,
             Attributes = [new Crews.PlanningCenter.Api.Models.ResourceAttribute { Name = "name", Type = "string" }],
-            Relationships = Array.Empty<Crews.PlanningCenter.Api.Models.ResourceRelationship>(),
-            Children = Array.Empty<Crews.PlanningCenter.Api.Models.ResourceChild>(),
-            CanInclude = Array.Empty<Crews.PlanningCenter.Api.Models.ResourceIncludable>(),
-            CanOrderBy = Array.Empty<Crews.PlanningCenter.Api.Models.ResourceOrderable>(),
-            CanQueryBy = Array.Empty<Crews.PlanningCenter.Api.Models.ResourceQueryable>()
+            Relationships = [],
+            Children = [],
+            CanInclude = [],
+            CanOrderBy = [],
+            CanQueryBy = []
         };
     }
 }

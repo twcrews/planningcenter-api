@@ -27,7 +27,7 @@ public partial class PlanningCenterResourceClientsGeneratorTests
         GeneratorTestHelper.AssertContains(source,
             "namespace Crews.PlanningCenter.Api.People.V2024_12_01;",
             "public class PersonClient(HttpClient httpClient, Uri uri)",
-            ": ResourceClient<Person, PersonResource, PersonResponse>(httpClient, uri)");
+            ": SingletonResourceClient<Person, PersonResource, PersonResponse>(httpClient, uri)");
     }
 
     [Fact]
@@ -51,7 +51,7 @@ public partial class PlanningCenterResourceClientsGeneratorTests
 
         GeneratorTestHelper.AssertContains(source,
             "public class PaginatedPersonClient(HttpClient httpClient, Uri uri)",
-            ": PaginatedResourceClient<Person, IEnumerable<PersonResource>, PersonCollectionResponse>(httpClient, uri)");
+            ": PaginatedResourceClient<Person, PersonResource, PersonCollectionResponse, PersonResponse>(httpClient, uri)");
     }
 
     [Fact]
@@ -121,7 +121,7 @@ public partial class PlanningCenterResourceClientsGeneratorTests
         var source = GeneratorTestHelper.GetGeneratedSource(result, "People.2025-01-01.Clients.g.cs");
 
         GeneratorTestHelper.AssertContains(source,
-            "public new Task<PersonResponse> PostAsync(Person request, CancellationToken cancellationToken = default)");
+            "public new Task<PersonResponse> PostAsync(Person resource, CancellationToken cancellationToken = default)");
     }
 
     [Fact]
@@ -144,8 +144,8 @@ public partial class PlanningCenterResourceClientsGeneratorTests
         var source = GeneratorTestHelper.GetGeneratedSource(result, "People.2025-01-01.Clients.g.cs");
 
         // Email resource is postable, Report is not
-        Assert.Contains("public new Task<EmailResponse> PostAsync(Email request", source);
-        Assert.DoesNotContain("public new Task<ReportResponse> PostAsync(Report request", source);
+        Assert.Contains("public new Task<EmailResponse> PostAsync(Email resource", source);
+        Assert.DoesNotContain("public new Task<ReportResponse> PostAsync(Report resource", source);
     }
 
     [Fact]
@@ -168,7 +168,7 @@ public partial class PlanningCenterResourceClientsGeneratorTests
         var source = GeneratorTestHelper.GetGeneratedSource(result, "People.2025-01-01.Clients.g.cs");
 
         GeneratorTestHelper.AssertContains(source,
-            "public new Task<PersonResponse> PatchAsync(Person request, CancellationToken cancellationToken = default)");
+            "public new Task<PersonResponse> PatchAsync(Person resource, CancellationToken cancellationToken = default)");
     }
 
     [Fact]
@@ -191,8 +191,8 @@ public partial class PlanningCenterResourceClientsGeneratorTests
         var source = GeneratorTestHelper.GetGeneratedSource(result, "People.2025-01-01.Clients.g.cs");
 
         // Person is patchable, Email is not
-        Assert.Contains("public new Task<PersonResponse> PatchAsync(Person request", source);
-        Assert.DoesNotContain("public new Task<EmailResponse> PatchAsync(Email request", source);
+        Assert.Contains("public new Task<PersonResponse> PatchAsync(Person resource", source);
+        Assert.DoesNotContain("public new Task<EmailResponse> PatchAsync(Email resource", source);
     }
 
     [Fact]
@@ -416,31 +416,6 @@ public partial class PlanningCenterResourceClientsGeneratorTests
     }
 
     [Fact]
-    public void ShouldGenerateDeserializationMethod()
-    {
-        // Arrange
-        var version = SampleVersionData.GetMinimalVersion();
-        var json = System.Text.Json.JsonSerializer.Serialize(version);
-        var (compilation, additionalFiles) = GeneratorTestHelper.CreateCompilation(
-            "namespace Test { }",
-            ("People/2024-12-01.json", json));
-
-        // Act
-        var result = GeneratorTestHelper.RunGenerator(
-            "PlanningCenterResourceClientsGenerator",
-            compilation,
-            additionalFiles);
-
-        // Assert
-        var source = GeneratorTestHelper.GetGeneratedSource(result, "People.2024-12-01.Clients.g.cs");
-
-        GeneratorTestHelper.AssertContains(source,
-            "protected override async Task<PersonResponse> DeserializeResponseAsync(HttpResponseMessage response, CancellationToken cancellationToken = default)",
-            "response.EnsureSuccessStatusCode();",
-            "JsonApiDocument? document = await response.Content.ReadFromJsonAsync<JsonApiDocument>(cancellationToken);");
-    }
-
-    [Fact]
     public void ShouldIncludeDeprecatedCommentForDeprecatedResources()
     {
         // Arrange
@@ -507,11 +482,11 @@ public partial class PlanningCenterResourceClientsGeneratorTests
                     GenerateResource = true,
                     GenerateClients = true,
                     Attributes = [new Crews.PlanningCenter.Api.Models.ResourceAttribute { Name = "name", Type = "string" }],
-                    Relationships = Array.Empty<Crews.PlanningCenter.Api.Models.ResourceRelationship>(),
-                    Children = Array.Empty<Crews.PlanningCenter.Api.Models.ResourceChild>(),
-                    CanInclude = Array.Empty<Crews.PlanningCenter.Api.Models.ResourceIncludable>(),
-                    CanOrderBy = Array.Empty<Crews.PlanningCenter.Api.Models.ResourceOrderable>(),
-                    CanQueryBy = Array.Empty<Crews.PlanningCenter.Api.Models.ResourceQueryable>()
+                    Relationships = [],
+                    Children = [],
+                    CanInclude = [],
+                    CanOrderBy = [],
+                    CanQueryBy = []
                 },
                 new Crews.PlanningCenter.Api.Models.Resource
                 {
@@ -521,11 +496,11 @@ public partial class PlanningCenterResourceClientsGeneratorTests
                     GenerateResource = true,
                     GenerateClients = false,
                     Attributes = [new Crews.PlanningCenter.Api.Models.ResourceAttribute { Name = "address", Type = "string" }],
-                    Relationships = Array.Empty<Crews.PlanningCenter.Api.Models.ResourceRelationship>(),
-                    Children = Array.Empty<Crews.PlanningCenter.Api.Models.ResourceChild>(),
-                    CanInclude = Array.Empty<Crews.PlanningCenter.Api.Models.ResourceIncludable>(),
-                    CanOrderBy = Array.Empty<Crews.PlanningCenter.Api.Models.ResourceOrderable>(),
-                    CanQueryBy = Array.Empty<Crews.PlanningCenter.Api.Models.ResourceQueryable>()
+                    Relationships = [],
+                    Children = [],
+                    CanInclude = [],
+                    CanOrderBy = [],
+                    CanQueryBy = []
                 }
             ]
         };

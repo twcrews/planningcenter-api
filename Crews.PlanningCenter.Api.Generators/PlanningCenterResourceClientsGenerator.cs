@@ -125,11 +125,20 @@ class PlanningCenterResourceClientsGenerator : IIncrementalGenerator
             writer.WriteLine("/// <summary>");
             writer.WriteLine($"/// Creates a new <see cref=\"{modelType}\"/> resource asynchronously.");
             writer.WriteLine("/// </summary>");
-            writer.WriteLine("/// <param name=\"request\">The resource data to be sent in the POST request.</param>");
+            writer.WriteLine("/// <param name=\"resource\">The resource data to be sent in the POST request.</param>");
             writer.WriteLine("/// <param name=\"cancellationToken\">A token to monitor for cancellation requests.</param>");
             writer.WriteLine($"/// <returns>A task representing the asynchronous operation, containing the created <see cref=\"{modelType}\"/> resource.</returns>");
             writer.WriteLine("/// <exception cref=\"JsonApiException\">Thrown when the HTTP response indicates a failure status code.</exception>");
-            writer.WriteLine($"public new Task<{responseType}> PostAsync({modelType} request, CancellationToken cancellationToken = default) => base.PostAsync(request, cancellationToken);");
+            writer.WriteLine($"public new Task<{responseType}> PostAsync({modelType} resource, CancellationToken cancellationToken = default) => base.PostAsync(resource, cancellationToken);");
+            writer.WriteLine();
+            writer.WriteLine("/// <summary>");
+            writer.WriteLine($"/// Creates a new <see cref=\"{modelType}\"/> resource asynchronously.");
+            writer.WriteLine("/// </summary>");
+            writer.WriteLine("/// <param name=\"document\">The JSON:API document to be sent in the POST request.</param>");
+            writer.WriteLine("/// <param name=\"cancellationToken\">A token to monitor for cancellation requests.</param>");
+            writer.WriteLine($"/// <returns>A task representing the asynchronous operation, containing the created <see cref=\"{modelType}\"/> resource.</returns>");
+            writer.WriteLine("/// <exception cref=\"JsonApiException\">Thrown when the HTTP response indicates a failure status code.</exception>");
+            writer.WriteLine($"public new Task<{responseType}> PostAsync(JsonApiDocument<{resource.ResourceName}> document, CancellationToken cancellationToken = default) => base.PostAsync(document, cancellationToken);");
             writer.WriteLine();
         }
 
@@ -268,11 +277,20 @@ class PlanningCenterResourceClientsGenerator : IIncrementalGenerator
             writer.WriteLine("/// <summary>");
             writer.WriteLine($"/// Updates an existing <see cref=\"{modelType}\"/> resource asynchronously.");
             writer.WriteLine("/// </summary>");
-            writer.WriteLine("/// <param name=\"request\">The resource data to be sent in the patch request.</param>");
+            writer.WriteLine("/// <param name=\"resource\">The resource data to be sent in the patch request.</param>");
             writer.WriteLine("/// <param name=\"cancellationToken\">A token to monitor for cancellation requests.</param>");
             writer.WriteLine($"/// <returns>A task representing the asynchronous operation, containing the updated <see cref=\"{modelType}\"/> resource.</returns>");
             writer.WriteLine("/// <exception cref=\"JsonApiException\">Thrown when the HTTP response indicates a failure status code.</exception>");
-            writer.WriteLine($"public new Task<{responseType}> PatchAsync({modelType} request, CancellationToken cancellationToken = default) => base.PatchAsync(request, cancellationToken);");
+            writer.WriteLine($"public new Task<{responseType}> PatchAsync({modelType} resource, CancellationToken cancellationToken = default) => base.PatchAsync(resource, cancellationToken);");
+            writer.WriteLine();
+            writer.WriteLine("/// <summary>");
+            writer.WriteLine($"/// Updates an existing <see cref=\"{modelType}\"/> resource asynchronously.");
+            writer.WriteLine("/// </summary>");
+            writer.WriteLine("/// <param name=\"document\">The JSON:API document to be sent in the patch request.</param>");
+            writer.WriteLine("/// <param name=\"cancellationToken\">A token to monitor for cancellation requests.</param>");
+            writer.WriteLine($"/// <returns>A task representing the asynchronous operation, containing the updated <see cref=\"{modelType}\"/> resource.</returns>");
+            writer.WriteLine("/// <exception cref=\"JsonApiException\">Thrown when the HTTP response indicates a failure status code.</exception>");
+            writer.WriteLine($"public new Task<{responseType}> PatchAsync(JsonApiDocument<{resource.ResourceName}> document, CancellationToken cancellationToken = default) => base.PatchAsync(document, cancellationToken);");
             writer.WriteLine();
         }
 

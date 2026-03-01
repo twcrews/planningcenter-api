@@ -579,7 +579,7 @@
       "Attributes": [
         {
           "Name": "connected_to_id",
-          "Type": "primary_key",
+          "Type": "integer",
           "Description": "Unique identifier for the connected record"
         },
         {
@@ -1353,7 +1353,7 @@
         },
         {
           "Name": "default_church_center_visibility",
-          "Type": "string",
+          "Type": "jsonElement",
           "Description": "Possible values: \u0060hidden\u0060 or \u0060published\u0060"
         },
         {

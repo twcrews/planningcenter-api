@@ -29,7 +29,7 @@ public class PlanningCenterFixture : IAsyncLifetime
 			Secret = secret
 		};
 
-		HttpClient = new HttpClient
+		HttpClient = new HttpClient(new RateLimitHandler { InnerHandler = new HttpClientHandler() })
 		{
 			BaseAddress = new Uri(PlanningCenterAuthenticationDefaults.BaseUrl)
 		};

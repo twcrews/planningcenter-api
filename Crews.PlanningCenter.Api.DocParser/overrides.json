@@ -72,6 +72,17 @@
       "Vertex": "feed",
       "Attribute": "default_church_center_visibility",
       "Type": "jsonElement"
+    },
+    {
+      "Product": "calendar",
+      "Vertex": "person",
+      "Attribute": "contact_data",
+      "Type": "contact_data"
+    },
+    {
+      "Vertex": "room_setup",
+      "Attribute": "diagram",
+      "Type": "image"
     }
   ]
 }

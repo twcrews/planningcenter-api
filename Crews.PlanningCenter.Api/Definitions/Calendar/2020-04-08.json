@@ -1928,7 +1928,7 @@
         },
         {
           "Name": "contact_data",
-          "Type": "string",
+          "Type": "contact_data",
           "Description": "An object containing the person\u0027s contact data.\n\nThis can include an array of \u0060email_addresses\u0060, \u0060addresses\u0060 and \u0060phone_numbers\u0060\n"
         },
         {
@@ -3184,7 +3184,7 @@
         },
         {
           "Name": "diagram",
-          "Type": "string",
+          "Type": "image",
           "Description": "An object containing \u0060url\u0060 and \u0060thumbnail\u0060.\n\n\u0060url\u0060 is path to where room setup is stored.\n\u0060thumbnail\u0060 contains \u0060url\u0060 path to where thumbnail is stored.\n"
         },
         {

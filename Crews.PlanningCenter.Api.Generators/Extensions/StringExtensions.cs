@@ -26,6 +26,7 @@ public static class StringExtensions
         "json" or "object" or "repeatable_schedule" => "JsonObject",
         "array" => "JsonArray",
 		"image" => "Crews.PlanningCenter.Api.Calendar.Image",
+		"contact_data" => "Crews.PlanningCenter.Api.Calendar.ContactData",
         _ => "JsonElement"
     };
 

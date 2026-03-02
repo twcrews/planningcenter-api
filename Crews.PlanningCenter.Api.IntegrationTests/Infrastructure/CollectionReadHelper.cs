@@ -29,4 +29,19 @@ public static class CollectionReadHelper
 
 		return data?.FirstOrDefault()?["id"]?.GetValue<string>();
 	}
+
+	public static async Task<string?> GetLastIdAsync(
+		HttpClient httpClient,
+		string collectionPath,
+		CancellationToken cancellationToken = default)
+	{
+		var response = await httpClient.GetAsync($"{collectionPath}?per_page=100", cancellationToken);
+		response.EnsureSuccessStatusCode();
+
+		var json = await response.Content.ReadAsStringAsync(cancellationToken);
+		var doc = JsonNode.Parse(json);
+		var data = doc?["data"]?.AsArray();
+
+		return data?.LastOrDefault()?["id"]?.GetValue<string>();
+	}
 }

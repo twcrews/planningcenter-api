@@ -2282,7 +2282,7 @@
         },
         {
           "Name": "image",
-          "Type": "image",
+          "Type": "calendar_image",
           "Description": "Path to where resource image is stored"
         },
         {
@@ -3196,7 +3196,7 @@
         },
         {
           "Name": "diagram",
-          "Type": "image",
+          "Type": "calendar_image",
           "Description": "An object containing \u0060url\u0060 and \u0060thumbnail\u0060.\n\n\u0060url\u0060 is path to where room setup is stored.\n\u0060thumbnail\u0060 contains \u0060url\u0060 path to where thumbnail is stored.\n"
         },
         {

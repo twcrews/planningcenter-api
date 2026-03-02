@@ -41,7 +41,7 @@
     {
       "Vertex": "resource",
       "Attribute": "image",
-      "Type": "image"
+      "Type": "calendar_image"
     },
     {
       "Vertex": "note_category",
@@ -82,7 +82,17 @@
     {
       "Vertex": "room_setup",
       "Attribute": "diagram",
-      "Type": "image"
+      "Type": "calendar_image"
+    },
+    {
+      "Vertex": "theme",
+      "Attribute": "image",
+      "Type": "check_ins_image"
+    },
+    {
+      "Vertex": "location",
+      "Attribute": "questions",
+      "Type": "array"
     }
   ]
 }

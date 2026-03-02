@@ -25,7 +25,8 @@ public static class StringExtensions
         "date" => "DateOnly",
         "json" or "object" or "repeatable_schedule" => "JsonObject",
         "array" => "JsonArray",
-		"image" => "Crews.PlanningCenter.Api.Calendar.Image",
+		"calendar_image" => "Crews.PlanningCenter.Api.Calendar.Image",
+		"check_ins_image" => "Crews.PlanningCenter.Api.CheckIns.Image",
 		"contact_data" => "Crews.PlanningCenter.Api.Calendar.ContactData",
         _ => "JsonElement"
     };

@@ -1686,7 +1686,7 @@
         },
         {
           "Name": "questions",
-          "Type": "string",
+          "Type": "array",
           "Description": null
         },
         {
@@ -3284,7 +3284,7 @@
         },
         {
           "Name": "image",
-          "Type": "string",
+          "Type": "check_ins_image",
           "Description": null
         },
         {

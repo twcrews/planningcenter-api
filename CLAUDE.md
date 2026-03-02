@@ -65,13 +65,13 @@ The DocParser downloads the latest API documentation from Planning Center and sa
 ### Generating Documentation
 ```bash
 # Generate documentation site using DocFX
-docfx docfx.json
+docfx docs/docfx.json
 
 # Serve documentation locally for preview (with hot reload)
-docfx docfx.json --serve
+docfx docs/docfx.json --serve
 
 # Generate documentation in a specific output directory
-docfx docfx.json -o <output-directory>
+docfx docs/docfx.json -o <output-directory>
 ```
 
 The documentation is generated using [DocFX](https://dotnet.github.io/docfx/), which:
@@ -82,7 +82,7 @@ The documentation is generated using [DocFX](https://dotnet.github.io/docfx/), w
 - Uses the default and modern templates for a clean, searchable interface
 - Supports PDF generation
 
-**Configuration:** Documentation generation is configured in [docfx.json](docfx.json) at the repository root.
+**Configuration:** Documentation generation is configured in [docs/docfx.json](docs/docfx.json).
 
 ## Architecture
 
@@ -125,7 +125,7 @@ Contains utilities and services for generating strongly-typed client code from t
 **Definition Files Location:**
 - Path: `Crews.PlanningCenter.Api/Definitions/`
 - Structure: `{Product}/{Version}.json`
-- Example: `Definitions/People/2025-07-17.json`
+- Example: `Definitions/People/2025-11-10.json`
 
 **Note:** The source generator is configured in the main library project via:
 - ProjectReference to the Generators project with `OutputItemType="Analyzer"`
@@ -138,29 +138,31 @@ Client and resource classes are auto-generated at compile time and include a hea
 
 The library provides authentication helpers that consumers can use to configure their HttpClient. Consumers control HttpClient configuration, including authentication and resilience policies.
 
-#### Authentication Helpers
+#### Authentication Methods
 
-Three authentication methods are supported via extension methods:
+Two authentication approaches are supported:
 
 1. **Personal Access Token** - For server-to-server integrations and development
    ```csharp
-   var httpClient = new HttpClient()
-       .ConfigureForPlanningCenter()
-       .AddPlanningCenterAuth(new PlanningCenterPersonalAccessToken
-       {
-           AppId = "app-id",
-           Secret = "secret"
-       });
+   using Crews.PlanningCenter.Api.Authentication;
+   using System.Net.Http.Headers;
+
+   PlanningCenterPersonalAccessToken token = new()
+   {
+       AppId = "app-id",
+       Secret = "secret"
+   };
+
+   var httpClient = new HttpClient
+   {
+       BaseAddress = new Uri(PlanningCenterAuthenticationDefaults.BaseUrl)
+   };
+   httpClient.DefaultRequestHeaders.Accept.Add(
+       new MediaTypeWithQualityHeaderValue("application/json"));
+   httpClient.DefaultRequestHeaders.Authorization = token; // implicit conversion
    ```
 
-2. **OAuth Bearer Token** - When you already have an access token
-   ```csharp
-   var httpClient = new HttpClient()
-       .ConfigureForPlanningCenter()
-       .AddPlanningCenterAuth("access-token");
-   ```
-
-3. **OIDC Authentication** (Recommended for web apps) - Integrated ASP.NET Core authentication
+2. **OIDC Authentication** (Recommended for web apps) - Integrated ASP.NET Core authentication
    ```csharp
    // Configure authentication with cookie support
    builder.Services
@@ -172,12 +174,6 @@ Three authentication methods are supported via extension methods:
        })
        .AddCookie()
        .AddPlanningCenterAuthentication();  // Reads from appsettings.json automatically
-
-   // Configure HttpClient (consumers handle token extraction from HttpContext)
-   builder.Services.AddHttpClient("PlanningCenterApi", client =>
-   {
-       client.ConfigureForPlanningCenter();
-   });
    ```
 
    **appsettings.json:**
@@ -207,13 +203,10 @@ Three authentication methods are supported via extension methods:
 
 #### Key Classes
 
-- **[HttpClientAuthenticationExtensions.cs](Crews.PlanningCenter.Api/Authentication/HttpClientAuthenticationExtensions.cs)** - Extension methods for configuring HttpClient with Planning Center authentication
-- **[PlanningCenterAuthenticationExtensions.cs](Crews.PlanningCenter.Api/Authentication/PlanningCenterAuthenticationExtensions.cs)** - OIDC authentication setup for ASP.NET Core
-- **[PlanningCenterOAuthClient.cs](Crews.PlanningCenter.Api/Authentication/PlanningCenterOAuthClient.cs)** - OAuth client for token exchange
-- **[PlanningCenterOAuthClientFactory.cs](Crews.PlanningCenter.Api/Authentication/PlanningCenterOAuthClientFactory.cs)** - Factory for creating OAuth client instances
-- **[PlanningCenterPersonalAccessToken.cs](Crews.PlanningCenter.Api/Authentication/PlanningCenterPersonalAccessToken.cs)** - Record struct for Personal Access Token authentication
-
-#### Documentation
+- **[Authentication/PlanningCenterAuthenticationDefaults.cs](Crews.PlanningCenter.Api/Authentication/PlanningCenterAuthenticationDefaults.cs)** - Constants for Planning Center OIDC (base URL, endpoints, scheme name)
+- **[Authentication/PlanningCenterPersonalAccessToken.cs](Crews.PlanningCenter.Api/Authentication/PlanningCenterPersonalAccessToken.cs)** - Record struct for Personal Access Token; implicitly converts to `AuthenticationHeaderValue`
+- **[Extensions/AuthenticationBuilderExtensions.cs](Crews.PlanningCenter.Api/Extensions/AuthenticationBuilderExtensions.cs)** - `AddPlanningCenterAuthentication()` extension methods for ASP.NET Core OIDC setup
+- **[Extensions/ConfigurePlanningCenterOpenIdConnectOptions.cs](Crews.PlanningCenter.Api/Extensions/ConfigurePlanningCenterOpenIdConnectOptions.cs)** - Reads OIDC options from the `"PlanningCenter"` configuration section
 
 ### Tests
 
@@ -230,11 +223,14 @@ Unit tests for the incremental source generator. Tests the code generation logic
 Integration tests that run against the live Planning Center API. These tests verify end-to-end behavior including CRUD operations across all supported products.
 
 **Structure:**
-- `Infrastructure/` — Shared test fixtures and base classes
-  - `PlanningCenterFixture` — XUnit async fixture (`IAsyncLifetime`) that configures an authenticated `HttpClient`
-  - `PlanningCenterCollection` — XUnit collection definition for sharing the fixture across test classes
-  - `IntegrationTestBase` — Abstract base class providing `HttpClient` and `BaseUri` to tests
-- `Products/` — Test classes organized by Planning Center product, using `[Trait("Product", "...")]` for categorization
+- `Infrastructure/` — Shared test infrastructure
+  - `PlanningCenterFixture` — XUnit async fixture (`IAsyncLifetime`) that configures an authenticated `HttpClient` with `RateLimitHandler`
+  - `RateLimitHandler` — Delegating handler that throttles requests based on `X-PCO-API-Request-Rate-Limit` / `X-PCO-API-Request-Rate-Period` headers and retries on 429 responses
+  - `CollectionReadHelper` — Static helper for fetching first/last resource IDs from collection endpoints
+  - `Infrastructure/Collections/` — Per-product XUnit collection definitions (e.g., `CalendarCollection`, `CheckInsCollection`)
+  - `Infrastructure/ProductFixtures/` — Per-product fixture subclasses that pre-fetch shared test data (e.g., `CalendarFixture`, `CheckInsFixture`)
+  - `Infrastructure/TestBases/` — Per-product abstract base classes providing `HttpClient`, `Fixture`, and a root `OrganizationClient` to tests
+- `Products/` — Test classes organized by Planning Center product subdirectory, using `[Trait("Product", "...")]` for categorization
 
 **Credential Configuration:**
 Integration tests require a Planning Center Personal Access Token. Configure via any of:
@@ -259,15 +255,18 @@ Consumers configure their own HttpClient with authentication and resilience poli
 
 ```csharp
 using Crews.PlanningCenter.Api.Authentication;
+using System.Net.Http.Headers;
 
 builder.Services.AddHttpClient("PlanningCenterApi", client =>
 {
-    client.ConfigureForPlanningCenter()
-          .AddPlanningCenterAuth(new PlanningCenterPersonalAccessToken
-          {
-              AppId = builder.Configuration["PlanningCenter:AppId"]!,
-              Secret = builder.Configuration["PlanningCenter:Secret"]!
-          });
+    PlanningCenterPersonalAccessToken token = new()
+    {
+        AppId = builder.Configuration["PlanningCenter:AppId"]!,
+        Secret = builder.Configuration["PlanningCenter:Secret"]!
+    };
+    client.BaseAddress = new Uri(PlanningCenterAuthenticationDefaults.BaseUrl);
+    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+    client.DefaultRequestHeaders.Authorization = token;
 })
 .AddStandardResilienceHandler(); // Optional: add .NET 8+ built-in resilience
 ```
@@ -302,14 +301,20 @@ For console applications or simple scenarios:
 ```csharp
 using Crews.PlanningCenter.Api.Authentication;
 using Crews.PlanningCenter.Api.People.V2025_11_10;
+using System.Net.Http.Headers;
 
-var httpClient = new HttpClient()
-    .ConfigureForPlanningCenter()
-    .AddPlanningCenterAuth(new PlanningCenterPersonalAccessToken
-    {
-        AppId = "your-app-id",
-        Secret = "your-secret"
-    });
+PlanningCenterPersonalAccessToken token = new()
+{
+    AppId = "your-app-id",
+    Secret = "your-secret"
+};
+
+var httpClient = new HttpClient
+{
+    BaseAddress = new Uri(PlanningCenterAuthenticationDefaults.BaseUrl)
+};
+httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+httpClient.DefaultRequestHeaders.Authorization = token;
 
 var client = new PersonClient(httpClient,
     new Uri("/people/v2/people/123", UriKind.Relative));
@@ -347,4 +352,4 @@ When Planning Center releases new API versions:
 3. Update the `LatestVersion` property in the affected client classes to point to the new version
 4. Rebuild the solution to trigger incremental source generation
 
-API versions use underscored date format (e.g., `V2025_07_17`).
+API versions use underscored date format (e.g., `V2025_11_10`).

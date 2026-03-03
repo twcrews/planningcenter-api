@@ -22,7 +22,14 @@ public class PledgeCampaignTests(GivingFixture fixture) : GivingTestBase(fixture
 				{
 					Data = new PledgeCampaignResource
 					{
-						Attributes = new PledgeCampaign { Name = $"IntTest-Campaign-{UniqueId}" },
+						
+					Attributes = new PledgeCampaign 
+					{
+						Name = $"IntTest-Campaign-{UniqueId}",
+						Description = "Pledge campaign for integration testing",
+						StartsAt = DateTime.Now,
+						EndsAt = DateTime.Now.AddMonths(1)
+					},
 						Relationships = new PledgeCampaignRelationships
 						{
 							Fund = new JsonApiRelationship

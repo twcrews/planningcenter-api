@@ -93,6 +93,11 @@
       "Vertex": "location",
       "Attribute": "questions",
       "Type": "array"
+    },
+    {
+      "Vertex": "payment_method",
+      "Attribute": "expiration",
+      "Type": "string"
     }
   ]
 }

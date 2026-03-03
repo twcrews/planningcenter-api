@@ -1194,7 +1194,7 @@
         },
         {
           "Name": "expiration",
-          "Type": "date",
+          "Type": "string",
           "Description": "For cards only. String representation of the expiration date in the \u0060MM/YYYY\u0060 form (without leading zeros). Will be \u0060null\u0060 for bank accounts."
         },
         {

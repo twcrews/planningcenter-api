@@ -93,7 +93,7 @@ public class CheckInsFixture : PlanningCenterFixture
 		{
 			AttendanceTypeId = (await CollectionReadHelper.GetFirstIdAsync(HttpClient, $"check-ins/v2/events/{EventId}/attendance_types"))!;
 			EventLabelId = (await CollectionReadHelper.GetFirstIdAsync(HttpClient, $"check-ins/v2/events/{EventId}/event_labels"))!;
-			EventPeriodId = (await CollectionReadHelper.GetFirstIdAsync(HttpClient, $"check-ins/v2/events/{EventId}/event_periods"))!;
+			EventPeriodId = (await CollectionReadHelper.GetLastIdAsync(HttpClient, $"check-ins/v2/events/{EventId}/event_periods"))!;
 			LocationId = (await CollectionReadHelper.GetFirstIdAsync(HttpClient, $"check-ins/v2/events/{EventId}/locations"))!;
 			PersonEventId = (await CollectionReadHelper.GetFirstIdAsync(HttpClient, $"check-ins/v2/events/{EventId}/person_events"))!;
 

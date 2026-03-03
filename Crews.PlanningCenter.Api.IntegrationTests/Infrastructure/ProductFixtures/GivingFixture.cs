@@ -62,7 +62,13 @@ public class GivingFixture : PlanningCenterFixture
 			{
 				Data = new PledgeCampaignResource
 				{
-					Attributes = new PledgeCampaign { Name = $"Fixture-Campaign-{_fixtureId}" },
+					Attributes = new PledgeCampaign 
+					{
+						Name = $"Fixture-Campaign-{_fixtureId}",
+						Description = "Pledge campaign for integration testing",
+						StartsAt = DateTime.Now,
+						EndsAt = DateTime.Now.AddMonths(1)
+					},
 					Relationships = new PledgeCampaignRelationships
 					{
 						Fund = new JsonApiRelationship

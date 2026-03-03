@@ -28,6 +28,7 @@ public static class StringExtensions
 		"calendar_image" => "Crews.PlanningCenter.Api.Calendar.Image",
 		"check_ins_image" => "Crews.PlanningCenter.Api.CheckIns.Image",
 		"contact_data" => "Crews.PlanningCenter.Api.Calendar.ContactData",
+		"group_settings" => "Crews.PlanningCenter.Api.Groups.GroupSettings",
         _ => "JsonElement"
     };
 

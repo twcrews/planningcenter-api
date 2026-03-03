@@ -98,6 +98,17 @@
       "Vertex": "payment_method",
       "Attribute": "expiration",
       "Type": "string"
+    },
+    {
+      "Vertex": "group_type",
+      "Attribute": "default_group_settings",
+      "Type": "group_settings"
+    },
+    {
+      "Product": "groups",
+      "Vertex": "location",
+      "Attribute": "radius",
+      "Type": "integer"
     }
   ]
 }

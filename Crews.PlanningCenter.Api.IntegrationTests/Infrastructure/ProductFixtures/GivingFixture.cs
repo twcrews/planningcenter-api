@@ -44,9 +44,8 @@ public class GivingFixture : PlanningCenterFixture
 			new Fund { Name = $"Fixture-Fund-{_fixtureId}" });
 		FundId = fundResult.Data!.Id!;
 
-		var batchResult = await org.Batches.PostAsync(
-			new Batch { Description = $"Fixture-Batch-{_fixtureId}" });
-		BatchId = batchResult.Data!.Id!;
+		var batchId = await CollectionReadHelper.GetFirstIdAsync(HttpClient, "giving/v2/batches");
+		BatchId = batchId!;
 
 		var paymentSourceResult = await org.PaymentSources.PostAsync(
 			new PaymentSource { Name = $"Fixture-Source-{_fixtureId}" });
@@ -99,7 +98,6 @@ public class GivingFixture : PlanningCenterFixture
 
 		try { await pledgeCampaignsClient.WithId(PledgeCampaignId).DeleteAsync(); } catch { }
 		try { await org.PaymentSources.WithId(PaymentSourceId).DeleteAsync(); } catch { }
-		try { await org.Batches.WithId(BatchId).DeleteAsync(); } catch { }
 		try { await org.Funds.WithId(FundId).DeleteAsync(); } catch { }
 
 		await base.DisposeAsync();

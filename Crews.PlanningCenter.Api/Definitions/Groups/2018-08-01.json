@@ -991,7 +991,7 @@
         },
         {
           "Name": "default_group_settings",
-          "Type": "string",
+          "Type": "group_settings",
           "Description": "A JSON object of default settings for groups of this type.\n"
         },
         {
@@ -1123,7 +1123,7 @@
         },
         {
           "Name": "radius",
-          "Type": "string",
+          "Type": "integer",
           "Description": "The number of miles in a location\u0027s approximate address.\nWill be \u00600\u0060 if the strategy is exact, and will be \u0060null\u0060 if the strategy is hidden.\n"
         },
         {

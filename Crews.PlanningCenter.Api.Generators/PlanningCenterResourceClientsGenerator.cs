@@ -119,7 +119,16 @@ class PlanningCenterResourceClientsGenerator : IIncrementalGenerator
         writer.Indent--;
         writer.WriteLine("{");
         writer.Indent++;        
-       
+
+        writer.WriteLine("/// <summary>");
+        writer.WriteLine($"/// Fetches a paginated list of <see cref=\"{modelType}\"/> resources asynchronously.");
+        writer.WriteLine("/// </summary>");
+        writer.WriteLine("/// <param name=\"cancellationToken\">A token to monitor for cancellation requests.</param>");
+        writer.WriteLine($"/// <returns>A task representing the asynchronous operation, containing a paginated list of <see cref=\"{modelType}\"/> resources.</returns>");
+        writer.WriteLine("/// <exception cref=\"JsonApiException\">Thrown when the HTTP response indicates a failure status code.</exception>");
+        writer.WriteLine($"public new Task<{collectionResponseType}> GetAsync(CancellationToken cancellationToken = default) => base.GetAsync(cancellationToken);");
+        writer.WriteLine();
+
         if (resource.Postable)
         {
             writer.WriteLine("/// <summary>");

@@ -10,7 +10,6 @@ public class MessageTests(PeopleFixture fixture) : PeopleTestBase(fixture)
 	public async Task Message_GetAsync_ReturnsMessage()
 	{
 		var messageId = await CollectionReadHelper.GetFirstIdAsync(HttpClient, "people/v2/messages");
-		Skip.If(messageId is null, "No message data available.");
 
 		var result = await Org.Messages.WithId(messageId!).GetAsync();
 

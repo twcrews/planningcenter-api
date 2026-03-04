@@ -11,7 +11,6 @@ public class PlatformNotificationTests(PeopleFixture fixture) : PeopleTestBase(f
 	{
 		var notificationId = await CollectionReadHelper.GetFirstIdAsync(
 			HttpClient, $"people/v2/people/{Fixture.PersonId}/platform_notifications");
-		Skip.If(notificationId is null, "No platform notification data available.");
 
 		var result = await Org.People.WithId(Fixture.PersonId).PlatformNotifications
 			.WithId(notificationId!).GetAsync();

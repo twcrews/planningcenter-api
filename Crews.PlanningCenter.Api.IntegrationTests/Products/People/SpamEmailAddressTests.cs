@@ -11,7 +11,6 @@ public class SpamEmailAddressTests(PeopleFixture fixture) : PeopleTestBase(fixtu
 	{
 		var spamEmailId = await CollectionReadHelper.GetFirstIdAsync(
 			HttpClient, "people/v2/spam_email_addresses");
-		Skip.If(spamEmailId is null, "No spam email address data available.");
 
 		var result = await Org.SpamEmailAddresses.WithId(spamEmailId!).GetAsync();
 

@@ -11,7 +11,6 @@ public class ConnectedPersonTests(PeopleFixture fixture) : PeopleTestBase(fixtur
 	{
 		var connectedPersonId = await CollectionReadHelper.GetFirstIdAsync(
 			HttpClient, $"people/v2/people/{Fixture.PersonId}/connected_people");
-		Skip.If(connectedPersonId is null, "No connected person data available.");
 
 		var result = await Org.People.WithId(Fixture.PersonId).ConnectedPeople
 			.WithId(connectedPersonId!).GetAsync();

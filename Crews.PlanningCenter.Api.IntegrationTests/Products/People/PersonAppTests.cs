@@ -11,7 +11,6 @@ public class PersonAppTests(PeopleFixture fixture) : PeopleTestBase(fixture)
 	{
 		var personAppId = await CollectionReadHelper.GetFirstIdAsync(
 			HttpClient, $"people/v2/people/{Fixture.PersonId}/person_apps");
-		Skip.If(personAppId is null, "No person app data available.");
 
 		var result = await Org.People.WithId(Fixture.PersonId).PersonApps
 			.WithId(personAppId!).GetAsync();

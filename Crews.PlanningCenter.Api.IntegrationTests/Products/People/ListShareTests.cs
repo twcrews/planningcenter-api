@@ -11,8 +11,6 @@ public class ListShareTests(PeopleFixture fixture) : PeopleTestBase(fixture)
 	[Fact]
 	public async Task ListShare_FullCrudLifecycle()
 	{
-		Skip.If(Fixture.ListId is null, "No list data available for list share tests.");
-
 		string? shareId = null;
 
 		try

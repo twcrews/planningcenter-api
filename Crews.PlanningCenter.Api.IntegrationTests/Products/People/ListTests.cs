@@ -9,8 +9,6 @@ public class ListTests(PeopleFixture fixture) : PeopleTestBase(fixture)
 	[Fact]
 	public async Task List_GetAsync_ReturnsList()
 	{
-		Skip.If(Fixture.ListId is null, "No list data available.");
-
 		var result = await Org.Lists.WithId(Fixture.ListId!).GetAsync();
 
 		Assert.NotNull(result);
@@ -22,8 +20,6 @@ public class ListTests(PeopleFixture fixture) : PeopleTestBase(fixture)
 	[Fact]
 	public async Task List_PatchAsync_UpdatesList()
 	{
-		Skip.If(Fixture.ListId is null, "No list data available.");
-
 		var getResult = await Org.Lists.WithId(Fixture.ListId!).GetAsync();
 		var originalName = getResult.Data?.Attributes?.Name;
 

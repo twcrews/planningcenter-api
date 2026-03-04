@@ -11,7 +11,6 @@ public class GradeTests(PeopleFixture fixture) : PeopleTestBase(fixture)
 	public async Task Grade_GetAsync_ReturnsGrade()
 	{
 		var gradeId = await CollectionReadHelper.GetFirstIdAsync(HttpClient, "people/v2/grades");
-		Skip.If(gradeId is null, "No grade data available.");
 
 		var client = new GradeClient(
 			HttpClient,

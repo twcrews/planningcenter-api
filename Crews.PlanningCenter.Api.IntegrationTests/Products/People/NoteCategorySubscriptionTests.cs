@@ -11,7 +11,6 @@ public class NoteCategorySubscriptionTests(PeopleFixture fixture) : PeopleTestBa
 	{
 		var subscriptionId = await CollectionReadHelper.GetFirstIdAsync(
 			HttpClient, "people/v2/note_category_subscriptions");
-		Skip.If(subscriptionId is null, "No note category subscription data available.");
 
 		var result = await Org.NoteCategorySubscriptions.WithId(subscriptionId!).GetAsync();
 

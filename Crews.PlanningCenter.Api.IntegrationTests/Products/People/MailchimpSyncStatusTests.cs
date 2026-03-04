@@ -9,11 +9,8 @@ public class MailchimpSyncStatusTests(PeopleFixture fixture) : PeopleTestBase(fi
 	[Fact]
 	public async Task MailchimpSyncStatus_GetAsync_ReturnsMailchimpSyncStatus()
 	{
-		Skip.If(Fixture.ListId is null, "No list data available.");
-
 		var syncStatusId = await CollectionReadHelper.GetFirstIdAsync(
 			HttpClient, $"people/v2/lists/{Fixture.ListId}/mailchimp_sync_status");
-		Skip.If(syncStatusId is null, "No Mailchimp sync status data available.");
 
 		var result = await Org.Lists.WithId(Fixture.ListId!).MailchimpSyncStatus
 			.WithId(syncStatusId!).GetAsync();

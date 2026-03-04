@@ -10,13 +10,11 @@ public class FormFieldTests(PeopleFixture fixture) : PeopleTestBase(fixture)
 	public async Task FormField_GetAsync_ReturnsFormField()
 	{
 		var formId = await CollectionReadHelper.GetFirstIdAsync(HttpClient, "people/v2/forms");
-		Skip.If(formId is null, "No form data available for form field tests.");
 
 		var formFieldId = await CollectionReadHelper.GetFirstIdAsync(
 			HttpClient, $"people/v2/forms/{formId}/form_fields");
-		Skip.If(formFieldId is null, "No form field data available.");
 
-		var result = await Org.Forms.WithId(formId!).FormFields.WithId(formFieldId!).GetAsync();
+		var result = await Org.Forms.WithId(formId!).Fields.WithId(formFieldId!).GetAsync();
 
 		Assert.NotNull(result);
 		Assert.NotNull(result.Data);

@@ -109,6 +109,11 @@
       "Vertex": "location",
       "Attribute": "radius",
       "Type": "integer"
+    },
+    {
+      "Vertex": "field_definition",
+      "Attribute": "tab_id",
+      "Type": "integer"
     }
   ]
 }

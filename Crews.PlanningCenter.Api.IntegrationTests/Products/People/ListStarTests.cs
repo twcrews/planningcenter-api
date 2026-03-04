@@ -9,8 +9,6 @@ public class ListStarTests(PeopleFixture fixture) : PeopleTestBase(fixture)
 	[Fact]
 	public async Task ListStar_GetPostDelete()
 	{
-		Skip.If(Fixture.ListId is null, "No list data available for list star tests.");
-
 		bool starred = false;
 
 		try

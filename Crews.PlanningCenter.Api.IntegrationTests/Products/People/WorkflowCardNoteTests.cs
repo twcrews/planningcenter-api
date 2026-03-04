@@ -12,7 +12,6 @@ public class WorkflowCardNoteTests(PeopleFixture fixture) : PeopleTestBase(fixtu
 	{
 		var cardId = await CollectionReadHelper.GetFirstIdAsync(
 			HttpClient, $"people/v2/workflows/{Fixture.WorkflowId}/cards");
-		Skip.If(cardId is null, "No workflow card data available.");
 
 		// -- Create note --
 		var cardNotes = Org.Workflows.WithId(Fixture.WorkflowId).Cards

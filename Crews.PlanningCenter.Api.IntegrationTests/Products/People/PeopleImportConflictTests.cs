@@ -11,11 +11,9 @@ public class PeopleImportConflictTests(PeopleFixture fixture) : PeopleTestBase(f
 	{
 		var importId = await CollectionReadHelper.GetFirstIdAsync(
 			HttpClient, "people/v2/people_imports");
-		Skip.If(importId is null, "No people import data available.");
 
 		var conflictId = await CollectionReadHelper.GetFirstIdAsync(
 			HttpClient, $"people/v2/people_imports/{importId}/conflicts");
-		Skip.If(conflictId is null, "No people import conflict data available.");
 
 		var result = await Org.PeopleImports.WithId(importId!).Conflicts
 			.WithId(conflictId!).GetAsync();

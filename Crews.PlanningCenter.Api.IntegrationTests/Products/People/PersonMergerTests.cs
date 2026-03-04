@@ -11,7 +11,6 @@ public class PersonMergerTests(PeopleFixture fixture) : PeopleTestBase(fixture)
 	{
 		var personMergerId = await CollectionReadHelper.GetFirstIdAsync(
 			HttpClient, "people/v2/person_mergers");
-		Skip.If(personMergerId is null, "No person merger data available.");
 
 		var result = await Org.PersonMergers.WithId(personMergerId!).GetAsync();
 

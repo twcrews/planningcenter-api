@@ -11,11 +11,9 @@ public class WorkflowCardActivityTests(PeopleFixture fixture) : PeopleTestBase(f
 	{
 		var cardId = await CollectionReadHelper.GetFirstIdAsync(
 			HttpClient, $"people/v2/workflows/{Fixture.WorkflowId}/cards");
-		Skip.If(cardId is null, "No workflow card data available.");
 
 		var activityId = await CollectionReadHelper.GetFirstIdAsync(
 			HttpClient, $"people/v2/workflows/{Fixture.WorkflowId}/cards/{cardId}/activities");
-		Skip.If(activityId is null, "No workflow card activity data available.");
 
 		var result = await Org.Workflows.WithId(Fixture.WorkflowId).Cards
 			.WithId(cardId!).Activities.WithId(activityId!).GetAsync();

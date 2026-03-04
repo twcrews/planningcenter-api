@@ -11,12 +11,10 @@ public class WorkflowStepAssigneeSummaryTests(PeopleFixture fixture) : PeopleTes
 	{
 		var stepId = await CollectionReadHelper.GetFirstIdAsync(
 			HttpClient, $"people/v2/workflows/{Fixture.WorkflowId}/steps");
-		Skip.If(stepId is null, "No workflow step data available.");
 
 		var assigneeSummaryId = await CollectionReadHelper.GetFirstIdAsync(
 			HttpClient,
 			$"people/v2/workflows/{Fixture.WorkflowId}/steps/{stepId}/assignee_summaries");
-		Skip.If(assigneeSummaryId is null, "No workflow step assignee summary data available.");
 
 		var result = await Org.Workflows.WithId(Fixture.WorkflowId).Steps
 			.WithId(stepId!).AssigneeSummaries.WithId(assigneeSummaryId!).GetAsync();

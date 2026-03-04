@@ -11,11 +11,9 @@ public class PeopleImportHistoryTests(PeopleFixture fixture) : PeopleTestBase(fi
 	{
 		var importId = await CollectionReadHelper.GetFirstIdAsync(
 			HttpClient, "people/v2/people_imports");
-		Skip.If(importId is null, "No people import data available.");
 
 		var historyId = await CollectionReadHelper.GetFirstIdAsync(
 			HttpClient, $"people/v2/people_imports/{importId}/histories");
-		Skip.If(historyId is null, "No people import history data available.");
 
 		var result = await Org.PeopleImports.WithId(importId!).Histories
 			.WithId(historyId!).GetAsync();

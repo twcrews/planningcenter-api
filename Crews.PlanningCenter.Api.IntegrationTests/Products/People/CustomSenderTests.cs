@@ -12,7 +12,6 @@ public class CustomSenderTests(PeopleFixture fixture) : PeopleTestBase(fixture)
 	{
 		var customSenderId = await CollectionReadHelper.GetFirstIdAsync(
 			HttpClient, "people/v2/custom_senders");
-		Skip.If(customSenderId is null, "No custom sender data available.");
 
 		var client = new CustomSenderClient(
 			HttpClient,

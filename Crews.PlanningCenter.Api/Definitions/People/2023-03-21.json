@@ -1354,7 +1354,7 @@
         },
         {
           "Name": "tab_id",
-          "Type": "primary_key",
+          "Type": "integer",
           "Description": null
         }
       ],

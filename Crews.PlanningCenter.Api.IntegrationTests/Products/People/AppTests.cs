@@ -10,7 +10,6 @@ public class AppTests(PeopleFixture fixture) : PeopleTestBase(fixture)
 	public async Task App_GetAsync_ReturnsApp()
 	{
 		var appId = await CollectionReadHelper.GetFirstIdAsync(HttpClient, "people/v2/apps");
-		Skip.If(appId is null, "No app data available.");
 
 		var result = await Org.Apps.WithId(appId!).GetAsync();
 

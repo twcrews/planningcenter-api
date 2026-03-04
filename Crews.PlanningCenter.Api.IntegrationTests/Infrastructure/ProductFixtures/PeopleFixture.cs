@@ -1,5 +1,6 @@
 using System.Text.Json;
 using Crews.PlanningCenter.Api.People.V2025_11_10;
+using Crews.PlanningCenter.Api.IntegrationTests.Infrastructure;
 using Crews.Web.JsonApiClient;
 
 namespace Crews.PlanningCenter.Api.IntegrationTests.Infrastructure.ProductFixtures;
@@ -29,6 +30,12 @@ public class PeopleFixture : PlanningCenterFixture
 
 	/// <summary>ID of a pre-created Campus for ServiceTime tests.</summary>
 	public string CampusId { get; private set; } = null!;
+
+	/// <summary>ID of a pre-created FieldDefinition for FieldOption and FieldDatum tests.</summary>
+	public string FieldDefinitionId { get; private set; } = null!;
+
+	/// <summary>ID of the first available List for List-scoped tests. May be null if no lists exist.</summary>
+	public string? ListId { get; private set; }
 
 	public override async Task InitializeAsync()
 	{
@@ -85,24 +92,35 @@ public class PeopleFixture : PlanningCenterFixture
 			new Tab { Name = $"Fixture-Tab-{_fixtureId}" });
 		TabId = tabResult.Data!.Id!;
 
-		var campusResult = await org.Campuses.PostAsync(new Campus 
-        { 
-            Name = $"Fixture-Campus-{_fixtureId}", 
-            Street = "123 Easy Street", 
-            City = "Oklahoma City", 
-            State = "OK", 
-            Zip = "73013", 
-            Country = "United States", 
-            Latitude = (decimal)35.61839, 
-            Longitude = (decimal)-97.56967 
+		var campusResult = await org.Campuses.PostAsync(new Campus
+        {
+            Name = $"Fixture-Campus-{_fixtureId}",
+            Street = "123 Easy Street",
+            City = "Oklahoma City",
+            State = "OK",
+            Zip = "73013",
+            Country = "United States",
+            Latitude = (decimal)35.61839,
+            Longitude = (decimal)-97.56967
         });
 		CampusId = campusResult.Data!.Id!;
+
+		var fieldDefResult = await org.Tabs.WithId(TabId).FieldDefinitions.PostAsync(
+			new FieldDefinition
+			{
+				Name = $"Fixture-FieldDef-{_fixtureId}",
+				DataType = "text"
+			});
+		FieldDefinitionId = fieldDefResult.Data!.Id!;
+
+		ListId = await CollectionReadHelper.GetFirstIdAsync(HttpClient, "people/v2/lists");
 	}
 
 	public override async Task DisposeAsync()
 	{
 		var org = new PeopleClient(HttpClient).Latest;
 
+		try { await org.Tabs.WithId(TabId).FieldDefinitions.WithId(FieldDefinitionId).DeleteAsync(); } catch { }
 		try { await org.Campuses.WithId(CampusId).DeleteAsync(); } catch { }
 		try { await org.Tabs.WithId(TabId).DeleteAsync(); } catch { }
 		try { await org.NoteCategories.WithId(NoteCategoryId).DeleteAsync(); } catch { }

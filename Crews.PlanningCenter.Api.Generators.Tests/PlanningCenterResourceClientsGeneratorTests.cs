@@ -289,7 +289,7 @@ public partial class PlanningCenterResourceClientsGeneratorTests
         var source = GeneratorTestHelper.GetGeneratedSource(result, "People.2025-01-01.Clients.g.cs");
 
         GeneratorTestHelper.AssertContains(source,
-            "public PersonClient IncludeEmails() => (PersonClient)SetQueryParameter(\"include\", \"emails\");");
+            "public PersonClient IncludeEmails() => (PersonClient)AddQueryParameter(\"include\", \"emails\");");
     }
 
     [Fact]
@@ -312,8 +312,8 @@ public partial class PlanningCenterResourceClientsGeneratorTests
         var source = GeneratorTestHelper.GetGeneratedSource(result, "People.2025-01-01.Clients.g.cs");
 
         GeneratorTestHelper.AssertContains(source,
-            "public PersonClient OrderByFirstName() => (PersonClient)SetQueryParameter(\"order\", \"first_name\");",
-            "public PersonClient OrderByLastName() => (PersonClient)SetQueryParameter(\"order\", \"last_name\");");
+            "public PersonClient OrderByFirstName() => (PersonClient)ReplaceQueryParameter(\"order\", \"first_name\");",
+            "public PersonClient OrderByLastName() => (PersonClient)ReplaceQueryParameter(\"order\", \"last_name\");");
     }
 
     [Fact]
@@ -336,30 +336,7 @@ public partial class PlanningCenterResourceClientsGeneratorTests
         var source = GeneratorTestHelper.GetGeneratedSource(result, "People.2025-01-01.Clients.g.cs");
 
         GeneratorTestHelper.AssertContains(source,
-            "public PersonClient WhereFirstName(string value) => (PersonClient)SetQueryParameter(\"where[first_name]\", value);");
-    }
-
-    [Fact]
-    public void ShouldIncludeExampleInQueryByMethodDocumentation()
-    {
-        // Arrange
-        var version = SampleVersionData.GetSampleVersion();
-        var json = System.Text.Json.JsonSerializer.Serialize(version);
-        var (compilation, additionalFiles) = GeneratorTestHelper.CreateCompilation(
-            "namespace Test { }",
-            ("People/2025-01-01.json", json));
-
-        // Act
-        var result = GeneratorTestHelper.RunGenerator(
-            "PlanningCenterResourceClientsGenerator",
-            compilation,
-            additionalFiles);
-
-        // Assert
-        var source = GeneratorTestHelper.GetGeneratedSource(result, "People.2025-01-01.Clients.g.cs");
-
-        GeneratorTestHelper.AssertContains(source,
-            "Example: WhereFirstName(\"John\")");
+            "public PersonClient WhereFirstName(string value) => (PersonClient)ReplaceQueryParameter(\"where[first_name]\", value);");
     }
 
     [Fact]
@@ -411,7 +388,7 @@ public partial class PlanningCenterResourceClientsGeneratorTests
         int nextClientStart = source.IndexOf("public class ", withIdInReportClient + 1);
         if (nextClientStart == -1) nextClientStart = source.Length;
 
-        string reportClientSection = source.Substring(withIdInReportClient, nextClientStart - withIdInReportClient);
+        string reportClientSection = source[withIdInReportClient..nextClientStart];
         Assert.DoesNotContain("WithId", reportClientSection);
     }
 
@@ -435,7 +412,7 @@ public partial class PlanningCenterResourceClientsGeneratorTests
         var source = GeneratorTestHelper.GetGeneratedSource(result, "People.2025-01-01.Clients.g.cs");
 
         GeneratorTestHelper.AssertContains(source,
-            "/// DEPRECATED: Client for interacting with the report resource.");
+            "[Obsolete(\"This resource is deprecated and may be removed in a future version.\")]");
     }
 
     [Fact]
@@ -459,7 +436,7 @@ public partial class PlanningCenterResourceClientsGeneratorTests
 
         GeneratorTestHelper.AssertContains(source,
             "/// <summary>",
-            "/// Client for interacting with the person resource.",
+            "/// Client for interacting with the Person resource.",
             "/// Fetches the <see cref=\"Person\"/> resource asynchronously.",
             "/// </summary>");
     }
@@ -476,12 +453,12 @@ public partial class PlanningCenterResourceClientsGeneratorTests
             [
                 new Crews.PlanningCenter.Api.Models.Resource
                 {
-                    Id = "person",
-                    Name = "person",
-                    ResourceName = "Person",
-                    GenerateResource = true,
-                    GenerateClients = true,
-                    Attributes = [new Crews.PlanningCenter.Api.Models.ResourceAttribute { Name = "name", Type = "string" }],
+                    JsonName = "person",
+                    AttributesClrType = "person",
+                    ResourceClrType = "Person",
+                    ShouldGenerateResource = true,
+                    ShouldGenerateClients = true,
+                    Attributes = [new Crews.PlanningCenter.Api.Models.ResourceAttribute { JsonName = "name", ClrType = "string" }],
                     Relationships = [],
                     Children = [],
                     CanInclude = [],
@@ -490,12 +467,12 @@ public partial class PlanningCenterResourceClientsGeneratorTests
                 },
                 new Crews.PlanningCenter.Api.Models.Resource
                 {
-                    Id = "email",
-                    Name = "email",
-                    ResourceName = "Email",
-                    GenerateResource = true,
-                    GenerateClients = false,
-                    Attributes = [new Crews.PlanningCenter.Api.Models.ResourceAttribute { Name = "address", Type = "string" }],
+                    JsonName = "email",
+                    AttributesClrType = "email",
+                    ResourceClrType = "Email",
+                    ShouldGenerateResource = true,
+                    ShouldGenerateClients = false,
+                    Attributes = [new Crews.PlanningCenter.Api.Models.ResourceAttribute { JsonName = "address", ClrType = "string" }],
                     Relationships = [],
                     Children = [],
                     CanInclude = [],

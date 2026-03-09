@@ -1,5 +1,3 @@
-using Crews.PlanningCenter.Api.IntegrationTests.Infrastructure;
-
 namespace Crews.PlanningCenter.Api.IntegrationTests.Infrastructure.ProductFixtures;
 
 /// <summary>

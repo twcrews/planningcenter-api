@@ -56,7 +56,7 @@ class PlanningCenterResourcesGenerator : IIncrementalGenerator
         writer.WriteLine($"namespace Crews.PlanningCenter.Api.{productName}.{versionString};");
         writer.WriteLine();
 
-        foreach (Resource resource in version.Resources.Where(r => r.GenerateResource))
+        foreach (Resource resource in version.Resources.Where(r => r.ShouldGenerateResource))
         {
             GenerateResourceModel(writer, resource);
             GenerateResourceAttributesModel(writer, resource);
@@ -66,49 +66,40 @@ class PlanningCenterResourcesGenerator : IIncrementalGenerator
 
     private static void GenerateResourceModel(IndentedTextWriter writer, Resource resource)
     {
-        string summary = resource.Description is null 
-            ? "Planning Center does not provide a description for this resource." 
-            : resource.Description.ToXmlSummary();
-
-        string modelType = resource.Name.ToPascalCase();
-        string resourceType = resource.ResourceName.ToPascalCase();
-        string relationshipsType = modelType + "Relationships";
+        string relationshipsType = resource.AttributesClrType + "Relationships";
 
         writer.WriteLine("/// <summary>");
-        writer.WriteLine($"/// {summary}");
+        writer.WriteLine($"/// {resource.Description.ToXmlSummary()}");
         writer.WriteLine("/// </summary>");
         if (resource.Relationships.Any())
         {
-            writer.WriteLine($"public record {resourceType} : JsonApiResource<{modelType}, {relationshipsType}> {{ }}");
+            writer.WriteLine($"public partial record {resource.ResourceClrType} : JsonApiResource<{resource.AttributesClrType}, {relationshipsType}> {{ }}");
         }
         else
         {
-            writer.WriteLine($"public record {resourceType} : JsonApiResource<{modelType}> {{ }}");
+            writer.WriteLine($"public partial record {resource.ResourceClrType} : JsonApiResource<{resource.AttributesClrType}> {{ }}");
         }
         writer.WriteLine();
     }
 
     private static void GenerateResourceAttributesModel(IndentedTextWriter writer, Resource resource)
     {
-        string summary = $"Attributes for the {resource.Name} resource.";
-
-        string typeName = resource.Name.ToPascalCase();;
+        string summary = $"Attributes for the {resource.AttributesClrType} resource.";
         summary = summary.ToXmlSummary();
 
         writer.WriteLine("/// <summary>");
         writer.WriteLine($"/// {summary}");
         writer.WriteLine("/// </summary>");
-        writer.WriteLine($"public record {typeName}");
+        writer.WriteLine($"public partial record {resource.AttributesClrType}");
         writer.WriteLine("{");
         writer.Indent++;
         foreach (ResourceAttribute attribute in resource.Attributes)
         {
-            if (attribute.Name.ToPascalCase() == typeName)
+            if (attribute.ClrName == resource.AttributesClrType)
             {
-                attribute.Name += "_attribute";
-                attribute.Description = (attribute.Description 
-                    ?? "Planning Center does not provide a description for this attribute.") 
-                    + "\nNOTE: The name of this property has been modified because the type shares its original name.";
+                attribute.ClrName += "Attribute";
+                attribute.Description +=
+                    "\nNOTE: The name of this property has been modified because the type shares its original name.";
             }
             GenerateAttributeProperty(writer, attribute);
         }
@@ -119,15 +110,18 @@ class PlanningCenterResourcesGenerator : IIncrementalGenerator
 
     private static void GenerateAttributeProperty(IndentedTextWriter writer, ResourceAttribute attribute)
     {
-        string summary = attribute.Description is null 
-            ? "Planning Center does not provide a description for this attribute." 
-            : attribute.Description.ToXmlSummary();
         writer.WriteLine("/// <summary>");
-        writer.WriteLine($"/// {summary}");
+        writer.WriteLine($"/// {attribute.Description.ToXmlSummary()}");
         writer.WriteLine("/// </summary>");
+
+        if (attribute.JsonConverter is not null)
+        {
+            writer.WriteLine($"[JsonConverter(typeof({attribute.JsonConverter}))]");
+        }
+
         writer.WriteLine("[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]");
-        writer.WriteLine($"[JsonPropertyName(\"{attribute.Name}\")]");
-        writer.WriteLine($"public {attribute.Type.ToClrType()}? {attribute.Name.ToPascalCase()} {{ get; init; }}");
+        writer.WriteLine($"[JsonPropertyName(\"{attribute.JsonName}\")]");
+        writer.WriteLine($"public {attribute.ClrType}? {attribute.ClrName} {{ get; init; }}");
         writer.WriteLine();
     }
 
@@ -135,11 +129,11 @@ class PlanningCenterResourcesGenerator : IIncrementalGenerator
     {
         if (!resource.Relationships.Any()) return;
 
-        string summary = $"Relationships for the {resource.Name} resource.".ToXmlSummary();
+        string summary = $"Relationships for the {resource.AttributesClrType} resource.".ToXmlSummary();
         writer.WriteLine("/// <summary>");
         writer.WriteLine($"/// {summary}");
         writer.WriteLine("/// </summary>");
-        writer.WriteLine($"public record {resource.Name.ToPascalCase()}Relationships");
+        writer.WriteLine($"public partial record {resource.AttributesClrType}Relationships");
         writer.WriteLine("{");
         writer.Indent++;
         foreach (ResourceRelationship relationship in resource.Relationships)
@@ -150,17 +144,22 @@ class PlanningCenterResourcesGenerator : IIncrementalGenerator
         writer.WriteLine("}");
         writer.WriteLine();
     }
+
     private static void GenerateRelationshipProperty(IndentedTextWriter writer, Resource resource, ResourceRelationship relationship)
     {
-        string summary = relationship.Note is null
-            ? $"Related {relationship.Name.ToPascalCase()}."
-            : relationship.Note.ToXmlSummary();
         writer.WriteLine("/// <summary>");
-        writer.WriteLine($"/// {summary}");
+        writer.WriteLine($"/// {relationship.Description.ToXmlSummary()}");
         writer.WriteLine("/// </summary>");
         writer.WriteLine("[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]");
-        writer.WriteLine($"[JsonPropertyName(\"{relationship.Name}\")]");
-        writer.WriteLine($"public JsonApiRelationship? {relationship.Name.ToPascalCase()} {{ get; init; }}");
+        writer.WriteLine($"[JsonPropertyName(\"{relationship.JsonName}\")]");
+
+        if (relationship.IsCollection)
+        {
+            writer.WriteLine($"public JsonApiCollectionRelationship<{relationship.ClrResourceType}>? {relationship.ClrName} {{ get; init; }}");
+            writer.WriteLine();
+            return;
+        }
+        writer.WriteLine($"public JsonApiRelationship<{relationship.ClrResourceType}>? {relationship.ClrName} {{ get; init; }}");
         writer.WriteLine();
     }
 }

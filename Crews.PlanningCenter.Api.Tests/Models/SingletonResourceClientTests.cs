@@ -45,7 +45,7 @@ public class SingletonResourceClientTests
 	}
 
 	[Fact]
-	public void SetQueryParameter_AddsNewParameter()
+	public void AddQueryParameter_AddsNewParameter()
 	{
 		// Arrange
 		var httpClient = new HttpClient();
@@ -53,30 +53,31 @@ public class SingletonResourceClientTests
 		var client = new TestResourceClient(httpClient, uri);
 
 		// Act
-		client.SetQueryParameterPublic("filter", "active");
+		client.AddQueryParameterPublic("filter", "active");
 
 		// Assert
 		Assert.Contains("filter=active", client.Uri.ToString());
 	}
 
 	[Fact]
-	public void SetQueryParameter_UpdatesExistingParameter()
+	public void AddQueryParameter_AppendsToExistingParameter()
 	{
 		// Arrange
 		var httpClient = new HttpClient();
-		var uri = new Uri("https://example.com/test?filter=inactive");
+		var uri = new Uri("https://example.com/test?include=emails");
 		var client = new TestResourceClient(httpClient, uri);
 
 		// Act
-		client.SetQueryParameterPublic("filter", "active");
+		client.AddQueryParameterPublic("include", "phone_numbers");
 
 		// Assert
-		Assert.Contains("filter=active", client.Uri.ToString());
-		Assert.DoesNotContain("inactive", client.Uri.ToString());
+		var uriString = client.Uri.ToString();
+		Assert.Contains("emails", uriString);
+		Assert.Contains("phone_numbers", uriString);
 	}
 
 	[Fact]
-	public void SetQueryParameter_WithMultipleParameters_MaintainsAll()
+	public void AddQueryParameter_WithMultipleParameters_MaintainsAll()
 	{
 		// Arrange
 		var httpClient = new HttpClient();
@@ -84,9 +85,9 @@ public class SingletonResourceClientTests
 		var client = new TestResourceClient(httpClient, uri);
 
 		// Act
-		client.SetQueryParameterPublic("filter", "active");
-		client.SetQueryParameterPublic("sort", "name");
-		client.SetQueryParameterPublic("limit", "10");
+		client.AddQueryParameterPublic("filter", "active");
+		client.AddQueryParameterPublic("sort", "name");
+		client.AddQueryParameterPublic("limit", "10");
 
 		// Assert
 		var uriString = client.Uri.ToString();
@@ -96,7 +97,7 @@ public class SingletonResourceClientTests
 	}
 
 	[Fact]
-	public void SetQueryParameter_ReturnsClientInstance_ForChaining()
+	public void AddQueryParameter_ReturnsClientInstance_ForChaining()
 	{
 		// Arrange
 		var httpClient = new HttpClient();
@@ -104,10 +105,41 @@ public class SingletonResourceClientTests
 		var client = new TestResourceClient(httpClient, uri);
 
 		// Act
-		var result = client.SetQueryParameterPublic("filter", "active");
+		var result = client.AddQueryParameterPublic("filter", "active");
 
 		// Assert
 		Assert.Same(client, result);
+	}
+
+	[Fact]
+	public void ReplaceQueryParameter_AddsNewParameter()
+	{
+		// Arrange
+		var httpClient = new HttpClient();
+		var uri = new Uri("https://example.com/test");
+		var client = new TestResourceClient(httpClient, uri);
+
+		// Act
+		client.ReplaceQueryParameterPublic("filter", "active");
+
+		// Assert
+		Assert.Contains("filter=active", client.Uri.ToString());
+	}
+
+	[Fact]
+	public void ReplaceQueryParameter_ReplacesExistingParameter()
+	{
+		// Arrange
+		var httpClient = new HttpClient();
+		var uri = new Uri("https://example.com/test?filter=inactive");
+		var client = new TestResourceClient(httpClient, uri);
+
+		// Act
+		client.ReplaceQueryParameterPublic("filter", "active");
+
+		// Assert
+		Assert.Contains("filter=active", client.Uri.ToString());
+		Assert.DoesNotContain("inactive", client.Uri.ToString());
 	}
 
 	[Fact]

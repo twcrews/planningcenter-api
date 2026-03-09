@@ -9,7 +9,7 @@ namespace Crews.PlanningCenter.Api.Tests.Models;
 public class PaginatedResourceClientTests
 {
 	[Fact]
-	public void Take_SetsPerPageParameter()
+	public void PerPage_SetsPerPageParameter()
 	{
 		// Arrange
 		var httpClient = new HttpClient();
@@ -17,14 +17,14 @@ public class PaginatedResourceClientTests
 		var client = new TestPaginatedResourceClient(httpClient, uri);
 
 		// Act
-		client.Take(25);
+		client.PerPage(25);
 
 		// Assert
 		Assert.Contains("per_page=25", client.Uri.ToString());
 	}
 
 	[Fact]
-	public void Take_UpdatesUri()
+	public void PerPage_UpdatesUri()
 	{
 		// Arrange
 		var httpClient = new HttpClient();
@@ -32,7 +32,7 @@ public class PaginatedResourceClientTests
 		var client = new TestPaginatedResourceClient(httpClient, uri);
 
 		// Act
-		client.Take(50);
+		client.PerPage(50);
 
 		// Assert
 		Assert.Contains("per_page=50", client.Uri.ToString());
@@ -40,7 +40,7 @@ public class PaginatedResourceClientTests
 	}
 
 	[Fact]
-	public void Take_ReturnsClientInstance_ForChaining()
+	public void PerPage_ReturnsClientInstance_ForChaining()
 	{
 		// Arrange
 		var httpClient = new HttpClient();
@@ -48,14 +48,14 @@ public class PaginatedResourceClientTests
 		var client = new TestPaginatedResourceClient(httpClient, uri);
 
 		// Act
-		var result = client.Take(25);
+		var result = client.PerPage(25);
 
 		// Assert
 		Assert.Same(client, result);
 	}
 
 	[Fact]
-	public void Take_WithZero_SetsZero()
+	public void PerPage_WithZero_SetsZero()
 	{
 		// Arrange
 		var httpClient = new HttpClient();
@@ -63,14 +63,14 @@ public class PaginatedResourceClientTests
 		var client = new TestPaginatedResourceClient(httpClient, uri);
 
 		// Act
-		client.Take(0);
+		client.PerPage(0);
 
 		// Assert
 		Assert.Contains("per_page=0", client.Uri.ToString());
 	}
 
 	[Fact]
-	public void Skip_SetsOffsetParameter()
+	public void Offset_SetsOffsetParameter()
 	{
 		// Arrange
 		var httpClient = new HttpClient();
@@ -78,14 +78,14 @@ public class PaginatedResourceClientTests
 		var client = new TestPaginatedResourceClient(httpClient, uri);
 
 		// Act
-		client.Skip(100);
+		client.Offset(100);
 
 		// Assert
 		Assert.Contains("offset=100", client.Uri.ToString());
 	}
 
 	[Fact]
-	public void Skip_UpdatesUri()
+	public void Offset_UpdatesUri()
 	{
 		// Arrange
 		var httpClient = new HttpClient();
@@ -93,7 +93,7 @@ public class PaginatedResourceClientTests
 		var client = new TestPaginatedResourceClient(httpClient, uri);
 
 		// Act
-		client.Skip(200);
+		client.Offset(200);
 
 		// Assert
 		Assert.Contains("offset=200", client.Uri.ToString());
@@ -101,7 +101,7 @@ public class PaginatedResourceClientTests
 	}
 
 	[Fact]
-	public void Skip_ReturnsClientInstance_ForChaining()
+	public void Offset_ReturnsClientInstance_ForChaining()
 	{
 		// Arrange
 		var httpClient = new HttpClient();
@@ -109,14 +109,14 @@ public class PaginatedResourceClientTests
 		var client = new TestPaginatedResourceClient(httpClient, uri);
 
 		// Act
-		var result = client.Skip(100);
+		var result = client.Offset(100);
 
 		// Assert
 		Assert.Same(client, result);
 	}
 
 	[Fact]
-	public void Skip_WithZero_SetsZero()
+	public void Offset_WithZero_SetsZero()
 	{
 		// Arrange
 		var httpClient = new HttpClient();
@@ -124,14 +124,14 @@ public class PaginatedResourceClientTests
 		var client = new TestPaginatedResourceClient(httpClient, uri);
 
 		// Act
-		client.Skip(0);
+		client.Offset(0);
 
 		// Assert
 		Assert.Contains("offset=0", client.Uri.ToString());
 	}
 
 	[Fact]
-	public void TakeAndSkip_CanBeChained()
+	public void TakeAndOffset_CanBeChained()
 	{
 		// Arrange
 		var httpClient = new HttpClient();
@@ -139,7 +139,7 @@ public class PaginatedResourceClientTests
 		var client = new TestPaginatedResourceClient(httpClient, uri);
 
 		// Act
-		var result = client.Take(25).Skip(50);
+		var result = client.PerPage(25).Offset(50);
 
 		// Assert
 		Assert.Same(client, result);
@@ -157,13 +157,61 @@ public class PaginatedResourceClientTests
 		var client = new TestPaginatedResourceClient(httpClient, uri);
 
 		// Act
-		client.Take(10).Skip(20).AddCustomParameter("filter", "active");
+		client.PerPage(10).Offset(20).AddCustomParameter("filter", "active");
 
 		// Assert
 		var uriString = client.Uri.ToString();
 		Assert.Contains("per_page=10", uriString);
 		Assert.Contains("offset=20", uriString);
 		Assert.Contains("filter=active", uriString);
+	}
+
+	[Fact]
+	public void Filter_SetsFilterParameter()
+	{
+		// Arrange
+		var httpClient = new HttpClient();
+		var uri = new Uri("https://example.com/test");
+		var client = new TestPaginatedResourceClient(httpClient, uri);
+
+		// Act
+		client.Filter("active");
+
+		// Assert
+		Assert.Contains("filter=active", client.Uri.ToString());
+	}
+
+	[Fact]
+	public void Filter_ReturnsClientInstance_ForChaining()
+	{
+		// Arrange
+		var httpClient = new HttpClient();
+		var uri = new Uri("https://example.com/test");
+		var client = new TestPaginatedResourceClient(httpClient, uri);
+
+		// Act
+		var result = client.Filter("active");
+
+		// Assert
+		Assert.Same(client, result);
+	}
+
+	[Fact]
+	public void Filter_CanBeChainedWithOtherMethods()
+	{
+		// Arrange
+		var httpClient = new HttpClient();
+		var uri = new Uri("https://example.com/test");
+		var client = new TestPaginatedResourceClient(httpClient, uri);
+
+		// Act
+		client.Filter("active").PerPage(10).Offset(20);
+
+		// Assert
+		var uriString = client.Uri.ToString();
+		Assert.Contains("filter=active", uriString);
+		Assert.Contains("per_page=10", uriString);
+		Assert.Contains("offset=20", uriString);
 	}
 
 	[Fact]

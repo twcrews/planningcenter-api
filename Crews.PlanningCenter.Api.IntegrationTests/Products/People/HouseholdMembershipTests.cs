@@ -33,14 +33,7 @@ public class HouseholdMembershipTests(PeopleFixture fixture) : PeopleTestBase(fi
 					Data = new()
 					{
 						Attributes = new HouseholdMembership { HouseholdRole = "adult" },
-						Relationships = new()
-						{
-							Person = new()
-							{
-								Data = JsonSerializer.SerializeToElement<JsonApiResourceIdentifier>(
-									new() { Type = "Person", Id = tempPersonId })
-							}
-						}
+						Relationships = new() { Person = new() { Data = new() { Type = "Person", Id = tempPersonId } } }
 					}
 				});
 			Assert.NotNull(createResult.Data);

@@ -68,12 +68,11 @@ public class GivingFixture : PlanningCenterFixture
 						StartsAt = DateTime.Now,
 						EndsAt = DateTime.Now.AddMonths(1)
 					},
-					Relationships = new PledgeCampaignRelationships
+					Relationships = new() 
 					{
-						Fund = new JsonApiRelationship
+						Fund = new()
 						{
-							Data = JsonSerializer.SerializeToElement(
-								new JsonApiResourceIdentifier { Id = FundId, Type = "funds" })
+							Data = new() { Id = FundId, Type = "funds" }
 						}
 					}
 				}

@@ -1,4 +1,3 @@
-using Crews.PlanningCenter.Api.Giving.V2019_10_18;
 using Crews.PlanningCenter.Api.IntegrationTests.Infrastructure;
 using Crews.PlanningCenter.Api.IntegrationTests.Infrastructure.ProductFixtures;
 using Crews.PlanningCenter.Api.IntegrationTests.Infrastructure.TestBases;

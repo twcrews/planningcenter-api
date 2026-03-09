@@ -5,6 +5,7 @@ using Crews.PlanningCenter.Api.Models.Extensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Crews.PlanningCenter.Api.DocParser;
 
@@ -18,7 +19,8 @@ class Application(ILogger<Application> logger, IConfiguration configuration, IDo
         configuration.GetSection(nameof(AppSettings)).Bind(settings);
         JsonSerializerOptions serializerOptions = new()
         {
-            WriteIndented = true
+            WriteIndented = true,
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
         };
 
         logger.LogInformation("Fetching API documentation from Planning Center...");

@@ -48,11 +48,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Crews.Web.JsonApiClient" Version="5.2.3" />
+    <PackageReference Include="Crews.Web.JsonApiClient" Version="6.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="8.0.22" />
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Common/" />
     <Folder Include="Groups/" />
   </ItemGroup>
 

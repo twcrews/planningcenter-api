@@ -52,11 +52,11 @@ public class PlanningCenterResourcesGeneratorTests
             "public record Person",
             "public string? FirstName { get; init; }",
             "public string? LastName { get; init; }",
-            "public DateOnly? Birthdate { get; init; }",
-            "public DateTime? CreatedAt { get; init; }",
+            "public System.DateOnly? Birthdate { get; init; }",
+            "public System.DateTime? CreatedAt { get; init; }",
             "public int? Age { get; init; }",
             "public bool? Active { get; init; }",
-            "public JsonObject? Metadata { get; init; }");
+            "public System.Text.Json.Nodes.JsonObject? Metadata { get; init; }");
     }
 
     [Fact]
@@ -80,7 +80,7 @@ public class PlanningCenterResourcesGeneratorTests
 
         GeneratorTestHelper.AssertContains(source,
             "public record EmailRelationships",
-            "public JsonApiRelationship? Person { get; init; }");
+            "public JsonApiRelationship<PersonResource>? Person { get; init; }");
     }
 
     [Fact]
@@ -293,12 +293,19 @@ public class PlanningCenterResourcesGeneratorTests
             [
                 new Crews.PlanningCenter.Api.Models.Resource
                 {
-                    Id = "person",
-                    Name = "person",
-                    ResourceName = "PersonResource",
-                    GenerateResource = true,
-                    GenerateClients = false,
-                    Attributes = [new Crews.PlanningCenter.Api.Models.ResourceAttribute { Name = "name", Type = "string" }],
+                    JsonName = "person",
+                    AttributesClrType = "Person",
+                    ResourceClrType = "PersonResource",
+                    Description = "A person resource",
+                    ShouldGenerateResource = true,
+                    ShouldGenerateClients = false,
+                    Attributes = [new Crews.PlanningCenter.Api.Models.ResourceAttribute
+                    {
+                        JsonName = "name",
+                        ClrName = "Name",
+                        ClrType = "string",
+                        Description = "The person's name"
+                    }],
                     Relationships = [],
                     Children = [],
                     CanInclude = [],
@@ -307,12 +314,19 @@ public class PlanningCenterResourcesGeneratorTests
                 },
                 new Crews.PlanningCenter.Api.Models.Resource
                 {
-                    Id = "email",
-                    Name = "email",
-                    ResourceName = "EmailResource",
-                    GenerateResource = false,
-                    GenerateClients = false,
-                    Attributes = [new Crews.PlanningCenter.Api.Models.ResourceAttribute { Name = "address", Type = "string" }],
+                    JsonName = "email",
+                    AttributesClrType = "Email",
+                    ResourceClrType = "EmailResource",
+                    Description = "An email resource",
+                    ShouldGenerateResource = false,
+                    ShouldGenerateClients = false,
+                    Attributes = [new Crews.PlanningCenter.Api.Models.ResourceAttribute
+                    {
+                        JsonName = "address",
+                        ClrName = "Address",
+                        ClrType = "string",
+                        Description = "The email address"
+                    }],
                     Relationships = [],
                     Children = [],
                     CanInclude = [],
@@ -342,51 +356,5 @@ public class PlanningCenterResourcesGeneratorTests
         GeneratorTestHelper.AssertDoesNotContain(source,
             "public record EmailResource",
             "public record Email {");
-    }
-
-    [Fact]
-    public void ShouldHandleDefaultDescriptionWhenNull()
-    {
-        // Arrange
-        var version = new Crews.PlanningCenter.Api.Models.Version
-        {
-            Id = "2025-01-01",
-            Beta = false,
-            Resources =
-            [
-                new Crews.PlanningCenter.Api.Models.Resource
-                {
-                    Id = "person",
-                    Name = "person",
-                    ResourceName = "Person",
-                    Description = null, // No description
-                    GenerateResource = true,
-                    GenerateClients = false,
-                    Attributes = [new Crews.PlanningCenter.Api.Models.ResourceAttribute { Name = "name", Type = "string", Description = null }],
-                    Relationships = [],
-                    Children = [],
-                    CanInclude = [],
-                    CanOrderBy = [],
-                    CanQueryBy = []
-                }
-            ]
-        };
-        var json = System.Text.Json.JsonSerializer.Serialize(version);
-        var (compilation, additionalFiles) = GeneratorTestHelper.CreateCompilation(
-            "namespace Test { }",
-            ("People/2025-01-01.json", json));
-
-        // Act
-        var result = GeneratorTestHelper.RunGenerator(
-            "PlanningCenterResourcesGenerator",
-            compilation,
-            additionalFiles);
-
-        // Assert
-        var source = GeneratorTestHelper.GetGeneratedSource(result, "People.2025-01-01.Resources.g.cs");
-
-        GeneratorTestHelper.AssertContains(source,
-            "/// Planning Center does not provide a description for this resource.",
-            "/// Planning Center does not provide a description for this attribute.");
     }
 }

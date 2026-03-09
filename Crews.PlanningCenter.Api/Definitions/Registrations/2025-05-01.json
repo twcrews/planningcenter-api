@@ -4,114 +4,126 @@
   "Details": "The first publicly available version of the API",
   "Resources": [
     {
-      "Id": "attendee",
-      "Name": "Attendee",
-      "ResourceName": "AttendeeResource",
+      "JsonName": "attendee",
+      "ResourceClrType": "AttendeeResource",
+      "AttributesClrType": "Attendee",
       "Description": "An \u0060Attendee\u0060 is a person registered for a signup.\n",
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "active",
-          "Type": "boolean",
+          "JsonName": "active",
+          "ClrName": "Active",
+          "ClrType": "bool",
           "Description": "Whether or not the attendee is active.\n"
         },
         {
-          "Name": "canceled",
-          "Type": "boolean",
+          "JsonName": "canceled",
+          "ClrName": "Canceled",
+          "ClrType": "bool",
           "Description": "Whether or not the attendee is canceled.\n"
         },
         {
-          "Name": "complete",
-          "Type": "boolean",
+          "JsonName": "complete",
+          "ClrName": "Complete",
+          "ClrType": "bool",
           "Description": "Whether or not attendee has completed all necessary items (personal information, questions, forms, add ons).\n\n\nOnly available when requested with the \u0060?fields\u0060 param"
         },
         {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "created_at",
+          "ClrName": "CreatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "updated_at",
+          "ClrName": "UpdatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "waitlisted",
-          "Type": "boolean",
+          "JsonName": "waitlisted",
+          "ClrName": "Waitlisted",
+          "ClrType": "bool",
           "Description": "Whether or not the attendee is waitlisted.\n"
         },
         {
-          "Name": "waitlisted_at",
-          "Type": "date_time",
+          "JsonName": "waitlisted_at",
+          "ClrName": "WaitlistedAt",
+          "ClrType": "System.DateTime",
           "Description": "UTC time at which the attendee was waitlisted.\n"
         }
       ],
       "Relationships": [],
+      "Actions": [],
       "Children": [
         {
-          "Name": "emergency_contact",
-          "Type": "emergency_contact",
-          "Description": null,
+          "JsonName": "emergency_contact",
+          "ClrName": "EmergencyContact",
+          "ClrAttributesType": "EmergencyContact",
+          "Description": "Associated \u0060EmergencyContact\u0060.",
           "Slug": "emergency_contact",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "person",
-          "Type": "person",
-          "Description": null,
+          "JsonName": "person",
+          "ClrName": "Person",
+          "ClrAttributesType": "Person",
+          "Description": "Associated \u0060Person\u0060.",
           "Slug": "person",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "registration",
-          "Type": "registration",
-          "Description": null,
+          "JsonName": "registration",
+          "ClrName": "Registration",
+          "ClrAttributesType": "Registration",
+          "Description": "Associated \u0060Registration\u0060.",
           "Slug": "registration",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "selection_type",
-          "Type": "selection_type",
-          "Description": null,
+          "JsonName": "selection_type",
+          "ClrName": "SelectionType",
+          "ClrAttributesType": "SelectionType",
+          "Description": "Associated \u0060SelectionType\u0060.",
           "Slug": "selection_type",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         }
       ],
       "CanInclude": [
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeEmergencyContact",
           "Value": "emergency_contact",
-          "Description": "include associated emergency_contact",
+          "Description": "Include related \u0060EmergencyContact\u0060 resources in the response.",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         },
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludePerson",
           "Value": "person",
-          "Description": "include associated person",
+          "Description": "Include related \u0060Person\u0060 resources in the response.",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         },
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeRegistration",
           "Value": "registration",
-          "Description": "include associated registration",
+          "Description": "Include related \u0060Registration\u0060 resources in the response.",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         },
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeSelectionType",
           "Value": "selection_type",
-          "Description": "include associated selection_type",
+          "Description": "Include related \u0060SelectionType\u0060 resources in the response.",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         }
@@ -121,64 +133,74 @@
       "Postable": false,
       "Patchable": false,
       "Deletable": false,
-      "GenerateResource": true,
-      "GenerateClients": true
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true
     },
     {
-      "Id": "campus",
-      "Name": "Campus",
-      "ResourceName": "CampusResource",
+      "JsonName": "campus",
+      "ResourceClrType": "CampusResource",
+      "AttributesClrType": "Campus",
       "Description": "A \u0060Campus\u0060 is a location belonging to an Organization.\n",
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "city",
-          "Type": "string",
+          "JsonName": "city",
+          "ClrName": "City",
+          "ClrType": "string",
           "Description": "City where the campus is located.\n"
         },
         {
-          "Name": "country",
-          "Type": "string",
+          "JsonName": "country",
+          "ClrName": "Country",
+          "ClrType": "string",
           "Description": "Country where the campus is located.\n"
         },
         {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "created_at",
+          "ClrName": "CreatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "full_formatted_address",
-          "Type": "string",
-          "Description": null
+          "JsonName": "full_formatted_address",
+          "ClrName": "FullFormattedAddress",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "name",
-          "Type": "string",
+          "JsonName": "name",
+          "ClrName": "Name",
+          "ClrType": "string",
           "Description": "Name of the campus.\n"
         },
         {
-          "Name": "state",
-          "Type": "string",
+          "JsonName": "state",
+          "ClrName": "State",
+          "ClrType": "string",
           "Description": "State or province where the campus is located.\n"
         },
         {
-          "Name": "street",
-          "Type": "string",
+          "JsonName": "street",
+          "ClrName": "Street",
+          "ClrType": "string",
           "Description": "Street address of the campus.\n"
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "updated_at",
+          "ClrName": "UpdatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "zip",
-          "Type": "string",
+          "JsonName": "zip",
+          "ClrName": "Zip",
+          "ClrType": "string",
           "Description": "Zip code of the campus.\n"
         }
       ],
       "Relationships": [],
+      "Actions": [],
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
@@ -186,34 +208,38 @@
       "Postable": false,
       "Patchable": false,
       "Deletable": false,
-      "GenerateResource": true,
-      "GenerateClients": true
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true
     },
     {
-      "Id": "category",
-      "Name": "Category",
-      "ResourceName": "CategoryResource",
+      "JsonName": "category",
+      "ResourceClrType": "CategoryResource",
+      "AttributesClrType": "Category",
       "Description": "A \u0060Category\u0060 is a label used to group together and find signups more easily.\n",
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "created_at",
+          "ClrName": "CreatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "name",
-          "Type": "string",
+          "JsonName": "name",
+          "ClrName": "Name",
+          "ClrType": "string",
           "Description": "Name of the category.\n"
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "updated_at",
+          "ClrName": "UpdatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         }
       ],
       "Relationships": [],
+      "Actions": [],
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
@@ -221,29 +247,32 @@
       "Postable": false,
       "Patchable": false,
       "Deletable": false,
-      "GenerateResource": true,
-      "GenerateClients": true
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true
     },
     {
-      "Id": "emergency_contact",
-      "Name": "EmergencyContact",
-      "ResourceName": "EmergencyContactResource",
+      "JsonName": "emergency_contact",
+      "ResourceClrType": "EmergencyContactResource",
+      "AttributesClrType": "EmergencyContact",
       "Description": "\u0060Emergency_Contact\u0060 is the person assigned as the emergency contact for an attendee.\n",
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "name",
-          "Type": "string",
-          "Description": null
+          "JsonName": "name",
+          "ClrName": "Name",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "phone_number",
-          "Type": "string",
+          "JsonName": "phone_number",
+          "ClrName": "PhoneNumber",
+          "ClrType": "string",
           "Description": "Phone number of the emergency contact person.\n"
         }
       ],
       "Relationships": [],
+      "Actions": [],
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
@@ -251,70 +280,79 @@
       "Postable": false,
       "Patchable": false,
       "Deletable": false,
-      "GenerateResource": true,
-      "GenerateClients": true
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true
     },
     {
-      "Id": "organization",
-      "Name": "Organization",
-      "ResourceName": "OrganizationResource",
+      "JsonName": "organization",
+      "ResourceClrType": "OrganizationResource",
+      "AttributesClrType": "Organization",
       "Description": "The root level \u0060Organization\u0060 record which serves as a link to \u0060Signup\u0060s.\n",
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "created_at",
+          "ClrName": "CreatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "name",
-          "Type": "string",
+          "JsonName": "name",
+          "ClrName": "Name",
+          "ClrType": "string",
           "Description": "Name of the Organization.\n"
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "updated_at",
+          "ClrName": "UpdatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         }
       ],
       "Relationships": [],
+      "Actions": [],
       "Children": [
         {
-          "Name": "campuses",
-          "Type": "campus",
-          "Description": null,
+          "JsonName": "campuses",
+          "ClrName": "Campuses",
+          "ClrAttributesType": "Campus",
+          "Description": "Associated \u0060Campuses\u0060.",
           "Slug": "campuses",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "categories",
-          "Type": "category",
-          "Description": null,
+          "JsonName": "categories",
+          "ClrName": "Categories",
+          "ClrAttributesType": "Category",
+          "Description": "Associated \u0060Categories\u0060.",
           "Slug": "categories",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "signups",
-          "Type": "signup",
-          "Description": null,
+          "JsonName": "signups",
+          "ClrName": "Signups",
+          "ClrAttributesType": "Signup",
+          "Description": "Associated \u0060Signups\u0060.",
           "Slug": "signups",
           "Filters": [
             {
-              "Name": "archived",
-              "Description": null
+              "ClrMethodName": "FilterByArchived",
+              "Value": "archived",
+              "Description": "Filter results by the \u0060Archived\u0060 scope."
             },
             {
-              "Name": "unarchived",
-              "Description": null
+              "ClrMethodName": "FilterByUnarchived",
+              "Value": "unarchived",
+              "Description": "Filter results by the \u0060Unarchived\u0060 scope."
             }
           ],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         }
       ],
       "CanInclude": [],
@@ -323,34 +361,38 @@
       "Postable": false,
       "Patchable": false,
       "Deletable": false,
-      "GenerateResource": true,
-      "GenerateClients": true
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true
     },
     {
-      "Id": "person",
-      "Name": "Person",
-      "ResourceName": "PersonResource",
-      "Description": null,
+      "JsonName": "person",
+      "ResourceClrType": "PersonResource",
+      "AttributesClrType": "Person",
+      "Description": "Planning Center does not provide a description for this resource.",
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "first_name",
-          "Type": "string",
-          "Description": null
+          "JsonName": "first_name",
+          "ClrName": "FirstName",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "last_name",
-          "Type": "string",
-          "Description": null
+          "JsonName": "last_name",
+          "ClrName": "LastName",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "name",
-          "Type": "string",
-          "Description": null
+          "JsonName": "name",
+          "ClrName": "Name",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         }
       ],
       "Relationships": [],
+      "Actions": [],
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
@@ -358,61 +400,66 @@
       "Postable": false,
       "Patchable": false,
       "Deletable": false,
-      "GenerateResource": true,
-      "GenerateClients": true
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true
     },
     {
-      "Id": "registration",
-      "Name": "Registration",
-      "ResourceName": "RegistrationResource",
-      "Description": null,
+      "JsonName": "registration",
+      "ResourceClrType": "RegistrationResource",
+      "AttributesClrType": "Registration",
+      "Description": "Planning Center does not provide a description for this resource.",
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "created_at",
+          "ClrName": "CreatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "updated_at",
+          "ClrName": "UpdatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         }
       ],
       "Relationships": [],
+      "Actions": [],
       "Children": [
         {
-          "Name": "created_by",
-          "Type": "person",
-          "Description": null,
+          "JsonName": "created_by",
+          "ClrName": "CreatedBy",
+          "ClrAttributesType": "Person",
+          "Description": "Associated \u0060CreatedBy\u0060.",
           "Slug": "created_by",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "registrant_contact",
-          "Type": "person",
-          "Description": null,
+          "JsonName": "registrant_contact",
+          "ClrName": "RegistrantContact",
+          "ClrAttributesType": "Person",
+          "Description": "Associated \u0060RegistrantContact\u0060.",
           "Slug": "registrant_contact",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         }
       ],
       "CanInclude": [
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeCreatedBy",
           "Value": "created_by",
-          "Description": "include associated created_by",
+          "Description": "Include related \u0060CreatedBy\u0060 resources in the response.",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         },
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeRegistrantContact",
           "Value": "registrant_contact",
-          "Description": "include associated registrant_contact",
+          "Description": "Include related \u0060RegistrantContact\u0060 resources in the response.",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         }
@@ -422,59 +469,68 @@
       "Postable": false,
       "Patchable": false,
       "Deletable": false,
-      "GenerateResource": true,
-      "GenerateClients": true
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true
     },
     {
-      "Id": "selection_type",
-      "Name": "SelectionType",
-      "ResourceName": "SelectionTypeResource",
+      "JsonName": "selection_type",
+      "ResourceClrType": "SelectionTypeResource",
+      "AttributesClrType": "SelectionType",
       "Description": "\u0060Selection_Types\u0060 are used to present the options people register for in a signup.\n",
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "created_at",
+          "ClrName": "CreatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "name",
-          "Type": "string",
+          "JsonName": "name",
+          "ClrName": "Name",
+          "ClrType": "string",
           "Description": "Name of the selection type.\n"
         },
         {
-          "Name": "price_cents",
-          "Type": "integer",
+          "JsonName": "price_cents",
+          "ClrName": "PriceCents",
+          "ClrType": "int",
           "Description": "Price of selection type in cents.\n"
         },
         {
-          "Name": "price_currency",
-          "Type": "string",
+          "JsonName": "price_currency",
+          "ClrName": "PriceCurrency",
+          "ClrType": "string",
           "Description": "Signup currency code, example \u0060\u0022USD\u0022\u0060.\n\n\nOnly available when requested with the \u0060?fields\u0060 param"
         },
         {
-          "Name": "price_currency_symbol",
-          "Type": "string",
+          "JsonName": "price_currency_symbol",
+          "ClrName": "PriceCurrencySymbol",
+          "ClrType": "string",
           "Description": "Signup currency symbol, example \u0060\u0022$\u0022\u0060.\n\n\nOnly available when requested with the \u0060?fields\u0060 param"
         },
         {
-          "Name": "price_formatted",
-          "Type": "string",
+          "JsonName": "price_formatted",
+          "ClrName": "PriceFormatted",
+          "ClrType": "string",
           "Description": "Price of selection type with currency formatting (symbol not included).\n\n\nOnly available when requested with the \u0060?fields\u0060 param"
         },
         {
-          "Name": "publicly_available",
-          "Type": "boolean",
+          "JsonName": "publicly_available",
+          "ClrName": "PubliclyAvailable",
+          "ClrType": "bool",
           "Description": "Whether or not the selection type is available to the public.\n"
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "updated_at",
+          "ClrName": "UpdatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         }
       ],
       "Relationships": [],
+      "Actions": [],
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
@@ -482,198 +538,222 @@
       "Postable": false,
       "Patchable": false,
       "Deletable": false,
-      "GenerateResource": true,
-      "GenerateClients": true
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true
     },
     {
-      "Id": "signup",
-      "Name": "Signup",
-      "ResourceName": "SignupResource",
+      "JsonName": "signup",
+      "ResourceClrType": "SignupResource",
+      "AttributesClrType": "Signup",
       "Description": "A \u0060Signup\u0060 is an organization signup that people can register for.\n",
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "archived",
-          "Type": "boolean",
+          "JsonName": "archived",
+          "ClrName": "Archived",
+          "ClrType": "bool",
           "Description": "Whether the signup is archived or not.\n"
         },
         {
-          "Name": "close_at",
-          "Type": "date_time",
+          "JsonName": "close_at",
+          "ClrName": "CloseAt",
+          "ClrType": "System.DateTime",
           "Description": "UTC time at which regsitration closes.\n"
         },
         {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "created_at",
+          "ClrName": "CreatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "description",
-          "Type": "string",
+          "JsonName": "description",
+          "ClrName": "Description",
+          "ClrType": "string",
           "Description": "Decription of the signup.\n"
         },
         {
-          "Name": "logo_url",
-          "Type": "string",
+          "JsonName": "logo_url",
+          "ClrName": "LogoUrl",
+          "ClrType": "string",
           "Description": "URL for the image used for the signup.\n"
         },
         {
-          "Name": "name",
-          "Type": "string",
+          "JsonName": "name",
+          "ClrName": "Name",
+          "ClrType": "string",
           "Description": "Name of the signup.\n"
         },
         {
-          "Name": "new_registration_url",
-          "Type": "string",
+          "JsonName": "new_registration_url",
+          "ClrName": "NewRegistrationUrl",
+          "ClrType": "string",
           "Description": "URL to allow people to register for signup.\n"
         },
         {
-          "Name": "open_at",
-          "Type": "date_time",
+          "JsonName": "open_at",
+          "ClrName": "OpenAt",
+          "ClrType": "System.DateTime",
           "Description": "UTC time at which regsitration opens.\n"
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "updated_at",
+          "ClrName": "UpdatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         }
       ],
       "Relationships": [],
+      "Actions": [],
       "Children": [
         {
-          "Name": "attendees",
-          "Type": "attendee",
-          "Description": null,
+          "JsonName": "attendees",
+          "ClrName": "Attendees",
+          "ClrAttributesType": "Attendee",
+          "Description": "Associated \u0060Attendees\u0060.",
           "Slug": "attendees",
           "Filters": [
             {
-              "Name": "active",
-              "Description": null
+              "ClrMethodName": "FilterByActive",
+              "Value": "active",
+              "Description": "Filter results by the \u0060Active\u0060 scope."
             },
             {
-              "Name": "canceled",
-              "Description": null
+              "ClrMethodName": "FilterByCanceled",
+              "Value": "canceled",
+              "Description": "Filter results by the \u0060Canceled\u0060 scope."
             },
             {
-              "Name": "waitlist",
-              "Description": null
+              "ClrMethodName": "FilterByWaitlist",
+              "Value": "waitlist",
+              "Description": "Filter results by the \u0060Waitlist\u0060 scope."
             }
           ],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "campuses",
-          "Type": "campus",
-          "Description": null,
+          "JsonName": "campuses",
+          "ClrName": "Campuses",
+          "ClrAttributesType": "Campus",
+          "Description": "Associated \u0060Campuses\u0060.",
           "Slug": "campuses",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "categories",
-          "Type": "category",
-          "Description": null,
+          "JsonName": "categories",
+          "ClrName": "Categories",
+          "ClrAttributesType": "Category",
+          "Description": "Associated \u0060Categories\u0060.",
           "Slug": "categories",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "next_signup_time",
-          "Type": "signup_time",
-          "Description": null,
+          "JsonName": "next_signup_time",
+          "ClrName": "NextSignupTime",
+          "ClrAttributesType": "SignupTime",
+          "Description": "Associated \u0060NextSignupTime\u0060.",
           "Slug": "next_signup_time",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "registrations",
-          "Type": "registration",
-          "Description": null,
+          "JsonName": "registrations",
+          "ClrName": "Registrations",
+          "ClrAttributesType": "Registration",
+          "Description": "Associated \u0060Registrations\u0060.",
           "Slug": "registrations",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "selection_types",
-          "Type": "selection_type",
-          "Description": null,
+          "JsonName": "selection_types",
+          "ClrName": "SelectionTypes",
+          "ClrAttributesType": "SelectionType",
+          "Description": "Associated \u0060SelectionTypes\u0060.",
           "Slug": "selection_types",
           "Filters": [
             {
-              "Name": "publicly_available",
-              "Description": null
+              "ClrMethodName": "FilterByPubliclyAvailable",
+              "Value": "publicly_available",
+              "Description": "Filter results by the \u0060PubliclyAvailable\u0060 scope."
             }
           ],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "signup_location",
-          "Type": "signup_location",
-          "Description": null,
+          "JsonName": "signup_location",
+          "ClrName": "SignupLocation",
+          "ClrAttributesType": "SignupLocation",
+          "Description": "Associated \u0060SignupLocation\u0060.",
           "Slug": "signup_location",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "signup_times",
-          "Type": "signup_time",
-          "Description": null,
+          "JsonName": "signup_times",
+          "ClrName": "SignupTimes",
+          "ClrAttributesType": "SignupTime",
+          "Description": "Associated \u0060SignupTimes\u0060.",
           "Slug": "signup_times",
           "Filters": [
             {
-              "Name": "future",
-              "Description": null
+              "ClrMethodName": "FilterByFuture",
+              "Value": "future",
+              "Description": "Filter results by the \u0060Future\u0060 scope."
             },
             {
-              "Name": "past",
-              "Description": null
+              "ClrMethodName": "FilterByPast",
+              "Value": "past",
+              "Description": "Filter results by the \u0060Past\u0060 scope."
             }
           ],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         }
       ],
       "CanInclude": [
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeCampuses",
           "Value": "campuses",
-          "Description": "include associated campuses",
+          "Description": "Include related \u0060Campuses\u0060 resources in the response.",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         },
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeCategories",
           "Value": "categories",
-          "Description": "include associated categories",
+          "Description": "Include related \u0060Categories\u0060 resources in the response.",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         },
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeNextSignupTime",
           "Value": "next_signup_time",
-          "Description": "include associated next_signup_time",
+          "Description": "Include related \u0060NextSignupTime\u0060 resources in the response.",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         },
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeSignupLocation",
           "Value": "signup_location",
-          "Description": "include associated signup_location",
+          "Description": "Include related \u0060SignupLocation\u0060 resources in the response.",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         },
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeSignupTimes",
           "Value": "signup_times",
-          "Description": "include associated signup_times",
+          "Description": "Include related \u0060SignupTimes\u0060 resources in the response.",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         }
@@ -681,84 +761,95 @@
       "CanOrderBy": [],
       "CanQueryBy": [
         {
-          "Name": "id",
+          "ClrMethodName": "WhereId",
+          "ClrType": "string",
           "Parameter": "where[id]",
-          "Type": "primary_key",
-          "Description": "Query on a specific id",
-          "Example": "?where[id]=primary_key"
+          "Description": "Query response items by the \u0060Id\u0060 attribute."
         }
       ],
       "Postable": false,
       "Patchable": false,
       "Deletable": false,
-      "GenerateResource": true,
-      "GenerateClients": true
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true
     },
     {
-      "Id": "signup_location",
-      "Name": "SignupLocation",
-      "ResourceName": "SignupLocationResource",
+      "JsonName": "signup_location",
+      "ResourceClrType": "SignupLocationResource",
+      "AttributesClrType": "SignupLocation",
       "Description": "\u0060Signup_location\u0060 is the location of a signup.\n",
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "address_data",
-          "Type": "json",
+          "JsonName": "address_data",
+          "ClrName": "AddressData",
+          "ClrType": "System.Text.Json.Nodes.JsonObject",
           "Description": "The address data of the signup location, which includes details like street, city, state, and postal code.\n\n\nOnly available when requested with the \u0060?fields\u0060 param"
         },
         {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "created_at",
+          "ClrName": "CreatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "formatted_address",
-          "Type": "string",
+          "JsonName": "formatted_address",
+          "ClrName": "FormattedAddress",
+          "ClrType": "string",
           "Description": "The formatted address of the signup location, which may not include subpremise details.\n"
         },
         {
-          "Name": "full_formatted_address",
-          "Type": "string",
+          "JsonName": "full_formatted_address",
+          "ClrName": "FullFormattedAddress",
+          "ClrType": "string",
           "Description": "The fully formatted address of the signup location, including subpremise details.\n"
         },
         {
-          "Name": "latitude",
-          "Type": "string",
+          "JsonName": "latitude",
+          "ClrName": "Latitude",
+          "ClrType": "string",
           "Description": "The latitude of the signup location.\n"
         },
         {
-          "Name": "location_type",
-          "Type": "string",
+          "JsonName": "location_type",
+          "ClrName": "LocationType",
+          "ClrType": "string",
           "Description": "The type of location, such as \u0060address\u0060, \u0060coords\u0060, or \u0060online\u0060.\n"
         },
         {
-          "Name": "longitude",
-          "Type": "string",
+          "JsonName": "longitude",
+          "ClrName": "Longitude",
+          "ClrType": "string",
           "Description": "The longitude of the signup location.\n"
         },
         {
-          "Name": "name",
-          "Type": "string",
+          "JsonName": "name",
+          "ClrName": "Name",
+          "ClrType": "string",
           "Description": "The name of the signup location.\n"
         },
         {
-          "Name": "subpremise",
-          "Type": "string",
+          "JsonName": "subpremise",
+          "ClrName": "Subpremise",
+          "ClrType": "string",
           "Description": "The subpremise of the signup location, such as an building or room number.\n"
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "updated_at",
+          "ClrName": "UpdatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "url",
-          "Type": "string",
+          "JsonName": "url",
+          "ClrName": "Url",
+          "ClrType": "string",
           "Description": "The URL for the signup location, if applicable (e.g., for online events).\n"
         }
       ],
       "Relationships": [],
+      "Actions": [],
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
@@ -766,44 +857,50 @@
       "Postable": false,
       "Patchable": false,
       "Deletable": false,
-      "GenerateResource": true,
-      "GenerateClients": true
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true
     },
     {
-      "Id": "signup_time",
-      "Name": "SignupTime",
-      "ResourceName": "SignupTimeResource",
+      "JsonName": "signup_time",
+      "ResourceClrType": "SignupTimeResource",
+      "AttributesClrType": "SignupTime",
       "Description": "\u0060Signup_time\u0060s are associated with a signup, which can have multiple signup times.\n",
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "all_day",
-          "Type": "boolean",
+          "JsonName": "all_day",
+          "ClrName": "AllDay",
+          "ClrType": "bool",
           "Description": "Whether or not the signup time is all day.\n"
         },
         {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "created_at",
+          "ClrName": "CreatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "ends_at",
-          "Type": "date_time",
+          "JsonName": "ends_at",
+          "ClrName": "EndsAt",
+          "ClrType": "System.DateTime",
           "Description": "End date and time of signup time.\n"
         },
         {
-          "Name": "starts_at",
-          "Type": "date_time",
+          "JsonName": "starts_at",
+          "ClrName": "StartsAt",
+          "ClrType": "System.DateTime",
           "Description": "Start date and time of signup time.\n"
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "updated_at",
+          "ClrName": "UpdatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         }
       ],
       "Relationships": [],
+      "Actions": [],
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
@@ -811,8 +908,8 @@
       "Postable": false,
       "Patchable": false,
       "Deletable": false,
-      "GenerateResource": true,
-      "GenerateClients": true
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true
     }
   ]
 }

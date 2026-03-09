@@ -4,72 +4,82 @@
   "Details": "The first available version of the API",
   "Resources": [
     {
-      "Id": "attendance_type",
-      "Name": "AttendanceType",
-      "ResourceName": "AttendanceTypeResource",
+      "JsonName": "attendance_type",
+      "ResourceClrType": "AttendanceTypeResource",
+      "AttributesClrType": "AttendanceType",
       "Description": "A kind of attendee which is tracked by _headcount_, not by check-in.\n",
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "color",
-          "Type": "string",
-          "Description": null
+          "JsonName": "color",
+          "ClrName": "Color",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "created_at",
+          "ClrName": "CreatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "limit",
-          "Type": "integer",
-          "Description": null
+          "JsonName": "limit",
+          "ClrName": "Limit",
+          "ClrType": "int",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "name",
-          "Type": "string",
-          "Description": null
+          "JsonName": "name",
+          "ClrName": "Name",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "updated_at",
+          "ClrName": "UpdatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         }
       ],
       "Relationships": [
         {
-          "Name": "event",
-          "Type": "Event",
-          "AssociationType": "to_one",
-          "Note": null
+          "JsonName": "event",
+          "ClrName": "Event",
+          "ClrAttributesType": "Event",
+          "ClrResourceType": "EventResource",
+          "IsCollection": false,
+          "Description": "Related \u0060Event\u0060 resource."
         }
       ],
+      "Actions": [],
       "Children": [
         {
-          "Name": "event",
-          "Type": "event",
-          "Description": null,
+          "JsonName": "event",
+          "ClrName": "Event",
+          "ClrAttributesType": "Event",
+          "Description": "Associated \u0060Event\u0060.",
           "Slug": "event",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "headcounts",
-          "Type": "headcount",
-          "Description": null,
+          "JsonName": "headcounts",
+          "ClrName": "Headcounts",
+          "ClrAttributesType": "Headcount",
+          "Description": "Associated \u0060Headcounts\u0060.",
           "Slug": "headcounts",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         }
       ],
       "CanInclude": [
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeEvent",
           "Value": "event",
-          "Description": "include associated event",
+          "Description": "Include related \u0060Event\u0060 resources in the response.",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
         }
@@ -77,433 +87,459 @@
       "CanOrderBy": [],
       "CanQueryBy": [
         {
-          "Name": "id",
+          "ClrMethodName": "WhereId",
+          "ClrType": "string",
           "Parameter": "where[id]",
-          "Type": "primary_key",
-          "Description": "Query on a specific id",
-          "Example": "?where[id]=primary_key"
+          "Description": "Query response items by the \u0060Id\u0060 attribute."
         },
         {
-          "Name": "name",
+          "ClrMethodName": "WhereName",
+          "ClrType": "string",
           "Parameter": "where[name]",
-          "Type": "string",
-          "Description": "Query on a specific name",
-          "Example": "?where[name]=string"
+          "Description": "Query response items by the \u0060Name\u0060 attribute."
         }
       ],
       "Postable": false,
       "Patchable": false,
       "Deletable": false,
-      "GenerateResource": true,
-      "GenerateClients": true
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true
     },
     {
-      "Id": "check_in",
-      "Name": "CheckIn",
-      "ResourceName": "CheckInResource",
+      "JsonName": "check_in",
+      "ResourceClrType": "CheckInResource",
+      "AttributesClrType": "CheckIn",
       "Description": "An attendance record for an event.\n\nIf someone was checked out, \u0060checked_out_at\u0060 will be present.\n\nYou can scope check-ins in a few ways:\n\n- \u0060regular\u0060s, \u0060guest\u0060s, and \u0060volunteer\u0060s correspond to the option selected when checking in.\n- \u0060attendee\u0060s are \u0060regular\u0060s and \u0060guest\u0060s together.\n- \u0060one_time_guest\u0060s are check-ins which were created without a corresponding person record.\n- \u0060not_one_time_guest\u0060s are check-ins which had a corresponding person record when they were created.\n- \u0060checked_out\u0060 are check-ins where \u0060checked_out_at\u0060 is present (meaning they were checked out from a station).\n- \u0060first_time\u0060s are check-ins which are the person\u0027s first for a given event. (Label-only visitors are not included here.)\n",
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "checked_out_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "checked_out_at",
+          "ClrName": "CheckedOutAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "confirmed_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "confirmed_at",
+          "ClrName": "ConfirmedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "created_at",
+          "ClrName": "CreatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "emergency_contact_name",
-          "Type": "string",
-          "Description": null
+          "JsonName": "emergency_contact_name",
+          "ClrName": "EmergencyContactName",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "emergency_contact_phone_number",
-          "Type": "string",
-          "Description": null
+          "JsonName": "emergency_contact_phone_number",
+          "ClrName": "EmergencyContactPhoneNumber",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "first_name",
-          "Type": "string",
-          "Description": null
+          "JsonName": "first_name",
+          "ClrName": "FirstName",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "kind",
-          "Type": "string",
-          "Description": null
+          "JsonName": "kind",
+          "ClrName": "Kind",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "last_name",
-          "Type": "string",
-          "Description": null
+          "JsonName": "last_name",
+          "ClrName": "LastName",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "medical_notes",
-          "Type": "string",
-          "Description": null
+          "JsonName": "medical_notes",
+          "ClrName": "MedicalNotes",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "number",
-          "Type": "integer",
-          "Description": null
+          "JsonName": "number",
+          "ClrName": "Number",
+          "ClrType": "int",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "one_time_guest",
-          "Type": "boolean",
-          "Description": null
+          "JsonName": "one_time_guest",
+          "ClrName": "OneTimeGuest",
+          "ClrType": "bool",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "security_code",
-          "Type": "string",
-          "Description": null
+          "JsonName": "security_code",
+          "ClrName": "SecurityCode",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "updated_at",
+          "ClrName": "UpdatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         }
       ],
       "Relationships": [
         {
-          "Name": "event_period",
-          "Type": "EventPeriod",
-          "AssociationType": "to_one",
-          "Note": null
+          "JsonName": "event_period",
+          "ClrName": "EventPeriod",
+          "ClrAttributesType": "EventPeriod",
+          "ClrResourceType": "EventPeriodResource",
+          "IsCollection": false,
+          "Description": "Related \u0060EventPeriod\u0060 resource."
         },
         {
-          "Name": "person",
-          "Type": "Person",
-          "AssociationType": "to_one",
-          "Note": null
+          "JsonName": "person",
+          "ClrName": "Person",
+          "ClrAttributesType": "Person",
+          "ClrResourceType": "PersonResource",
+          "IsCollection": false,
+          "Description": "Related \u0060Person\u0060 resource."
         }
       ],
+      "Actions": [],
       "Children": [
         {
-          "Name": "check_in_group",
-          "Type": "check_in_group",
-          "Description": null,
+          "JsonName": "check_in_group",
+          "ClrName": "CheckInGroup",
+          "ClrAttributesType": "CheckInGroup",
+          "Description": "Associated \u0060CheckInGroup\u0060.",
           "Slug": "check_in_group",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "checked_in_at",
-          "Type": "station",
-          "Description": null,
+          "JsonName": "checked_in_at",
+          "ClrName": "CheckedInAt",
+          "ClrAttributesType": "Station",
+          "Description": "Associated \u0060CheckedInAt\u0060.",
           "Slug": "checked_in_at",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "checked_in_by",
-          "Type": "person",
-          "Description": null,
+          "JsonName": "checked_in_by",
+          "ClrName": "CheckedInBy",
+          "ClrAttributesType": "Person",
+          "Description": "Associated \u0060CheckedInBy\u0060.",
           "Slug": "checked_in_by",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "checked_out_by",
-          "Type": "person",
-          "Description": null,
+          "JsonName": "checked_out_by",
+          "ClrName": "CheckedOutBy",
+          "ClrAttributesType": "Person",
+          "Description": "Associated \u0060CheckedOutBy\u0060.",
           "Slug": "checked_out_by",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "event",
-          "Type": "event",
-          "Description": null,
+          "JsonName": "event",
+          "ClrName": "Event",
+          "ClrAttributesType": "Event",
+          "Description": "Associated \u0060Event\u0060.",
           "Slug": "event",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "event_period",
-          "Type": "event_period",
-          "Description": null,
+          "JsonName": "event_period",
+          "ClrName": "EventPeriod",
+          "ClrAttributesType": "EventPeriod",
+          "Description": "Associated \u0060EventPeriod\u0060.",
           "Slug": "event_period",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "event_times",
-          "Type": "event_time",
-          "Description": null,
+          "JsonName": "event_times",
+          "ClrName": "EventTimes",
+          "ClrAttributesType": "EventTime",
+          "Description": "Associated \u0060EventTimes\u0060.",
           "Slug": "event_times",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "location",
-          "Type": "location",
-          "Description": null,
+          "JsonName": "location",
+          "ClrName": "Location",
+          "ClrAttributesType": "Location",
+          "Description": "Associated \u0060Location\u0060.",
           "Slug": "location",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": true
+          "Deprecated": true
         },
         {
-          "Name": "options",
-          "Type": "option",
-          "Description": null,
+          "JsonName": "options",
+          "ClrName": "Options",
+          "ClrAttributesType": "Option",
+          "Description": "Associated \u0060Options\u0060.",
           "Slug": "options",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "person",
-          "Type": "person",
-          "Description": null,
+          "JsonName": "person",
+          "ClrName": "Person",
+          "ClrAttributesType": "Person",
+          "Description": "Associated \u0060Person\u0060.",
           "Slug": "person",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         }
       ],
       "CanInclude": [
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeCheckedInAt",
           "Value": "checked_in_at",
-          "Description": "include associated checked_in_at",
+          "Description": "Include related \u0060CheckedInAt\u0060 resources in the response.",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         },
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeCheckedInBy",
           "Value": "checked_in_by",
-          "Description": "include associated checked_in_by",
+          "Description": "Include related \u0060CheckedInBy\u0060 resources in the response.",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         },
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeCheckedOutBy",
           "Value": "checked_out_by",
-          "Description": "include associated checked_out_by",
+          "Description": "Include related \u0060CheckedOutBy\u0060 resources in the response.",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         },
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeEvent",
           "Value": "event",
-          "Description": "include associated event",
+          "Description": "Include related \u0060Event\u0060 resources in the response.",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": false
         },
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeEventPeriod",
           "Value": "event_period",
-          "Description": "include associated event_period",
+          "Description": "Include related \u0060EventPeriod\u0060 resources in the response.",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
         },
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeEventTimes",
           "Value": "event_times",
-          "Description": "include associated event_times",
+          "Description": "Include related \u0060EventTimes\u0060 resources in the response.",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         },
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeLocation",
           "Value": "location",
-          "Description": "include associated location",
+          "Description": "Include related \u0060Location\u0060 resources in the response.",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         },
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeOptions",
           "Value": "options",
-          "Description": "include associated options",
+          "Description": "Include related \u0060Options\u0060 resources in the response.",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         },
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludePerson",
           "Value": "person",
-          "Description": "include associated person",
+          "Description": "Include related \u0060Person\u0060 resources in the response.",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
         }
       ],
       "CanOrderBy": [
         {
-          "Parameter": "order",
+          "ClrMethodName": "OrderByCheckedOutAt",
           "Value": "checked_out_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-checked_out_at) to reverse the order"
+          "Description": "Sort response items by the \u0060CheckedOutAt\u0060 attribute."
         },
         {
-          "Parameter": "order",
+          "ClrMethodName": "OrderByCreatedAt",
           "Value": "created_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+          "Description": "Sort response items by the \u0060CreatedAt\u0060 attribute."
         },
         {
-          "Parameter": "order",
+          "ClrMethodName": "OrderByFirstName",
           "Value": "first_name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-first_name) to reverse the order"
+          "Description": "Sort response items by the \u0060FirstName\u0060 attribute."
         },
         {
-          "Parameter": "order",
+          "ClrMethodName": "OrderByLastName",
           "Value": "last_name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-last_name) to reverse the order"
+          "Description": "Sort response items by the \u0060LastName\u0060 attribute."
         },
         {
-          "Parameter": "order",
+          "ClrMethodName": "OrderByNumber",
           "Value": "number",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-number) to reverse the order"
+          "Description": "Sort response items by the \u0060Number\u0060 attribute."
         },
         {
-          "Parameter": "order",
+          "ClrMethodName": "OrderByUpdatedAt",
           "Value": "updated_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
+          "Description": "Sort response items by the \u0060UpdatedAt\u0060 attribute."
         }
       ],
       "CanQueryBy": [
         {
-          "Name": "account_center_person_id",
+          "ClrMethodName": "WhereAccountCenterPersonId",
+          "ClrType": "int",
           "Parameter": "where[account_center_person_id]",
-          "Type": "integer",
-          "Description": "Query on a related person",
-          "Example": "?where[account_center_person_id]=1"
+          "Description": "Query response items by the \u0060AccountCenterPersonId\u0060 attribute."
         },
         {
-          "Name": "created_at",
+          "ClrMethodName": "WhereCreatedAt",
+          "ClrType": "System.DateTime",
           "Parameter": "where[created_at]",
-          "Type": "date_time",
-          "Description": "Query on a specific created_at",
-          "Example": "?where[created_at]=2000-01-01T12:00:00Z"
+          "Description": "Query response items by the \u0060CreatedAt\u0060 attribute."
         },
         {
-          "Name": "security_code",
+          "ClrMethodName": "WhereSecurityCode",
+          "ClrType": "string",
           "Parameter": "where[security_code]",
-          "Type": "string",
-          "Description": "Query on a specific security_code",
-          "Example": "?where[security_code]=string"
+          "Description": "Query response items by the \u0060SecurityCode\u0060 attribute."
         },
         {
-          "Name": "updated_at",
+          "ClrMethodName": "WhereUpdatedAt",
+          "ClrType": "System.DateTime",
           "Parameter": "where[updated_at]",
-          "Type": "date_time",
-          "Description": "Query on a specific updated_at",
-          "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
+          "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
         }
       ],
       "Postable": false,
       "Patchable": false,
       "Deletable": false,
-      "GenerateResource": true,
-      "GenerateClients": true
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true
     },
     {
-      "Id": "check_in_group",
-      "Name": "CheckInGroup",
-      "ResourceName": "CheckInGroupResource",
+      "JsonName": "check_in_group",
+      "ResourceClrType": "CheckInGroupResource",
+      "AttributesClrType": "CheckInGroup",
       "Description": "When one or more people check in, they\u0027re grouped in a \u0060CheckInGroup\u0060.\nThese check-ins all have the same \u0022checked-in by\u0022 person.\n",
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "check_ins_count",
-          "Type": "integer",
-          "Description": null
+          "JsonName": "check_ins_count",
+          "ClrName": "CheckInsCount",
+          "ClrType": "int",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "created_at",
+          "ClrName": "CreatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "name_labels_count",
-          "Type": "integer",
-          "Description": null
+          "JsonName": "name_labels_count",
+          "ClrName": "NameLabelsCount",
+          "ClrType": "int",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "print_status",
-          "Type": "string",
+          "JsonName": "print_status",
+          "ClrName": "PrintStatus",
+          "ClrType": "string",
           "Description": "Possible values:\n  - \u0060ready\u0060: This group isn\u0027t printed or canceled yet\n  - \u0060printed\u0060: This group was successfully printed at a station\n  - \u0060canceled\u0060: This group was canceled at a station\n  - \u0060skipped\u0060: This group had no labels to print, so it was never printed.\n"
         },
         {
-          "Name": "security_labels_count",
-          "Type": "integer",
-          "Description": null
+          "JsonName": "security_labels_count",
+          "ClrName": "SecurityLabelsCount",
+          "ClrType": "int",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "updated_at",
+          "ClrName": "UpdatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         }
       ],
       "Relationships": [],
+      "Actions": [],
       "Children": [
         {
-          "Name": "check_ins",
-          "Type": "check_in",
-          "Description": null,
+          "JsonName": "check_ins",
+          "ClrName": "CheckIns",
+          "ClrAttributesType": "CheckIn",
+          "Description": "Associated \u0060CheckIns\u0060.",
           "Slug": "check_ins",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "event_period",
-          "Type": "event_period",
-          "Description": null,
+          "JsonName": "event_period",
+          "ClrName": "EventPeriod",
+          "ClrAttributesType": "EventPeriod",
+          "Description": "Associated \u0060EventPeriod\u0060.",
           "Slug": "event_period",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "print_station",
-          "Type": "station",
-          "Description": null,
+          "JsonName": "print_station",
+          "ClrName": "PrintStation",
+          "ClrAttributesType": "Station",
+          "Description": "Associated \u0060PrintStation\u0060.",
           "Slug": "print_station",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         }
       ],
       "CanInclude": [
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeCheckIns",
           "Value": "check_ins",
-          "Description": "include associated check_ins",
+          "Description": "Include related \u0060CheckIns\u0060 resources in the response.",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         },
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeEventPeriod",
           "Value": "event_period",
-          "Description": "include associated event_period",
+          "Description": "Include related \u0060EventPeriod\u0060 resources in the response.",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         },
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludePrintStation",
           "Value": "print_station",
-          "Description": "include associated print_station",
+          "Description": "Include related \u0060PrintStation\u0060 resources in the response.",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         }
@@ -513,313 +549,350 @@
       "Postable": false,
       "Patchable": false,
       "Deletable": false,
-      "GenerateResource": true,
-      "GenerateClients": true
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true
     },
     {
-      "Id": "event",
-      "Name": "Event",
-      "ResourceName": "EventResource",
+      "JsonName": "event",
+      "ResourceClrType": "EventResource",
+      "AttributesClrType": "Event",
       "Description": "A recurring event which people may attend.\n\nEach recurrence is an _event period_ (which often corresponds to a week).\n\nEvent periods have _event times_ where people may actually check in.\n",
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "app_source",
-          "Type": "string",
+          "JsonName": "app_source",
+          "ClrName": "AppSource",
+          "ClrType": "string",
           "Description": "Only available when requested with the \u0060?fields\u0060 param"
         },
         {
-          "Name": "archived_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "archived_at",
+          "ClrName": "ArchivedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "created_at",
+          "ClrName": "CreatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "enable_services_integration",
-          "Type": "boolean",
-          "Description": null
+          "JsonName": "enable_services_integration",
+          "ClrName": "EnableServicesIntegration",
+          "ClrType": "bool",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "frequency",
-          "Type": "string",
-          "Description": null
+          "JsonName": "frequency",
+          "ClrName": "Frequency",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "integration_key",
-          "Type": "string",
-          "Description": null
+          "JsonName": "integration_key",
+          "ClrName": "IntegrationKey",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "location_times_enabled",
-          "Type": "boolean",
-          "Description": null
+          "JsonName": "location_times_enabled",
+          "ClrName": "LocationTimesEnabled",
+          "ClrType": "bool",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "name",
-          "Type": "string",
-          "Description": null
+          "JsonName": "name",
+          "ClrName": "Name",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "pre_select_enabled",
-          "Type": "boolean",
-          "Description": null
+          "JsonName": "pre_select_enabled",
+          "ClrName": "PreSelectEnabled",
+          "ClrType": "bool",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "updated_at",
+          "ClrName": "UpdatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         }
       ],
       "Relationships": [
         {
-          "Name": "campuses",
-          "Type": "Campus",
-          "AssociationType": "to_many",
-          "Note": null
+          "JsonName": "campuses",
+          "ClrName": "Campuses",
+          "ClrAttributesType": "Campus",
+          "ClrResourceType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier",
+          "IsCollection": true,
+          "Description": "Related \u0060Campuses\u0060 resource."
         }
       ],
+      "Actions": [],
       "Children": [
         {
-          "Name": "attendance_types",
-          "Type": "attendance_type",
-          "Description": null,
+          "JsonName": "attendance_types",
+          "ClrName": "AttendanceTypes",
+          "ClrAttributesType": "AttendanceType",
+          "Description": "Associated \u0060AttendanceTypes\u0060.",
           "Slug": "attendance_types",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "check_ins",
-          "Type": "check_in",
-          "Description": null,
+          "JsonName": "check_ins",
+          "ClrName": "CheckIns",
+          "ClrAttributesType": "CheckIn",
+          "Description": "Associated \u0060CheckIns\u0060.",
           "Slug": "check_ins",
           "Filters": [
             {
-              "Name": "attendee",
-              "Description": null
+              "ClrMethodName": "FilterByAttendee",
+              "Value": "attendee",
+              "Description": "Filter results by the \u0060Attendee\u0060 scope."
             },
             {
-              "Name": "checked_out",
-              "Description": null
+              "ClrMethodName": "FilterByCheckedOut",
+              "Value": "checked_out",
+              "Description": "Filter results by the \u0060CheckedOut\u0060 scope."
             },
             {
-              "Name": "first_time",
-              "Description": null
+              "ClrMethodName": "FilterByFirstTime",
+              "Value": "first_time",
+              "Description": "Filter results by the \u0060FirstTime\u0060 scope."
             },
             {
-              "Name": "guest",
-              "Description": null
+              "ClrMethodName": "FilterByGuest",
+              "Value": "guest",
+              "Description": "Filter results by the \u0060Guest\u0060 scope."
             },
             {
-              "Name": "not_checked_out",
-              "Description": null
+              "ClrMethodName": "FilterByNotCheckedOut",
+              "Value": "not_checked_out",
+              "Description": "Filter results by the \u0060NotCheckedOut\u0060 scope."
             },
             {
-              "Name": "not_one_time_guest",
-              "Description": null
+              "ClrMethodName": "FilterByNotOneTimeGuest",
+              "Value": "not_one_time_guest",
+              "Description": "Filter results by the \u0060NotOneTimeGuest\u0060 scope."
             },
             {
-              "Name": "one_time_guest",
-              "Description": null
+              "ClrMethodName": "FilterByOneTimeGuest",
+              "Value": "one_time_guest",
+              "Description": "Filter results by the \u0060OneTimeGuest\u0060 scope."
             },
             {
-              "Name": "regular",
-              "Description": null
+              "ClrMethodName": "FilterByRegular",
+              "Value": "regular",
+              "Description": "Filter results by the \u0060Regular\u0060 scope."
             },
             {
-              "Name": "volunteer",
-              "Description": null
+              "ClrMethodName": "FilterByVolunteer",
+              "Value": "volunteer",
+              "Description": "Filter results by the \u0060Volunteer\u0060 scope."
             }
           ],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "current_event_times",
-          "Type": "event_time",
-          "Description": null,
+          "JsonName": "current_event_times",
+          "ClrName": "CurrentEventTimes",
+          "ClrAttributesType": "EventTime",
+          "Description": "Associated \u0060CurrentEventTimes\u0060.",
           "Slug": "current_event_times",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "event_labels",
-          "Type": "event_label",
-          "Description": null,
+          "JsonName": "event_labels",
+          "ClrName": "EventLabels",
+          "ClrAttributesType": "EventLabel",
+          "Description": "Associated \u0060EventLabels\u0060.",
           "Slug": "event_labels",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "event_periods",
-          "Type": "event_period",
-          "Description": null,
+          "JsonName": "event_periods",
+          "ClrName": "EventPeriods",
+          "ClrAttributesType": "EventPeriod",
+          "Description": "Associated \u0060EventPeriods\u0060.",
           "Slug": "event_periods",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "integration_links",
-          "Type": "integration_link",
-          "Description": null,
+          "JsonName": "integration_links",
+          "ClrName": "IntegrationLinks",
+          "ClrAttributesType": "IntegrationLink",
+          "Description": "Associated \u0060IntegrationLinks\u0060.",
           "Slug": "integration_links",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "locations",
-          "Type": "location",
-          "Description": null,
+          "JsonName": "locations",
+          "ClrName": "Locations",
+          "ClrAttributesType": "Location",
+          "Description": "Associated \u0060Locations\u0060.",
           "Slug": "locations",
           "Filters": [
             {
-              "Name": "locations",
-              "Description": null
+              "ClrMethodName": "FilterByLocations",
+              "Value": "locations",
+              "Description": "Filter results by the \u0060Locations\u0060 scope."
             },
             {
-              "Name": "root",
-              "Description": null
+              "ClrMethodName": "FilterByRoot",
+              "Value": "root",
+              "Description": "Filter results by the \u0060Root\u0060 scope."
             }
           ],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "person_events",
-          "Type": "person_event",
-          "Description": null,
+          "JsonName": "person_events",
+          "ClrName": "PersonEvents",
+          "ClrAttributesType": "PersonEvent",
+          "Description": "Associated \u0060PersonEvents\u0060.",
           "Slug": "person_events",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         }
       ],
       "CanInclude": [
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeAttendanceTypes",
           "Value": "attendance_types",
-          "Description": "include associated attendance_types",
+          "Description": "Include related \u0060AttendanceTypes\u0060 resources in the response.",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [
         {
-          "Parameter": "order",
+          "ClrMethodName": "OrderByCreatedAt",
           "Value": "created_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+          "Description": "Sort response items by the \u0060CreatedAt\u0060 attribute."
         },
         {
-          "Parameter": "order",
+          "ClrMethodName": "OrderByName",
           "Value": "name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-name) to reverse the order"
+          "Description": "Sort response items by the \u0060Name\u0060 attribute."
         }
       ],
       "CanQueryBy": [
         {
-          "Name": "id",
+          "ClrMethodName": "WhereId",
+          "ClrType": "string",
           "Parameter": "where[id]",
-          "Type": "primary_key",
-          "Description": "Query on a specific id",
-          "Example": "?where[id]=primary_key"
+          "Description": "Query response items by the \u0060Id\u0060 attribute."
         },
         {
-          "Name": "name",
+          "ClrMethodName": "WhereName",
+          "ClrType": "string",
           "Parameter": "where[name]",
-          "Type": "string",
-          "Description": "Query on a specific name",
-          "Example": "?where[name]=string"
+          "Description": "Query response items by the \u0060Name\u0060 attribute."
         }
       ],
       "Postable": false,
       "Patchable": false,
       "Deletable": false,
-      "GenerateResource": true,
-      "GenerateClients": true
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true
     },
     {
-      "Id": "event_label",
-      "Name": "EventLabel",
-      "ResourceName": "EventLabelResource",
+      "JsonName": "event_label",
+      "ResourceClrType": "EventLabelResource",
+      "AttributesClrType": "EventLabel",
       "Description": "Says how many of a given label to print for this event and\nwhether to print it for regulars, guests, and/or volunteers.\n",
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "created_at",
+          "ClrName": "CreatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "for_guest",
-          "Type": "boolean",
-          "Description": null
+          "JsonName": "for_guest",
+          "ClrName": "ForGuest",
+          "ClrType": "bool",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "for_regular",
-          "Type": "boolean",
-          "Description": null
+          "JsonName": "for_regular",
+          "ClrName": "ForRegular",
+          "ClrType": "bool",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "for_volunteer",
-          "Type": "boolean",
-          "Description": null
+          "JsonName": "for_volunteer",
+          "ClrName": "ForVolunteer",
+          "ClrType": "bool",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "quantity",
-          "Type": "integer",
-          "Description": null
+          "JsonName": "quantity",
+          "ClrName": "Quantity",
+          "ClrType": "int",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "updated_at",
+          "ClrName": "UpdatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         }
       ],
       "Relationships": [],
+      "Actions": [],
       "Children": [
         {
-          "Name": "event",
-          "Type": "event",
-          "Description": null,
+          "JsonName": "event",
+          "ClrName": "Event",
+          "ClrAttributesType": "Event",
+          "Description": "Associated \u0060Event\u0060.",
           "Slug": "event",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "label",
-          "Type": "label",
-          "Description": null,
+          "JsonName": "label",
+          "ClrName": "Label",
+          "ClrAttributesType": "Label",
+          "Description": "Associated \u0060Label\u0060.",
           "Slug": "label",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         }
       ],
       "CanInclude": [
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeEvent",
           "Value": "event",
-          "Description": "include associated event",
+          "Description": "Include related \u0060Event\u0060 resources in the response.",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         },
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeLabel",
           "Value": "label",
-          "Description": "include associated label",
+          "Description": "Include related \u0060Label\u0060 resources in the response.",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         }
@@ -829,671 +902,744 @@
       "Postable": false,
       "Patchable": false,
       "Deletable": false,
-      "GenerateResource": true,
-      "GenerateClients": true
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true
     },
     {
-      "Id": "event_period",
-      "Name": "EventPeriod",
-      "ResourceName": "EventPeriodResource",
+      "JsonName": "event_period",
+      "ResourceClrType": "EventPeriodResource",
+      "AttributesClrType": "EventPeriod",
       "Description": "A recurrence of an event, sometimes called a \u0022session\u0022.\nFor weekly events, an event period is a week. For daily events, an event period is a day.\nAn event period has event times, which is what people select\nwhen they actually check in. When new sessions are created, times\nare copied from one session to the next.\n",
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "created_at",
+          "ClrName": "CreatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "ends_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "ends_at",
+          "ClrName": "EndsAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "guest_count",
-          "Type": "integer",
-          "Description": null
+          "JsonName": "guest_count",
+          "ClrName": "GuestCount",
+          "ClrType": "int",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "note",
-          "Type": "string",
-          "Description": null
+          "JsonName": "note",
+          "ClrName": "Note",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "regular_count",
-          "Type": "integer",
-          "Description": null
+          "JsonName": "regular_count",
+          "ClrName": "RegularCount",
+          "ClrType": "int",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "starts_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "starts_at",
+          "ClrName": "StartsAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "updated_at",
+          "ClrName": "UpdatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "volunteer_count",
-          "Type": "integer",
-          "Description": null
+          "JsonName": "volunteer_count",
+          "ClrName": "VolunteerCount",
+          "ClrType": "int",
+          "Description": "Planning Center does not provide a description for this attribute."
         }
       ],
       "Relationships": [
         {
-          "Name": "event",
-          "Type": "Event",
-          "AssociationType": "to_one",
-          "Note": null
+          "JsonName": "event",
+          "ClrName": "Event",
+          "ClrAttributesType": "Event",
+          "ClrResourceType": "EventResource",
+          "IsCollection": false,
+          "Description": "Related \u0060Event\u0060 resource."
         }
       ],
+      "Actions": [],
       "Children": [
         {
-          "Name": "check_ins",
-          "Type": "check_in",
-          "Description": null,
+          "JsonName": "check_ins",
+          "ClrName": "CheckIns",
+          "ClrAttributesType": "CheckIn",
+          "Description": "Associated \u0060CheckIns\u0060.",
           "Slug": "check_ins",
           "Filters": [
             {
-              "Name": "attendee",
-              "Description": null
+              "ClrMethodName": "FilterByAttendee",
+              "Value": "attendee",
+              "Description": "Filter results by the \u0060Attendee\u0060 scope."
             },
             {
-              "Name": "checked_out",
-              "Description": null
+              "ClrMethodName": "FilterByCheckedOut",
+              "Value": "checked_out",
+              "Description": "Filter results by the \u0060CheckedOut\u0060 scope."
             },
             {
-              "Name": "first_time",
-              "Description": null
+              "ClrMethodName": "FilterByFirstTime",
+              "Value": "first_time",
+              "Description": "Filter results by the \u0060FirstTime\u0060 scope."
             },
             {
-              "Name": "guest",
-              "Description": null
+              "ClrMethodName": "FilterByGuest",
+              "Value": "guest",
+              "Description": "Filter results by the \u0060Guest\u0060 scope."
             },
             {
-              "Name": "not_checked_out",
-              "Description": null
+              "ClrMethodName": "FilterByNotCheckedOut",
+              "Value": "not_checked_out",
+              "Description": "Filter results by the \u0060NotCheckedOut\u0060 scope."
             },
             {
-              "Name": "not_one_time_guest",
-              "Description": null
+              "ClrMethodName": "FilterByNotOneTimeGuest",
+              "Value": "not_one_time_guest",
+              "Description": "Filter results by the \u0060NotOneTimeGuest\u0060 scope."
             },
             {
-              "Name": "one_time_guest",
-              "Description": null
+              "ClrMethodName": "FilterByOneTimeGuest",
+              "Value": "one_time_guest",
+              "Description": "Filter results by the \u0060OneTimeGuest\u0060 scope."
             },
             {
-              "Name": "regular",
-              "Description": null
+              "ClrMethodName": "FilterByRegular",
+              "Value": "regular",
+              "Description": "Filter results by the \u0060Regular\u0060 scope."
             },
             {
-              "Name": "volunteer",
-              "Description": null
+              "ClrMethodName": "FilterByVolunteer",
+              "Value": "volunteer",
+              "Description": "Filter results by the \u0060Volunteer\u0060 scope."
             }
           ],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "event",
-          "Type": "event",
-          "Description": null,
+          "JsonName": "event",
+          "ClrName": "Event",
+          "ClrAttributesType": "Event",
+          "Description": "Associated \u0060Event\u0060.",
           "Slug": "event",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "event_times",
-          "Type": "event_time",
-          "Description": null,
+          "JsonName": "event_times",
+          "ClrName": "EventTimes",
+          "ClrAttributesType": "EventTime",
+          "Description": "Associated \u0060EventTimes\u0060.",
           "Slug": "event_times",
           "Filters": [
             {
-              "Name": "available",
-              "Description": null
+              "ClrMethodName": "FilterByAvailable",
+              "Value": "available",
+              "Description": "Filter results by the \u0060Available\u0060 scope."
             }
           ],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "location_event_periods",
-          "Type": "location_event_period",
-          "Description": null,
+          "JsonName": "location_event_periods",
+          "ClrName": "LocationEventPeriods",
+          "ClrAttributesType": "LocationEventPeriod",
+          "Description": "Associated \u0060LocationEventPeriods\u0060.",
           "Slug": "location_event_periods",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         }
       ],
       "CanInclude": [
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeEvent",
           "Value": "event",
-          "Description": "include associated event",
+          "Description": "Include related \u0060Event\u0060 resources in the response.",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
         },
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeEventTimes",
           "Value": "event_times",
-          "Description": "include associated event_times",
+          "Description": "Include related \u0060EventTimes\u0060 resources in the response.",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [
         {
-          "Parameter": "order",
+          "ClrMethodName": "OrderByStartsAt",
           "Value": "starts_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-starts_at) to reverse the order"
+          "Description": "Sort response items by the \u0060StartsAt\u0060 attribute."
         }
       ],
       "CanQueryBy": [
         {
-          "Name": "ends_at",
+          "ClrMethodName": "WhereEndsAt",
+          "ClrType": "System.DateTime",
           "Parameter": "where[ends_at]",
-          "Type": "date_time",
-          "Description": "Query on a specific ends_at",
-          "Example": "?where[ends_at]=2000-01-01T12:00:00Z"
+          "Description": "Query response items by the \u0060EndsAt\u0060 attribute."
         },
         {
-          "Name": "starts_at",
+          "ClrMethodName": "WhereStartsAt",
+          "ClrType": "System.DateTime",
           "Parameter": "where[starts_at]",
-          "Type": "date_time",
-          "Description": "Query on a specific starts_at",
-          "Example": "?where[starts_at]=2000-01-01T12:00:00Z"
+          "Description": "Query response items by the \u0060StartsAt\u0060 attribute."
         }
       ],
       "Postable": false,
       "Patchable": false,
       "Deletable": false,
-      "GenerateResource": true,
-      "GenerateClients": true
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true
     },
     {
-      "Id": "event_time",
-      "Name": "EventTime",
-      "ResourceName": "EventTimeResource",
+      "JsonName": "event_time",
+      "ResourceClrType": "EventTimeResource",
+      "AttributesClrType": "EventTime",
       "Description": "A time that someone may check in. Times are copied from session to session.\n",
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "created_at",
+          "ClrName": "CreatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "day_of_week",
-          "Type": "integer",
-          "Description": null
+          "JsonName": "day_of_week",
+          "ClrName": "DayOfWeek",
+          "ClrType": "int",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "guest_count",
-          "Type": "integer",
-          "Description": null
+          "JsonName": "guest_count",
+          "ClrName": "GuestCount",
+          "ClrType": "int",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "hides_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "hides_at",
+          "ClrName": "HidesAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "hour",
-          "Type": "integer",
-          "Description": null
+          "JsonName": "hour",
+          "ClrName": "Hour",
+          "ClrType": "int",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "minute",
-          "Type": "integer",
-          "Description": null
+          "JsonName": "minute",
+          "ClrName": "Minute",
+          "ClrType": "int",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "name",
-          "Type": "string",
-          "Description": null
+          "JsonName": "name",
+          "ClrName": "Name",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "regular_count",
-          "Type": "integer",
-          "Description": null
+          "JsonName": "regular_count",
+          "ClrName": "RegularCount",
+          "ClrType": "int",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "shows_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "shows_at",
+          "ClrName": "ShowsAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "starts_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "starts_at",
+          "ClrName": "StartsAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "total_count",
-          "Type": "integer",
-          "Description": null
+          "JsonName": "total_count",
+          "ClrName": "TotalCount",
+          "ClrType": "int",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "updated_at",
+          "ClrName": "UpdatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "volunteer_count",
-          "Type": "integer",
-          "Description": null
+          "JsonName": "volunteer_count",
+          "ClrName": "VolunteerCount",
+          "ClrType": "int",
+          "Description": "Planning Center does not provide a description for this attribute."
         }
       ],
       "Relationships": [
         {
-          "Name": "event",
-          "Type": "Event",
-          "AssociationType": "to_one",
-          "Note": null
+          "JsonName": "event",
+          "ClrName": "Event",
+          "ClrAttributesType": "Event",
+          "ClrResourceType": "EventResource",
+          "IsCollection": false,
+          "Description": "Related \u0060Event\u0060 resource."
         },
         {
-          "Name": "event_period",
-          "Type": "EventPeriod",
-          "AssociationType": "to_one",
-          "Note": null
+          "JsonName": "event_period",
+          "ClrName": "EventPeriod",
+          "ClrAttributesType": "EventPeriod",
+          "ClrResourceType": "EventPeriodResource",
+          "IsCollection": false,
+          "Description": "Related \u0060EventPeriod\u0060 resource."
         }
       ],
+      "Actions": [],
       "Children": [
         {
-          "Name": "available_locations",
-          "Type": "location",
-          "Description": null,
+          "JsonName": "available_locations",
+          "ClrName": "AvailableLocations",
+          "ClrAttributesType": "Location",
+          "Description": "Associated \u0060AvailableLocations\u0060.",
           "Slug": "available_locations",
           "Filters": [
             {
-              "Name": "for_current_station",
-              "Description": null
+              "ClrMethodName": "FilterByForCurrentStation",
+              "Value": "for_current_station",
+              "Description": "Filter results by the \u0060ForCurrentStation\u0060 scope."
             }
           ],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "check_ins",
-          "Type": "check_in",
-          "Description": null,
+          "JsonName": "check_ins",
+          "ClrName": "CheckIns",
+          "ClrAttributesType": "CheckIn",
+          "Description": "Associated \u0060CheckIns\u0060.",
           "Slug": "check_ins",
           "Filters": [
             {
-              "Name": "attendee",
-              "Description": null
+              "ClrMethodName": "FilterByAttendee",
+              "Value": "attendee",
+              "Description": "Filter results by the \u0060Attendee\u0060 scope."
             },
             {
-              "Name": "checked_out",
-              "Description": null
+              "ClrMethodName": "FilterByCheckedOut",
+              "Value": "checked_out",
+              "Description": "Filter results by the \u0060CheckedOut\u0060 scope."
             },
             {
-              "Name": "first_time",
-              "Description": null
+              "ClrMethodName": "FilterByFirstTime",
+              "Value": "first_time",
+              "Description": "Filter results by the \u0060FirstTime\u0060 scope."
             },
             {
-              "Name": "guest",
-              "Description": null
+              "ClrMethodName": "FilterByGuest",
+              "Value": "guest",
+              "Description": "Filter results by the \u0060Guest\u0060 scope."
             },
             {
-              "Name": "not_checked_out",
-              "Description": null
+              "ClrMethodName": "FilterByNotCheckedOut",
+              "Value": "not_checked_out",
+              "Description": "Filter results by the \u0060NotCheckedOut\u0060 scope."
             },
             {
-              "Name": "not_one_time_guest",
-              "Description": null
+              "ClrMethodName": "FilterByNotOneTimeGuest",
+              "Value": "not_one_time_guest",
+              "Description": "Filter results by the \u0060NotOneTimeGuest\u0060 scope."
             },
             {
-              "Name": "one_time_guest",
-              "Description": null
+              "ClrMethodName": "FilterByOneTimeGuest",
+              "Value": "one_time_guest",
+              "Description": "Filter results by the \u0060OneTimeGuest\u0060 scope."
             },
             {
-              "Name": "regular",
-              "Description": null
+              "ClrMethodName": "FilterByRegular",
+              "Value": "regular",
+              "Description": "Filter results by the \u0060Regular\u0060 scope."
             },
             {
-              "Name": "volunteer",
-              "Description": null
+              "ClrMethodName": "FilterByVolunteer",
+              "Value": "volunteer",
+              "Description": "Filter results by the \u0060Volunteer\u0060 scope."
             }
           ],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "event",
-          "Type": "event",
-          "Description": null,
+          "JsonName": "event",
+          "ClrName": "Event",
+          "ClrAttributesType": "Event",
+          "Description": "Associated \u0060Event\u0060.",
           "Slug": "event",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "event_period",
-          "Type": "event_period",
-          "Description": null,
+          "JsonName": "event_period",
+          "ClrName": "EventPeriod",
+          "ClrAttributesType": "EventPeriod",
+          "Description": "Associated \u0060EventPeriod\u0060.",
           "Slug": "event_period",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "headcounts",
-          "Type": "headcount",
-          "Description": null,
+          "JsonName": "headcounts",
+          "ClrName": "Headcounts",
+          "ClrAttributesType": "Headcount",
+          "Description": "Associated \u0060Headcounts\u0060.",
           "Slug": "headcounts",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "location_event_times",
-          "Type": "location_event_time",
-          "Description": null,
+          "JsonName": "location_event_times",
+          "ClrName": "LocationEventTimes",
+          "ClrAttributesType": "LocationEventTime",
+          "Description": "Associated \u0060LocationEventTimes\u0060.",
           "Slug": "location_event_times",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         }
       ],
       "CanInclude": [
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeEvent",
           "Value": "event",
-          "Description": "include associated event",
+          "Description": "Include related \u0060Event\u0060 resources in the response.",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
         },
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeEventPeriod",
           "Value": "event_period",
-          "Description": "include associated event_period",
+          "Description": "Include related \u0060EventPeriod\u0060 resources in the response.",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
         },
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeHeadcounts",
           "Value": "headcounts",
-          "Description": "include associated headcounts",
+          "Description": "Include related \u0060Headcounts\u0060 resources in the response.",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [
         {
-          "Parameter": "order",
+          "ClrMethodName": "OrderByShowsAt",
           "Value": "shows_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-shows_at) to reverse the order"
+          "Description": "Sort response items by the \u0060ShowsAt\u0060 attribute."
         },
         {
-          "Parameter": "order",
+          "ClrMethodName": "OrderByStartsAt",
           "Value": "starts_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-starts_at) to reverse the order"
+          "Description": "Sort response items by the \u0060StartsAt\u0060 attribute."
         }
       ],
       "CanQueryBy": [
         {
-          "Name": "created_at",
+          "ClrMethodName": "WhereCreatedAt",
+          "ClrType": "System.DateTime",
           "Parameter": "where[created_at]",
-          "Type": "date_time",
-          "Description": "Query on a specific created_at",
-          "Example": "?where[created_at]=2000-01-01T12:00:00Z"
+          "Description": "Query response items by the \u0060CreatedAt\u0060 attribute."
         },
         {
-          "Name": "updated_at",
+          "ClrMethodName": "WhereUpdatedAt",
+          "ClrType": "System.DateTime",
           "Parameter": "where[updated_at]",
-          "Type": "date_time",
-          "Description": "Query on a specific updated_at",
-          "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
+          "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
         }
       ],
       "Postable": false,
       "Patchable": false,
       "Deletable": false,
-      "GenerateResource": true,
-      "GenerateClients": true
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true
     },
     {
-      "Id": "headcount",
-      "Name": "Headcount",
-      "ResourceName": "HeadcountResource",
+      "JsonName": "headcount",
+      "ResourceClrType": "HeadcountResource",
+      "AttributesClrType": "Headcount",
       "Description": "A tally of attendees for a given event time and attendance type.\nIf one does not exist, the count may have been zero.\n",
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "created_at",
+          "ClrName": "CreatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "total",
-          "Type": "integer",
-          "Description": null
+          "JsonName": "total",
+          "ClrName": "Total",
+          "ClrType": "int",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "updated_at",
+          "ClrName": "UpdatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         }
       ],
       "Relationships": [
         {
-          "Name": "event_time",
-          "Type": "EventTime",
-          "AssociationType": "to_one",
-          "Note": null
+          "JsonName": "event_time",
+          "ClrName": "EventTime",
+          "ClrAttributesType": "EventTime",
+          "ClrResourceType": "EventTimeResource",
+          "IsCollection": false,
+          "Description": "Related \u0060EventTime\u0060 resource."
         },
         {
-          "Name": "attendance_type",
-          "Type": "AttendanceType",
-          "AssociationType": "to_one",
-          "Note": null
+          "JsonName": "attendance_type",
+          "ClrName": "AttendanceType",
+          "ClrAttributesType": "AttendanceType",
+          "ClrResourceType": "AttendanceTypeResource",
+          "IsCollection": false,
+          "Description": "Related \u0060AttendanceType\u0060 resource."
         }
       ],
+      "Actions": [],
       "Children": [
         {
-          "Name": "attendance_type",
-          "Type": "attendance_type",
-          "Description": null,
+          "JsonName": "attendance_type",
+          "ClrName": "AttendanceType",
+          "ClrAttributesType": "AttendanceType",
+          "Description": "Associated \u0060AttendanceType\u0060.",
           "Slug": "attendance_type",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "event_time",
-          "Type": "event_time",
-          "Description": null,
+          "JsonName": "event_time",
+          "ClrName": "EventTime",
+          "ClrAttributesType": "EventTime",
+          "Description": "Associated \u0060EventTime\u0060.",
           "Slug": "event_time",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         }
       ],
       "CanInclude": [
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeAttendanceType",
           "Value": "attendance_type",
-          "Description": "include associated attendance_type",
+          "Description": "Include related \u0060AttendanceType\u0060 resources in the response.",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
         },
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeEventTime",
           "Value": "event_time",
-          "Description": "include associated event_time",
+          "Description": "Include related \u0060EventTime\u0060 resources in the response.",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
         }
       ],
       "CanOrderBy": [
         {
-          "Parameter": "order",
+          "ClrMethodName": "OrderByCreatedAt",
           "Value": "created_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+          "Description": "Sort response items by the \u0060CreatedAt\u0060 attribute."
         },
         {
-          "Parameter": "order",
+          "ClrMethodName": "OrderByTotal",
           "Value": "total",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-total) to reverse the order"
+          "Description": "Sort response items by the \u0060Total\u0060 attribute."
         },
         {
-          "Parameter": "order",
+          "ClrMethodName": "OrderByUpdatedAt",
           "Value": "updated_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
+          "Description": "Sort response items by the \u0060UpdatedAt\u0060 attribute."
         }
       ],
       "CanQueryBy": [
         {
-          "Name": "created_at",
+          "ClrMethodName": "WhereCreatedAt",
+          "ClrType": "System.DateTime",
           "Parameter": "where[created_at]",
-          "Type": "date_time",
-          "Description": "Query on a specific created_at",
-          "Example": "?where[created_at]=2000-01-01T12:00:00Z"
+          "Description": "Query response items by the \u0060CreatedAt\u0060 attribute."
         },
         {
-          "Name": "updated_at",
+          "ClrMethodName": "WhereUpdatedAt",
+          "ClrType": "System.DateTime",
           "Parameter": "where[updated_at]",
-          "Type": "date_time",
-          "Description": "Query on a specific updated_at",
-          "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
+          "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
         }
       ],
       "Postable": false,
       "Patchable": false,
       "Deletable": false,
-      "GenerateResource": true,
-      "GenerateClients": true
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true
     },
     {
-      "Id": "integration_link",
-      "Name": "IntegrationLink",
-      "ResourceName": "IntegrationLinkResource",
+      "JsonName": "integration_link",
+      "ResourceClrType": "IntegrationLinkResource",
+      "AttributesClrType": "IntegrationLink",
       "Description": "A record linking another product\u0027s resource to a Check-Ins resource.",
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "remote_app",
-          "Type": "string",
-          "Description": null
+          "JsonName": "remote_app",
+          "ClrName": "RemoteApp",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "remote_gid",
-          "Type": "string",
+          "JsonName": "remote_gid",
+          "ClrName": "RemoteGid",
+          "ClrType": "string",
           "Description": "The Global ID for the external resource. Formatted as \u0060gid://\u003Capp\u003E/\u003Ctype\u003E/\u003Cid\u003E\u0060."
         },
         {
-          "Name": "remote_id",
-          "Type": "string",
-          "Description": null
+          "JsonName": "remote_id",
+          "ClrName": "RemoteId",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "remote_type",
-          "Type": "string",
-          "Description": null
+          "JsonName": "remote_type",
+          "ClrName": "RemoteType",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "sync_future_assignment_types",
-          "Type": "boolean",
-          "Description": null
+          "JsonName": "sync_future_assignment_types",
+          "ClrName": "SyncFutureAssignmentTypes",
+          "ClrType": "bool",
+          "Description": "Planning Center does not provide a description for this attribute."
         }
       ],
       "Relationships": [
         {
-          "Name": "local",
-          "Type": "Event",
-          "AssociationType": "to_one",
-          "Note": "Type will be the type of Check-Ins resource it is linked to."
+          "JsonName": "local",
+          "ClrName": "Local",
+          "ClrAttributesType": "Event",
+          "ClrResourceType": "EventResource",
+          "IsCollection": false,
+          "Description": "Related \u0060Local\u0060 resource."
         }
       ],
+      "Actions": [],
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
       "CanQueryBy": [
         {
-          "Name": "remote_gid",
+          "ClrMethodName": "WhereRemoteGid",
+          "ClrType": "string",
           "Parameter": "where[remote_gid]",
-          "Type": "string",
-          "Description": "Query on a specific remote_gid",
-          "Example": "?where[remote_gid]=string"
+          "Description": "Query response items by the \u0060RemoteGid\u0060 attribute."
         }
       ],
       "Postable": false,
       "Patchable": false,
       "Deletable": false,
-      "GenerateResource": true,
-      "GenerateClients": true
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true
     },
     {
-      "Id": "label",
-      "Name": "Label",
-      "ResourceName": "LabelResource",
+      "JsonName": "label",
+      "ResourceClrType": "LabelResource",
+      "AttributesClrType": "Label",
       "Description": "Labels can be set to print for events (through \u0060EventLabel\u0060s),\nlocations (through \u0060LocationLabel\u0060s) or options.\nLabel type (security label / name label) is expressed with the\n\u0060prints_for\u0060 attribute. \u0060prints_for=\u0022Person\u0022\u0060 is a name label,\n\u0060prints_for=\u0022Group\u0022\u0060 is a security label.\n",
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "created_at",
+          "ClrName": "CreatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "name",
-          "Type": "string",
-          "Description": null
+          "JsonName": "name",
+          "ClrName": "Name",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "prints_for",
-          "Type": "string",
-          "Description": null
+          "JsonName": "prints_for",
+          "ClrName": "PrintsFor",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "roll",
-          "Type": "string",
-          "Description": null
+          "JsonName": "roll",
+          "ClrName": "Roll",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "updated_at",
+          "ClrName": "UpdatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "xml",
-          "Type": "string",
-          "Description": null
+          "JsonName": "xml",
+          "ClrName": "Xml",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         }
       ],
       "Relationships": [],
+      "Actions": [],
       "Children": [
         {
-          "Name": "event_labels",
-          "Type": "event_label",
-          "Description": null,
+          "JsonName": "event_labels",
+          "ClrName": "EventLabels",
+          "ClrAttributesType": "EventLabel",
+          "Description": "Associated \u0060EventLabels\u0060.",
           "Slug": "event_labels",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "location_labels",
-          "Type": "location_label",
-          "Description": null,
+          "JsonName": "location_labels",
+          "ClrName": "LocationLabels",
+          "ClrAttributesType": "LocationLabel",
+          "Description": "Associated \u0060LocationLabels\u0060.",
           "Slug": "location_labels",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         }
       ],
       "CanInclude": [],
@@ -1502,416 +1648,472 @@
       "Postable": false,
       "Patchable": false,
       "Deletable": false,
-      "GenerateResource": true,
-      "GenerateClients": true
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true
     },
     {
-      "Id": "location",
-      "Name": "Location",
-      "ResourceName": "LocationResource",
+      "JsonName": "location",
+      "ResourceClrType": "LocationResource",
+      "AttributesClrType": "Location",
       "Description": "A place where people may check in to for a given event.\nSome locations have \u0060kind=\u0022Folder\u0022\u0060, which means that people\ncan\u0027t check-in here, but this location contains other locations.\nYou can get its contents from the \u0060locations\u0060 attribute.\nYou can get a location\u0027s parent folder from the \u0060parent\u0060 attribute.\n(If it\u0027s not in a folder, \u0060parent\u0060 will be empty.)\n",
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "age_max_in_months",
-          "Type": "integer",
-          "Description": null
+          "JsonName": "age_max_in_months",
+          "ClrName": "AgeMaxInMonths",
+          "ClrType": "int",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "age_min_in_months",
-          "Type": "integer",
-          "Description": null
+          "JsonName": "age_min_in_months",
+          "ClrName": "AgeMinInMonths",
+          "ClrType": "int",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "age_on",
-          "Type": "date",
-          "Description": null
+          "JsonName": "age_on",
+          "ClrName": "AgeOn",
+          "ClrType": "System.DateOnly",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "age_range_by",
-          "Type": "string",
-          "Description": null
+          "JsonName": "age_range_by",
+          "ClrName": "AgeRangeBy",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "attendees_per_volunteer",
-          "Type": "integer",
-          "Description": null
+          "JsonName": "attendees_per_volunteer",
+          "ClrName": "AttendeesPerVolunteer",
+          "ClrType": "int",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "child_or_adult",
-          "Type": "string",
-          "Description": null
+          "JsonName": "child_or_adult",
+          "ClrName": "ChildOrAdult",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "created_at",
+          "ClrName": "CreatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "effective_date",
-          "Type": "date",
-          "Description": null
+          "JsonName": "effective_date",
+          "ClrName": "EffectiveDate",
+          "ClrType": "System.DateOnly",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "gender",
-          "Type": "string",
-          "Description": null
+          "JsonName": "gender",
+          "ClrName": "Gender",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "grade_max",
-          "Type": "integer",
-          "Description": null
+          "JsonName": "grade_max",
+          "ClrName": "GradeMax",
+          "ClrType": "int",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "grade_min",
-          "Type": "integer",
-          "Description": null
+          "JsonName": "grade_min",
+          "ClrName": "GradeMin",
+          "ClrType": "int",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "kind",
-          "Type": "string",
-          "Description": null
+          "JsonName": "kind",
+          "ClrName": "Kind",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "max_occupancy",
-          "Type": "integer",
-          "Description": null
+          "JsonName": "max_occupancy",
+          "ClrName": "MaxOccupancy",
+          "ClrType": "int",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "milestone",
-          "Type": "string",
-          "Description": null
+          "JsonName": "milestone",
+          "ClrName": "Milestone",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "min_volunteers",
-          "Type": "integer",
-          "Description": null
+          "JsonName": "min_volunteers",
+          "ClrName": "MinVolunteers",
+          "ClrType": "int",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "name",
-          "Type": "string",
-          "Description": null
+          "JsonName": "name",
+          "ClrName": "Name",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "opened",
-          "Type": "boolean",
-          "Description": null
+          "JsonName": "opened",
+          "ClrName": "Opened",
+          "ClrType": "bool",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "position",
-          "Type": "integer",
-          "Description": null
+          "JsonName": "position",
+          "ClrName": "Position",
+          "ClrType": "int",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "questions",
-          "Type": "array",
-          "Description": null
+          "JsonName": "questions",
+          "ClrName": "Questions",
+          "ClrType": "System.Text.Json.JsonElement",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "updated_at",
+          "ClrName": "UpdatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         }
       ],
       "Relationships": [
         {
-          "Name": "parent",
-          "Type": "Parent",
-          "AssociationType": "to_one",
-          "Note": null
+          "JsonName": "parent",
+          "ClrName": "Parent",
+          "ClrAttributesType": "Parent",
+          "ClrResourceType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier",
+          "IsCollection": false,
+          "Description": "Related \u0060Parent\u0060 resource."
         }
       ],
+      "Actions": [],
       "Children": [
         {
-          "Name": "check_ins",
-          "Type": "check_in",
-          "Description": null,
+          "JsonName": "check_ins",
+          "ClrName": "CheckIns",
+          "ClrAttributesType": "CheckIn",
+          "Description": "Associated \u0060CheckIns\u0060.",
           "Slug": "check_ins",
           "Filters": [
             {
-              "Name": "attendee",
-              "Description": null
+              "ClrMethodName": "FilterByAttendee",
+              "Value": "attendee",
+              "Description": "Filter results by the \u0060Attendee\u0060 scope."
             },
             {
-              "Name": "checked_out",
-              "Description": null
+              "ClrMethodName": "FilterByCheckedOut",
+              "Value": "checked_out",
+              "Description": "Filter results by the \u0060CheckedOut\u0060 scope."
             },
             {
-              "Name": "first_time",
-              "Description": null
+              "ClrMethodName": "FilterByFirstTime",
+              "Value": "first_time",
+              "Description": "Filter results by the \u0060FirstTime\u0060 scope."
             },
             {
-              "Name": "guest",
-              "Description": null
+              "ClrMethodName": "FilterByGuest",
+              "Value": "guest",
+              "Description": "Filter results by the \u0060Guest\u0060 scope."
             },
             {
-              "Name": "not_checked_out",
-              "Description": null
+              "ClrMethodName": "FilterByNotCheckedOut",
+              "Value": "not_checked_out",
+              "Description": "Filter results by the \u0060NotCheckedOut\u0060 scope."
             },
             {
-              "Name": "not_one_time_guest",
-              "Description": null
+              "ClrMethodName": "FilterByNotOneTimeGuest",
+              "Value": "not_one_time_guest",
+              "Description": "Filter results by the \u0060NotOneTimeGuest\u0060 scope."
             },
             {
-              "Name": "one_time_guest",
-              "Description": null
+              "ClrMethodName": "FilterByOneTimeGuest",
+              "Value": "one_time_guest",
+              "Description": "Filter results by the \u0060OneTimeGuest\u0060 scope."
             },
             {
-              "Name": "regular",
-              "Description": null
+              "ClrMethodName": "FilterByRegular",
+              "Value": "regular",
+              "Description": "Filter results by the \u0060Regular\u0060 scope."
             },
             {
-              "Name": "volunteer",
-              "Description": null
+              "ClrMethodName": "FilterByVolunteer",
+              "Value": "volunteer",
+              "Description": "Filter results by the \u0060Volunteer\u0060 scope."
             }
           ],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "event",
-          "Type": "event",
-          "Description": null,
+          "JsonName": "event",
+          "ClrName": "Event",
+          "ClrAttributesType": "Event",
+          "Description": "Associated \u0060Event\u0060.",
           "Slug": "event",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "integration_links",
-          "Type": "integration_link",
-          "Description": null,
+          "JsonName": "integration_links",
+          "ClrName": "IntegrationLinks",
+          "ClrAttributesType": "IntegrationLink",
+          "Description": "Associated \u0060IntegrationLinks\u0060.",
           "Slug": "integration_links",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "location_event_periods",
-          "Type": "location_event_period",
-          "Description": null,
+          "JsonName": "location_event_periods",
+          "ClrName": "LocationEventPeriods",
+          "ClrAttributesType": "LocationEventPeriod",
+          "Description": "Associated \u0060LocationEventPeriods\u0060.",
           "Slug": "location_event_periods",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "location_event_times",
-          "Type": "location_event_time",
-          "Description": null,
+          "JsonName": "location_event_times",
+          "ClrName": "LocationEventTimes",
+          "ClrAttributesType": "LocationEventTime",
+          "Description": "Associated \u0060LocationEventTimes\u0060.",
           "Slug": "location_event_times",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "location_labels",
-          "Type": "location_label",
-          "Description": null,
+          "JsonName": "location_labels",
+          "ClrName": "LocationLabels",
+          "ClrAttributesType": "LocationLabel",
+          "Description": "Associated \u0060LocationLabels\u0060.",
           "Slug": "location_labels",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "locations",
-          "Type": "location",
-          "Description": null,
+          "JsonName": "locations",
+          "ClrName": "Locations",
+          "ClrAttributesType": "Location",
+          "Description": "Associated \u0060Locations\u0060.",
           "Slug": "locations",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "options",
-          "Type": "option",
-          "Description": null,
+          "JsonName": "options",
+          "ClrName": "Options",
+          "ClrAttributesType": "Option",
+          "Description": "Associated \u0060Options\u0060.",
           "Slug": "options",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "parent",
-          "Type": "location",
-          "Description": null,
+          "JsonName": "parent",
+          "ClrName": "Parent",
+          "ClrAttributesType": "Location",
+          "Description": "Associated \u0060Parent\u0060.",
           "Slug": "parent",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         }
       ],
       "CanInclude": [
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeEvent",
           "Value": "event",
-          "Description": "include associated event",
+          "Description": "Include related \u0060Event\u0060 resources in the response.",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         },
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeLocations",
           "Value": "locations",
-          "Description": "include associated locations",
+          "Description": "Include related \u0060Locations\u0060 resources in the response.",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         },
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeOptions",
           "Value": "options",
-          "Description": "include associated options",
+          "Description": "Include related \u0060Options\u0060 resources in the response.",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         },
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeParent",
           "Value": "parent",
-          "Description": "include associated parent",
+          "Description": "Include related \u0060Parent\u0060 resources in the response.",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
         }
       ],
       "CanOrderBy": [
         {
-          "Parameter": "order",
+          "ClrMethodName": "OrderByKind",
           "Value": "kind",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-kind) to reverse the order"
+          "Description": "Sort response items by the \u0060Kind\u0060 attribute."
         },
         {
-          "Parameter": "order",
+          "ClrMethodName": "OrderByName",
           "Value": "name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-name) to reverse the order"
+          "Description": "Sort response items by the \u0060Name\u0060 attribute."
         },
         {
-          "Parameter": "order",
+          "ClrMethodName": "OrderByPosition",
           "Value": "position",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-position) to reverse the order"
+          "Description": "Sort response items by the \u0060Position\u0060 attribute."
         }
       ],
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
       "Deletable": false,
-      "GenerateResource": true,
-      "GenerateClients": true
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true
     },
     {
-      "Id": "location_event_period",
-      "Name": "LocationEventPeriod",
-      "ResourceName": "LocationEventPeriodResource",
+      "JsonName": "location_event_period",
+      "ResourceClrType": "LocationEventPeriodResource",
+      "AttributesClrType": "LocationEventPeriod",
       "Description": "Counts check-ins for a location during a certain event period.\n",
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "created_at",
+          "ClrName": "CreatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "guest_count",
-          "Type": "integer",
-          "Description": null
+          "JsonName": "guest_count",
+          "ClrName": "GuestCount",
+          "ClrType": "int",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "regular_count",
-          "Type": "integer",
-          "Description": null
+          "JsonName": "regular_count",
+          "ClrName": "RegularCount",
+          "ClrType": "int",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "updated_at",
+          "ClrName": "UpdatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "volunteer_count",
-          "Type": "integer",
-          "Description": null
+          "JsonName": "volunteer_count",
+          "ClrName": "VolunteerCount",
+          "ClrType": "int",
+          "Description": "Planning Center does not provide a description for this attribute."
         }
       ],
       "Relationships": [],
+      "Actions": [],
       "Children": [
         {
-          "Name": "check_ins",
-          "Type": "check_in",
-          "Description": null,
+          "JsonName": "check_ins",
+          "ClrName": "CheckIns",
+          "ClrAttributesType": "CheckIn",
+          "Description": "Associated \u0060CheckIns\u0060.",
           "Slug": "check_ins",
           "Filters": [
             {
-              "Name": "attendee",
-              "Description": null
+              "ClrMethodName": "FilterByAttendee",
+              "Value": "attendee",
+              "Description": "Filter results by the \u0060Attendee\u0060 scope."
             },
             {
-              "Name": "checked_out",
-              "Description": null
+              "ClrMethodName": "FilterByCheckedOut",
+              "Value": "checked_out",
+              "Description": "Filter results by the \u0060CheckedOut\u0060 scope."
             },
             {
-              "Name": "first_time",
-              "Description": null
+              "ClrMethodName": "FilterByFirstTime",
+              "Value": "first_time",
+              "Description": "Filter results by the \u0060FirstTime\u0060 scope."
             },
             {
-              "Name": "guest",
-              "Description": null
+              "ClrMethodName": "FilterByGuest",
+              "Value": "guest",
+              "Description": "Filter results by the \u0060Guest\u0060 scope."
             },
             {
-              "Name": "not_checked_out",
-              "Description": null
+              "ClrMethodName": "FilterByNotCheckedOut",
+              "Value": "not_checked_out",
+              "Description": "Filter results by the \u0060NotCheckedOut\u0060 scope."
             },
             {
-              "Name": "not_one_time_guest",
-              "Description": null
+              "ClrMethodName": "FilterByNotOneTimeGuest",
+              "Value": "not_one_time_guest",
+              "Description": "Filter results by the \u0060NotOneTimeGuest\u0060 scope."
             },
             {
-              "Name": "one_time_guest",
-              "Description": null
+              "ClrMethodName": "FilterByOneTimeGuest",
+              "Value": "one_time_guest",
+              "Description": "Filter results by the \u0060OneTimeGuest\u0060 scope."
             },
             {
-              "Name": "regular",
-              "Description": null
+              "ClrMethodName": "FilterByRegular",
+              "Value": "regular",
+              "Description": "Filter results by the \u0060Regular\u0060 scope."
             },
             {
-              "Name": "volunteer",
-              "Description": null
+              "ClrMethodName": "FilterByVolunteer",
+              "Value": "volunteer",
+              "Description": "Filter results by the \u0060Volunteer\u0060 scope."
             }
           ],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "event_period",
-          "Type": "event_period",
-          "Description": null,
+          "JsonName": "event_period",
+          "ClrName": "EventPeriod",
+          "ClrAttributesType": "EventPeriod",
+          "Description": "Associated \u0060EventPeriod\u0060.",
           "Slug": "event_period",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "location",
-          "Type": "location",
-          "Description": null,
+          "JsonName": "location",
+          "ClrName": "Location",
+          "ClrAttributesType": "Location",
+          "Description": "Associated \u0060Location\u0060.",
           "Slug": "location",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         }
       ],
       "CanInclude": [
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeEventPeriod",
           "Value": "event_period",
-          "Description": "include associated event_period",
+          "Description": "Include related \u0060EventPeriod\u0060 resources in the response.",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         },
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeLocation",
           "Value": "location",
-          "Description": "include associated location",
+          "Description": "Include related \u0060Location\u0060 resources in the response.",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         }
@@ -1921,122 +2123,140 @@
       "Postable": false,
       "Patchable": false,
       "Deletable": false,
-      "GenerateResource": true,
-      "GenerateClients": true
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true
     },
     {
-      "Id": "location_event_time",
-      "Name": "LocationEventTime",
-      "ResourceName": "LocationEventTimeResource",
+      "JsonName": "location_event_time",
+      "ResourceClrType": "LocationEventTimeResource",
+      "AttributesClrType": "LocationEventTime",
       "Description": "Counts check-ins for a location for a given event time.\nThis is useful for checking occupancy.\n",
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "created_at",
+          "ClrName": "CreatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "guest_count",
-          "Type": "integer",
-          "Description": null
+          "JsonName": "guest_count",
+          "ClrName": "GuestCount",
+          "ClrType": "int",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "regular_count",
-          "Type": "integer",
-          "Description": null
+          "JsonName": "regular_count",
+          "ClrName": "RegularCount",
+          "ClrType": "int",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "updated_at",
+          "ClrName": "UpdatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "volunteer_count",
-          "Type": "integer",
-          "Description": null
+          "JsonName": "volunteer_count",
+          "ClrName": "VolunteerCount",
+          "ClrType": "int",
+          "Description": "Planning Center does not provide a description for this attribute."
         }
       ],
       "Relationships": [],
+      "Actions": [],
       "Children": [
         {
-          "Name": "check_ins",
-          "Type": "check_in",
-          "Description": null,
+          "JsonName": "check_ins",
+          "ClrName": "CheckIns",
+          "ClrAttributesType": "CheckIn",
+          "Description": "Associated \u0060CheckIns\u0060.",
           "Slug": "check_ins",
           "Filters": [
             {
-              "Name": "attendee",
-              "Description": null
+              "ClrMethodName": "FilterByAttendee",
+              "Value": "attendee",
+              "Description": "Filter results by the \u0060Attendee\u0060 scope."
             },
             {
-              "Name": "checked_out",
-              "Description": null
+              "ClrMethodName": "FilterByCheckedOut",
+              "Value": "checked_out",
+              "Description": "Filter results by the \u0060CheckedOut\u0060 scope."
             },
             {
-              "Name": "first_time",
-              "Description": null
+              "ClrMethodName": "FilterByFirstTime",
+              "Value": "first_time",
+              "Description": "Filter results by the \u0060FirstTime\u0060 scope."
             },
             {
-              "Name": "guest",
-              "Description": null
+              "ClrMethodName": "FilterByGuest",
+              "Value": "guest",
+              "Description": "Filter results by the \u0060Guest\u0060 scope."
             },
             {
-              "Name": "not_checked_out",
-              "Description": null
+              "ClrMethodName": "FilterByNotCheckedOut",
+              "Value": "not_checked_out",
+              "Description": "Filter results by the \u0060NotCheckedOut\u0060 scope."
             },
             {
-              "Name": "not_one_time_guest",
-              "Description": null
+              "ClrMethodName": "FilterByNotOneTimeGuest",
+              "Value": "not_one_time_guest",
+              "Description": "Filter results by the \u0060NotOneTimeGuest\u0060 scope."
             },
             {
-              "Name": "one_time_guest",
-              "Description": null
+              "ClrMethodName": "FilterByOneTimeGuest",
+              "Value": "one_time_guest",
+              "Description": "Filter results by the \u0060OneTimeGuest\u0060 scope."
             },
             {
-              "Name": "regular",
-              "Description": null
+              "ClrMethodName": "FilterByRegular",
+              "Value": "regular",
+              "Description": "Filter results by the \u0060Regular\u0060 scope."
             },
             {
-              "Name": "volunteer",
-              "Description": null
+              "ClrMethodName": "FilterByVolunteer",
+              "Value": "volunteer",
+              "Description": "Filter results by the \u0060Volunteer\u0060 scope."
             }
           ],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "event_time",
-          "Type": "event_time",
-          "Description": null,
+          "JsonName": "event_time",
+          "ClrName": "EventTime",
+          "ClrAttributesType": "EventTime",
+          "Description": "Associated \u0060EventTime\u0060.",
           "Slug": "event_time",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "location",
-          "Type": "location",
-          "Description": null,
+          "JsonName": "location",
+          "ClrName": "Location",
+          "ClrAttributesType": "Location",
+          "Description": "Associated \u0060Location\u0060.",
           "Slug": "location",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         }
       ],
       "CanInclude": [
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeEventTime",
           "Value": "event_time",
-          "Description": "include associated event_time",
+          "Description": "Include related \u0060EventTime\u0060 resources in the response.",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         },
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeLocation",
           "Value": "location",
-          "Description": "include associated location",
+          "Description": "Include related \u0060Location\u0060 resources in the response.",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         }
@@ -2044,98 +2264,105 @@
       "CanOrderBy": [],
       "CanQueryBy": [
         {
-          "Name": "created_at",
+          "ClrMethodName": "WhereCreatedAt",
+          "ClrType": "System.DateTime",
           "Parameter": "where[created_at]",
-          "Type": "date_time",
-          "Description": "Query on a specific created_at",
-          "Example": "?where[created_at]=2000-01-01T12:00:00Z"
+          "Description": "Query response items by the \u0060CreatedAt\u0060 attribute."
         },
         {
-          "Name": "updated_at",
+          "ClrMethodName": "WhereUpdatedAt",
+          "ClrType": "System.DateTime",
           "Parameter": "where[updated_at]",
-          "Type": "date_time",
-          "Description": "Query on a specific updated_at",
-          "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
+          "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
         }
       ],
       "Postable": false,
       "Patchable": false,
       "Deletable": false,
-      "GenerateResource": true,
-      "GenerateClients": true
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true
     },
     {
-      "Id": "location_label",
-      "Name": "LocationLabel",
-      "ResourceName": "LocationLabelResource",
+      "JsonName": "location_label",
+      "ResourceClrType": "LocationLabelResource",
+      "AttributesClrType": "LocationLabel",
       "Description": "Says how many of a given label to print for this location and\nwhether to print it for regulars, guests, and/or volunteers.\n",
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "created_at",
+          "ClrName": "CreatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "for_guest",
-          "Type": "boolean",
-          "Description": null
+          "JsonName": "for_guest",
+          "ClrName": "ForGuest",
+          "ClrType": "bool",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "for_regular",
-          "Type": "boolean",
-          "Description": null
+          "JsonName": "for_regular",
+          "ClrName": "ForRegular",
+          "ClrType": "bool",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "for_volunteer",
-          "Type": "boolean",
-          "Description": null
+          "JsonName": "for_volunteer",
+          "ClrName": "ForVolunteer",
+          "ClrType": "bool",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "quantity",
-          "Type": "integer",
-          "Description": null
+          "JsonName": "quantity",
+          "ClrName": "Quantity",
+          "ClrType": "int",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "updated_at",
+          "ClrName": "UpdatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         }
       ],
       "Relationships": [],
+      "Actions": [],
       "Children": [
         {
-          "Name": "label",
-          "Type": "label",
-          "Description": null,
+          "JsonName": "label",
+          "ClrName": "Label",
+          "ClrAttributesType": "Label",
+          "Description": "Associated \u0060Label\u0060.",
           "Slug": "label",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "location",
-          "Type": "location",
-          "Description": null,
+          "JsonName": "location",
+          "ClrName": "Location",
+          "ClrAttributesType": "Location",
+          "Description": "Associated \u0060Location\u0060.",
           "Slug": "location",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         }
       ],
       "CanInclude": [
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeLabel",
           "Value": "label",
-          "Description": "include associated label",
+          "Description": "Include related \u0060Label\u0060 resources in the response.",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         },
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeLocation",
           "Value": "location",
-          "Description": "include associated location",
+          "Description": "Include related \u0060Location\u0060 resources in the response.",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         }
@@ -2145,64 +2372,71 @@
       "Postable": false,
       "Patchable": false,
       "Deletable": false,
-      "GenerateResource": true,
-      "GenerateClients": true
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true
     },
     {
-      "Id": "option",
-      "Name": "Option",
-      "ResourceName": "OptionResource",
+      "JsonName": "option",
+      "ResourceClrType": "OptionResource",
+      "AttributesClrType": "Option",
       "Description": "An option which an attendee may select when checking in.\n\nOptions may have extra labels associated with them, denoted by \u0060label\u0060 and \u0060quantity\u0060.\n",
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "body",
-          "Type": "string",
-          "Description": null
+          "JsonName": "body",
+          "ClrName": "Body",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "created_at",
+          "ClrName": "CreatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "quantity",
-          "Type": "integer",
-          "Description": null
+          "JsonName": "quantity",
+          "ClrName": "Quantity",
+          "ClrType": "int",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "updated_at",
+          "ClrName": "UpdatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         }
       ],
       "Relationships": [],
+      "Actions": [],
       "Children": [
         {
-          "Name": "check_ins",
-          "Type": "check_in",
-          "Description": null,
+          "JsonName": "check_ins",
+          "ClrName": "CheckIns",
+          "ClrAttributesType": "CheckIn",
+          "Description": "Associated \u0060CheckIns\u0060.",
           "Slug": "check_ins",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "label",
-          "Type": "label",
-          "Description": null,
+          "JsonName": "label",
+          "ClrName": "Label",
+          "ClrAttributesType": "Label",
+          "Description": "Associated \u0060Label\u0060.",
           "Slug": "label",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         }
       ],
       "CanInclude": [
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeLabel",
           "Value": "label",
-          "Description": "include associated label",
+          "Description": "Include related \u0060Label\u0060 resources in the response.",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         }
@@ -2212,216 +2446,250 @@
       "Postable": false,
       "Patchable": false,
       "Deletable": false,
-      "GenerateResource": true,
-      "GenerateClients": true
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true
     },
     {
-      "Id": "organization",
-      "Name": "Organization",
-      "ResourceName": "OrganizationResource",
+      "JsonName": "organization",
+      "ResourceClrType": "OrganizationResource",
+      "AttributesClrType": "Organization",
       "Description": "An organization which has people and events.\nThis contains its date format \u0026 time zone preferences.\n",
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "avatar_url",
-          "Type": "string",
-          "Description": null
+          "JsonName": "avatar_url",
+          "ClrName": "AvatarUrl",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "created_at",
+          "ClrName": "CreatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "daily_check_ins",
-          "Type": "integer",
-          "Description": null
+          "JsonName": "daily_check_ins",
+          "ClrName": "DailyCheckIns",
+          "ClrType": "int",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "date_format_pattern",
-          "Type": "string",
-          "Description": null
+          "JsonName": "date_format_pattern",
+          "ClrName": "DateFormatPattern",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "name",
-          "Type": "string",
-          "Description": null
+          "JsonName": "name",
+          "ClrName": "Name",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "time_zone",
-          "Type": "string",
-          "Description": null
+          "JsonName": "time_zone",
+          "ClrName": "TimeZone",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "time_zone_olson",
-          "Type": "string",
-          "Description": null
+          "JsonName": "time_zone_olson",
+          "ClrName": "TimeZoneOlson",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "updated_at",
+          "ClrName": "UpdatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         }
       ],
       "Relationships": [],
+      "Actions": [],
       "Children": [
         {
-          "Name": "check_ins",
-          "Type": "check_in",
-          "Description": null,
+          "JsonName": "check_ins",
+          "ClrName": "CheckIns",
+          "ClrAttributesType": "CheckIn",
+          "Description": "Associated \u0060CheckIns\u0060.",
           "Slug": "check_ins",
           "Filters": [
             {
-              "Name": "attendee",
-              "Description": null
+              "ClrMethodName": "FilterByAttendee",
+              "Value": "attendee",
+              "Description": "Filter results by the \u0060Attendee\u0060 scope."
             },
             {
-              "Name": "checked_out",
-              "Description": null
+              "ClrMethodName": "FilterByCheckedOut",
+              "Value": "checked_out",
+              "Description": "Filter results by the \u0060CheckedOut\u0060 scope."
             },
             {
-              "Name": "first_time",
-              "Description": null
+              "ClrMethodName": "FilterByFirstTime",
+              "Value": "first_time",
+              "Description": "Filter results by the \u0060FirstTime\u0060 scope."
             },
             {
-              "Name": "guest",
-              "Description": null
+              "ClrMethodName": "FilterByGuest",
+              "Value": "guest",
+              "Description": "Filter results by the \u0060Guest\u0060 scope."
             },
             {
-              "Name": "not_checked_out",
-              "Description": null
+              "ClrMethodName": "FilterByNotCheckedOut",
+              "Value": "not_checked_out",
+              "Description": "Filter results by the \u0060NotCheckedOut\u0060 scope."
             },
             {
-              "Name": "not_one_time_guest",
-              "Description": null
+              "ClrMethodName": "FilterByNotOneTimeGuest",
+              "Value": "not_one_time_guest",
+              "Description": "Filter results by the \u0060NotOneTimeGuest\u0060 scope."
             },
             {
-              "Name": "one_time_guest",
-              "Description": null
+              "ClrMethodName": "FilterByOneTimeGuest",
+              "Value": "one_time_guest",
+              "Description": "Filter results by the \u0060OneTimeGuest\u0060 scope."
             },
             {
-              "Name": "regular",
-              "Description": null
+              "ClrMethodName": "FilterByRegular",
+              "Value": "regular",
+              "Description": "Filter results by the \u0060Regular\u0060 scope."
             },
             {
-              "Name": "volunteer",
-              "Description": null
+              "ClrMethodName": "FilterByVolunteer",
+              "Value": "volunteer",
+              "Description": "Filter results by the \u0060Volunteer\u0060 scope."
             }
           ],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "event_times",
-          "Type": "event_time",
-          "Description": null,
+          "JsonName": "event_times",
+          "ClrName": "EventTimes",
+          "ClrAttributesType": "EventTime",
+          "Description": "Associated \u0060EventTimes\u0060.",
           "Slug": "event_times",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "events",
-          "Type": "event",
-          "Description": null,
+          "JsonName": "events",
+          "ClrName": "Events",
+          "ClrAttributesType": "Event",
+          "Description": "Associated \u0060Events\u0060.",
           "Slug": "events",
           "Filters": [
             {
-              "Name": "archived",
-              "Description": null
+              "ClrMethodName": "FilterByArchived",
+              "Value": "archived",
+              "Description": "Filter results by the \u0060Archived\u0060 scope."
             },
             {
-              "Name": "for_campus",
-              "Description": null
+              "ClrMethodName": "FilterByForCampus",
+              "Value": "for_campus",
+              "Description": "Filter results by the \u0060ForCampus\u0060 scope."
             },
             {
-              "Name": "for_headcounts",
-              "Description": null
+              "ClrMethodName": "FilterByForHeadcounts",
+              "Value": "for_headcounts",
+              "Description": "Filter results by the \u0060ForHeadcounts\u0060 scope."
             },
             {
-              "Name": "for_registrations",
-              "Description": null
+              "ClrMethodName": "FilterByForRegistrations",
+              "Value": "for_registrations",
+              "Description": "Filter results by the \u0060ForRegistrations\u0060 scope."
             },
             {
-              "Name": "not_archived",
-              "Description": null
+              "ClrMethodName": "FilterByNotArchived",
+              "Value": "not_archived",
+              "Description": "Filter results by the \u0060NotArchived\u0060 scope."
             }
           ],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "headcounts",
-          "Type": "headcount",
-          "Description": null,
+          "JsonName": "headcounts",
+          "ClrName": "Headcounts",
+          "ClrAttributesType": "Headcount",
+          "Description": "Associated \u0060Headcounts\u0060.",
           "Slug": "headcounts",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "integration_links",
-          "Type": "integration_link",
-          "Description": null,
+          "JsonName": "integration_links",
+          "ClrName": "IntegrationLinks",
+          "ClrAttributesType": "IntegrationLink",
+          "Description": "Associated \u0060IntegrationLinks\u0060.",
           "Slug": "integration_links",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "labels",
-          "Type": "label",
-          "Description": null,
+          "JsonName": "labels",
+          "ClrName": "Labels",
+          "ClrAttributesType": "Label",
+          "Description": "Associated \u0060Labels\u0060.",
           "Slug": "labels",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "options",
-          "Type": "option",
-          "Description": null,
+          "JsonName": "options",
+          "ClrName": "Options",
+          "ClrAttributesType": "Option",
+          "Description": "Associated \u0060Options\u0060.",
           "Slug": "options",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "passes",
-          "Type": "pass",
-          "Description": null,
+          "JsonName": "passes",
+          "ClrName": "Passes",
+          "ClrAttributesType": "Pass",
+          "Description": "Associated \u0060Passes\u0060.",
           "Slug": "passes",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "people",
-          "Type": "person",
-          "Description": null,
+          "JsonName": "people",
+          "ClrName": "People",
+          "ClrAttributesType": "Person",
+          "Description": "Associated \u0060People\u0060.",
           "Slug": "people",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "stations",
-          "Type": "station",
-          "Description": null,
+          "JsonName": "stations",
+          "ClrName": "Stations",
+          "ClrAttributesType": "Station",
+          "Description": "Associated \u0060Stations\u0060.",
           "Slug": "stations",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "themes",
-          "Type": "theme",
-          "Description": null,
+          "JsonName": "themes",
+          "ClrName": "Themes",
+          "ClrAttributesType": "Theme",
+          "Description": "Associated \u0060Themes\u0060.",
           "Slug": "themes",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         }
       ],
       "CanInclude": [],
@@ -2430,55 +2698,61 @@
       "Postable": false,
       "Patchable": false,
       "Deletable": false,
-      "GenerateResource": true,
-      "GenerateClients": true
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true
     },
     {
-      "Id": "pass",
-      "Name": "Pass",
-      "ResourceName": "PassResource",
+      "JsonName": "pass",
+      "ResourceClrType": "PassResource",
+      "AttributesClrType": "Pass",
       "Description": "Enables quick lookup of a person via barcode reader.\n",
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "code",
-          "Type": "string",
-          "Description": null
+          "JsonName": "code",
+          "ClrName": "Code",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "created_at",
+          "ClrName": "CreatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "kind",
-          "Type": "string",
+          "JsonName": "kind",
+          "ClrName": "Kind",
+          "ClrType": "string",
           "Description": "Possible values: \u0060barcode\u0060 or \u0060pkpass\u0060.\n\nUsing the \u0060pkpass\u0060 value creates a mobile pass and sends an email to the associated person.\n"
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "updated_at",
+          "ClrName": "UpdatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         }
       ],
       "Relationships": [],
+      "Actions": [],
       "Children": [
         {
-          "Name": "person",
-          "Type": "person",
-          "Description": null,
+          "JsonName": "person",
+          "ClrName": "Person",
+          "ClrAttributesType": "Person",
+          "Description": "Associated \u0060Person\u0060.",
           "Slug": "person",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         }
       ],
       "CanInclude": [
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludePerson",
           "Value": "person",
-          "Description": "include associated person",
+          "Description": "Include related \u0060Person\u0060 resources in the response.",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         }
@@ -2486,389 +2760,427 @@
       "CanOrderBy": [],
       "CanQueryBy": [
         {
-          "Name": "code",
+          "ClrMethodName": "WhereCode",
+          "ClrType": "string",
           "Parameter": "where[code]",
-          "Type": "string",
-          "Description": "Query on a specific code",
-          "Example": "?where[code]=string"
+          "Description": "Query response items by the \u0060Code\u0060 attribute."
         }
       ],
       "Postable": false,
       "Patchable": false,
       "Deletable": false,
-      "GenerateResource": true,
-      "GenerateClients": true
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true
     },
     {
-      "Id": "person",
-      "Name": "Person",
-      "ResourceName": "PersonResource",
+      "JsonName": "person",
+      "ResourceClrType": "PersonResource",
+      "AttributesClrType": "Person",
       "Description": "An attendee, volunteer or administrator.\n\n_Usually_, a person who checked in will be present as a \u0060Person\u0060. In some cases, they may not be present:\n- The person was manually deleted from the admin interface\n- The check-in was created as a \u0022Visitor - Label Only\u0022 (which doesn\u0027t create a corresponding person record)\n\n",
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "addresses",
-          "Type": "array",
-          "Description": null
+          "JsonName": "addresses",
+          "ClrName": "Addresses",
+          "ClrType": "System.Text.Json.Nodes.JsonArray",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "avatar_url",
-          "Type": "string",
-          "Description": null
+          "JsonName": "avatar_url",
+          "ClrName": "AvatarUrl",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "birthdate",
-          "Type": "date",
-          "Description": null
+          "JsonName": "birthdate",
+          "ClrName": "Birthdate",
+          "ClrType": "System.DateOnly",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "check_in_count",
-          "Type": "integer",
-          "Description": null
+          "JsonName": "check_in_count",
+          "ClrName": "CheckInCount",
+          "ClrType": "int",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "child",
-          "Type": "boolean",
-          "Description": null
+          "JsonName": "child",
+          "ClrName": "Child",
+          "ClrType": "bool",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "created_at",
+          "ClrName": "CreatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "demographic_avatar_url",
-          "Type": "string",
-          "Description": null
+          "JsonName": "demographic_avatar_url",
+          "ClrName": "DemographicAvatarUrl",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "email_addresses",
-          "Type": "array",
-          "Description": null
+          "JsonName": "email_addresses",
+          "ClrName": "EmailAddresses",
+          "ClrType": "System.Text.Json.Nodes.JsonArray",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "first_name",
-          "Type": "string",
-          "Description": null
+          "JsonName": "first_name",
+          "ClrName": "FirstName",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "gender",
-          "Type": "string",
-          "Description": null
+          "JsonName": "gender",
+          "ClrName": "Gender",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "grade",
-          "Type": "integer",
-          "Description": null
+          "JsonName": "grade",
+          "ClrName": "Grade",
+          "ClrType": "int",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "headcounter",
-          "Type": "boolean",
-          "Description": null
+          "JsonName": "headcounter",
+          "ClrName": "Headcounter",
+          "ClrType": "bool",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "ignore_filters",
-          "Type": "boolean",
-          "Description": null
+          "JsonName": "ignore_filters",
+          "ClrName": "IgnoreFilters",
+          "ClrType": "bool",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "last_checked_in_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "last_checked_in_at",
+          "ClrName": "LastCheckedInAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "last_name",
-          "Type": "string",
-          "Description": null
+          "JsonName": "last_name",
+          "ClrName": "LastName",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "medical_notes",
-          "Type": "string",
-          "Description": null
+          "JsonName": "medical_notes",
+          "ClrName": "MedicalNotes",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "middle_name",
-          "Type": "string",
-          "Description": null
+          "JsonName": "middle_name",
+          "ClrName": "MiddleName",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "name",
-          "Type": "string",
-          "Description": null
+          "JsonName": "name",
+          "ClrName": "Name",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "name_prefix",
-          "Type": "string",
-          "Description": null
+          "JsonName": "name_prefix",
+          "ClrName": "NamePrefix",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "name_suffix",
-          "Type": "string",
-          "Description": null
+          "JsonName": "name_suffix",
+          "ClrName": "NameSuffix",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "passed_background_check",
-          "Type": "boolean",
-          "Description": null
+          "JsonName": "passed_background_check",
+          "ClrName": "PassedBackgroundCheck",
+          "ClrType": "bool",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "permission",
-          "Type": "string",
-          "Description": null
+          "JsonName": "permission",
+          "ClrName": "Permission",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "phone_numbers",
-          "Type": "array",
-          "Description": null
+          "JsonName": "phone_numbers",
+          "ClrName": "PhoneNumbers",
+          "ClrType": "System.Text.Json.Nodes.JsonArray",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "top_permission",
-          "Type": "string",
-          "Description": null
+          "JsonName": "top_permission",
+          "ClrName": "TopPermission",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "updated_at",
+          "ClrName": "UpdatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         }
       ],
       "Relationships": [],
+      "Actions": [],
       "Children": [
         {
-          "Name": "check_ins",
-          "Type": "check_in",
-          "Description": null,
+          "JsonName": "check_ins",
+          "ClrName": "CheckIns",
+          "ClrAttributesType": "CheckIn",
+          "Description": "Associated \u0060CheckIns\u0060.",
           "Slug": "check_ins",
           "Filters": [
             {
-              "Name": "attendee",
-              "Description": null
+              "ClrMethodName": "FilterByAttendee",
+              "Value": "attendee",
+              "Description": "Filter results by the \u0060Attendee\u0060 scope."
             },
             {
-              "Name": "checked_out",
-              "Description": null
+              "ClrMethodName": "FilterByCheckedOut",
+              "Value": "checked_out",
+              "Description": "Filter results by the \u0060CheckedOut\u0060 scope."
             },
             {
-              "Name": "first_time",
-              "Description": null
+              "ClrMethodName": "FilterByFirstTime",
+              "Value": "first_time",
+              "Description": "Filter results by the \u0060FirstTime\u0060 scope."
             },
             {
-              "Name": "guest",
-              "Description": null
+              "ClrMethodName": "FilterByGuest",
+              "Value": "guest",
+              "Description": "Filter results by the \u0060Guest\u0060 scope."
             },
             {
-              "Name": "not_checked_out",
-              "Description": null
+              "ClrMethodName": "FilterByNotCheckedOut",
+              "Value": "not_checked_out",
+              "Description": "Filter results by the \u0060NotCheckedOut\u0060 scope."
             },
             {
-              "Name": "not_one_time_guest",
-              "Description": null
+              "ClrMethodName": "FilterByNotOneTimeGuest",
+              "Value": "not_one_time_guest",
+              "Description": "Filter results by the \u0060NotOneTimeGuest\u0060 scope."
             },
             {
-              "Name": "one_time_guest",
-              "Description": null
+              "ClrMethodName": "FilterByOneTimeGuest",
+              "Value": "one_time_guest",
+              "Description": "Filter results by the \u0060OneTimeGuest\u0060 scope."
             },
             {
-              "Name": "regular",
-              "Description": null
+              "ClrMethodName": "FilterByRegular",
+              "Value": "regular",
+              "Description": "Filter results by the \u0060Regular\u0060 scope."
             },
             {
-              "Name": "volunteer",
-              "Description": null
+              "ClrMethodName": "FilterByVolunteer",
+              "Value": "volunteer",
+              "Description": "Filter results by the \u0060Volunteer\u0060 scope."
             }
           ],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "organization",
-          "Type": "organization",
-          "Description": null,
+          "JsonName": "organization",
+          "ClrName": "Organization",
+          "ClrAttributesType": "Organization",
+          "Description": "Associated \u0060Organization\u0060.",
           "Slug": "organization",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "passes",
-          "Type": "pass",
-          "Description": null,
+          "JsonName": "passes",
+          "ClrName": "Passes",
+          "ClrAttributesType": "Pass",
+          "Description": "Associated \u0060Passes\u0060.",
           "Slug": "passes",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "person_events",
-          "Type": "person_event",
-          "Description": null,
+          "JsonName": "person_events",
+          "ClrName": "PersonEvents",
+          "ClrAttributesType": "PersonEvent",
+          "Description": "Associated \u0060PersonEvents\u0060.",
           "Slug": "person_events",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         }
       ],
       "CanInclude": [
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeOrganization",
           "Value": "organization",
-          "Description": "include associated organization",
+          "Description": "Include related \u0060Organization\u0060 resources in the response.",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [
         {
-          "Parameter": "order",
+          "ClrMethodName": "OrderByCheckInCount",
           "Value": "check_in_count",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-check_in_count) to reverse the order"
+          "Description": "Sort response items by the \u0060CheckInCount\u0060 attribute."
         },
         {
-          "Parameter": "order",
+          "ClrMethodName": "OrderByFirstName",
           "Value": "first_name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-first_name) to reverse the order"
+          "Description": "Sort response items by the \u0060FirstName\u0060 attribute."
         },
         {
-          "Parameter": "order",
+          "ClrMethodName": "OrderByLastCheckedInAt",
           "Value": "last_checked_in_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-last_checked_in_at) to reverse the order"
+          "Description": "Sort response items by the \u0060LastCheckedInAt\u0060 attribute."
         },
         {
-          "Parameter": "order",
+          "ClrMethodName": "OrderByLastName",
           "Value": "last_name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-last_name) to reverse the order"
+          "Description": "Sort response items by the \u0060LastName\u0060 attribute."
         }
       ],
       "CanQueryBy": [
         {
-          "Name": "headcounter",
+          "ClrMethodName": "WhereHeadcounter",
+          "ClrType": "bool",
           "Parameter": "where[headcounter]",
-          "Type": "boolean",
-          "Description": "Query on a specific headcounter",
-          "Example": "?where[headcounter]=true"
+          "Description": "Query response items by the \u0060Headcounter\u0060 attribute."
         },
         {
-          "Name": "ignore_filters",
+          "ClrMethodName": "WhereIgnoreFilters",
+          "ClrType": "bool",
           "Parameter": "where[ignore_filters]",
-          "Type": "boolean",
-          "Description": "Query on a specific ignore_filters",
-          "Example": "?where[ignore_filters]=true"
+          "Description": "Query response items by the \u0060IgnoreFilters\u0060 attribute."
         },
         {
-          "Name": "permission",
+          "ClrMethodName": "WherePermission",
+          "ClrType": "string",
           "Parameter": "where[permission]",
-          "Type": "string",
-          "Description": "Query on a specific permission",
-          "Example": "?where[permission]=string"
+          "Description": "Query response items by the \u0060Permission\u0060 attribute."
         },
         {
-          "Name": "search_name",
+          "ClrMethodName": "WhereSearchName",
+          "ClrType": "string",
           "Parameter": "where[search_name]",
-          "Type": "string",
-          "Description": "Search by person name (first, last, combination)",
-          "Example": "?where[search_name]=string"
+          "Description": "Query response items by the \u0060SearchName\u0060 attribute."
         }
       ],
       "Postable": false,
       "Patchable": false,
       "Deletable": false,
-      "GenerateResource": true,
-      "GenerateClients": true
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true
     },
     {
-      "Id": "person_event",
-      "Name": "PersonEvent",
-      "ResourceName": "PersonEventResource",
+      "JsonName": "person_event",
+      "ResourceClrType": "PersonEventResource",
+      "AttributesClrType": "PersonEvent",
       "Description": "Counts a person\u0027s attendence for a given event.\n",
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "check_in_count",
-          "Type": "integer",
-          "Description": null
+          "JsonName": "check_in_count",
+          "ClrName": "CheckInCount",
+          "ClrType": "int",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "created_at",
+          "ClrName": "CreatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "updated_at",
+          "ClrName": "UpdatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         }
       ],
       "Relationships": [],
+      "Actions": [],
       "Children": [
         {
-          "Name": "event",
-          "Type": "event",
-          "Description": null,
+          "JsonName": "event",
+          "ClrName": "Event",
+          "ClrAttributesType": "Event",
+          "Description": "Associated \u0060Event\u0060.",
           "Slug": "event",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "first_check_in",
-          "Type": "check_in",
-          "Description": null,
+          "JsonName": "first_check_in",
+          "ClrName": "FirstCheckIn",
+          "ClrAttributesType": "CheckIn",
+          "Description": "Associated \u0060FirstCheckIn\u0060.",
           "Slug": "first_check_in",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "last_check_in",
-          "Type": "check_in",
-          "Description": null,
+          "JsonName": "last_check_in",
+          "ClrName": "LastCheckIn",
+          "ClrAttributesType": "CheckIn",
+          "Description": "Associated \u0060LastCheckIn\u0060.",
           "Slug": "last_check_in",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "person",
-          "Type": "person",
-          "Description": null,
+          "JsonName": "person",
+          "ClrName": "Person",
+          "ClrAttributesType": "Person",
+          "Description": "Associated \u0060Person\u0060.",
           "Slug": "person",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         }
       ],
       "CanInclude": [
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeEvent",
           "Value": "event",
-          "Description": "include associated event",
+          "Description": "Include related \u0060Event\u0060 resources in the response.",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         },
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeFirstCheckIn",
           "Value": "first_check_in",
-          "Description": "include associated first_check_in",
+          "Description": "Include related \u0060FirstCheckIn\u0060 resources in the response.",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         },
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeLastCheckIn",
           "Value": "last_check_in",
-          "Description": "include associated last_check_in",
+          "Description": "Include related \u0060LastCheckIn\u0060 resources in the response.",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         },
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludePerson",
           "Value": "person",
-          "Description": "include associated person",
+          "Description": "Include related \u0060Person\u0060 resources in the response.",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         }
@@ -2878,18 +3190,19 @@
       "Postable": false,
       "Patchable": false,
       "Deletable": false,
-      "GenerateResource": true,
-      "GenerateClients": true
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true
     },
     {
-      "Id": "pre_check",
-      "Name": "PreCheck",
-      "ResourceName": "PreCheckResource",
-      "Description": null,
+      "JsonName": "pre_check",
+      "ResourceClrType": "PreCheckResource",
+      "AttributesClrType": "PreCheck",
+      "Description": "Planning Center does not provide a description for this resource.",
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [],
       "Relationships": [],
+      "Actions": [],
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
@@ -2897,59 +3210,68 @@
       "Postable": false,
       "Patchable": false,
       "Deletable": false,
-      "GenerateResource": true,
-      "GenerateClients": true
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true
     },
     {
-      "Id": "roster_list_person",
-      "Name": "RosterListPerson",
-      "ResourceName": "RosterListPersonResource",
-      "Description": null,
+      "JsonName": "roster_list_person",
+      "ResourceClrType": "RosterListPersonResource",
+      "AttributesClrType": "RosterListPerson",
+      "Description": "Planning Center does not provide a description for this resource.",
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "birthdate",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "birthdate",
+          "ClrName": "Birthdate",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "demographic_avatar_url",
-          "Type": "string",
-          "Description": null
+          "JsonName": "demographic_avatar_url",
+          "ClrName": "DemographicAvatarUrl",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "first_name",
-          "Type": "string",
-          "Description": null
+          "JsonName": "first_name",
+          "ClrName": "FirstName",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "gender",
-          "Type": "string",
-          "Description": null
+          "JsonName": "gender",
+          "ClrName": "Gender",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "grade",
-          "Type": "string",
-          "Description": null
+          "JsonName": "grade",
+          "ClrName": "Grade",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "last_name",
-          "Type": "string",
-          "Description": null
+          "JsonName": "last_name",
+          "ClrName": "LastName",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "medical_notes",
-          "Type": "string",
-          "Description": null
+          "JsonName": "medical_notes",
+          "ClrName": "MedicalNotes",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "name",
-          "Type": "string",
-          "Description": null
+          "JsonName": "name",
+          "ClrName": "Name",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         }
       ],
       "Relationships": [],
+      "Actions": [],
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
@@ -2957,215 +3279,247 @@
       "Postable": false,
       "Patchable": false,
       "Deletable": false,
-      "GenerateResource": true,
-      "GenerateClients": true
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true
     },
     {
-      "Id": "station",
-      "Name": "Station",
-      "ResourceName": "StationResource",
+      "JsonName": "station",
+      "ResourceClrType": "StationResource",
+      "AttributesClrType": "Station",
       "Description": "A device where people can be checked in.\nA device may also be connected to a printer\nand print labels for itself or other stations.\n",
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "check_in_count",
-          "Type": "integer",
+          "JsonName": "check_in_count",
+          "ClrName": "CheckInCount",
+          "ClrType": "int",
           "Description": "Only available when requested with the \u0060?fields\u0060 param"
         },
         {
-          "Name": "closes_at",
-          "Type": "date_time",
+          "JsonName": "closes_at",
+          "ClrName": "ClosesAt",
+          "ClrType": "System.DateTime",
           "Description": "Only available when requested with the \u0060?fields\u0060 param"
         },
         {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "created_at",
+          "ClrName": "CreatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "input_type",
-          "Type": "string",
+          "JsonName": "input_type",
+          "ClrName": "InputType",
+          "ClrType": "string",
           "Description": "Possible values: \u0060scanner\u0060 or \u0060keypad\u0060"
         },
         {
-          "Name": "input_type_options",
-          "Type": "string",
+          "JsonName": "input_type_options",
+          "ClrName": "InputTypeOptions",
+          "ClrType": "string",
           "Description": "Possible values: \u0060all_input_types\u0060, \u0060only_keypad\u0060, or \u0060only_scanner\u0060"
         },
         {
-          "Name": "mode",
-          "Type": "integer",
-          "Description": null
+          "JsonName": "mode",
+          "ClrName": "Mode",
+          "ClrType": "int",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "name",
-          "Type": "string",
-          "Description": null
+          "JsonName": "name",
+          "ClrName": "Name",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "next_shows_at",
-          "Type": "date_time",
+          "JsonName": "next_shows_at",
+          "ClrName": "NextShowsAt",
+          "ClrType": "System.DateTime",
           "Description": "Only available when requested with the \u0060?fields\u0060 param"
         },
         {
-          "Name": "online",
-          "Type": "boolean",
-          "Description": null
+          "JsonName": "online",
+          "ClrName": "Online",
+          "ClrType": "bool",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "open_for_check_in",
-          "Type": "boolean",
+          "JsonName": "open_for_check_in",
+          "ClrName": "OpenForCheckIn",
+          "ClrType": "bool",
           "Description": "Only available when requested with the \u0060?fields\u0060 param"
         },
         {
-          "Name": "timeout_seconds",
-          "Type": "integer",
-          "Description": null
+          "JsonName": "timeout_seconds",
+          "ClrName": "TimeoutSeconds",
+          "ClrType": "int",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "updated_at",
+          "ClrName": "UpdatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         }
       ],
       "Relationships": [],
+      "Actions": [],
       "Children": [
         {
-          "Name": "check_in_groups",
-          "Type": "check_in_group",
-          "Description": null,
+          "JsonName": "check_in_groups",
+          "ClrName": "CheckInGroups",
+          "ClrAttributesType": "CheckInGroup",
+          "Description": "Associated \u0060CheckInGroups\u0060.",
           "Slug": "check_in_groups",
           "Filters": [
             {
-              "Name": "canceled",
-              "Description": null
+              "ClrMethodName": "FilterByCanceled",
+              "Value": "canceled",
+              "Description": "Filter results by the \u0060Canceled\u0060 scope."
             },
             {
-              "Name": "printed",
-              "Description": null
+              "ClrMethodName": "FilterByPrinted",
+              "Value": "printed",
+              "Description": "Filter results by the \u0060Printed\u0060 scope."
             },
             {
-              "Name": "ready",
-              "Description": null
+              "ClrMethodName": "FilterByReady",
+              "Value": "ready",
+              "Description": "Filter results by the \u0060Ready\u0060 scope."
             },
             {
-              "Name": "skipped",
-              "Description": null
+              "ClrMethodName": "FilterBySkipped",
+              "Value": "skipped",
+              "Description": "Filter results by the \u0060Skipped\u0060 scope."
             }
           ],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "checked_in_at_check_ins",
-          "Type": "check_in",
-          "Description": null,
+          "JsonName": "checked_in_at_check_ins",
+          "ClrName": "CheckedInAtCheckIns",
+          "ClrAttributesType": "CheckIn",
+          "Description": "Associated \u0060CheckedInAtCheckIns\u0060.",
           "Slug": "checked_in_at_check_ins",
           "Filters": [
             {
-              "Name": "attendee",
-              "Description": null
+              "ClrMethodName": "FilterByAttendee",
+              "Value": "attendee",
+              "Description": "Filter results by the \u0060Attendee\u0060 scope."
             },
             {
-              "Name": "checked_out",
-              "Description": null
+              "ClrMethodName": "FilterByCheckedOut",
+              "Value": "checked_out",
+              "Description": "Filter results by the \u0060CheckedOut\u0060 scope."
             },
             {
-              "Name": "first_time",
-              "Description": null
+              "ClrMethodName": "FilterByFirstTime",
+              "Value": "first_time",
+              "Description": "Filter results by the \u0060FirstTime\u0060 scope."
             },
             {
-              "Name": "guest",
-              "Description": null
+              "ClrMethodName": "FilterByGuest",
+              "Value": "guest",
+              "Description": "Filter results by the \u0060Guest\u0060 scope."
             },
             {
-              "Name": "not_checked_out",
-              "Description": null
+              "ClrMethodName": "FilterByNotCheckedOut",
+              "Value": "not_checked_out",
+              "Description": "Filter results by the \u0060NotCheckedOut\u0060 scope."
             },
             {
-              "Name": "not_one_time_guest",
-              "Description": null
+              "ClrMethodName": "FilterByNotOneTimeGuest",
+              "Value": "not_one_time_guest",
+              "Description": "Filter results by the \u0060NotOneTimeGuest\u0060 scope."
             },
             {
-              "Name": "one_time_guest",
-              "Description": null
+              "ClrMethodName": "FilterByOneTimeGuest",
+              "Value": "one_time_guest",
+              "Description": "Filter results by the \u0060OneTimeGuest\u0060 scope."
             },
             {
-              "Name": "regular",
-              "Description": null
+              "ClrMethodName": "FilterByRegular",
+              "Value": "regular",
+              "Description": "Filter results by the \u0060Regular\u0060 scope."
             },
             {
-              "Name": "volunteer",
-              "Description": null
+              "ClrMethodName": "FilterByVolunteer",
+              "Value": "volunteer",
+              "Description": "Filter results by the \u0060Volunteer\u0060 scope."
             }
           ],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "event",
-          "Type": "event",
-          "Description": null,
+          "JsonName": "event",
+          "ClrName": "Event",
+          "ClrAttributesType": "Event",
+          "Description": "Associated \u0060Event\u0060.",
           "Slug": "event",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "location",
-          "Type": "location",
-          "Description": null,
+          "JsonName": "location",
+          "ClrName": "Location",
+          "ClrAttributesType": "Location",
+          "Description": "Associated \u0060Location\u0060.",
           "Slug": "location",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "print_station",
-          "Type": "station",
-          "Description": null,
+          "JsonName": "print_station",
+          "ClrName": "PrintStation",
+          "ClrAttributesType": "Station",
+          "Description": "Associated \u0060PrintStation\u0060.",
           "Slug": "print_station",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "theme",
-          "Type": "theme",
-          "Description": null,
+          "JsonName": "theme",
+          "ClrName": "Theme",
+          "ClrAttributesType": "Theme",
+          "Description": "Associated \u0060Theme\u0060.",
           "Slug": "theme",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         }
       ],
       "CanInclude": [
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeEvent",
           "Value": "event",
-          "Description": "include associated event",
+          "Description": "Include related \u0060Event\u0060 resources in the response.",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         },
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeLocation",
           "Value": "location",
-          "Description": "include associated location",
+          "Description": "Include related \u0060Location\u0060 resources in the response.",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         },
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludePrintStation",
           "Value": "print_station",
-          "Description": "include associated print_station",
+          "Description": "Include related \u0060PrintStation\u0060 resources in the response.",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         },
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeTheme",
           "Value": "theme",
-          "Description": "include associated theme",
+          "Description": "Include related \u0060Theme\u0060 resources in the response.",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         }
@@ -3175,64 +3529,74 @@
       "Postable": false,
       "Patchable": false,
       "Deletable": false,
-      "GenerateResource": true,
-      "GenerateClients": true
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true
     },
     {
-      "Id": "theme",
-      "Name": "Theme",
-      "ResourceName": "ThemeResource",
+      "JsonName": "theme",
+      "ResourceClrType": "ThemeResource",
+      "AttributesClrType": "Theme",
       "Description": "A custom style which may be applied to stations.\n",
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "background_color",
-          "Type": "string",
-          "Description": null
+          "JsonName": "background_color",
+          "ClrName": "BackgroundColor",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "color",
-          "Type": "string",
-          "Description": null
+          "JsonName": "color",
+          "ClrName": "Color",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "created_at",
+          "ClrName": "CreatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "image",
-          "Type": "check_ins_image",
-          "Description": null
+          "JsonName": "image",
+          "ClrName": "Image",
+          "ClrType": "System.Text.Json.JsonElement",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "image_thumbnail",
-          "Type": "string",
-          "Description": null
+          "JsonName": "image_thumbnail",
+          "ClrName": "ImageThumbnail",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "mode",
-          "Type": "string",
-          "Description": null
+          "JsonName": "mode",
+          "ClrName": "Mode",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "name",
-          "Type": "string",
-          "Description": null
+          "JsonName": "name",
+          "ClrName": "Name",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "text_color",
-          "Type": "string",
-          "Description": null
+          "JsonName": "text_color",
+          "ClrName": "TextColor",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "updated_at",
+          "ClrName": "UpdatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         }
       ],
       "Relationships": [],
+      "Actions": [],
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
@@ -3240,8 +3604,8 @@
       "Postable": false,
       "Patchable": false,
       "Deletable": false,
-      "GenerateResource": true,
-      "GenerateClients": true
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true
     }
   ]
 }

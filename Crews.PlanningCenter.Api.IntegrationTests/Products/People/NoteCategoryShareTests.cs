@@ -24,14 +24,7 @@ public class NoteCategoryShareTests(PeopleFixture fixture) : PeopleTestBase(fixt
 					Data = new()
 					{
 						Attributes = new NoteCategoryShare { Permission = "view" },
-						Relationships = new()
-						{
-							Person = new()
-							{
-								Data = JsonSerializer.SerializeToElement<JsonApiResourceIdentifier>(
-									new() { Type = "Person", Id = Fixture.PersonId })
-							}
-						}
+						Relationships = new() { Person = new() { Data = new() { Type = "Person", Id = Fixture.PersonId } } }
 					}
 				});
 			Assert.NotNull(createResult.Data);

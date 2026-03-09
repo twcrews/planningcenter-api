@@ -28,8 +28,7 @@ public class WorkflowCardTests(PeopleFixture fixture) : PeopleTestBase(fixture)
 						{
 							Person = new()
 							{
-								Data = JsonSerializer.SerializeToElement<JsonApiResourceIdentifier>(
-									new() { Type = "Person", Id = Fixture.PersonId })
+								Data = new() { Type = "Person", Id = Fixture.PersonId }
 							}
 						}
 					}

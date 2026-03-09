@@ -32,11 +32,26 @@ public abstract class ResourceClient<TModel>(HttpClient httpClient, Uri uri)
     protected HttpClient HttpClient { get; } = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
 
     /// <summary>
-    /// Sets a query parameter and its associated value in the instance's URI.
+    /// Appends a value to a query parameter in the instance's URI, preserving any existing values for that parameter.
     /// </summary>
     /// <param name="parameter">The name of the query parameter.</param>
-    /// <param name="value">The value associated with the parameter.</param>
-    protected ResourceClient<TModel> SetQueryParameter(string parameter, string value)
+    /// <param name="value">The value to append to the parameter.</param>
+    protected ResourceClient<TModel> AddQueryParameter(string parameter, string value)
+    {
+        UriBuilder builder = new(Uri);
+        NameValueCollection query = HttpUtility.ParseQueryString(builder.Query);
+        query[parameter] = query[parameter] is null ? value : $"{query[parameter]},{value}";
+        builder.Query = query.ToString() ?? string.Empty;
+        Uri = builder.Uri;
+        return this;
+    }
+
+    /// <summary>
+    /// Sets a query parameter in the instance's URI, replacing any existing value for that parameter.
+    /// </summary>
+    /// <param name="parameter">The name of the query parameter.</param>
+    /// <param name="value">The value to set for the parameter.</param>
+    protected ResourceClient<TModel> ReplaceQueryParameter(string parameter, string value)
     {
         UriBuilder builder = new(Uri);
         NameValueCollection query = HttpUtility.ParseQueryString(builder.Query);
@@ -52,7 +67,7 @@ public abstract class ResourceClient<TModel>(HttpClient httpClient, Uri uri)
     /// <param name="parameter">The name of the query parameter to be added.</param>
     /// <param name="value">The value of the query parameter to be added.</param>
     public ResourceClient<TModel> AddCustomParameter(string parameter, string value) =>
-        SetQueryParameter(parameter, value);
+        AddQueryParameter(parameter, value);
 
     /// <summary>
     /// Removes the entire query string from the instance's URI.

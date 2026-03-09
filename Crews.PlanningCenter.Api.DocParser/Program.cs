@@ -4,11 +4,12 @@ using Crews.PlanningCenter.Api.DocParser.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
 var host = Host.CreateDefaultBuilder(args)
     .ConfigureAppConfiguration((context, config) =>
     {
-        config.AddJsonFile("overrides.json", optional: true, reloadOnChange: false);
+        config.AddJsonFile("transforms.json", optional: true, reloadOnChange: false);
     })
     .ConfigureServices((context, services) =>
     {
@@ -19,12 +20,14 @@ var host = Host.CreateDefaultBuilder(args)
             .GetSection($"{nameof(AppSettings)}:{nameof(AppSettings.PlanningCenterClient)}"));
         services.Configure<AppSettings.DocumentationBuilderOptions>(context.Configuration
             .GetSection($"{nameof(AppSettings)}:{nameof(AppSettings.DocumentationBuilder)}"));
-        services.Configure<DocumentationOverrides>(context.Configuration);
+        services.Configure<DocumentationTransforms>(context.Configuration);
 
         services.AddHttpClient<IPlanningCenterClient, PlanningCenterClient>();
 
         services.AddTransient<IDocumentationBuilder, DocumentationBuilder>();
         services.AddTransient<Application>();
+
+        services.AddLogging(options => options.AddSimpleConsole(console => console.SingleLine = true));
     })
     .Build();
 

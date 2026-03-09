@@ -4,290 +4,303 @@
   "Details": "Renamed recurrence_description attribute on \u0060EventInstance\u0060 to compact_recurrence_description.",
   "Resources": [
     {
-      "Id": "attachment",
-      "Name": "Attachment",
-      "ResourceName": "AttachmentResource",
+      "JsonName": "attachment",
+      "ResourceClrType": "AttachmentResource",
+      "AttributesClrType": "Attachment",
       "Description": "An uploaded file attached to an event.\n",
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "content_type",
-          "Type": "string",
+          "JsonName": "content_type",
+          "ClrName": "ContentType",
+          "ClrType": "string",
           "Description": "MIME type of the attachment"
         },
         {
-          "Name": "created_at",
-          "Type": "date_time",
+          "JsonName": "created_at",
+          "ClrName": "CreatedAt",
+          "ClrType": "System.DateTime",
           "Description": "UTC time at which the attachment was created"
         },
         {
-          "Name": "description",
-          "Type": "string",
+          "JsonName": "description",
+          "ClrName": "Description",
+          "ClrType": "string",
           "Description": "Description of the attachment"
         },
         {
-          "Name": "file_size",
-          "Type": "integer",
+          "JsonName": "file_size",
+          "ClrName": "FileSize",
+          "ClrType": "int",
           "Description": "File size in bytes"
         },
         {
-          "Name": "name",
-          "Type": "string",
+          "JsonName": "name",
+          "ClrName": "Name",
+          "ClrType": "string",
           "Description": "Set to the file name if not provided"
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
+          "JsonName": "updated_at",
+          "ClrName": "UpdatedAt",
+          "ClrType": "System.DateTime",
           "Description": "UTC time at which the attachment was updated"
         },
         {
-          "Name": "url",
-          "Type": "string",
+          "JsonName": "url",
+          "ClrName": "Url",
+          "ClrType": "string",
           "Description": "Path to where the attachment is stored"
         }
       ],
       "Relationships": [
         {
-          "Name": "event",
-          "Type": "Event",
-          "AssociationType": "to_one",
-          "Note": null
+          "JsonName": "event",
+          "ClrName": "Event",
+          "ClrAttributesType": "Event",
+          "ClrResourceType": "EventResource",
+          "IsCollection": false,
+          "Description": "Related \u0060Event\u0060 resource."
         }
       ],
+      "Actions": [],
       "Children": [
         {
-          "Name": "event",
-          "Type": "event",
-          "Description": null,
+          "JsonName": "event",
+          "ClrName": "Event",
+          "ClrAttributesType": "Event",
+          "Description": "Associated \u0060Event\u0060.",
           "Slug": "event",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         }
       ],
       "CanInclude": [
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeEvent",
           "Value": "event",
-          "Description": "include associated event",
+          "Description": "Include related \u0060Event\u0060 resources in the response.",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
         }
       ],
       "CanOrderBy": [
         {
-          "Parameter": "order",
+          "ClrMethodName": "OrderByContentType",
           "Value": "content_type",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-content_type) to reverse the order"
+          "Description": "Sort response items by the \u0060ContentType\u0060 attribute."
         },
         {
-          "Parameter": "order",
+          "ClrMethodName": "OrderByCreatedAt",
           "Value": "created_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+          "Description": "Sort response items by the \u0060CreatedAt\u0060 attribute."
         },
         {
-          "Parameter": "order",
+          "ClrMethodName": "OrderByDescription",
           "Value": "description",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-description) to reverse the order"
+          "Description": "Sort response items by the \u0060Description\u0060 attribute."
         },
         {
-          "Parameter": "order",
+          "ClrMethodName": "OrderByFileSize",
           "Value": "file_size",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-file_size) to reverse the order"
+          "Description": "Sort response items by the \u0060FileSize\u0060 attribute."
         },
         {
-          "Parameter": "order",
+          "ClrMethodName": "OrderByName",
           "Value": "name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-name) to reverse the order"
+          "Description": "Sort response items by the \u0060Name\u0060 attribute."
         },
         {
-          "Parameter": "order",
+          "ClrMethodName": "OrderByUpdatedAt",
           "Value": "updated_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
+          "Description": "Sort response items by the \u0060UpdatedAt\u0060 attribute."
         }
       ],
       "CanQueryBy": [
         {
-          "Name": "content_type",
+          "ClrMethodName": "WhereContentType",
+          "ClrType": "string",
           "Parameter": "where[content_type]",
-          "Type": "string",
-          "Description": "Query on a specific content_type",
-          "Example": "?where[content_type]=string"
+          "Description": "Query response items by the \u0060ContentType\u0060 attribute."
         },
         {
-          "Name": "created_at",
+          "ClrMethodName": "WhereCreatedAt",
+          "ClrType": "System.DateTime",
           "Parameter": "where[created_at]",
-          "Type": "date_time",
-          "Description": "Query on a specific created_at",
-          "Example": "?where[created_at]=2000-01-01T12:00:00Z"
+          "Description": "Query response items by the \u0060CreatedAt\u0060 attribute."
         },
         {
-          "Name": "description",
+          "ClrMethodName": "WhereDescription",
+          "ClrType": "string",
           "Parameter": "where[description]",
-          "Type": "string",
-          "Description": "Query on a specific description",
-          "Example": "?where[description]=string"
+          "Description": "Query response items by the \u0060Description\u0060 attribute."
         },
         {
-          "Name": "file_size",
+          "ClrMethodName": "WhereFileSize",
+          "ClrType": "int",
           "Parameter": "where[file_size]",
-          "Type": "integer",
-          "Description": "Query on a specific file_size",
-          "Example": "?where[file_size]=1"
+          "Description": "Query response items by the \u0060FileSize\u0060 attribute."
         },
         {
-          "Name": "name",
+          "ClrMethodName": "WhereName",
+          "ClrType": "string",
           "Parameter": "where[name]",
-          "Type": "string",
-          "Description": "Query on a specific name",
-          "Example": "?where[name]=string"
+          "Description": "Query response items by the \u0060Name\u0060 attribute."
         },
         {
-          "Name": "updated_at",
+          "ClrMethodName": "WhereUpdatedAt",
+          "ClrType": "System.DateTime",
           "Parameter": "where[updated_at]",
-          "Type": "date_time",
-          "Description": "Query on a specific updated_at",
-          "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
+          "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
         }
       ],
       "Postable": false,
       "Patchable": false,
       "Deletable": false,
-      "GenerateResource": true,
-      "GenerateClients": true
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true
     },
     {
-      "Id": "conflict",
-      "Name": "Conflict",
-      "ResourceName": "ConflictResource",
+      "JsonName": "conflict",
+      "ResourceClrType": "ConflictResource",
+      "AttributesClrType": "Conflict",
       "Description": "A conflict between two events caused by overlapping event resource\nrequests.\n\nIf the conflict has been resolved, \u0060resolved_at\u0060 will be present.\n",
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "created_at",
-          "Type": "date_time",
+          "JsonName": "created_at",
+          "ClrName": "CreatedAt",
+          "ClrType": "System.DateTime",
           "Description": "UTC time at which the conflict was created"
         },
         {
-          "Name": "note",
-          "Type": "string",
+          "JsonName": "note",
+          "ClrName": "Note",
+          "ClrType": "string",
           "Description": "Additional information about the conflict or resolution"
         },
         {
-          "Name": "resolved_at",
-          "Type": "date_time",
+          "JsonName": "resolved_at",
+          "ClrName": "ResolvedAt",
+          "ClrType": "System.DateTime",
           "Description": "UTC time at which the conflict was resolved"
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
+          "JsonName": "updated_at",
+          "ClrName": "UpdatedAt",
+          "ClrType": "System.DateTime",
           "Description": "UTC time at which the conflict was updated"
         }
       ],
       "Relationships": [
         {
-          "Name": "resource",
-          "Type": "Resource",
-          "AssociationType": "to_one",
-          "Note": null
+          "JsonName": "resource",
+          "ClrName": "Resource",
+          "ClrAttributesType": "Resource",
+          "ClrResourceType": "ResourceResource",
+          "IsCollection": false,
+          "Description": "Related \u0060Resource\u0060 resource."
         },
         {
-          "Name": "resolved_by",
-          "Type": "Person",
-          "AssociationType": "to_one",
-          "Note": null
+          "JsonName": "resolved_by",
+          "ClrName": "ResolvedBy",
+          "ClrAttributesType": "Person",
+          "ClrResourceType": "PersonResource",
+          "IsCollection": false,
+          "Description": "Related \u0060ResolvedBy\u0060 resource."
         },
         {
-          "Name": "winner",
-          "Type": "Event",
-          "AssociationType": "to_one",
-          "Note": null
+          "JsonName": "winner",
+          "ClrName": "Winner",
+          "ClrAttributesType": "Event",
+          "ClrResourceType": "EventResource",
+          "IsCollection": false,
+          "Description": "Related \u0060Winner\u0060 resource."
         }
       ],
+      "Actions": [],
       "Children": [
         {
-          "Name": "resolved_by",
-          "Type": "person",
-          "Description": null,
+          "JsonName": "resolved_by",
+          "ClrName": "ResolvedBy",
+          "ClrAttributesType": "Person",
+          "Description": "Associated \u0060ResolvedBy\u0060.",
           "Slug": "resolved_by",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "resource",
-          "Type": "resource",
-          "Description": null,
+          "JsonName": "resource",
+          "ClrName": "Resource",
+          "ClrAttributesType": "Resource",
+          "Description": "Associated \u0060Resource\u0060.",
           "Slug": "resource",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "winner",
-          "Type": "event",
-          "Description": null,
+          "JsonName": "winner",
+          "ClrName": "Winner",
+          "ClrAttributesType": "Event",
+          "Description": "Associated \u0060Winner\u0060.",
           "Slug": "winner",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         }
       ],
       "CanInclude": [
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeResolvedBy",
           "Value": "resolved_by",
-          "Description": "include associated resolved_by",
+          "Description": "Include related \u0060ResolvedBy\u0060 resources in the response.",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
         },
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeResource",
           "Value": "resource",
-          "Description": "include associated resource",
+          "Description": "Include related \u0060Resource\u0060 resources in the response.",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
         },
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeWinner",
           "Value": "winner",
-          "Description": "include associated winner",
+          "Description": "Include related \u0060Winner\u0060 resources in the response.",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
         }
       ],
       "CanOrderBy": [
         {
-          "Parameter": "order",
+          "ClrMethodName": "OrderByResolvedAt",
           "Value": "resolved_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-resolved_at) to reverse the order"
+          "Description": "Sort response items by the \u0060ResolvedAt\u0060 attribute."
         }
       ],
       "CanQueryBy": [],
       "Postable": false,
       "Patchable": false,
       "Deletable": false,
-      "GenerateResource": true,
-      "GenerateClients": true
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true
     },
     {
-      "Id": "containing_resource",
-      "Name": "ContainingResource",
-      "ResourceName": "ContainingResourceResource",
+      "JsonName": "containing_resource",
+      "ResourceClrType": "ContainingResourceResource",
+      "AttributesClrType": "ContainingResource",
       "Description": "The containing record for a RoomSetup. Can be a Resource or\nan Organization\n",
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [],
       "Relationships": [],
+      "Actions": [],
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
@@ -295,211 +308,239 @@
       "Postable": false,
       "Patchable": false,
       "Deletable": false,
-      "GenerateResource": true,
-      "GenerateClients": true
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true
     },
     {
-      "Id": "event",
-      "Name": "Event",
-      "ResourceName": "EventResource",
+      "JsonName": "event",
+      "ResourceClrType": "EventResource",
+      "AttributesClrType": "Event",
       "Description": "An event.\n\nMay contain information such as who owns\nthe event, visibility on Church Center and a public-facing summary.\n",
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "approval_status",
-          "Type": "string",
+          "JsonName": "approval_status",
+          "ClrName": "ApprovalStatus",
+          "ClrType": "string",
           "Description": "Possible values:\n- \u0060A\u0060: approved.\n- \u0060P\u0060: pending.\n- \u0060R\u0060: rejected.\n"
         },
         {
-          "Name": "created_at",
-          "Type": "date_time",
+          "JsonName": "created_at",
+          "ClrName": "CreatedAt",
+          "ClrType": "System.DateTime",
           "Description": "UTC time at which the event was created"
         },
         {
-          "Name": "description",
-          "Type": "string",
+          "JsonName": "description",
+          "ClrName": "Description",
+          "ClrType": "string",
           "Description": "A rich text public-facing summary of the event"
         },
         {
-          "Name": "featured",
-          "Type": "boolean",
+          "JsonName": "featured",
+          "ClrName": "Featured",
+          "ClrType": "bool",
           "Description": "- \u0060true\u0060 indicates the event is featured on Church Center\n- \u0060false\u0060 indicates the event is not featured on Church Center\n"
         },
         {
-          "Name": "image_url",
-          "Type": "string",
+          "JsonName": "image_url",
+          "ClrName": "ImageUrl",
+          "ClrType": "string",
           "Description": "Path to where the event image is stored"
         },
         {
-          "Name": "name",
-          "Type": "string",
+          "JsonName": "name",
+          "ClrName": "Name",
+          "ClrType": "string",
           "Description": "The name of the event"
         },
         {
-          "Name": "percent_approved",
-          "Type": "integer",
+          "JsonName": "percent_approved",
+          "ClrName": "PercentApproved",
+          "ClrType": "int",
           "Description": "Calculated by taking the sum of the \u0060percent_approved\u0060 for all\nfuture \u0060ReservationBlocks\u0060 and dividing that by the \u0060count\u0060 of all future\n\u0060ReservationBlocks\u0060.\n\nIf there are no future \u0060ReservationBlocks\u0060, returns \u0060100\u0060\n"
         },
         {
-          "Name": "percent_rejected",
-          "Type": "integer",
+          "JsonName": "percent_rejected",
+          "ClrName": "PercentRejected",
+          "ClrType": "int",
           "Description": "Calculated by taking the sum of the \u0060percent_rejected\u0060 for all\nfuture \u0060ReservationBlocks\u0060 and dividing that by the \u0060count\u0060 of all future\n\u0060ReservationBlocks\u0060.\n\nIf there are no future \u0060ReservationBlocks\u0060, returns \u00600\u0060\n"
         },
         {
-          "Name": "registration_url",
-          "Type": "string",
+          "JsonName": "registration_url",
+          "ClrName": "RegistrationUrl",
+          "ClrType": "string",
           "Description": "The registration URL for the event"
         },
         {
-          "Name": "summary",
-          "Type": "string",
+          "JsonName": "summary",
+          "ClrName": "Summary",
+          "ClrType": "string",
           "Description": "A plain text public-facing summary of the event"
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
+          "JsonName": "updated_at",
+          "ClrName": "UpdatedAt",
+          "ClrType": "System.DateTime",
           "Description": "UTC time at which the event was updated"
         },
         {
-          "Name": "visible_in_church_center",
-          "Type": "boolean",
+          "JsonName": "visible_in_church_center",
+          "ClrName": "VisibleInChurchCenter",
+          "ClrType": "bool",
           "Description": "- \u0060true\u0060 indicates the event Church Center visibility is set to \u0027Published\u0027\n- \u0060false\u0060 indicates the event Church Center visibility is set to \u0027Hidden\u0027\n"
         }
       ],
       "Relationships": [
         {
-          "Name": "calendar",
-          "Type": "Calendar",
-          "AssociationType": "to_one",
-          "Note": null
+          "JsonName": "calendar",
+          "ClrName": "Calendar",
+          "ClrAttributesType": "Calendar",
+          "ClrResourceType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier",
+          "IsCollection": false,
+          "Description": "Related \u0060Calendar\u0060 resource."
         },
         {
-          "Name": "owner",
-          "Type": "Person",
-          "AssociationType": "to_one",
-          "Note": null
+          "JsonName": "owner",
+          "ClrName": "Owner",
+          "ClrAttributesType": "Person",
+          "ClrResourceType": "PersonResource",
+          "IsCollection": false,
+          "Description": "Related \u0060Owner\u0060 resource."
         }
       ],
+      "Actions": [],
       "Children": [
         {
-          "Name": "attachments",
-          "Type": "attachment",
-          "Description": null,
+          "JsonName": "attachments",
+          "ClrName": "Attachments",
+          "ClrAttributesType": "Attachment",
+          "Description": "Associated \u0060Attachments\u0060.",
           "Slug": "attachments",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "conflicts",
-          "Type": "conflict",
-          "Description": null,
+          "JsonName": "conflicts",
+          "ClrName": "Conflicts",
+          "ClrAttributesType": "Conflict",
+          "Description": "Associated \u0060Conflicts\u0060.",
           "Slug": "conflicts",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "event_connections",
-          "Type": "event_connection",
-          "Description": null,
+          "JsonName": "event_connections",
+          "ClrName": "EventConnections",
+          "ClrAttributesType": "EventConnection",
+          "Description": "Associated \u0060EventConnections\u0060.",
           "Slug": "event_connections",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "event_instances",
-          "Type": "event_instance",
-          "Description": null,
+          "JsonName": "event_instances",
+          "ClrName": "EventInstances",
+          "ClrAttributesType": "EventInstance",
+          "Description": "Associated \u0060EventInstances\u0060.",
           "Slug": "event_instances",
           "Filters": [
             {
-              "Name": "future",
-              "Description": null
+              "ClrMethodName": "FilterByFuture",
+              "Value": "future",
+              "Description": "Filter results by the \u0060Future\u0060 scope."
             }
           ],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "event_resource_requests",
-          "Type": "event_resource_request",
-          "Description": null,
+          "JsonName": "event_resource_requests",
+          "ClrName": "EventResourceRequests",
+          "ClrAttributesType": "EventResourceRequest",
+          "Description": "Associated \u0060EventResourceRequests\u0060.",
           "Slug": "event_resource_requests",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "feed",
-          "Type": "feed",
-          "Description": null,
+          "JsonName": "feed",
+          "ClrName": "Feed",
+          "ClrAttributesType": "Feed",
+          "Description": "Associated \u0060Feed\u0060.",
           "Slug": "feed",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "owner",
-          "Type": "person",
-          "Description": null,
+          "JsonName": "owner",
+          "ClrName": "Owner",
+          "ClrAttributesType": "Person",
+          "Description": "Associated \u0060Owner\u0060.",
           "Slug": "owner",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "resource_bookings",
-          "Type": "resource_booking",
-          "Description": null,
+          "JsonName": "resource_bookings",
+          "ClrName": "ResourceBookings",
+          "ClrAttributesType": "ResourceBooking",
+          "Description": "Associated \u0060ResourceBookings\u0060.",
           "Slug": "resource_bookings",
           "Filters": [
             {
-              "Name": "future",
-              "Description": null
+              "ClrMethodName": "FilterByFuture",
+              "Value": "future",
+              "Description": "Filter results by the \u0060Future\u0060 scope."
             }
           ],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "tags",
-          "Type": "tag",
-          "Description": null,
+          "JsonName": "tags",
+          "ClrName": "Tags",
+          "ClrAttributesType": "Tag",
+          "Description": "Associated \u0060Tags\u0060.",
           "Slug": "tags",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         }
       ],
       "CanInclude": [
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeAttachments",
           "Value": "attachments",
-          "Description": "include associated attachments",
+          "Description": "Include related \u0060Attachments\u0060 resources in the response.",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         },
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeFeed",
           "Value": "feed",
-          "Description": "include associated feed",
+          "Description": "Include related \u0060Feed\u0060 resources in the response.",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         },
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeOwner",
           "Value": "owner",
-          "Description": "include associated owner",
+          "Description": "Include related \u0060Owner\u0060 resources in the response.",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
         },
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeTags",
           "Value": "tags",
-          "Description": "include associated tags",
+          "Description": "Include related \u0060Tags\u0060 resources in the response.",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
         }
@@ -507,454 +548,484 @@
       "CanOrderBy": [],
       "CanQueryBy": [
         {
-          "Name": "approval_status",
+          "ClrMethodName": "WhereApprovalStatus",
+          "ClrType": "string",
           "Parameter": "where[approval_status]",
-          "Type": "string",
-          "Description": "Query on a specific approval_status",
-          "Example": "?where[approval_status]=string"
+          "Description": "Query response items by the \u0060ApprovalStatus\u0060 attribute."
         },
         {
-          "Name": "created_at",
+          "ClrMethodName": "WhereCreatedAt",
+          "ClrType": "System.DateTime",
           "Parameter": "where[created_at]",
-          "Type": "date_time",
-          "Description": "Query on a specific created_at",
-          "Example": "?where[created_at]=2000-01-01T12:00:00Z"
+          "Description": "Query response items by the \u0060CreatedAt\u0060 attribute."
         },
         {
-          "Name": "featured",
+          "ClrMethodName": "WhereFeatured",
+          "ClrType": "bool",
           "Parameter": "where[featured]",
-          "Type": "boolean",
-          "Description": "Query on a specific featured",
-          "Example": "?where[featured]=true"
+          "Description": "Query response items by the \u0060Featured\u0060 attribute."
         },
         {
-          "Name": "name",
+          "ClrMethodName": "WhereName",
+          "ClrType": "string",
           "Parameter": "where[name]",
-          "Type": "string",
-          "Description": "Query on a specific name",
-          "Example": "?where[name]=string"
+          "Description": "Query response items by the \u0060Name\u0060 attribute."
         },
         {
-          "Name": "percent_approved",
+          "ClrMethodName": "WherePercentApproved",
+          "ClrType": "int",
           "Parameter": "where[percent_approved]",
-          "Type": "integer",
-          "Description": "Query on a specific percent_approved",
-          "Example": "?where[percent_approved]=1"
+          "Description": "Query response items by the \u0060PercentApproved\u0060 attribute."
         },
         {
-          "Name": "percent_rejected",
+          "ClrMethodName": "WherePercentRejected",
+          "ClrType": "int",
           "Parameter": "where[percent_rejected]",
-          "Type": "integer",
-          "Description": "Query on a specific percent_rejected",
-          "Example": "?where[percent_rejected]=1"
+          "Description": "Query response items by the \u0060PercentRejected\u0060 attribute."
         },
         {
-          "Name": "updated_at",
+          "ClrMethodName": "WhereUpdatedAt",
+          "ClrType": "System.DateTime",
           "Parameter": "where[updated_at]",
-          "Type": "date_time",
-          "Description": "Query on a specific updated_at",
-          "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
+          "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
         },
         {
-          "Name": "visible_in_church_center",
+          "ClrMethodName": "WhereVisibleInChurchCenter",
+          "ClrType": "bool",
           "Parameter": "where[visible_in_church_center]",
-          "Type": "boolean",
-          "Description": "Query on a specific visible_in_church_center",
-          "Example": "?where[visible_in_church_center]=true"
+          "Description": "Query response items by the \u0060VisibleInChurchCenter\u0060 attribute."
         }
       ],
       "Postable": false,
       "Patchable": false,
       "Deletable": false,
-      "GenerateResource": true,
-      "GenerateClients": true
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true
     },
     {
-      "Id": "event_connection",
-      "Name": "EventConnection",
-      "ResourceName": "EventConnectionResource",
+      "JsonName": "event_connection",
+      "ResourceClrType": "EventConnectionResource",
+      "AttributesClrType": "EventConnection",
       "Description": "A connection between a Calendar event and a record in another product\n",
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "connected_to_id",
-          "Type": "integer",
-          "Description": "Unique identifier for the connected record"
+          "JsonName": "connected_to_id",
+          "ClrName": "ConnectedToId",
+          "ClrType": "string",
+          "Description": "Unique identifier for the connected record",
+          "JsonConverter": "Crews.PlanningCenter.Api.Converters.StringFromNumberConverter"
         },
         {
-          "Name": "connected_to_name",
-          "Type": "string",
+          "JsonName": "connected_to_name",
+          "ClrName": "ConnectedToName",
+          "ClrType": "string",
           "Description": "Name of the record that the event is connected to"
         },
         {
-          "Name": "connected_to_type",
-          "Type": "string",
+          "JsonName": "connected_to_type",
+          "ClrName": "ConnectedToType",
+          "ClrType": "string",
           "Description": "Currently we support \u0060signup\u0060, \u0060group\u0060, \u0060event\u0060, and \u0060service_type\u0060"
         },
         {
-          "Name": "connected_to_url",
-          "Type": "string",
+          "JsonName": "connected_to_url",
+          "ClrName": "ConnectedToUrl",
+          "ClrType": "string",
           "Description": "A link to the connected record"
         },
         {
-          "Name": "product_name",
-          "Type": "string",
+          "JsonName": "product_name",
+          "ClrName": "ProductName",
+          "ClrType": "string",
           "Description": "Currently we support \u0060registrations\u0060, \u0060groups\u0060, \u0060check-ins\u0060, and \u0060services\u0060"
         },
         {
-          "Name": "promoted",
-          "Type": "boolean",
+          "JsonName": "promoted",
+          "ClrName": "Promoted",
+          "ClrType": "bool",
           "Description": "Whether this connection is promoted for display (only applies to Groups connections)\n\nOnly available when requested with the \u0060?fields\u0060 param"
         }
       ],
       "Relationships": [
         {
-          "Name": "event",
-          "Type": "Event",
-          "AssociationType": "to_one",
-          "Note": null
+          "JsonName": "event",
+          "ClrName": "Event",
+          "ClrAttributesType": "Event",
+          "ClrResourceType": "EventResource",
+          "IsCollection": false,
+          "Description": "Related \u0060Event\u0060 resource."
         }
       ],
+      "Actions": [],
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
       "CanQueryBy": [
         {
-          "Name": "connected_to_id",
+          "ClrMethodName": "WhereConnectedToId",
+          "ClrType": "string",
           "Parameter": "where[connected_to_id]",
-          "Type": "primary_key",
-          "Description": "Query on a specific connected_to_id",
-          "Example": "?where[connected_to_id]=primary_key"
+          "Description": "Query response items by the \u0060ConnectedToId\u0060 attribute."
         },
         {
-          "Name": "product_name",
+          "ClrMethodName": "WhereProductName",
+          "ClrType": "string",
           "Parameter": "where[product_name]",
-          "Type": "string",
-          "Description": "Query on a specific product_name",
-          "Example": "?where[product_name]=string"
+          "Description": "Query response items by the \u0060ProductName\u0060 attribute."
         },
         {
-          "Name": "promoted",
+          "ClrMethodName": "WherePromoted",
+          "ClrType": "bool",
           "Parameter": "where[promoted]",
-          "Type": "boolean",
-          "Description": "Query on a specific promoted",
-          "Example": "?where[promoted]=true"
+          "Description": "Query response items by the \u0060Promoted\u0060 attribute."
         }
       ],
       "Postable": true,
       "Patchable": true,
       "Deletable": true,
-      "GenerateResource": true,
-      "GenerateClients": true
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true
     },
     {
-      "Id": "event_instance",
-      "Name": "EventInstance",
-      "ResourceName": "EventInstanceResource",
+      "JsonName": "event_instance",
+      "ResourceClrType": "EventInstanceResource",
+      "AttributesClrType": "EventInstance",
       "Description": "A specific occurrence of an event.\n\nIf the event is recurring, \u0060recurrence\u0060 will be set and\n\u0060recurrence_description\u0060 will provide an overview of the recurrence pattern.\n",
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "all_day_event",
-          "Type": "boolean",
+          "JsonName": "all_day_event",
+          "ClrName": "AllDayEvent",
+          "ClrType": "bool",
           "Description": "Indicates whether event instance lasts all day"
         },
         {
-          "Name": "church_center_url",
-          "Type": "string",
+          "JsonName": "church_center_url",
+          "ClrName": "ChurchCenterUrl",
+          "ClrType": "string",
           "Description": "The URL for the event on Church Center"
         },
         {
-          "Name": "compact_recurrence_description",
-          "Type": "string",
+          "JsonName": "compact_recurrence_description",
+          "ClrName": "CompactRecurrenceDescription",
+          "ClrType": "string",
           "Description": "Compact representation of event instance\u0027s recurrence pattern\n"
         },
         {
-          "Name": "created_at",
-          "Type": "date_time",
+          "JsonName": "created_at",
+          "ClrName": "CreatedAt",
+          "ClrType": "System.DateTime",
           "Description": "UTC time at which the event instance was created"
         },
         {
-          "Name": "description",
-          "Type": "string",
+          "JsonName": "description",
+          "ClrName": "Description",
+          "ClrType": "string",
           "Description": "A rich text public-facing summary of the event\n\nOnly available when requested with the \u0060?fields\u0060 param"
         },
         {
-          "Name": "ends_at",
-          "Type": "date_time",
+          "JsonName": "ends_at",
+          "ClrName": "EndsAt",
+          "ClrType": "System.DateTime",
           "Description": "UTC time at which the event instance ends"
         },
         {
-          "Name": "image_url",
-          "Type": "string",
+          "JsonName": "image_url",
+          "ClrName": "ImageUrl",
+          "ClrType": "string",
           "Description": "Path to where the event image is stored\n\nOnly available when requested with the \u0060?fields\u0060 param"
         },
         {
-          "Name": "kind",
-          "Type": "string",
+          "JsonName": "kind",
+          "ClrName": "Kind",
+          "ClrType": "string",
           "Description": "The type of event: \u0060standard\u0060 or \u0060blockout\u0060\n\nOnly available when requested with the \u0060?fields\u0060 param"
         },
         {
-          "Name": "location",
-          "Type": "string",
+          "JsonName": "location",
+          "ClrName": "Location",
+          "ClrType": "string",
           "Description": "Representation of where the event instance takes place"
         },
         {
-          "Name": "name",
-          "Type": "string",
+          "JsonName": "name",
+          "ClrName": "Name",
+          "ClrType": "string",
           "Description": "Name of event. Can be overridden for specific instances"
         },
         {
-          "Name": "published_ends_at",
-          "Type": "string",
+          "JsonName": "published_ends_at",
+          "ClrName": "PublishedEndsAt",
+          "ClrType": "string",
           "Description": "Publicly visible end time"
         },
         {
-          "Name": "published_starts_at",
-          "Type": "string",
+          "JsonName": "published_starts_at",
+          "ClrName": "PublishedStartsAt",
+          "ClrType": "string",
           "Description": "Publicly visible start time"
         },
         {
-          "Name": "recurrence",
-          "Type": "string",
+          "JsonName": "recurrence",
+          "ClrName": "Recurrence",
+          "ClrType": "string",
           "Description": "For a recurring event instance, the interval of how often the event instance occurs\n"
         },
         {
-          "Name": "recurrence_description",
-          "Type": "string",
+          "JsonName": "recurrence_description",
+          "ClrName": "RecurrenceDescription",
+          "ClrType": "string",
           "Description": "Longer description of the event instance\u0027s recurrence pattern\n"
         },
         {
-          "Name": "starts_at",
-          "Type": "date_time",
+          "JsonName": "starts_at",
+          "ClrName": "StartsAt",
+          "ClrType": "System.DateTime",
           "Description": "UTC time at which the event instance starts"
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
+          "JsonName": "updated_at",
+          "ClrName": "UpdatedAt",
+          "ClrType": "System.DateTime",
           "Description": "UTC time at which the event instance was updated"
         }
       ],
       "Relationships": [
         {
-          "Name": "event",
-          "Type": "Event",
-          "AssociationType": "to_one",
-          "Note": null
+          "JsonName": "event",
+          "ClrName": "Event",
+          "ClrAttributesType": "Event",
+          "ClrResourceType": "EventResource",
+          "IsCollection": false,
+          "Description": "Related \u0060Event\u0060 resource."
         }
       ],
+      "Actions": [],
       "Children": [
         {
-          "Name": "event",
-          "Type": "event",
-          "Description": null,
+          "JsonName": "event",
+          "ClrName": "Event",
+          "ClrAttributesType": "Event",
+          "Description": "Associated \u0060Event\u0060.",
           "Slug": "event",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "event_times",
-          "Type": "event_time",
-          "Description": null,
+          "JsonName": "event_times",
+          "ClrName": "EventTimes",
+          "ClrAttributesType": "EventTime",
+          "Description": "Associated \u0060EventTimes\u0060.",
           "Slug": "event_times",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "resource_bookings",
-          "Type": "resource_booking",
-          "Description": null,
+          "JsonName": "resource_bookings",
+          "ClrName": "ResourceBookings",
+          "ClrAttributesType": "ResourceBooking",
+          "Description": "Associated \u0060ResourceBookings\u0060.",
           "Slug": "resource_bookings",
           "Filters": [
             {
-              "Name": "future",
-              "Description": null
+              "ClrMethodName": "FilterByFuture",
+              "Value": "future",
+              "Description": "Filter results by the \u0060Future\u0060 scope."
             },
             {
-              "Name": "resources",
-              "Description": null
+              "ClrMethodName": "FilterByResources",
+              "Value": "resources",
+              "Description": "Filter results by the \u0060Resources\u0060 scope."
             },
             {
-              "Name": "rooms",
-              "Description": null
+              "ClrMethodName": "FilterByRooms",
+              "Value": "rooms",
+              "Description": "Filter results by the \u0060Rooms\u0060 scope."
             }
           ],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "tags",
-          "Type": "tag",
-          "Description": null,
+          "JsonName": "tags",
+          "ClrName": "Tags",
+          "ClrAttributesType": "Tag",
+          "Description": "Associated \u0060Tags\u0060.",
           "Slug": "tags",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         }
       ],
       "CanInclude": [
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeEvent",
           "Value": "event",
-          "Description": "include associated event",
+          "Description": "Include related \u0060Event\u0060 resources in the response.",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
         },
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeEventTimes",
           "Value": "event_times",
-          "Description": "include associated event_times",
+          "Description": "Include related \u0060EventTimes\u0060 resources in the response.",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         },
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeResourceBookings",
           "Value": "resource_bookings",
-          "Description": "include associated resource_bookings",
+          "Description": "Include related \u0060ResourceBookings\u0060 resources in the response.",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         },
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeTags",
           "Value": "tags",
-          "Description": "include associated tags",
+          "Description": "Include related \u0060Tags\u0060 resources in the response.",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [
         {
-          "Parameter": "order",
+          "ClrMethodName": "OrderByCreatedAt",
           "Value": "created_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+          "Description": "Sort response items by the \u0060CreatedAt\u0060 attribute."
         },
         {
-          "Parameter": "order",
+          "ClrMethodName": "OrderByEndsAt",
           "Value": "ends_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-ends_at) to reverse the order"
+          "Description": "Sort response items by the \u0060EndsAt\u0060 attribute."
         },
         {
-          "Parameter": "order",
+          "ClrMethodName": "OrderByStartsAt",
           "Value": "starts_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-starts_at) to reverse the order"
+          "Description": "Sort response items by the \u0060StartsAt\u0060 attribute."
         },
         {
-          "Parameter": "order",
+          "ClrMethodName": "OrderByUpdatedAt",
           "Value": "updated_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
+          "Description": "Sort response items by the \u0060UpdatedAt\u0060 attribute."
         }
       ],
       "CanQueryBy": [
         {
-          "Name": "created_at",
+          "ClrMethodName": "WhereCreatedAt",
+          "ClrType": "System.DateTime",
           "Parameter": "where[created_at]",
-          "Type": "date_time",
-          "Description": "Query on a specific created_at",
-          "Example": "?where[created_at]=2000-01-01T12:00:00Z"
+          "Description": "Query response items by the \u0060CreatedAt\u0060 attribute."
         },
         {
-          "Name": "ends_at",
+          "ClrMethodName": "WhereEndsAt",
+          "ClrType": "System.DateTime",
           "Parameter": "where[ends_at]",
-          "Type": "date_time",
-          "Description": "Query on a specific ends_at",
-          "Example": "?where[ends_at]=2000-01-01T12:00:00Z"
+          "Description": "Query response items by the \u0060EndsAt\u0060 attribute."
         },
         {
-          "Name": "kind",
+          "ClrMethodName": "WhereKind",
+          "ClrType": "string",
           "Parameter": "where[kind]",
-          "Type": "string",
-          "Description": "Query on a specific kind",
-          "Example": "?where[kind]=string"
+          "Description": "Query response items by the \u0060Kind\u0060 attribute."
         },
         {
-          "Name": "starts_at",
+          "ClrMethodName": "WhereStartsAt",
+          "ClrType": "System.DateTime",
           "Parameter": "where[starts_at]",
-          "Type": "date_time",
-          "Description": "Query on a specific starts_at",
-          "Example": "?where[starts_at]=2000-01-01T12:00:00Z"
+          "Description": "Query response items by the \u0060StartsAt\u0060 attribute."
         },
         {
-          "Name": "updated_at",
+          "ClrMethodName": "WhereUpdatedAt",
+          "ClrType": "System.DateTime",
           "Parameter": "where[updated_at]",
-          "Type": "date_time",
-          "Description": "Query on a specific updated_at",
-          "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
+          "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
         }
       ],
       "Postable": false,
       "Patchable": false,
       "Deletable": false,
-      "GenerateResource": true,
-      "GenerateClients": true
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true
     },
     {
-      "Id": "event_resource_answer",
-      "Name": "EventResourceAnswer",
-      "ResourceName": "EventResourceAnswerResource",
+      "JsonName": "event_resource_answer",
+      "ResourceClrType": "EventResourceAnswerResource",
+      "AttributesClrType": "EventResourceAnswer",
       "Description": "An answer to a question in a room or resource request.\n",
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "answer",
-          "Type": "json",
+          "JsonName": "answer",
+          "ClrName": "Answer",
+          "ClrType": "System.Text.Json.Nodes.JsonObject",
           "Description": "The answer formatted for display"
         },
         {
-          "Name": "created_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "created_at",
+          "ClrName": "CreatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "db_answer",
-          "Type": "string",
+          "JsonName": "db_answer",
+          "ClrName": "DbAnswer",
+          "ClrType": "string",
           "Description": "Only available when requested with the \u0060?fields\u0060 param"
         },
         {
-          "Name": "question",
-          "Type": "json",
+          "JsonName": "question",
+          "ClrName": "Question",
+          "ClrType": "System.Text.Json.Nodes.JsonObject",
           "Description": "Question details as of when it was answered"
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "updated_at",
+          "ClrName": "UpdatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         }
       ],
       "Relationships": [
         {
-          "Name": "created_by",
-          "Type": "Person",
-          "AssociationType": "to_one",
-          "Note": null
+          "JsonName": "created_by",
+          "ClrName": "CreatedBy",
+          "ClrAttributesType": "Person",
+          "ClrResourceType": "PersonResource",
+          "IsCollection": false,
+          "Description": "Related \u0060CreatedBy\u0060 resource."
         },
         {
-          "Name": "updated_by",
-          "Type": "Person",
-          "AssociationType": "to_one",
-          "Note": null
+          "JsonName": "updated_by",
+          "ClrName": "UpdatedBy",
+          "ClrAttributesType": "Person",
+          "ClrResourceType": "PersonResource",
+          "IsCollection": false,
+          "Description": "Related \u0060UpdatedBy\u0060 resource."
         },
         {
-          "Name": "resource_question",
-          "Type": "ResourceQuestion",
-          "AssociationType": "to_one",
-          "Note": null
+          "JsonName": "resource_question",
+          "ClrName": "ResourceQuestion",
+          "ClrAttributesType": "ResourceQuestion",
+          "ClrResourceType": "ResourceQuestionResource",
+          "IsCollection": false,
+          "Description": "Related \u0060ResourceQuestion\u0060 resource."
         },
         {
-          "Name": "event_resource_request",
-          "Type": "EventResourceRequest",
-          "AssociationType": "to_one",
-          "Note": null
+          "JsonName": "event_resource_request",
+          "ClrName": "EventResourceRequest",
+          "ClrAttributesType": "EventResourceRequest",
+          "ClrResourceType": "EventResourceRequestResource",
+          "IsCollection": false,
+          "Description": "Related \u0060EventResourceRequest\u0060 resource."
         }
       ],
+      "Actions": [],
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
@@ -962,222 +1033,257 @@
       "Postable": false,
       "Patchable": false,
       "Deletable": false,
-      "GenerateResource": true,
-      "GenerateClients": true
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true
     },
     {
-      "Id": "event_resource_request",
-      "Name": "EventResourceRequest",
-      "ResourceName": "EventResourceRequestResource",
+      "JsonName": "event_resource_request",
+      "ResourceClrType": "EventResourceRequestResource",
+      "AttributesClrType": "EventResourceRequest",
       "Description": "A room or resource request for a specific event.\n",
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "approval_sent",
-          "Type": "boolean",
+          "JsonName": "approval_sent",
+          "ClrName": "ApprovalSent",
+          "ClrType": "bool",
           "Description": "Whether or not an email has been sent to request approval"
         },
         {
-          "Name": "approval_status",
-          "Type": "string",
+          "JsonName": "approval_status",
+          "ClrName": "ApprovalStatus",
+          "ClrType": "string",
           "Description": "Possible values:\n- \u0060A\u0060: approved\n- \u0060P\u0060: pending\n- \u0060R\u0060: rejected\n"
         },
         {
-          "Name": "created_at",
-          "Type": "date_time",
+          "JsonName": "created_at",
+          "ClrName": "CreatedAt",
+          "ClrType": "System.DateTime",
           "Description": "UTC time at which request was created"
         },
         {
-          "Name": "notes",
-          "Type": "string",
+          "JsonName": "notes",
+          "ClrName": "Notes",
+          "ClrType": "string",
           "Description": "Additional information about the room or resource request"
         },
         {
-          "Name": "quantity",
-          "Type": "integer",
+          "JsonName": "quantity",
+          "ClrName": "Quantity",
+          "ClrType": "int",
           "Description": "How many of the rooms or resources are being requested"
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
+          "JsonName": "updated_at",
+          "ClrName": "UpdatedAt",
+          "ClrType": "System.DateTime",
           "Description": "UTC time at which request was updated"
         },
         {
-          "Name": "visible_on_kiosks",
-          "Type": "boolean",
+          "JsonName": "visible_on_kiosks",
+          "ClrName": "VisibleOnKiosks",
+          "ClrType": "bool",
           "Description": "Whether this resource request is visible on kiosks"
         }
       ],
       "Relationships": [
         {
-          "Name": "event",
-          "Type": "Event",
-          "AssociationType": "to_one",
-          "Note": null
+          "JsonName": "event",
+          "ClrName": "Event",
+          "ClrAttributesType": "Event",
+          "ClrResourceType": "EventResource",
+          "IsCollection": false,
+          "Description": "Related \u0060Event\u0060 resource."
         },
         {
-          "Name": "resource",
-          "Type": "Resource",
-          "AssociationType": "to_one",
-          "Note": null
+          "JsonName": "resource",
+          "ClrName": "Resource",
+          "ClrAttributesType": "Resource",
+          "ClrResourceType": "ResourceResource",
+          "IsCollection": false,
+          "Description": "Related \u0060Resource\u0060 resource."
         },
         {
-          "Name": "event_resource_request",
-          "Type": "EventResourceRequest",
-          "AssociationType": "to_one",
-          "Note": null
+          "JsonName": "event_resource_request",
+          "ClrName": "EventResourceRequest",
+          "ClrAttributesType": "EventResourceRequest",
+          "ClrResourceType": "EventResourceRequestResource",
+          "IsCollection": false,
+          "Description": "Related \u0060EventResourceRequest\u0060 resource."
         },
         {
-          "Name": "created_by",
-          "Type": "Person",
-          "AssociationType": "to_one",
-          "Note": null
+          "JsonName": "created_by",
+          "ClrName": "CreatedBy",
+          "ClrAttributesType": "Person",
+          "ClrResourceType": "PersonResource",
+          "IsCollection": false,
+          "Description": "Related \u0060CreatedBy\u0060 resource."
         },
         {
-          "Name": "updated_by",
-          "Type": "Person",
-          "AssociationType": "to_one",
-          "Note": null
+          "JsonName": "updated_by",
+          "ClrName": "UpdatedBy",
+          "ClrAttributesType": "Person",
+          "ClrResourceType": "PersonResource",
+          "IsCollection": false,
+          "Description": "Related \u0060UpdatedBy\u0060 resource."
         },
         {
-          "Name": "room_setup",
-          "Type": "RoomSetup",
-          "AssociationType": "to_one",
-          "Note": null
+          "JsonName": "room_setup",
+          "ClrName": "RoomSetup",
+          "ClrAttributesType": "RoomSetup",
+          "ClrResourceType": "RoomSetupResource",
+          "IsCollection": false,
+          "Description": "Related \u0060RoomSetup\u0060 resource."
         }
       ],
+      "Actions": [],
       "Children": [
         {
-          "Name": "answers",
-          "Type": "event_resource_answer",
-          "Description": null,
+          "JsonName": "answers",
+          "ClrName": "Answers",
+          "ClrAttributesType": "EventResourceAnswer",
+          "Description": "Associated \u0060Answers\u0060.",
           "Slug": "answers",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "created_by",
-          "Type": "person",
-          "Description": null,
+          "JsonName": "created_by",
+          "ClrName": "CreatedBy",
+          "ClrAttributesType": "Person",
+          "Description": "Associated \u0060CreatedBy\u0060.",
           "Slug": "created_by",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "event",
-          "Type": "event",
-          "Description": null,
+          "JsonName": "event",
+          "ClrName": "Event",
+          "ClrAttributesType": "Event",
+          "Description": "Associated \u0060Event\u0060.",
           "Slug": "event",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "resource_bookings",
-          "Type": "resource_booking",
-          "Description": null,
+          "JsonName": "resource_bookings",
+          "ClrName": "ResourceBookings",
+          "ClrAttributesType": "ResourceBooking",
+          "Description": "Associated \u0060ResourceBookings\u0060.",
           "Slug": "resource_bookings",
           "Filters": [
             {
-              "Name": "approved",
-              "Description": null
+              "ClrMethodName": "FilterByApproved",
+              "Value": "approved",
+              "Description": "Filter results by the \u0060Approved\u0060 scope."
             },
             {
-              "Name": "approved_pending",
-              "Description": null
+              "ClrMethodName": "FilterByApprovedPending",
+              "Value": "approved_pending",
+              "Description": "Filter results by the \u0060ApprovedPending\u0060 scope."
             },
             {
-              "Name": "approved_pending_rejected",
-              "Description": null
+              "ClrMethodName": "FilterByApprovedPendingRejected",
+              "Value": "approved_pending_rejected",
+              "Description": "Filter results by the \u0060ApprovedPendingRejected\u0060 scope."
             },
             {
-              "Name": "approved_rejected",
-              "Description": null
+              "ClrMethodName": "FilterByApprovedRejected",
+              "Value": "approved_rejected",
+              "Description": "Filter results by the \u0060ApprovedRejected\u0060 scope."
             },
             {
-              "Name": "future",
-              "Description": null
+              "ClrMethodName": "FilterByFuture",
+              "Value": "future",
+              "Description": "Filter results by the \u0060Future\u0060 scope."
             },
             {
-              "Name": "pending",
-              "Description": null
+              "ClrMethodName": "FilterByPending",
+              "Value": "pending",
+              "Description": "Filter results by the \u0060Pending\u0060 scope."
             },
             {
-              "Name": "pending_rejected",
-              "Description": null
+              "ClrMethodName": "FilterByPendingRejected",
+              "Value": "pending_rejected",
+              "Description": "Filter results by the \u0060PendingRejected\u0060 scope."
             },
             {
-              "Name": "rejected",
-              "Description": null
+              "ClrMethodName": "FilterByRejected",
+              "Value": "rejected",
+              "Description": "Filter results by the \u0060Rejected\u0060 scope."
             }
           ],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "resource",
-          "Type": "resource",
-          "Description": null,
+          "JsonName": "resource",
+          "ClrName": "Resource",
+          "ClrAttributesType": "Resource",
+          "Description": "Associated \u0060Resource\u0060.",
           "Slug": "resource",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "room_setup",
-          "Type": "room_setup",
-          "Description": null,
+          "JsonName": "room_setup",
+          "ClrName": "RoomSetup",
+          "ClrAttributesType": "RoomSetup",
+          "Description": "Associated \u0060RoomSetup\u0060.",
           "Slug": "room_setup",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "updated_by",
-          "Type": "person",
-          "Description": null,
+          "JsonName": "updated_by",
+          "ClrName": "UpdatedBy",
+          "ClrAttributesType": "Person",
+          "Description": "Associated \u0060UpdatedBy\u0060.",
           "Slug": "updated_by",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         }
       ],
       "CanInclude": [
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeCreatedBy",
           "Value": "created_by",
-          "Description": "include associated created_by",
+          "Description": "Include related \u0060CreatedBy\u0060 resources in the response.",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
         },
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeEvent",
           "Value": "event",
-          "Description": "include associated event",
+          "Description": "Include related \u0060Event\u0060 resources in the response.",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
         },
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeResource",
           "Value": "resource",
-          "Description": "include associated resource",
+          "Description": "Include related \u0060Resource\u0060 resources in the response.",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
         },
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeRoomSetup",
           "Value": "room_setup",
-          "Description": "include associated room_setup",
+          "Description": "Include related \u0060RoomSetup\u0060 resources in the response.",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
         },
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeUpdatedBy",
           "Value": "updated_by",
-          "Description": "include associated updated_by",
+          "Description": "Include related \u0060UpdatedBy\u0060 resources in the response.",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
         }
@@ -1185,294 +1291,309 @@
       "CanOrderBy": [],
       "CanQueryBy": [
         {
-          "Name": "approval_sent",
+          "ClrMethodName": "WhereApprovalSent",
+          "ClrType": "bool",
           "Parameter": "where[approval_sent]",
-          "Type": "boolean",
-          "Description": "Query on a specific approval_sent",
-          "Example": "?where[approval_sent]=true"
+          "Description": "Query response items by the \u0060ApprovalSent\u0060 attribute."
         },
         {
-          "Name": "approval_status",
+          "ClrMethodName": "WhereApprovalStatus",
+          "ClrType": "string",
           "Parameter": "where[approval_status]",
-          "Type": "string",
-          "Description": "Query on a specific approval_status",
-          "Example": "?where[approval_status]=string"
+          "Description": "Query response items by the \u0060ApprovalStatus\u0060 attribute."
         },
         {
-          "Name": "created_at",
+          "ClrMethodName": "WhereCreatedAt",
+          "ClrType": "System.DateTime",
           "Parameter": "where[created_at]",
-          "Type": "date_time",
-          "Description": "Query on a specific created_at",
-          "Example": "?where[created_at]=2000-01-01T12:00:00Z"
+          "Description": "Query response items by the \u0060CreatedAt\u0060 attribute."
         },
         {
-          "Name": "updated_at",
+          "ClrMethodName": "WhereUpdatedAt",
+          "ClrType": "System.DateTime",
           "Parameter": "where[updated_at]",
-          "Type": "date_time",
-          "Description": "Query on a specific updated_at",
-          "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
+          "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
         }
       ],
       "Postable": false,
       "Patchable": false,
       "Deletable": false,
-      "GenerateResource": true,
-      "GenerateClients": true
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true
     },
     {
-      "Id": "event_time",
-      "Name": "EventTime",
-      "ResourceName": "EventTimeResource",
+      "JsonName": "event_time",
+      "ResourceClrType": "EventTimeResource",
+      "AttributesClrType": "EventTime",
       "Description": "Start and end times for each event instance.\n\nIn the Calendar UI, these are represented under the \u0022Schedule\u0022 section and\nmay include \u0022Setup\u0022 and \u0022Teardown\u0022 times for the instance.\n",
       "Deprecated": false,
       "CollectionOnly": true,
       "Attributes": [
         {
-          "Name": "ends_at",
-          "Type": "date_time",
+          "JsonName": "ends_at",
+          "ClrName": "EndsAt",
+          "ClrType": "System.DateTime",
           "Description": "UTC time at which the event time ends"
         },
         {
-          "Name": "name",
-          "Type": "date_time",
+          "JsonName": "name",
+          "ClrName": "Name",
+          "ClrType": "System.DateTime",
           "Description": "Name of the event time"
         },
         {
-          "Name": "starts_at",
-          "Type": "date_time",
+          "JsonName": "starts_at",
+          "ClrName": "StartsAt",
+          "ClrType": "System.DateTime",
           "Description": "UTC time at which the event time starts"
         },
         {
-          "Name": "visible_on_kiosks",
-          "Type": "boolean",
+          "JsonName": "visible_on_kiosks",
+          "ClrName": "VisibleOnKiosks",
+          "ClrType": "bool",
           "Description": "Set to \u0060true\u0060 if the time is visible on kiosk"
         },
         {
-          "Name": "visible_on_widget_and_ical",
-          "Type": "boolean",
+          "JsonName": "visible_on_widget_and_ical",
+          "ClrName": "VisibleOnWidgetAndIcal",
+          "ClrType": "bool",
           "Description": "Set to \u0060true\u0060 if the time is visible on widget or iCal"
         }
       ],
       "Relationships": [
         {
-          "Name": "event",
-          "Type": "Event",
-          "AssociationType": "to_one",
-          "Note": null
+          "JsonName": "event",
+          "ClrName": "Event",
+          "ClrAttributesType": "Event",
+          "ClrResourceType": "EventResource",
+          "IsCollection": false,
+          "Description": "Related \u0060Event\u0060 resource."
         }
       ],
+      "Actions": [],
       "Children": [
         {
-          "Name": "event",
-          "Type": "event",
-          "Description": null,
+          "JsonName": "event",
+          "ClrName": "Event",
+          "ClrAttributesType": "Event",
+          "Description": "Associated \u0060Event\u0060.",
           "Slug": "event",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         }
       ],
       "CanInclude": [
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeEvent",
           "Value": "event",
-          "Description": "include associated event",
+          "Description": "Include related \u0060Event\u0060 resources in the response.",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
         }
       ],
       "CanOrderBy": [
         {
-          "Parameter": "order",
+          "ClrMethodName": "OrderByEndsAt",
           "Value": "ends_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-ends_at) to reverse the order"
+          "Description": "Sort response items by the \u0060EndsAt\u0060 attribute."
         },
         {
-          "Parameter": "order",
+          "ClrMethodName": "OrderByStartsAt",
           "Value": "starts_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-starts_at) to reverse the order"
+          "Description": "Sort response items by the \u0060StartsAt\u0060 attribute."
         }
       ],
       "CanQueryBy": [
         {
-          "Name": "ends_at",
+          "ClrMethodName": "WhereEndsAt",
+          "ClrType": "System.DateTime",
           "Parameter": "where[ends_at]",
-          "Type": "date_time",
-          "Description": "Query on a specific ends_at",
-          "Example": "?where[ends_at]=2000-01-01T12:00:00Z"
+          "Description": "Query response items by the \u0060EndsAt\u0060 attribute."
         },
         {
-          "Name": "name",
+          "ClrMethodName": "WhereName",
+          "ClrType": "System.DateTime",
           "Parameter": "where[name]",
-          "Type": "date_time",
-          "Description": "Query on a specific name",
-          "Example": "?where[name]=2000-01-01T12:00:00Z"
+          "Description": "Query response items by the \u0060Name\u0060 attribute."
         },
         {
-          "Name": "starts_at",
+          "ClrMethodName": "WhereStartsAt",
+          "ClrType": "System.DateTime",
           "Parameter": "where[starts_at]",
-          "Type": "date_time",
-          "Description": "Query on a specific starts_at",
-          "Example": "?where[starts_at]=2000-01-01T12:00:00Z"
+          "Description": "Query response items by the \u0060StartsAt\u0060 attribute."
         },
         {
-          "Name": "visible_on_kiosks",
+          "ClrMethodName": "WhereVisibleOnKiosks",
+          "ClrType": "bool",
           "Parameter": "where[visible_on_kiosks]",
-          "Type": "boolean",
-          "Description": "Query on a specific visible_on_kiosks",
-          "Example": "?where[visible_on_kiosks]=true"
+          "Description": "Query response items by the \u0060VisibleOnKiosks\u0060 attribute."
         },
         {
-          "Name": "visible_on_widget_and_ical",
+          "ClrMethodName": "WhereVisibleOnWidgetAndIcal",
+          "ClrType": "bool",
           "Parameter": "where[visible_on_widget_and_ical]",
-          "Type": "boolean",
-          "Description": "Query on a specific visible_on_widget_and_ical",
-          "Example": "?where[visible_on_widget_and_ical]=true"
+          "Description": "Query response items by the \u0060VisibleOnWidgetAndIcal\u0060 attribute."
         }
       ],
       "Postable": false,
       "Patchable": false,
       "Deletable": false,
-      "GenerateResource": true,
-      "GenerateClients": true
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true
     },
     {
-      "Id": "feed",
-      "Name": "Feed",
-      "ResourceName": "FeedResource",
+      "JsonName": "feed",
+      "ResourceClrType": "FeedResource",
+      "AttributesClrType": "Feed",
       "Description": "A feed belonging to an organization.\n",
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "can_delete",
-          "Type": "boolean",
-          "Description": null
+          "JsonName": "can_delete",
+          "ClrName": "CanDelete",
+          "ClrType": "bool",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "default_church_center_visibility",
-          "Type": "jsonElement",
+          "JsonName": "default_church_center_visibility",
+          "ClrName": "DefaultChurchCenterVisibility",
+          "ClrType": "System.Text.Json.JsonElement",
           "Description": "Possible values: \u0060hidden\u0060 or \u0060published\u0060"
         },
         {
-          "Name": "deleting",
-          "Type": "boolean",
-          "Description": null
+          "JsonName": "deleting",
+          "ClrName": "Deleting",
+          "ClrType": "bool",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "feed_type",
-          "Type": "string",
+          "JsonName": "feed_type",
+          "ClrName": "FeedType",
+          "ClrType": "string",
           "Description": "Possible values: \u0060registrations\u0060, \u0060groups\u0060, \u0060ical\u0060, or \u0060form\u0060"
         },
         {
-          "Name": "imported_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "imported_at",
+          "ClrName": "ImportedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "name",
-          "Type": "string",
-          "Description": null
+          "JsonName": "name",
+          "ClrName": "Name",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "prefix_event_names",
-          "Type": "boolean",
+          "JsonName": "prefix_event_names",
+          "ClrName": "PrefixEventNames",
+          "ClrType": "bool",
           "Description": "Only available when requested with the \u0060?fields\u0060 param"
         },
         {
-          "Name": "source_id",
-          "Type": "primary_key",
-          "Description": null
+          "JsonName": "source_id",
+          "ClrName": "SourceId",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "sync_campus_tags",
-          "Type": "boolean",
+          "JsonName": "sync_campus_tags",
+          "ClrName": "SyncCampusTags",
+          "ClrType": "bool",
           "Description": "Only available when requested with the \u0060?fields\u0060 param"
         }
       ],
       "Relationships": [
         {
-          "Name": "event_owner",
-          "Type": "Person",
-          "AssociationType": "to_one",
-          "Note": null
+          "JsonName": "event_owner",
+          "ClrName": "EventOwner",
+          "ClrAttributesType": "Person",
+          "ClrResourceType": "PersonResource",
+          "IsCollection": false,
+          "Description": "Related \u0060EventOwner\u0060 resource."
         },
         {
-          "Name": "default_calendar",
-          "Type": "Calendar",
-          "AssociationType": "to_one",
-          "Note": null
+          "JsonName": "default_calendar",
+          "ClrName": "DefaultCalendar",
+          "ClrAttributesType": "Calendar",
+          "ClrResourceType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier",
+          "IsCollection": false,
+          "Description": "Related \u0060DefaultCalendar\u0060 resource."
         }
       ],
+      "Actions": [],
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [
         {
-          "Parameter": "order",
+          "ClrMethodName": "OrderByName",
           "Value": "name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-name) to reverse the order"
+          "Description": "Sort response items by the \u0060Name\u0060 attribute."
         }
       ],
       "CanQueryBy": [
         {
-          "Name": "feed_type",
+          "ClrMethodName": "WhereFeedType",
+          "ClrType": "string",
           "Parameter": "where[feed_type]",
-          "Type": "string",
-          "Description": "Query on a specific feed_type\n\nPossible values: \u0060registrations\u0060, \u0060groups\u0060, \u0060ical\u0060, or \u0060form\u0060",
-          "Example": "?where[feed_type]=value"
+          "Description": "Query response items by the \u0060FeedType\u0060 attribute."
         },
         {
-          "Name": "source_id",
+          "ClrMethodName": "WhereSourceId",
+          "ClrType": "string",
           "Parameter": "where[source_id]",
-          "Type": "primary_key",
-          "Description": "Query on a specific source_id",
-          "Example": "?where[source_id]=primary_key"
+          "Description": "Query response items by the \u0060SourceId\u0060 attribute."
         }
       ],
       "Postable": false,
       "Patchable": false,
       "Deletable": false,
-      "GenerateResource": true,
-      "GenerateClients": true
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true
     },
     {
-      "Id": "job_status",
-      "Name": "JobStatus",
-      "ResourceName": "JobStatusResource",
-      "Description": null,
+      "JsonName": "job_status",
+      "ResourceClrType": "JobStatusResource",
+      "AttributesClrType": "JobStatus",
+      "Description": "Planning Center does not provide a description for this resource.",
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "errors",
-          "Type": "json",
-          "Description": null
+          "JsonName": "errors",
+          "ClrName": "Errors",
+          "ClrType": "System.Text.Json.Nodes.JsonObject",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "message",
-          "Type": "string",
-          "Description": null
+          "JsonName": "message",
+          "ClrName": "Message",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "retries",
-          "Type": "integer",
-          "Description": null
+          "JsonName": "retries",
+          "ClrName": "Retries",
+          "ClrType": "int",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "started_at",
-          "Type": "date_time",
-          "Description": null
+          "JsonName": "started_at",
+          "ClrName": "StartedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "status",
-          "Type": "string",
-          "Description": null
+          "JsonName": "status",
+          "ClrName": "Status",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         }
       ],
       "Relationships": [],
+      "Actions": [],
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
@@ -1480,420 +1601,496 @@
       "Postable": false,
       "Patchable": false,
       "Deletable": false,
-      "GenerateResource": true,
-      "GenerateClients": true
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true
     },
     {
-      "Id": "organization",
-      "Name": "Organization",
-      "ResourceName": "OrganizationResource",
+      "JsonName": "organization",
+      "ResourceClrType": "OrganizationResource",
+      "AttributesClrType": "Organization",
       "Description": "An administrative structure, usually representing a single church.\nContains date/time formatting and time zone preferences.\n",
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "calendar_starts_on",
-          "Type": "string",
+          "JsonName": "calendar_starts_on",
+          "ClrName": "CalendarStartsOn",
+          "ClrType": "string",
           "Description": "The day of the week the calendar starts on"
         },
         {
-          "Name": "date_format",
-          "Type": "string",
+          "JsonName": "date_format",
+          "ClrName": "DateFormat",
+          "ClrType": "string",
           "Description": "Possible values:\n- \u0060%d/%m/%Y\u0060: indicates date/month/year formatting\n- \u0060%m/%d/%Y\u0060: indicates month/date/year formatting\n"
         },
         {
-          "Name": "name",
-          "Type": "string",
+          "JsonName": "name",
+          "ClrName": "Name",
+          "ClrType": "string",
           "Description": "The name of the organization"
         },
         {
-          "Name": "onboarding",
-          "Type": "boolean",
+          "JsonName": "onboarding",
+          "ClrName": "Onboarding",
+          "ClrType": "bool",
           "Description": "Only available when requested with the \u0060?fields\u0060 param"
         },
         {
-          "Name": "time_zone",
-          "Type": "string",
+          "JsonName": "time_zone",
+          "ClrName": "TimeZone",
+          "ClrType": "string",
           "Description": "The time zone of the organization"
         },
         {
-          "Name": "twenty_four_hour_time",
-          "Type": "boolean",
+          "JsonName": "twenty_four_hour_time",
+          "ClrName": "TwentyFourHourTime",
+          "ClrType": "bool",
           "Description": "- \u0060true\u0060 indicates hours for times will use a 24-hour clock\n- \u0060false\u0060 indicates hours for times will use a 12-hour clock\n"
         }
       ],
       "Relationships": [],
+      "Actions": [],
       "Children": [
         {
-          "Name": "attachments",
-          "Type": "attachment",
-          "Description": null,
+          "JsonName": "attachments",
+          "ClrName": "Attachments",
+          "ClrAttributesType": "Attachment",
+          "Description": "Associated \u0060Attachments\u0060.",
           "Slug": "attachments",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "conflicts",
-          "Type": "conflict",
-          "Description": null,
+          "JsonName": "conflicts",
+          "ClrName": "Conflicts",
+          "ClrAttributesType": "Conflict",
+          "Description": "Associated \u0060Conflicts\u0060.",
           "Slug": "conflicts",
           "Filters": [
             {
-              "Name": "future",
-              "Description": null
+              "ClrMethodName": "FilterByFuture",
+              "Value": "future",
+              "Description": "Filter results by the \u0060Future\u0060 scope."
             },
             {
-              "Name": "resolved",
-              "Description": null
+              "ClrMethodName": "FilterByResolved",
+              "Value": "resolved",
+              "Description": "Filter results by the \u0060Resolved\u0060 scope."
             },
             {
-              "Name": "unresolved",
-              "Description": null
+              "ClrMethodName": "FilterByUnresolved",
+              "Value": "unresolved",
+              "Description": "Filter results by the \u0060Unresolved\u0060 scope."
             }
           ],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "event_instances",
-          "Type": "event_instance",
-          "Description": null,
+          "JsonName": "event_instances",
+          "ClrName": "EventInstances",
+          "ClrAttributesType": "EventInstance",
+          "Description": "Associated \u0060EventInstances\u0060.",
           "Slug": "event_instances",
           "Filters": [
             {
-              "Name": "all",
+              "ClrMethodName": "FilterByAll",
+              "Value": "all",
               "Description": "filter to instances you approve, manage, own, or subscribe to; can\u0027t be combined with any other user scopes"
             },
             {
-              "Name": "approved",
+              "ClrMethodName": "FilterByApproved",
+              "Value": "approved",
               "Description": "filter to instances that are approved; can\u0027t be combined with any other \u0060approved\u0060 scopes"
             },
             {
-              "Name": "approved_pending",
-              "Description": null
+              "ClrMethodName": "FilterByApprovedPending",
+              "Value": "approved_pending",
+              "Description": "Filter results by the \u0060ApprovedPending\u0060 scope."
             },
             {
-              "Name": "approved_pending_rejected",
-              "Description": null
+              "ClrMethodName": "FilterByApprovedPendingRejected",
+              "Value": "approved_pending_rejected",
+              "Description": "Filter results by the \u0060ApprovedPendingRejected\u0060 scope."
             },
             {
-              "Name": "approved_rejected",
-              "Description": null
+              "ClrMethodName": "FilterByApprovedRejected",
+              "Value": "approved_rejected",
+              "Description": "Filter results by the \u0060ApprovedRejected\u0060 scope."
             },
             {
-              "Name": "approver",
+              "ClrMethodName": "FilterByApprover",
+              "Value": "approver",
               "Description": "filter to instances you approve; can\u0027t be combined with any other \u0060approver\u0060 scopes"
             },
             {
-              "Name": "approver_subscriber",
-              "Description": null
+              "ClrMethodName": "FilterByApproverSubscriber",
+              "Value": "approver_subscriber",
+              "Description": "Filter results by the \u0060ApproverSubscriber\u0060 scope."
             },
             {
-              "Name": "future",
-              "Description": null
+              "ClrMethodName": "FilterByFuture",
+              "Value": "future",
+              "Description": "Filter results by the \u0060Future\u0060 scope."
             },
             {
-              "Name": "lost",
-              "Description": null
+              "ClrMethodName": "FilterByLost",
+              "Value": "lost",
+              "Description": "Filter results by the \u0060Lost\u0060 scope."
             },
             {
-              "Name": "lost_due_to_blockout",
-              "Description": null
+              "ClrMethodName": "FilterByLostDueToBlockout",
+              "Value": "lost_due_to_blockout",
+              "Description": "Filter results by the \u0060LostDueToBlockout\u0060 scope."
             },
             {
-              "Name": "manager",
+              "ClrMethodName": "FilterByManager",
+              "Value": "manager",
               "Description": "filter to instances you manage; can\u0027t be combined with any other \u0060manager\u0060 scopes"
             },
             {
-              "Name": "manager_approver",
-              "Description": null
+              "ClrMethodName": "FilterByManagerApprover",
+              "Value": "manager_approver",
+              "Description": "Filter results by the \u0060ManagerApprover\u0060 scope."
             },
             {
-              "Name": "manager_approver_subscriber",
-              "Description": null
+              "ClrMethodName": "FilterByManagerApproverSubscriber",
+              "Value": "manager_approver_subscriber",
+              "Description": "Filter results by the \u0060ManagerApproverSubscriber\u0060 scope."
             },
             {
-              "Name": "manager_subscriber",
-              "Description": null
+              "ClrMethodName": "FilterByManagerSubscriber",
+              "Value": "manager_subscriber",
+              "Description": "Filter results by the \u0060ManagerSubscriber\u0060 scope."
             },
             {
-              "Name": "not_pending_event_requests",
-              "Description": null
+              "ClrMethodName": "FilterByNotPendingEventRequests",
+              "Value": "not_pending_event_requests",
+              "Description": "Filter results by the \u0060NotPendingEventRequests\u0060 scope."
             },
             {
-              "Name": "owner",
+              "ClrMethodName": "FilterByOwner",
+              "Value": "owner",
               "Description": "filter to instances you own; can\u0027t be combined with any other \u0060owner\u0060 scopes"
             },
             {
-              "Name": "owner_approver",
-              "Description": null
+              "ClrMethodName": "FilterByOwnerApprover",
+              "Value": "owner_approver",
+              "Description": "Filter results by the \u0060OwnerApprover\u0060 scope."
             },
             {
-              "Name": "owner_approver_subscriber",
-              "Description": null
+              "ClrMethodName": "FilterByOwnerApproverSubscriber",
+              "Value": "owner_approver_subscriber",
+              "Description": "Filter results by the \u0060OwnerApproverSubscriber\u0060 scope."
             },
             {
-              "Name": "owner_manager",
-              "Description": null
+              "ClrMethodName": "FilterByOwnerManager",
+              "Value": "owner_manager",
+              "Description": "Filter results by the \u0060OwnerManager\u0060 scope."
             },
             {
-              "Name": "owner_manager_approver",
-              "Description": null
+              "ClrMethodName": "FilterByOwnerManagerApprover",
+              "Value": "owner_manager_approver",
+              "Description": "Filter results by the \u0060OwnerManagerApprover\u0060 scope."
             },
             {
-              "Name": "owner_manager_approver_subscriber",
-              "Description": null
+              "ClrMethodName": "FilterByOwnerManagerApproverSubscriber",
+              "Value": "owner_manager_approver_subscriber",
+              "Description": "Filter results by the \u0060OwnerManagerApproverSubscriber\u0060 scope."
             },
             {
-              "Name": "owner_manager_subscriber",
-              "Description": null
+              "ClrMethodName": "FilterByOwnerManagerSubscriber",
+              "Value": "owner_manager_subscriber",
+              "Description": "Filter results by the \u0060OwnerManagerSubscriber\u0060 scope."
             },
             {
-              "Name": "owner_subscriber",
-              "Description": null
+              "ClrMethodName": "FilterByOwnerSubscriber",
+              "Value": "owner_subscriber",
+              "Description": "Filter results by the \u0060OwnerSubscriber\u0060 scope."
             },
             {
-              "Name": "pending",
+              "ClrMethodName": "FilterByPending",
+              "Value": "pending",
               "Description": "filter to instances that are pending; can\u0027t be combined with any other \u0060pending\u0060 scopes"
             },
             {
-              "Name": "pending_rejected",
-              "Description": null
+              "ClrMethodName": "FilterByPendingRejected",
+              "Value": "pending_rejected",
+              "Description": "Filter results by the \u0060PendingRejected\u0060 scope."
             },
             {
-              "Name": "rejected",
+              "ClrMethodName": "FilterByRejected",
+              "Value": "rejected",
               "Description": "filter to instances that are rejected; can\u0027t be combined with any other \u0060rejected\u0060 scopes"
             },
             {
-              "Name": "shared",
-              "Description": null
+              "ClrMethodName": "FilterByShared",
+              "Value": "shared",
+              "Description": "Filter results by the \u0060Shared\u0060 scope."
             },
             {
-              "Name": "subscriber",
+              "ClrMethodName": "FilterBySubscriber",
+              "Value": "subscriber",
               "Description": "filter to instances you subscribe to; can\u0027t be combined with any other \u0060subscriber\u0060 scopes"
             },
             {
-              "Name": "unresolved",
-              "Description": null
+              "ClrMethodName": "FilterByUnresolved",
+              "Value": "unresolved",
+              "Description": "Filter results by the \u0060Unresolved\u0060 scope."
             }
           ],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "event_resource_requests",
-          "Type": "event_resource_request",
-          "Description": null,
+          "JsonName": "event_resource_requests",
+          "ClrName": "EventResourceRequests",
+          "ClrAttributesType": "EventResourceRequest",
+          "Description": "Associated \u0060EventResourceRequests\u0060.",
           "Slug": "event_resource_requests",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "events",
-          "Type": "event",
-          "Description": null,
+          "JsonName": "events",
+          "ClrName": "Events",
+          "ClrAttributesType": "Event",
+          "Description": "Associated \u0060Events\u0060.",
           "Slug": "events",
           "Filters": [
             {
-              "Name": "future",
-              "Description": null
+              "ClrMethodName": "FilterByFuture",
+              "Value": "future",
+              "Description": "Filter results by the \u0060Future\u0060 scope."
             }
           ],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "feeds",
-          "Type": "feed",
-          "Description": null,
+          "JsonName": "feeds",
+          "ClrName": "Feeds",
+          "ClrAttributesType": "Feed",
+          "Description": "Associated \u0060Feeds\u0060.",
           "Slug": "feeds",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "job_statuses",
-          "Type": "job_status",
-          "Description": null,
+          "JsonName": "job_statuses",
+          "ClrName": "JobStatuses",
+          "ClrAttributesType": "JobStatus",
+          "Description": "Associated \u0060JobStatuses\u0060.",
           "Slug": "job_statuses",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "people",
-          "Type": "person",
-          "Description": null,
+          "JsonName": "people",
+          "ClrName": "People",
+          "ClrAttributesType": "Person",
+          "Description": "Associated \u0060People\u0060.",
           "Slug": "people",
           "Filters": [
             {
-              "Name": "active",
-              "Description": null
+              "ClrMethodName": "FilterByActive",
+              "Value": "active",
+              "Description": "Filter results by the \u0060Active\u0060 scope."
             },
             {
-              "Name": "event_owners",
-              "Description": null
+              "ClrMethodName": "FilterByEventOwners",
+              "Value": "event_owners",
+              "Description": "Filter results by the \u0060EventOwners\u0060 scope."
             }
           ],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "report_templates",
-          "Type": "report_template",
-          "Description": null,
+          "JsonName": "report_templates",
+          "ClrName": "ReportTemplates",
+          "ClrAttributesType": "ReportTemplate",
+          "Description": "Associated \u0060ReportTemplates\u0060.",
           "Slug": "report_templates",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "resource_approval_groups",
-          "Type": "resource_approval_group",
-          "Description": null,
+          "JsonName": "resource_approval_groups",
+          "ClrName": "ResourceApprovalGroups",
+          "ClrAttributesType": "ResourceApprovalGroup",
+          "Description": "Associated \u0060ResourceApprovalGroups\u0060.",
           "Slug": "resource_approval_groups",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "resource_bookings",
-          "Type": "resource_booking",
-          "Description": null,
+          "JsonName": "resource_bookings",
+          "ClrName": "ResourceBookings",
+          "ClrAttributesType": "ResourceBooking",
+          "Description": "Associated \u0060ResourceBookings\u0060.",
           "Slug": "resource_bookings",
           "Filters": [
             {
-              "Name": "approved",
-              "Description": null
+              "ClrMethodName": "FilterByApproved",
+              "Value": "approved",
+              "Description": "Filter results by the \u0060Approved\u0060 scope."
             },
             {
-              "Name": "approved_pending",
-              "Description": null
+              "ClrMethodName": "FilterByApprovedPending",
+              "Value": "approved_pending",
+              "Description": "Filter results by the \u0060ApprovedPending\u0060 scope."
             },
             {
-              "Name": "approved_pending_rejected",
-              "Description": null
+              "ClrMethodName": "FilterByApprovedPendingRejected",
+              "Value": "approved_pending_rejected",
+              "Description": "Filter results by the \u0060ApprovedPendingRejected\u0060 scope."
             },
             {
-              "Name": "approved_rejected",
-              "Description": null
+              "ClrMethodName": "FilterByApprovedRejected",
+              "Value": "approved_rejected",
+              "Description": "Filter results by the \u0060ApprovedRejected\u0060 scope."
             },
             {
-              "Name": "future",
-              "Description": null
+              "ClrMethodName": "FilterByFuture",
+              "Value": "future",
+              "Description": "Filter results by the \u0060Future\u0060 scope."
             },
             {
-              "Name": "pending",
-              "Description": null
+              "ClrMethodName": "FilterByPending",
+              "Value": "pending",
+              "Description": "Filter results by the \u0060Pending\u0060 scope."
             },
             {
-              "Name": "pending_rejected",
-              "Description": null
+              "ClrMethodName": "FilterByPendingRejected",
+              "Value": "pending_rejected",
+              "Description": "Filter results by the \u0060PendingRejected\u0060 scope."
             },
             {
-              "Name": "rejected",
-              "Description": null
+              "ClrMethodName": "FilterByRejected",
+              "Value": "rejected",
+              "Description": "Filter results by the \u0060Rejected\u0060 scope."
             },
             {
-              "Name": "resources",
-              "Description": null
+              "ClrMethodName": "FilterByResources",
+              "Value": "resources",
+              "Description": "Filter results by the \u0060Resources\u0060 scope."
             },
             {
-              "Name": "rooms",
-              "Description": null
+              "ClrMethodName": "FilterByRooms",
+              "Value": "rooms",
+              "Description": "Filter results by the \u0060Rooms\u0060 scope."
             }
           ],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "resource_folders",
-          "Type": "resource_folder",
-          "Description": null,
+          "JsonName": "resource_folders",
+          "ClrName": "ResourceFolders",
+          "ClrAttributesType": "ResourceFolder",
+          "Description": "Associated \u0060ResourceFolders\u0060.",
           "Slug": "resource_folders",
           "Filters": [
             {
-              "Name": "resources",
-              "Description": null
+              "ClrMethodName": "FilterByResources",
+              "Value": "resources",
+              "Description": "Filter results by the \u0060Resources\u0060 scope."
             },
             {
-              "Name": "rooms",
-              "Description": null
+              "ClrMethodName": "FilterByRooms",
+              "Value": "rooms",
+              "Description": "Filter results by the \u0060Rooms\u0060 scope."
             }
           ],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "resource_questions",
-          "Type": "resource_question",
-          "Description": null,
+          "JsonName": "resource_questions",
+          "ClrName": "ResourceQuestions",
+          "ClrAttributesType": "ResourceQuestion",
+          "Description": "Associated \u0060ResourceQuestions\u0060.",
           "Slug": "resource_questions",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "resources",
-          "Type": "resource",
-          "Description": null,
+          "JsonName": "resources",
+          "ClrName": "Resources",
+          "ClrAttributesType": "Resource",
+          "Description": "Associated \u0060Resources\u0060.",
           "Slug": "resources",
           "Filters": [
             {
-              "Name": "resources",
-              "Description": null
+              "ClrMethodName": "FilterByResources",
+              "Value": "resources",
+              "Description": "Filter results by the \u0060Resources\u0060 scope."
             },
             {
-              "Name": "rooms",
-              "Description": null
+              "ClrMethodName": "FilterByRooms",
+              "Value": "rooms",
+              "Description": "Filter results by the \u0060Rooms\u0060 scope."
             }
           ],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "room_setups",
-          "Type": "room_setup",
-          "Description": null,
+          "JsonName": "room_setups",
+          "ClrName": "RoomSetups",
+          "ClrAttributesType": "RoomSetup",
+          "Description": "Associated \u0060RoomSetups\u0060.",
           "Slug": "room_setups",
           "Filters": [
             {
-              "Name": "shared_room_setups",
-              "Description": null
+              "ClrMethodName": "FilterBySharedRoomSetups",
+              "Value": "shared_room_setups",
+              "Description": "Filter results by the \u0060SharedRoomSetups\u0060 scope."
             }
           ],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "tag_groups",
-          "Type": "tag_group",
-          "Description": null,
+          "JsonName": "tag_groups",
+          "ClrName": "TagGroups",
+          "ClrAttributesType": "TagGroup",
+          "Description": "Associated \u0060TagGroups\u0060.",
           "Slug": "tag_groups",
           "Filters": [
             {
-              "Name": "required",
-              "Description": null
+              "ClrMethodName": "FilterByRequired",
+              "Value": "required",
+              "Description": "Filter results by the \u0060Required\u0060 scope."
             }
           ],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "tags",
-          "Type": "tag",
-          "Description": null,
+          "JsonName": "tags",
+          "ClrName": "Tags",
+          "ClrAttributesType": "Tag",
+          "Description": "Associated \u0060Tags\u0060.",
           "Slug": "tags",
           "Filters": [
             {
-              "Name": "individual",
-              "Description": null
+              "ClrMethodName": "FilterByIndividual",
+              "Value": "individual",
+              "Description": "Filter results by the \u0060Individual\u0060 scope."
             }
           ],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         }
       ],
       "CanInclude": [],
@@ -1902,309 +2099,339 @@
       "Postable": false,
       "Patchable": false,
       "Deletable": false,
-      "GenerateResource": true,
-      "GenerateClients": true
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true
     },
     {
-      "Id": "person",
-      "Name": "Person",
-      "ResourceName": "PersonResource",
+      "JsonName": "person",
+      "ResourceClrType": "PersonResource",
+      "AttributesClrType": "Person",
       "Description": "The people in your organization with access to Calendar.\n",
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "avatar_url",
-          "Type": "string",
+          "JsonName": "avatar_url",
+          "ClrName": "AvatarUrl",
+          "ClrType": "string",
           "Description": "Path to where the avatar image is stored"
         },
         {
-          "Name": "can_edit_people",
-          "Type": "boolean",
+          "JsonName": "can_edit_people",
+          "ClrName": "CanEditPeople",
+          "ClrType": "bool",
           "Description": "Indicates whether the person can edit other people"
         },
         {
-          "Name": "can_edit_resources",
-          "Type": "boolean",
+          "JsonName": "can_edit_resources",
+          "ClrName": "CanEditResources",
+          "ClrType": "bool",
           "Description": "Indicates whether the person can edit resources"
         },
         {
-          "Name": "can_edit_rooms",
-          "Type": "boolean",
+          "JsonName": "can_edit_rooms",
+          "ClrName": "CanEditRooms",
+          "ClrType": "bool",
           "Description": "Indicates whether the person can edit rooms"
         },
         {
-          "Name": "child",
-          "Type": "boolean",
+          "JsonName": "child",
+          "ClrName": "Child",
+          "ClrType": "bool",
           "Description": "Indicates whether the person is a child"
         },
         {
-          "Name": "contact_data",
-          "Type": "contact_data",
+          "JsonName": "contact_data",
+          "ClrName": "ContactData",
+          "ClrType": "System.Text.Json.JsonElement",
           "Description": "An object containing the person\u0027s contact data.\n\nThis can include an array of \u0060email_addresses\u0060, \u0060addresses\u0060 and \u0060phone_numbers\u0060\n"
         },
         {
-          "Name": "created_at",
-          "Type": "date_time",
+          "JsonName": "created_at",
+          "ClrName": "CreatedAt",
+          "ClrType": "System.DateTime",
           "Description": "UTC time at which the person was created"
         },
         {
-          "Name": "event_permissions_type",
-          "Type": "string",
+          "JsonName": "event_permissions_type",
+          "ClrName": "EventPermissionsType",
+          "ClrType": "string",
           "Description": "Event permissions for the person"
         },
         {
-          "Name": "first_name",
-          "Type": "string",
+          "JsonName": "first_name",
+          "ClrName": "FirstName",
+          "ClrType": "string",
           "Description": "The person\u0027s first name"
         },
         {
-          "Name": "gender",
-          "Type": "string",
+          "JsonName": "gender",
+          "ClrName": "Gender",
+          "ClrType": "string",
           "Description": "\u0060M\u0060 indicates male, \u0060F\u0060 indicates female"
         },
         {
-          "Name": "has_access",
-          "Type": "boolean",
+          "JsonName": "has_access",
+          "ClrName": "HasAccess",
+          "ClrType": "bool",
           "Description": "Indicates whether the person has access to Calendar"
         },
         {
-          "Name": "last_name",
-          "Type": "string",
+          "JsonName": "last_name",
+          "ClrName": "LastName",
+          "ClrType": "string",
           "Description": "The person\u0027s last name"
         },
         {
-          "Name": "member_of_approval_groups",
-          "Type": "boolean",
+          "JsonName": "member_of_approval_groups",
+          "ClrName": "MemberOfApprovalGroups",
+          "ClrType": "bool",
           "Description": "Indicates whether the person is a member of at least one approval group\n\nOnly available when requested with the \u0060?fields\u0060 param"
         },
         {
-          "Name": "middle_name",
-          "Type": "string",
+          "JsonName": "middle_name",
+          "ClrName": "MiddleName",
+          "ClrType": "string",
           "Description": "The person\u0027s middle name"
         },
         {
-          "Name": "name",
-          "Type": "string",
+          "JsonName": "name",
+          "ClrName": "Name",
+          "ClrType": "string",
           "Description": "The person\u0027s first name, last name, and name suffix"
         },
         {
-          "Name": "name_prefix",
-          "Type": "string",
+          "JsonName": "name_prefix",
+          "ClrName": "NamePrefix",
+          "ClrType": "string",
           "Description": "Possible values:\n- \u0060Mr.\u0060\n- \u0060Mrs.\u0060\n- \u0060Ms.\u0060\n- \u0060Miss\u0060\n- \u0060Dr.\u0060\n- \u0060Rev.\u0060\n"
         },
         {
-          "Name": "name_suffix",
-          "Type": "string",
+          "JsonName": "name_suffix",
+          "ClrName": "NameSuffix",
+          "ClrType": "string",
           "Description": "Possible values:\n- \u0060Jr.\u0060\n- \u0060Sr.\u0060\n- \u0060Ph.D.\u0060\n- \u0060II\u0060\n- \u0060III\u0060\n"
         },
         {
-          "Name": "pending_request_count",
-          "Type": "integer",
+          "JsonName": "pending_request_count",
+          "ClrName": "PendingRequestCount",
+          "ClrType": "int",
           "Description": "If the person is a member of an approval group, the number of EventResourceRequests needing resolution.\n\nIf \u0060resolves_conflicts\u0060 is \u0060true\u0060, the count will also include the number of Conflicts needing resolution.\n"
         },
         {
-          "Name": "people_permissions_type",
-          "Type": "string",
+          "JsonName": "people_permissions_type",
+          "ClrName": "PeoplePermissionsType",
+          "ClrType": "string",
           "Description": "People permissions for the person"
         },
         {
-          "Name": "permissions",
-          "Type": "integer",
+          "JsonName": "permissions",
+          "ClrName": "Permissions",
+          "ClrType": "int",
           "Description": "Integer that corresponds to the person\u0027s permissions in Calendar"
         },
         {
-          "Name": "resolves_conflicts",
-          "Type": "boolean",
+          "JsonName": "resolves_conflicts",
+          "ClrName": "ResolvesConflicts",
+          "ClrType": "bool",
           "Description": "Indicates whether the person is able to resolve Conflicts"
         },
         {
-          "Name": "resources_permissions_type",
-          "Type": "string",
+          "JsonName": "resources_permissions_type",
+          "ClrName": "ResourcesPermissionsType",
+          "ClrType": "string",
           "Description": "Resource permissions for the person"
         },
         {
-          "Name": "room_permissions_type",
-          "Type": "string",
+          "JsonName": "room_permissions_type",
+          "ClrName": "RoomPermissionsType",
+          "ClrType": "string",
           "Description": "Room permissions for the person"
         },
         {
-          "Name": "site_administrator",
-          "Type": "boolean",
+          "JsonName": "site_administrator",
+          "ClrName": "SiteAdministrator",
+          "ClrType": "bool",
           "Description": "Indicates whether the person is a Organization Administrator"
         },
         {
-          "Name": "status",
-          "Type": "string",
+          "JsonName": "status",
+          "ClrName": "Status",
+          "ClrType": "string",
           "Description": "Possible values:\n- \u0060active\u0060: The person is marked \u0022active\u0022 in People\n- \u0060inactive\u0060: The person is marked \u0022inactive\u0022 in People\n\n\nPossible values: \u0060active\u0060, \u0060pending\u0060, or \u0060inactive\u0060"
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
+          "JsonName": "updated_at",
+          "ClrName": "UpdatedAt",
+          "ClrType": "System.DateTime",
           "Description": "UTC time at which the person was updated"
         }
       ],
       "Relationships": [],
+      "Actions": [],
       "Children": [
         {
-          "Name": "event_resource_requests",
-          "Type": "event_resource_request",
-          "Description": null,
+          "JsonName": "event_resource_requests",
+          "ClrName": "EventResourceRequests",
+          "ClrAttributesType": "EventResourceRequest",
+          "Description": "Associated \u0060EventResourceRequests\u0060.",
           "Slug": "event_resource_requests",
           "Filters": [
             {
-              "Name": "awaiting_response",
-              "Description": null
+              "ClrMethodName": "FilterByAwaitingResponse",
+              "Value": "awaiting_response",
+              "Description": "Filter results by the \u0060AwaitingResponse\u0060 scope."
             },
             {
-              "Name": "future",
-              "Description": null
+              "ClrMethodName": "FilterByFuture",
+              "Value": "future",
+              "Description": "Filter results by the \u0060Future\u0060 scope."
             },
             {
-              "Name": "not_in_conflict",
-              "Description": null
+              "ClrMethodName": "FilterByNotInConflict",
+              "Value": "not_in_conflict",
+              "Description": "Filter results by the \u0060NotInConflict\u0060 scope."
             },
             {
-              "Name": "not_overbooked",
-              "Description": null
+              "ClrMethodName": "FilterByNotOverbooked",
+              "Value": "not_overbooked",
+              "Description": "Filter results by the \u0060NotOverbooked\u0060 scope."
             },
             {
-              "Name": "overbooked",
-              "Description": null
+              "ClrMethodName": "FilterByOverbooked",
+              "Value": "overbooked",
+              "Description": "Filter results by the \u0060Overbooked\u0060 scope."
             }
           ],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "organization",
-          "Type": "organization",
-          "Description": null,
+          "JsonName": "organization",
+          "ClrName": "Organization",
+          "ClrAttributesType": "Organization",
+          "Description": "Associated \u0060Organization\u0060.",
           "Slug": "organization",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         }
       ],
       "CanInclude": [
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeOrganization",
           "Value": "organization",
-          "Description": "include associated organization",
+          "Description": "Include related \u0060Organization\u0060 resources in the response.",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [
         {
-          "Parameter": "order",
+          "ClrMethodName": "OrderByCreatedAt",
           "Value": "created_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+          "Description": "Sort response items by the \u0060CreatedAt\u0060 attribute."
         },
         {
-          "Parameter": "order",
+          "ClrMethodName": "OrderByFirstName",
           "Value": "first_name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-first_name) to reverse the order"
+          "Description": "Sort response items by the \u0060FirstName\u0060 attribute."
         },
         {
-          "Parameter": "order",
+          "ClrMethodName": "OrderByLastName",
           "Value": "last_name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-last_name) to reverse the order"
+          "Description": "Sort response items by the \u0060LastName\u0060 attribute."
         },
         {
-          "Parameter": "order",
+          "ClrMethodName": "OrderByResolvesConflicts",
           "Value": "resolves_conflicts",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-resolves_conflicts) to reverse the order"
+          "Description": "Sort response items by the \u0060ResolvesConflicts\u0060 attribute."
         },
         {
-          "Parameter": "order",
+          "ClrMethodName": "OrderByUpdatedAt",
           "Value": "updated_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
+          "Description": "Sort response items by the \u0060UpdatedAt\u0060 attribute."
         }
       ],
       "CanQueryBy": [
         {
-          "Name": "created_at",
+          "ClrMethodName": "WhereCreatedAt",
+          "ClrType": "System.DateTime",
           "Parameter": "where[created_at]",
-          "Type": "date_time",
-          "Description": "Query on a specific created_at",
-          "Example": "?where[created_at]=2000-01-01T12:00:00Z"
+          "Description": "Query response items by the \u0060CreatedAt\u0060 attribute."
         },
         {
-          "Name": "first_name",
+          "ClrMethodName": "WhereFirstName",
+          "ClrType": "string",
           "Parameter": "where[first_name]",
-          "Type": "string",
-          "Description": "Query on a specific first_name",
-          "Example": "?where[first_name]=string"
+          "Description": "Query response items by the \u0060FirstName\u0060 attribute."
         },
         {
-          "Name": "last_name",
+          "ClrMethodName": "WhereLastName",
+          "ClrType": "string",
           "Parameter": "where[last_name]",
-          "Type": "string",
-          "Description": "Query on a specific last_name",
-          "Example": "?where[last_name]=string"
+          "Description": "Query response items by the \u0060LastName\u0060 attribute."
         },
         {
-          "Name": "middle_name",
+          "ClrMethodName": "WhereMiddleName",
+          "ClrType": "string",
           "Parameter": "where[middle_name]",
-          "Type": "string",
-          "Description": "Query on a specific middle_name",
-          "Example": "?where[middle_name]=string"
+          "Description": "Query response items by the \u0060MiddleName\u0060 attribute."
         },
         {
-          "Name": "updated_at",
+          "ClrMethodName": "WhereUpdatedAt",
+          "ClrType": "System.DateTime",
           "Parameter": "where[updated_at]",
-          "Type": "date_time",
-          "Description": "Query on a specific updated_at",
-          "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
+          "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
         }
       ],
       "Postable": false,
       "Patchable": false,
       "Deletable": false,
-      "GenerateResource": true,
-      "GenerateClients": true
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true
     },
     {
-      "Id": "report_template",
-      "Name": "ReportTemplate",
-      "ResourceName": "ReportTemplateResource",
+      "JsonName": "report_template",
+      "ResourceClrType": "ReportTemplateResource",
+      "AttributesClrType": "ReportTemplate",
       "Description": "A template for generating a report.\n",
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "body",
-          "Type": "string",
+          "JsonName": "body",
+          "ClrName": "Body",
+          "ClrType": "string",
           "Description": "The contents of the report template"
         },
         {
-          "Name": "created_at",
-          "Type": "string",
+          "JsonName": "created_at",
+          "ClrName": "CreatedAt",
+          "ClrType": "string",
           "Description": "UTC time at which the report was created"
         },
         {
-          "Name": "description",
-          "Type": "string",
+          "JsonName": "description",
+          "ClrName": "Description",
+          "ClrType": "string",
           "Description": "A summarization of the report"
         },
         {
-          "Name": "title",
-          "Type": "string",
+          "JsonName": "title",
+          "ClrName": "Title",
+          "ClrType": "string",
           "Description": "The title of the report"
         },
         {
-          "Name": "updated_at",
-          "Type": "string",
+          "JsonName": "updated_at",
+          "ClrName": "UpdatedAt",
+          "ClrType": "string",
           "Description": "UTC time at which the report was updated"
         }
       ],
       "Relationships": [],
+      "Actions": [],
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
@@ -2212,34 +2439,36 @@
       "Postable": true,
       "Patchable": true,
       "Deletable": true,
-      "GenerateResource": true,
-      "GenerateClients": true
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true
     },
     {
-      "Id": "required_approval",
-      "Name": "RequiredApproval",
-      "ResourceName": "RequiredApprovalResource",
+      "JsonName": "required_approval",
+      "ResourceClrType": "RequiredApprovalResource",
+      "AttributesClrType": "RequiredApproval",
       "Description": "Represents the relationship between a Resource and a Resource Approval Group.\n",
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [],
       "Relationships": [],
+      "Actions": [],
       "Children": [
         {
-          "Name": "resource",
-          "Type": "resource",
-          "Description": null,
+          "JsonName": "resource",
+          "ClrName": "Resource",
+          "ClrAttributesType": "Resource",
+          "Description": "Associated \u0060Resource\u0060.",
           "Slug": "resource",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         }
       ],
       "CanInclude": [
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeResource",
           "Value": "resource",
-          "Description": "include associated resource",
+          "Description": "Include related \u0060Resource\u0060 resources in the response.",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         }
@@ -2249,921 +2478,976 @@
       "Postable": false,
       "Patchable": false,
       "Deletable": false,
-      "GenerateResource": true,
-      "GenerateClients": true
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true
     },
     {
-      "Id": "resource",
-      "Name": "Resource",
-      "ResourceName": "ResourceResource",
+      "JsonName": "resource",
+      "ResourceClrType": "ResourceResource",
+      "AttributesClrType": "Resource",
       "Description": "A room or resource that can be requested for use as part of\nan event.\n",
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "created_at",
-          "Type": "date_time",
+          "JsonName": "created_at",
+          "ClrName": "CreatedAt",
+          "ClrType": "System.DateTime",
           "Description": "UTC time at which the room or resource was created"
         },
         {
-          "Name": "description",
-          "Type": "string",
+          "JsonName": "description",
+          "ClrName": "Description",
+          "ClrType": "string",
           "Description": "Description of the room or resource"
         },
         {
-          "Name": "expires_at",
-          "Type": "date_time",
+          "JsonName": "expires_at",
+          "ClrName": "ExpiresAt",
+          "ClrType": "System.DateTime",
           "Description": "UTC time at which the resource expires"
         },
         {
-          "Name": "home_location",
-          "Type": "string",
+          "JsonName": "home_location",
+          "ClrName": "HomeLocation",
+          "ClrType": "string",
           "Description": "Where the resource is normally kept"
         },
         {
-          "Name": "image",
-          "Type": "calendar_image",
+          "JsonName": "image",
+          "ClrName": "Image",
+          "ClrType": "System.Text.Json.JsonElement",
           "Description": "Path to where resource image is stored"
         },
         {
-          "Name": "kind",
-          "Type": "string",
+          "JsonName": "kind",
+          "ClrName": "Kind",
+          "ClrType": "string",
           "Description": "The type of resource, can either be \u0060Room\u0060 or \u0060Resource\u0060"
         },
         {
-          "Name": "name",
-          "Type": "string",
+          "JsonName": "name",
+          "ClrName": "Name",
+          "ClrType": "string",
           "Description": "The name of the room or resource"
         },
         {
-          "Name": "path_name",
-          "Type": "string",
+          "JsonName": "path_name",
+          "ClrName": "PathName",
+          "ClrType": "string",
           "Description": "A string representing the location of the resource if it is nested within a folder.\n\nEach parent folder is separated by \u0060/\u0060\n"
         },
         {
-          "Name": "quantity",
-          "Type": "integer",
+          "JsonName": "quantity",
+          "ClrName": "Quantity",
+          "ClrType": "int",
           "Description": "The quantity of the resource"
         },
         {
-          "Name": "serial_number",
-          "Type": "string",
+          "JsonName": "serial_number",
+          "ClrName": "SerialNumber",
+          "ClrType": "string",
           "Description": "The serial number of the resource"
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
+          "JsonName": "updated_at",
+          "ClrName": "UpdatedAt",
+          "ClrType": "System.DateTime",
           "Description": "UTC time at which the room or resource was updated"
         }
       ],
       "Relationships": [],
+      "Actions": [],
       "Children": [
         {
-          "Name": "conflicts",
-          "Type": "conflict",
-          "Description": null,
+          "JsonName": "conflicts",
+          "ClrName": "Conflicts",
+          "ClrAttributesType": "Conflict",
+          "Description": "Associated \u0060Conflicts\u0060.",
           "Slug": "conflicts",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "event_resource_requests",
-          "Type": "event_resource_request",
-          "Description": null,
+          "JsonName": "event_resource_requests",
+          "ClrName": "EventResourceRequests",
+          "ClrAttributesType": "EventResourceRequest",
+          "Description": "Associated \u0060EventResourceRequests\u0060.",
           "Slug": "event_resource_requests",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "required_approvals",
-          "Type": "required_approval",
-          "Description": null,
+          "JsonName": "required_approvals",
+          "ClrName": "RequiredApprovals",
+          "ClrAttributesType": "RequiredApproval",
+          "Description": "Associated \u0060RequiredApprovals\u0060.",
           "Slug": "required_approvals",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "resource_approval_groups",
-          "Type": "resource_approval_group",
-          "Description": null,
+          "JsonName": "resource_approval_groups",
+          "ClrName": "ResourceApprovalGroups",
+          "ClrAttributesType": "ResourceApprovalGroup",
+          "Description": "Associated \u0060ResourceApprovalGroups\u0060.",
           "Slug": "resource_approval_groups",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "resource_bookings",
-          "Type": "resource_booking",
-          "Description": null,
+          "JsonName": "resource_bookings",
+          "ClrName": "ResourceBookings",
+          "ClrAttributesType": "ResourceBooking",
+          "Description": "Associated \u0060ResourceBookings\u0060.",
           "Slug": "resource_bookings",
           "Filters": [
             {
-              "Name": "approved",
-              "Description": null
+              "ClrMethodName": "FilterByApproved",
+              "Value": "approved",
+              "Description": "Filter results by the \u0060Approved\u0060 scope."
             },
             {
-              "Name": "approved_pending",
-              "Description": null
+              "ClrMethodName": "FilterByApprovedPending",
+              "Value": "approved_pending",
+              "Description": "Filter results by the \u0060ApprovedPending\u0060 scope."
             },
             {
-              "Name": "approved_pending_rejected",
-              "Description": null
+              "ClrMethodName": "FilterByApprovedPendingRejected",
+              "Value": "approved_pending_rejected",
+              "Description": "Filter results by the \u0060ApprovedPendingRejected\u0060 scope."
             },
             {
-              "Name": "approved_rejected",
-              "Description": null
+              "ClrMethodName": "FilterByApprovedRejected",
+              "Value": "approved_rejected",
+              "Description": "Filter results by the \u0060ApprovedRejected\u0060 scope."
             },
             {
-              "Name": "future",
-              "Description": null
+              "ClrMethodName": "FilterByFuture",
+              "Value": "future",
+              "Description": "Filter results by the \u0060Future\u0060 scope."
             },
             {
-              "Name": "pending",
-              "Description": null
+              "ClrMethodName": "FilterByPending",
+              "Value": "pending",
+              "Description": "Filter results by the \u0060Pending\u0060 scope."
             },
             {
-              "Name": "pending_rejected",
-              "Description": null
+              "ClrMethodName": "FilterByPendingRejected",
+              "Value": "pending_rejected",
+              "Description": "Filter results by the \u0060PendingRejected\u0060 scope."
             },
             {
-              "Name": "rejected",
-              "Description": null
+              "ClrMethodName": "FilterByRejected",
+              "Value": "rejected",
+              "Description": "Filter results by the \u0060Rejected\u0060 scope."
             }
           ],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "resource_folder",
-          "Type": "resource_folder",
-          "Description": null,
+          "JsonName": "resource_folder",
+          "ClrName": "ResourceFolder",
+          "ClrAttributesType": "ResourceFolder",
+          "Description": "Associated \u0060ResourceFolder\u0060.",
           "Slug": "resource_folder",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "resource_questions",
-          "Type": "resource_question",
-          "Description": null,
+          "JsonName": "resource_questions",
+          "ClrName": "ResourceQuestions",
+          "ClrAttributesType": "ResourceQuestion",
+          "Description": "Associated \u0060ResourceQuestions\u0060.",
           "Slug": "resource_questions",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "room_setups",
-          "Type": "room_setup",
-          "Description": null,
+          "JsonName": "room_setups",
+          "ClrName": "RoomSetups",
+          "ClrAttributesType": "RoomSetup",
+          "Description": "Associated \u0060RoomSetups\u0060.",
           "Slug": "room_setups",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         }
       ],
       "CanInclude": [
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeResourceApprovalGroups",
           "Value": "resource_approval_groups",
-          "Description": "include associated resource_approval_groups",
+          "Description": "Include related \u0060ResourceApprovalGroups\u0060 resources in the response.",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         },
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeResourceFolder",
           "Value": "resource_folder",
-          "Description": "include associated resource_folder",
+          "Description": "Include related \u0060ResourceFolder\u0060 resources in the response.",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
         },
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeResourceQuestions",
           "Value": "resource_questions",
-          "Description": "include associated resource_questions",
+          "Description": "Include related \u0060ResourceQuestions\u0060 resources in the response.",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         },
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeRoomSetups",
           "Value": "room_setups",
-          "Description": "include associated room_setups",
+          "Description": "Include related \u0060RoomSetups\u0060 resources in the response.",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [
         {
-          "Parameter": "order",
+          "ClrMethodName": "OrderByCreatedAt",
           "Value": "created_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+          "Description": "Sort response items by the \u0060CreatedAt\u0060 attribute."
         },
         {
-          "Parameter": "order",
+          "ClrMethodName": "OrderByExpiresAt",
           "Value": "expires_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-expires_at) to reverse the order"
+          "Description": "Sort response items by the \u0060ExpiresAt\u0060 attribute."
         },
         {
-          "Parameter": "order",
+          "ClrMethodName": "OrderByName",
           "Value": "name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-name) to reverse the order"
+          "Description": "Sort response items by the \u0060Name\u0060 attribute."
         },
         {
-          "Parameter": "order",
+          "ClrMethodName": "OrderByUpdatedAt",
           "Value": "updated_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
+          "Description": "Sort response items by the \u0060UpdatedAt\u0060 attribute."
         }
       ],
       "CanQueryBy": [
         {
-          "Name": "created_at",
+          "ClrMethodName": "WhereCreatedAt",
+          "ClrType": "System.DateTime",
           "Parameter": "where[created_at]",
-          "Type": "date_time",
-          "Description": "Query on a specific created_at",
-          "Example": "?where[created_at]=2000-01-01T12:00:00Z"
+          "Description": "Query response items by the \u0060CreatedAt\u0060 attribute."
         },
         {
-          "Name": "kind",
+          "ClrMethodName": "WhereKind",
+          "ClrType": "string",
           "Parameter": "where[kind]",
-          "Type": "string",
-          "Description": "Query on a specific kind",
-          "Example": "?where[kind]=string"
+          "Description": "Query response items by the \u0060Kind\u0060 attribute."
         },
         {
-          "Name": "name",
+          "ClrMethodName": "WhereName",
+          "ClrType": "string",
           "Parameter": "where[name]",
-          "Type": "string",
-          "Description": "Query on a specific name",
-          "Example": "?where[name]=string"
+          "Description": "Query response items by the \u0060Name\u0060 attribute."
         },
         {
-          "Name": "path_name",
+          "ClrMethodName": "WherePathName",
+          "ClrType": "string",
           "Parameter": "where[path_name]",
-          "Type": "string",
-          "Description": "Query on a specific path_name",
-          "Example": "?where[path_name]=string"
+          "Description": "Query response items by the \u0060PathName\u0060 attribute."
         },
         {
-          "Name": "serial_number",
+          "ClrMethodName": "WhereSerialNumber",
+          "ClrType": "string",
           "Parameter": "where[serial_number]",
-          "Type": "string",
-          "Description": "Query on a specific serial_number",
-          "Example": "?where[serial_number]=string"
+          "Description": "Query response items by the \u0060SerialNumber\u0060 attribute."
         },
         {
-          "Name": "updated_at",
+          "ClrMethodName": "WhereUpdatedAt",
+          "ClrType": "System.DateTime",
           "Parameter": "where[updated_at]",
-          "Type": "date_time",
-          "Description": "Query on a specific updated_at",
-          "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
+          "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
         }
       ],
       "Postable": true,
       "Patchable": true,
       "Deletable": true,
-      "GenerateResource": true,
-      "GenerateClients": true
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true
     },
     {
-      "Id": "resource_approval_group",
-      "Name": "ResourceApprovalGroup",
-      "ResourceName": "ResourceApprovalGroupResource",
+      "JsonName": "resource_approval_group",
+      "ResourceClrType": "ResourceApprovalGroupResource",
+      "AttributesClrType": "ResourceApprovalGroup",
       "Description": "A group of people that can be attached to a room or resource\nin order to require their approval for booking.\n",
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "created_at",
-          "Type": "date_time",
+          "JsonName": "created_at",
+          "ClrName": "CreatedAt",
+          "ClrType": "System.DateTime",
           "Description": "UTC time at which the approval group was created"
         },
         {
-          "Name": "form_count",
-          "Type": "integer",
+          "JsonName": "form_count",
+          "ClrName": "FormCount",
+          "ClrType": "int",
           "Description": "Only available when requested with the \u0060?fields\u0060 param"
         },
         {
-          "Name": "name",
-          "Type": "string",
+          "JsonName": "name",
+          "ClrName": "Name",
+          "ClrType": "string",
           "Description": "Name of the approval group"
         },
         {
-          "Name": "resource_count",
-          "Type": "integer",
+          "JsonName": "resource_count",
+          "ClrName": "ResourceCount",
+          "ClrType": "int",
           "Description": "The number of resources in the approval group\n\nOnly available when requested with the \u0060?fields\u0060 param"
         },
         {
-          "Name": "room_count",
-          "Type": "integer",
+          "JsonName": "room_count",
+          "ClrName": "RoomCount",
+          "ClrType": "int",
           "Description": "The number of rooms in the approval group\n\nOnly available when requested with the \u0060?fields\u0060 param"
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
+          "JsonName": "updated_at",
+          "ClrName": "UpdatedAt",
+          "ClrType": "System.DateTime",
           "Description": "UTC time at which the approval group was updated"
         }
       ],
       "Relationships": [],
+      "Actions": [],
       "Children": [
         {
-          "Name": "event_resource_requests",
-          "Type": "event_resource_request",
-          "Description": null,
+          "JsonName": "event_resource_requests",
+          "ClrName": "EventResourceRequests",
+          "ClrAttributesType": "EventResourceRequest",
+          "Description": "Associated \u0060EventResourceRequests\u0060.",
           "Slug": "event_resource_requests",
           "Filters": [
             {
-              "Name": "awaiting_response",
-              "Description": null
+              "ClrMethodName": "FilterByAwaitingResponse",
+              "Value": "awaiting_response",
+              "Description": "Filter results by the \u0060AwaitingResponse\u0060 scope."
             },
             {
-              "Name": "future",
-              "Description": null
+              "ClrMethodName": "FilterByFuture",
+              "Value": "future",
+              "Description": "Filter results by the \u0060Future\u0060 scope."
             },
             {
-              "Name": "not_in_conflict",
-              "Description": null
+              "ClrMethodName": "FilterByNotInConflict",
+              "Value": "not_in_conflict",
+              "Description": "Filter results by the \u0060NotInConflict\u0060 scope."
             },
             {
-              "Name": "not_overbooked",
-              "Description": null
+              "ClrMethodName": "FilterByNotOverbooked",
+              "Value": "not_overbooked",
+              "Description": "Filter results by the \u0060NotOverbooked\u0060 scope."
             },
             {
-              "Name": "overbooked",
-              "Description": null
+              "ClrMethodName": "FilterByOverbooked",
+              "Value": "overbooked",
+              "Description": "Filter results by the \u0060Overbooked\u0060 scope."
             }
           ],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "people",
-          "Type": "person",
-          "Description": null,
+          "JsonName": "people",
+          "ClrName": "People",
+          "ClrAttributesType": "Person",
+          "Description": "Associated \u0060People\u0060.",
           "Slug": "people",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "required_approvals",
-          "Type": "required_approval",
-          "Description": null,
+          "JsonName": "required_approvals",
+          "ClrName": "RequiredApprovals",
+          "ClrAttributesType": "RequiredApproval",
+          "Description": "Associated \u0060RequiredApprovals\u0060.",
           "Slug": "required_approvals",
           "Filters": [
             {
-              "Name": "resources",
-              "Description": null
+              "ClrMethodName": "FilterByResources",
+              "Value": "resources",
+              "Description": "Filter results by the \u0060Resources\u0060 scope."
             },
             {
-              "Name": "rooms",
-              "Description": null
+              "ClrMethodName": "FilterByRooms",
+              "Value": "rooms",
+              "Description": "Filter results by the \u0060Rooms\u0060 scope."
             }
           ],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "resources",
-          "Type": "resource",
-          "Description": null,
+          "JsonName": "resources",
+          "ClrName": "Resources",
+          "ClrAttributesType": "Resource",
+          "Description": "Associated \u0060Resources\u0060.",
           "Slug": "resources",
           "Filters": [
             {
-              "Name": "resources",
-              "Description": null
+              "ClrMethodName": "FilterByResources",
+              "Value": "resources",
+              "Description": "Filter results by the \u0060Resources\u0060 scope."
             },
             {
-              "Name": "rooms",
-              "Description": null
+              "ClrMethodName": "FilterByRooms",
+              "Value": "rooms",
+              "Description": "Filter results by the \u0060Rooms\u0060 scope."
             }
           ],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         }
       ],
       "CanInclude": [
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludePeople",
           "Value": "people",
-          "Description": "include associated people",
+          "Description": "Include related \u0060People\u0060 resources in the response.",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         },
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeResources",
           "Value": "resources",
-          "Description": "include associated resources",
+          "Description": "Include related \u0060Resources\u0060 resources in the response.",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [
         {
-          "Parameter": "order",
+          "ClrMethodName": "OrderByCreatedAt",
           "Value": "created_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+          "Description": "Sort response items by the \u0060CreatedAt\u0060 attribute."
         },
         {
-          "Parameter": "order",
+          "ClrMethodName": "OrderByName",
           "Value": "name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-name) to reverse the order"
+          "Description": "Sort response items by the \u0060Name\u0060 attribute."
         },
         {
-          "Parameter": "order",
+          "ClrMethodName": "OrderByUpdatedAt",
           "Value": "updated_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
+          "Description": "Sort response items by the \u0060UpdatedAt\u0060 attribute."
         }
       ],
       "CanQueryBy": [
         {
-          "Name": "created_at",
+          "ClrMethodName": "WhereCreatedAt",
+          "ClrType": "System.DateTime",
           "Parameter": "where[created_at]",
-          "Type": "date_time",
-          "Description": "Query on a specific created_at",
-          "Example": "?where[created_at]=2000-01-01T12:00:00Z"
+          "Description": "Query response items by the \u0060CreatedAt\u0060 attribute."
         },
         {
-          "Name": "id",
+          "ClrMethodName": "WhereId",
+          "ClrType": "string",
           "Parameter": "where[id]",
-          "Type": "primary_key",
-          "Description": "Query on a specific id",
-          "Example": "?where[id]=primary_key"
+          "Description": "Query response items by the \u0060Id\u0060 attribute."
         },
         {
-          "Name": "name",
+          "ClrMethodName": "WhereName",
+          "ClrType": "string",
           "Parameter": "where[name]",
-          "Type": "string",
-          "Description": "Query on a specific name",
-          "Example": "?where[name]=string"
+          "Description": "Query response items by the \u0060Name\u0060 attribute."
         },
         {
-          "Name": "updated_at",
+          "ClrMethodName": "WhereUpdatedAt",
+          "ClrType": "System.DateTime",
           "Parameter": "where[updated_at]",
-          "Type": "date_time",
-          "Description": "Query on a specific updated_at",
-          "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
+          "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
         }
       ],
       "Postable": false,
       "Patchable": false,
       "Deletable": false,
-      "GenerateResource": true,
-      "GenerateClients": true
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true
     },
     {
-      "Id": "resource_booking",
-      "Name": "ResourceBooking",
-      "ResourceName": "ResourceBookingResource",
+      "JsonName": "resource_booking",
+      "ResourceClrType": "ResourceBookingResource",
+      "AttributesClrType": "ResourceBooking",
       "Description": "A specific booking of a room or resource for an event instance.\n",
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "created_at",
-          "Type": "date_time",
+          "JsonName": "created_at",
+          "ClrName": "CreatedAt",
+          "ClrType": "System.DateTime",
           "Description": "UTC time at which the booking was created"
         },
         {
-          "Name": "ends_at",
-          "Type": "date_time",
+          "JsonName": "ends_at",
+          "ClrName": "EndsAt",
+          "ClrType": "System.DateTime",
           "Description": "UTC time at which usage of the booked room or resource ends"
         },
         {
-          "Name": "quantity",
-          "Type": "integer",
+          "JsonName": "quantity",
+          "ClrName": "Quantity",
+          "ClrType": "int",
           "Description": "The quantity of the rooms or resources booked"
         },
         {
-          "Name": "starts_at",
-          "Type": "date_time",
+          "JsonName": "starts_at",
+          "ClrName": "StartsAt",
+          "ClrType": "System.DateTime",
           "Description": "UTC time at which usage of the booked room or resource starts"
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
+          "JsonName": "updated_at",
+          "ClrName": "UpdatedAt",
+          "ClrType": "System.DateTime",
           "Description": "UTC time at which the booking was updated"
         }
       ],
       "Relationships": [
         {
-          "Name": "event",
-          "Type": "Event",
-          "AssociationType": "to_one",
-          "Note": null
+          "JsonName": "event",
+          "ClrName": "Event",
+          "ClrAttributesType": "Event",
+          "ClrResourceType": "EventResource",
+          "IsCollection": false,
+          "Description": "Related \u0060Event\u0060 resource."
         },
         {
-          "Name": "event_instance",
-          "Type": "EventInstance",
-          "AssociationType": "to_one",
-          "Note": null
+          "JsonName": "event_instance",
+          "ClrName": "EventInstance",
+          "ClrAttributesType": "EventInstance",
+          "ClrResourceType": "EventInstanceResource",
+          "IsCollection": false,
+          "Description": "Related \u0060EventInstance\u0060 resource."
         },
         {
-          "Name": "resource",
-          "Type": "Resource",
-          "AssociationType": "to_one",
-          "Note": null
+          "JsonName": "resource",
+          "ClrName": "Resource",
+          "ClrAttributesType": "Resource",
+          "ClrResourceType": "ResourceResource",
+          "IsCollection": false,
+          "Description": "Related \u0060Resource\u0060 resource."
         }
       ],
+      "Actions": [],
       "Children": [
         {
-          "Name": "event_instance",
-          "Type": "event_instance",
-          "Description": null,
+          "JsonName": "event_instance",
+          "ClrName": "EventInstance",
+          "ClrAttributesType": "EventInstance",
+          "Description": "Associated \u0060EventInstance\u0060.",
           "Slug": "event_instance",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "event_resource_request",
-          "Type": "event_resource_request",
-          "Description": null,
+          "JsonName": "event_resource_request",
+          "ClrName": "EventResourceRequest",
+          "ClrAttributesType": "EventResourceRequest",
+          "Description": "Associated \u0060EventResourceRequest\u0060.",
           "Slug": "event_resource_request",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "resource",
-          "Type": "resource",
-          "Description": null,
+          "JsonName": "resource",
+          "ClrName": "Resource",
+          "ClrAttributesType": "Resource",
+          "Description": "Associated \u0060Resource\u0060.",
           "Slug": "resource",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         }
       ],
       "CanInclude": [
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeEventInstance",
           "Value": "event_instance",
-          "Description": "include associated event_instance",
+          "Description": "Include related \u0060EventInstance\u0060 resources in the response.",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
         },
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeEventResourceRequest",
           "Value": "event_resource_request",
-          "Description": "include associated event_resource_request",
+          "Description": "Include related \u0060EventResourceRequest\u0060 resources in the response.",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         },
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeResource",
           "Value": "resource",
-          "Description": "include associated resource",
+          "Description": "Include related \u0060Resource\u0060 resources in the response.",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
         }
       ],
       "CanOrderBy": [
         {
-          "Parameter": "order",
+          "ClrMethodName": "OrderByCreatedAt",
           "Value": "created_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+          "Description": "Sort response items by the \u0060CreatedAt\u0060 attribute."
         },
         {
-          "Parameter": "order",
+          "ClrMethodName": "OrderByEndsAt",
           "Value": "ends_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-ends_at) to reverse the order"
+          "Description": "Sort response items by the \u0060EndsAt\u0060 attribute."
         },
         {
-          "Parameter": "order",
+          "ClrMethodName": "OrderByStartsAt",
           "Value": "starts_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-starts_at) to reverse the order"
+          "Description": "Sort response items by the \u0060StartsAt\u0060 attribute."
         },
         {
-          "Parameter": "order",
+          "ClrMethodName": "OrderByUpdatedAt",
           "Value": "updated_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
+          "Description": "Sort response items by the \u0060UpdatedAt\u0060 attribute."
         }
       ],
       "CanQueryBy": [
         {
-          "Name": "created_at",
+          "ClrMethodName": "WhereCreatedAt",
+          "ClrType": "System.DateTime",
           "Parameter": "where[created_at]",
-          "Type": "date_time",
-          "Description": "Query on a specific created_at",
-          "Example": "?where[created_at]=2000-01-01T12:00:00Z"
+          "Description": "Query response items by the \u0060CreatedAt\u0060 attribute."
         },
         {
-          "Name": "ends_at",
+          "ClrMethodName": "WhereEndsAt",
+          "ClrType": "System.DateTime",
           "Parameter": "where[ends_at]",
-          "Type": "date_time",
-          "Description": "Query on a specific ends_at",
-          "Example": "?where[ends_at]=2000-01-01T12:00:00Z"
+          "Description": "Query response items by the \u0060EndsAt\u0060 attribute."
         },
         {
-          "Name": "starts_at",
+          "ClrMethodName": "WhereStartsAt",
+          "ClrType": "System.DateTime",
           "Parameter": "where[starts_at]",
-          "Type": "date_time",
-          "Description": "Query on a specific starts_at",
-          "Example": "?where[starts_at]=2000-01-01T12:00:00Z"
+          "Description": "Query response items by the \u0060StartsAt\u0060 attribute."
         },
         {
-          "Name": "updated_at",
+          "ClrMethodName": "WhereUpdatedAt",
+          "ClrType": "System.DateTime",
           "Parameter": "where[updated_at]",
-          "Type": "date_time",
-          "Description": "Query on a specific updated_at",
-          "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
+          "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
         }
       ],
       "Postable": false,
       "Patchable": false,
       "Deletable": false,
-      "GenerateResource": true,
-      "GenerateClients": true
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true
     },
     {
-      "Id": "resource_folder",
-      "Name": "ResourceFolder",
-      "ResourceName": "ResourceFolderResource",
+      "JsonName": "resource_folder",
+      "ResourceClrType": "ResourceFolderResource",
+      "AttributesClrType": "ResourceFolder",
       "Description": "An organizational folder containing rooms or resources.\n",
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "ancestry",
-          "Type": "string",
-          "Description": null
+          "JsonName": "ancestry",
+          "ClrName": "Ancestry",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
-          "Name": "created_at",
-          "Type": "date_time",
+          "JsonName": "created_at",
+          "ClrName": "CreatedAt",
+          "ClrType": "System.DateTime",
           "Description": "UTC time at which the folder was created"
         },
         {
-          "Name": "kind",
-          "Type": "string",
+          "JsonName": "kind",
+          "ClrName": "Kind",
+          "ClrType": "string",
           "Description": "The type of folder, can either be \u0060Room\u0060 or \u0060Resource\u0060"
         },
         {
-          "Name": "name",
-          "Type": "string",
+          "JsonName": "name",
+          "ClrName": "Name",
+          "ClrType": "string",
           "Description": "The folder name"
         },
         {
-          "Name": "path_name",
-          "Type": "string",
+          "JsonName": "path_name",
+          "ClrName": "PathName",
+          "ClrType": "string",
           "Description": "A string representing the location of the folder if it is nested.\n\nEach parent folder is separated by \u0060/\u0060\n"
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
+          "JsonName": "updated_at",
+          "ClrName": "UpdatedAt",
+          "ClrType": "System.DateTime",
           "Description": "UTC time at which the folder was updated"
         }
       ],
       "Relationships": [],
+      "Actions": [],
       "Children": [
         {
-          "Name": "resources",
-          "Type": "resource",
-          "Description": null,
+          "JsonName": "resources",
+          "ClrName": "Resources",
+          "ClrAttributesType": "Resource",
+          "Description": "Associated \u0060Resources\u0060.",
           "Slug": "resources",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         }
       ],
       "CanInclude": [
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeResources",
           "Value": "resources",
-          "Description": "include associated resources",
+          "Description": "Include related \u0060Resources\u0060 resources in the response.",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [
         {
-          "Parameter": "order",
+          "ClrMethodName": "OrderByAncestry",
           "Value": "ancestry",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-ancestry) to reverse the order"
+          "Description": "Sort response items by the \u0060Ancestry\u0060 attribute."
         },
         {
-          "Parameter": "order",
+          "ClrMethodName": "OrderByCreatedAt",
           "Value": "created_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+          "Description": "Sort response items by the \u0060CreatedAt\u0060 attribute."
         },
         {
-          "Parameter": "order",
+          "ClrMethodName": "OrderByName",
           "Value": "name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-name) to reverse the order"
+          "Description": "Sort response items by the \u0060Name\u0060 attribute."
         },
         {
-          "Parameter": "order",
+          "ClrMethodName": "OrderByUpdatedAt",
           "Value": "updated_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
+          "Description": "Sort response items by the \u0060UpdatedAt\u0060 attribute."
         }
       ],
       "CanQueryBy": [
         {
-          "Name": "ancestry",
+          "ClrMethodName": "WhereAncestry",
+          "ClrType": "string",
           "Parameter": "where[ancestry]",
-          "Type": "string",
-          "Description": "Query on a specific ancestry",
-          "Example": "?where[ancestry]=string"
+          "Description": "Query response items by the \u0060Ancestry\u0060 attribute."
         },
         {
-          "Name": "created_at",
+          "ClrMethodName": "WhereCreatedAt",
+          "ClrType": "System.DateTime",
           "Parameter": "where[created_at]",
-          "Type": "date_time",
-          "Description": "Query on a specific created_at",
-          "Example": "?where[created_at]=2000-01-01T12:00:00Z"
+          "Description": "Query response items by the \u0060CreatedAt\u0060 attribute."
         },
         {
-          "Name": "name",
+          "ClrMethodName": "WhereName",
+          "ClrType": "string",
           "Parameter": "where[name]",
-          "Type": "string",
-          "Description": "Query on a specific name",
-          "Example": "?where[name]=string"
+          "Description": "Query response items by the \u0060Name\u0060 attribute."
         },
         {
-          "Name": "path_name",
+          "ClrMethodName": "WherePathName",
+          "ClrType": "string",
           "Parameter": "where[path_name]",
-          "Type": "string",
-          "Description": "Query on a specific path_name",
-          "Example": "?where[path_name]=string"
+          "Description": "Query response items by the \u0060PathName\u0060 attribute."
         },
         {
-          "Name": "updated_at",
+          "ClrMethodName": "WhereUpdatedAt",
+          "ClrType": "System.DateTime",
           "Parameter": "where[updated_at]",
-          "Type": "date_time",
-          "Description": "Query on a specific updated_at",
-          "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
+          "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
         }
       ],
       "Postable": true,
       "Patchable": true,
       "Deletable": true,
-      "GenerateResource": true,
-      "GenerateClients": true
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true
     },
     {
-      "Id": "resource_question",
-      "Name": "ResourceQuestion",
-      "ResourceName": "ResourceQuestionResource",
+      "JsonName": "resource_question",
+      "ResourceClrType": "ResourceQuestionResource",
+      "AttributesClrType": "ResourceQuestion",
       "Description": "A question to answer when requesting to book a room or resource.\n",
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "choices",
-          "Type": "string",
+          "JsonName": "choices",
+          "ClrName": "Choices",
+          "ClrType": "string",
           "Description": "If \u0060kind\u0060 is \u0060dropdown\u0060, represents a string of dropdown choices\nseparated by the \u0060|\u0060 character\n"
         },
         {
-          "Name": "created_at",
-          "Type": "date_time",
+          "JsonName": "created_at",
+          "ClrName": "CreatedAt",
+          "ClrType": "System.DateTime",
           "Description": "UTC time at which the question was created"
         },
         {
-          "Name": "description",
-          "Type": "string",
+          "JsonName": "description",
+          "ClrName": "Description",
+          "ClrType": "string",
           "Description": "Optional description of the question"
         },
         {
-          "Name": "kind",
-          "Type": "string",
+          "JsonName": "kind",
+          "ClrName": "Kind",
+          "ClrType": "string",
           "Description": "Possible values:\n- \u0060dropdown\u0060: predefined list of choices as an answer\n- \u0060paragraph\u0060: expected answer is a paragraph\n- \u0060text\u0060: expected answer is a sentence\n- \u0060yesno\u0060: expected answer is \u0027Yes\u0027 or \u0027No\u0027\n\n- \u0060section_header\u0060: used to separate questions in the UI, no expected answer\n"
         },
         {
-          "Name": "multiple_select",
-          "Type": "boolean",
+          "JsonName": "multiple_select",
+          "ClrName": "MultipleSelect",
+          "ClrType": "bool",
           "Description": "If \u0060kind\u0060 is \u0060dropdown\u0060,\n\u0060true\u0060 indicates that more than one selection is permitted\n"
         },
         {
-          "Name": "optional",
-          "Type": "boolean",
+          "JsonName": "optional",
+          "ClrName": "Optional",
+          "ClrType": "bool",
           "Description": "- \u0060true\u0060 indicates answering the question is not required when booking\n- \u0060false\u0060 indicates answering the question is required when booking\n"
         },
         {
-          "Name": "position",
-          "Type": "integer",
+          "JsonName": "position",
+          "ClrName": "Position",
+          "ClrType": "int",
           "Description": "Position of question in list in the UI"
         },
         {
-          "Name": "question",
-          "Type": "string",
+          "JsonName": "question",
+          "ClrName": "Question",
+          "ClrType": "string",
           "Description": "The question to be answered"
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
+          "JsonName": "updated_at",
+          "ClrName": "UpdatedAt",
+          "ClrType": "System.DateTime",
           "Description": "UTC time at which the question was updated"
         }
       ],
       "Relationships": [
         {
-          "Name": "resource",
-          "Type": "Resource",
-          "AssociationType": "to_one",
-          "Note": null
+          "JsonName": "resource",
+          "ClrName": "Resource",
+          "ClrAttributesType": "Resource",
+          "ClrResourceType": "ResourceResource",
+          "IsCollection": false,
+          "Description": "Related \u0060Resource\u0060 resource."
         }
       ],
+      "Actions": [],
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
       "CanQueryBy": [
         {
-          "Name": "created_at",
+          "ClrMethodName": "WhereCreatedAt",
+          "ClrType": "System.DateTime",
           "Parameter": "where[created_at]",
-          "Type": "date_time",
-          "Description": "Query on a specific created_at",
-          "Example": "?where[created_at]=2000-01-01T12:00:00Z"
+          "Description": "Query response items by the \u0060CreatedAt\u0060 attribute."
         },
         {
-          "Name": "kind",
+          "ClrMethodName": "WhereKind",
+          "ClrType": "string",
           "Parameter": "where[kind]",
-          "Type": "string",
-          "Description": "Query on a specific kind",
-          "Example": "?where[kind]=string"
+          "Description": "Query response items by the \u0060Kind\u0060 attribute."
         },
         {
-          "Name": "updated_at",
+          "ClrMethodName": "WhereUpdatedAt",
+          "ClrType": "System.DateTime",
           "Parameter": "where[updated_at]",
-          "Type": "date_time",
-          "Description": "Query on a specific updated_at",
-          "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
+          "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
         }
       ],
       "Postable": true,
       "Patchable": true,
       "Deletable": true,
-      "GenerateResource": true,
-      "GenerateClients": true
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true
     },
     {
-      "Id": "resource_suggestion",
-      "Name": "ResourceSuggestion",
-      "ResourceName": "ResourceSuggestionResource",
+      "JsonName": "resource_suggestion",
+      "ResourceClrType": "ResourceSuggestionResource",
+      "AttributesClrType": "ResourceSuggestion",
       "Description": "A resource and quantity suggested by a room setup.\n",
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "created_at",
-          "Type": "date_time",
+          "JsonName": "created_at",
+          "ClrName": "CreatedAt",
+          "ClrType": "System.DateTime",
           "Description": "UTC time at which the suggestion was created"
         },
         {
-          "Name": "quantity",
-          "Type": "integer",
+          "JsonName": "quantity",
+          "ClrName": "Quantity",
+          "ClrType": "int",
           "Description": "How many resources should be requested"
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
+          "JsonName": "updated_at",
+          "ClrName": "UpdatedAt",
+          "ClrType": "System.DateTime",
           "Description": "UTC time at which the suggestion was updated"
         }
       ],
       "Relationships": [
         {
-          "Name": "resource",
-          "Type": "Resource",
-          "AssociationType": "to_one",
-          "Note": null
+          "JsonName": "resource",
+          "ClrName": "Resource",
+          "ClrAttributesType": "Resource",
+          "ClrResourceType": "ResourceResource",
+          "IsCollection": false,
+          "Description": "Related \u0060Resource\u0060 resource."
         },
         {
-          "Name": "room_setup",
-          "Type": "RoomSetup",
-          "AssociationType": "to_one",
-          "Note": null
+          "JsonName": "room_setup",
+          "ClrName": "RoomSetup",
+          "ClrAttributesType": "RoomSetup",
+          "ClrResourceType": "RoomSetupResource",
+          "IsCollection": false,
+          "Description": "Related \u0060RoomSetup\u0060 resource."
         }
       ],
+      "Actions": [],
       "Children": [
         {
-          "Name": "resource",
-          "Type": "resource",
-          "Description": null,
+          "JsonName": "resource",
+          "ClrName": "Resource",
+          "ClrAttributesType": "Resource",
+          "Description": "Associated \u0060Resource\u0060.",
           "Slug": "resource",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         }
       ],
       "CanInclude": [
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeResource",
           "Value": "resource",
-          "Description": "include associated resource",
+          "Description": "Include related \u0060Resource\u0060 resources in the response.",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
         }
@@ -3173,409 +3457,423 @@
       "Postable": false,
       "Patchable": false,
       "Deletable": false,
-      "GenerateResource": true,
-      "GenerateClients": true
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true
     },
     {
-      "Id": "room_setup",
-      "Name": "RoomSetup",
-      "ResourceName": "RoomSetupResource",
+      "JsonName": "room_setup",
+      "ResourceClrType": "RoomSetupResource",
+      "AttributesClrType": "RoomSetup",
       "Description": "A diagram and list of suggested resources useful for predefined room setups.\n",
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "created_at",
-          "Type": "date_time",
+          "JsonName": "created_at",
+          "ClrName": "CreatedAt",
+          "ClrType": "System.DateTime",
           "Description": "UTC time at which the room setup was created"
         },
         {
-          "Name": "description",
-          "Type": "string",
+          "JsonName": "description",
+          "ClrName": "Description",
+          "ClrType": "string",
           "Description": "A description of the room setup"
         },
         {
-          "Name": "diagram",
-          "Type": "calendar_image",
+          "JsonName": "diagram",
+          "ClrName": "Diagram",
+          "ClrType": "System.Text.Json.JsonElement",
           "Description": "An object containing \u0060url\u0060 and \u0060thumbnail\u0060.\n\n\u0060url\u0060 is path to where room setup is stored.\n\u0060thumbnail\u0060 contains \u0060url\u0060 path to where thumbnail is stored.\n"
         },
         {
-          "Name": "diagram_thumbnail_url",
-          "Type": "string",
+          "JsonName": "diagram_thumbnail_url",
+          "ClrName": "DiagramThumbnailUrl",
+          "ClrType": "string",
           "Description": "Path to where thumbnail version of room setup is stored"
         },
         {
-          "Name": "diagram_url",
-          "Type": "string",
+          "JsonName": "diagram_url",
+          "ClrName": "DiagramUrl",
+          "ClrType": "string",
           "Description": "Path to where room setup is stored"
         },
         {
-          "Name": "name",
-          "Type": "string",
+          "JsonName": "name",
+          "ClrName": "Name",
+          "ClrType": "string",
           "Description": "The name of the room setup"
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
+          "JsonName": "updated_at",
+          "ClrName": "UpdatedAt",
+          "ClrType": "System.DateTime",
           "Description": "UTC time at which the room setup was updated"
         }
       ],
       "Relationships": [
         {
-          "Name": "room_setup",
-          "Type": "RoomSetup",
-          "AssociationType": "to_one",
-          "Note": "The shared room setup this is linked to"
+          "JsonName": "room_setup",
+          "ClrName": "RoomSetup",
+          "ClrAttributesType": "RoomSetup",
+          "ClrResourceType": "RoomSetupResource",
+          "IsCollection": false,
+          "Description": "Related \u0060RoomSetup\u0060 resource."
         },
         {
-          "Name": "resource_suggestions",
-          "Type": "ResourceSuggestion",
-          "AssociationType": "to_many",
-          "Note": "A list of suggested resources for this room setup"
+          "JsonName": "resource_suggestions",
+          "ClrName": "ResourceSuggestions",
+          "ClrAttributesType": "ResourceSuggestion",
+          "ClrResourceType": "ResourceSuggestionResource",
+          "IsCollection": true,
+          "Description": "Related \u0060ResourceSuggestions\u0060 resource."
         },
         {
-          "Name": "containing_resource",
-          "Type": "Resource",
-          "AssociationType": "to_one",
-          "Note": "The resource this room setup is attached to"
+          "JsonName": "containing_resource",
+          "ClrName": "ContainingResource",
+          "ClrAttributesType": "Resource",
+          "ClrResourceType": "ResourceResource",
+          "IsCollection": false,
+          "Description": "Related \u0060ContainingResource\u0060 resource."
         }
       ],
+      "Actions": [],
       "Children": [
         {
-          "Name": "containing_resource",
-          "Type": "containing_resource",
-          "Description": null,
+          "JsonName": "containing_resource",
+          "ClrName": "ContainingResource",
+          "ClrAttributesType": "ContainingResource",
+          "Description": "Associated \u0060ContainingResource\u0060.",
           "Slug": "containing_resource",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "resource_suggestions",
-          "Type": "resource_suggestion",
-          "Description": null,
+          "JsonName": "resource_suggestions",
+          "ClrName": "ResourceSuggestions",
+          "ClrAttributesType": "ResourceSuggestion",
+          "Description": "Associated \u0060ResourceSuggestions\u0060.",
           "Slug": "resource_suggestions",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         }
       ],
       "CanInclude": [
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeContainingResource",
           "Value": "containing_resource",
-          "Description": "include associated containing_resource",
+          "Description": "Include related \u0060ContainingResource\u0060 resources in the response.",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
         },
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeResourceSuggestions",
           "Value": "resource_suggestions",
-          "Description": "include associated resource_suggestions",
+          "Description": "Include related \u0060ResourceSuggestions\u0060 resources in the response.",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
         }
       ],
       "CanOrderBy": [
         {
-          "Parameter": "order",
+          "ClrMethodName": "OrderByCreatedAt",
           "Value": "created_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-created_at) to reverse the order"
+          "Description": "Sort response items by the \u0060CreatedAt\u0060 attribute."
         },
         {
-          "Parameter": "order",
+          "ClrMethodName": "OrderByName",
           "Value": "name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-name) to reverse the order"
+          "Description": "Sort response items by the \u0060Name\u0060 attribute."
         },
         {
-          "Parameter": "order",
+          "ClrMethodName": "OrderByUpdatedAt",
           "Value": "updated_at",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-updated_at) to reverse the order"
+          "Description": "Sort response items by the \u0060UpdatedAt\u0060 attribute."
         }
       ],
       "CanQueryBy": [
         {
-          "Name": "created_at",
+          "ClrMethodName": "WhereCreatedAt",
+          "ClrType": "System.DateTime",
           "Parameter": "where[created_at]",
-          "Type": "date_time",
-          "Description": "Query on a specific created_at",
-          "Example": "?where[created_at]=2000-01-01T12:00:00Z"
+          "Description": "Query response items by the \u0060CreatedAt\u0060 attribute."
         },
         {
-          "Name": "name",
+          "ClrMethodName": "WhereName",
+          "ClrType": "string",
           "Parameter": "where[name]",
-          "Type": "string",
-          "Description": "Query on a specific name",
-          "Example": "?where[name]=string"
+          "Description": "Query response items by the \u0060Name\u0060 attribute."
         },
         {
-          "Name": "updated_at",
+          "ClrMethodName": "WhereUpdatedAt",
+          "ClrType": "System.DateTime",
           "Parameter": "where[updated_at]",
-          "Type": "date_time",
-          "Description": "Query on a specific updated_at",
-          "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
+          "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
         }
       ],
       "Postable": false,
       "Patchable": false,
       "Deletable": false,
-      "GenerateResource": true,
-      "GenerateClients": true
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true
     },
     {
-      "Id": "tag",
-      "Name": "Tag",
-      "ResourceName": "TagResource",
+      "JsonName": "tag",
+      "ResourceClrType": "TagResource",
+      "AttributesClrType": "Tag",
       "Description": "An organizational tag that can be applied to events.\n\nApplied tags can be used to filter events on the calendar or\nfilter events for reports, iCal feeds, kiosk, and the widget.\n",
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "church_center_category",
-          "Type": "boolean",
+          "JsonName": "church_center_category",
+          "ClrName": "ChurchCenterCategory",
+          "ClrType": "bool",
           "Description": "\u0060true\u0060 indicates that this tag is used as a category on Church Center"
         },
         {
-          "Name": "color",
-          "Type": "string",
+          "JsonName": "color",
+          "ClrName": "Color",
+          "ClrType": "string",
           "Description": "Hex color code of the tag"
         },
         {
-          "Name": "created_at",
-          "Type": "date_time",
+          "JsonName": "created_at",
+          "ClrName": "CreatedAt",
+          "ClrType": "System.DateTime",
           "Description": "UTC time at which the tag was created"
         },
         {
-          "Name": "name",
-          "Type": "string",
+          "JsonName": "name",
+          "ClrName": "Name",
+          "ClrType": "string",
           "Description": "The tag name"
         },
         {
-          "Name": "position",
-          "Type": "float",
+          "JsonName": "position",
+          "ClrName": "Position",
+          "ClrType": "decimal",
           "Description": "If the tag belongs to a TagGroup,\nposition indicates place in list within TagGroup in the UI.\n\nIf the tag does not belong to a TagGroup,\nposition indicates place in list under \u0022Individual Tags\u0022 in the UI.\n"
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
+          "JsonName": "updated_at",
+          "ClrName": "UpdatedAt",
+          "ClrType": "System.DateTime",
           "Description": "UTC time at which the tag was updated"
         }
       ],
       "Relationships": [],
+      "Actions": [],
       "Children": [
         {
-          "Name": "event_instances",
-          "Type": "event_instance",
-          "Description": null,
+          "JsonName": "event_instances",
+          "ClrName": "EventInstances",
+          "ClrAttributesType": "EventInstance",
+          "Description": "Associated \u0060EventInstances\u0060.",
           "Slug": "event_instances",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "events",
-          "Type": "event",
-          "Description": null,
+          "JsonName": "events",
+          "ClrName": "Events",
+          "ClrAttributesType": "Event",
+          "Description": "Associated \u0060Events\u0060.",
           "Slug": "events",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "tag_group",
-          "Type": "tag_group",
-          "Description": null,
+          "JsonName": "tag_group",
+          "ClrName": "TagGroup",
+          "ClrAttributesType": "TagGroup",
+          "Description": "Associated \u0060TagGroup\u0060.",
           "Slug": "tag_group",
           "Filters": [],
           "IsCollection": false,
-          "IsDeprecated": false
+          "Deprecated": false
         }
       ],
       "CanInclude": [
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeTagGroup",
           "Value": "tag_group",
-          "Description": "include associated tag_group",
+          "Description": "Include related \u0060TagGroup\u0060 resources in the response.",
           "CanAssignOnCreate": true,
           "CanAssignOnUpdate": true
         }
       ],
       "CanOrderBy": [
         {
-          "Parameter": "order",
+          "ClrMethodName": "OrderByName",
           "Value": "name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-name) to reverse the order"
+          "Description": "Sort response items by the \u0060Name\u0060 attribute."
         },
         {
-          "Parameter": "order",
+          "ClrMethodName": "OrderByPosition",
           "Value": "position",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-position) to reverse the order"
+          "Description": "Sort response items by the \u0060Position\u0060 attribute."
         }
       ],
       "CanQueryBy": [
         {
-          "Name": "church_center_category",
+          "ClrMethodName": "WhereChurchCenterCategory",
+          "ClrType": "bool",
           "Parameter": "where[church_center_category]",
-          "Type": "boolean",
-          "Description": "Query on a specific church_center_category",
-          "Example": "?where[church_center_category]=true"
+          "Description": "Query response items by the \u0060ChurchCenterCategory\u0060 attribute."
         },
         {
-          "Name": "color",
+          "ClrMethodName": "WhereColor",
+          "ClrType": "string",
           "Parameter": "where[color]",
-          "Type": "string",
-          "Description": "Query on a specific color",
-          "Example": "?where[color]=string"
+          "Description": "Query response items by the \u0060Color\u0060 attribute."
         },
         {
-          "Name": "created_at",
+          "ClrMethodName": "WhereCreatedAt",
+          "ClrType": "System.DateTime",
           "Parameter": "where[created_at]",
-          "Type": "date_time",
-          "Description": "Query on a specific created_at",
-          "Example": "?where[created_at]=2000-01-01T12:00:00Z"
+          "Description": "Query response items by the \u0060CreatedAt\u0060 attribute."
         },
         {
-          "Name": "id",
+          "ClrMethodName": "WhereId",
+          "ClrType": "string",
           "Parameter": "where[id]",
-          "Type": "primary_key",
-          "Description": "Query on a specific id",
-          "Example": "?where[id]=primary_key"
+          "Description": "Query response items by the \u0060Id\u0060 attribute."
         },
         {
-          "Name": "name",
+          "ClrMethodName": "WhereName",
+          "ClrType": "string",
           "Parameter": "where[name]",
-          "Type": "string",
-          "Description": "Query on a specific name",
-          "Example": "?where[name]=string"
+          "Description": "Query response items by the \u0060Name\u0060 attribute."
         },
         {
-          "Name": "position",
+          "ClrMethodName": "WherePosition",
+          "ClrType": "decimal",
           "Parameter": "where[position]",
-          "Type": "float",
-          "Description": "Query on a specific position",
-          "Example": "?where[position]=1.42"
+          "Description": "Query response items by the \u0060Position\u0060 attribute."
         },
         {
-          "Name": "updated_at",
+          "ClrMethodName": "WhereUpdatedAt",
+          "ClrType": "System.DateTime",
           "Parameter": "where[updated_at]",
-          "Type": "date_time",
-          "Description": "Query on a specific updated_at",
-          "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
+          "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
         }
       ],
       "Postable": true,
       "Patchable": true,
       "Deletable": true,
-      "GenerateResource": true,
-      "GenerateClients": true
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true
     },
     {
-      "Id": "tag_group",
-      "Name": "TagGroup",
-      "ResourceName": "TagGroupResource",
+      "JsonName": "tag_group",
+      "ResourceClrType": "TagGroupResource",
+      "AttributesClrType": "TagGroup",
       "Description": "A grouping of tags for organizational purposes.\n",
       "Deprecated": false,
       "CollectionOnly": false,
       "Attributes": [
         {
-          "Name": "created_at",
-          "Type": "date_time",
+          "JsonName": "created_at",
+          "ClrName": "CreatedAt",
+          "ClrType": "System.DateTime",
           "Description": "UTC time at which the tag group was created"
         },
         {
-          "Name": "name",
-          "Type": "string",
+          "JsonName": "name",
+          "ClrName": "Name",
+          "ClrType": "string",
           "Description": "The name of the tag group"
         },
         {
-          "Name": "required",
-          "Type": "boolean",
+          "JsonName": "required",
+          "ClrName": "Required",
+          "ClrType": "bool",
           "Description": "- \u0060true\u0060 indicates tag from this tag group must be applied when creating an event\n"
         },
         {
-          "Name": "updated_at",
-          "Type": "date_time",
+          "JsonName": "updated_at",
+          "ClrName": "UpdatedAt",
+          "ClrType": "System.DateTime",
           "Description": "UTC time at which the tag group was updated"
         }
       ],
       "Relationships": [],
+      "Actions": [],
       "Children": [
         {
-          "Name": "events",
-          "Type": "event",
-          "Description": null,
+          "JsonName": "events",
+          "ClrName": "Events",
+          "ClrAttributesType": "Event",
+          "Description": "Associated \u0060Events\u0060.",
           "Slug": "events",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         },
         {
-          "Name": "tags",
-          "Type": "tag",
-          "Description": null,
+          "JsonName": "tags",
+          "ClrName": "Tags",
+          "ClrAttributesType": "Tag",
+          "Description": "Associated \u0060Tags\u0060.",
           "Slug": "tags",
           "Filters": [],
           "IsCollection": true,
-          "IsDeprecated": false
+          "Deprecated": false
         }
       ],
       "CanInclude": [
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeEvents",
           "Value": "events",
-          "Description": "include associated events",
+          "Description": "Include related \u0060Events\u0060 resources in the response.",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         },
         {
-          "Parameter": "include",
+          "ClrMethodName": "IncludeTags",
           "Value": "tags",
-          "Description": "include associated tags",
+          "Description": "Include related \u0060Tags\u0060 resources in the response.",
           "CanAssignOnCreate": false,
           "CanAssignOnUpdate": false
         }
       ],
       "CanOrderBy": [
         {
-          "Parameter": "order",
+          "ClrMethodName": "OrderByName",
           "Value": "name",
-          "Type": "string",
-          "Description": "prefix with a hyphen (-name) to reverse the order"
+          "Description": "Sort response items by the \u0060Name\u0060 attribute."
         }
       ],
       "CanQueryBy": [
         {
-          "Name": "created_at",
+          "ClrMethodName": "WhereCreatedAt",
+          "ClrType": "System.DateTime",
           "Parameter": "where[created_at]",
-          "Type": "date_time",
-          "Description": "Query on a specific created_at",
-          "Example": "?where[created_at]=2000-01-01T12:00:00Z"
+          "Description": "Query response items by the \u0060CreatedAt\u0060 attribute."
         },
         {
-          "Name": "name",
+          "ClrMethodName": "WhereName",
+          "ClrType": "string",
           "Parameter": "where[name]",
-          "Type": "string",
-          "Description": "Query on a specific name",
-          "Example": "?where[name]=string"
+          "Description": "Query response items by the \u0060Name\u0060 attribute."
         },
         {
-          "Name": "updated_at",
+          "ClrMethodName": "WhereUpdatedAt",
+          "ClrType": "System.DateTime",
           "Parameter": "where[updated_at]",
-          "Type": "date_time",
-          "Description": "Query on a specific updated_at",
-          "Example": "?where[updated_at]=2000-01-01T12:00:00Z"
+          "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
         }
       ],
       "Postable": true,
       "Patchable": true,
       "Deletable": true,
-      "GenerateResource": true,
-      "GenerateClients": true
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true
     }
   ]
 }

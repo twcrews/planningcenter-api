@@ -1,6 +1,5 @@
 using System.Text.Json;
 using Crews.PlanningCenter.Api.People.V2025_11_10;
-using Crews.PlanningCenter.Api.IntegrationTests.Infrastructure;
 using Crews.Web.JsonApiClient;
 
 namespace Crews.PlanningCenter.Api.IntegrationTests.Infrastructure.ProductFixtures;
@@ -63,17 +62,17 @@ public class PeopleFixture : PlanningCenterFixture
                 {
                     People = new()
                     {
-                        Data = JsonSerializer.SerializeToElement<IEnumerable<JsonApiResourceIdentifier>>([
-                            new() { Type = "Person", Id = "188120583" }
-                        ])
+                        Data = [
+                            new() { Type = "Person", Id = PersonId }
+                        ]
                     },
                     PrimaryContact = new()
                     {
-                        Data = JsonSerializer.SerializeToElement<JsonApiResourceIdentifier>(new()
+                        Data = new()
                         {
                             Type = "Person",
-                            Id = "188120583"
-                        })
+                            Id = PersonId
+                        }
                     }
                 }
             }

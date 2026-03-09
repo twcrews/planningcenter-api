@@ -4,7 +4,6 @@ using ApiResource = Crews.PlanningCenter.Api.Models.Resource;
 using ApiResourceAttribute = Crews.PlanningCenter.Api.Models.ResourceAttribute;
 using ApiResourceRelationship = Crews.PlanningCenter.Api.Models.ResourceRelationship;
 using ApiResourceChild = Crews.PlanningCenter.Api.Models.ResourceChild;
-using ApiResourceChildFilter = Crews.PlanningCenter.Api.Models.ResourceChildFilter;
 using ApiResourceIncludable = Crews.PlanningCenter.Api.Models.ResourceIncludable;
 using ApiResourceOrderable = Crews.PlanningCenter.Api.Models.ResourceOrderable;
 using ApiResourceQueryable = Crews.PlanningCenter.Api.Models.ResourceQueryable;
@@ -61,18 +60,19 @@ public static class SampleVersionData
             [
                 new ApiResource
                 {
-                    Id = "person",
-                    Name = "person",
-                    ResourceName = "PersonResource",
+                    JsonName = "person",
+                    AttributesClrType = "Person",
+                    ResourceClrType = "PersonResource",
                     Description = "A person in the system",
-                    GenerateResource = true,
-                    GenerateClients = true,
+                    ShouldGenerateResource = true,
+                    ShouldGenerateClients = true,
                     Attributes =
                     [
                         new ApiResourceAttribute
                         {
-                            Name = "name",
-                            Type = "string",
+                            JsonName = "name",
+                            ClrName = "Name",
+                            ClrType = "string",
                             Description = "The person's name"
                         }
                     ],
@@ -90,14 +90,14 @@ public static class SampleVersionData
     {
         return new ApiResource
         {
-            Id = "person",
-            Name = "person",
-            ResourceName = "Person",
+            JsonName = "person",
+            AttributesClrType = "Person",
+            ResourceClrType = "PersonResource",
             Description = "Represents a person in the Planning Center system.\nCan be used to track individuals.",
             Deprecated = false,
             CollectionOnly = false,
-            GenerateResource = true,
-            GenerateClients = true,
+            ShouldGenerateResource = true,
+            ShouldGenerateClients = true,
             Postable = true,
             Patchable = true,
             Deletable = true,
@@ -105,44 +105,51 @@ public static class SampleVersionData
             [
                 new ApiResourceAttribute
                 {
-                    Name = "first_name",
-                    Type = "string",
+                    JsonName = "first_name",
+                    ClrName = "FirstName",
+                    ClrType = "string",
                     Description = "The person's first name"
                 },
                 new ApiResourceAttribute
                 {
-                    Name = "last_name",
-                    Type = "string",
+                    JsonName = "last_name",
+                    ClrName = "LastName",
+                    ClrType = "string",
                     Description = "The person's last name"
                 },
                 new ApiResourceAttribute
                 {
-                    Name = "birthdate",
-                    Type = "date",
+                    JsonName = "birthdate",
+                    ClrName = "Birthdate",
+                    ClrType = "System.DateOnly",
                     Description = "The person's birthdate"
                 },
                 new ApiResourceAttribute
                 {
-                    Name = "created_at",
-                    Type = "date_time",
+                    JsonName = "created_at",
+                    ClrName = "CreatedAt",
+                    ClrType = "System.DateTime",
                     Description = "When the person record was created"
                 },
                 new ApiResourceAttribute
                 {
-                    Name = "age",
-                    Type = "integer",
+                    JsonName = "age",
+                    ClrName = "Age",
+                    ClrType = "int",
                     Description = "The person's age in years"
                 },
                 new ApiResourceAttribute
                 {
-                    Name = "active",
-                    Type = "boolean",
+                    JsonName = "active",
+                    ClrName = "Active",
+                    ClrType = "bool",
                     Description = "Whether the person is active"
                 },
                 new ApiResourceAttribute
                 {
-                    Name = "metadata",
-                    Type = "json",
+                    JsonName = "metadata",
+                    ClrName = "Metadata",
+                    ClrType = "System.Text.Json.Nodes.JsonObject",
                     Description = "Additional metadata"
                 }
             ],
@@ -151,12 +158,13 @@ public static class SampleVersionData
             [
                 new ApiResourceChild
                 {
-                    Name = "emails",
-                    Type = "email",
+                    JsonName = "emails",
+                    ClrName = "Emails",
+                    ClrAttributesType = "Email",
                     Description = "The person's email addresses",
                     Slug = "emails",
                     IsCollection = true,
-                    IsDeprecated = false,
+                    Deprecated = false,
                     Filters = []
                 }
             ],
@@ -164,7 +172,7 @@ public static class SampleVersionData
             [
                 new ApiResourceIncludable
                 {
-                    Parameter = "include",
+                    ClrMethodName = "IncludeEmails",
                     Value = "emails",
                     Description = "Include the person's email addresses",
                     CanAssignOnCreate = true,
@@ -175,16 +183,14 @@ public static class SampleVersionData
             [
                 new ApiResourceOrderable
                 {
-                    Parameter = "order",
+                    ClrMethodName = "OrderByFirstName",
                     Value = "first_name",
-                    Type = "string",
                     Description = "Order by first name"
                 },
                 new ApiResourceOrderable
                 {
-                    Parameter = "order",
+                    ClrMethodName = "OrderByLastName",
                     Value = "last_name",
-                    Type = "string",
                     Description = "Order by last name"
                 }
             ],
@@ -192,11 +198,10 @@ public static class SampleVersionData
             [
                 new ApiResourceQueryable
                 {
-                    Name = "first_name",
+                    ClrMethodName = "WhereFirstName",
                     Parameter = "where[first_name]",
-                    Type = "string",
+                    ClrType = "string",
                     Description = "Query by first name",
-                    Example = "where[first_name]=John"
                 }
             ]
         };
@@ -206,14 +211,14 @@ public static class SampleVersionData
     {
         return new ApiResource
         {
-            Id = "email",
-            Name = "email",
-            ResourceName = "Email",
+            JsonName = "email",
+            AttributesClrType = "Email",
+            ResourceClrType = "EmailResource",
             Description = "An email address",
             Deprecated = false,
             CollectionOnly = false,
-            GenerateResource = true,
-            GenerateClients = true,
+            ShouldGenerateResource = true,
+            ShouldGenerateClients = true,
             Postable = true,
             Patchable = false,
             Deletable = true,
@@ -221,14 +226,16 @@ public static class SampleVersionData
             [
                 new ApiResourceAttribute
                 {
-                    Name = "address",
-                    Type = "string",
+                    JsonName = "address",
+                    ClrName = "Address",
+                    ClrType = "string",
                     Description = "The email address"
                 },
                 new ApiResourceAttribute
                 {
-                    Name = "primary",
-                    Type = "boolean",
+                    JsonName = "primary",
+                    ClrName = "Primary",
+                    ClrType = "bool",
                     Description = "Whether this is the primary email"
                 }
             ],
@@ -236,10 +243,12 @@ public static class SampleVersionData
             [
                 new ApiResourceRelationship
                 {
-                    Name = "person",
-                    Type = "Person",
-                    AssociationType = "belongs_to",
-                    Note = "The person this email belongs to"
+                    JsonName = "person",
+                    ClrName = "Person",
+                    ClrAttributesType = "Person",
+                    ClrResourceType = "PersonResource",
+                    IsCollection = false,
+                    Description = "The person this email belongs to"
                 }
             ],
             Children = [],
@@ -253,14 +262,14 @@ public static class SampleVersionData
     {
         return new ApiResource
         {
-            Id = "report",
-            Name = "report",
-            ResourceName = "Report",
+            JsonName = "report",
+            AttributesClrType = "Report",
+            ResourceClrType = "ReportResource",
             Description = "A report (collection only)",
             Deprecated = true,
             CollectionOnly = true,
-            GenerateResource = true,
-            GenerateClients = true,
+            ShouldGenerateResource = true,
+            ShouldGenerateClients = true,
             Postable = false,
             Patchable = false,
             Deletable = false,
@@ -268,8 +277,9 @@ public static class SampleVersionData
             [
                 new ApiResourceAttribute
                 {
-                    Name = "title",
-                    Type = "string",
+                    JsonName = "title",
+                    ClrName = "Title",
+                    ClrType = "string",
                     Description = "Report title"
                 }
             ],
@@ -286,24 +296,26 @@ public static class SampleVersionData
         // Creates a resource where an attribute has the same name as the class
         return new ApiResource
         {
-            Id = "person",
-            Name = "person",
-            ResourceName = "Person",
+            JsonName = "person",
+            AttributesClrType = "Person",
+            ResourceClrType = "PersonResource",
             Description = "A person",
-            GenerateResource = true,
-            GenerateClients = true,
+            ShouldGenerateResource = true,
+            ShouldGenerateClients = true,
             Attributes =
             [
                 new ApiResourceAttribute
                 {
-                    Name = "person",
-                    Type = "string",
+                    JsonName = "person",
+                    ClrName = "Person",
+                    ClrType = "string",
                     Description = "This attribute has the same name as the class"
                 },
                 new ApiResourceAttribute
                 {
-                    Name = "name",
-                    Type = "string",
+                    JsonName = "name",
+                    ClrName = "Name",
+                    ClrType = "string",
                     Description = "The name"
                 }
             ],

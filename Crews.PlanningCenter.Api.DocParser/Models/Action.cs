@@ -13,7 +13,7 @@ public record Action
     public required Uri Path { get; init; }
 
     [JsonPropertyName("can_run")]
-    public JsonElement? CanRun { get; init; }
+    public string? CanRun { get; init; }
 
     [JsonPropertyName("description")]
     public string? Description { get; init; }
@@ -43,7 +43,7 @@ public record ActionRelationships
 public record ActionResource : JsonApiResource
 {
     [JsonPropertyName("attributes")]
-    public new Action? Attributes { get; init; }
+    public required new Action Attributes { get; init; }
 
     [JsonPropertyName("relationships")]
     public new ActionRelationships? Relationships { get; init; }

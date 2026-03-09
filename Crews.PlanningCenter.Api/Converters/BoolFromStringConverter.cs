@@ -21,8 +21,8 @@ public class BoolFromStringConverter : JsonConverter<bool>
         var value = reader.GetString();
         return value?.ToLowerInvariant() switch
         {
-            "true" or "1" => true,
-            "false" or "0" => false,
+            "true" or "1" or "yes" => true,
+            "false" or "0" or "no" => false,
             _ => throw new JsonException($"Unable to convert '{value}' to boolean.")
         };
     }

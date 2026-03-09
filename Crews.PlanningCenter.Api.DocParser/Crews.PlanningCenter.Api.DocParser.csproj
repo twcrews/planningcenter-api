@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Crews.Web.JsonApiClient" Version="5.2.3" />
+    <PackageReference Include="Crews.Web.JsonApiClient" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="10.0.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="10.0.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="10.0.1" />
@@ -33,7 +33,7 @@
     <None Update="appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="overrides.json">
+    <None Update="transforms.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

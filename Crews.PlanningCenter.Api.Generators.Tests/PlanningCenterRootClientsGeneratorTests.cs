@@ -312,12 +312,12 @@ public class PlanningCenterRootClientsGeneratorTests
     {
         return new Crews.PlanningCenter.Api.Models.Resource
         {
-            Id = "person",
-            Name = "person",
-            ResourceName = "Person",
-            GenerateResource = true,
-            GenerateClients = true,
-            Attributes = [new Crews.PlanningCenter.Api.Models.ResourceAttribute { Name = "name", Type = "string" }],
+            JsonName = "person",
+            AttributesClrType = "person",
+            ResourceClrType = "Person",
+            ShouldGenerateResource = true,
+            ShouldGenerateClients = true,
+            Attributes = [new Crews.PlanningCenter.Api.Models.ResourceAttribute { JsonName = "name", ClrType = "string" }],
             Relationships = [],
             Children = [],
             CanInclude = [],

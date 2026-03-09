@@ -60,11 +60,20 @@ public class TestResourceClient : SingletonResourceClient<TestModel, TestResourc
 		=> base.DeleteAsync(cancellationToken);
 
 	/// <summary>
-	/// Public wrapper for protected SetQueryParameter method.
+	/// Public wrapper for protected AddQueryParameter method.
 	/// </summary>
-	public TestResourceClient SetQueryParameterPublic(string parameter, string value)
+	public TestResourceClient AddQueryParameterPublic(string parameter, string value)
 	{
-		SetQueryParameter(parameter, value);
+		AddQueryParameter(parameter, value);
+		return this;
+	}
+
+	/// <summary>
+	/// Public wrapper for protected ReplaceQueryParameter method.
+	/// </summary>
+	public TestResourceClient ReplaceQueryParameterPublic(string parameter, string value)
+	{
+		ReplaceQueryParameter(parameter, value);
 		return this;
 	}
 }

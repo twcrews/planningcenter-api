@@ -1,0 +1,222 @@
+{
+  "VertexNameOverrides": [
+    {
+      "Vertex": "episode",
+      "ClrModelName": "Episode",
+      "ClrResourceName": "EpisodeApiResource"
+    }
+  ],
+  "ExcludedVertices": [
+    {
+      "Vertex": "birthday_people",
+      "ShouldGenerateResource": false,
+      "ShouldGenerateClients": true
+    },
+    {
+      "Vertex": "organization_statistics",
+      "ShouldGenerateResource": false,
+      "ShouldGenerateClients": true
+    }
+  ],
+  "CollectionOverrides": [
+    {
+      "Vertex": "organization",
+      "Edge": "stats",
+      "IsCollection": false
+    },
+    {
+      "Vertex": "organization",
+      "Edge": "birthday_people",
+      "IsCollection": false
+    }
+  ],
+  "AttributeTypeOverrides": [
+    {
+      "Vertex": "resource",
+      "Attribute": "image",
+      "ClrType": "Crews.PlanningCenter.Api.Common.Image"
+    },
+    {
+      "Vertex": "organization",
+      "Attribute": "date_format",
+      "ClrType": "string"
+    },
+    {
+      "Vertex": "feed",
+      "Attribute": "default_church_center_visibility",
+      "ClrType": "System.Text.Json.JsonElement"
+    },
+    {
+      "Vertex": "person",
+      "Attribute": "contact_data",
+      "ClrType": "Crews.PlanningCenter.Api.Calendar.ContactData"
+    },
+    {
+      "Vertex": "room_setup",
+      "Attribute": "diagram",
+      "ClrType": "Crews.PlanningCenter.Api.Common.Image"
+    },
+    {
+      "Vertex": "theme",
+      "Attribute": "image",
+      "ClrType": "Crews.PlanningCenter.Api.Common.Image"
+    },
+    {
+      "Vertex": "location",
+      "Attribute": "questions",
+      "ClrType": "System.Text.Json.Nodes.JsonArray"
+    },
+    {
+      "Vertex": "payment_method",
+      "Attribute": "expiration",
+      "ClrType": "string"
+    },
+    {
+      "Vertex": "group_type",
+      "Attribute": "default_group_settings",
+      "ClrType": "Crews.PlanningCenter.Api.Groups.GroupSettings"
+    },
+    {
+      "Vertex": "organization",
+      "Attribute": "file_storage_size",
+      "ClrType": "int"
+    },
+    {
+      "Vertex": "organization",
+      "Attribute": "file_storage_size_used",
+      "ClrType": "int"
+    },
+    {
+      "Vertex": "location",
+      "Attribute": "radius",
+      "ClrType": "int"
+    },
+    {
+      "Vertex": "condition",
+      "Attribute": "settings",
+      "ClrType": "System.Text.Json.Nodes.JsonObject"
+    }
+  ],
+  "AttributeJsonConverters": [
+    {
+      "Vertex": "note_category",
+      "Attribute": "organization_id",
+      "Converter": "Crews.PlanningCenter.Api.Converters.StringFromNumberConverter"
+    },
+    {
+      "Vertex": "event_connection",
+      "Attribute": "connected_to_id",
+      "Converter": "Crews.PlanningCenter.Api.Converters.StringFromNumberConverter"
+    },
+    {
+      "Vertex": "field_definition",
+      "Attribute": "tab_id",
+      "Converter": "Crews.PlanningCenter.Api.Converters.StringFromNumberConverter"
+    }
+  ],
+  "RelationshipTypeOverrides": [
+    {
+      "Product": "calendar",
+      "Vertex": "event",
+      "Relationship": "calendar",
+      "ClrType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier"
+    },
+    {
+      "Product": "check-ins",
+      "Vertex": "event",
+      "Relationship": "campuses",
+      "ClrType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier"
+    },
+    {
+      "Product": "check-ins",
+      "Vertex": "location",
+      "Relationship": "parent",
+      "ClrType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier"
+    },
+    {
+      "Product": "giving",
+      "Vertex": "donation",
+      "Relationship": "labels",
+      "ClrType": "LabelResource"
+    },
+    {
+      "Product": "groups",
+      "Vertex": "event",
+      "Relationship": "repeating_event",
+      "ClrType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier"
+    },
+    {
+      "Product": "groups",
+      "Vertex": "event_note",
+      "Relationship": "annotatable",
+      "ClrType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier"
+    },
+    {
+      "Vertex": "field_datum",
+      "Relationship": "customizable",
+      "ClrType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier"
+    },
+    {
+      "Vertex": "form_field",
+      "Relationship": "fieldable",
+      "ClrType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier"
+    },
+    {
+      "Vertex": "form_field",
+      "Relationship": "form_field_conditions",
+      "ClrType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier"
+    },
+    {
+      "Vertex": "form_field_option",
+      "Relationship": "optionable",
+      "ClrType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier"
+    },
+    {
+      "Product": "people",
+      "Vertex": "person",
+      "Relationship": "primary_campus",
+      "ClrType": "CampusResource"
+    },
+    {
+      "Product": "people",
+      "Vertex": "person",
+      "Relationship": "gender",
+      "ClrType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier"
+    },
+    {
+      "Vertex": "workflow_card",
+      "Relationship": "assignee",
+      "ClrType": "PersonResource"
+    },
+    {
+      "Vertex": "workflow_step_assignee_summary",
+      "Relationship": "step",
+      "ClrType": "WorkflowStepResource"
+    },
+    {
+      "Vertex": "folder",
+      "Relationship": "campus",
+      "ClrType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier"
+    },
+    {
+      "Vertex": "item",
+      "Relationship": "selected_layout",
+      "ClrType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier"
+    },
+    {
+      "Vertex": "plan",
+      "Relationship": "linked_publishing_episode",
+      "ClrType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier"
+    },
+    {
+      "Vertex": "feed",
+      "Relationship": "default_calendar",
+      "ClrType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier"
+    },
+    {
+      "Vertex": "custom_sender",
+      "Relationship": "custom_sender_shares",
+      "ClrType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier"
+    }
+  ]
+}

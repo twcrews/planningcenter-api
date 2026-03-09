@@ -55,7 +55,7 @@ public class StringExtensionsTests
             string result = input.ToXmlSummary();
 
             // Assert
-            Assert.Equal("Use {div} tag", result);
+            Assert.Equal("Use &lt;div&gt; tag", result);
         }
 
         [Fact]
@@ -148,122 +148,5 @@ public class StringExtensionsTests
             // Assert
             Assert.Equal("", result);
         }
-    }
-
-    public class ToClrType
-    {
-        [Theory]
-        [InlineData("string", "string")]
-        [InlineData("STRING", "string")]
-        [InlineData("String", "string")]
-        [InlineData("primary_key", "string")]
-        [InlineData("currency_abbreviation", "string")]
-        public void ShouldConvertStringTypes(string jsonType, string expected)
-        {
-            // Act
-            string result = jsonType.ToClrType();
-
-            // Assert
-            Assert.Equal(expected, result);
-        }
-
-        [Theory]
-        [InlineData("integer", "int")]
-        [InlineData("INTEGER", "int")]
-        public void ShouldConvertIntegerType(string jsonType, string expected)
-        {
-            // Act
-            string result = jsonType.ToClrType();
-
-            // Assert
-            Assert.Equal(expected, result);
-        }
-
-        [Theory]
-        [InlineData("boolean", "bool")]
-        [InlineData("BOOLEAN", "bool")]
-        public void ShouldConvertBooleanType(string jsonType, string expected)
-        {
-            // Act
-            string result = jsonType.ToClrType();
-
-            // Assert
-            Assert.Equal(expected, result);
-        }
-
-        [Theory]
-        [InlineData("float", "decimal")]
-        [InlineData("FLOAT", "decimal")]
-        public void ShouldConvertFloatType(string jsonType, string expected)
-        {
-            // Act
-            string result = jsonType.ToClrType();
-
-            // Assert
-            Assert.Equal(expected, result);
-        }
-
-        [Theory]
-        [InlineData("date_time", "DateTime")]
-        [InlineData("DATE_TIME", "DateTime")]
-        public void ShouldConvertDateTimeType(string jsonType, string expected)
-        {
-            // Act
-            string result = jsonType.ToClrType();
-
-            // Assert
-            Assert.Equal(expected, result);
-        }
-
-        [Theory]
-        [InlineData("date", "DateOnly")]
-        [InlineData("DATE", "DateOnly")]
-        public void ShouldConvertDateType(string jsonType, string expected)
-        {
-            // Act
-            string result = jsonType.ToClrType();
-
-            // Assert
-            Assert.Equal(expected, result);
-        }
-
-        [Theory]
-        [InlineData("json", "JsonObject")]
-        [InlineData("object", "JsonObject")]
-        [InlineData("repeatable_schedule", "JsonObject")]
-        [InlineData("JSON", "JsonObject")]
-        public void ShouldConvertJsonObjectTypes(string jsonType, string expected)
-        {
-            // Act
-            string result = jsonType.ToClrType();
-
-            // Assert
-            Assert.Equal(expected, result);
-        }
-
-        [Theory]
-        [InlineData("array", "JsonArray")]
-        [InlineData("ARRAY", "JsonArray")]
-        public void ShouldConvertArrayType(string jsonType, string expected)
-        {
-            // Act
-            string result = jsonType.ToClrType();
-
-            // Assert
-            Assert.Equal(expected, result);
-        }
-
-        [Theory]
-        [InlineData("unknown", "JsonElement")]
-        [InlineData("custom_type", "JsonElement")]
-        [InlineData("", "JsonElement")]
-        public void ShouldConvertUnknownTypesToJsonElement(string jsonType, string expected)
-        {
-            // Act
-            string result = jsonType.ToClrType();
-
-            // Assert
-            Assert.Equal(expected, result);
-        }
-    }
+    } 
 }

@@ -1,18 +1,18 @@
 namespace Crews.PlanningCenter.Api.DocParser.Configuration;
 
-public class AppSettings
+public record AppSettings
 {
-    public string OutputDirectory { get; set; } = "output";
-    public PlanningCenterClientOptions? PlanningCenterClient { get; set; }
-    public DocumentationBuilderOptions? DocumentationBuilder { get; set; }
+    public string OutputDirectory { get; init; } = "output";
+    public PlanningCenterClientOptions? PlanningCenterClient { get; init; }
+    public DocumentationBuilderOptions? DocumentationBuilder { get; init; }
 
-    public class PlanningCenterClientOptions
+    public record PlanningCenterClientOptions
     {
-        public string? BaseAddress { get; set; }
+        public string? BaseAddress { get; init; }
     }
 
-    public class DocumentationBuilderOptions
+    public record DocumentationBuilderOptions
     {
-        public int ConcurrentConnections { get; set; }
+        public int ConcurrentConnections { get; init; }
     }
 }

@@ -18,7 +18,8 @@ public class BackgroundCheckTests(PeopleFixture fixture) : PeopleTestBase(fixtur
 			// -- Create --
 			var createResult = await personChecks.PostAsync(new BackgroundCheck
 			{
-				Note = $"IntTest-{UniqueId}"
+				Note = $"IntTest-{UniqueId}",
+				Status = "complete_clear"
 			});
 			Assert.NotNull(createResult.Data);
 			checkId = createResult.Data.Id;

@@ -27,11 +27,20 @@ public class TestPaginatedResourceClient : PaginatedResourceClient<TestModel, Te
 	public new Task<TestResourceResponse> PostAsync(TestModel model, CancellationToken cancellationToken = default) => base.PostAsync(model, cancellationToken);
 
 	/// <summary>
-	/// Public wrapper for protected SetQueryParameter method.
+	/// Public wrapper for protected AddQueryParameter method.
 	/// </summary>
-	public TestPaginatedResourceClient SetQueryParameterPublic(string parameter, string value)
+	public TestPaginatedResourceClient AddQueryParameterPublic(string parameter, string value)
 	{
-		SetQueryParameter(parameter, value);
+		AddQueryParameter(parameter, value);
+		return this;
+	}
+
+	/// <summary>
+	/// Public wrapper for protected ReplaceQueryParameter method.
+	/// </summary>
+	public TestPaginatedResourceClient ReplaceQueryParameterPublic(string parameter, string value)
+	{
+		ReplaceQueryParameter(parameter, value);
 		return this;
 	}
 }

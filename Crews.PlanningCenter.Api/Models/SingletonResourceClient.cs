@@ -40,6 +40,20 @@ public abstract class SingletonResourceClient<TModel, TResource, TResponse>(Http
     }
 
     /// <summary>
+    /// Sends an asynchronous POST request to the specified URI without a request body, typically used for triggering
+    /// actions or operations on the server that do not require input data.
+    /// </summary>
+    /// <param name="uri">The URI to which the POST request will be sent.</param>
+    /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
+    /// <returns>A task representing the asynchronous operation.</returns>
+    protected async Task PostAsync(Uri uri, CancellationToken cancellationToken = default)
+    {
+        HttpRequestMessage request = new(HttpMethod.Post, uri);
+        HttpResponseMessage response = HttpClient.Send(request, cancellationToken);
+        await EnsureSuccessAsync(response, cancellationToken);
+    }
+
+    /// <summary>
     /// Sends an asynchronous patch request with the specified resource data to the resource endpoint and deserializes
     /// the response content.
     /// </summary>
@@ -92,6 +106,7 @@ public abstract class SingletonResourceClient<TModel, TResource, TResponse>(Http
     {
         await EnsureSuccessAsync(response, cancellationToken);
 
+        // FIXME: Used for debugging; remove after integration tests pass
         string json = await response.Content.ReadAsStringAsync();
         JsonApiDocument<TResource>? document = await response.ReadJsonApiDocumentAsync<TResource>(cancellationToken);
         if (document is null) return new() { ResponseMessage = response };

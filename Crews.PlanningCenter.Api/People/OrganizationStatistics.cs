@@ -1,7 +1,7 @@
 using System.Text.Json.Serialization;
 using Crews.Web.JsonApiClient;
 
-namespace Crews.PlanningCenter.Api.People.V2022_01_28;
+namespace Crews.PlanningCenter.Api.People;
 
 /// <summary>
 /// Resource wrapper for OrganizationStatistics.

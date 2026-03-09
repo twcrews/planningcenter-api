@@ -23,19 +23,13 @@ public class HouseholdTests(PeopleFixture fixture) : PeopleTestBase(fixture)
 					Attributes = new Household { Name = $"IntTest-Household-{UniqueId}" },
 					Relationships = new()
 					{
-						People = new()
-						{
-							Data = JsonSerializer.SerializeToElement<IEnumerable<JsonApiResourceIdentifier>>([
-								new() { Type = "Person", Id = Fixture.PersonId }
-							])
-						},
-						PrimaryContact = new()
-						{
-							Data = JsonSerializer.SerializeToElement<JsonApiResourceIdentifier>(new()
+						People = new() { Data = [ new() { Type = "Person", Id = Fixture.PersonId } ] },
+						PrimaryContact = new() {
+							Data = new()
 							{
 								Type = "Person",
 								Id = Fixture.PersonId
-							})
+							}
 						}
 					}
 				}

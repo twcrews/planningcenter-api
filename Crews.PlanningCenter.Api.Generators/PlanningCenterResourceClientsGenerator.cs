@@ -59,7 +59,7 @@ class PlanningCenterResourceClientsGenerator : IIncrementalGenerator
         writer.WriteLine($"namespace Crews.PlanningCenter.Api.{productName}.{versionString};");
         writer.WriteLine();
 
-        foreach (Resource resource in version.Resources.Where(r => r.GenerateClients))
+        foreach (Resource resource in version.Resources.Where(r => r.ShouldGenerateClients))
         {
             GenerateResourceClients(writer, resource);
             GenerateResponseClasses(writer, resource);
@@ -68,18 +68,23 @@ class PlanningCenterResourceClientsGenerator : IIncrementalGenerator
 
     private static void GenerateResourceClients(IndentedTextWriter writer, Resource resource)
     {
-        string summary = $"Client for interacting with the {resource.Name} resource.";
-        if (resource.Deprecated) summary = $"DEPRECATED: {summary}";
+        string summary = $"Client for interacting with the {resource.AttributesClrType} resource.";
         summary = summary.ToXmlSummary();
         
-        string modelType = resource.Name.ToPascalCase();
+        string modelType = resource.AttributesClrType.ToPascalCase();
         string responseType = modelType + "Response";
-        string resourceType = resource.ResourceName.ToPascalCase();
+        string resourceType = resource.ResourceClrType.ToPascalCase();
         string clientType = modelType + "Client";
 
         writer.WriteLine("/// <summary>");
         writer.WriteLine($"/// {summary}");
         writer.WriteLine("/// </summary>");
+
+        if (resource.Deprecated)
+        {
+            writer.WriteLine("[Obsolete(\"This resource is deprecated and may be removed in a future version.\")]");
+        }
+
         writer.WriteLine($"public class {clientType}(HttpClient httpClient, Uri uri)");
         writer.Indent++;
         writer.WriteLine($": SingletonResourceClient<{modelType}, {resourceType}, {responseType}>(httpClient, uri)");
@@ -92,27 +97,29 @@ class PlanningCenterResourceClientsGenerator : IIncrementalGenerator
 
         GenerateEndpointMethods(writer, resource, modelType, responseType);
 
+        foreach (ResourceAction action in resource.Actions)
+            GenerateActionMethod(writer, action);
+
         foreach (ResourceIncludable includable in resource.CanInclude)
             GenerateIncludable(writer, includable, modelType);
-
-        foreach (ResourceOrderable orderable in resource.CanOrderBy)
-            GenerateOrderable(writer, orderable, modelType);
-
-        foreach (ResourceQueryable queryable in resource.CanQueryBy)
-            GenerateQueryable(writer, queryable, modelType);
 
         writer.Indent--;
         writer.WriteLine("}");
         writer.WriteLine();
 
         summary = $"Client for interacting with {modelType} collection resources.";
-        if (resource.Deprecated) summary = $"DEPRECATED: {summary}";
         summary = summary.ToXmlSummary();
 
         string collectionResponseType = modelType + "CollectionResponse";
         writer.WriteLine("/// <summary>");
         writer.WriteLine($"/// {summary}");
         writer.WriteLine("/// </summary>");
+
+        if (resource.Deprecated)
+        {
+            writer.WriteLine("[Obsolete(\"This resource is deprecated and may be removed in a future version.\")]");
+        }
+
         writer.WriteLine($"public class Paginated{modelType}Client(HttpClient httpClient, Uri uri)");
         writer.Indent++;
         writer.WriteLine($": PaginatedResourceClient<{modelType}, {resourceType}, {collectionResponseType}, {responseType}>(httpClient, uri)");
@@ -147,7 +154,7 @@ class PlanningCenterResourceClientsGenerator : IIncrementalGenerator
             writer.WriteLine("/// <param name=\"cancellationToken\">A token to monitor for cancellation requests.</param>");
             writer.WriteLine($"/// <returns>A task representing the asynchronous operation, containing the created <see cref=\"{modelType}\"/> resource.</returns>");
             writer.WriteLine("/// <exception cref=\"JsonApiException\">Thrown when the HTTP response indicates a failure status code.</exception>");
-            writer.WriteLine($"public new Task<{responseType}> PostAsync(JsonApiDocument<{resource.ResourceName}> document, CancellationToken cancellationToken = default) => base.PostAsync(document, cancellationToken);");
+            writer.WriteLine($"public new Task<{responseType}> PostAsync(JsonApiDocument<{resource.ResourceClrType}> document, CancellationToken cancellationToken = default) => base.PostAsync(document, cancellationToken);");
             writer.WriteLine();
         }
 
@@ -162,6 +169,15 @@ class PlanningCenterResourceClientsGenerator : IIncrementalGenerator
             writer.WriteLine();
         }
 
+        foreach (ResourceIncludable includable in resource.CanInclude)
+            GenerateIncludable(writer, includable, modelType);
+
+        foreach (ResourceOrderable orderable in resource.CanOrderBy)
+            GenerateOrderable(writer, orderable, modelType);
+
+        foreach (ResourceQueryable queryable in resource.CanQueryBy)
+            GenerateQueryable(writer, queryable, modelType);
+
         writer.Indent--;
         writer.WriteLine("}");
         writer.WriteLine();
@@ -169,10 +185,10 @@ class PlanningCenterResourceClientsGenerator : IIncrementalGenerator
 
     private static void GenerateResponseClasses(IndentedTextWriter writer, Resource resource)
     {
-        string summary = $"Response model for {resource.Name.ToPascalCase()} resource.".ToXmlSummary();
+        string summary = $"Response model for {resource.AttributesClrType.ToPascalCase()} resource.".ToXmlSummary();
 
-        string modelType = resource.Name.ToPascalCase();
-        string resourceType = resource.ResourceName.ToPascalCase();
+        string modelType = resource.AttributesClrType.ToPascalCase();
+        string resourceType = resource.ResourceClrType.ToPascalCase();
         string responseType = modelType + "Response";
         string collectionResponseType = modelType + "CollectionResponse";
 
@@ -191,87 +207,80 @@ class PlanningCenterResourceClientsGenerator : IIncrementalGenerator
 
     private static void GenerateChildNavigation(IndentedTextWriter writer, ResourceChild child)
     {
-        string memberName = child.Name.ToPascalCase();
-
-        string summary = child.Description is null
-            ? $"Related {memberName}."
-            : child.Description;
-        if (child.IsDeprecated) summary = $"DEPRECATED: {summary}";
-        summary = summary.ToXmlSummary();
-
-        string type = child.Type.ToPascalCase() + "Client";
+        string type = child.ClrAttributesType + "Client";
         if (child.IsCollection) type = "Paginated" + type;
 
         writer.WriteLine("/// <summary>");
-        writer.WriteLine($"/// {summary}");
+        writer.WriteLine($"/// {child.Description.ToXmlSummary()}");
         writer.WriteLine("/// </summary>");
-        writer.WriteLine($"public {type} {child.Name.ToPascalCase()} => new(HttpClient, new(Uri, \"{child.Name}/\"));");
+
+        if (child.Deprecated)
+        {
+            writer.WriteLine("[Obsolete(\"This endpoint is deprecated and may be removed in a future release.\")]");
+        }
+
+        writer.WriteLine($"public {type} {child.ClrName} => new(HttpClient, new(Uri, \"{child.JsonName}/\"));");
         writer.WriteLine();
     }
 
     private static void GenerateIncludable(IndentedTextWriter writer, ResourceIncludable includable, string modelType)
     {
-        string summary = includable.Description ?? $"Include related {includable.Value.ToPascalCase()}.";
-        if (includable.CanAssignOnCreate) summary += "\nCan also be used when creating this resource type.";
-        if (includable.CanAssignOnUpdate) summary += "\nCan also be used when updating this resource type.";
-        summary = summary.ToXmlSummary();
-
-        string methodName = "Include" + includable.Value.ToPascalCase();
         string clientType = modelType + "Client";
 
         writer.WriteLine("/// <summary>");
-        writer.WriteLine($"/// {summary}");
+        writer.WriteLine($"/// {includable.Description.ToXmlSummary()}");
         writer.WriteLine("/// </summary>");
-        writer.WriteLine($"public {clientType} {methodName}() => ({clientType})SetQueryParameter(\"{includable.Parameter}\", \"{includable.Value}\");");
+        writer.WriteLine($"public {clientType} {includable.ClrMethodName}() => ({clientType})AddQueryParameter(\"include\", \"{includable.Value}\");");
         writer.WriteLine();
     }
 
     private static void GenerateOrderable(IndentedTextWriter writer, ResourceOrderable orderable, string modelType)
     {
-        string summary = $"Order by {orderable.Value.ToPascalCase()}.";
-
-        string methodName = "OrderBy" + orderable.Value.Replace(".", "").ToPascalCase();
         string clientType = modelType + "Client";
 
         writer.WriteLine("/// <summary>");
-        writer.WriteLine($"/// {summary}");
+        writer.WriteLine($"/// {orderable.Description.ToXmlSummary()}");
         writer.WriteLine("/// </summary>");
-        writer.WriteLine($"public {clientType} {methodName}() => ({clientType})SetQueryParameter(\"{orderable.Parameter}\", \"{orderable.Value}\");");
+        writer.WriteLine($"public {clientType} {orderable.ClrMethodName}() => ({clientType})ReplaceQueryParameter(\"order\", \"{orderable.Value}\");");
         writer.WriteLine();
 
-        summary += " Use reverse order.";
-        methodName += "Descending";
+        orderable.Description += " Use reverse order.";
+        orderable.ClrMethodName += "Descending";
 
         writer.WriteLine("/// <summary>");
-        writer.WriteLine($"/// {summary}");
+        writer.WriteLine($"/// {orderable.Description.ToXmlSummary()}");
         writer.WriteLine("/// </summary>");
-        writer.WriteLine($"public {clientType} {methodName}() => ({clientType})SetQueryParameter(\"{orderable.Parameter}\", \"-{orderable.Value}\");");
+        writer.WriteLine($"public {clientType} {orderable.ClrMethodName}() => ({clientType})ReplaceQueryParameter(\"order\", \"-{orderable.Value}\");");
         writer.WriteLine(); 
     }
 
     private static void GenerateQueryable(IndentedTextWriter writer, ResourceQueryable queryable, string modelType)
     {
-        string methodName = "Where" + queryable.Name.ToPascalCase();
         string clientType = modelType + "Client";
+        string valueParameter = "value";
 
-        string summary = queryable.Description ?? $"Query by {queryable.Name.ToPascalCase()}.";
-        if (queryable.Example is not null)
+        if (queryable.ClrType.Contains("DateTime"))
         {
-            string exampleValue = queryable.Example.Split('=')[1];
-            string example = $"Example: {methodName}(\"{exampleValue}\")";
-            summary += $"\n{example}";
+            valueParameter += ".ToString(\"o\")";
         }
-        summary = summary.ToXmlSummary();
+        else if (queryable.ClrType.Contains("DateOnly"))
+        {
+            valueParameter += ".ToString(\"yyyy-MM-dd\")";
+        }
+        else if (queryable.ClrType != "string")
+        {
+            valueParameter += ".ToString()";
+        }
 
         writer.WriteLine("/// <summary>");
-        writer.WriteLine($"/// {summary}");
+        writer.WriteLine($"/// {queryable.Description.ToXmlSummary()}");
         writer.WriteLine("/// </summary>");
-        writer.WriteLine($"public {clientType} {methodName}(string value) => ({clientType})SetQueryParameter(\"{queryable.Parameter}\", value);");
+        writer.WriteLine($"public {clientType} {queryable.ClrMethodName}({queryable.ClrType} value) => ({clientType})ReplaceQueryParameter(\"{queryable.Parameter}\", {valueParameter});");
         writer.WriteLine();
     }
 
     private static void GenerateEndpointMethods(IndentedTextWriter writer, Resource resource, string modelType, string responseType)
-    {
+    {   
         writer.WriteLine("/// <summary>");
         writer.WriteLine($"/// Fetches the <see cref=\"{modelType}\"/> resource asynchronously.");
         writer.WriteLine("/// </summary>");
@@ -299,7 +308,7 @@ class PlanningCenterResourceClientsGenerator : IIncrementalGenerator
             writer.WriteLine("/// <param name=\"cancellationToken\">A token to monitor for cancellation requests.</param>");
             writer.WriteLine($"/// <returns>A task representing the asynchronous operation, containing the updated <see cref=\"{modelType}\"/> resource.</returns>");
             writer.WriteLine("/// <exception cref=\"JsonApiException\">Thrown when the HTTP response indicates a failure status code.</exception>");
-            writer.WriteLine($"public new Task<{responseType}> PatchAsync(JsonApiDocument<{resource.ResourceName}> document, CancellationToken cancellationToken = default) => base.PatchAsync(document, cancellationToken);");
+            writer.WriteLine($"public new Task<{responseType}> PatchAsync(JsonApiDocument<{resource.ResourceClrType}> document, CancellationToken cancellationToken = default) => base.PatchAsync(document, cancellationToken);");
             writer.WriteLine();
         }
 
@@ -314,5 +323,24 @@ class PlanningCenterResourceClientsGenerator : IIncrementalGenerator
             writer.WriteLine($"public new Task DeleteAsync(CancellationToken cancellationToken = default) => base.DeleteAsync(cancellationToken);");
             writer.WriteLine();
         }
+    }
+
+    private static void GenerateActionMethod(IndentedTextWriter writer, ResourceAction action)
+    {
+        writer.WriteLine("/// <summary>");
+        writer.WriteLine($"/// {action.Description.ToXmlSummary()}");
+        if (!string.IsNullOrEmpty(action.AdditionalDetails))
+        {
+            writer.WriteLine($"/// <br/>{action.AdditionalDetails!.ToXmlSummary()}");
+        }
+        writer.WriteLine("/// </summary>");
+
+        if (action.Deprecated)
+        {
+            writer.WriteLine("[Obsolete(\"This action is deprecated and may be removed in a future release.\")]");
+        }
+
+        writer.WriteLine($"public Task {action.ClrMethodName}(CancellationToken cancellationToken = default) => base.PostAsync(new(Uri, \"{action.Path}\"), cancellationToken);");
+        writer.WriteLine();
     } 
 }

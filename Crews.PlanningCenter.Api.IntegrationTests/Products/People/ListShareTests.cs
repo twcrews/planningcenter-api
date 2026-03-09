@@ -24,14 +24,7 @@ public class ListShareTests(PeopleFixture fixture) : PeopleTestBase(fixture)
 					Data = new()
 					{
 						Attributes = new ListShare { Permission = "view" },
-						Relationships = new()
-						{
-							Person = new()
-							{
-								Data = JsonSerializer.SerializeToElement<JsonApiResourceIdentifier>(
-									new() { Type = "Person", Id = Fixture.PersonId })
-							}
-						}
+						Relationships = new() { Person = new() { Data = new() { Type = "Person", Id = Fixture.PersonId } } }
 					}
 				});
 			Assert.NotNull(createResult.Data);

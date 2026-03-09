@@ -17,7 +17,7 @@ public class EventConnectionTests(CalendarFixture fixture) : CalendarTestBase(fi
 			var createResult = await Org.Events.WithId(Fixture.EventId).EventConnections.PostAsync(
 				new EventConnection
 				{
-					ConnectedToId = Convert.ToInt32(Fixture.EventConnectionResourceId),
+					ConnectedToId = Fixture.EventConnectionResourceId,
 					ConnectedToName = $"IntTest-Connection-{UniqueId}",
 					ConnectedToType = "group",
 					ProductName = "groups"

@@ -24,14 +24,7 @@ public class MembershipTests(GroupsFixture fixture) : GroupsTestBase(fixture)
 					Data = new MembershipResource
 					{
 						Attributes = new Membership { Role = "member" },
-						Relationships = new MembershipRelationships
-						{
-							Person = new JsonApiRelationship
-							{
-								Data = JsonSerializer.SerializeToElement(
-									new JsonApiResourceIdentifier { Id = Fixture.PersonId!, Type = "people" })
-							}
-						}
+						Relationships = new() { Person = new() { Data = new() { Id = Fixture.PersonId!, Type = "people" } } }
 					}
 				});
 			Assert.NotNull(createResult.Data);

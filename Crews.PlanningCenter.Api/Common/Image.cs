@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace Crews.PlanningCenter.Api.CheckIns;
+namespace Crews.PlanningCenter.Api.Common;
 
 /// <summary>
 /// Defines an undocumented type for images in Check-ins resources.

@@ -22,22 +22,14 @@ public class PledgeCampaignTests(GivingFixture fixture) : GivingTestBase(fixture
 				{
 					Data = new PledgeCampaignResource
 					{
-						
-					Attributes = new PledgeCampaign 
-					{
-						Name = $"IntTest-Campaign-{UniqueId}",
-						Description = "Pledge campaign for integration testing",
-						StartsAt = DateTime.Now,
-						EndsAt = DateTime.Now.AddMonths(1)
-					},
-						Relationships = new PledgeCampaignRelationships
+						Attributes = new PledgeCampaign 
 						{
-							Fund = new JsonApiRelationship
-							{
-								Data = JsonSerializer.SerializeToElement(
-									new JsonApiResourceIdentifier { Id = Fixture.FundId, Type = "funds" })
-							}
-						}
+							Name = $"IntTest-Campaign-{UniqueId}",
+							Description = "Pledge campaign for integration testing",
+							StartsAt = DateTime.Now,
+							EndsAt = DateTime.Now.AddMonths(1)
+						},
+						Relationships = new() { Fund = new() { Data = new() { Id = Fixture.FundId, Type = "funds" } } }
 					}
 				});
 

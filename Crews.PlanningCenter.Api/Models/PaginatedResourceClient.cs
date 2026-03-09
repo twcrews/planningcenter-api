@@ -20,25 +20,37 @@ public abstract class PaginatedResourceClient<TModel, TResource, TResponse, TSin
 {
     /// <summary>
     /// Sets the number of items to be returned per page in the paginated response.
-    /// This sets the "per_page" query parameter.
     /// </summary>
     /// <param name="count">The number of items to be returned per page.</param>
     /// <returns>The current instance of the paginated resource client.</returns>
-    public PaginatedResourceClient<TModel, TResource, TResponse, TSingletonResponse> Take(int count)
+    public PaginatedResourceClient<TModel, TResource, TResponse, TSingletonResponse> PerPage(int count)
     {
-        SetQueryParameter("per_page", count.ToString());
+        ReplaceQueryParameter("per_page", count.ToString());
         return this;
     }
 
     /// <summary>
-    /// Sets the number of items to skip in the paginated response.
-    /// This sets the "offset" query parameter.
+    /// Sets the item offset in the paginated response.
     /// </summary>
     /// <param name="count">The number of items to skip.</param>
     /// <returns>The current instance of the paginated resource client.</returns>
-    public PaginatedResourceClient<TModel, TResource, TResponse, TSingletonResponse> Skip(int count)
+    public PaginatedResourceClient<TModel, TResource, TResponse, TSingletonResponse> Offset(int count)
     {
-        SetQueryParameter("offset", count.ToString());
+        ReplaceQueryParameter("offset", count.ToString());
+        return this;
+    }
+
+    /// <summary>
+    /// Adds a filter query parameter to the request to filter the results based on the specified criteria.
+    /// </summary>
+    /// <remarks>
+    /// See Planning Center API documentation for details on supported filter values for this resource.
+    /// </remarks>
+    /// <param name="filter">The filter criteria.</param>
+    /// <returns>The current instance of the paginated resource client.</returns>
+    public PaginatedResourceClient<TModel, TResource, TResponse, TSingletonResponse> Filter(string filter)
+    {
+        AddQueryParameter("filter", filter);
         return this;
     }
 

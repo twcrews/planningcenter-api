@@ -26,16 +26,8 @@ public class InKindDonationTests(GivingFixture fixture) : GivingTestBase(fixture
 						},
 						Relationships = new InKindDonationRelationships
 						{
-							Fund = new JsonApiRelationship
-							{
-								Data = JsonSerializer.SerializeToElement(
-									new JsonApiResourceIdentifier { Id = Fixture.FundId, Type = "funds" })
-							},
-							Person = new JsonApiRelationship
-							{
-								Data = JsonSerializer.SerializeToElement(
-									new JsonApiResourceIdentifier { Id = Fixture.PersonId, Type = "people" })
-							}
+							Fund = new() { Data = new() { Id = Fixture.FundId, Type = "funds" } },
+							Person = new() { Data = new() { Id = Fixture.PersonId, Type = "people" } }
 						}
 					}
 				});

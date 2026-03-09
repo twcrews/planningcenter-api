@@ -21,7 +21,7 @@ public class DocumentationBuilderTests
         _mockLogger = Substitute.For<ILogger<DocumentationBuilder>>();
         _builder = new DocumentationBuilder(_mockLogger, _mockClient,
             Options.Create<AppSettings.DocumentationBuilderOptions>(new() { ConcurrentConnections = 10 }),
-            Options.Create<DocumentationOverrides>(new()));
+            Options.Create<DocumentationTransforms>(new()));
     }
 
     [Fact(DisplayName = "BuildAllProductsAsync builds all products concurrently")]
@@ -65,7 +65,6 @@ public class DocumentationBuilderTests
 
         // Assert
         Assert.Equal(productDef.ToString(), product.Name);
-        Assert.Equal("People API", product.Title);
         Assert.Equal("Manage people and contacts", product.Description);
     }
 
@@ -143,13 +142,13 @@ public class DocumentationBuilderTests
         Api.Models.Version version = product.Versions.First();
         Assert.Equal(2, version.Resources.Count());
 
-        Resource? personResource = version.Resources.FirstOrDefault(r => r.Id == "person");
+        Resource? personResource = version.Resources.FirstOrDefault(r => r.JsonName == "person");
         Assert.NotNull(personResource);
-        Assert.Equal("Person", personResource.Name);
+        Assert.Equal("Person", personResource.AttributesClrType);
 
-        Resource? emailResource = version.Resources.FirstOrDefault(r => r.Id == "email");
+        Resource? emailResource = version.Resources.FirstOrDefault(r => r.JsonName == "email");
         Assert.NotNull(emailResource);
-        Assert.Equal("Email", emailResource.Name);
+        Assert.Equal("Email", emailResource.AttributesClrType);
     }
 
     [Fact(DisplayName = "BuildProductAsync maps resource attributes correctly")]
@@ -187,9 +186,9 @@ public class DocumentationBuilderTests
         // Assert
         Resource resource = product.Versions.First().Resources.First();
         Assert.Equal(3, resource.Attributes.Count());
-        Assert.Contains(resource.Attributes, a => a.Name == "first_name" && a.Type == "string");
-        Assert.Contains(resource.Attributes, a => a.Name == "last_name" && a.Type == "string");
-        Assert.Contains(resource.Attributes, a => a.Name == "age" && a.Type == "integer");
+        Assert.Contains(resource.Attributes, a => a.JsonName == "first_name" && a.ClrType == "string");
+        Assert.Contains(resource.Attributes, a => a.JsonName == "last_name" && a.ClrType == "string");
+        Assert.Contains(resource.Attributes, a => a.JsonName == "age" && a.ClrType == "int");
     }
 
     [Fact(DisplayName = "BuildProductAsync maps resource relationships correctly")]
@@ -225,8 +224,8 @@ public class DocumentationBuilderTests
         // Assert
         Resource resource = product.Versions.First().Resources.First();
         Assert.Equal(2, resource.Relationships.Count());
-        Assert.Contains(resource.Relationships, r => r.Name == "emails" && r.Type == "Email");
-        Assert.Contains(resource.Relationships, r => r.Name == "organization" && r.Type == "Organization");
+        Assert.Contains(resource.Relationships, r => r.JsonName == "emails" && r.ClrAttributesType == "Email");
+        Assert.Contains(resource.Relationships, r => r.JsonName == "organization" && r.ClrAttributesType == "Organization");
     }
 
     [Fact(DisplayName = "BuildProductAsync maps includable parameters correctly")]
@@ -312,7 +311,7 @@ public class DocumentationBuilderTests
         VertexResource personVertex = TestDataBuilder.CreateVertexResource("person", "Person");
 
         UrlParameterResource searchParam = TestDataBuilder.CreateUrlParameterResource(
-            "search", "where", "string", "search_name_or_email", "Search by name or email");
+            "search", "where[name_or_email]", "string", "search_name_or_email", "Search by name or email");
 
         GraphDocument graphDoc = TestDataBuilder.CreateGraphDocument(versions: [versionRes]);
         GraphVersionDocument versionDoc = TestDataBuilder.CreateGraphVersionDocument(
@@ -334,7 +333,7 @@ public class DocumentationBuilderTests
         // Assert
         Resource resource = product.Versions.First().Resources.First();
         Assert.Single(resource.CanQueryBy);
-        Assert.Equal("search", resource.CanQueryBy.First().Name);
+        Assert.Equal("where[name_or_email]", resource.CanQueryBy.First().Parameter);
     }
 
     [Fact(DisplayName = "BuildProductAsync handles resources with deprecated flag")]
@@ -449,7 +448,7 @@ public class DocumentationBuilderTests
             {
                 ConcurrentConnections = maxConcurrentRequests
             }),
-            Options.Create<DocumentationOverrides>(new()));
+            Options.Create<DocumentationTransforms>(new()));
 
         // Create a product with multiple versions to trigger concurrent calls
         ProductDefinition productDef = ProductDefinition.Services;

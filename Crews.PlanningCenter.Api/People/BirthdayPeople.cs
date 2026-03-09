@@ -1,7 +1,8 @@
 using System.Text.Json.Serialization;
+using Crews.PlanningCenter.Api.Converters;
 using Crews.Web.JsonApiClient;
 
-namespace Crews.PlanningCenter.Api.People.V2025_11_10;
+namespace Crews.PlanningCenter.Api.People;
 
 /// <summary>
 /// Wrapper for the BirthdayPeople resource.
@@ -29,6 +30,7 @@ public record BirthdayPerson
     /// The unique identifier of the person.
     /// </summary>
     [JsonPropertyName("id")]
+    [JsonConverter(typeof(StringFromNumberConverter))]
     public required string Id { get; init; }
 
     /// <summary>

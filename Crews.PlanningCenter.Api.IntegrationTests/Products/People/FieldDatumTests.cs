@@ -23,14 +23,7 @@ public class FieldDatumTests(PeopleFixture fixture) : PeopleTestBase(fixture)
 				Data = new()
 				{
 					Attributes = new FieldDatum { Value = $"IntTest-{UniqueId}" },
-					Relationships = new()
-					{
-						FieldDefinition = new()
-						{
-							Data = JsonSerializer.SerializeToElement<JsonApiResourceIdentifier>(
-								new() { Type = "FieldDefinition", Id = Fixture.FieldDefinitionId })
-						}
-					}
+					Relationships = new() { FieldDefinition = new() { Data = new() { Type = "FieldDefinition", Id = Fixture.FieldDefinitionId } } }
 				}
 			});
 			Assert.NotNull(createResult.Data);

@@ -26,7 +26,7 @@ public class PlanningCenterResourcesGeneratorTests
 
         GeneratorTestHelper.AssertContains(source,
             "namespace Crews.PlanningCenter.Api.People.V2024_12_01;",
-            "public record PersonResource : JsonApiResource<Person>");
+            "public partial record PersonResource : JsonApiResource<Person>");
     }
 
     [Fact]
@@ -49,7 +49,7 @@ public class PlanningCenterResourcesGeneratorTests
         var source = GeneratorTestHelper.GetGeneratedSource(result, "People.2025-01-01.Resources.g.cs");
 
         GeneratorTestHelper.AssertContains(source,
-            "public record Person",
+            "public partial record Person",
             "public string? FirstName { get; init; }",
             "public string? LastName { get; init; }",
             "public System.DateOnly? Birthdate { get; init; }",
@@ -79,7 +79,7 @@ public class PlanningCenterResourcesGeneratorTests
         var source = GeneratorTestHelper.GetGeneratedSource(result, "People.2025-01-01.Resources.g.cs");
 
         GeneratorTestHelper.AssertContains(source,
-            "public record EmailRelationships",
+            "public partial record EmailRelationships",
             "public JsonApiRelationship<PersonResource>? Person { get; init; }");
     }
 
@@ -282,6 +282,140 @@ public class PlanningCenterResourcesGeneratorTests
     }
 
     [Fact]
+    public void ShouldGenerateCollectionRelationshipPropertyWhenIsCollectionIsTrue()
+    {
+        // Arrange
+        var version = new Crews.PlanningCenter.Api.Models.Version
+        {
+            Id = "2025-01-01",
+            Beta = false,
+            Resources =
+            [
+                new Crews.PlanningCenter.Api.Models.Resource
+                {
+                    JsonName = "person",
+                    AttributesClrType = "Person",
+                    ResourceClrType = "PersonResource",
+                    Description = "A person",
+                    ShouldGenerateResource = true,
+                    ShouldGenerateClients = false,
+                    Attributes = [],
+                    Relationships =
+                    [
+                        new Crews.PlanningCenter.Api.Models.ResourceRelationship
+                        {
+                            JsonName = "emails",
+                            ClrName = "Emails",
+                            AttributesClrType = "Email",
+                            ResourceClrType = "EmailResource",
+                            IsCollection = true,
+                            Description = "The person's email addresses"
+                        }
+                    ],
+                    Children = [],
+                    CanInclude = [],
+                    CanOrderBy = [],
+                    CanQueryBy = []
+                }
+            ]
+        };
+        var json = System.Text.Json.JsonSerializer.Serialize(version);
+        var (compilation, additionalFiles) = GeneratorTestHelper.CreateCompilation(
+            "namespace Test { }",
+            ("People/2025-01-01.json", json));
+
+        // Act
+        var result = GeneratorTestHelper.RunGenerator(
+            "PlanningCenterResourcesGenerator",
+            compilation,
+            additionalFiles);
+
+        // Assert
+        var source = GeneratorTestHelper.GetGeneratedSource(result, "People.2025-01-01.Resources.g.cs");
+
+        GeneratorTestHelper.AssertContains(source,
+            "public JsonApiCollectionRelationship<EmailResource>? Emails { get; init; }");
+        GeneratorTestHelper.AssertDoesNotContain(source,
+            "public JsonApiRelationship<EmailResource>? Emails { get; init; }");
+    }
+
+    [Fact]
+    public void ShouldGenerateJsonConverterAttributeWhenPresent()
+    {
+        // Arrange
+        var version = new Crews.PlanningCenter.Api.Models.Version
+        {
+            Id = "2025-01-01",
+            Beta = false,
+            Resources =
+            [
+                new Crews.PlanningCenter.Api.Models.Resource
+                {
+                    JsonName = "person",
+                    AttributesClrType = "Person",
+                    ResourceClrType = "PersonResource",
+                    Description = "A person",
+                    ShouldGenerateResource = true,
+                    ShouldGenerateClients = false,
+                    Attributes =
+                    [
+                        new Crews.PlanningCenter.Api.Models.ResourceAttribute
+                        {
+                            JsonName = "status",
+                            ClrName = "Status",
+                            ClrType = "string",
+                            Description = "The person's status",
+                            JsonConverter = "StatusJsonConverter"
+                        }
+                    ],
+                    Relationships = [],
+                    Children = [],
+                    CanInclude = [],
+                    CanOrderBy = [],
+                    CanQueryBy = []
+                }
+            ]
+        };
+        var json = System.Text.Json.JsonSerializer.Serialize(version);
+        var (compilation, additionalFiles) = GeneratorTestHelper.CreateCompilation(
+            "namespace Test { }",
+            ("People/2025-01-01.json", json));
+
+        // Act
+        var result = GeneratorTestHelper.RunGenerator(
+            "PlanningCenterResourcesGenerator",
+            compilation,
+            additionalFiles);
+
+        // Assert
+        var source = GeneratorTestHelper.GetGeneratedSource(result, "People.2025-01-01.Resources.g.cs");
+
+        GeneratorTestHelper.AssertContains(source, "[JsonConverter(typeof(StatusJsonConverter))]");
+    }
+
+    [Fact]
+    public void ShouldNotGenerateJsonConverterAttributeWhenAbsent()
+    {
+        // Arrange
+        var version = SampleVersionData.GetSampleVersion();
+        var json = System.Text.Json.JsonSerializer.Serialize(version);
+        var (compilation, additionalFiles) = GeneratorTestHelper.CreateCompilation(
+            "namespace Test { }",
+            ("People/2025-01-01.json", json));
+
+        // Act
+        var result = GeneratorTestHelper.RunGenerator(
+            "PlanningCenterResourcesGenerator",
+            compilation,
+            additionalFiles);
+
+        // Assert
+        var source = GeneratorTestHelper.GetGeneratedSource(result, "People.2025-01-01.Resources.g.cs");
+
+        GeneratorTestHelper.AssertDoesNotContain(source, "[JsonConverter(typeof(");
+    }
+
+    [Fact]
     public void ShouldOnlyGenerateResourcesWithGenerateResourceFlagSet()
     {
         // Arrange
@@ -350,11 +484,11 @@ public class PlanningCenterResourcesGeneratorTests
         var source = GeneratorTestHelper.GetGeneratedSource(result, "People.2025-01-01.Resources.g.cs");
 
         GeneratorTestHelper.AssertContains(source,
-            "public record PersonResource",
-            "public record Person");
+            "public partial record PersonResource",
+            "public partial record Person");
 
         GeneratorTestHelper.AssertDoesNotContain(source,
-            "public record EmailResource",
-            "public record Email {");
+            "public partial record EmailResource",
+            "public partial record Email {");
     }
 }

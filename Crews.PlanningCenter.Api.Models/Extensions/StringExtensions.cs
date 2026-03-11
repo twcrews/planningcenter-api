@@ -19,12 +19,27 @@ public static class StringExtensions
     {
       char c = input[i];
 
-      // Check if this is a delimiter
+      // Check if this is a delimiter (skipped in output)
       if (c == '_' || c == '-' || c == ' ')
       {
         capitalizeNext = true;
         previousWasUpper = false;
         continue;
+      }
+
+      // Check if this is a visible separator (kept in output but triggers capitalization)
+      if (c == '.')
+      {
+        result.Append(c);
+        capitalizeNext = true;
+        previousWasUpper = false;
+        continue;
+      }
+
+      // Handle digit-to-letter transition
+      if (char.IsLetter(c) && i > 0 && char.IsDigit(input[i - 1]))
+      {
+        capitalizeNext = true;
       }
 
       // Handle transition from lowercase to uppercase (camelCase detection)

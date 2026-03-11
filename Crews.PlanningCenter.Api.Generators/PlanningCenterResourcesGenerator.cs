@@ -155,11 +155,11 @@ class PlanningCenterResourcesGenerator : IIncrementalGenerator
 
         if (relationship.IsCollection)
         {
-            writer.WriteLine($"public JsonApiCollectionRelationship<{relationship.ClrResourceType}>? {relationship.ClrName} {{ get; init; }}");
+            writer.WriteLine($"public JsonApiCollectionRelationship<{relationship.ResourceClrType}>? {relationship.ClrName} {{ get; init; }}");
             writer.WriteLine();
             return;
         }
-        writer.WriteLine($"public JsonApiRelationship<{relationship.ClrResourceType}>? {relationship.ClrName} {{ get; init; }}");
+        writer.WriteLine($"public JsonApiRelationship<{relationship.ResourceClrType}>? {relationship.ClrName} {{ get; init; }}");
         writer.WriteLine();
     }
 }

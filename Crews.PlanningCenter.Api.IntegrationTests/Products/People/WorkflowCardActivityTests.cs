@@ -9,13 +9,17 @@ public class WorkflowCardActivityTests(PeopleFixture fixture) : PeopleTestBase(f
 	[Fact]
 	public async Task WorkflowCardActivity_GetAsync_ReturnsWorkflowCardActivity()
 	{
+		// Planning Center sorts workflows by created_at descending, so the first created workflow is last in the list.
+		var workflowId = await CollectionReadHelper.GetLastIdAsync(
+			HttpClient, $"people/v2/workflows");
+
 		var cardId = await CollectionReadHelper.GetFirstIdAsync(
-			HttpClient, $"people/v2/workflows/{Fixture.WorkflowId}/cards");
+			HttpClient, $"people/v2/workflows/{workflowId}/cards");
 
 		var activityId = await CollectionReadHelper.GetFirstIdAsync(
-			HttpClient, $"people/v2/workflows/{Fixture.WorkflowId}/cards/{cardId}/activities");
+			HttpClient, $"people/v2/workflows/{workflowId}/cards/{cardId}/activities");
 
-		var result = await Org.Workflows.WithId(Fixture.WorkflowId).Cards
+		var result = await Org.Workflows.WithId(workflowId!).Cards
 			.WithId(cardId!).Activities.WithId(activityId!).GetAsync();
 
 		Assert.NotNull(result);

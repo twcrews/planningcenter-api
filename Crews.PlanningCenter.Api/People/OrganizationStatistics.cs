@@ -1,4 +1,6 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Text.Json.Serialization;
+using Crews.PlanningCenter.Api.Converters;
 using Crews.Web.JsonApiClient;
 
 namespace Crews.PlanningCenter.Api.People;
@@ -6,11 +8,13 @@ namespace Crews.PlanningCenter.Api.People;
 /// <summary>
 /// Resource wrapper for OrganizationStatistics.
 /// </summary>
+[ExcludeFromCodeCoverage(Justification = "This type is a DTO with no logic to test.")]
 public record OrganizationStatisticsResource : JsonApiResource<OrganizationStatistics> { }
 
 /// <summary>
 /// Attributes for the OrganizationStatistics resource.
 /// </summary>
+[ExcludeFromCodeCoverage(Justification = "This type is a DTO with no logic to test.")]
 public record OrganizationStatistics
 {
     /// <summary>
@@ -65,6 +69,7 @@ public record OrganizationStatistics
 /// <summary>
 /// Represents membership count for a specific membership type.
 /// </summary>
+[ExcludeFromCodeCoverage(Justification = "This type is a DTO with no logic to test.")]
 public record MembershipCount
 {
     /// <summary>
@@ -89,6 +94,7 @@ public record MembershipCount
 /// <summary>
 /// Represents people counts by age ranges, further divided by gender.
 /// </summary>
+[ExcludeFromCodeCoverage(Justification = "This type is a DTO with no logic to test.")]
 public record AgeCounts
 {
     /// <summary>
@@ -143,6 +149,7 @@ public record AgeCounts
 /// <summary>
 /// Represents people counts by gender.
 /// </summary>
+[ExcludeFromCodeCoverage(Justification = "This type is a DTO with no logic to test.")]
 public record GenderCounts
 {
     /// <summary>
@@ -167,11 +174,13 @@ public record GenderCounts
 /// <summary>
 /// Represents a campus with its associated people count.
 /// </summary>
+[ExcludeFromCodeCoverage(Justification = "This type is a DTO with no logic to test.")]
 public record CampusCount
 {
     /// <summary>
     /// The unique identifier of the campus.
     /// </summary>
+    [JsonConverter(typeof(StringFromNumberConverter))]
     [JsonPropertyName("id")]
     public required string Id { get; init; }
 
@@ -191,17 +200,20 @@ public record CampusCount
 /// <summary>
 /// Represents unique identifiers for each gender in the organization.
 /// </summary>
+[ExcludeFromCodeCoverage(Justification = "This type is a DTO with no logic to test.")]
 public record GenderIds
 {
     /// <summary>
     /// Unique identifier for male gender.
     /// </summary>
+    [JsonConverter(typeof(StringFromNumberConverter))]
     [JsonPropertyName("male")]
     public required string Male { get; init; }
 
     /// <summary>
     /// Unique identifier for female gender.
     /// </summary>
+    [JsonConverter(typeof(StringFromNumberConverter))]
     [JsonPropertyName("female")]
     public required string Female { get; init; }
 }

@@ -17,8 +17,9 @@ public class SchoolOptionTests(PeopleFixture fixture) : PeopleTestBase(fixture)
 			var createResult = await Org.SchoolOptions.PostAsync(new SchoolOption
 			{
 				Value = $"IntTest-{UniqueId}",
-				BeginningGrade = "K",
-				EndingGrade = "5"
+				BeginningGrade = "3",
+				EndingGrade = "6",
+				SchoolTypes = [ "elementary" ]
 			});
 			Assert.NotNull(createResult.Data);
 			schoolOptionId = createResult.Data.Id;

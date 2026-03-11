@@ -118,6 +118,48 @@ internal static class TestDataBuilder
         };
     }
 
+    public static EdgeResource CreateEdgeResource(
+        string name = "emails",
+        string path = "https://api.planningcenteronline.com/people/v2/emails",
+        string headVertexId = "email",
+        string headVertexName = "Email",
+        bool deprecated = false,
+        Scope[]? scopes = null)
+    {
+        VertexResource headVertex = new()
+        {
+            Id = headVertexId,
+            Type = "Vertex",
+            Attributes = new Vertex { Name = headVertexName }
+        };
+
+        VertexResource tailVertex = new()
+        {
+            Id = "organization",
+            Type = "Vertex",
+            Attributes = new Vertex { Name = "Organization" }
+        };
+
+        return new EdgeResource
+        {
+            Id = $"{name}-edge",
+            Type = "Edge",
+            Attributes = new Edge
+            {
+                Name = name,
+                Path = path,
+                Scopes = scopes ?? [],
+                Deprecated = deprecated
+            },
+            Relationships = new EdgeRelationships
+            {
+                Head = new VertexRelationship { Data = headVertex },
+                Tail = new VertexRelationship { Data = tailVertex },
+                RateLimits = new()
+            }
+        };
+    }
+
     public static VertexDocument CreateVertexDocument(
         string id = "person",
         string name = "Person",
@@ -126,6 +168,8 @@ internal static class TestDataBuilder
         UrlParameterResource[]? canInclude = null,
         UrlParameterResource[]? canOrder = null,
         UrlParameterResource[]? canQuery = null,
+        EdgeResource[]? outboundEdges = null,
+        ActionResource[]? actions = null,
         bool canCreate = false,
         bool canUpdate = false,
         bool canDestroy = false,
@@ -169,8 +213,8 @@ internal static class TestDataBuilder
                             }
                         }
                     },
-                    Actions = new(),
-                    OutboundEdges = new EdgeCollectionRelationship { Data = [] },
+                    Actions = new ActionRelationship { Data = actions ?? [] },
+                    OutboundEdges = new EdgeCollectionRelationship { Data = outboundEdges ?? [] },
                     InboundEdges = new EdgeCollectionRelationship { Data = [] },
                     CanInclude = new UrlParameterCollectionRelationship
                     {
@@ -236,6 +280,29 @@ internal static class TestDataBuilder
                 Association = association,
                 AuthorizationLevel = "public",
                 Note = $"Related {name}"
+            }
+        };
+    }
+
+    public static ActionResource CreateActionResource(
+        string name = "promote",
+        string? canRun = null,
+        string? description = "Test action description",
+        string? details = null,
+        bool deprecated = false)
+    {
+        return new ActionResource
+        {
+            Id = name,
+            Type = "action",
+            Attributes = new Models.Action
+            {
+                Name = name,
+                Path = new Uri($"https://api.planningcenteronline.com/people/v2/people/{name}"),
+                CanRun = canRun,
+                Description = description,
+                Details = details,
+                Deprecated = deprecated
             }
         };
     }

@@ -340,6 +340,75 @@ public partial class PlanningCenterResourceClientsGeneratorTests
     }
 
     [Fact]
+    public void ShouldFormatDateTimeQueryParameterWithRoundTripFormat()
+    {
+        // Arrange
+        var version = SampleVersionData.GetSampleVersion();
+        var json = System.Text.Json.JsonSerializer.Serialize(version);
+        var (compilation, additionalFiles) = GeneratorTestHelper.CreateCompilation(
+            "namespace Test { }",
+            ("People/2025-01-01.json", json));
+
+        // Act
+        var result = GeneratorTestHelper.RunGenerator(
+            "PlanningCenterResourceClientsGenerator",
+            compilation,
+            additionalFiles);
+
+        // Assert
+        var source = GeneratorTestHelper.GetGeneratedSource(result, "People.2025-01-01.Clients.g.cs");
+
+        GeneratorTestHelper.AssertContains(source,
+            "public PersonClient WhereCreatedAt(System.DateTime value) => (PersonClient)ReplaceQueryParameter(\"where[created_at]\", value.ToString(\"o\"));");
+    }
+
+    [Fact]
+    public void ShouldFormatDateOnlyQueryParameterWithDateFormat()
+    {
+        // Arrange
+        var version = SampleVersionData.GetSampleVersion();
+        var json = System.Text.Json.JsonSerializer.Serialize(version);
+        var (compilation, additionalFiles) = GeneratorTestHelper.CreateCompilation(
+            "namespace Test { }",
+            ("People/2025-01-01.json", json));
+
+        // Act
+        var result = GeneratorTestHelper.RunGenerator(
+            "PlanningCenterResourceClientsGenerator",
+            compilation,
+            additionalFiles);
+
+        // Assert
+        var source = GeneratorTestHelper.GetGeneratedSource(result, "People.2025-01-01.Clients.g.cs");
+
+        GeneratorTestHelper.AssertContains(source,
+            "public PersonClient WhereBirthdate(System.DateOnly value) => (PersonClient)ReplaceQueryParameter(\"where[birthdate]\", value.ToString(\"yyyy-MM-dd\"));");
+    }
+
+    [Fact]
+    public void ShouldCallToStringForNonStringQueryParameter()
+    {
+        // Arrange
+        var version = SampleVersionData.GetSampleVersion();
+        var json = System.Text.Json.JsonSerializer.Serialize(version);
+        var (compilation, additionalFiles) = GeneratorTestHelper.CreateCompilation(
+            "namespace Test { }",
+            ("People/2025-01-01.json", json));
+
+        // Act
+        var result = GeneratorTestHelper.RunGenerator(
+            "PlanningCenterResourceClientsGenerator",
+            compilation,
+            additionalFiles);
+
+        // Assert
+        var source = GeneratorTestHelper.GetGeneratedSource(result, "People.2025-01-01.Clients.g.cs");
+
+        GeneratorTestHelper.AssertContains(source,
+            "public PersonClient WhereAge(int value) => (PersonClient)ReplaceQueryParameter(\"where[age]\", value.ToString());");
+    }
+
+    [Fact]
     public void ShouldGenerateWithIdMethodForNonCollectionOnlyResources()
     {
         // Arrange
@@ -454,8 +523,8 @@ public partial class PlanningCenterResourceClientsGeneratorTests
                 new Crews.PlanningCenter.Api.Models.Resource
                 {
                     JsonName = "person",
-                    AttributesClrType = "person",
-                    ResourceClrType = "Person",
+                    AttributesClrType = "Person",
+                    ResourceClrType = "PersonResource",
                     ShouldGenerateResource = true,
                     ShouldGenerateClients = true,
                     Attributes = [new Crews.PlanningCenter.Api.Models.ResourceAttribute { JsonName = "name", ClrType = "string" }],
@@ -468,8 +537,8 @@ public partial class PlanningCenterResourceClientsGeneratorTests
                 new Crews.PlanningCenter.Api.Models.Resource
                 {
                     JsonName = "email",
-                    AttributesClrType = "email",
-                    ResourceClrType = "Email",
+                    AttributesClrType = "Email",
+                    ResourceClrType = "EmailResource",
                     ShouldGenerateResource = true,
                     ShouldGenerateClients = false,
                     Attributes = [new Crews.PlanningCenter.Api.Models.ResourceAttribute { JsonName = "address", ClrType = "string" }],
@@ -577,6 +646,110 @@ public partial class PlanningCenterResourceClientsGeneratorTests
             "using System.Text.Json.Serialization;",
             "using Crews.PlanningCenter.Api.Models;",
             "using Crews.Web.JsonApiClient;");
+    }
+
+    [Fact]
+    public void ShouldIncludeObsoleteAttributeForDeprecatedChildNavigation()
+    {
+        // Arrange
+        var version = SampleVersionData.GetSampleVersion();
+        var json = System.Text.Json.JsonSerializer.Serialize(version);
+        var (compilation, additionalFiles) = GeneratorTestHelper.CreateCompilation(
+            "namespace Test { }",
+            ("People/2025-01-01.json", json));
+
+        // Act
+        var result = GeneratorTestHelper.RunGenerator(
+            "PlanningCenterResourceClientsGenerator",
+            compilation,
+            additionalFiles);
+
+        // Assert
+        var source = GeneratorTestHelper.GetGeneratedSource(result, "People.2025-01-01.Clients.g.cs");
+
+        Assert.NotNull(source);
+
+        // Verify the obsolete attribute is adjacent to the deprecated child (Notes), not the non-deprecated one (Emails)
+        int notesIndex = source.IndexOf("public PaginatedNoteClient Notes =>");
+        int obsoleteBeforeNotes = source.LastIndexOf("[Obsolete(\"This endpoint is deprecated", notesIndex);
+        Assert.True(obsoleteBeforeNotes >= 0 && notesIndex - obsoleteBeforeNotes < 200);
+
+        int emailsIndex = source.IndexOf("public PaginatedEmailClient Emails =>");
+        int obsoleteBeforeEmails = source.LastIndexOf("[Obsolete(\"This endpoint is deprecated", emailsIndex);
+        Assert.True(obsoleteBeforeEmails < 0 || obsoleteBeforeEmails < emailsIndex - 200);
+    }
+
+    [Fact]
+    public void ShouldGenerateActionMethod()
+    {
+        // Arrange
+        var version = SampleVersionData.GetSampleVersion();
+        var json = System.Text.Json.JsonSerializer.Serialize(version);
+        var (compilation, additionalFiles) = GeneratorTestHelper.CreateCompilation(
+            "namespace Test { }",
+            ("People/2025-01-01.json", json));
+
+        // Act
+        var result = GeneratorTestHelper.RunGenerator(
+            "PlanningCenterResourceClientsGenerator",
+            compilation,
+            additionalFiles);
+
+        // Assert
+        var source = GeneratorTestHelper.GetGeneratedSource(result, "People.2025-01-01.Clients.g.cs");
+
+        GeneratorTestHelper.AssertContains(source,
+            "public Task Promote(CancellationToken cancellationToken = default) => base.PostAsync(new(Uri, \"promote\"), cancellationToken);");
+    }
+
+    [Fact]
+    public void ShouldIncludeObsoleteAttributeForDeprecatedAction()
+    {
+        // Arrange
+        var version = SampleVersionData.GetSampleVersion();
+        var json = System.Text.Json.JsonSerializer.Serialize(version);
+        var (compilation, additionalFiles) = GeneratorTestHelper.CreateCompilation(
+            "namespace Test { }",
+            ("People/2025-01-01.json", json));
+
+        // Act
+        var result = GeneratorTestHelper.RunGenerator(
+            "PlanningCenterResourceClientsGenerator",
+            compilation,
+            additionalFiles);
+
+        // Assert
+        var source = GeneratorTestHelper.GetGeneratedSource(result, "People.2025-01-01.Clients.g.cs");
+
+        Assert.NotNull(source);
+
+        // Verify the obsolete attribute is adjacent to the deprecated action (Archive), not the non-deprecated one (Promote)
+        int archiveIndex = source.IndexOf("public Task Archive(");
+        int obsoleteBeforeArchive = source.LastIndexOf("[Obsolete(\"This action is deprecated", archiveIndex);
+        Assert.True(obsoleteBeforeArchive >= 0 && archiveIndex - obsoleteBeforeArchive < 200);
+    }
+
+    [Fact]
+    public void ShouldIncludeAdditionalDetailsInActionXmlDoc()
+    {
+        // Arrange
+        var version = SampleVersionData.GetSampleVersion();
+        var json = System.Text.Json.JsonSerializer.Serialize(version);
+        var (compilation, additionalFiles) = GeneratorTestHelper.CreateCompilation(
+            "namespace Test { }",
+            ("People/2025-01-01.json", json));
+
+        // Act
+        var result = GeneratorTestHelper.RunGenerator(
+            "PlanningCenterResourceClientsGenerator",
+            compilation,
+            additionalFiles);
+
+        // Assert
+        var source = GeneratorTestHelper.GetGeneratedSource(result, "People.2025-01-01.Clients.g.cs");
+
+        GeneratorTestHelper.AssertContains(source,
+            "/// <br/>Rate limits apply.");
     }
 
     [System.Text.RegularExpressions.GeneratedRegex("public new Task DeleteAsync")]

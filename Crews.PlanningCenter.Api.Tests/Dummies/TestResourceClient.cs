@@ -48,6 +48,12 @@ public class TestResourceClient : SingletonResourceClient<TestModel, TestResourc
 		=> base.GetAsync(cancellationToken);
 
 	/// <summary>
+	/// Public wrapper for protected PostAsync method (no-body variant).
+	/// </summary>
+	public new Task PostAsync(Uri uri, CancellationToken cancellationToken = default)
+		=> base.PostAsync(uri, cancellationToken);
+
+	/// <summary>
 	/// Public wrapper for protected PatchAsync method.
 	/// </summary>
 	public new Task<TestResourceResponse> PatchAsync(TestModel model, CancellationToken cancellationToken = default)

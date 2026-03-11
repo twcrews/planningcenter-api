@@ -7,6 +7,7 @@ using ApiResourceChild = Crews.PlanningCenter.Api.Models.ResourceChild;
 using ApiResourceIncludable = Crews.PlanningCenter.Api.Models.ResourceIncludable;
 using ApiResourceOrderable = Crews.PlanningCenter.Api.Models.ResourceOrderable;
 using ApiResourceQueryable = Crews.PlanningCenter.Api.Models.ResourceQueryable;
+using ApiResourceAction = Crews.PlanningCenter.Api.Models.ResourceAction;
 
 namespace Crews.PlanningCenter.Api.Generators.Tests.TestData;
 
@@ -154,17 +155,56 @@ public static class SampleVersionData
                 }
             ],
             Relationships = [],
+            Actions =
+            [
+                new ApiResourceAction
+                {
+                    JsonName = "promote",
+                    ClrMethodName = "Promote",
+                    Path = "promote",
+                    Description = "Promotes the person",
+                    Deprecated = false
+                },
+                new ApiResourceAction
+                {
+                    JsonName = "archive",
+                    ClrMethodName = "Archive",
+                    Path = "archive",
+                    Description = "Archives the person",
+                    Deprecated = true
+                },
+                new ApiResourceAction
+                {
+                    JsonName = "send_message",
+                    ClrMethodName = "SendMessage",
+                    Path = "send_message",
+                    Description = "Sends a message to the person",
+                    AdditionalDetails = "Rate limits apply.",
+                    Deprecated = false
+                }
+            ],
             Children =
             [
                 new ApiResourceChild
                 {
                     JsonName = "emails",
                     ClrName = "Emails",
-                    ClrAttributesType = "Email",
+                    AttributesClrType = "Email",
                     Description = "The person's email addresses",
                     Slug = "emails",
                     IsCollection = true,
                     Deprecated = false,
+                    Filters = []
+                },
+                new ApiResourceChild
+                {
+                    JsonName = "notes",
+                    ClrName = "Notes",
+                    AttributesClrType = "Note",
+                    Description = "The person's notes (deprecated)",
+                    Slug = "notes",
+                    IsCollection = true,
+                    Deprecated = true,
                     Filters = []
                 }
             ],
@@ -202,6 +242,27 @@ public static class SampleVersionData
                     Parameter = "where[first_name]",
                     ClrType = "string",
                     Description = "Query by first name",
+                },
+                new ApiResourceQueryable
+                {
+                    ClrMethodName = "WhereCreatedAt",
+                    Parameter = "where[created_at]",
+                    ClrType = "System.DateTime",
+                    Description = "Query by created at",
+                },
+                new ApiResourceQueryable
+                {
+                    ClrMethodName = "WhereBirthdate",
+                    Parameter = "where[birthdate]",
+                    ClrType = "System.DateOnly",
+                    Description = "Query by birthdate",
+                },
+                new ApiResourceQueryable
+                {
+                    ClrMethodName = "WhereAge",
+                    Parameter = "where[age]",
+                    ClrType = "int",
+                    Description = "Query by age",
                 }
             ]
         };
@@ -245,8 +306,8 @@ public static class SampleVersionData
                 {
                     JsonName = "person",
                     ClrName = "Person",
-                    ClrAttributesType = "Person",
-                    ClrResourceType = "PersonResource",
+                    AttributesClrType = "Person",
+                    ResourceClrType = "PersonResource",
                     IsCollection = false,
                     Description = "The person this email belongs to"
                 }

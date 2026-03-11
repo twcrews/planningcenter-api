@@ -1,4 +1,3 @@
-using Crews.PlanningCenter.Api.People.V2025_11_10;
 using Crews.PlanningCenter.Api.IntegrationTests.Infrastructure;
 using Crews.PlanningCenter.Api.IntegrationTests.Infrastructure.ProductFixtures;
 using Crews.PlanningCenter.Api.IntegrationTests.Infrastructure.TestBases;
@@ -13,9 +12,7 @@ public class CustomSenderTests(PeopleFixture fixture) : PeopleTestBase(fixture)
 		var customSenderId = await CollectionReadHelper.GetFirstIdAsync(
 			HttpClient, "people/v2/custom_senders");
 
-		var client = new CustomSenderClient(
-			HttpClient,
-			new Uri(HttpClient.BaseAddress!, $"people/v2/custom_senders/{customSenderId}/"));
+		var client = Org.CustomSenders.WithId(customSenderId!);
 
 		var result = await client.GetAsync();
 

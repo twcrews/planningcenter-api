@@ -71,9 +71,9 @@ class PlanningCenterResourceClientsGenerator : IIncrementalGenerator
         string summary = $"Client for interacting with the {resource.AttributesClrType} resource.";
         summary = summary.ToXmlSummary();
         
-        string modelType = resource.AttributesClrType.ToPascalCase();
+        string modelType = resource.AttributesClrType;
         string responseType = modelType + "Response";
-        string resourceType = resource.ResourceClrType.ToPascalCase();
+        string resourceType = resource.ResourceClrType;
         string clientType = modelType + "Client";
 
         writer.WriteLine("/// <summary>");
@@ -120,7 +120,7 @@ class PlanningCenterResourceClientsGenerator : IIncrementalGenerator
             writer.WriteLine("[Obsolete(\"This resource is deprecated and may be removed in a future version.\")]");
         }
 
-        writer.WriteLine($"public class Paginated{modelType}Client(HttpClient httpClient, Uri uri)");
+        writer.WriteLine($"public class Paginated{clientType}(HttpClient httpClient, Uri uri)");
         writer.Indent++;
         writer.WriteLine($": PaginatedResourceClient<{modelType}, {resourceType}, {collectionResponseType}, {responseType}>(httpClient, uri)");
         writer.Indent--;
@@ -207,7 +207,7 @@ class PlanningCenterResourceClientsGenerator : IIncrementalGenerator
 
     private static void GenerateChildNavigation(IndentedTextWriter writer, ResourceChild child)
     {
-        string type = child.ClrAttributesType + "Client";
+        string type = child.AttributesClrType + "Client";
         if (child.IsCollection) type = "Paginated" + type;
 
         writer.WriteLine("/// <summary>");

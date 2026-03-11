@@ -10,6 +10,11 @@
       "Description": "A kind of attendee which is tracked by _headcount_, not by check-in.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "color",
@@ -46,8 +51,8 @@
         {
           "JsonName": "event",
           "ClrName": "Event",
-          "ClrAttributesType": "Event",
-          "ClrResourceType": "EventResource",
+          "AttributesClrType": "Event",
+          "ResourceClrType": "EventResource",
           "IsCollection": false,
           "Description": "Related \u0060Event\u0060 resource."
         }
@@ -57,22 +62,22 @@
         {
           "JsonName": "event",
           "ClrName": "Event",
-          "ClrAttributesType": "Event",
+          "AttributesClrType": "Event",
           "Description": "Associated \u0060Event\u0060.",
           "Slug": "event",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "headcounts",
           "ClrName": "Headcounts",
-          "ClrAttributesType": "Headcount",
+          "AttributesClrType": "Headcount",
           "Description": "Associated \u0060Headcounts\u0060.",
           "Slug": "headcounts",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -98,12 +103,7 @@
           "Parameter": "where[name]",
           "Description": "Query response items by the \u0060Name\u0060 attribute."
         }
-      ],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "check_in",
@@ -112,6 +112,11 @@
       "Description": "An attendance record for an event.\n\nIf someone was checked out, \u0060checked_out_at\u0060 will be present.\n\nYou can scope check-ins in a few ways:\n\n- \u0060regular\u0060s, \u0060guest\u0060s, and \u0060volunteer\u0060s correspond to the option selected when checking in.\n- \u0060attendee\u0060s are \u0060regular\u0060s and \u0060guest\u0060s together.\n- \u0060one_time_guest\u0060s are check-ins which were created without a corresponding person record.\n- \u0060not_one_time_guest\u0060s are check-ins which had a corresponding person record when they were created.\n- \u0060checked_out\u0060 are check-ins where \u0060checked_out_at\u0060 is present (meaning they were checked out from a station).\n- \u0060first_time\u0060s are check-ins which are the person\u0027s first for a given event. (Label-only visitors are not included here.)\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "checked_out_at",
@@ -196,16 +201,16 @@
         {
           "JsonName": "event_period",
           "ClrName": "EventPeriod",
-          "ClrAttributesType": "EventPeriod",
-          "ClrResourceType": "EventPeriodResource",
+          "AttributesClrType": "EventPeriod",
+          "ResourceClrType": "EventPeriodResource",
           "IsCollection": false,
           "Description": "Related \u0060EventPeriod\u0060 resource."
         },
         {
           "JsonName": "person",
           "ClrName": "Person",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060Person\u0060 resource."
         }
@@ -215,112 +220,112 @@
         {
           "JsonName": "check_in_group",
           "ClrName": "CheckInGroup",
-          "ClrAttributesType": "CheckInGroup",
+          "AttributesClrType": "CheckInGroup",
           "Description": "Associated \u0060CheckInGroup\u0060.",
           "Slug": "check_in_group",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "check_in_times",
           "ClrName": "CheckInTimes",
-          "ClrAttributesType": "CheckInTime",
+          "AttributesClrType": "CheckInTime",
           "Description": "Associated \u0060CheckInTimes\u0060.",
           "Slug": "check_in_times",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "checked_in_at",
           "ClrName": "CheckedInAt",
-          "ClrAttributesType": "Station",
+          "AttributesClrType": "Station",
           "Description": "Associated \u0060CheckedInAt\u0060.",
           "Slug": "checked_in_at",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "checked_in_by",
           "ClrName": "CheckedInBy",
-          "ClrAttributesType": "Person",
+          "AttributesClrType": "Person",
           "Description": "Associated \u0060CheckedInBy\u0060.",
           "Slug": "checked_in_by",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "checked_out_by",
           "ClrName": "CheckedOutBy",
-          "ClrAttributesType": "Person",
+          "AttributesClrType": "Person",
           "Description": "Associated \u0060CheckedOutBy\u0060.",
           "Slug": "checked_out_by",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "event",
           "ClrName": "Event",
-          "ClrAttributesType": "Event",
+          "AttributesClrType": "Event",
           "Description": "Associated \u0060Event\u0060.",
           "Slug": "event",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "event_period",
           "ClrName": "EventPeriod",
-          "ClrAttributesType": "EventPeriod",
+          "AttributesClrType": "EventPeriod",
           "Description": "Associated \u0060EventPeriod\u0060.",
           "Slug": "event_period",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "event_times",
           "ClrName": "EventTimes",
-          "ClrAttributesType": "EventTime",
+          "AttributesClrType": "EventTime",
           "Description": "Associated \u0060EventTimes\u0060.",
           "Slug": "event_times",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "locations",
           "ClrName": "Locations",
-          "ClrAttributesType": "Location",
+          "AttributesClrType": "Location",
           "Description": "Associated \u0060Locations\u0060.",
           "Slug": "locations",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "options",
           "ClrName": "Options",
-          "ClrAttributesType": "Option",
+          "AttributesClrType": "Option",
           "Description": "Associated \u0060Options\u0060.",
           "Slug": "options",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "person",
           "ClrName": "Person",
-          "ClrAttributesType": "Person",
+          "AttributesClrType": "Person",
           "Description": "Associated \u0060Person\u0060.",
           "Slug": "person",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -452,12 +457,7 @@
           "Parameter": "where[updated_at]",
           "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
         }
-      ],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "check_in_group",
@@ -466,6 +466,11 @@
       "Description": "When one or more people check in, they\u0027re grouped in a \u0060CheckInGroup\u0060.\nThese check-ins all have the same \u0022checked-in by\u0022 person.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "check_ins_count",
@@ -510,32 +515,32 @@
         {
           "JsonName": "check_ins",
           "ClrName": "CheckIns",
-          "ClrAttributesType": "CheckIn",
+          "AttributesClrType": "CheckIn",
           "Description": "Associated \u0060CheckIns\u0060.",
           "Slug": "check_ins",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "event_period",
           "ClrName": "EventPeriod",
-          "ClrAttributesType": "EventPeriod",
+          "AttributesClrType": "EventPeriod",
           "Description": "Associated \u0060EventPeriod\u0060.",
           "Slug": "event_period",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "print_station",
           "ClrName": "PrintStation",
-          "ClrAttributesType": "Station",
+          "AttributesClrType": "Station",
           "Description": "Associated \u0060PrintStation\u0060.",
           "Slug": "print_station",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -562,12 +567,7 @@
         }
       ],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "check_in_time",
@@ -576,6 +576,11 @@
       "Description": "A CheckInTime combines an EventTime and a Location, and associates it with\nthe parent CheckIn.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "alerts",
@@ -606,32 +611,32 @@
         {
           "JsonName": "event_time",
           "ClrName": "EventTime",
-          "ClrAttributesType": "EventTime",
-          "ClrResourceType": "EventTimeResource",
+          "AttributesClrType": "EventTime",
+          "ResourceClrType": "EventTimeResource",
           "IsCollection": false,
           "Description": "Related \u0060EventTime\u0060 resource."
         },
         {
           "JsonName": "location",
           "ClrName": "Location",
-          "ClrAttributesType": "Location",
-          "ClrResourceType": "LocationResource",
+          "AttributesClrType": "Location",
+          "ResourceClrType": "LocationResource",
           "IsCollection": false,
           "Description": "Related \u0060Location\u0060 resource."
         },
         {
           "JsonName": "check_in",
           "ClrName": "CheckIn",
-          "ClrAttributesType": "CheckIn",
-          "ClrResourceType": "CheckInResource",
+          "AttributesClrType": "CheckIn",
+          "ResourceClrType": "CheckInResource",
           "IsCollection": false,
           "Description": "Related \u0060CheckIn\u0060 resource."
         },
         {
           "JsonName": "pre_check",
           "ClrName": "PreCheck",
-          "ClrAttributesType": "PreCheck",
-          "ClrResourceType": "PreCheckResource",
+          "AttributesClrType": "PreCheck",
+          "ResourceClrType": "PreCheckResource",
           "IsCollection": false,
           "Description": "Related \u0060PreCheck\u0060 resource."
         }
@@ -640,12 +645,7 @@
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "event",
@@ -654,6 +654,11 @@
       "Description": "A recurring event which people may attend.\n\nEach recurrence is an _event period_ (which often corresponds to a week).\n\nEvent periods have _event times_ where people may actually check in.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "app_source",
@@ -720,8 +725,8 @@
         {
           "JsonName": "campuses",
           "ClrName": "Campuses",
-          "ClrAttributesType": "Campus",
-          "ClrResourceType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier",
+          "AttributesClrType": "Campus",
+          "ResourceClrType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier",
           "IsCollection": true,
           "Description": "Related \u0060Campuses\u0060 resource."
         }
@@ -731,19 +736,21 @@
         {
           "JsonName": "attendance_types",
           "ClrName": "AttendanceTypes",
-          "ClrAttributesType": "AttendanceType",
+          "AttributesClrType": "AttendanceType",
           "Description": "Associated \u0060AttendanceTypes\u0060.",
           "Slug": "attendance_types",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "check_ins",
           "ClrName": "CheckIns",
-          "ClrAttributesType": "CheckIn",
+          "AttributesClrType": "CheckIn",
           "Description": "Associated \u0060CheckIns\u0060.",
           "Slug": "check_ins",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByAttendee",
@@ -790,56 +797,56 @@
               "Value": "volunteer",
               "Description": "Filter results by the \u0060Volunteer\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "current_event_times",
           "ClrName": "CurrentEventTimes",
-          "ClrAttributesType": "EventTime",
+          "AttributesClrType": "EventTime",
           "Description": "Associated \u0060CurrentEventTimes\u0060.",
           "Slug": "current_event_times",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "event_labels",
           "ClrName": "EventLabels",
-          "ClrAttributesType": "EventLabel",
+          "AttributesClrType": "EventLabel",
           "Description": "Associated \u0060EventLabels\u0060.",
           "Slug": "event_labels",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "event_periods",
           "ClrName": "EventPeriods",
-          "ClrAttributesType": "EventPeriod",
+          "AttributesClrType": "EventPeriod",
           "Description": "Associated \u0060EventPeriods\u0060.",
           "Slug": "event_periods",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "integration_links",
           "ClrName": "IntegrationLinks",
-          "ClrAttributesType": "IntegrationLink",
+          "AttributesClrType": "IntegrationLink",
           "Description": "Associated \u0060IntegrationLinks\u0060.",
           "Slug": "integration_links",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "locations",
           "ClrName": "Locations",
-          "ClrAttributesType": "Location",
+          "AttributesClrType": "Location",
           "Description": "Associated \u0060Locations\u0060.",
           "Slug": "locations",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByLocations",
@@ -851,19 +858,17 @@
               "Value": "root",
               "Description": "Filter results by the \u0060Root\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "person_events",
           "ClrName": "PersonEvents",
-          "ClrAttributesType": "PersonEvent",
+          "AttributesClrType": "PersonEvent",
           "Description": "Associated \u0060PersonEvents\u0060.",
           "Slug": "person_events",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -900,12 +905,7 @@
           "Parameter": "where[name]",
           "Description": "Query response items by the \u0060Name\u0060 attribute."
         }
-      ],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "event_label",
@@ -914,6 +914,11 @@
       "Description": "Says how many of a given label to print for this event and\nwhether to print it for regulars, guests, and/or volunteers.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "created_at",
@@ -958,22 +963,22 @@
         {
           "JsonName": "event",
           "ClrName": "Event",
-          "ClrAttributesType": "Event",
+          "AttributesClrType": "Event",
           "Description": "Associated \u0060Event\u0060.",
           "Slug": "event",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "label",
           "ClrName": "Label",
-          "ClrAttributesType": "Label",
+          "AttributesClrType": "Label",
           "Description": "Associated \u0060Label\u0060.",
           "Slug": "label",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -993,12 +998,7 @@
         }
       ],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "event_period",
@@ -1007,6 +1007,11 @@
       "Description": "A recurrence of an event, sometimes called a \u0022session\u0022.\nFor weekly events, an event period is a week. For daily events, an event period is a day.\nAn event period has event times, which is what people select\nwhen they actually check in. When new sessions are created, times\nare copied from one session to the next.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "created_at",
@@ -1061,8 +1066,8 @@
         {
           "JsonName": "event",
           "ClrName": "Event",
-          "ClrAttributesType": "Event",
-          "ClrResourceType": "EventResource",
+          "AttributesClrType": "Event",
+          "ResourceClrType": "EventResource",
           "IsCollection": false,
           "Description": "Related \u0060Event\u0060 resource."
         }
@@ -1072,9 +1077,11 @@
         {
           "JsonName": "check_ins",
           "ClrName": "CheckIns",
-          "ClrAttributesType": "CheckIn",
+          "AttributesClrType": "CheckIn",
           "Description": "Associated \u0060CheckIns\u0060.",
           "Slug": "check_ins",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByAttendee",
@@ -1121,45 +1128,43 @@
               "Value": "volunteer",
               "Description": "Filter results by the \u0060Volunteer\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "event",
           "ClrName": "Event",
-          "ClrAttributesType": "Event",
+          "AttributesClrType": "Event",
           "Description": "Associated \u0060Event\u0060.",
           "Slug": "event",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "event_times",
           "ClrName": "EventTimes",
-          "ClrAttributesType": "EventTime",
+          "AttributesClrType": "EventTime",
           "Description": "Associated \u0060EventTimes\u0060.",
           "Slug": "event_times",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByAvailable",
               "Value": "available",
               "Description": "Filter results by the \u0060Available\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "location_event_periods",
           "ClrName": "LocationEventPeriods",
-          "ClrAttributesType": "LocationEventPeriod",
+          "AttributesClrType": "LocationEventPeriod",
           "Description": "Associated \u0060LocationEventPeriods\u0060.",
           "Slug": "location_event_periods",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -1198,12 +1203,7 @@
           "Parameter": "where[starts_at]",
           "Description": "Query response items by the \u0060StartsAt\u0060 attribute."
         }
-      ],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "event_time",
@@ -1212,6 +1212,11 @@
       "Description": "A time that someone may check in. Times are copied from session to session.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "created_at",
@@ -1296,16 +1301,16 @@
         {
           "JsonName": "event",
           "ClrName": "Event",
-          "ClrAttributesType": "Event",
-          "ClrResourceType": "EventResource",
+          "AttributesClrType": "Event",
+          "ResourceClrType": "EventResource",
           "IsCollection": false,
           "Description": "Related \u0060Event\u0060 resource."
         },
         {
           "JsonName": "event_period",
           "ClrName": "EventPeriod",
-          "ClrAttributesType": "EventPeriod",
-          "ClrResourceType": "EventPeriodResource",
+          "AttributesClrType": "EventPeriod",
+          "ResourceClrType": "EventPeriodResource",
           "IsCollection": false,
           "Description": "Related \u0060EventPeriod\u0060 resource."
         }
@@ -1315,25 +1320,27 @@
         {
           "JsonName": "available_locations",
           "ClrName": "AvailableLocations",
-          "ClrAttributesType": "Location",
+          "AttributesClrType": "Location",
           "Description": "Associated \u0060AvailableLocations\u0060.",
           "Slug": "available_locations",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByForCurrentStation",
               "Value": "for_current_station",
               "Description": "Filter results by the \u0060ForCurrentStation\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "check_ins",
           "ClrName": "CheckIns",
-          "ClrAttributesType": "CheckIn",
+          "AttributesClrType": "CheckIn",
           "Description": "Associated \u0060CheckIns\u0060.",
           "Slug": "check_ins",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByAttendee",
@@ -1380,49 +1387,47 @@
               "Value": "volunteer",
               "Description": "Filter results by the \u0060Volunteer\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "event",
           "ClrName": "Event",
-          "ClrAttributesType": "Event",
+          "AttributesClrType": "Event",
           "Description": "Associated \u0060Event\u0060.",
           "Slug": "event",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "event_period",
           "ClrName": "EventPeriod",
-          "ClrAttributesType": "EventPeriod",
+          "AttributesClrType": "EventPeriod",
           "Description": "Associated \u0060EventPeriod\u0060.",
           "Slug": "event_period",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "headcounts",
           "ClrName": "Headcounts",
-          "ClrAttributesType": "Headcount",
+          "AttributesClrType": "Headcount",
           "Description": "Associated \u0060Headcounts\u0060.",
           "Slug": "headcounts",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "location_event_times",
           "ClrName": "LocationEventTimes",
-          "ClrAttributesType": "LocationEventTime",
+          "AttributesClrType": "LocationEventTime",
           "Description": "Associated \u0060LocationEventTimes\u0060.",
           "Slug": "location_event_times",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -1473,12 +1478,7 @@
           "Parameter": "where[updated_at]",
           "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
         }
-      ],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "headcount",
@@ -1487,6 +1487,11 @@
       "Description": "A tally of attendees for a given event time and attendance type.\nIf one does not exist, the count may have been zero.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "created_at",
@@ -1511,16 +1516,16 @@
         {
           "JsonName": "event_time",
           "ClrName": "EventTime",
-          "ClrAttributesType": "EventTime",
-          "ClrResourceType": "EventTimeResource",
+          "AttributesClrType": "EventTime",
+          "ResourceClrType": "EventTimeResource",
           "IsCollection": false,
           "Description": "Related \u0060EventTime\u0060 resource."
         },
         {
           "JsonName": "attendance_type",
           "ClrName": "AttendanceType",
-          "ClrAttributesType": "AttendanceType",
-          "ClrResourceType": "AttendanceTypeResource",
+          "AttributesClrType": "AttendanceType",
+          "ResourceClrType": "AttendanceTypeResource",
           "IsCollection": false,
           "Description": "Related \u0060AttendanceType\u0060 resource."
         }
@@ -1530,22 +1535,22 @@
         {
           "JsonName": "attendance_type",
           "ClrName": "AttendanceType",
-          "ClrAttributesType": "AttendanceType",
+          "AttributesClrType": "AttendanceType",
           "Description": "Associated \u0060AttendanceType\u0060.",
           "Slug": "attendance_type",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "event_time",
           "ClrName": "EventTime",
-          "ClrAttributesType": "EventTime",
+          "AttributesClrType": "EventTime",
           "Description": "Associated \u0060EventTime\u0060.",
           "Slug": "event_time",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -1594,12 +1599,7 @@
           "Parameter": "where[updated_at]",
           "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
         }
-      ],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "integration_link",
@@ -1608,6 +1608,11 @@
       "Description": "A record linking another product\u0027s resource to a Check-Ins resource.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "remote_app",
@@ -1644,8 +1649,8 @@
         {
           "JsonName": "local",
           "ClrName": "Local",
-          "ClrAttributesType": "Event",
-          "ClrResourceType": "EventResource",
+          "AttributesClrType": "Event",
+          "ResourceClrType": "EventResource",
           "IsCollection": false,
           "Description": "Related \u0060Local\u0060 resource."
         }
@@ -1661,12 +1666,7 @@
           "Parameter": "where[remote_gid]",
           "Description": "Query response items by the \u0060RemoteGid\u0060 attribute."
         }
-      ],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "label",
@@ -1675,6 +1675,11 @@
       "Description": "Labels can be set to print for events (through \u0060EventLabel\u0060s),\nlocations (through \u0060LocationLabel\u0060s) or options.\nLabel type (security label / name label) is expressed with the\n\u0060prints_for\u0060 attribute. \u0060prints_for=\u0022Person\u0022\u0060 is a name label,\n\u0060prints_for=\u0022Group\u0022\u0060 is a security label.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "created_at",
@@ -1719,32 +1724,27 @@
         {
           "JsonName": "event_labels",
           "ClrName": "EventLabels",
-          "ClrAttributesType": "EventLabel",
+          "AttributesClrType": "EventLabel",
           "Description": "Associated \u0060EventLabels\u0060.",
           "Slug": "event_labels",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "location_labels",
           "ClrName": "LocationLabels",
-          "ClrAttributesType": "LocationLabel",
+          "AttributesClrType": "LocationLabel",
           "Description": "Associated \u0060LocationLabels\u0060.",
           "Slug": "location_labels",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "location",
@@ -1753,6 +1753,11 @@
       "Description": "A place where people may check in to for a given event.\nSome locations have \u0060kind=\u0022Folder\u0022\u0060, which means that people\ncan\u0027t check-in here, but this location contains other locations.\nYou can get its contents from the \u0060locations\u0060 attribute.\nYou can get a location\u0027s parent folder from the \u0060parent\u0060 attribute.\n(If it\u0027s not in a folder, \u0060parent\u0060 will be empty.)\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "age_max_in_months",
@@ -1865,7 +1870,7 @@
         {
           "JsonName": "questions",
           "ClrName": "Questions",
-          "ClrType": "System.Text.Json.JsonElement",
+          "ClrType": "System.Text.Json.Nodes.JsonArray",
           "Description": "Planning Center does not provide a description for this attribute."
         },
         {
@@ -1879,8 +1884,8 @@
         {
           "JsonName": "parent",
           "ClrName": "Parent",
-          "ClrAttributesType": "Parent",
-          "ClrResourceType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier",
+          "AttributesClrType": "Parent",
+          "ResourceClrType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier",
           "IsCollection": false,
           "Description": "Related \u0060Parent\u0060 resource."
         }
@@ -1890,9 +1895,11 @@
         {
           "JsonName": "check_ins",
           "ClrName": "CheckIns",
-          "ClrAttributesType": "CheckIn",
+          "AttributesClrType": "CheckIn",
           "Description": "Associated \u0060CheckIns\u0060.",
           "Slug": "check_ins",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByAttendee",
@@ -1939,89 +1946,87 @@
               "Value": "volunteer",
               "Description": "Filter results by the \u0060Volunteer\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "event",
           "ClrName": "Event",
-          "ClrAttributesType": "Event",
+          "AttributesClrType": "Event",
           "Description": "Associated \u0060Event\u0060.",
           "Slug": "event",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "integration_links",
           "ClrName": "IntegrationLinks",
-          "ClrAttributesType": "IntegrationLink",
+          "AttributesClrType": "IntegrationLink",
           "Description": "Associated \u0060IntegrationLinks\u0060.",
           "Slug": "integration_links",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "location_event_periods",
           "ClrName": "LocationEventPeriods",
-          "ClrAttributesType": "LocationEventPeriod",
+          "AttributesClrType": "LocationEventPeriod",
           "Description": "Associated \u0060LocationEventPeriods\u0060.",
           "Slug": "location_event_periods",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "location_event_times",
           "ClrName": "LocationEventTimes",
-          "ClrAttributesType": "LocationEventTime",
+          "AttributesClrType": "LocationEventTime",
           "Description": "Associated \u0060LocationEventTimes\u0060.",
           "Slug": "location_event_times",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "location_labels",
           "ClrName": "LocationLabels",
-          "ClrAttributesType": "LocationLabel",
+          "AttributesClrType": "LocationLabel",
           "Description": "Associated \u0060LocationLabels\u0060.",
           "Slug": "location_labels",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "locations",
           "ClrName": "Locations",
-          "ClrAttributesType": "Location",
+          "AttributesClrType": "Location",
           "Description": "Associated \u0060Locations\u0060.",
           "Slug": "locations",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "options",
           "ClrName": "Options",
-          "ClrAttributesType": "Option",
+          "AttributesClrType": "Option",
           "Description": "Associated \u0060Options\u0060.",
           "Slug": "options",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "parent",
           "ClrName": "Parent",
-          "ClrAttributesType": "Location",
+          "AttributesClrType": "Location",
           "Description": "Associated \u0060Parent\u0060.",
           "Slug": "parent",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -2071,12 +2076,7 @@
           "Description": "Sort response items by the \u0060Position\u0060 attribute."
         }
       ],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "location_event_period",
@@ -2085,6 +2085,11 @@
       "Description": "Counts check-ins for a location during a certain event period.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "created_at",
@@ -2123,9 +2128,11 @@
         {
           "JsonName": "check_ins",
           "ClrName": "CheckIns",
-          "ClrAttributesType": "CheckIn",
+          "AttributesClrType": "CheckIn",
           "Description": "Associated \u0060CheckIns\u0060.",
           "Slug": "check_ins",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByAttendee",
@@ -2172,29 +2179,27 @@
               "Value": "volunteer",
               "Description": "Filter results by the \u0060Volunteer\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "event_period",
           "ClrName": "EventPeriod",
-          "ClrAttributesType": "EventPeriod",
+          "AttributesClrType": "EventPeriod",
           "Description": "Associated \u0060EventPeriod\u0060.",
           "Slug": "event_period",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "location",
           "ClrName": "Location",
-          "ClrAttributesType": "Location",
+          "AttributesClrType": "Location",
           "Description": "Associated \u0060Location\u0060.",
           "Slug": "location",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -2214,12 +2219,7 @@
         }
       ],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "location_event_time",
@@ -2228,6 +2228,11 @@
       "Description": "Counts check-ins for a location for a given event time.\nThis is useful for checking occupancy.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "created_at",
@@ -2266,9 +2271,11 @@
         {
           "JsonName": "check_ins",
           "ClrName": "CheckIns",
-          "ClrAttributesType": "CheckIn",
+          "AttributesClrType": "CheckIn",
           "Description": "Associated \u0060CheckIns\u0060.",
           "Slug": "check_ins",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByAttendee",
@@ -2315,29 +2322,27 @@
               "Value": "volunteer",
               "Description": "Filter results by the \u0060Volunteer\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "event_time",
           "ClrName": "EventTime",
-          "ClrAttributesType": "EventTime",
+          "AttributesClrType": "EventTime",
           "Description": "Associated \u0060EventTime\u0060.",
           "Slug": "event_time",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "location",
           "ClrName": "Location",
-          "ClrAttributesType": "Location",
+          "AttributesClrType": "Location",
           "Description": "Associated \u0060Location\u0060.",
           "Slug": "location",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -2370,12 +2375,7 @@
           "Parameter": "where[updated_at]",
           "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
         }
-      ],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "location_label",
@@ -2384,6 +2384,11 @@
       "Description": "Says how many of a given label to print for this location and\nwhether to print it for regulars, guests, and/or volunteers.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "created_at",
@@ -2428,22 +2433,22 @@
         {
           "JsonName": "label",
           "ClrName": "Label",
-          "ClrAttributesType": "Label",
+          "AttributesClrType": "Label",
           "Description": "Associated \u0060Label\u0060.",
           "Slug": "label",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "location",
           "ClrName": "Location",
-          "ClrAttributesType": "Location",
+          "AttributesClrType": "Location",
           "Description": "Associated \u0060Location\u0060.",
           "Slug": "location",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -2463,12 +2468,7 @@
         }
       ],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "option",
@@ -2477,6 +2477,11 @@
       "Description": "An option which an attendee may select when checking in.\n\nOptions may have extra labels associated with them, denoted by \u0060label\u0060 and \u0060quantity\u0060.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "body",
@@ -2509,22 +2514,22 @@
         {
           "JsonName": "check_ins",
           "ClrName": "CheckIns",
-          "ClrAttributesType": "CheckIn",
+          "AttributesClrType": "CheckIn",
           "Description": "Associated \u0060CheckIns\u0060.",
           "Slug": "check_ins",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "label",
           "ClrName": "Label",
-          "ClrAttributesType": "Label",
+          "AttributesClrType": "Label",
           "Description": "Associated \u0060Label\u0060.",
           "Slug": "label",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -2537,12 +2542,7 @@
         }
       ],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "organization",
@@ -2551,6 +2551,11 @@
       "Description": "An organization which has people and events.\nThis contains its date format \u0026 time zone preferences.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "avatar_url",
@@ -2607,9 +2612,11 @@
         {
           "JsonName": "check_ins",
           "ClrName": "CheckIns",
-          "ClrAttributesType": "CheckIn",
+          "AttributesClrType": "CheckIn",
           "Description": "Associated \u0060CheckIns\u0060.",
           "Slug": "check_ins",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByAttendee",
@@ -2656,26 +2663,26 @@
               "Value": "volunteer",
               "Description": "Filter results by the \u0060Volunteer\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "event_times",
           "ClrName": "EventTimes",
-          "ClrAttributesType": "EventTime",
+          "AttributesClrType": "EventTime",
           "Description": "Associated \u0060EventTimes\u0060.",
           "Slug": "event_times",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "events",
           "ClrName": "Events",
-          "ClrAttributesType": "Event",
+          "AttributesClrType": "Event",
           "Description": "Associated \u0060Events\u0060.",
           "Slug": "events",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByArchived",
@@ -2702,99 +2709,92 @@
               "Value": "not_archived",
               "Description": "Filter results by the \u0060NotArchived\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "headcounts",
           "ClrName": "Headcounts",
-          "ClrAttributesType": "Headcount",
+          "AttributesClrType": "Headcount",
           "Description": "Associated \u0060Headcounts\u0060.",
           "Slug": "headcounts",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "integration_links",
           "ClrName": "IntegrationLinks",
-          "ClrAttributesType": "IntegrationLink",
+          "AttributesClrType": "IntegrationLink",
           "Description": "Associated \u0060IntegrationLinks\u0060.",
           "Slug": "integration_links",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "labels",
           "ClrName": "Labels",
-          "ClrAttributesType": "Label",
+          "AttributesClrType": "Label",
           "Description": "Associated \u0060Labels\u0060.",
           "Slug": "labels",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "options",
           "ClrName": "Options",
-          "ClrAttributesType": "Option",
+          "AttributesClrType": "Option",
           "Description": "Associated \u0060Options\u0060.",
           "Slug": "options",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "passes",
           "ClrName": "Passes",
-          "ClrAttributesType": "Pass",
+          "AttributesClrType": "Pass",
           "Description": "Associated \u0060Passes\u0060.",
           "Slug": "passes",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "people",
           "ClrName": "People",
-          "ClrAttributesType": "Person",
+          "AttributesClrType": "Person",
           "Description": "Associated \u0060People\u0060.",
           "Slug": "people",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "stations",
           "ClrName": "Stations",
-          "ClrAttributesType": "Station",
+          "AttributesClrType": "Station",
           "Description": "Associated \u0060Stations\u0060.",
           "Slug": "stations",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "themes",
           "ClrName": "Themes",
-          "ClrAttributesType": "Theme",
+          "AttributesClrType": "Theme",
           "Description": "Associated \u0060Themes\u0060.",
           "Slug": "themes",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "pass",
@@ -2803,6 +2803,11 @@
       "Description": "Enables quick lookup of a person via barcode reader.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "code",
@@ -2835,12 +2840,12 @@
         {
           "JsonName": "person",
           "ClrName": "Person",
-          "ClrAttributesType": "Person",
+          "AttributesClrType": "Person",
           "Description": "Associated \u0060Person\u0060.",
           "Slug": "person",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -2860,12 +2865,7 @@
           "Parameter": "where[code]",
           "Description": "Query response items by the \u0060Code\u0060 attribute."
         }
-      ],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "person",
@@ -2874,6 +2874,11 @@
       "Description": "An attendee, volunteer or administrator.\n\n_Usually_, a person who checked in will be present as a \u0060Person\u0060. In some cases, they may not be present:\n- The person was manually deleted from the admin interface\n- The check-in was created as a \u0022Visitor - Label Only\u0022 (which doesn\u0027t create a corresponding person record)\n\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "addresses",
@@ -3032,9 +3037,11 @@
         {
           "JsonName": "check_ins",
           "ClrName": "CheckIns",
-          "ClrAttributesType": "CheckIn",
+          "AttributesClrType": "CheckIn",
           "Description": "Associated \u0060CheckIns\u0060.",
           "Slug": "check_ins",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByAttendee",
@@ -3081,39 +3088,37 @@
               "Value": "volunteer",
               "Description": "Filter results by the \u0060Volunteer\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "organization",
           "ClrName": "Organization",
-          "ClrAttributesType": "Organization",
+          "AttributesClrType": "Organization",
           "Description": "Associated \u0060Organization\u0060.",
           "Slug": "organization",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "passes",
           "ClrName": "Passes",
-          "ClrAttributesType": "Pass",
+          "AttributesClrType": "Pass",
           "Description": "Associated \u0060Passes\u0060.",
           "Slug": "passes",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "person_events",
           "ClrName": "PersonEvents",
-          "ClrAttributesType": "PersonEvent",
+          "AttributesClrType": "PersonEvent",
           "Description": "Associated \u0060PersonEvents\u0060.",
           "Slug": "person_events",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -3172,12 +3177,7 @@
           "Parameter": "where[search_name]",
           "Description": "Query response items by the \u0060SearchName\u0060 attribute."
         }
-      ],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "person_event",
@@ -3186,6 +3186,11 @@
       "Description": "Counts a person\u0027s attendence for a given event.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "check_in_count",
@@ -3212,42 +3217,42 @@
         {
           "JsonName": "event",
           "ClrName": "Event",
-          "ClrAttributesType": "Event",
+          "AttributesClrType": "Event",
           "Description": "Associated \u0060Event\u0060.",
           "Slug": "event",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "first_check_in",
           "ClrName": "FirstCheckIn",
-          "ClrAttributesType": "CheckIn",
+          "AttributesClrType": "CheckIn",
           "Description": "Associated \u0060FirstCheckIn\u0060.",
           "Slug": "first_check_in",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "last_check_in",
           "ClrName": "LastCheckIn",
-          "ClrAttributesType": "CheckIn",
+          "AttributesClrType": "CheckIn",
           "Description": "Associated \u0060LastCheckIn\u0060.",
           "Slug": "last_check_in",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "person",
           "ClrName": "Person",
-          "ClrAttributesType": "Person",
+          "AttributesClrType": "Person",
           "Description": "Associated \u0060Person\u0060.",
           "Slug": "person",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -3281,12 +3286,7 @@
         }
       ],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "pre_check",
@@ -3295,18 +3295,18 @@
       "Description": "Planning Center does not provide a description for this resource.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [],
       "Relationships": [],
       "Actions": [],
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "roster_list_person",
@@ -3315,6 +3315,11 @@
       "Description": "Planning Center does not provide a description for this resource.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "birthdate",
@@ -3370,12 +3375,7 @@
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "station",
@@ -3384,6 +3384,11 @@
       "Description": "A device where people can be checked in.\nA device may also be connected to a printer\nand print labels for itself or other stations.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "check_in_count",
@@ -3464,9 +3469,11 @@
         {
           "JsonName": "check_in_groups",
           "ClrName": "CheckInGroups",
-          "ClrAttributesType": "CheckInGroup",
+          "AttributesClrType": "CheckInGroup",
           "Description": "Associated \u0060CheckInGroups\u0060.",
           "Slug": "check_in_groups",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByCanceled",
@@ -3488,16 +3495,16 @@
               "Value": "skipped",
               "Description": "Filter results by the \u0060Skipped\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "checked_in_at_check_ins",
           "ClrName": "CheckedInAtCheckIns",
-          "ClrAttributesType": "CheckIn",
+          "AttributesClrType": "CheckIn",
           "Description": "Associated \u0060CheckedInAtCheckIns\u0060.",
           "Slug": "checked_in_at_check_ins",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByAttendee",
@@ -3544,49 +3551,47 @@
               "Value": "volunteer",
               "Description": "Filter results by the \u0060Volunteer\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "event",
           "ClrName": "Event",
-          "ClrAttributesType": "Event",
+          "AttributesClrType": "Event",
           "Description": "Associated \u0060Event\u0060.",
           "Slug": "event",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "location",
           "ClrName": "Location",
-          "ClrAttributesType": "Location",
+          "AttributesClrType": "Location",
           "Description": "Associated \u0060Location\u0060.",
           "Slug": "location",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "print_station",
           "ClrName": "PrintStation",
-          "ClrAttributesType": "Station",
+          "AttributesClrType": "Station",
           "Description": "Associated \u0060PrintStation\u0060.",
           "Slug": "print_station",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "theme",
           "ClrName": "Theme",
-          "ClrAttributesType": "Theme",
+          "AttributesClrType": "Theme",
           "Description": "Associated \u0060Theme\u0060.",
           "Slug": "theme",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -3620,12 +3625,7 @@
         }
       ],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "theme",
@@ -3634,6 +3634,11 @@
       "Description": "A custom style which may be applied to stations.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "background_color",
@@ -3656,7 +3661,7 @@
         {
           "JsonName": "image",
           "ClrName": "Image",
-          "ClrType": "System.Text.Json.JsonElement",
+          "ClrType": "Crews.PlanningCenter.Api.Common.Image",
           "Description": "Planning Center does not provide a description for this attribute."
         },
         {
@@ -3695,12 +3700,7 @@
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     }
   ]
 }

@@ -287,6 +287,78 @@ public class SingletonResourceClientTests
 	}
 
 	[Fact]
+	public async Task PostAsync_SendsPostRequest_ToSpecifiedUri()
+	{
+		// Arrange
+		var mockHttp = new MockHttpMessageHandler();
+		mockHttp.When(HttpMethod.Post, "https://example.com/action")
+			.Respond(HttpStatusCode.NoContent);
+
+		var httpClient = mockHttp.ToHttpClient();
+		var client = new TestResourceClient(httpClient, new Uri("https://example.com/test"));
+		var actionUri = new Uri("https://example.com/action");
+
+		// Act
+		await client.PostAsync(actionUri);
+
+		// Assert — should complete without throwing
+		Assert.True(true);
+	}
+
+	[Fact]
+	public async Task PostAsync_WithSuccessResponse_Completes()
+	{
+		// Arrange
+		var mockHttp = new MockHttpMessageHandler();
+		mockHttp.When(HttpMethod.Post, "https://example.com/action")
+			.Respond(HttpStatusCode.OK);
+
+		var httpClient = mockHttp.ToHttpClient();
+		var client = new TestResourceClient(httpClient, new Uri("https://example.com/test"));
+
+		// Act & Assert — should complete without exception
+		await client.PostAsync(new Uri("https://example.com/action"));
+	}
+
+	[Fact]
+	public async Task PostAsync_WithErrorResponse_ThrowsJsonApiException()
+	{
+		// Arrange
+		var mockHttp = new MockHttpMessageHandler();
+		mockHttp.When(HttpMethod.Post, "https://example.com/action")
+			.Respond(HttpStatusCode.Forbidden, "application/json", Serialized.DummyErrorObject);
+
+		var httpClient = mockHttp.ToHttpClient();
+		var client = new TestResourceClient(httpClient, new Uri("https://example.com/test"));
+
+		// Act & Assert
+		await Assert.ThrowsAsync<JsonApiException>(() =>
+			client.PostAsync(new Uri("https://example.com/action")));
+	}
+
+	[Fact]
+	public async Task PostAsync_WithCancellationToken_PassesToken()
+	{
+		// Arrange
+		var mockHttp = new MockHttpMessageHandler();
+		mockHttp.When(HttpMethod.Post, "https://example.com/action")
+			.Respond(async () =>
+			{
+				await Task.Delay(1000);
+				return new HttpResponseMessage(HttpStatusCode.NoContent);
+			});
+
+		var httpClient = mockHttp.ToHttpClient();
+		var client = new TestResourceClient(httpClient, new Uri("https://example.com/test"));
+		var cts = new CancellationTokenSource();
+		cts.Cancel();
+
+		// Act & Assert
+		await Assert.ThrowsAnyAsync<OperationCanceledException>(() =>
+			client.PostAsync(new Uri("https://example.com/action"), cts.Token));
+	}
+
+	[Fact]
 	public async Task PatchAsync_SendsPatchRequest_ToCorrectUri()
 	{
 		// Arrange

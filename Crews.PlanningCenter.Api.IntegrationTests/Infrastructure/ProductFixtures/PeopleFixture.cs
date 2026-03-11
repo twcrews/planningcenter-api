@@ -83,6 +83,9 @@ public class PeopleFixture : PlanningCenterFixture
 			new Workflow { Name = $"Fixture-Workflow-{_fixtureId}" });
 		WorkflowId = workflowResult.Data!.Id!;
 
+		await org.Workflows.WithId(WorkflowId).Steps.PostAsync(
+			new WorkflowStep { Name = $"Fixture-WorkflowStep-{_fixtureId}" });
+
 		var noteCategoryResult = await org.NoteCategories.PostAsync(
 			new NoteCategory { Name = $"Fixture-NoteCategory-{_fixtureId}" });
 		NoteCategoryId = noteCategoryResult.Data!.Id!;

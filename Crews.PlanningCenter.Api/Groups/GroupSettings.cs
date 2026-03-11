@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Text.Json.Serialization;
 using Crews.PlanningCenter.Api.Converters;
 
@@ -6,6 +7,7 @@ namespace Crews.PlanningCenter.Api.Groups;
 /// <summary>
 /// Represents the settings for a Group.
 /// </summary>
+[ExcludeFromCodeCoverage(Justification = "This type is a DTO with no logic to test.")]
 public record GroupSettings
 {
     /// <summary>

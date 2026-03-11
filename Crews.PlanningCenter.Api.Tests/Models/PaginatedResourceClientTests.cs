@@ -215,6 +215,85 @@ public class PaginatedResourceClientTests
 	}
 
 	[Fact]
+	public async Task GetAsync_SendsGetRequest_ToCorrectUri()
+	{
+		// Arrange
+		var mockHttp = new MockHttpMessageHandler();
+		mockHttp.When(HttpMethod.Get, "https://example.com/test")
+			.Respond("application/json", Serialized.DummyRootCollectionObject);
+
+		var httpClient = mockHttp.ToHttpClient();
+		var uri = new Uri("https://example.com/test");
+		var client = new TestPaginatedResourceClient(httpClient, uri);
+
+		// Act
+		var response = await client.GetAsync();
+
+		// Assert
+		Assert.NotNull(response);
+	}
+
+	[Fact]
+	public async Task GetAsync_WithSuccessResponse_ReturnsDeserializedData()
+	{
+		// Arrange
+		var mockHttp = new MockHttpMessageHandler();
+		mockHttp.When(HttpMethod.Get, "https://example.com/test")
+			.Respond("application/json", Serialized.DummyRootCollectionObject);
+
+		var httpClient = mockHttp.ToHttpClient();
+		var uri = new Uri("https://example.com/test");
+		var client = new TestPaginatedResourceClient(httpClient, uri);
+
+		// Act
+		var response = await client.GetAsync();
+
+		// Assert
+		Assert.NotNull(response.Data);
+	}
+
+	[Fact]
+	public async Task GetAsync_WithErrorResponse_ThrowsJsonApiException()
+	{
+		// Arrange
+		var mockHttp = new MockHttpMessageHandler();
+		mockHttp.When(HttpMethod.Get, "https://example.com/test")
+			.Respond(HttpStatusCode.BadRequest, "application/json", Serialized.DummyErrorObject);
+
+		var httpClient = mockHttp.ToHttpClient();
+		var uri = new Uri("https://example.com/test");
+		var client = new TestPaginatedResourceClient(httpClient, uri);
+
+		// Act & Assert
+		await Assert.ThrowsAsync<JsonApiException>(() => client.GetAsync());
+	}
+
+	[Fact]
+	public async Task GetAsync_WithCancellationToken_PassesToken()
+	{
+		// Arrange
+		var mockHttp = new MockHttpMessageHandler();
+		mockHttp.When(HttpMethod.Get, "https://example.com/test")
+			.Respond(async () =>
+			{
+				await Task.Delay(1000);
+				return new HttpResponseMessage(HttpStatusCode.OK)
+				{
+					Content = new StringContent(Serialized.DummyRootCollectionObject)
+				};
+			});
+
+		var httpClient = mockHttp.ToHttpClient();
+		var uri = new Uri("https://example.com/test");
+		var client = new TestPaginatedResourceClient(httpClient, uri);
+		var cts = new CancellationTokenSource();
+		cts.Cancel();
+
+		// Act & Assert
+		await Assert.ThrowsAnyAsync<OperationCanceledException>(() => client.GetAsync(cts.Token));
+	}
+
+	[Fact]
 	public async Task PostAsync_SendsPostRequest_ToCorrectUri()
 	{
 		// Arrange

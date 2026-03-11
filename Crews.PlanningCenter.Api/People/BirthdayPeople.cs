@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Text.Json.Serialization;
 using Crews.PlanningCenter.Api.Converters;
 using Crews.Web.JsonApiClient;
@@ -7,11 +8,13 @@ namespace Crews.PlanningCenter.Api.People;
 /// <summary>
 /// Wrapper for the BirthdayPeople resource.
 /// </summary>
+[ExcludeFromCodeCoverage(Justification = "This type is a DTO with no logic to test.")]
 public record BirthdayPeopleResource : JsonApiResource<BirthdayPeople> { }
 
 /// <summary>
 /// Represents a collection of people with birthdays.
 /// </summary>
+[ExcludeFromCodeCoverage(Justification = "This type is a DTO with no logic to test.")]
 public record BirthdayPeople
 {
     /// <summary>
@@ -24,6 +27,7 @@ public record BirthdayPeople
 /// <summary>
 /// Represents the details of a person's birth date.
 /// </summary>
+[ExcludeFromCodeCoverage(Justification = "This type is a DTO with no logic to test.")]
 public record BirthdayPerson
 {
     /// <summary>

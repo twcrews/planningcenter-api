@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Crews.PlanningCenter.Api.Models;
 
@@ -31,5 +32,6 @@ public sealed class ProductDefinition
 
     public override string ToString() => _name;
 
+    [ExcludeFromCodeCoverage]
     public static implicit operator string(ProductDefinition productDefinition) => productDefinition._name;
 }

@@ -99,107 +99,6 @@ class DocumentationBuilder(
         };
     }
 
-    private DocumentationTransforms.ExcludedVertexEntry? FindExcludedVertex(
-        ProductDefinition product, string? versionId, string? vertexId)
-    {
-        string productName = product.ToString();
-
-        return overrides.Value.ExcludedVertices.FirstOrDefault(e =>
-            MatchesVertex(e, productName, versionId, vertexId));
-    }
-
-    private static bool MatchesVertex(
-        DocumentationTransforms.ExcludedVertexEntry entry,
-        string productName,
-        string? versionId,
-        string? vertexId)
-    {
-        return (entry.Product is null || entry.Product.Equals(productName, StringComparison.OrdinalIgnoreCase))
-            && (entry.Version is null || entry.Version == versionId)
-            && entry.Vertex.Equals(vertexId, StringComparison.OrdinalIgnoreCase);
-    }
-
-    private bool IsResourceGenerationExcluded(ProductDefinition product, string? versionId, string? vertexId)
-    {
-        DocumentationTransforms.ExcludedVertexEntry? excludedVertex
-            = FindExcludedVertex(product, versionId, vertexId);
-        return excludedVertex?.ShouldGenerateResource == false;
-    }
-
-    private bool IsClientGenerationExcluded(ProductDefinition product, string? versionId, string? vertexId)
-    {
-        DocumentationTransforms.ExcludedVertexEntry? excludedVertex
-            = FindExcludedVertex(product, versionId, vertexId);
-        return excludedVertex?.ShouldGenerateClients == false;
-    }
-
-    private bool? GetCollectionOverride(ProductDefinition product, string? versionId, string? vertexId, string edge)
-    {
-        string productName = product.ToString();
-
-        DocumentationTransforms.CollectionOverrideEntry? overrideEntry = overrides
-            .Value.CollectionOverrides
-            .FirstOrDefault(e => (e.Product is null || e.Product.Equals(
-                productName, StringComparison.OrdinalIgnoreCase))
-                && (e.Version is null || e.Version == versionId)
-                && (e.Vertex is null || e.Vertex.Equals(vertexId, StringComparison.OrdinalIgnoreCase))
-                && e.Edge.Equals(edge, StringComparison.OrdinalIgnoreCase));
-
-        if (overrideEntry is not null)
-        {
-            _logger.LogInformation(
-                "Applying collection override for {Product}.{Version}.{Vertex}.{Edge}: {IsCollection}",
-                product, versionId, vertexId, edge, overrideEntry.IsCollection);
-            return overrideEntry.IsCollection;
-        }
-
-        return null;
-    }
-
-    private DocumentationTransforms.VertexNameOverrideEntry? FindNameOverride(
-        ProductDefinition product, string? versionId, string? vertexId)
-    {
-        string productName = product.ToString();
-
-        return overrides.Value.VertexNameOverrides
-            .FirstOrDefault(e => (e.Product is null || e.Product.Equals(
-                productName, StringComparison.OrdinalIgnoreCase))
-                && (e.Version is null || e.Version == versionId)
-                && (e.Vertex is null || e.Vertex.Equals(vertexId, StringComparison.OrdinalIgnoreCase)));
-    }
-
-    private string? GetModelNameOverride(ProductDefinition product, string? versionId, string? vertexId)
-    {
-        DocumentationTransforms.VertexNameOverrideEntry? overrideEntry =
-            FindNameOverride(product, versionId, vertexId);
-
-        if (overrideEntry is not null)
-        {
-            _logger.LogInformation(
-                "Applying model name override for {Product}.{Version}.{Vertex}: {ModelName}",
-                product, versionId, vertexId, overrideEntry.ClrModelName);
-            return overrideEntry.ClrModelName;
-        }
-
-        return null;
-    }
-
-    private string? GetResourceNameOverride(ProductDefinition product, string? versionId, string? vertexId)
-    {
-        DocumentationTransforms.VertexNameOverrideEntry? overrideEntry =
-            FindNameOverride(product, versionId, vertexId);
-
-        if (overrideEntry is not null)
-        {
-            _logger.LogInformation(
-                "Applying resource name override for {Product}.{Version}.{Vertex}: {ResourceName}",
-                product, versionId, vertexId, overrideEntry.ClrResourceName);
-            return overrideEntry.ClrResourceName;
-        }
-
-        return null;
-    }
-
     private async Task<Resource> BuildResourceAsync(
         ProductDefinition product, string versionId, VertexResource versionVertex)
     {
@@ -228,17 +127,32 @@ class DocumentationBuilder(
         bool vertexDeprecated = vertex.Attributes?.Deprecated ?? false;
         bool vertexCollectionOnly = vertex.Attributes?.CollectionOnly ?? false;
 
+        DocumentationTransforms.ResourcePropertyOverrideEntry? overrideEntry = overrides.Value.ResourceOverrides
+            .FirstOrDefault(e => (e.Product is null || e.Product.Equals(product.ToString(), StringComparison.OrdinalIgnoreCase))
+                && (e.Version is null || e.Version == versionId)
+                && e.Resource.Equals(vertexId, StringComparison.OrdinalIgnoreCase));
+
+        if (overrideEntry is not null)
+        {
+            _logger.LogDebug(
+                "Applying resource property overrides for {Product}.{Version}.{Vertex}", product, versionId, vertexId);
+        }
         
         _logger.LogTrace("Building resource for vertex with ID: {VertexId}", vertexId);
         return new()
         {
-            JsonName = vertexId,
-            AttributesClrType = GetModelNameOverride(product, versionId, vertexId) ?? vertexName.ToPascalCase(),
-            ResourceClrType = GetResourceNameOverride(product, versionId, vertexId)
-                ?? vertexName.ToPascalCase() + "Resource",
-            Description = vertexDescription,
-            Deprecated = vertexDeprecated,
-            CollectionOnly = vertexCollectionOnly,
+            JsonName = overrideEntry?.JsonName ?? vertexId,
+            AttributesClrType = overrideEntry?.AttributesClrType ?? vertexName.ToPascalCase(),
+            ResourceClrType = overrideEntry?.ResourceClrType ?? vertexName.ToPascalCase() + "Resource",
+            Description = overrideEntry?.Description ?? vertexDescription,
+            Deprecated = overrideEntry?.Deprecated ?? vertexDeprecated,
+            CollectionOnly = overrideEntry?.CollectionOnly ?? vertexCollectionOnly,
+            Postable = overrideEntry?.Postable ?? vertex.Relationships?.Permissions.Data.Attributes.CanCreate ?? false,
+            Patchable = overrideEntry?.Patchable ?? vertex.Relationships?.Permissions.Data.Attributes.CanUpdate ?? false,
+            Deletable = overrideEntry?.Deletable ?? vertex.Relationships?.Permissions.Data.Attributes.CanDestroy ?? false,
+            ShouldGenerateClients = overrideEntry?.ShouldGenerateClients ?? true,
+            ShouldGenerateResource = overrideEntry?.ShouldGenerateResource ?? true,
+
             Attributes = vertex.Relationships?.Attributes.Data
                 .Where(attr => attr.Attributes.Name != "id")
                 .Select(attr => BuildAttribute(product, versionId, vertexId, attr.Attributes)) ?? [],
@@ -255,13 +169,9 @@ class DocumentationBuilder(
             CanQueryBy = vertex.Relationships?.CanQuery.Data
                 .Select(qry => BuildQueryable(qry.Attributes))
                 .DistinctBy(q => q.Parameter) ?? [],
-            Children = vertex.Relationships?.OutboundEdges.Data
-                .Select(edge => BuildChild(edge, product, versionId, vertexId)) ?? [],
-            Postable = vertex.Relationships?.Permissions.Data.Attributes.CanCreate ?? false,
-            Patchable = vertex.Relationships?.Permissions.Data.Attributes.CanUpdate ?? false,
-            Deletable = vertex.Relationships?.Permissions.Data.Attributes.CanDestroy ?? false,
-            ShouldGenerateClients = !IsClientGenerationExcluded(product, versionId, vertexId),
-            ShouldGenerateResource = !IsResourceGenerationExcluded(product, versionId, vertexId)
+            Children = (vertex.Relationships?.OutboundEdges.Data
+                .Select(edge => BuildChild(edge, product, versionId, vertexId)) ?? [])
+                .Concat(GetAdditionalResourceChildren(product, versionId, vertexId))
         };
     }
 
@@ -269,44 +179,28 @@ class DocumentationBuilder(
     {
         string type = attribute.TypeAnnotation.Name;
 
-        DocumentationTransforms.AttributeTypeOverrideEntry? overrideEntry = overrides.Value.AttributeTypeOverrides
-            .FirstOrDefault(e => (e.Product is null || e.Product.Equals(product.ToString(), StringComparison.OrdinalIgnoreCase))
+        DocumentationTransforms.AttributePropertyOverrideEntry? overrideEntry = overrides.Value.AttributeOverrides
+            .FirstOrDefault(e => 
+                (e.Product is null || e.Product.Equals(product.ToString(), StringComparison.OrdinalIgnoreCase))
                 && (e.Version is null || e.Version == versionId)
-                && (e.Vertex is null || e.Vertex.Equals(vertex, StringComparison.OrdinalIgnoreCase))
+                && (e.Resource is null || e.Resource.Equals(vertex, StringComparison.OrdinalIgnoreCase))
                 && e.Attribute.Equals(attribute.Name, StringComparison.OrdinalIgnoreCase));
 
         if (overrideEntry is not null)
         {
-            _logger.LogInformation(
-                "Applying attribute type override for {Product}.{Version}.{Vertex}.{Attribute}: {Type}",
-                product, versionId, vertex, attribute.Name, overrideEntry.ClrType);
-            type = overrideEntry.ClrType;
-        }
-
-        string? converter = null;
-
-        DocumentationTransforms.AttributeJsonConverterEntry? converterEntry = overrides.Value.AttributeJsonConverters
-            .FirstOrDefault(c => (c.Product is null || c.Product.Equals(product.ToString(), StringComparison.OrdinalIgnoreCase))
-                && (c.Version is null || c.Version == versionId)
-                && (c.Vertex is null || c.Vertex.Equals(vertex, StringComparison.OrdinalIgnoreCase))
-                && c.Attribute.Equals(attribute.Name, StringComparison.OrdinalIgnoreCase));
-
-        if (converterEntry is not null)
-        {
-            _logger.LogInformation(
-                "Applying attribute JSON converter for {Product}.{Version}.{Vertex}.{Attribute}: {Converter}",
-                product, versionId, vertex, attribute.Name, converterEntry.Converter);
-            converter = converterEntry.Converter;
+            _logger.LogDebug("Applying attribute overrides for {Product}.{Version}.{Vertex}.{Attribute}",
+                product, versionId, vertex, attribute.Name);
         }
 
         _logger.LogTrace("Building attribute: {AttributeName}", attribute.Name);
         return new()
         {
-            JsonName = attribute.Name,
-            ClrName = attribute.Name.ToPascalCase(),
-            ClrType = type.ToClrType(),
-            JsonConverter = converter,
-            Description = attribute.Description ?? "Planning Center does not provide a description for this attribute."
+            JsonName = overrideEntry?.JsonName ?? attribute.Name,
+            ClrName = overrideEntry?.ClrName ?? attribute.Name.ToPascalCase(),
+            ClrType = overrideEntry?.ClrType ?? type.ToClrType(),
+            JsonConverter = overrideEntry?.JsonConverter,
+            Description = overrideEntry?.Description ?? attribute.Description 
+                ?? "Planning Center does not provide a description for this attribute."
         };
     }
 
@@ -315,28 +209,27 @@ class DocumentationBuilder(
         _logger.LogTrace("Building relationship: {RelationshipName}", relationship.Name);
 
         string resourceType = relationship.GraphType + "Resource";
-        DocumentationTransforms.RelationshipTypeOverrideEntry? overrideEntry = overrides.Value.RelationshipTypeOverrides
+        DocumentationTransforms.RelationshipPropertyOverrideEntry? overrideEntry = overrides.Value.RelationshipOverrides
             .FirstOrDefault(e => (e.Product is null || e.Product.Equals(product, StringComparison.OrdinalIgnoreCase))
                 && (e.Version is null || e.Version == versionId)
-                && (e.Vertex is null || e.Vertex.Equals(vertex, StringComparison.OrdinalIgnoreCase))
+                && (e.Resource is null || e.Resource.Equals(vertex, StringComparison.OrdinalIgnoreCase))
                 && e.Relationship.Equals(relationship.Name, StringComparison.OrdinalIgnoreCase));
 
         if (overrideEntry is not null)
         {
-            _logger.LogInformation(
-                "Applying relationship type override for {Product}.{Version}.{Vertex}.{Relationship}: {Type}",
-                product, versionId, vertex, relationship.Name, overrideEntry.ClrType);
-            resourceType = overrideEntry.ClrType;
+            _logger.LogDebug(
+                "Applying relationship overrides for {Product}.{Version}.{Vertex}.{Relationship}",
+                product, versionId, vertex, relationship.Name);
         }
 
         return new()
         {
-            JsonName = relationship.Name,
-            ClrName = relationship.Name.ToPascalCase(),
-            ClrAttributesType = relationship.GraphType,
-            ClrResourceType = resourceType,
-            IsCollection = relationship.Association == "to_many",
-            Description = $"Related `{relationship.Name.ToPascalCase()}` resource."
+            JsonName = overrideEntry?.JsonName ?? relationship.Name,
+            ClrName = overrideEntry?.ClrName ?? relationship.Name.ToPascalCase(),
+            AttributesClrType = overrideEntry?.AttributesClrType ?? relationship.GraphType,
+            ResourceClrType = overrideEntry?.ResourceClrType ?? resourceType,
+            IsCollection = overrideEntry?.IsCollection == "true" || relationship.Association == "to_many",
+            Description = overrideEntry?.Description ?? $"Related `{relationship.Name.ToPascalCase()}` resource."
         };
     }
 
@@ -384,45 +277,46 @@ class DocumentationBuilder(
     {
         _logger.LogTrace("Building associated resource: {EdgeName}", edge.Attributes.Name);
 
-        string slug = new Uri(edge.Attributes.Path).Segments[^1];
-        bool isCollection = GetCollectionOverride(product, versionId, vertex, edge.Attributes.Name)
-            ?? edge.Attributes.Name.IsPlural();
-        IEnumerable<ResourceChildFilter> filters = edge.Attributes.Scopes
-            .Select(s => new ResourceChildFilter 
+
+        IEnumerable<ResourceChildFilter> filters = edge.Attributes.Scopes.Select(s => new ResourceChildFilter 
             { 
                 ClrMethodName = $"FilterBy{s.Name.ToPascalCase()}", 
                 Value = s.Name, 
                 Description = s.ScopeHelp ?? $"Filter results by the `{s.Name.ToPascalCase()}` scope." 
             });
+            
 
-        string? jsonType = edge.Relationships.Head.Data.Id 
-            ?? throw new InvalidOperationException($"Edge '{edge.Attributes.Name}' is missing an ID property.");
-        string type = jsonType.ToPascalCase();
-
-        DocumentationTransforms.EdgeTypeOverrideEntry? overrideEntry = overrides.Value.EdgeTypeOverrides
+        DocumentationTransforms.ResourceChildPropertyOverrideEntry? overrideEntry = overrides.Value.ResourceChildOverrides
             .FirstOrDefault(e => (e.Product is null || e.Product.Equals(product.ToString(), StringComparison.OrdinalIgnoreCase))
                 && (e.Version is null || e.Version == versionId)
-                && (e.Vertex is null || e.Vertex.Equals(vertex, StringComparison.OrdinalIgnoreCase))
-                && e.Edge.Equals(edge.Attributes.Name, StringComparison.OrdinalIgnoreCase));
+                && (e.Resource is null || e.Resource.Equals(vertex, StringComparison.OrdinalIgnoreCase))
+                && e.Child.Equals(edge.Attributes.Name, StringComparison.OrdinalIgnoreCase));
 
         if (overrideEntry is not null)
         {
-            _logger.LogInformation(
-                "Applying edge type override for {Product}.{Version}.{Vertex}.{Edge}: {Type}",
-                product, versionId, vertex, edge.Attributes.Name, overrideEntry.ClrType);
-            type = overrideEntry.ClrType;
+            _logger.LogDebug("Applying edge overrides for {Product}.{Version}.{Vertex}.{Edge}",
+                product, versionId, vertex, edge.Attributes.Name);
         }
 
         return new()
         {
-            JsonName = edge.Attributes.Name,
-            ClrName = edge.Attributes.Name.ToPascalCase(),
-            Description = $"Associated `{edge.Attributes.Name.ToPascalCase()}`.",
-            Slug = slug,
+            JsonName = overrideEntry?.JsonName ?? edge.Attributes.Name,
+            ClrName = overrideEntry?.ClrName ?? edge.Attributes.Name.ToPascalCase(),
+            AttributesClrType = overrideEntry?.AttributesClrType 
+                ?? edge.Relationships.Head.Data.Attributes?.Name.ToPascalCase() 
+                ?? throw new InvalidOperationException(
+                    $"Edge '{edge.Attributes.Name}' is missing an attributes property on its head vertex."),
+
+            Description = overrideEntry?.Description ?? $"Associated `{edge.Attributes.Name.ToPascalCase()}`.",
+            Slug = overrideEntry?.Slug ?? new Uri(edge.Attributes.Path).Segments[^1],
+
+            // FIXME: The logic for determining whether an edge represents a collection is currently based on the
+            // presence of "plural" edge names in the API documentation and overrides. This is not a reliable method. We
+            // may be able to determine this more reliably by inspecting the structure of the referenced vertices.
+            IsCollection = overrideEntry?.IsCollection ?? edge.Attributes.Name.IsPlural(),
+
+            Deprecated = overrideEntry?.Deprecated ?? edge.Attributes.Deprecated,
             Filters = filters,
-            IsCollection = isCollection,
-            Deprecated = edge.Attributes.Deprecated,
-            ClrAttributesType = type
         };
     }
 
@@ -443,5 +337,20 @@ class DocumentationBuilder(
             AdditionalDetails = action.Details,
             Deprecated = action.Deprecated
         };
+    }
+
+    private IEnumerable<ResourceChild> GetAdditionalResourceChildren(
+        ProductDefinition product, string versionId, string vertexId)
+    {
+        string productName = product.ToString();
+        foreach (DocumentationTransforms.AdditionalResourceChildEntry entry in overrides.Value.AdditionalResourceChildren
+            .Where(e => (e.Product is null || e.Product.Equals(productName, StringComparison.OrdinalIgnoreCase))
+                && (e.Version is null || e.Version == versionId)
+                && e.Resource.Equals(vertexId, StringComparison.OrdinalIgnoreCase)))
+        {
+            _logger.LogDebug("Adding outbound edge for {Product}.{Version}.{Vertex}: {EdgeName}",
+                product, versionId, vertexId, entry.Child.JsonName);
+            yield return entry.Child;
+        }
     }
 }

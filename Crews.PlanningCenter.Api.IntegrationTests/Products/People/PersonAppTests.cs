@@ -9,10 +9,13 @@ public class PersonAppTests(PeopleFixture fixture) : PeopleTestBase(fixture)
 	[Fact]
 	public async Task PersonApp_GetAsync_ReturnsPersonApps()
 	{
-		var personAppId = await CollectionReadHelper.GetFirstIdAsync(
-			HttpClient, $"people/v2/people/{Fixture.PersonId}/person_apps");
+		var personId = await CollectionReadHelper.GetFirstIdAsync(
+			HttpClient, $"people/v2/people");
 
-		var result = await Org.People.WithId(Fixture.PersonId).PersonApps
+		var personAppId = await CollectionReadHelper.GetFirstIdAsync(
+			HttpClient, $"people/v2/people/{personId}/person_apps");
+
+		var result = await Org.People.WithId(personId!).PersonApps
 			.WithId(personAppId!).GetAsync();
 
 		Assert.NotNull(result);

@@ -13,6 +13,7 @@
   <Project Path="Crews.PlanningCenter.Api.Generators.Tests/Crews.PlanningCenter.Api.Generators.Tests.csproj" Id="6f4a7715-529d-42ba-a5c0-fb023e9db568" />
   <Project Path="Crews.PlanningCenter.Api.Generators/Crews.PlanningCenter.Api.Generators.csproj" />
   <Project Path="Crews.PlanningCenter.Api.IntegrationTests/Crews.PlanningCenter.Api.IntegrationTests.csproj" />
+  <Project Path="Crews.PlanningCenter.Api.Models.Tests/Crews.PlanningCenter.Api.Models.Tests.csproj" />
   <Project Path="Crews.PlanningCenter.Api.Models/Crews.PlanningCenter.Api.Models.csproj" Id="8a685b30-e2e9-4951-bb9d-f5bbe696f90c" />
   <Project Path="Crews.PlanningCenter.Api.Tests/Crews.PlanningCenter.Api.Tests.csproj" />
   <Project Path="Crews.PlanningCenter.Api/Crews.PlanningCenter.Api.csproj" />

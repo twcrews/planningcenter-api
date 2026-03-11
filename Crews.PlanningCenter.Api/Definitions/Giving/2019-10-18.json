@@ -10,6 +10,11 @@
       "Description": "A \u0060Batch\u0060 is a collection of \u0060Donation\u0060s. When creating \u0060Donation\u0060\u0027s via the API, you\u0027re required to put them in a \u0060Batch\u0060.\n\nWhen a \u0060Batch\u0060 is first created, it\u0027s in the \u0060in_progress\u0060 or \u0022uncommitted\u0022 state. You can freely add/remove/modify \u0060Donation\u0060s in this \u0060Batch\u0060 and they won\u0027t show up in a donor\u0027s donation history online, they won\u0027t appear in any donor statements issued by the Giving admin, and changes to these donations are not flagged in the system log. Think of it as a staging area for donations.\n\nWhen a \u0060Batch\u0060 is committed (see more in the Actions section), all of the \u0060Donation\u0060s within it are also marked as \u0022committed\u0022. At that point, they\u0027re visible to donors in their online history, and any further edits made to those \u0060Donation\u0060s are logged and visible to Giving admins.\n\nWith all of that in mind, you can use \u0060Batch\u0060es in one of two ways:\n\n  1.  Create an uncommitted \u0060Batch\u0060, add \u0060Donation\u0060s to it, then commit the \u0060Batch\u0060.\n  2.  Create a \u0060Batch\u0060 with a least one donation, commit it, then add more \u0060Donation\u0060s to it.\n\nIn both cases, the end result is the same. The main difference is that option #2 does not provide you/other admins the opportunity to fix any mistakes before changes are logged and \u0060Donation\u0060s are made visible to donors. Any \u0060Donation\u0060s added to a committed \u0060Batch\u0060 will automatically be committed as well. Note, batches can\u0027t be committed until they have at least one donation.\n\nWhichever route you decide to take, it\u0027s helpful to make use of the \u0060Batch\u0060\u0027s description to help differentiate these groupings from each other and from other \u0060Batch\u0060es that the Giving admins might be creating on their own.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "committed_at",
@@ -64,8 +69,8 @@
         {
           "JsonName": "batch_group",
           "ClrName": "BatchGroup",
-          "ClrAttributesType": "BatchGroup",
-          "ClrResourceType": "BatchGroupResource",
+          "AttributesClrType": "BatchGroup",
+          "ResourceClrType": "BatchGroupResource",
           "IsCollection": false,
           "Description": "Related \u0060BatchGroup\u0060 resource."
         }
@@ -84,32 +89,32 @@
         {
           "JsonName": "batch_group",
           "ClrName": "BatchGroup",
-          "ClrAttributesType": "BatchGroup",
+          "AttributesClrType": "BatchGroup",
           "Description": "Associated \u0060BatchGroup\u0060.",
           "Slug": "batch_group",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "donations",
           "ClrName": "Donations",
-          "ClrAttributesType": "Donation",
+          "AttributesClrType": "Donation",
           "Description": "Associated \u0060Donations\u0060.",
           "Slug": "donations",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "owner",
           "ClrName": "Owner",
-          "ClrAttributesType": "Person",
+          "AttributesClrType": "Person",
           "Description": "Associated \u0060Owner\u0060.",
           "Slug": "owner",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -142,12 +147,7 @@
           "Parameter": "where[updated_at]",
           "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
         }
-      ],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "batch_group",
@@ -156,6 +156,11 @@
       "Description": "A \u0060BatchGroup\u0060 is a collection of \u0060Batch\u0060es.\n\n\u0060BatchGroup\u0060s are an optional way of organizing your \u0060Batch\u0060es into groups that share common characteristics. These are completely customizable and can be used in whatever way makes sense to your organization\u0027s workflow.\n\nSimilarly to \u0060Batch\u0060es, you can \u0060commit\u0060 (see more in the Actions section) a \u0060BatchGroup\u0060, and by doing so, all \u0060Batches\u0060 and \u0060Donations\u0060 contained in the \u0060BatchGroup\u0060 will also be committed.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "committed",
@@ -215,9 +220,11 @@
         {
           "JsonName": "batches",
           "ClrName": "Batches",
-          "ClrAttributesType": "Batch",
+          "AttributesClrType": "Batch",
           "Description": "Associated \u0060Batches\u0060.",
           "Slug": "batches",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByCommitted",
@@ -229,19 +236,17 @@
               "Value": "in_progress",
               "Description": "Filter results by the \u0060InProgress\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "owner",
           "ClrName": "Owner",
-          "ClrAttributesType": "Person",
+          "AttributesClrType": "Person",
           "Description": "Associated \u0060Owner\u0060.",
           "Slug": "owner",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -267,12 +272,7 @@
           "Parameter": "where[updated_at]",
           "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
         }
-      ],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "campus",
@@ -281,6 +281,11 @@
       "Description": "A \u0060Campus\u0060 that has been added to your \u0060Organization\u0060.\n\n\u0060Campus\u0060es can be especially useful in filtering \u0060Donation\u0060s across the various locations of your \u0060Organization\u0060.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "address",
@@ -301,22 +306,17 @@
         {
           "JsonName": "donations",
           "ClrName": "Donations",
-          "ClrAttributesType": "Donation",
+          "AttributesClrType": "Donation",
           "Description": "Associated \u0060Donations\u0060.",
           "Slug": "donations",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "designation",
@@ -325,6 +325,11 @@
       "Description": "A \u0060Designation\u0060 conveys how much of a \u0060Donation\u0060 goes to a particular \u0060Fund\u0060.\n\n\u0060Designation\u0060 details are required when creating a \u0060Donation\u0060. If all of a \u0060Donation\u0060 is going to a single \u0060Fund\u0060, it will only have one \u0060Designation\u0060. Similarly, to split a \u0060Donation\u0060 between multiple \u0060Fund\u0060s, you can use multiple \u0060Designation\u0060s.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "amount_cents",
@@ -349,8 +354,8 @@
         {
           "JsonName": "fund",
           "ClrName": "Fund",
-          "ClrAttributesType": "Fund",
-          "ClrResourceType": "FundResource",
+          "AttributesClrType": "Fund",
+          "ResourceClrType": "FundResource",
           "IsCollection": false,
           "Description": "Related \u0060Fund\u0060 resource."
         }
@@ -360,22 +365,17 @@
         {
           "JsonName": "fund",
           "ClrName": "Fund",
-          "ClrAttributesType": "Fund",
+          "AttributesClrType": "Fund",
           "Description": "Associated \u0060Fund\u0060.",
           "Slug": "fund",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "designation_refund",
@@ -384,6 +384,11 @@
       "Description": "A record that links a \u0060Refund\u0060 with a \u0060Designation\u0060\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "amount_cents",
@@ -402,8 +407,8 @@
         {
           "JsonName": "designation",
           "ClrName": "Designation",
-          "ClrAttributesType": "Designation",
-          "ClrResourceType": "DesignationResource",
+          "AttributesClrType": "Designation",
+          "ResourceClrType": "DesignationResource",
           "IsCollection": false,
           "Description": "Related \u0060Designation\u0060 resource."
         }
@@ -413,12 +418,12 @@
         {
           "JsonName": "designation",
           "ClrName": "Designation",
-          "ClrAttributesType": "Designation",
+          "AttributesClrType": "Designation",
           "Description": "Associated \u0060Designation\u0060.",
           "Slug": "designation",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -431,12 +436,7 @@
         }
       ],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "donation",
@@ -445,6 +445,11 @@
       "Description": "A \u0060Donation\u0060 record corresponds to a gift given to an \u0060Organization\u0060 at a particular point in time.\n\n\u0060Donation\u0060s are added by first associating them to a \u0060Batch\u0060 of donations, and then committing the \u0060Batch\u0060. When adding a \u0060Donation\u0060 to an already-committed \u0060Batch\u0060, the \u0060Donation\u0060 will automatically be committed as well, and immediately added to the donor\u0027s online history.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "amount_cents",
@@ -571,48 +576,48 @@
         {
           "JsonName": "batch",
           "ClrName": "Batch",
-          "ClrAttributesType": "Batch",
-          "ClrResourceType": "BatchResource",
+          "AttributesClrType": "Batch",
+          "ResourceClrType": "BatchResource",
           "IsCollection": false,
           "Description": "Related \u0060Batch\u0060 resource."
         },
         {
           "JsonName": "campus",
           "ClrName": "Campus",
-          "ClrAttributesType": "Campus",
-          "ClrResourceType": "CampusResource",
+          "AttributesClrType": "Campus",
+          "ResourceClrType": "CampusResource",
           "IsCollection": false,
           "Description": "Related \u0060Campus\u0060 resource."
         },
         {
           "JsonName": "person",
           "ClrName": "Person",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060Person\u0060 resource."
         },
         {
           "JsonName": "payment_source",
           "ClrName": "PaymentSource",
-          "ClrAttributesType": "PaymentSource",
-          "ClrResourceType": "PaymentSourceResource",
+          "AttributesClrType": "PaymentSource",
+          "ResourceClrType": "PaymentSourceResource",
           "IsCollection": false,
           "Description": "Related \u0060PaymentSource\u0060 resource."
         },
         {
           "JsonName": "labels",
           "ClrName": "Labels",
-          "ClrAttributesType": "Labels",
-          "ClrResourceType": "LabelResource",
+          "AttributesClrType": "Labels",
+          "ResourceClrType": "LabelResource",
           "IsCollection": true,
           "Description": "Related \u0060Labels\u0060 resource."
         },
         {
           "JsonName": "recurring_donation",
           "ClrName": "RecurringDonation",
-          "ClrAttributesType": "RecurringDonation",
-          "ClrResourceType": "RecurringDonationResource",
+          "AttributesClrType": "RecurringDonation",
+          "ResourceClrType": "RecurringDonationResource",
           "IsCollection": false,
           "Description": "Related \u0060RecurringDonation\u0060 resource."
         }
@@ -631,52 +636,52 @@
         {
           "JsonName": "campus",
           "ClrName": "Campus",
-          "ClrAttributesType": "Campus",
+          "AttributesClrType": "Campus",
           "Description": "Associated \u0060Campus\u0060.",
           "Slug": "campus",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "designations",
           "ClrName": "Designations",
-          "ClrAttributesType": "Designation",
+          "AttributesClrType": "Designation",
           "Description": "Associated \u0060Designations\u0060.",
           "Slug": "designations",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "labels",
           "ClrName": "Labels",
-          "ClrAttributesType": "Label",
+          "AttributesClrType": "Label",
           "Description": "Associated \u0060Labels\u0060.",
           "Slug": "labels",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "note",
           "ClrName": "Note",
-          "ClrAttributesType": "Note",
+          "AttributesClrType": "Note",
           "Description": "Associated \u0060Note\u0060.",
           "Slug": "note",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "refund",
           "ClrName": "Refund",
-          "ClrAttributesType": "Refund",
+          "AttributesClrType": "Refund",
           "Description": "Associated \u0060Refund\u0060.",
           "Slug": "refund",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -762,12 +767,7 @@
           "Parameter": "where[updated_at]",
           "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
         }
-      ],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "fund",
@@ -776,6 +776,11 @@
       "Description": "A \u0060Fund\u0060 is a way of tracking the intent of \u0060Donation\u0060.\n\nAll \u0060Organization\u0060s have a default \u0060Fund\u0060 (usually named \u0022General\u0022), and creating additional \u0060Fund\u0060s allows donors to allocate their gift to a particular cause/effort.\n\nYou can query for the default \u0060Fund\u0060 using the \u0060default\u0060 param:\n\u0060\u0060\u0060\nGET https://api.planningcenteronline.com/giving/v2/funds?where[default]=true\n\u0060\u0060\u0060\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "color",
@@ -868,12 +873,7 @@
           "Parameter": "where[visibility]",
           "Description": "Query response items by the \u0060Visibility\u0060 attribute."
         }
-      ],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "in_kind_donation",
@@ -882,6 +882,11 @@
       "Description": "An \u0060InKindDonation\u0060 record represents a non-cash gift given to an \u0060Organization\u0060 at a specific time.\n\nThese include items like furniture, vehicles, services, or stocks. \u0060InKindDonations\u0060 do not trigger\nacknowledgment letter emails via the API \u2014 these must be sent from the Giving Admin UI.\n\n[More info](https://pcogiving.zendesk.com/hc/en-us/articles/360040772154-In-kind-donations#enter-an-in-kind-donation-0)\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "acknowledgment_last_sent_at",
@@ -942,24 +947,24 @@
         {
           "JsonName": "fund",
           "ClrName": "Fund",
-          "ClrAttributesType": "Fund",
-          "ClrResourceType": "FundResource",
+          "AttributesClrType": "Fund",
+          "ResourceClrType": "FundResource",
           "IsCollection": false,
           "Description": "Related \u0060Fund\u0060 resource."
         },
         {
           "JsonName": "person",
           "ClrName": "Person",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060Person\u0060 resource."
         },
         {
           "JsonName": "campus",
           "ClrName": "Campus",
-          "ClrAttributesType": "Campus",
-          "ClrResourceType": "CampusResource",
+          "AttributesClrType": "Campus",
+          "ResourceClrType": "CampusResource",
           "IsCollection": false,
           "Description": "Related \u0060Campus\u0060 resource."
         }
@@ -969,32 +974,32 @@
         {
           "JsonName": "campus",
           "ClrName": "Campus",
-          "ClrAttributesType": "Campus",
+          "AttributesClrType": "Campus",
           "Description": "Associated \u0060Campus\u0060.",
           "Slug": "campus",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "fund",
           "ClrName": "Fund",
-          "ClrAttributesType": "Fund",
+          "AttributesClrType": "Fund",
           "Description": "Associated \u0060Fund\u0060.",
           "Slug": "fund",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "person",
           "ClrName": "Person",
-          "ClrAttributesType": "Person",
+          "AttributesClrType": "Person",
           "Description": "Associated \u0060Person\u0060.",
           "Slug": "person",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -1068,12 +1073,7 @@
           "Parameter": "where[updated_at]",
           "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
         }
-      ],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "label",
@@ -1082,6 +1082,11 @@
       "Description": "A \u0060Label\u0060 is a way for Admins to manage and categorize \u0060Donation\u0060s.\n\nMultiple \u0060Label\u0060s can be added for each \u0060Donation\u0060, and these will only be displayed in the Giving admin interface, so donors never see them.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "slug",
@@ -1102,12 +1107,7 @@
           "Parameter": "where[slug]",
           "Description": "Query response items by the \u0060Slug\u0060 attribute."
         }
-      ],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "note",
@@ -1116,6 +1116,11 @@
       "Description": "A \u0060Note\u0060 is a way for Giving Admins and Bookkeepers to communicate internally about a donation.\nNotes are only visible in the Giving admin interface, not shown to donors. Each \u0060Donation\u0060 can only\nhave a single note associated with it.\n\nTo record notes from donors, consider using the [Memo Line feature](https://pcogiving.zendesk.com/hc/en-us/articles/44484564313883-Manage-your-online-donation-form) instead.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "body",
@@ -1129,12 +1134,7 @@
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": true,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "organization",
@@ -1143,6 +1143,11 @@
       "Description": "The root level \u0060Organization\u0060 record which serves as a link to \u0060Donation\u0060s, \u0060People\u0060, \u0060Fund\u0060s, etc.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "name",
@@ -1152,7 +1157,7 @@
         },
         {
           "JsonName": "text2give_enabled",
-          "ClrName": "Text2giveEnabled",
+          "ClrName": "Text2GiveEnabled",
           "ClrType": "bool",
           "Description": "\u0060true\u0060 if this organization is accepting Text2Give donations, \u0060false\u0060 otherwise."
         },
@@ -1169,9 +1174,11 @@
         {
           "JsonName": "batch_groups",
           "ClrName": "BatchGroups",
-          "ClrAttributesType": "BatchGroup",
+          "AttributesClrType": "BatchGroup",
           "Description": "Associated \u0060BatchGroups\u0060.",
           "Slug": "batch_groups",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByCommitted",
@@ -1183,16 +1190,16 @@
               "Value": "in_progress",
               "Description": "Filter results by the \u0060InProgress\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "batches",
           "ClrName": "Batches",
-          "ClrAttributesType": "Batch",
+          "AttributesClrType": "Batch",
           "Description": "Associated \u0060Batches\u0060.",
           "Slug": "batches",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByCommitted",
@@ -1204,111 +1211,104 @@
               "Value": "in_progress",
               "Description": "Filter results by the \u0060InProgress\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "campuses",
           "ClrName": "Campuses",
-          "ClrAttributesType": "Campus",
+          "AttributesClrType": "Campus",
           "Description": "Associated \u0060Campuses\u0060.",
           "Slug": "campuses",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "donations",
           "ClrName": "Donations",
-          "ClrAttributesType": "Donation",
+          "AttributesClrType": "Donation",
           "Description": "Associated \u0060Donations\u0060.",
           "Slug": "donations",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterBySucceeded",
               "Value": "succeeded",
               "Description": "Filter results by the \u0060Succeeded\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "funds",
           "ClrName": "Funds",
-          "ClrAttributesType": "Fund",
+          "AttributesClrType": "Fund",
           "Description": "Associated \u0060Funds\u0060.",
           "Slug": "funds",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "in_kind_donations",
           "ClrName": "InKindDonations",
-          "ClrAttributesType": "InKindDonation",
+          "AttributesClrType": "InKindDonation",
           "Description": "Associated \u0060InKindDonations\u0060.",
           "Slug": "in_kind_donations",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "labels",
           "ClrName": "Labels",
-          "ClrAttributesType": "Label",
+          "AttributesClrType": "Label",
           "Description": "Associated \u0060Labels\u0060.",
           "Slug": "labels",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "payment_sources",
           "ClrName": "PaymentSources",
-          "ClrAttributesType": "PaymentSource",
+          "AttributesClrType": "PaymentSource",
           "Description": "Associated \u0060PaymentSources\u0060.",
           "Slug": "payment_sources",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "people",
           "ClrName": "People",
-          "ClrAttributesType": "Person",
+          "AttributesClrType": "Person",
           "Description": "Associated \u0060People\u0060.",
           "Slug": "people",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByHasDonated",
               "Value": "has_donated",
               "Description": "filter to people with at least one associated donation"
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "recurring_donations",
           "ClrName": "RecurringDonations",
-          "ClrAttributesType": "RecurringDonation",
+          "AttributesClrType": "RecurringDonation",
           "Description": "Associated \u0060RecurringDonations\u0060.",
           "Slug": "recurring_donations",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "payment_method",
@@ -1317,6 +1317,11 @@
       "Description": "Stored \u0060PaymentMethod\u0060 information (\u0060card\u0060 or \u0060bank_account\u0060) used by donors to make online \u0060Donation\u0060s.\n\n\u0060PaymentMethod\u0060 data is for informational purposes only and cannot be used to create charges through the API.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "brand",
@@ -1373,22 +1378,17 @@
         {
           "JsonName": "recurring_donations",
           "ClrName": "RecurringDonations",
-          "ClrAttributesType": "RecurringDonation",
+          "AttributesClrType": "RecurringDonation",
           "Description": "Associated \u0060RecurringDonations\u0060.",
           "Slug": "recurring_donations",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "payment_source",
@@ -1397,6 +1397,11 @@
       "Description": "A donation\u0027s \u0060PaymentSource\u0060 refers to the platform it originated from.\n\n\u0060Donation\u0060s made through Giving will be assigned the built-in \u0060PaymentSource\u0060 \u0022Planning Center\u0022. \u0060Donation\u0060s made through external platforms (Square, Pushpay, ect.) can be assigned a \u0060PaymentSource\u0060 identifying them as such.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "created_at",
@@ -1429,22 +1434,17 @@
         {
           "JsonName": "donations",
           "ClrName": "Donations",
-          "ClrAttributesType": "Donation",
+          "AttributesClrType": "Donation",
           "Description": "Associated \u0060Donations\u0060.",
           "Slug": "donations",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "person",
@@ -1453,6 +1453,11 @@
       "Description": "A Planning Center \u0060Person\u0060 record that has been added to Giving.\n\nThe \u0060Person\u0060 object in Planning Center is so crucial that we have an entire product dedicated to managing, keeping track of, editing, and creating these records and metadata around them. For additional info, take a look at the [Planning Center People API Docs](https://developer.planning.center/docs/#/apps/people).\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": true,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "addresses",
@@ -1507,8 +1512,8 @@
         {
           "JsonName": "primary_campus",
           "ClrName": "PrimaryCampus",
-          "ClrAttributesType": "Campus",
-          "ClrResourceType": "CampusResource",
+          "AttributesClrType": "Campus",
+          "ResourceClrType": "CampusResource",
           "IsCollection": false,
           "Description": "Related \u0060PrimaryCampus\u0060 resource."
         }
@@ -1518,9 +1523,11 @@
         {
           "JsonName": "batch_groups",
           "ClrName": "BatchGroups",
-          "ClrAttributesType": "BatchGroup",
+          "AttributesClrType": "BatchGroup",
           "Description": "Associated \u0060BatchGroups\u0060.",
           "Slug": "batch_groups",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByCommitted",
@@ -1532,16 +1539,16 @@
               "Value": "in_progress",
               "Description": "Filter results by the \u0060InProgress\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "batches",
           "ClrName": "Batches",
-          "ClrAttributesType": "Batch",
+          "AttributesClrType": "Batch",
           "Description": "Associated \u0060Batches\u0060.",
           "Slug": "batches",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByCommitted",
@@ -1553,69 +1560,67 @@
               "Value": "in_progress",
               "Description": "Filter results by the \u0060InProgress\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "donations",
           "ClrName": "Donations",
-          "ClrAttributesType": "Donation",
+          "AttributesClrType": "Donation",
           "Description": "Associated \u0060Donations\u0060.",
           "Slug": "donations",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "in_kind_donations",
           "ClrName": "InKindDonations",
-          "ClrAttributesType": "InKindDonation",
+          "AttributesClrType": "InKindDonation",
           "Description": "Associated \u0060InKindDonations\u0060.",
           "Slug": "in_kind_donations",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "payment_methods",
           "ClrName": "PaymentMethods",
-          "ClrAttributesType": "PaymentMethod",
+          "AttributesClrType": "PaymentMethod",
           "Description": "Associated \u0060PaymentMethods\u0060.",
           "Slug": "payment_methods",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "pledges",
           "ClrName": "Pledges",
-          "ClrAttributesType": "Pledge",
+          "AttributesClrType": "Pledge",
           "Description": "Associated \u0060Pledges\u0060.",
           "Slug": "pledges",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "primary_campus",
           "ClrName": "PrimaryCampus",
-          "ClrAttributesType": "Campus",
+          "AttributesClrType": "Campus",
           "Description": "Associated \u0060PrimaryCampus\u0060.",
           "Slug": "primary_campus",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "recurring_donations",
           "ClrName": "RecurringDonations",
-          "ClrAttributesType": "RecurringDonation",
+          "AttributesClrType": "RecurringDonation",
           "Description": "Associated \u0060RecurringDonations\u0060.",
           "Slug": "recurring_donations",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [],
@@ -1633,12 +1638,7 @@
           "Parameter": "where[last_name]",
           "Description": "Query response items by the \u0060LastName\u0060 attribute."
         }
-      ],
-      "Postable": false,
-      "Patchable": true,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "pledge",
@@ -1647,6 +1647,11 @@
       "Description": "A \u0060Pledge\u0060 made by a \u0060Person\u0060 toward a particular \u0060PledgeCampaign\u0060.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "amount_cents",
@@ -1695,16 +1700,16 @@
         {
           "JsonName": "person",
           "ClrName": "Person",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060Person\u0060 resource."
         },
         {
           "JsonName": "pledge_campaign",
           "ClrName": "PledgeCampaign",
-          "ClrAttributesType": "PledgeCampaign",
-          "ClrResourceType": "PledgeCampaignResource",
+          "AttributesClrType": "PledgeCampaign",
+          "ResourceClrType": "PledgeCampaignResource",
           "IsCollection": false,
           "Description": "Related \u0060PledgeCampaign\u0060 resource."
         }
@@ -1714,22 +1719,22 @@
         {
           "JsonName": "joint_giver",
           "ClrName": "JointGiver",
-          "ClrAttributesType": "Person",
+          "AttributesClrType": "Person",
           "Description": "Associated \u0060JointGiver\u0060.",
           "Slug": "joint_giver",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "pledge_campaign",
           "ClrName": "PledgeCampaign",
-          "ClrAttributesType": "PledgeCampaign",
+          "AttributesClrType": "PledgeCampaign",
           "Description": "Associated \u0060PledgeCampaign\u0060.",
           "Slug": "pledge_campaign",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -1773,12 +1778,7 @@
           "Parameter": "where[updated_at]",
           "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
         }
-      ],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "pledge_campaign",
@@ -1787,6 +1787,11 @@
       "Description": "A \u0060PledgeCampaign\u0060 is a way to request and track long-terms commitments to a particular goal or project.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "created_at",
@@ -1859,8 +1864,8 @@
         {
           "JsonName": "fund",
           "ClrName": "Fund",
-          "ClrAttributesType": "Fund",
-          "ClrResourceType": "FundResource",
+          "AttributesClrType": "Fund",
+          "ResourceClrType": "FundResource",
           "IsCollection": false,
           "Description": "Related \u0060Fund\u0060 resource."
         }
@@ -1870,22 +1875,22 @@
         {
           "JsonName": "fund",
           "ClrName": "Fund",
-          "ClrAttributesType": "Fund",
+          "AttributesClrType": "Fund",
           "Description": "Associated \u0060Fund\u0060.",
           "Slug": "fund",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "pledges",
           "ClrName": "Pledges",
-          "ClrAttributesType": "Pledge",
+          "AttributesClrType": "Pledge",
           "Description": "Associated \u0060Pledges\u0060.",
           "Slug": "pledges",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -1928,12 +1933,7 @@
           "Parameter": "where[starts_at]",
           "Description": "Query response items by the \u0060StartsAt\u0060 attribute."
         }
-      ],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "recurring_donation",
@@ -1942,6 +1942,11 @@
       "Description": "A \u0060RecurringDonation\u0060 is represents a \u0060Donation\u0060 that repeats on a set schedule (weekly, monthly, etc.)\n\nData for \u0060RecurringDonation\u0060s is read-only; they can not be created or edited through the API.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "amount_cents",
@@ -2002,8 +2007,8 @@
         {
           "JsonName": "person",
           "ClrName": "Person",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060Person\u0060 resource."
         }
@@ -2013,22 +2018,22 @@
         {
           "JsonName": "payment_method",
           "ClrName": "PaymentMethod",
-          "ClrAttributesType": "PaymentMethod",
+          "AttributesClrType": "PaymentMethod",
           "Description": "Associated \u0060PaymentMethod\u0060.",
           "Slug": "payment_method",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "designations",
           "ClrName": "Designations",
-          "ClrAttributesType": "RecurringDonationDesignation",
+          "AttributesClrType": "RecurringDonationDesignation",
           "Description": "Associated \u0060Designations\u0060.",
           "Slug": "designations",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -2041,12 +2046,7 @@
         }
       ],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "recurring_donation_designation",
@@ -2055,6 +2055,11 @@
       "Description": "Much like a \u0060Designation\u0060, A \u0060RecurringDonationDesignation\u0060 conveys how much of a \u0060RecurringDonation\u0060 goes to a particular \u0060Fund\u0060.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "amount_cents",
@@ -2075,12 +2080,12 @@
         {
           "JsonName": "fund",
           "ClrName": "Fund",
-          "ClrAttributesType": "Fund",
+          "AttributesClrType": "Fund",
           "Description": "Associated \u0060Fund\u0060.",
           "Slug": "fund",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -2093,12 +2098,7 @@
         }
       ],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "refund",
@@ -2107,6 +2107,11 @@
       "Description": "A \u0060Refund\u0060 record holds information pertaining to a refunded \u0060Donation\u0060.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "amount_cents",
@@ -2157,12 +2162,12 @@
         {
           "JsonName": "designation_refunds",
           "ClrName": "DesignationRefunds",
-          "ClrAttributesType": "DesignationRefund",
+          "AttributesClrType": "DesignationRefund",
           "Description": "Associated \u0060DesignationRefunds\u0060.",
           "Slug": "designation_refunds",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -2175,12 +2180,7 @@
         }
       ],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     }
   ]
 }

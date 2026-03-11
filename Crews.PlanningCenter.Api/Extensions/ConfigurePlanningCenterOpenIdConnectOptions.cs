@@ -10,14 +10,9 @@ namespace Crews.PlanningCenter.Api.Extensions;
 /// <summary>
 /// Configures Planning Center OpenID Connect options from configuration.
 /// </summary>
-internal sealed class ConfigurePlanningCenterOpenIdConnectOptions : IConfigureNamedOptions<OpenIdConnectOptions>
+internal sealed class ConfigurePlanningCenterOpenIdConnectOptions(IConfiguration configuration) : IConfigureNamedOptions<OpenIdConnectOptions>
 {
-    private readonly IConfiguration _configuration;
-
-    public ConfigurePlanningCenterOpenIdConnectOptions(IConfiguration configuration)
-    {
-        _configuration = configuration;
-    }
+    private readonly IConfiguration _configuration = configuration;
 
     public void Configure(string? name, OpenIdConnectOptions options)
     {

@@ -10,6 +10,11 @@
       "Description": "An uploaded file attached to an event.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "content_type",
@@ -58,8 +63,8 @@
         {
           "JsonName": "event",
           "ClrName": "Event",
-          "ClrAttributesType": "Event",
-          "ClrResourceType": "EventResource",
+          "AttributesClrType": "Event",
+          "ResourceClrType": "EventResource",
           "IsCollection": false,
           "Description": "Related \u0060Event\u0060 resource."
         }
@@ -69,12 +74,12 @@
         {
           "JsonName": "event",
           "ClrName": "Event",
-          "ClrAttributesType": "Event",
+          "AttributesClrType": "Event",
           "Description": "Associated \u0060Event\u0060.",
           "Slug": "event",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -155,12 +160,7 @@
           "Parameter": "where[updated_at]",
           "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
         }
-      ],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "conflict",
@@ -169,6 +169,11 @@
       "Description": "A conflict between two events caused by overlapping event resource\nrequests.\n\nIf the conflict has been resolved, \u0060resolved_at\u0060 will be present.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "created_at",
@@ -199,24 +204,24 @@
         {
           "JsonName": "resource",
           "ClrName": "Resource",
-          "ClrAttributesType": "Resource",
-          "ClrResourceType": "ResourceResource",
+          "AttributesClrType": "Resource",
+          "ResourceClrType": "ResourceResource",
           "IsCollection": false,
           "Description": "Related \u0060Resource\u0060 resource."
         },
         {
           "JsonName": "resolved_by",
           "ClrName": "ResolvedBy",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060ResolvedBy\u0060 resource."
         },
         {
           "JsonName": "winner",
           "ClrName": "Winner",
-          "ClrAttributesType": "Event",
-          "ClrResourceType": "EventResource",
+          "AttributesClrType": "Event",
+          "ResourceClrType": "EventResource",
           "IsCollection": false,
           "Description": "Related \u0060Winner\u0060 resource."
         }
@@ -226,32 +231,32 @@
         {
           "JsonName": "resolved_by",
           "ClrName": "ResolvedBy",
-          "ClrAttributesType": "Person",
+          "AttributesClrType": "Person",
           "Description": "Associated \u0060ResolvedBy\u0060.",
           "Slug": "resolved_by",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "resource",
           "ClrName": "Resource",
-          "ClrAttributesType": "Resource",
+          "AttributesClrType": "Resource",
           "Description": "Associated \u0060Resource\u0060.",
           "Slug": "resource",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "winner",
           "ClrName": "Winner",
-          "ClrAttributesType": "Event",
+          "AttributesClrType": "Event",
           "Description": "Associated \u0060Winner\u0060.",
           "Slug": "winner",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -284,12 +289,7 @@
           "Description": "Sort response items by the \u0060ResolvedAt\u0060 attribute."
         }
       ],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "containing_resource",
@@ -298,18 +298,18 @@
       "Description": "The containing record for a RoomSetup. Can be a Resource or\nan Organization\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [],
       "Relationships": [],
       "Actions": [],
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "event",
@@ -318,6 +318,11 @@
       "Description": "An event.\n\nMay contain information such as who owns\nthe event, visibility on Church Center and a public-facing summary.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "approval_status",
@@ -390,16 +395,16 @@
         {
           "JsonName": "calendar",
           "ClrName": "Calendar",
-          "ClrAttributesType": "Calendar",
-          "ClrResourceType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier",
+          "AttributesClrType": "Calendar",
+          "ResourceClrType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier",
           "IsCollection": false,
           "Description": "Related \u0060Calendar\u0060 resource."
         },
         {
           "JsonName": "owner",
           "ClrName": "Owner",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060Owner\u0060 resource."
         }
@@ -409,104 +414,104 @@
         {
           "JsonName": "attachments",
           "ClrName": "Attachments",
-          "ClrAttributesType": "Attachment",
+          "AttributesClrType": "Attachment",
           "Description": "Associated \u0060Attachments\u0060.",
           "Slug": "attachments",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "conflicts",
           "ClrName": "Conflicts",
-          "ClrAttributesType": "Conflict",
+          "AttributesClrType": "Conflict",
           "Description": "Associated \u0060Conflicts\u0060.",
           "Slug": "conflicts",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "event_connections",
           "ClrName": "EventConnections",
-          "ClrAttributesType": "EventConnection",
+          "AttributesClrType": "EventConnection",
           "Description": "Associated \u0060EventConnections\u0060.",
           "Slug": "event_connections",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "event_instances",
           "ClrName": "EventInstances",
-          "ClrAttributesType": "EventInstance",
+          "AttributesClrType": "EventInstance",
           "Description": "Associated \u0060EventInstances\u0060.",
           "Slug": "event_instances",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByFuture",
               "Value": "future",
               "Description": "Filter results by the \u0060Future\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "event_resource_requests",
           "ClrName": "EventResourceRequests",
-          "ClrAttributesType": "EventResourceRequest",
+          "AttributesClrType": "EventResourceRequest",
           "Description": "Associated \u0060EventResourceRequests\u0060.",
           "Slug": "event_resource_requests",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "feed",
           "ClrName": "Feed",
-          "ClrAttributesType": "Feed",
+          "AttributesClrType": "Feed",
           "Description": "Associated \u0060Feed\u0060.",
           "Slug": "feed",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "owner",
           "ClrName": "Owner",
-          "ClrAttributesType": "Person",
+          "AttributesClrType": "Person",
           "Description": "Associated \u0060Owner\u0060.",
           "Slug": "owner",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "resource_bookings",
           "ClrName": "ResourceBookings",
-          "ClrAttributesType": "ResourceBooking",
+          "AttributesClrType": "ResourceBooking",
           "Description": "Associated \u0060ResourceBookings\u0060.",
           "Slug": "resource_bookings",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByFuture",
               "Value": "future",
               "Description": "Filter results by the \u0060Future\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "tags",
           "ClrName": "Tags",
-          "ClrAttributesType": "Tag",
+          "AttributesClrType": "Tag",
           "Description": "Associated \u0060Tags\u0060.",
           "Slug": "tags",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -583,12 +588,7 @@
           "Parameter": "where[visible_in_church_center]",
           "Description": "Query response items by the \u0060VisibleInChurchCenter\u0060 attribute."
         }
-      ],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "event_connection",
@@ -597,6 +597,11 @@
       "Description": "A connection between a Calendar event and a record in another product\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "connected_to_id",
@@ -640,8 +645,8 @@
         {
           "JsonName": "event",
           "ClrName": "Event",
-          "ClrAttributesType": "Event",
-          "ClrResourceType": "EventResource",
+          "AttributesClrType": "Event",
+          "ResourceClrType": "EventResource",
           "IsCollection": false,
           "Description": "Related \u0060Event\u0060 resource."
         }
@@ -669,12 +674,7 @@
           "Parameter": "where[promoted]",
           "Description": "Query response items by the \u0060Promoted\u0060 attribute."
         }
-      ],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "event_instance",
@@ -683,6 +683,11 @@
       "Description": "A specific occurrence of an event.\n\nIf the event is recurring, \u0060recurrence\u0060 will be set and\n\u0060recurrence_description\u0060 will provide an overview of the recurrence pattern.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "all_day_event",
@@ -779,8 +784,8 @@
         {
           "JsonName": "event",
           "ClrName": "Event",
-          "ClrAttributesType": "Event",
-          "ClrResourceType": "EventResource",
+          "AttributesClrType": "Event",
+          "ResourceClrType": "EventResource",
           "IsCollection": false,
           "Description": "Related \u0060Event\u0060 resource."
         }
@@ -790,29 +795,31 @@
         {
           "JsonName": "event",
           "ClrName": "Event",
-          "ClrAttributesType": "Event",
+          "AttributesClrType": "Event",
           "Description": "Associated \u0060Event\u0060.",
           "Slug": "event",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "event_times",
           "ClrName": "EventTimes",
-          "ClrAttributesType": "EventTime",
+          "AttributesClrType": "EventTime",
           "Description": "Associated \u0060EventTimes\u0060.",
           "Slug": "event_times",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "resource_bookings",
           "ClrName": "ResourceBookings",
-          "ClrAttributesType": "ResourceBooking",
+          "AttributesClrType": "ResourceBooking",
           "Description": "Associated \u0060ResourceBookings\u0060.",
           "Slug": "resource_bookings",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByFuture",
@@ -829,19 +836,17 @@
               "Value": "rooms",
               "Description": "Filter results by the \u0060Rooms\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "tags",
           "ClrName": "Tags",
-          "ClrAttributesType": "Tag",
+          "AttributesClrType": "Tag",
           "Description": "Associated \u0060Tags\u0060.",
           "Slug": "tags",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -927,12 +932,7 @@
           "Parameter": "where[updated_at]",
           "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
         }
-      ],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "event_resource_answer",
@@ -941,6 +941,11 @@
       "Description": "An answer to a question in a room or resource request.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "answer",
@@ -977,32 +982,32 @@
         {
           "JsonName": "created_by",
           "ClrName": "CreatedBy",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060CreatedBy\u0060 resource."
         },
         {
           "JsonName": "updated_by",
           "ClrName": "UpdatedBy",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060UpdatedBy\u0060 resource."
         },
         {
           "JsonName": "resource_question",
           "ClrName": "ResourceQuestion",
-          "ClrAttributesType": "ResourceQuestion",
-          "ClrResourceType": "ResourceQuestionResource",
+          "AttributesClrType": "ResourceQuestion",
+          "ResourceClrType": "ResourceQuestionResource",
           "IsCollection": false,
           "Description": "Related \u0060ResourceQuestion\u0060 resource."
         },
         {
           "JsonName": "event_resource_request",
           "ClrName": "EventResourceRequest",
-          "ClrAttributesType": "EventResourceRequest",
-          "ClrResourceType": "EventResourceRequestResource",
+          "AttributesClrType": "EventResourceRequest",
+          "ResourceClrType": "EventResourceRequestResource",
           "IsCollection": false,
           "Description": "Related \u0060EventResourceRequest\u0060 resource."
         }
@@ -1011,12 +1016,7 @@
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "event_resource_request",
@@ -1025,6 +1025,11 @@
       "Description": "A room or resource request for a specific event.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "approval_sent",
@@ -1073,48 +1078,48 @@
         {
           "JsonName": "event",
           "ClrName": "Event",
-          "ClrAttributesType": "Event",
-          "ClrResourceType": "EventResource",
+          "AttributesClrType": "Event",
+          "ResourceClrType": "EventResource",
           "IsCollection": false,
           "Description": "Related \u0060Event\u0060 resource."
         },
         {
           "JsonName": "resource",
           "ClrName": "Resource",
-          "ClrAttributesType": "Resource",
-          "ClrResourceType": "ResourceResource",
+          "AttributesClrType": "Resource",
+          "ResourceClrType": "ResourceResource",
           "IsCollection": false,
           "Description": "Related \u0060Resource\u0060 resource."
         },
         {
           "JsonName": "event_resource_request",
           "ClrName": "EventResourceRequest",
-          "ClrAttributesType": "EventResourceRequest",
-          "ClrResourceType": "EventResourceRequestResource",
+          "AttributesClrType": "EventResourceRequest",
+          "ResourceClrType": "EventResourceRequestResource",
           "IsCollection": false,
           "Description": "Related \u0060EventResourceRequest\u0060 resource."
         },
         {
           "JsonName": "created_by",
           "ClrName": "CreatedBy",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060CreatedBy\u0060 resource."
         },
         {
           "JsonName": "updated_by",
           "ClrName": "UpdatedBy",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060UpdatedBy\u0060 resource."
         },
         {
           "JsonName": "room_setup",
           "ClrName": "RoomSetup",
-          "ClrAttributesType": "RoomSetup",
-          "ClrResourceType": "RoomSetupResource",
+          "AttributesClrType": "RoomSetup",
+          "ResourceClrType": "RoomSetupResource",
           "IsCollection": false,
           "Description": "Related \u0060RoomSetup\u0060 resource."
         }
@@ -1124,39 +1129,41 @@
         {
           "JsonName": "answers",
           "ClrName": "Answers",
-          "ClrAttributesType": "EventResourceAnswer",
+          "AttributesClrType": "EventResourceAnswer",
           "Description": "Associated \u0060Answers\u0060.",
           "Slug": "answers",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "created_by",
           "ClrName": "CreatedBy",
-          "ClrAttributesType": "Person",
+          "AttributesClrType": "Person",
           "Description": "Associated \u0060CreatedBy\u0060.",
           "Slug": "created_by",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "event",
           "ClrName": "Event",
-          "ClrAttributesType": "Event",
+          "AttributesClrType": "Event",
           "Description": "Associated \u0060Event\u0060.",
           "Slug": "event",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "resource_bookings",
           "ClrName": "ResourceBookings",
-          "ClrAttributesType": "ResourceBooking",
+          "AttributesClrType": "ResourceBooking",
           "Description": "Associated \u0060ResourceBookings\u0060.",
           "Slug": "resource_bookings",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByApproved",
@@ -1198,39 +1205,37 @@
               "Value": "rejected",
               "Description": "Filter results by the \u0060Rejected\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "resource",
           "ClrName": "Resource",
-          "ClrAttributesType": "Resource",
+          "AttributesClrType": "Resource",
           "Description": "Associated \u0060Resource\u0060.",
           "Slug": "resource",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "room_setup",
           "ClrName": "RoomSetup",
-          "ClrAttributesType": "RoomSetup",
+          "AttributesClrType": "RoomSetup",
           "Description": "Associated \u0060RoomSetup\u0060.",
           "Slug": "room_setup",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "updated_by",
           "ClrName": "UpdatedBy",
-          "ClrAttributesType": "Person",
+          "AttributesClrType": "Person",
           "Description": "Associated \u0060UpdatedBy\u0060.",
           "Slug": "updated_by",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -1296,12 +1301,7 @@
           "Parameter": "where[updated_at]",
           "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
         }
-      ],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "event_time",
@@ -1310,6 +1310,11 @@
       "Description": "Start and end times for each event instance.\n\nIn the Calendar UI, these are represented under the \u0022Schedule\u0022 section and\nmay include \u0022Setup\u0022 and \u0022Teardown\u0022 times for the instance.\n",
       "Deprecated": false,
       "CollectionOnly": true,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "ends_at",
@@ -1346,8 +1351,8 @@
         {
           "JsonName": "event",
           "ClrName": "Event",
-          "ClrAttributesType": "Event",
-          "ClrResourceType": "EventResource",
+          "AttributesClrType": "Event",
+          "ResourceClrType": "EventResource",
           "IsCollection": false,
           "Description": "Related \u0060Event\u0060 resource."
         }
@@ -1357,12 +1362,12 @@
         {
           "JsonName": "event",
           "ClrName": "Event",
-          "ClrAttributesType": "Event",
+          "AttributesClrType": "Event",
           "Description": "Associated \u0060Event\u0060.",
           "Slug": "event",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -1417,12 +1422,7 @@
           "Parameter": "where[visible_on_widget_and_ical]",
           "Description": "Query response items by the \u0060VisibleOnWidgetAndIcal\u0060 attribute."
         }
-      ],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "feed",
@@ -1431,6 +1431,11 @@
       "Description": "A feed belonging to an organization.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "can_delete",
@@ -1491,16 +1496,16 @@
         {
           "JsonName": "event_owner",
           "ClrName": "EventOwner",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060EventOwner\u0060 resource."
         },
         {
           "JsonName": "default_calendar",
           "ClrName": "DefaultCalendar",
-          "ClrAttributesType": "Calendar",
-          "ClrResourceType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier",
+          "AttributesClrType": "Calendar",
+          "ResourceClrType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier",
           "IsCollection": false,
           "Description": "Related \u0060DefaultCalendar\u0060 resource."
         }
@@ -1528,12 +1533,7 @@
           "Parameter": "where[source_id]",
           "Description": "Query response items by the \u0060SourceId\u0060 attribute."
         }
-      ],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "job_status",
@@ -1542,6 +1542,11 @@
       "Description": "Planning Center does not provide a description for this resource.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "errors",
@@ -1579,12 +1584,7 @@
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "organization",
@@ -1593,6 +1593,11 @@
       "Description": "An administrative structure, usually representing a single church.\nContains date/time formatting and time zone preferences.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "calendar_starts_on",
@@ -1637,19 +1642,21 @@
         {
           "JsonName": "attachments",
           "ClrName": "Attachments",
-          "ClrAttributesType": "Attachment",
+          "AttributesClrType": "Attachment",
           "Description": "Associated \u0060Attachments\u0060.",
           "Slug": "attachments",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "conflicts",
           "ClrName": "Conflicts",
-          "ClrAttributesType": "Conflict",
+          "AttributesClrType": "Conflict",
           "Description": "Associated \u0060Conflicts\u0060.",
           "Slug": "conflicts",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByFuture",
@@ -1666,16 +1673,16 @@
               "Value": "unresolved",
               "Description": "Filter results by the \u0060Unresolved\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "event_instances",
           "ClrName": "EventInstances",
-          "ClrAttributesType": "EventInstance",
+          "AttributesClrType": "EventInstance",
           "Description": "Associated \u0060EventInstances\u0060.",
           "Slug": "event_instances",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByAll",
@@ -1822,62 +1829,62 @@
               "Value": "unresolved",
               "Description": "Filter results by the \u0060Unresolved\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "event_resource_requests",
           "ClrName": "EventResourceRequests",
-          "ClrAttributesType": "EventResourceRequest",
+          "AttributesClrType": "EventResourceRequest",
           "Description": "Associated \u0060EventResourceRequests\u0060.",
           "Slug": "event_resource_requests",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "events",
           "ClrName": "Events",
-          "ClrAttributesType": "Event",
+          "AttributesClrType": "Event",
           "Description": "Associated \u0060Events\u0060.",
           "Slug": "events",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByFuture",
               "Value": "future",
               "Description": "Filter results by the \u0060Future\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "feeds",
           "ClrName": "Feeds",
-          "ClrAttributesType": "Feed",
+          "AttributesClrType": "Feed",
           "Description": "Associated \u0060Feeds\u0060.",
           "Slug": "feeds",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "job_statuses",
           "ClrName": "JobStatuses",
-          "ClrAttributesType": "JobStatus",
+          "AttributesClrType": "JobStatus",
           "Description": "Associated \u0060JobStatuses\u0060.",
           "Slug": "job_statuses",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "people",
           "ClrName": "People",
-          "ClrAttributesType": "Person",
+          "AttributesClrType": "Person",
           "Description": "Associated \u0060People\u0060.",
           "Slug": "people",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByActive",
@@ -1889,36 +1896,36 @@
               "Value": "event_owners",
               "Description": "Filter results by the \u0060EventOwners\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "report_templates",
           "ClrName": "ReportTemplates",
-          "ClrAttributesType": "ReportTemplate",
+          "AttributesClrType": "ReportTemplate",
           "Description": "Associated \u0060ReportTemplates\u0060.",
           "Slug": "report_templates",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "resource_approval_groups",
           "ClrName": "ResourceApprovalGroups",
-          "ClrAttributesType": "ResourceApprovalGroup",
+          "AttributesClrType": "ResourceApprovalGroup",
           "Description": "Associated \u0060ResourceApprovalGroups\u0060.",
           "Slug": "resource_approval_groups",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "resource_bookings",
           "ClrName": "ResourceBookings",
-          "ClrAttributesType": "ResourceBooking",
+          "AttributesClrType": "ResourceBooking",
           "Description": "Associated \u0060ResourceBookings\u0060.",
           "Slug": "resource_bookings",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByApproved",
@@ -1970,16 +1977,16 @@
               "Value": "rooms",
               "Description": "Filter results by the \u0060Rooms\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "resource_folders",
           "ClrName": "ResourceFolders",
-          "ClrAttributesType": "ResourceFolder",
+          "AttributesClrType": "ResourceFolder",
           "Description": "Associated \u0060ResourceFolders\u0060.",
           "Slug": "resource_folders",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByResources",
@@ -1991,26 +1998,26 @@
               "Value": "rooms",
               "Description": "Filter results by the \u0060Rooms\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "resource_questions",
           "ClrName": "ResourceQuestions",
-          "ClrAttributesType": "ResourceQuestion",
+          "AttributesClrType": "ResourceQuestion",
           "Description": "Associated \u0060ResourceQuestions\u0060.",
           "Slug": "resource_questions",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "resources",
           "ClrName": "Resources",
-          "ClrAttributesType": "Resource",
+          "AttributesClrType": "Resource",
           "Description": "Associated \u0060Resources\u0060.",
           "Slug": "resources",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByResources",
@@ -2022,67 +2029,60 @@
               "Value": "rooms",
               "Description": "Filter results by the \u0060Rooms\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "room_setups",
           "ClrName": "RoomSetups",
-          "ClrAttributesType": "RoomSetup",
+          "AttributesClrType": "RoomSetup",
           "Description": "Associated \u0060RoomSetups\u0060.",
           "Slug": "room_setups",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterBySharedRoomSetups",
               "Value": "shared_room_setups",
               "Description": "Filter results by the \u0060SharedRoomSetups\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "tag_groups",
           "ClrName": "TagGroups",
-          "ClrAttributesType": "TagGroup",
+          "AttributesClrType": "TagGroup",
           "Description": "Associated \u0060TagGroups\u0060.",
           "Slug": "tag_groups",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByRequired",
               "Value": "required",
               "Description": "Filter results by the \u0060Required\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "tags",
           "ClrName": "Tags",
-          "ClrAttributesType": "Tag",
+          "AttributesClrType": "Tag",
           "Description": "Associated \u0060Tags\u0060.",
           "Slug": "tags",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByIndividual",
               "Value": "individual",
               "Description": "Filter results by the \u0060Individual\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         }
       ],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "person",
@@ -2091,6 +2091,11 @@
       "Description": "The people in your organization with access to Calendar.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "avatar_url",
@@ -2125,7 +2130,7 @@
         {
           "JsonName": "contact_data",
           "ClrName": "ContactData",
-          "ClrType": "System.Text.Json.JsonElement",
+          "ClrType": "Crews.PlanningCenter.Api.Calendar.ContactData",
           "Description": "An object containing the person\u0027s contact data.\n\nThis can include an array of \u0060email_addresses\u0060, \u0060addresses\u0060 and \u0060phone_numbers\u0060\n"
         },
         {
@@ -2255,9 +2260,11 @@
         {
           "JsonName": "event_resource_requests",
           "ClrName": "EventResourceRequests",
-          "ClrAttributesType": "EventResourceRequest",
+          "AttributesClrType": "EventResourceRequest",
           "Description": "Associated \u0060EventResourceRequests\u0060.",
           "Slug": "event_resource_requests",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByAwaitingResponse",
@@ -2284,19 +2291,17 @@
               "Value": "overbooked",
               "Description": "Filter results by the \u0060Overbooked\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "organization",
           "ClrName": "Organization",
-          "ClrAttributesType": "Organization",
+          "AttributesClrType": "Organization",
           "Description": "Associated \u0060Organization\u0060.",
           "Slug": "organization",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -2366,12 +2371,7 @@
           "Parameter": "where[updated_at]",
           "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
         }
-      ],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "report_template",
@@ -2380,6 +2380,11 @@
       "Description": "A template for generating a report.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "body",
@@ -2417,12 +2422,7 @@
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "required_approval",
@@ -2431,6 +2431,11 @@
       "Description": "Represents the relationship between a Resource and a Resource Approval Group.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [],
       "Relationships": [],
       "Actions": [],
@@ -2438,12 +2443,12 @@
         {
           "JsonName": "resource",
           "ClrName": "Resource",
-          "ClrAttributesType": "Resource",
+          "AttributesClrType": "Resource",
           "Description": "Associated \u0060Resource\u0060.",
           "Slug": "resource",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -2456,12 +2461,7 @@
         }
       ],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "resource",
@@ -2470,6 +2470,11 @@
       "Description": "A room or resource that can be requested for use as part of\nan event.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "created_at",
@@ -2498,7 +2503,7 @@
         {
           "JsonName": "image",
           "ClrName": "Image",
-          "ClrType": "System.Text.Json.JsonElement",
+          "ClrType": "Crews.PlanningCenter.Api.Common.Image",
           "Description": "Path to where resource image is stored"
         },
         {
@@ -2544,49 +2549,51 @@
         {
           "JsonName": "conflicts",
           "ClrName": "Conflicts",
-          "ClrAttributesType": "Conflict",
+          "AttributesClrType": "Conflict",
           "Description": "Associated \u0060Conflicts\u0060.",
           "Slug": "conflicts",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "event_resource_requests",
           "ClrName": "EventResourceRequests",
-          "ClrAttributesType": "EventResourceRequest",
+          "AttributesClrType": "EventResourceRequest",
           "Description": "Associated \u0060EventResourceRequests\u0060.",
           "Slug": "event_resource_requests",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "required_approvals",
           "ClrName": "RequiredApprovals",
-          "ClrAttributesType": "RequiredApproval",
+          "AttributesClrType": "RequiredApproval",
           "Description": "Associated \u0060RequiredApprovals\u0060.",
           "Slug": "required_approvals",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "resource_approval_groups",
           "ClrName": "ResourceApprovalGroups",
-          "ClrAttributesType": "ResourceApprovalGroup",
+          "AttributesClrType": "ResourceApprovalGroup",
           "Description": "Associated \u0060ResourceApprovalGroups\u0060.",
           "Slug": "resource_approval_groups",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "resource_bookings",
           "ClrName": "ResourceBookings",
-          "ClrAttributesType": "ResourceBooking",
+          "AttributesClrType": "ResourceBooking",
           "Description": "Associated \u0060ResourceBookings\u0060.",
           "Slug": "resource_bookings",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByApproved",
@@ -2628,39 +2635,37 @@
               "Value": "rejected",
               "Description": "Filter results by the \u0060Rejected\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "resource_folder",
           "ClrName": "ResourceFolder",
-          "ClrAttributesType": "ResourceFolder",
+          "AttributesClrType": "ResourceFolder",
           "Description": "Associated \u0060ResourceFolder\u0060.",
           "Slug": "resource_folder",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "resource_questions",
           "ClrName": "ResourceQuestions",
-          "ClrAttributesType": "ResourceQuestion",
+          "AttributesClrType": "ResourceQuestion",
           "Description": "Associated \u0060ResourceQuestions\u0060.",
           "Slug": "resource_questions",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "room_setups",
           "ClrName": "RoomSetups",
-          "ClrAttributesType": "RoomSetup",
+          "AttributesClrType": "RoomSetup",
           "Description": "Associated \u0060RoomSetups\u0060.",
           "Slug": "room_setups",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -2752,12 +2757,7 @@
           "Parameter": "where[updated_at]",
           "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
         }
-      ],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "resource_approval_group",
@@ -2766,6 +2766,11 @@
       "Description": "A group of people that can be attached to a room or resource\nin order to require their approval for booking.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "created_at",
@@ -2810,9 +2815,11 @@
         {
           "JsonName": "event_resource_requests",
           "ClrName": "EventResourceRequests",
-          "ClrAttributesType": "EventResourceRequest",
+          "AttributesClrType": "EventResourceRequest",
           "Description": "Associated \u0060EventResourceRequests\u0060.",
           "Slug": "event_resource_requests",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByAwaitingResponse",
@@ -2839,26 +2846,26 @@
               "Value": "overbooked",
               "Description": "Filter results by the \u0060Overbooked\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "people",
           "ClrName": "People",
-          "ClrAttributesType": "Person",
+          "AttributesClrType": "Person",
           "Description": "Associated \u0060People\u0060.",
           "Slug": "people",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "required_approvals",
           "ClrName": "RequiredApprovals",
-          "ClrAttributesType": "RequiredApproval",
+          "AttributesClrType": "RequiredApproval",
           "Description": "Associated \u0060RequiredApprovals\u0060.",
           "Slug": "required_approvals",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByResources",
@@ -2870,16 +2877,16 @@
               "Value": "rooms",
               "Description": "Filter results by the \u0060Rooms\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "resources",
           "ClrName": "Resources",
-          "ClrAttributesType": "Resource",
+          "AttributesClrType": "Resource",
           "Description": "Associated \u0060Resources\u0060.",
           "Slug": "resources",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByResources",
@@ -2891,9 +2898,7 @@
               "Value": "rooms",
               "Description": "Filter results by the \u0060Rooms\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         }
       ],
       "CanInclude": [
@@ -2954,12 +2959,7 @@
           "Parameter": "where[updated_at]",
           "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
         }
-      ],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "resource_booking",
@@ -2968,6 +2968,11 @@
       "Description": "A specific booking of a room or resource for an event instance.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "created_at",
@@ -3004,24 +3009,24 @@
         {
           "JsonName": "event",
           "ClrName": "Event",
-          "ClrAttributesType": "Event",
-          "ClrResourceType": "EventResource",
+          "AttributesClrType": "Event",
+          "ResourceClrType": "EventResource",
           "IsCollection": false,
           "Description": "Related \u0060Event\u0060 resource."
         },
         {
           "JsonName": "event_instance",
           "ClrName": "EventInstance",
-          "ClrAttributesType": "EventInstance",
-          "ClrResourceType": "EventInstanceResource",
+          "AttributesClrType": "EventInstance",
+          "ResourceClrType": "EventInstanceResource",
           "IsCollection": false,
           "Description": "Related \u0060EventInstance\u0060 resource."
         },
         {
           "JsonName": "resource",
           "ClrName": "Resource",
-          "ClrAttributesType": "Resource",
-          "ClrResourceType": "ResourceResource",
+          "AttributesClrType": "Resource",
+          "ResourceClrType": "ResourceResource",
           "IsCollection": false,
           "Description": "Related \u0060Resource\u0060 resource."
         }
@@ -3031,32 +3036,32 @@
         {
           "JsonName": "event_instance",
           "ClrName": "EventInstance",
-          "ClrAttributesType": "EventInstance",
+          "AttributesClrType": "EventInstance",
           "Description": "Associated \u0060EventInstance\u0060.",
           "Slug": "event_instance",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "event_resource_request",
           "ClrName": "EventResourceRequest",
-          "ClrAttributesType": "EventResourceRequest",
+          "AttributesClrType": "EventResourceRequest",
           "Description": "Associated \u0060EventResourceRequest\u0060.",
           "Slug": "event_resource_request",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "resource",
           "ClrName": "Resource",
-          "ClrAttributesType": "Resource",
+          "AttributesClrType": "Resource",
           "Description": "Associated \u0060Resource\u0060.",
           "Slug": "resource",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -3129,12 +3134,7 @@
           "Parameter": "where[updated_at]",
           "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
         }
-      ],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "resource_folder",
@@ -3143,6 +3143,11 @@
       "Description": "An organizational folder containing rooms or resources.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "ancestry",
@@ -3187,12 +3192,12 @@
         {
           "JsonName": "resources",
           "ClrName": "Resources",
-          "ClrAttributesType": "Resource",
+          "AttributesClrType": "Resource",
           "Description": "Associated \u0060Resources\u0060.",
           "Slug": "resources",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -3257,12 +3262,7 @@
           "Parameter": "where[updated_at]",
           "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
         }
-      ],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "resource_question",
@@ -3271,6 +3271,11 @@
       "Description": "A question to answer when requesting to book a room or resource.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "choices",
@@ -3331,8 +3336,8 @@
         {
           "JsonName": "resource",
           "ClrName": "Resource",
-          "ClrAttributesType": "Resource",
-          "ClrResourceType": "ResourceResource",
+          "AttributesClrType": "Resource",
+          "ResourceClrType": "ResourceResource",
           "IsCollection": false,
           "Description": "Related \u0060Resource\u0060 resource."
         }
@@ -3360,12 +3365,7 @@
           "Parameter": "where[updated_at]",
           "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
         }
-      ],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "resource_suggestion",
@@ -3374,6 +3374,11 @@
       "Description": "A resource and quantity suggested by a room setup.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "created_at",
@@ -3398,16 +3403,16 @@
         {
           "JsonName": "resource",
           "ClrName": "Resource",
-          "ClrAttributesType": "Resource",
-          "ClrResourceType": "ResourceResource",
+          "AttributesClrType": "Resource",
+          "ResourceClrType": "ResourceResource",
           "IsCollection": false,
           "Description": "Related \u0060Resource\u0060 resource."
         },
         {
           "JsonName": "room_setup",
           "ClrName": "RoomSetup",
-          "ClrAttributesType": "RoomSetup",
-          "ClrResourceType": "RoomSetupResource",
+          "AttributesClrType": "RoomSetup",
+          "ResourceClrType": "RoomSetupResource",
           "IsCollection": false,
           "Description": "Related \u0060RoomSetup\u0060 resource."
         }
@@ -3417,12 +3422,12 @@
         {
           "JsonName": "resource",
           "ClrName": "Resource",
-          "ClrAttributesType": "Resource",
+          "AttributesClrType": "Resource",
           "Description": "Associated \u0060Resource\u0060.",
           "Slug": "resource",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -3435,12 +3440,7 @@
         }
       ],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "room_setup",
@@ -3449,6 +3449,11 @@
       "Description": "A diagram and list of suggested resources useful for predefined room setups.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "created_at",
@@ -3465,7 +3470,7 @@
         {
           "JsonName": "diagram",
           "ClrName": "Diagram",
-          "ClrType": "System.Text.Json.JsonElement",
+          "ClrType": "Crews.PlanningCenter.Api.Common.Image",
           "Description": "An object containing \u0060url\u0060 and \u0060thumbnail\u0060.\n\n\u0060url\u0060 is path to where room setup is stored.\n\u0060thumbnail\u0060 contains \u0060url\u0060 path to where thumbnail is stored.\n"
         },
         {
@@ -3497,24 +3502,24 @@
         {
           "JsonName": "room_setup",
           "ClrName": "RoomSetup",
-          "ClrAttributesType": "RoomSetup",
-          "ClrResourceType": "RoomSetupResource",
+          "AttributesClrType": "RoomSetup",
+          "ResourceClrType": "RoomSetupResource",
           "IsCollection": false,
           "Description": "Related \u0060RoomSetup\u0060 resource."
         },
         {
           "JsonName": "resource_suggestions",
           "ClrName": "ResourceSuggestions",
-          "ClrAttributesType": "ResourceSuggestion",
-          "ClrResourceType": "ResourceSuggestionResource",
+          "AttributesClrType": "ResourceSuggestion",
+          "ResourceClrType": "ResourceSuggestionResource",
           "IsCollection": true,
           "Description": "Related \u0060ResourceSuggestions\u0060 resource."
         },
         {
           "JsonName": "containing_resource",
           "ClrName": "ContainingResource",
-          "ClrAttributesType": "Resource",
-          "ClrResourceType": "ResourceResource",
+          "AttributesClrType": "Resource",
+          "ResourceClrType": "ResourceResource",
           "IsCollection": false,
           "Description": "Related \u0060ContainingResource\u0060 resource."
         }
@@ -3524,22 +3529,22 @@
         {
           "JsonName": "containing_resource",
           "ClrName": "ContainingResource",
-          "ClrAttributesType": "ContainingResource",
+          "AttributesClrType": "ContainingResource",
           "Description": "Associated \u0060ContainingResource\u0060.",
           "Slug": "containing_resource",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "resource_suggestions",
           "ClrName": "ResourceSuggestions",
-          "ClrAttributesType": "ResourceSuggestion",
+          "AttributesClrType": "ResourceSuggestion",
           "Description": "Associated \u0060ResourceSuggestions\u0060.",
           "Slug": "resource_suggestions",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -3594,12 +3599,7 @@
           "Parameter": "where[updated_at]",
           "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
         }
-      ],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "tag",
@@ -3608,6 +3608,11 @@
       "Description": "An organizational tag that can be applied to events.\n\nApplied tags can be used to filter events on the calendar or\nfilter events for reports, iCal feeds, kiosk, and the widget.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "church_center_category",
@@ -3652,32 +3657,32 @@
         {
           "JsonName": "event_instances",
           "ClrName": "EventInstances",
-          "ClrAttributesType": "EventInstance",
+          "AttributesClrType": "EventInstance",
           "Description": "Associated \u0060EventInstances\u0060.",
           "Slug": "event_instances",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "events",
           "ClrName": "Events",
-          "ClrAttributesType": "Event",
+          "AttributesClrType": "Event",
           "Description": "Associated \u0060Events\u0060.",
           "Slug": "events",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "tag_group",
           "ClrName": "TagGroup",
-          "ClrAttributesType": "TagGroup",
+          "AttributesClrType": "TagGroup",
           "Description": "Associated \u0060TagGroup\u0060.",
           "Slug": "tag_group",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -3744,12 +3749,7 @@
           "Parameter": "where[updated_at]",
           "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
         }
-      ],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "tag_group",
@@ -3758,6 +3758,11 @@
       "Description": "A grouping of tags for organizational purposes.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "created_at",
@@ -3790,22 +3795,22 @@
         {
           "JsonName": "events",
           "ClrName": "Events",
-          "ClrAttributesType": "Event",
+          "AttributesClrType": "Event",
           "Description": "Associated \u0060Events\u0060.",
           "Slug": "events",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "tags",
           "ClrName": "Tags",
-          "ClrAttributesType": "Tag",
+          "AttributesClrType": "Tag",
           "Description": "Associated \u0060Tags\u0060.",
           "Slug": "tags",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -3850,12 +3855,7 @@
           "Parameter": "where[updated_at]",
           "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
         }
-      ],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     }
   ]
 }

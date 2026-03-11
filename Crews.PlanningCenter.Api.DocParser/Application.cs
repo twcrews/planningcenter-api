@@ -4,19 +4,23 @@ using Crews.PlanningCenter.Api.Models;
 using Crews.PlanningCenter.Api.Models.Extensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace Crews.PlanningCenter.Api.DocParser;
 
+[ExcludeFromCodeCoverage(Justification = "This class is not easily testable, and its injections are thoroughly tested.")]
 class Application(ILogger<Application> logger, IConfiguration configuration, IDocumentationBuilder documentationBuilder)
 {
     public async Task RunAsync()
     {
-        logger.LogInformation("Documentation parsing started at {DateTime}", DateTime.Now.ToString());
+        logger.LogDebug("Successfully configured and started documentation parser application");
+        System.Diagnostics.Stopwatch stopwatch = System.Diagnostics.Stopwatch.StartNew();
 
         AppSettings settings = new();
         configuration.GetSection(nameof(AppSettings)).Bind(settings);
+
         JsonSerializerOptions serializerOptions = new()
         {
             WriteIndented = true,
@@ -43,5 +47,8 @@ class Application(ILogger<Application> logger, IConfiguration configuration, IDo
                 await stream.DisposeAsync();
             }
         }
+
+        stopwatch.Stop();
+        logger.LogDebug("Documentation parsing completed in {Elapsed}", stopwatch.Elapsed);
     }
 }

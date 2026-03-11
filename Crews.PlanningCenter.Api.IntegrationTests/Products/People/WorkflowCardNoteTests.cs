@@ -10,11 +10,13 @@ public class WorkflowCardNoteTests(PeopleFixture fixture) : PeopleTestBase(fixtu
 	[Fact]
 	public async Task WorkflowCardNote_GetAndPost()
 	{
-		var cardId = await CollectionReadHelper.GetFirstIdAsync(
-			HttpClient, $"people/v2/workflows/{Fixture.WorkflowId}/cards");
+		var workflowId = await CollectionReadHelper.GetLastIdAsync(
+			HttpClient, $"people/v2/workflows");
 
+		var cardId = await CollectionReadHelper.GetFirstIdAsync(
+			HttpClient, $"people/v2/workflows/{workflowId}/cards");
 		// -- Create note --
-		var cardNotes = Org.Workflows.WithId(Fixture.WorkflowId).Cards
+		var cardNotes = Org.Workflows.WithId(workflowId!).Cards
 			.WithId(cardId!).Notes;
 		var createResult = await cardNotes.PostAsync(
 			new WorkflowCardNote { Note = $"IntTest-{UniqueId}" });

@@ -12,7 +12,7 @@ public class FormFieldTests(PeopleFixture fixture) : PeopleTestBase(fixture)
 		var formId = await CollectionReadHelper.GetFirstIdAsync(HttpClient, "people/v2/forms");
 
 		var formFieldId = await CollectionReadHelper.GetFirstIdAsync(
-			HttpClient, $"people/v2/forms/{formId}/form_fields");
+			HttpClient, $"people/v2/forms/{formId}/fields");
 
 		var result = await Org.Forms.WithId(formId!).Fields.WithId(formFieldId!).GetAsync();
 

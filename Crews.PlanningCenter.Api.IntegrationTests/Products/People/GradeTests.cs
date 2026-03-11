@@ -10,13 +10,7 @@ public class GradeTests(PeopleFixture fixture) : PeopleTestBase(fixture)
 	[Fact]
 	public async Task Grade_GetAsync_ReturnsGrade()
 	{
-		var gradeId = await CollectionReadHelper.GetFirstIdAsync(HttpClient, "people/v2/grades");
-
-		var client = new GradeClient(
-			HttpClient,
-			new Uri(HttpClient.BaseAddress!, $"people/v2/grades/{gradeId}/"));
-
-		var result = await client.GetAsync();
+		var result = await Org.Grades.GetAsync();
 
 		Assert.NotNull(result);
 		Assert.NotNull(result.Data);

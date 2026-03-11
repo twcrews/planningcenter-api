@@ -10,6 +10,11 @@
       "Description": "An address represents a physical and/or mailing address for a person.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "city",
@@ -76,8 +81,8 @@
         {
           "JsonName": "person",
           "ClrName": "Person",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060Person\u0060 resource."
         }
@@ -185,12 +190,7 @@
           "Parameter": "where[zip]",
           "Description": "Query response items by the \u0060Zip\u0060 attribute."
         }
-      ],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "app",
@@ -199,6 +199,11 @@
       "Description": "An app is one of the handful of apps that Planning Center offers that organizations can subscribe to, e.g. Services, Registrations, etc.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "name",
@@ -242,12 +247,7 @@
           "Parameter": "where[url]",
           "Description": "Query response items by the \u0060Url\u0060 attribute."
         }
-      ],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "birthday_people",
@@ -256,18 +256,18 @@
       "Description": "Returns upcoming birthdays for the organization.\n\nNote: This endpoint will always only return the first 15 people having a birthday in the next 30 days, ordered by birthday, ascending.\n",
       "Deprecated": false,
       "CollectionOnly": true,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": false,
+      "ShouldGenerateClients": true,
       "Attributes": [],
       "Relationships": [],
       "Actions": [],
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": false,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "campus",
@@ -276,6 +276,11 @@
       "Description": "A Campus is a location belonging to an Organization",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "avatar_url",
@@ -316,7 +321,7 @@
         {
           "JsonName": "date_format",
           "ClrName": "DateFormat",
-          "ClrType": "int",
+          "ClrType": "string",
           "Description": "Planning Center does not provide a description for this attribute."
         },
         {
@@ -408,8 +413,8 @@
         {
           "JsonName": "organization",
           "ClrName": "Organization",
-          "ClrAttributesType": "Organization",
-          "ClrResourceType": "OrganizationResource",
+          "AttributesClrType": "Organization",
+          "ResourceClrType": "OrganizationResource",
           "IsCollection": false,
           "Description": "Related \u0060Organization\u0060 resource."
         }
@@ -419,22 +424,22 @@
         {
           "JsonName": "lists",
           "ClrName": "Lists",
-          "ClrAttributesType": "List",
+          "AttributesClrType": "List",
           "Description": "Associated \u0060Lists\u0060.",
           "Slug": "lists",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "service_times",
           "ClrName": "ServiceTimes",
-          "ClrAttributesType": "ServiceTime",
+          "AttributesClrType": "ServiceTime",
           "Description": "Associated \u0060ServiceTimes\u0060.",
           "Slug": "service_times",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -489,12 +494,7 @@
           "Parameter": "where[updated_at]",
           "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
         }
-      ],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "carrier",
@@ -503,6 +503,11 @@
       "Description": "Planning Center does not provide a description for this resource.",
       "Deprecated": false,
       "CollectionOnly": true,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "international",
@@ -539,12 +544,7 @@
           "Description": "Sort response items by the \u0060Name\u0060 attribute."
         }
       ],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "condition",
@@ -553,6 +553,11 @@
       "Description": "A condition is an individual criterion used by a List Rule.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "application",
@@ -593,7 +598,7 @@
         {
           "JsonName": "settings",
           "ClrName": "Settings",
-          "ClrType": "System.Text.Json.JsonElement",
+          "ClrType": "System.Text.Json.Nodes.JsonObject",
           "Description": "Planning Center does not provide a description for this attribute."
         },
         {
@@ -607,8 +612,8 @@
         {
           "JsonName": "created_by",
           "ClrName": "CreatedBy",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060CreatedBy\u0060 resource."
         }
@@ -618,12 +623,12 @@
         {
           "JsonName": "created_by",
           "ClrName": "CreatedBy",
-          "ClrAttributesType": "Person",
+          "AttributesClrType": "Person",
           "Description": "Associated \u0060CreatedBy\u0060.",
           "Slug": "created_by",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -726,12 +731,7 @@
           "Parameter": "where[updated_at]",
           "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
         }
-      ],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "connected_person",
@@ -740,6 +740,11 @@
       "Description": "A Connected Person is an account from a different organization linked to an account in this organization.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "first_name",
@@ -781,7 +786,8 @@
           "JsonName": "organization_id",
           "ClrName": "OrganizationId",
           "ClrType": "string",
-          "Description": "Planning Center does not provide a description for this attribute."
+          "Description": "Planning Center does not provide a description for this attribute.",
+          "JsonConverter": "Crews.PlanningCenter.Api.Converters.StringFromNumberConverter"
         },
         {
           "JsonName": "organization_name",
@@ -794,8 +800,8 @@
         {
           "JsonName": "organization",
           "ClrName": "Organization",
-          "ClrAttributesType": "Organization",
-          "ClrResourceType": "OrganizationResource",
+          "AttributesClrType": "Organization",
+          "ResourceClrType": "OrganizationResource",
           "IsCollection": false,
           "Description": "Related \u0060Organization\u0060 resource."
         }
@@ -804,12 +810,7 @@
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "custom_sender",
@@ -818,6 +819,11 @@
       "Description": "A custom sender that can be used when sending emails.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "created_at",
@@ -878,8 +884,8 @@
         {
           "JsonName": "custom_sender_shares",
           "ClrName": "CustomSenderShares",
-          "ClrAttributesType": "CustomSenderShare",
-          "ClrResourceType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier",
+          "AttributesClrType": "CustomSenderShare",
+          "ResourceClrType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier",
           "IsCollection": false,
           "Description": "Related \u0060CustomSenderShares\u0060 resource."
         }
@@ -922,12 +928,7 @@
           "Description": "Sort response items by the \u0060VerifiedAt\u0060 attribute."
         }
       ],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "email",
@@ -936,6 +937,11 @@
       "Description": "An email represents an email address and location.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "address",
@@ -978,8 +984,8 @@
         {
           "JsonName": "person",
           "ClrName": "Person",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060Person\u0060 resource."
         }
@@ -989,12 +995,12 @@
         {
           "JsonName": "person",
           "ClrName": "Person",
-          "ClrAttributesType": "Person",
+          "AttributesClrType": "Person",
           "Description": "Associated \u0060Person\u0060.",
           "Slug": "person",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [],
@@ -1062,12 +1068,7 @@
           "Parameter": "where[updated_at]",
           "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
         }
-      ],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "field_datum",
@@ -1076,11 +1077,16 @@
       "Description": "A field datum is an individual piece of data for a custom field.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "file",
           "ClrName": "File",
-          "ClrType": "string",
+          "ClrType": "Crews.PlanningCenter.Api.People.File",
           "Description": "Planning Center does not provide a description for this attribute."
         },
         {
@@ -1112,16 +1118,16 @@
         {
           "JsonName": "field_definition",
           "ClrName": "FieldDefinition",
-          "ClrAttributesType": "FieldDefinition",
-          "ClrResourceType": "FieldDefinitionResource",
+          "AttributesClrType": "FieldDefinition",
+          "ResourceClrType": "FieldDefinitionResource",
           "IsCollection": false,
           "Description": "Related \u0060FieldDefinition\u0060 resource."
         },
         {
           "JsonName": "customizable",
           "ClrName": "Customizable",
-          "ClrAttributesType": "Customizable",
-          "ClrResourceType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier",
+          "AttributesClrType": "Customizable",
+          "ResourceClrType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier",
           "IsCollection": false,
           "Description": "Related \u0060Customizable\u0060 resource."
         }
@@ -1131,42 +1137,42 @@
         {
           "JsonName": "field_definition",
           "ClrName": "FieldDefinition",
-          "ClrAttributesType": "FieldDefinition",
+          "AttributesClrType": "FieldDefinition",
           "Description": "Associated \u0060FieldDefinition\u0060.",
           "Slug": "field_definition",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "field_option",
           "ClrName": "FieldOption",
-          "ClrAttributesType": "FieldOption",
+          "AttributesClrType": "FieldOption",
           "Description": "Associated \u0060FieldOption\u0060.",
           "Slug": "field_option",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "person",
           "ClrName": "Person",
-          "ClrAttributesType": "Person",
+          "AttributesClrType": "Person",
           "Description": "Associated \u0060Person\u0060.",
           "Slug": "person",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "tab",
           "ClrName": "Tab",
-          "ClrAttributesType": "Tab",
+          "AttributesClrType": "Tab",
           "Description": "Associated \u0060Tab\u0060.",
           "Slug": "tab",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -1256,12 +1262,7 @@
           "Parameter": "where[value]",
           "Description": "Query response items by the \u0060Value\u0060 attribute."
         }
-      ],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "field_definition",
@@ -1270,6 +1271,11 @@
       "Description": "A field definition represents a custom field -- its name, data type, etc.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "config",
@@ -1319,8 +1325,8 @@
         {
           "JsonName": "tab",
           "ClrName": "Tab",
-          "ClrAttributesType": "Tab",
-          "ClrResourceType": "TabResource",
+          "AttributesClrType": "Tab",
+          "ResourceClrType": "TabResource",
           "IsCollection": false,
           "Description": "Related \u0060Tab\u0060 resource."
         }
@@ -1330,22 +1336,22 @@
         {
           "JsonName": "field_options",
           "ClrName": "FieldOptions",
-          "ClrAttributesType": "FieldOption",
+          "AttributesClrType": "FieldOption",
           "Description": "Associated \u0060FieldOptions\u0060.",
           "Slug": "field_options",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "tab",
           "ClrName": "Tab",
-          "ClrAttributesType": "Tab",
+          "AttributesClrType": "Tab",
           "Description": "Associated \u0060Tab\u0060.",
           "Slug": "tab",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -1444,12 +1450,7 @@
           "Parameter": "where[tab_id]",
           "Description": "Query response items by the \u0060TabId\u0060 attribute."
         }
-      ],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "field_option",
@@ -1458,6 +1459,11 @@
       "Description": "A field option represents an individual option for a custom field of type \u0022select\u0022 or \u0022checkboxes\u0022.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "sequence",
@@ -1476,8 +1482,8 @@
         {
           "JsonName": "field_definition",
           "ClrName": "FieldDefinition",
-          "ClrAttributesType": "FieldDefinition",
-          "ClrResourceType": "FieldDefinitionResource",
+          "AttributesClrType": "FieldDefinition",
+          "ResourceClrType": "FieldDefinitionResource",
           "IsCollection": false,
           "Description": "Related \u0060FieldDefinition\u0060 resource."
         }
@@ -1510,12 +1516,7 @@
           "Parameter": "where[value]",
           "Description": "Query response items by the \u0060Value\u0060 attribute."
         }
-      ],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "form",
@@ -1524,6 +1525,11 @@
       "Description": "A custom form for people to fill out.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "active",
@@ -1608,16 +1614,16 @@
         {
           "JsonName": "campus",
           "ClrName": "Campus",
-          "ClrAttributesType": "Campus",
-          "ClrResourceType": "CampusResource",
+          "AttributesClrType": "Campus",
+          "ResourceClrType": "CampusResource",
           "IsCollection": false,
           "Description": "Related \u0060Campus\u0060 resource."
         },
         {
           "JsonName": "form_category",
           "ClrName": "FormCategory",
-          "ClrAttributesType": "FormCategory",
-          "ClrResourceType": "FormCategoryResource",
+          "AttributesClrType": "FormCategory",
+          "ResourceClrType": "FormCategoryResource",
           "IsCollection": false,
           "Description": "Related \u0060FormCategory\u0060 resource."
         }
@@ -1627,42 +1633,42 @@
         {
           "JsonName": "campus",
           "ClrName": "Campus",
-          "ClrAttributesType": "Campus",
+          "AttributesClrType": "Campus",
           "Description": "Associated \u0060Campus\u0060.",
           "Slug": "campus",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "category",
           "ClrName": "Category",
-          "ClrAttributesType": "FormCategory",
+          "AttributesClrType": "FormCategory",
           "Description": "Associated \u0060Category\u0060.",
           "Slug": "category",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "fields",
           "ClrName": "Fields",
-          "ClrAttributesType": "FormField",
+          "AttributesClrType": "FormField",
           "Description": "Associated \u0060Fields\u0060.",
           "Slug": "fields",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "form_submissions",
           "ClrName": "FormSubmissions",
-          "ClrAttributesType": "FormSubmission",
+          "AttributesClrType": "FormSubmission",
           "Description": "Associated \u0060FormSubmissions\u0060.",
           "Slug": "form_submissions",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -1731,12 +1737,7 @@
           "Parameter": "where[id]",
           "Description": "Query response items by the \u0060Id\u0060 attribute."
         }
-      ],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "form_category",
@@ -1745,6 +1746,11 @@
       "Description": "A Form Category",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "created_at",
@@ -1805,12 +1811,7 @@
           "Parameter": "where[updated_at]",
           "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
         }
-      ],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "form_field",
@@ -1819,6 +1820,11 @@
       "Description": "A field in a custom form.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "created_at",
@@ -1859,7 +1865,7 @@
         {
           "JsonName": "settings",
           "ClrName": "Settings",
-          "ClrType": "string",
+          "ClrType": "System.Text.Json.Nodes.JsonObject",
           "Description": "Planning Center does not provide a description for this attribute."
         },
         {
@@ -1873,32 +1879,32 @@
         {
           "JsonName": "form",
           "ClrName": "Form",
-          "ClrAttributesType": "Form",
-          "ClrResourceType": "FormResource",
+          "AttributesClrType": "Form",
+          "ResourceClrType": "FormResource",
           "IsCollection": false,
           "Description": "Related \u0060Form\u0060 resource."
         },
         {
           "JsonName": "fieldable",
           "ClrName": "Fieldable",
-          "ClrAttributesType": "Fieldable",
-          "ClrResourceType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier",
+          "AttributesClrType": "Fieldable",
+          "ResourceClrType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier",
           "IsCollection": false,
           "Description": "Related \u0060Fieldable\u0060 resource."
         },
         {
           "JsonName": "options",
           "ClrName": "Options",
-          "ClrAttributesType": "FormFieldOption",
-          "ClrResourceType": "FormFieldOptionResource",
+          "AttributesClrType": "FormFieldOption",
+          "ResourceClrType": "FormFieldOptionResource",
           "IsCollection": false,
           "Description": "Related \u0060Options\u0060 resource."
         },
         {
           "JsonName": "form_field_conditions",
           "ClrName": "FormFieldConditions",
-          "ClrAttributesType": "FormFieldCondition",
-          "ClrResourceType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier",
+          "AttributesClrType": "FormFieldCondition",
+          "ResourceClrType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier",
           "IsCollection": true,
           "Description": "Related \u0060FormFieldConditions\u0060 resource."
         }
@@ -1908,12 +1914,12 @@
         {
           "JsonName": "options",
           "ClrName": "Options",
-          "ClrAttributesType": "FormFieldOption",
+          "AttributesClrType": "FormFieldOption",
           "Description": "Associated \u0060Options\u0060.",
           "Slug": "options",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -1942,12 +1948,7 @@
           "Description": "Sort response items by the \u0060UpdatedAt\u0060 attribute."
         }
       ],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "form_field_option",
@@ -1956,6 +1957,11 @@
       "Description": "A field option on a custom form field.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "created_at",
@@ -1986,16 +1992,16 @@
         {
           "JsonName": "form_field",
           "ClrName": "FormField",
-          "ClrAttributesType": "FormField",
-          "ClrResourceType": "FormFieldResource",
+          "AttributesClrType": "FormField",
+          "ResourceClrType": "FormFieldResource",
           "IsCollection": false,
           "Description": "Related \u0060FormField\u0060 resource."
         },
         {
           "JsonName": "optionable",
           "ClrName": "Optionable",
-          "ClrAttributesType": "Optionable",
-          "ClrResourceType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier",
+          "AttributesClrType": "Optionable",
+          "ResourceClrType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier",
           "IsCollection": false,
           "Description": "Related \u0060Optionable\u0060 resource."
         }
@@ -2020,12 +2026,7 @@
           "Description": "Sort response items by the \u0060UpdatedAt\u0060 attribute."
         }
       ],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "form_submission",
@@ -2034,6 +2035,11 @@
       "Description": "A form submission.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "created_at",
@@ -2058,16 +2064,16 @@
         {
           "JsonName": "person",
           "ClrName": "Person",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060Person\u0060 resource."
         },
         {
           "JsonName": "form",
           "ClrName": "Form",
-          "ClrAttributesType": "Form",
-          "ClrResourceType": "FormResource",
+          "AttributesClrType": "Form",
+          "ResourceClrType": "FormResource",
           "IsCollection": false,
           "Description": "Related \u0060Form\u0060 resource."
         }
@@ -2077,42 +2083,42 @@
         {
           "JsonName": "form",
           "ClrName": "Form",
-          "ClrAttributesType": "Form",
+          "AttributesClrType": "Form",
           "Description": "Associated \u0060Form\u0060.",
           "Slug": "form",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "form_fields",
           "ClrName": "FormFields",
-          "ClrAttributesType": "FormField",
+          "AttributesClrType": "FormField",
           "Description": "Associated \u0060FormFields\u0060.",
           "Slug": "form_fields",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "form_submission_values",
           "ClrName": "FormSubmissionValues",
-          "ClrAttributesType": "FormSubmissionValue",
+          "AttributesClrType": "FormSubmissionValue",
           "Description": "Associated \u0060FormSubmissionValues\u0060.",
           "Slug": "form_submission_values",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "person",
           "ClrName": "Person",
-          "ClrAttributesType": "Person",
+          "AttributesClrType": "Person",
           "Description": "Associated \u0060Person\u0060.",
           "Slug": "person",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -2154,20 +2160,15 @@
         {
           "ClrMethodName": "OrderByPersonFirstName",
           "Value": "person.first_name",
-          "Description": "Sort response items by the \u0060Person.firstName\u0060 attribute."
+          "Description": "Sort response items by the \u0060Person.FirstName\u0060 attribute."
         },
         {
           "ClrMethodName": "OrderByPersonLastName",
           "Value": "person.last_name",
-          "Description": "Sort response items by the \u0060Person.lastName\u0060 attribute."
+          "Description": "Sort response items by the \u0060Person.LastName\u0060 attribute."
         }
       ],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "form_submission_value",
@@ -2176,6 +2177,11 @@
       "Description": "A form submission value.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "attachments",
@@ -2194,24 +2200,24 @@
         {
           "JsonName": "form_field",
           "ClrName": "FormField",
-          "ClrAttributesType": "FormField",
-          "ClrResourceType": "FormFieldResource",
+          "AttributesClrType": "FormField",
+          "ResourceClrType": "FormFieldResource",
           "IsCollection": false,
           "Description": "Related \u0060FormField\u0060 resource."
         },
         {
           "JsonName": "form_field_option",
           "ClrName": "FormFieldOption",
-          "ClrAttributesType": "FormFieldOption",
-          "ClrResourceType": "FormFieldOptionResource",
+          "AttributesClrType": "FormFieldOption",
+          "ResourceClrType": "FormFieldOptionResource",
           "IsCollection": false,
           "Description": "Related \u0060FormFieldOption\u0060 resource."
         },
         {
           "JsonName": "form_submission",
           "ClrName": "FormSubmission",
-          "ClrAttributesType": "FormSubmission",
-          "ClrResourceType": "FormSubmissionResource",
+          "AttributesClrType": "FormSubmission",
+          "ResourceClrType": "FormSubmissionResource",
           "IsCollection": false,
           "Description": "Related \u0060FormSubmission\u0060 resource."
         }
@@ -2220,12 +2226,7 @@
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "grade",
@@ -2234,6 +2235,11 @@
       "Description": "Planning Center does not provide a description for this resource.",
       "Deprecated": false,
       "CollectionOnly": true,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "key",
@@ -2253,12 +2259,7 @@
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "household",
@@ -2267,6 +2268,11 @@
       "Description": "A household links people together and can have a primary contact. To add a person to an existing household, use the HouseholdMemberships endpoint.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "avatar",
@@ -2315,16 +2321,16 @@
         {
           "JsonName": "primary_contact",
           "ClrName": "PrimaryContact",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060PrimaryContact\u0060 resource."
         },
         {
           "JsonName": "people",
           "ClrName": "People",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": true,
           "Description": "Related \u0060People\u0060 resource."
         }
@@ -2334,19 +2340,21 @@
         {
           "JsonName": "household_memberships",
           "ClrName": "HouseholdMemberships",
-          "ClrAttributesType": "HouseholdMembership",
+          "AttributesClrType": "HouseholdMembership",
           "Description": "Associated \u0060HouseholdMemberships\u0060.",
           "Slug": "household_memberships",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "people",
           "ClrName": "People",
-          "ClrAttributesType": "Person",
+          "AttributesClrType": "Person",
           "Description": "Associated \u0060People\u0060.",
           "Slug": "people",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByNonPending",
@@ -2358,9 +2366,7 @@
               "Value": "without_deceased",
               "Description": "Filter results by the \u0060WithoutDeceased\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         }
       ],
       "CanInclude": [
@@ -2430,12 +2436,7 @@
           "Parameter": "where[updated_at]",
           "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
         }
-      ],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "household_membership",
@@ -2444,6 +2445,11 @@
       "Description": "A household membership is the linking record between a household and a person.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "household_role",
@@ -2468,8 +2474,8 @@
         {
           "JsonName": "person",
           "ClrName": "Person",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060Person\u0060 resource."
         }
@@ -2479,22 +2485,22 @@
         {
           "JsonName": "household",
           "ClrName": "Household",
-          "ClrAttributesType": "Household",
+          "AttributesClrType": "Household",
           "Description": "Associated \u0060Household\u0060.",
           "Slug": "household",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "person",
           "ClrName": "Person",
-          "ClrAttributesType": "Person",
+          "AttributesClrType": "Person",
           "Description": "Associated \u0060Person\u0060.",
           "Slug": "person",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -2538,12 +2544,7 @@
           "Parameter": "where[person_name]",
           "Description": "Query response items by the \u0060PersonName\u0060 attribute."
         }
-      ],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "inactive_reason",
@@ -2552,6 +2553,11 @@
       "Description": "An inactive reason is a small bit of text indicating why a member is no longer active.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "value",
@@ -2578,12 +2584,7 @@
           "Parameter": "where[value]",
           "Description": "Query response items by the \u0060Value\u0060 attribute."
         }
-      ],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "list",
@@ -2592,6 +2593,11 @@
       "Description": "A list is a powerful tool for finding and grouping people together using any criteria imaginable.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "auto_refresh",
@@ -2747,102 +2753,102 @@
         {
           "JsonName": "campus",
           "ClrName": "Campus",
-          "ClrAttributesType": "Campus",
+          "AttributesClrType": "Campus",
           "Description": "Associated \u0060Campus\u0060.",
           "Slug": "campus",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "category",
           "ClrName": "Category",
-          "ClrAttributesType": "ListCategory",
+          "AttributesClrType": "ListCategory",
           "Description": "Associated \u0060Category\u0060.",
           "Slug": "category",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "created_by",
           "ClrName": "CreatedBy",
-          "ClrAttributesType": "Person",
+          "AttributesClrType": "Person",
           "Description": "Associated \u0060CreatedBy\u0060.",
           "Slug": "created_by",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "list_results",
           "ClrName": "ListResults",
-          "ClrAttributesType": "ListResult",
+          "AttributesClrType": "ListResult",
           "Description": "Associated \u0060ListResults\u0060.",
           "Slug": "list_results",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "mailchimp_sync_status",
           "ClrName": "MailchimpSyncStatus",
-          "ClrAttributesType": "MailchimpSyncStatus",
+          "AttributesClrType": "MailchimpSyncStatus",
           "Description": "Associated \u0060MailchimpSyncStatus\u0060.",
           "Slug": "mailchimp_sync_status",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "people",
           "ClrName": "People",
-          "ClrAttributesType": "Person",
+          "AttributesClrType": "Person",
           "Description": "Associated \u0060People\u0060.",
           "Slug": "people",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "rules",
           "ClrName": "Rules",
-          "ClrAttributesType": "Rule",
+          "AttributesClrType": "Rule",
           "Description": "Associated \u0060Rules\u0060.",
           "Slug": "rules",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "shares",
           "ClrName": "Shares",
-          "ClrAttributesType": "ListShare",
+          "AttributesClrType": "ListShare",
           "Description": "Associated \u0060Shares\u0060.",
           "Slug": "shares",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "star",
           "ClrName": "Star",
-          "ClrAttributesType": "ListStar",
+          "AttributesClrType": "ListStar",
           "Description": "Associated \u0060Star\u0060.",
           "Slug": "star",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "updated_by",
           "ClrName": "UpdatedBy",
-          "ClrAttributesType": "Person",
+          "AttributesClrType": "Person",
           "Description": "Associated \u0060UpdatedBy\u0060.",
           "Slug": "updated_by",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -2922,7 +2928,7 @@
         {
           "ClrMethodName": "OrderByListCategoriesName",
           "Value": "list_categories.name",
-          "Description": "Sort response items by the \u0060ListCategories.name\u0060 attribute."
+          "Description": "Sort response items by the \u0060ListCategories.Name\u0060 attribute."
         },
         {
           "ClrMethodName": "OrderByListCategoryId",
@@ -2976,12 +2982,7 @@
           "Parameter": "where[updated_at]",
           "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
         }
-      ],
-      "Postable": false,
-      "Patchable": true,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "list_category",
@@ -2990,6 +2991,11 @@
       "Description": "A List Category",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "created_at",
@@ -3007,7 +3013,8 @@
           "JsonName": "organization_id",
           "ClrName": "OrganizationId",
           "ClrType": "string",
-          "Description": "Planning Center does not provide a description for this attribute."
+          "Description": "Planning Center does not provide a description for this attribute.",
+          "JsonConverter": "Crews.PlanningCenter.Api.Converters.StringFromNumberConverter"
         },
         {
           "JsonName": "updated_at",
@@ -3020,8 +3027,8 @@
         {
           "JsonName": "organization",
           "ClrName": "Organization",
-          "ClrAttributesType": "Organization",
-          "ClrResourceType": "OrganizationResource",
+          "AttributesClrType": "Organization",
+          "ResourceClrType": "OrganizationResource",
           "IsCollection": false,
           "Description": "Related \u0060Organization\u0060 resource."
         }
@@ -3031,12 +3038,12 @@
         {
           "JsonName": "lists",
           "ClrName": "Lists",
-          "ClrAttributesType": "List",
+          "AttributesClrType": "List",
           "Description": "Associated \u0060Lists\u0060.",
           "Slug": "lists",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -3095,12 +3102,7 @@
           "Parameter": "where[updated_at]",
           "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
         }
-      ],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "list_result",
@@ -3109,6 +3111,11 @@
       "Description": "A list result",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "created_at",
@@ -3127,16 +3134,16 @@
         {
           "JsonName": "person",
           "ClrName": "Person",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060Person\u0060 resource."
         },
         {
           "JsonName": "list",
           "ClrName": "List",
-          "ClrAttributesType": "List",
-          "ClrResourceType": "ListResource",
+          "AttributesClrType": "List",
+          "ResourceClrType": "ListResource",
           "IsCollection": false,
           "Description": "Related \u0060List\u0060 resource."
         }
@@ -3156,12 +3163,7 @@
           "Description": "Sort response items by the \u0060UpdatedAt\u0060 attribute."
         }
       ],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "list_share",
@@ -3170,6 +3172,11 @@
       "Description": "A list share indicates who has access to edit a list.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "created_at",
@@ -3200,8 +3207,8 @@
         {
           "JsonName": "person",
           "ClrName": "Person",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060Person\u0060 resource."
         }
@@ -3211,12 +3218,12 @@
         {
           "JsonName": "person",
           "ClrName": "Person",
-          "ClrAttributesType": "Person",
+          "AttributesClrType": "Person",
           "Description": "Associated \u0060Person\u0060.",
           "Slug": "person",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -3265,12 +3272,7 @@
           "Parameter": "where[permission]",
           "Description": "Query response items by the \u0060Permission\u0060 attribute."
         }
-      ],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "list_star",
@@ -3279,6 +3281,11 @@
       "Description": "A starred list for a person indicates it is special in some way",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": false,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "created_at",
@@ -3292,12 +3299,7 @@
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": true,
-      "Patchable": false,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "mailchimp_sync_status",
@@ -3306,6 +3308,11 @@
       "Description": "The status of syncing a List with Mailchimp.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "completed_at",
@@ -3343,12 +3350,7 @@
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "marital_status",
@@ -3357,6 +3359,11 @@
       "Description": "A martial status represents a member\u0027s current status, e.g. married, single, etc.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "value",
@@ -3388,12 +3395,7 @@
           "Parameter": "where[value]",
           "Description": "Query response items by the \u0060Value\u0060 attribute."
         }
-      ],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "message",
@@ -3402,6 +3404,11 @@
       "Description": "A message is an individual email or sms text sent to a member. Every message has a parent message group.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "app_name",
@@ -3430,7 +3437,7 @@
         {
           "JsonName": "file",
           "ClrName": "File",
-          "ClrType": "string",
+          "ClrType": "Crews.PlanningCenter.Api.People.File",
           "Description": "Planning Center does not provide a description for this attribute."
         },
         {
@@ -3498,24 +3505,24 @@
         {
           "JsonName": "from",
           "ClrName": "From",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060From\u0060 resource."
         },
         {
           "JsonName": "to",
           "ClrName": "To",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060To\u0060 resource."
         },
         {
           "JsonName": "message_group",
           "ClrName": "MessageGroup",
-          "ClrAttributesType": "MessageGroup",
-          "ClrResourceType": "MessageGroupResource",
+          "AttributesClrType": "MessageGroup",
+          "ResourceClrType": "MessageGroupResource",
           "IsCollection": false,
           "Description": "Related \u0060MessageGroup\u0060 resource."
         }
@@ -3525,22 +3532,22 @@
         {
           "JsonName": "message_group",
           "ClrName": "MessageGroup",
-          "ClrAttributesType": "MessageGroup",
+          "AttributesClrType": "MessageGroup",
           "Description": "Associated \u0060MessageGroup\u0060.",
           "Slug": "message_group",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "to",
           "ClrName": "To",
-          "ClrAttributesType": "Person",
+          "AttributesClrType": "Person",
           "Description": "Associated \u0060To\u0060.",
           "Slug": "to",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -3699,12 +3706,7 @@
           "Parameter": "where[to_addresses]",
           "Description": "Query response items by the \u0060ToAddresses\u0060 attribute."
         }
-      ],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "message_group",
@@ -3713,6 +3715,11 @@
       "Description": "A message group represents one or more emails or text messages sent from one of the Planning Center apps. The message group indicates the from person, app, etc.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "contains_user_generated_content",
@@ -3787,32 +3794,32 @@
         {
           "JsonName": "app",
           "ClrName": "App",
-          "ClrAttributesType": "App",
+          "AttributesClrType": "App",
           "Description": "Associated \u0060App\u0060.",
           "Slug": "app",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "from",
           "ClrName": "From",
-          "ClrAttributesType": "Person",
+          "AttributesClrType": "Person",
           "Description": "Associated \u0060From\u0060.",
           "Slug": "from",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "messages",
           "ClrName": "Messages",
-          "ClrAttributesType": "Message",
+          "AttributesClrType": "Message",
           "Description": "Associated \u0060Messages\u0060.",
           "Slug": "messages",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -3962,12 +3969,7 @@
           "Parameter": "where[uuid]",
           "Description": "Query response items by the \u0060Uuid\u0060 attribute."
         }
-      ],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "name_prefix",
@@ -3976,6 +3978,11 @@
       "Description": "A name prefix is one of Mr., Mrs., etc.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "value",
@@ -4002,12 +4009,7 @@
           "Parameter": "where[value]",
           "Description": "Query response items by the \u0060Value\u0060 attribute."
         }
-      ],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "name_suffix",
@@ -4016,6 +4018,11 @@
       "Description": "A name suffix is one of Sr., Jr., etc.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "value",
@@ -4042,12 +4049,7 @@
           "Parameter": "where[value]",
           "Description": "Query response items by the \u0060Value\u0060 attribute."
         }
-      ],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "note",
@@ -4056,6 +4058,11 @@
       "Description": "A note is text with a category connected to a person\u2019s profile.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "created_at",
@@ -4067,7 +4074,8 @@
           "JsonName": "created_by_id",
           "ClrName": "CreatedById",
           "ClrType": "string",
-          "Description": "Planning Center does not provide a description for this attribute."
+          "Description": "Planning Center does not provide a description for this attribute.",
+          "JsonConverter": "Crews.PlanningCenter.Api.Converters.StringFromNumberConverter"
         },
         {
           "JsonName": "display_date",
@@ -4085,19 +4093,22 @@
           "JsonName": "note_category_id",
           "ClrName": "NoteCategoryId",
           "ClrType": "string",
-          "Description": "Planning Center does not provide a description for this attribute."
+          "Description": "Planning Center does not provide a description for this attribute.",
+          "JsonConverter": "Crews.PlanningCenter.Api.Converters.StringFromNumberConverter"
         },
         {
           "JsonName": "organization_id",
           "ClrName": "OrganizationId",
           "ClrType": "string",
-          "Description": "Planning Center does not provide a description for this attribute."
+          "Description": "Planning Center does not provide a description for this attribute.",
+          "JsonConverter": "Crews.PlanningCenter.Api.Converters.StringFromNumberConverter"
         },
         {
           "JsonName": "person_id",
           "ClrName": "PersonId",
           "ClrType": "string",
-          "Description": "Planning Center does not provide a description for this attribute."
+          "Description": "Planning Center does not provide a description for this attribute.",
+          "JsonConverter": "Crews.PlanningCenter.Api.Converters.StringFromNumberConverter"
         },
         {
           "JsonName": "updated_at",
@@ -4110,32 +4121,32 @@
         {
           "JsonName": "note_category",
           "ClrName": "NoteCategory",
-          "ClrAttributesType": "NoteCategory",
-          "ClrResourceType": "NoteCategoryResource",
+          "AttributesClrType": "NoteCategory",
+          "ResourceClrType": "NoteCategoryResource",
           "IsCollection": false,
           "Description": "Related \u0060NoteCategory\u0060 resource."
         },
         {
           "JsonName": "organization",
           "ClrName": "Organization",
-          "ClrAttributesType": "Organization",
-          "ClrResourceType": "OrganizationResource",
+          "AttributesClrType": "Organization",
+          "ResourceClrType": "OrganizationResource",
           "IsCollection": false,
           "Description": "Related \u0060Organization\u0060 resource."
         },
         {
           "JsonName": "person",
           "ClrName": "Person",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060Person\u0060 resource."
         },
         {
           "JsonName": "created_by",
           "ClrName": "CreatedBy",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060CreatedBy\u0060 resource."
         }
@@ -4145,32 +4156,32 @@
         {
           "JsonName": "category",
           "ClrName": "Category",
-          "ClrAttributesType": "NoteCategory",
+          "AttributesClrType": "NoteCategory",
           "Description": "Associated \u0060Category\u0060.",
           "Slug": "category",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "created_by",
           "ClrName": "CreatedBy",
-          "ClrAttributesType": "Person",
+          "AttributesClrType": "Person",
           "Description": "Associated \u0060CreatedBy\u0060.",
           "Slug": "created_by",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "person",
           "ClrName": "Person",
-          "ClrAttributesType": "Person",
+          "AttributesClrType": "Person",
           "Description": "Associated \u0060Person\u0060.",
           "Slug": "person",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -4241,12 +4252,7 @@
           "Parameter": "where[note_category_id]",
           "Description": "Query response items by the \u0060NoteCategoryId\u0060 attribute."
         }
-      ],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "note_category",
@@ -4255,6 +4261,11 @@
       "Description": "A Note Category",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "created_at",
@@ -4292,8 +4303,8 @@
         {
           "JsonName": "organization",
           "ClrName": "Organization",
-          "ClrAttributesType": "Organization",
-          "ClrResourceType": "OrganizationResource",
+          "AttributesClrType": "Organization",
+          "ResourceClrType": "OrganizationResource",
           "IsCollection": false,
           "Description": "Related \u0060Organization\u0060 resource."
         }
@@ -4303,32 +4314,32 @@
         {
           "JsonName": "shares",
           "ClrName": "Shares",
-          "ClrAttributesType": "NoteCategoryShare",
+          "AttributesClrType": "NoteCategoryShare",
           "Description": "Associated \u0060Shares\u0060.",
           "Slug": "shares",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "subscribers",
           "ClrName": "Subscribers",
-          "ClrAttributesType": "Person",
+          "AttributesClrType": "Person",
           "Description": "Associated \u0060Subscribers\u0060.",
           "Slug": "subscribers",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "subscriptions",
           "ClrName": "Subscriptions",
-          "ClrAttributesType": "NoteCategorySubscription",
+          "AttributesClrType": "NoteCategorySubscription",
           "Description": "Associated \u0060Subscriptions\u0060.",
           "Slug": "subscriptions",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -4412,12 +4423,7 @@
           "Parameter": "where[updated_at]",
           "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
         }
-      ],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "note_category_share",
@@ -4426,6 +4432,11 @@
       "Description": "A note category share defines who can view notes in a category.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "group",
@@ -4443,23 +4454,24 @@
           "JsonName": "person_id",
           "ClrName": "PersonId",
           "ClrType": "string",
-          "Description": "Planning Center does not provide a description for this attribute."
+          "Description": "Planning Center does not provide a description for this attribute.",
+          "JsonConverter": "Crews.PlanningCenter.Api.Converters.StringFromNumberConverter"
         }
       ],
       "Relationships": [
         {
           "JsonName": "person",
           "ClrName": "Person",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060Person\u0060 resource."
         },
         {
           "JsonName": "note_category",
           "ClrName": "NoteCategory",
-          "ClrAttributesType": "NoteCategory",
-          "ClrResourceType": "NoteCategoryResource",
+          "AttributesClrType": "NoteCategory",
+          "ResourceClrType": "NoteCategoryResource",
           "IsCollection": false,
           "Description": "Related \u0060NoteCategory\u0060 resource."
         }
@@ -4469,12 +4481,12 @@
         {
           "JsonName": "person",
           "ClrName": "Person",
-          "ClrAttributesType": "Person",
+          "AttributesClrType": "Person",
           "Description": "Associated \u0060Person\u0060.",
           "Slug": "person",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -4494,12 +4506,7 @@
           "Parameter": "where[permission]",
           "Description": "Query response items by the \u0060Permission\u0060 attribute."
         }
-      ],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "note_category_subscription",
@@ -4508,6 +4515,11 @@
       "Description": "A subscription for note categories",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "created_at",
@@ -4526,16 +4538,16 @@
         {
           "JsonName": "person",
           "ClrName": "Person",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060Person\u0060 resource."
         },
         {
           "JsonName": "note_category",
           "ClrName": "NoteCategory",
-          "ClrAttributesType": "NoteCategory",
-          "ClrResourceType": "NoteCategoryResource",
+          "AttributesClrType": "NoteCategory",
+          "ResourceClrType": "NoteCategoryResource",
           "IsCollection": false,
           "Description": "Related \u0060NoteCategory\u0060 resource."
         }
@@ -4545,12 +4557,12 @@
         {
           "JsonName": "person",
           "ClrName": "Person",
-          "ClrAttributesType": "Person",
+          "AttributesClrType": "Person",
           "Description": "Associated \u0060Person\u0060.",
           "Slug": "person",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -4587,12 +4599,7 @@
           "Parameter": "where[updated_at]",
           "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
         }
-      ],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "organization",
@@ -4601,6 +4608,11 @@
       "Description": "The organization represents a single church. Every other resource is scoped to this record.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "avatar_url",
@@ -4663,105 +4675,107 @@
         {
           "JsonName": "addresses",
           "ClrName": "Addresses",
-          "ClrAttributesType": "Address",
+          "AttributesClrType": "Address",
           "Description": "Associated \u0060Addresses\u0060.",
           "Slug": "addresses",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "apps",
           "ClrName": "Apps",
-          "ClrAttributesType": "App",
+          "AttributesClrType": "App",
           "Description": "Associated \u0060Apps\u0060.",
           "Slug": "apps",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "birthday_people",
           "ClrName": "BirthdayPeople",
-          "ClrAttributesType": "BirthdayPeople",
+          "AttributesClrType": "BirthdayPeople",
           "Description": "Associated \u0060BirthdayPeople\u0060.",
           "Slug": "birthday_people",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "campuses",
           "ClrName": "Campuses",
-          "ClrAttributesType": "Campus",
+          "AttributesClrType": "Campus",
           "Description": "Associated \u0060Campuses\u0060.",
           "Slug": "campuses",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "carriers",
           "ClrName": "Carriers",
-          "ClrAttributesType": "Carrier",
+          "AttributesClrType": "Carrier",
           "Description": "Associated \u0060Carriers\u0060.",
           "Slug": "carriers",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "emails",
           "ClrName": "Emails",
-          "ClrAttributesType": "Email",
+          "AttributesClrType": "Email",
           "Description": "Associated \u0060Emails\u0060.",
           "Slug": "emails",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "field_data",
           "ClrName": "FieldData",
-          "ClrAttributesType": "FieldDatum",
+          "AttributesClrType": "FieldDatum",
           "Description": "Associated \u0060FieldData\u0060.",
           "Slug": "field_data",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "field_definitions",
           "ClrName": "FieldDefinitions",
-          "ClrAttributesType": "FieldDefinition",
+          "AttributesClrType": "FieldDefinition",
           "Description": "Associated \u0060FieldDefinitions\u0060.",
           "Slug": "field_definitions",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByIncludeDeleted",
               "Value": "include_deleted",
               "Description": "By default, deleted fields are not included. Pass filter=include_deleted to include them."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "form_categories",
           "ClrName": "FormCategories",
-          "ClrAttributesType": "FormCategory",
+          "AttributesClrType": "FormCategory",
           "Description": "Associated \u0060FormCategories\u0060.",
           "Slug": "form_categories",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "forms",
           "ClrName": "Forms",
-          "ClrAttributesType": "Form",
+          "AttributesClrType": "Form",
           "Description": "Associated \u0060Forms\u0060.",
           "Slug": "forms",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByArchived",
@@ -4793,46 +4807,46 @@
               "Value": "with_recoverable",
               "Description": "Filter results by the \u0060WithRecoverable\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "households",
           "ClrName": "Households",
-          "ClrAttributesType": "Household",
+          "AttributesClrType": "Household",
           "Description": "Associated \u0060Households\u0060.",
           "Slug": "households",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "inactive_reasons",
           "ClrName": "InactiveReasons",
-          "ClrAttributesType": "InactiveReason",
+          "AttributesClrType": "InactiveReason",
           "Description": "Associated \u0060InactiveReasons\u0060.",
           "Slug": "inactive_reasons",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "list_categories",
           "ClrName": "ListCategories",
-          "ClrAttributesType": "ListCategory",
+          "AttributesClrType": "ListCategory",
           "Description": "Associated \u0060ListCategories\u0060.",
           "Slug": "list_categories",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "lists",
           "ClrName": "Lists",
-          "ClrAttributesType": "List",
+          "AttributesClrType": "List",
           "Description": "Associated \u0060Lists\u0060.",
           "Slug": "lists",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByCanManage",
@@ -4854,108 +4868,108 @@
               "Value": "unassigned",
               "Description": "Filter results by the \u0060Unassigned\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "marital_statuses",
           "ClrName": "MaritalStatuses",
-          "ClrAttributesType": "MaritalStatus",
+          "AttributesClrType": "MaritalStatus",
           "Description": "Associated \u0060MaritalStatuses\u0060.",
           "Slug": "marital_statuses",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "message_groups",
           "ClrName": "MessageGroups",
-          "ClrAttributesType": "MessageGroup",
+          "AttributesClrType": "MessageGroup",
           "Description": "Associated \u0060MessageGroups\u0060.",
           "Slug": "message_groups",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "messages",
           "ClrName": "Messages",
-          "ClrAttributesType": "Message",
+          "AttributesClrType": "Message",
           "Description": "Associated \u0060Messages\u0060.",
           "Slug": "messages",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByCreatedAfter",
               "Value": "created_after",
               "Description": "Filter results by the \u0060CreatedAfter\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "name_prefixes",
           "ClrName": "NamePrefixes",
-          "ClrAttributesType": "NamePrefix",
+          "AttributesClrType": "NamePrefix",
           "Description": "Associated \u0060NamePrefixes\u0060.",
           "Slug": "name_prefixes",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "name_suffixes",
           "ClrName": "NameSuffixes",
-          "ClrAttributesType": "NameSuffix",
+          "AttributesClrType": "NameSuffix",
           "Description": "Associated \u0060NameSuffixes\u0060.",
           "Slug": "name_suffixes",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "note_categories",
           "ClrName": "NoteCategories",
-          "ClrAttributesType": "NoteCategory",
+          "AttributesClrType": "NoteCategory",
           "Description": "Associated \u0060NoteCategories\u0060.",
           "Slug": "note_categories",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByViewCreatable",
               "Value": "view_creatable",
               "Description": "Filter results by the \u0060ViewCreatable\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "note_category_subscriptions",
           "ClrName": "NoteCategorySubscriptions",
-          "ClrAttributesType": "NoteCategorySubscription",
+          "AttributesClrType": "NoteCategorySubscription",
           "Description": "Associated \u0060NoteCategorySubscriptions\u0060.",
           "Slug": "note_category_subscriptions",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "notes",
           "ClrName": "Notes",
-          "ClrAttributesType": "Note",
+          "AttributesClrType": "Note",
           "Description": "Associated \u0060Notes\u0060.",
           "Slug": "notes",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "people",
           "ClrName": "People",
-          "ClrAttributesType": "Person",
+          "AttributesClrType": "Person",
           "Description": "Associated \u0060People\u0060.",
           "Slug": "people",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByAdmins",
@@ -4972,112 +4986,112 @@
               "Value": "organization_admins",
               "Description": "Filter results by the \u0060OrganizationAdmins\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "people_imports",
           "ClrName": "PeopleImports",
-          "ClrAttributesType": "PeopleImport",
+          "AttributesClrType": "PeopleImport",
           "Description": "Associated \u0060PeopleImports\u0060.",
           "Slug": "people_imports",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "person_mergers",
           "ClrName": "PersonMergers",
-          "ClrAttributesType": "PersonMerger",
+          "AttributesClrType": "PersonMerger",
           "Description": "Associated \u0060PersonMergers\u0060.",
           "Slug": "person_mergers",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "phone_numbers",
           "ClrName": "PhoneNumbers",
-          "ClrAttributesType": "PhoneNumber",
+          "AttributesClrType": "PhoneNumber",
           "Description": "Associated \u0060PhoneNumbers\u0060.",
           "Slug": "phone_numbers",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "reports",
           "ClrName": "Reports",
-          "ClrAttributesType": "Report",
+          "AttributesClrType": "Report",
           "Description": "Associated \u0060Reports\u0060.",
           "Slug": "reports",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "school_options",
           "ClrName": "SchoolOptions",
-          "ClrAttributesType": "SchoolOption",
+          "AttributesClrType": "SchoolOption",
           "Description": "Associated \u0060SchoolOptions\u0060.",
           "Slug": "school_options",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "social_profiles",
           "ClrName": "SocialProfiles",
-          "ClrAttributesType": "SocialProfile",
+          "AttributesClrType": "SocialProfile",
           "Description": "Associated \u0060SocialProfiles\u0060.",
           "Slug": "social_profiles",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "spam_email_addresses",
           "ClrName": "SpamEmailAddresses",
-          "ClrAttributesType": "SpamEmailAddress",
+          "AttributesClrType": "SpamEmailAddress",
           "Description": "Associated \u0060SpamEmailAddresses\u0060.",
           "Slug": "spam_email_addresses",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "stats",
           "ClrName": "Stats",
-          "ClrAttributesType": "OrganizationStatistics",
+          "AttributesClrType": "OrganizationStatistics",
           "Description": "Associated \u0060Stats\u0060.",
           "Slug": "stats",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "tabs",
           "ClrName": "Tabs",
-          "ClrAttributesType": "Tab",
+          "AttributesClrType": "Tab",
           "Description": "Associated \u0060Tabs\u0060.",
           "Slug": "tabs",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByWithFieldDefinitions",
               "Value": "with_field_definitions",
               "Description": "Filter results by the \u0060WithFieldDefinitions\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "workflows",
           "ClrName": "Workflows",
-          "ClrAttributesType": "Workflow",
+          "AttributesClrType": "Workflow",
           "Description": "Associated \u0060Workflows\u0060.",
           "Slug": "workflows",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByArchived",
@@ -5129,19 +5143,32 @@
               "Value": "with_steps",
               "Description": "Filter results by the \u0060WithSteps\u0060 scope."
             }
-          ],
+          ]
+        },
+        {
+          "JsonName": "custom_senders",
+          "ClrName": "CustomSenders",
+          "AttributesClrType": "CustomSender",
+          "Description": "Associated \u0060CustomSenders\u0060.",
+          "Slug": "custom_senders",
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
+        },
+        {
+          "JsonName": "grades",
+          "ClrName": "Grades",
+          "AttributesClrType": "Grade",
+          "Description": "Associated \u0060Grades\u0060.",
+          "Slug": "grades",
+          "IsCollection": true,
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "organization_statistics",
@@ -5150,18 +5177,18 @@
       "Description": "Returns statistics for the organization.",
       "Deprecated": false,
       "CollectionOnly": true,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": false,
+      "ShouldGenerateClients": true,
       "Attributes": [],
       "Relationships": [],
       "Actions": [],
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": false,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "people_import",
@@ -5170,11 +5197,16 @@
       "Description": "A PeopleImport is a record of an ongoing or previous import from a CSV file.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "attribs",
           "ClrName": "Attribs",
-          "ClrType": "string",
+          "ClrType": "Crews.PlanningCenter.Api.People.ImportAttributes",
           "Description": "Planning Center does not provide a description for this attribute."
         },
         {
@@ -5212,16 +5244,16 @@
         {
           "JsonName": "created_by",
           "ClrName": "CreatedBy",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060CreatedBy\u0060 resource."
         },
         {
           "JsonName": "undone_by",
           "ClrName": "UndoneBy",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060UndoneBy\u0060 resource."
         }
@@ -5231,9 +5263,11 @@
         {
           "JsonName": "conflicts",
           "ClrName": "Conflicts",
-          "ClrAttributesType": "PeopleImportConflict",
+          "AttributesClrType": "PeopleImportConflict",
           "Description": "Associated \u0060Conflicts\u0060.",
           "Slug": "conflicts",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByCreates",
@@ -5280,16 +5314,16 @@
               "Value": "updates",
               "Description": "Filter results by the \u0060Updates\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "histories",
           "ClrName": "Histories",
-          "ClrAttributesType": "PeopleImportHistory",
+          "AttributesClrType": "PeopleImportHistory",
           "Description": "Associated \u0060Histories\u0060.",
           "Slug": "histories",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByCreates",
@@ -5316,9 +5350,7 @@
               "Value": "updates",
               "Description": "Filter results by the \u0060Updates\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         }
       ],
       "CanInclude": [],
@@ -5330,12 +5362,7 @@
           "Parameter": "where[status]",
           "Description": "Query response items by the \u0060Status\u0060 attribute."
         }
-      ],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "people_import_conflict",
@@ -5344,6 +5371,11 @@
       "Description": "A PeopleImportConflict is a record of change that will occur if the parent PeopleImport is completed.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "conflicting_changes",
@@ -5412,12 +5444,7 @@
           "Parameter": "where[name]",
           "Description": "Query response items by the \u0060Name\u0060 attribute."
         }
-      ],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "people_import_history",
@@ -5426,6 +5453,11 @@
       "Description": "A PeopleImportHistory is a record of change that occurred when the parent PeopleImport was completed.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "conflicting_changes",
@@ -5464,22 +5496,22 @@
         {
           "JsonName": "household",
           "ClrName": "Household",
-          "ClrAttributesType": "Household",
+          "AttributesClrType": "Household",
           "Description": "Associated \u0060Household\u0060.",
           "Slug": "household",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "person",
           "ClrName": "Person",
-          "ClrAttributesType": "Person",
+          "AttributesClrType": "Person",
           "Description": "Associated \u0060Person\u0060.",
           "Slug": "person",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -5506,12 +5538,7 @@
           "Parameter": "where[name]",
           "Description": "Query response items by the \u0060Name\u0060 attribute."
         }
-      ],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "person",
@@ -5520,6 +5547,11 @@
       "Description": "A person record represents a single member/user of the application. Each person has different permissions that determine how the user can use this app (if at all).",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "accounting_administrator",
@@ -5730,24 +5762,24 @@
         {
           "JsonName": "primary_campus",
           "ClrName": "PrimaryCampus",
-          "ClrAttributesType": "PrimaryCampus",
-          "ClrResourceType": "CampusResource",
+          "AttributesClrType": "PrimaryCampus",
+          "ResourceClrType": "CampusResource",
           "IsCollection": false,
           "Description": "Related \u0060PrimaryCampus\u0060 resource."
         },
         {
           "JsonName": "created_by",
           "ClrName": "CreatedBy",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060CreatedBy\u0060 resource."
         },
         {
           "JsonName": "gender",
           "ClrName": "Gender",
-          "ClrAttributesType": "Gender",
-          "ClrResourceType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier",
+          "AttributesClrType": "Gender",
+          "ResourceClrType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier",
           "IsCollection": false,
           "Description": "Related \u0060Gender\u0060 resource."
         }
@@ -5757,109 +5789,111 @@
         {
           "JsonName": "addresses",
           "ClrName": "Addresses",
-          "ClrAttributesType": "Address",
+          "AttributesClrType": "Address",
           "Description": "Associated \u0060Addresses\u0060.",
           "Slug": "addresses",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "apps",
           "ClrName": "Apps",
-          "ClrAttributesType": "App",
+          "AttributesClrType": "App",
           "Description": "Associated \u0060Apps\u0060.",
           "Slug": "apps",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "connected_people",
           "ClrName": "ConnectedPeople",
-          "ClrAttributesType": "ConnectedPerson",
+          "AttributesClrType": "ConnectedPerson",
           "Description": "Associated \u0060ConnectedPeople\u0060.",
           "Slug": "connected_people",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "emails",
           "ClrName": "Emails",
-          "ClrAttributesType": "Email",
+          "AttributesClrType": "Email",
           "Description": "Associated \u0060Emails\u0060.",
           "Slug": "emails",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "field_data",
           "ClrName": "FieldData",
-          "ClrAttributesType": "FieldDatum",
+          "AttributesClrType": "FieldDatum",
           "Description": "Associated \u0060FieldData\u0060.",
           "Slug": "field_data",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "household_memberships",
           "ClrName": "HouseholdMemberships",
-          "ClrAttributesType": "HouseholdMembership",
+          "AttributesClrType": "HouseholdMembership",
           "Description": "Associated \u0060HouseholdMemberships\u0060.",
           "Slug": "household_memberships",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "households",
           "ClrName": "Households",
-          "ClrAttributesType": "Household",
+          "AttributesClrType": "Household",
           "Description": "Associated \u0060Households\u0060.",
           "Slug": "households",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "inactive_reason",
           "ClrName": "InactiveReason",
-          "ClrAttributesType": "InactiveReason",
+          "AttributesClrType": "InactiveReason",
           "Description": "Associated \u0060InactiveReason\u0060.",
           "Slug": "inactive_reason",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "marital_status",
           "ClrName": "MaritalStatus",
-          "ClrAttributesType": "MaritalStatus",
+          "AttributesClrType": "MaritalStatus",
           "Description": "Associated \u0060MaritalStatus\u0060.",
           "Slug": "marital_status",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "message_groups",
           "ClrName": "MessageGroups",
-          "ClrAttributesType": "MessageGroup",
+          "AttributesClrType": "MessageGroup",
           "Description": "Associated \u0060MessageGroups\u0060.",
           "Slug": "message_groups",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "messages",
           "ClrName": "Messages",
-          "ClrAttributesType": "Message",
+          "AttributesClrType": "Message",
           "Description": "Associated \u0060Messages\u0060.",
           "Slug": "messages",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByCreatedAfter",
@@ -5881,135 +5915,133 @@
               "Value": "unread",
               "Description": "Filter results by the \u0060Unread\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "name_prefix",
           "ClrName": "NamePrefix",
-          "ClrAttributesType": "NamePrefix",
+          "AttributesClrType": "NamePrefix",
           "Description": "Associated \u0060NamePrefix\u0060.",
           "Slug": "name_prefix",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "name_suffix",
           "ClrName": "NameSuffix",
-          "ClrAttributesType": "NameSuffix",
+          "AttributesClrType": "NameSuffix",
           "Description": "Associated \u0060NameSuffix\u0060.",
           "Slug": "name_suffix",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "notes",
           "ClrName": "Notes",
-          "ClrAttributesType": "Note",
+          "AttributesClrType": "Note",
           "Description": "Associated \u0060Notes\u0060.",
           "Slug": "notes",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "organization",
           "ClrName": "Organization",
-          "ClrAttributesType": "Organization",
+          "AttributesClrType": "Organization",
           "Description": "Associated \u0060Organization\u0060.",
           "Slug": "organization",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "person_apps",
           "ClrName": "PersonApps",
-          "ClrAttributesType": "PersonApp",
+          "AttributesClrType": "PersonApp",
           "Description": "Associated \u0060PersonApps\u0060.",
           "Slug": "person_apps",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "phone_numbers",
           "ClrName": "PhoneNumbers",
-          "ClrAttributesType": "PhoneNumber",
+          "AttributesClrType": "PhoneNumber",
           "Description": "Associated \u0060PhoneNumbers\u0060.",
           "Slug": "phone_numbers",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "platform_notifications",
           "ClrName": "PlatformNotifications",
-          "ClrAttributesType": "PlatformNotification",
+          "AttributesClrType": "PlatformNotification",
           "Description": "Associated \u0060PlatformNotifications\u0060.",
           "Slug": "platform_notifications",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "primary_campus",
           "ClrName": "PrimaryCampus",
-          "ClrAttributesType": "Campus",
+          "AttributesClrType": "Campus",
           "Description": "Associated \u0060PrimaryCampus\u0060.",
           "Slug": "primary_campus",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "school",
           "ClrName": "School",
-          "ClrAttributesType": "SchoolOption",
+          "AttributesClrType": "SchoolOption",
           "Description": "Associated \u0060School\u0060.",
           "Slug": "school",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "social_profiles",
           "ClrName": "SocialProfiles",
-          "ClrAttributesType": "SocialProfile",
+          "AttributesClrType": "SocialProfile",
           "Description": "Associated \u0060SocialProfiles\u0060.",
           "Slug": "social_profiles",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "workflow_cards",
           "ClrName": "WorkflowCards",
-          "ClrAttributesType": "WorkflowCard",
+          "AttributesClrType": "WorkflowCard",
           "Description": "Associated \u0060WorkflowCards\u0060.",
           "Slug": "workflow_cards",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByAssigned",
               "Value": "assigned",
               "Description": "Filter results by the \u0060Assigned\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "workflow_shares",
           "ClrName": "WorkflowShares",
-          "ClrAttributesType": "WorkflowShare",
+          "AttributesClrType": "WorkflowShare",
           "Description": "Associated \u0060WorkflowShares\u0060.",
           "Slug": "workflow_shares",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -6396,12 +6428,7 @@
           "Parameter": "where[updated_at]",
           "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
         }
-      ],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "person_app",
@@ -6410,6 +6437,11 @@
       "Description": "A Person App is the relationship between a Person and an App.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "allow_pco_login",
@@ -6428,16 +6460,16 @@
         {
           "JsonName": "app",
           "ClrName": "App",
-          "ClrAttributesType": "App",
-          "ClrResourceType": "AppResource",
+          "AttributesClrType": "App",
+          "ResourceClrType": "AppResource",
           "IsCollection": false,
           "Description": "Related \u0060App\u0060 resource."
         },
         {
           "JsonName": "person",
           "ClrName": "Person",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060Person\u0060 resource."
         }
@@ -6447,12 +6479,12 @@
         {
           "JsonName": "app",
           "ClrName": "App",
-          "ClrAttributesType": "App",
+          "AttributesClrType": "App",
           "Description": "Associated \u0060App\u0060.",
           "Slug": "app",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -6465,12 +6497,7 @@
         }
       ],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": true,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "person_merger",
@@ -6479,6 +6506,11 @@
       "Description": "A Person Merger is the history of profiles that were merged into other profiles.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "created_at",
@@ -6490,29 +6522,31 @@
           "JsonName": "person_to_keep_id",
           "ClrName": "PersonToKeepId",
           "ClrType": "string",
-          "Description": "Planning Center does not provide a description for this attribute."
+          "Description": "Planning Center does not provide a description for this attribute.",
+          "JsonConverter": "Crews.PlanningCenter.Api.Converters.StringFromNumberConverter"
         },
         {
           "JsonName": "person_to_remove_id",
           "ClrName": "PersonToRemoveId",
           "ClrType": "string",
-          "Description": "Planning Center does not provide a description for this attribute."
+          "Description": "Planning Center does not provide a description for this attribute.",
+          "JsonConverter": "Crews.PlanningCenter.Api.Converters.StringFromNumberConverter"
         }
       ],
       "Relationships": [
         {
           "JsonName": "person_to_keep",
           "ClrName": "PersonToKeep",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060PersonToKeep\u0060 resource."
         },
         {
           "JsonName": "person_to_remove",
           "ClrName": "PersonToRemove",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060PersonToRemove\u0060 resource."
         }
@@ -6546,12 +6580,7 @@
           "Parameter": "where[person_to_remove_id]",
           "Description": "Query response items by the \u0060PersonToRemoveId\u0060 attribute."
         }
-      ],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "phone_number",
@@ -6560,6 +6589,11 @@
       "Description": "A phone number represents a single telephone number and location.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "carrier",
@@ -6632,8 +6666,8 @@
         {
           "JsonName": "person",
           "ClrName": "Person",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060Person\u0060 resource."
         }
@@ -6710,12 +6744,7 @@
           "Parameter": "where[updated_at]",
           "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
         }
-      ],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "platform_notification",
@@ -6724,6 +6753,11 @@
       "Description": "A Platform Notification is a suite-wide notification that shows at the top of each application\u0027s screen until dismissed by the user.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "html",
@@ -6737,12 +6771,7 @@
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "report",
@@ -6751,6 +6780,11 @@
       "Description": "A report is editable liquid syntax that provides a powerful tool for presenting your Lists however you want.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "body",
@@ -6783,22 +6817,22 @@
         {
           "JsonName": "created_by",
           "ClrName": "CreatedBy",
-          "ClrAttributesType": "Person",
+          "AttributesClrType": "Person",
           "Description": "Associated \u0060CreatedBy\u0060.",
           "Slug": "created_by",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "updated_by",
           "ClrName": "UpdatedBy",
-          "ClrAttributesType": "Person",
+          "AttributesClrType": "Person",
           "Description": "Associated \u0060UpdatedBy\u0060.",
           "Slug": "updated_by",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -6864,12 +6898,7 @@
           "Parameter": "where[updated_at]",
           "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
         }
-      ],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "rule",
@@ -6878,6 +6907,11 @@
       "Description": "A rule belongs to a List and groups conditions together.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "created_at",
@@ -6904,12 +6938,12 @@
         {
           "JsonName": "conditions",
           "ClrName": "Conditions",
-          "ClrAttributesType": "Condition",
+          "AttributesClrType": "Condition",
           "Description": "Associated \u0060Conditions\u0060.",
           "Slug": "conditions",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -6957,12 +6991,7 @@
           "Parameter": "where[updated_at]",
           "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
         }
-      ],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "school_option",
@@ -6971,6 +7000,11 @@
       "Description": "A school option represents a school name, school type, grades, etc. and can be selected for a person.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "beginning_grade",
@@ -7009,12 +7043,12 @@
         {
           "JsonName": "promotes_to_school",
           "ClrName": "PromotesToSchool",
-          "ClrAttributesType": "SchoolOption",
+          "AttributesClrType": "SchoolOption",
           "Description": "Associated \u0060PromotesToSchool\u0060.",
           "Slug": "promotes_to_school",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [],
@@ -7071,12 +7105,7 @@
           "Parameter": "where[value]",
           "Description": "Query response items by the \u0060Value\u0060 attribute."
         }
-      ],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "service_time",
@@ -7085,6 +7114,11 @@
       "Description": "A ServiceTime Resource",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "day",
@@ -7109,16 +7143,16 @@
         {
           "JsonName": "organization",
           "ClrName": "Organization",
-          "ClrAttributesType": "Organization",
-          "ClrResourceType": "OrganizationResource",
+          "AttributesClrType": "Organization",
+          "ResourceClrType": "OrganizationResource",
           "IsCollection": false,
           "Description": "Related \u0060Organization\u0060 resource."
         },
         {
           "JsonName": "campus",
           "ClrName": "Campus",
-          "ClrAttributesType": "Campus",
-          "ClrResourceType": "CampusResource",
+          "AttributesClrType": "Campus",
+          "ResourceClrType": "CampusResource",
           "IsCollection": false,
           "Description": "Related \u0060Campus\u0060 resource."
         }
@@ -7133,12 +7167,7 @@
           "Description": "Sort response items by the \u0060Time\u0060 attribute."
         }
       ],
-      "CanQueryBy": [],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "social_profile",
@@ -7147,6 +7176,11 @@
       "Description": "A social profile represents a members\u0027s Twitter, Facebook, or other social media account.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "created_at",
@@ -7185,12 +7219,12 @@
         {
           "JsonName": "person",
           "ClrName": "Person",
-          "ClrAttributesType": "Person",
+          "AttributesClrType": "Person",
           "Description": "Associated \u0060Person\u0060.",
           "Slug": "person",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -7260,12 +7294,7 @@
           "Parameter": "where[verified]",
           "Description": "Query response items by the \u0060Verified\u0060 attribute."
         }
-      ],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "spam_email_address",
@@ -7274,6 +7303,11 @@
       "Description": "An email address that is marked as spam",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "address",
@@ -7299,12 +7333,7 @@
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "tab",
@@ -7313,6 +7342,11 @@
       "Description": "A tab is a custom tab and groups like field definitions.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "name",
@@ -7339,28 +7373,28 @@
         {
           "JsonName": "field_definitions",
           "ClrName": "FieldDefinitions",
-          "ClrAttributesType": "FieldDefinition",
+          "AttributesClrType": "FieldDefinition",
           "Description": "Associated \u0060FieldDefinitions\u0060.",
           "Slug": "field_definitions",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByWithDeleted",
               "Value": "with_deleted",
               "Description": "Filter results by the \u0060WithDeleted\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "field_options",
           "ClrName": "FieldOptions",
-          "ClrAttributesType": "FieldOption",
+          "AttributesClrType": "FieldOption",
           "Description": "Associated \u0060FieldOptions\u0060.",
           "Slug": "field_options",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -7415,12 +7449,7 @@
           "Parameter": "where[slug]",
           "Description": "Query response items by the \u0060Slug\u0060 attribute."
         }
-      ],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "workflow",
@@ -7429,6 +7458,11 @@
       "Description": "A Workflow",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "archived_at",
@@ -7549,16 +7583,16 @@
         {
           "JsonName": "workflow_category",
           "ClrName": "WorkflowCategory",
-          "ClrAttributesType": "WorkflowCategory",
-          "ClrResourceType": "WorkflowCategoryResource",
+          "AttributesClrType": "WorkflowCategory",
+          "ResourceClrType": "WorkflowCategoryResource",
           "IsCollection": false,
           "Description": "Related \u0060WorkflowCategory\u0060 resource."
         },
         {
           "JsonName": "campus",
           "ClrName": "Campus",
-          "ClrAttributesType": "Campus",
-          "ClrResourceType": "CampusResource",
+          "AttributesClrType": "Campus",
+          "ResourceClrType": "CampusResource",
           "IsCollection": false,
           "Description": "Related \u0060Campus\u0060 resource."
         }
@@ -7568,52 +7602,52 @@
         {
           "JsonName": "cards",
           "ClrName": "Cards",
-          "ClrAttributesType": "WorkflowCard",
+          "AttributesClrType": "WorkflowCard",
           "Description": "Associated \u0060Cards\u0060.",
           "Slug": "cards",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "category",
           "ClrName": "Category",
-          "ClrAttributesType": "WorkflowCategory",
+          "AttributesClrType": "WorkflowCategory",
           "Description": "Associated \u0060Category\u0060.",
           "Slug": "category",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "shared_people",
           "ClrName": "SharedPeople",
-          "ClrAttributesType": "Person",
+          "AttributesClrType": "Person",
           "Description": "Associated \u0060SharedPeople\u0060.",
           "Slug": "shared_people",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "shares",
           "ClrName": "Shares",
-          "ClrAttributesType": "WorkflowShare",
+          "AttributesClrType": "WorkflowShare",
           "Description": "Associated \u0060Shares\u0060.",
           "Slug": "shares",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "steps",
           "ClrName": "Steps",
-          "ClrAttributesType": "WorkflowStep",
+          "AttributesClrType": "WorkflowStep",
           "Description": "Associated \u0060Steps\u0060.",
           "Slug": "steps",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -7725,12 +7759,7 @@
           "Parameter": "where[workflow_category_id]",
           "Description": "Query response items by the \u0060WorkflowCategoryId\u0060 attribute."
         }
-      ],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "workflow_card",
@@ -7739,6 +7768,11 @@
       "Description": "A Card",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "calculated_due_at_in_days_ago",
@@ -7811,32 +7845,32 @@
         {
           "JsonName": "assignee",
           "ClrName": "Assignee",
-          "ClrAttributesType": "Assignee",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Assignee",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060Assignee\u0060 resource."
         },
         {
           "JsonName": "person",
           "ClrName": "Person",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060Person\u0060 resource."
         },
         {
           "JsonName": "workflow",
           "ClrName": "Workflow",
-          "ClrAttributesType": "Workflow",
-          "ClrResourceType": "WorkflowResource",
+          "AttributesClrType": "Workflow",
+          "ResourceClrType": "WorkflowResource",
           "IsCollection": false,
           "Description": "Related \u0060Workflow\u0060 resource."
         },
         {
           "JsonName": "current_step",
           "ClrName": "CurrentStep",
-          "ClrAttributesType": "WorkflowStep",
-          "ClrResourceType": "WorkflowStepResource",
+          "AttributesClrType": "WorkflowStep",
+          "ResourceClrType": "WorkflowStepResource",
           "IsCollection": false,
           "Description": "Related \u0060CurrentStep\u0060 resource."
         }
@@ -7906,62 +7940,62 @@
         {
           "JsonName": "activities",
           "ClrName": "Activities",
-          "ClrAttributesType": "WorkflowCardActivity",
+          "AttributesClrType": "WorkflowCardActivity",
           "Description": "Associated \u0060Activities\u0060.",
           "Slug": "activities",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "assignee",
           "ClrName": "Assignee",
-          "ClrAttributesType": "Person",
+          "AttributesClrType": "Person",
           "Description": "Associated \u0060Assignee\u0060.",
           "Slug": "assignee",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "current_step",
           "ClrName": "CurrentStep",
-          "ClrAttributesType": "WorkflowStep",
+          "AttributesClrType": "WorkflowStep",
           "Description": "Associated \u0060CurrentStep\u0060.",
           "Slug": "current_step",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "notes",
           "ClrName": "Notes",
-          "ClrAttributesType": "WorkflowCardNote",
+          "AttributesClrType": "WorkflowCardNote",
           "Description": "Associated \u0060Notes\u0060.",
           "Slug": "notes",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "person",
           "ClrName": "Person",
-          "ClrAttributesType": "Person",
+          "AttributesClrType": "Person",
           "Description": "Associated \u0060Person\u0060.",
           "Slug": "person",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "workflow",
           "ClrName": "Workflow",
-          "ClrAttributesType": "Workflow",
+          "AttributesClrType": "Workflow",
           "Description": "Associated \u0060Workflow\u0060.",
           "Slug": "workflow",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -8060,12 +8094,7 @@
           "Parameter": "where[stage]",
           "Description": "Query response items by the \u0060Stage\u0060 attribute."
         }
-      ],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "workflow_card_activity",
@@ -8074,6 +8103,11 @@
       "Description": "Workflow Card Activity is a record of an action performed on a card",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "automation_url",
@@ -8152,16 +8186,16 @@
         {
           "JsonName": "workflow_card",
           "ClrName": "WorkflowCard",
-          "ClrAttributesType": "WorkflowCard",
-          "ClrResourceType": "WorkflowCardResource",
+          "AttributesClrType": "WorkflowCard",
+          "ResourceClrType": "WorkflowCardResource",
           "IsCollection": false,
           "Description": "Related \u0060WorkflowCard\u0060 resource."
         },
         {
           "JsonName": "workflow_step",
           "ClrName": "WorkflowStep",
-          "ClrAttributesType": "WorkflowStep",
-          "ClrResourceType": "WorkflowStepResource",
+          "AttributesClrType": "WorkflowStep",
+          "ResourceClrType": "WorkflowStepResource",
           "IsCollection": false,
           "Description": "Related \u0060WorkflowStep\u0060 resource."
         }
@@ -8176,12 +8210,7 @@
           "Description": "Sort response items by the \u0060Id\u0060 attribute."
         }
       ],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "workflow_card_note",
@@ -8190,6 +8219,11 @@
       "Description": "Workflow Note is a note that has been made on a Workflow Card",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "created_at",
@@ -8208,8 +8242,8 @@
         {
           "JsonName": "note_category",
           "ClrName": "NoteCategory",
-          "ClrAttributesType": "NoteCategory",
-          "ClrResourceType": "NoteCategoryResource",
+          "AttributesClrType": "NoteCategory",
+          "ResourceClrType": "NoteCategoryResource",
           "IsCollection": false,
           "Description": "Related \u0060NoteCategory\u0060 resource."
         }
@@ -8224,12 +8258,7 @@
           "Description": "Sort response items by the \u0060CreatedAt\u0060 attribute."
         }
       ],
-      "CanQueryBy": [],
-      "Postable": true,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "workflow_category",
@@ -8238,6 +8267,11 @@
       "Description": "A Workflow Category",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "created_at",
@@ -8298,12 +8332,7 @@
           "Parameter": "where[updated_at]",
           "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
         }
-      ],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "workflow_share",
@@ -8312,6 +8341,11 @@
       "Description": "A workflow share defines who can access a workflow.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "group",
@@ -8329,23 +8363,24 @@
           "JsonName": "person_id",
           "ClrName": "PersonId",
           "ClrType": "string",
-          "Description": "Planning Center does not provide a description for this attribute."
+          "Description": "Planning Center does not provide a description for this attribute.",
+          "JsonConverter": "Crews.PlanningCenter.Api.Converters.StringFromNumberConverter"
         }
       ],
       "Relationships": [
         {
           "JsonName": "person",
           "ClrName": "Person",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060Person\u0060 resource."
         },
         {
           "JsonName": "workflow",
           "ClrName": "Workflow",
-          "ClrAttributesType": "Workflow",
-          "ClrResourceType": "WorkflowResource",
+          "AttributesClrType": "Workflow",
+          "ResourceClrType": "WorkflowResource",
           "IsCollection": false,
           "Description": "Related \u0060Workflow\u0060 resource."
         }
@@ -8355,12 +8390,12 @@
         {
           "JsonName": "person",
           "ClrName": "Person",
-          "ClrAttributesType": "Person",
+          "AttributesClrType": "Person",
           "Description": "Associated \u0060Person\u0060.",
           "Slug": "person",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -8380,12 +8415,7 @@
           "Parameter": "where[permission]",
           "Description": "Query response items by the \u0060Permission\u0060 attribute."
         }
-      ],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "workflow_step",
@@ -8394,6 +8424,11 @@
       "Description": "A Step",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "auto_snooze_days",
@@ -8472,16 +8507,16 @@
         {
           "JsonName": "default_assignee",
           "ClrName": "DefaultAssignee",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060DefaultAssignee\u0060 resource."
         },
         {
           "JsonName": "workflow",
           "ClrName": "Workflow",
-          "ClrAttributesType": "Workflow",
-          "ClrResourceType": "WorkflowResource",
+          "AttributesClrType": "Workflow",
+          "ResourceClrType": "WorkflowResource",
           "IsCollection": false,
           "Description": "Related \u0060Workflow\u0060 resource."
         }
@@ -8491,22 +8526,22 @@
         {
           "JsonName": "assignee_summaries",
           "ClrName": "AssigneeSummaries",
-          "ClrAttributesType": "WorkflowStepAssigneeSummary",
+          "AttributesClrType": "WorkflowStepAssigneeSummary",
           "Description": "Associated \u0060AssigneeSummaries\u0060.",
           "Slug": "assignee_summaries",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "default_assignee",
           "ClrName": "DefaultAssignee",
-          "ClrAttributesType": "Person",
+          "AttributesClrType": "Person",
           "Description": "Associated \u0060DefaultAssignee\u0060.",
           "Slug": "default_assignee",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -8559,12 +8594,7 @@
           "Parameter": "where[updated_at]",
           "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
         }
-      ],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "workflow_step_assignee_summary",
@@ -8573,6 +8603,11 @@
       "Description": "The ready and snoozed count for an assignee \u0026 step",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "ready_count",
@@ -8591,16 +8626,16 @@
         {
           "JsonName": "person",
           "ClrName": "Person",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060Person\u0060 resource."
         },
         {
           "JsonName": "step",
           "ClrName": "Step",
-          "ClrAttributesType": "Step",
-          "ClrResourceType": "WorkflowStepResource",
+          "AttributesClrType": "Step",
+          "ResourceClrType": "WorkflowStepResource",
           "IsCollection": false,
           "Description": "Related \u0060Step\u0060 resource."
         }
@@ -8610,12 +8645,12 @@
         {
           "JsonName": "person",
           "ClrName": "Person",
-          "ClrAttributesType": "Person",
+          "AttributesClrType": "Person",
           "Description": "Associated \u0060Person\u0060.",
           "Slug": "person",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -8628,12 +8663,7 @@
         }
       ],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     }
   ]
 }

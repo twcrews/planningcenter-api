@@ -10,6 +10,11 @@
       "Description": "Each arrangement belongs to a song and is a different version of that song.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "archived_at",
@@ -172,24 +177,24 @@
         {
           "JsonName": "updated_by",
           "ClrName": "UpdatedBy",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060UpdatedBy\u0060 resource."
         },
         {
           "JsonName": "created_by",
           "ClrName": "CreatedBy",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060CreatedBy\u0060 resource."
         },
         {
           "JsonName": "song",
           "ClrName": "Song",
-          "ClrAttributesType": "Song",
-          "ClrResourceType": "SongResource",
+          "AttributesClrType": "Song",
+          "ResourceClrType": "SongResource",
           "IsCollection": false,
           "Description": "Related \u0060Song\u0060 resource."
         }
@@ -208,42 +213,42 @@
         {
           "JsonName": "attachments",
           "ClrName": "Attachments",
-          "ClrAttributesType": "Attachment",
+          "AttributesClrType": "Attachment",
           "Description": "Associated \u0060Attachments\u0060.",
           "Slug": "attachments",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "keys",
           "ClrName": "Keys",
-          "ClrAttributesType": "Key",
+          "AttributesClrType": "Key",
           "Description": "Associated \u0060Keys\u0060.",
           "Slug": "keys",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "sections",
           "ClrName": "Sections",
-          "ClrAttributesType": "ArrangementSections",
+          "AttributesClrType": "ArrangementSections",
           "Description": "Associated \u0060Sections\u0060.",
           "Slug": "sections",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "tags",
           "ClrName": "Tags",
-          "ClrAttributesType": "Tag",
+          "AttributesClrType": "Tag",
           "Description": "Associated \u0060Tags\u0060.",
           "Slug": "tags",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -263,12 +268,7 @@
         }
       ],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "arrangement_sections",
@@ -277,6 +277,11 @@
       "Description": "Sections of an Arrangement, derived from its chord chart",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "sections",
@@ -290,12 +295,7 @@
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "attachment",
@@ -304,6 +304,11 @@
       "Description": "A file, whether it\u0027s stored on Planning Center or linked from another location.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "allow_mp3_download",
@@ -466,40 +471,40 @@
         {
           "JsonName": "attachable",
           "ClrName": "Attachable",
-          "ClrAttributesType": "Plan",
-          "ClrResourceType": "PlanResource",
+          "AttributesClrType": "Plan",
+          "ResourceClrType": "PlanResource",
           "IsCollection": false,
           "Description": "Related \u0060Attachable\u0060 resource."
         },
         {
           "JsonName": "attachment_types",
           "ClrName": "AttachmentTypes",
-          "ClrAttributesType": "AttachmentType",
-          "ClrResourceType": "AttachmentTypeResource",
+          "AttributesClrType": "AttachmentType",
+          "ResourceClrType": "AttachmentTypeResource",
           "IsCollection": true,
           "Description": "Related \u0060AttachmentTypes\u0060 resource."
         },
         {
           "JsonName": "created_by",
           "ClrName": "CreatedBy",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060CreatedBy\u0060 resource."
         },
         {
           "JsonName": "updated_by",
           "ClrName": "UpdatedBy",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060UpdatedBy\u0060 resource."
         },
         {
           "JsonName": "administrator",
           "ClrName": "Administrator",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060Administrator\u0060 resource."
         }
@@ -524,12 +529,12 @@
         {
           "JsonName": "zooms",
           "ClrName": "Zooms",
-          "ClrAttributesType": "Zoom",
+          "AttributesClrType": "Zoom",
           "Description": "Associated \u0060Zooms\u0060.",
           "Slug": "zooms",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -586,12 +591,7 @@
           "Parameter": "where[licenses_purchased]",
           "Description": "Query response items by the \u0060LicensesPurchased\u0060 attribute."
         }
-      ],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "attachment_activity",
@@ -600,6 +600,11 @@
       "Description": "Returned from the \u0060open\u0060 attachment action.",
       "Deprecated": false,
       "CollectionOnly": true,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "activity_type",
@@ -624,8 +629,8 @@
         {
           "JsonName": "attachment",
           "ClrName": "Attachment",
-          "ClrAttributesType": "Attachment",
-          "ClrResourceType": "AttachmentResource",
+          "AttributesClrType": "Attachment",
+          "ResourceClrType": "AttachmentResource",
           "IsCollection": false,
           "Description": "Related \u0060Attachment\u0060 resource."
         }
@@ -634,12 +639,7 @@
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "attachment_type",
@@ -648,6 +648,11 @@
       "Description": "Create an Attachment Type for each type of file you might want only specific people to see. When you attach a file, you can specify an attachment type to then be able to link the file to a position.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "aliases",
@@ -708,8 +713,8 @@
         {
           "JsonName": "attachment_type_group",
           "ClrName": "AttachmentTypeGroup",
-          "ClrAttributesType": "AttachmentTypeGroup",
-          "ClrResourceType": "AttachmentTypeGroupResource",
+          "AttributesClrType": "AttachmentTypeGroup",
+          "ResourceClrType": "AttachmentTypeGroupResource",
           "IsCollection": false,
           "Description": "Related \u0060AttachmentTypeGroup\u0060 resource."
         }
@@ -724,12 +729,7 @@
           "Description": "Sort response items by the \u0060Name\u0060 attribute."
         }
       ],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "attachment_type_group",
@@ -738,6 +738,11 @@
       "Description": "Planning Center does not provide a description for this resource.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "name",
@@ -763,12 +768,7 @@
           "Description": "Sort response items by the \u0060Name\u0060 attribute."
         }
       ],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "attendance",
@@ -777,6 +777,11 @@
       "Description": "Planning Center does not provide a description for this resource.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "check_ins_event_id",
@@ -801,16 +806,16 @@
         {
           "JsonName": "plan_time",
           "ClrName": "PlanTime",
-          "ClrAttributesType": "PlanTime",
-          "ClrResourceType": "PlanTimeResource",
+          "AttributesClrType": "PlanTime",
+          "ResourceClrType": "PlanTimeResource",
           "IsCollection": false,
           "Description": "Related \u0060PlanTime\u0060 resource."
         },
         {
           "JsonName": "plan_person",
           "ClrName": "PlanPerson",
-          "ClrAttributesType": "PlanPerson",
-          "ClrResourceType": "PlanPersonResource",
+          "AttributesClrType": "PlanPerson",
+          "ResourceClrType": "PlanPersonResource",
           "IsCollection": false,
           "Description": "Related \u0060PlanPerson\u0060 resource."
         }
@@ -819,12 +824,7 @@
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "available_signup",
@@ -833,6 +833,11 @@
       "Description": "Signups that are available.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "organization_name",
@@ -863,24 +868,24 @@
         {
           "JsonName": "organization",
           "ClrName": "Organization",
-          "ClrAttributesType": "Organization",
-          "ClrResourceType": "OrganizationResource",
+          "AttributesClrType": "Organization",
+          "ResourceClrType": "OrganizationResource",
           "IsCollection": false,
           "Description": "Related \u0060Organization\u0060 resource."
         },
         {
           "JsonName": "person",
           "ClrName": "Person",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060Person\u0060 resource."
         },
         {
           "JsonName": "service_type",
           "ClrName": "ServiceType",
-          "ClrAttributesType": "ServiceType",
-          "ClrResourceType": "ServiceTypeResource",
+          "AttributesClrType": "ServiceType",
+          "ResourceClrType": "ServiceTypeResource",
           "IsCollection": false,
           "Description": "Related \u0060ServiceType\u0060 resource."
         }
@@ -890,12 +895,12 @@
         {
           "JsonName": "signup_sheets",
           "ClrName": "SignupSheets",
-          "ClrAttributesType": "SignupSheet",
+          "AttributesClrType": "SignupSheet",
           "Description": "Associated \u0060SignupSheets\u0060.",
           "Slug": "signup_sheets",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -908,12 +913,7 @@
         }
       ],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "blockout",
@@ -922,6 +922,11 @@
       "Description": "An object representing a blockout date, and an optional recurrence pattern",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "created_at",
@@ -1018,16 +1023,16 @@
         {
           "JsonName": "person",
           "ClrName": "Person",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060Person\u0060 resource."
         },
         {
           "JsonName": "organization",
           "ClrName": "Organization",
-          "ClrAttributesType": "Organization",
-          "ClrResourceType": "OrganizationResource",
+          "AttributesClrType": "Organization",
+          "ResourceClrType": "OrganizationResource",
           "IsCollection": false,
           "Description": "Related \u0060Organization\u0060 resource."
         }
@@ -1037,22 +1042,22 @@
         {
           "JsonName": "blockout_dates",
           "ClrName": "BlockoutDates",
-          "ClrAttributesType": "BlockoutDate",
+          "AttributesClrType": "BlockoutDate",
           "Description": "Associated \u0060BlockoutDates\u0060.",
           "Slug": "blockout_dates",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "blockout_exceptions",
           "ClrName": "BlockoutExceptions",
-          "ClrAttributesType": "BlockoutException",
+          "AttributesClrType": "BlockoutException",
           "Description": "Associated \u0060BlockoutExceptions\u0060.",
           "Slug": "blockout_exceptions",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [],
@@ -1064,12 +1069,7 @@
           "Parameter": "where[group_identifier]",
           "Description": "Query response items by the \u0060GroupIdentifier\u0060 attribute."
         }
-      ],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "blockout_date",
@@ -1078,6 +1078,11 @@
       "Description": "The actual dates generated by the blockout or its recurrence pattern. Generated up to a year in advance",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "ends_at",
@@ -1132,16 +1137,16 @@
         {
           "JsonName": "person",
           "ClrName": "Person",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060Person\u0060 resource."
         },
         {
           "JsonName": "blockout",
           "ClrName": "Blockout",
-          "ClrAttributesType": "Blockout",
-          "ClrResourceType": "BlockoutResource",
+          "AttributesClrType": "Blockout",
+          "ResourceClrType": "BlockoutResource",
           "IsCollection": false,
           "Description": "Related \u0060Blockout\u0060 resource."
         }
@@ -1150,12 +1155,7 @@
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "blockout_exception",
@@ -1164,6 +1164,11 @@
       "Description": "A single exception for the dates generated from the blockout",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "created_at",
@@ -1188,8 +1193,8 @@
         {
           "JsonName": "blockout",
           "ClrName": "Blockout",
-          "ClrAttributesType": "Blockout",
-          "ClrResourceType": "BlockoutResource",
+          "AttributesClrType": "Blockout",
+          "ResourceClrType": "BlockoutResource",
           "IsCollection": false,
           "Description": "Related \u0060Blockout\u0060 resource."
         }
@@ -1198,12 +1203,7 @@
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": true,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "blockout_schedule_conflict",
@@ -1212,6 +1212,11 @@
       "Description": "Planning Center does not provide a description for this resource.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "can_accept_partial",
@@ -1290,40 +1295,40 @@
         {
           "JsonName": "organization",
           "ClrName": "Organization",
-          "ClrAttributesType": "Organization",
-          "ClrResourceType": "OrganizationResource",
+          "AttributesClrType": "Organization",
+          "ResourceClrType": "OrganizationResource",
           "IsCollection": false,
           "Description": "Related \u0060Organization\u0060 resource."
         },
         {
           "JsonName": "person",
           "ClrName": "Person",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060Person\u0060 resource."
         },
         {
           "JsonName": "plan",
           "ClrName": "Plan",
-          "ClrAttributesType": "Plan",
-          "ClrResourceType": "PlanResource",
+          "AttributesClrType": "Plan",
+          "ResourceClrType": "PlanResource",
           "IsCollection": false,
           "Description": "Related \u0060Plan\u0060 resource."
         },
         {
           "JsonName": "plan_person",
           "ClrName": "PlanPerson",
-          "ClrAttributesType": "PlanPerson",
-          "ClrResourceType": "PlanPersonResource",
+          "AttributesClrType": "PlanPerson",
+          "ResourceClrType": "PlanPersonResource",
           "IsCollection": false,
           "Description": "Related \u0060PlanPerson\u0060 resource."
         },
         {
           "JsonName": "service_type",
           "ClrName": "ServiceType",
-          "ClrAttributesType": "ServiceType",
-          "ClrResourceType": "ServiceTypeResource",
+          "AttributesClrType": "ServiceType",
+          "ResourceClrType": "ServiceTypeResource",
           "IsCollection": false,
           "Description": "Related \u0060ServiceType\u0060 resource."
         }
@@ -1332,12 +1337,7 @@
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "chat",
@@ -1346,6 +1346,11 @@
       "Description": "Planning Center does not provide a description for this resource.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "group_identifiers",
@@ -1395,12 +1400,7 @@
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "contributor",
@@ -1409,6 +1409,11 @@
       "Description": "A Contributor Resource",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "contributable_action",
@@ -1457,16 +1462,16 @@
         {
           "JsonName": "plan",
           "ClrName": "Plan",
-          "ClrAttributesType": "Plan",
-          "ClrResourceType": "PlanResource",
+          "AttributesClrType": "Plan",
+          "ResourceClrType": "PlanResource",
           "IsCollection": false,
           "Description": "Related \u0060Plan\u0060 resource."
         },
         {
           "JsonName": "person",
           "ClrName": "Person",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060Person\u0060 resource."
         }
@@ -1486,12 +1491,7 @@
           "Description": "Sort response items by the \u0060UpdatedAt\u0060 attribute."
         }
       ],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "custom_slide",
@@ -1500,6 +1500,11 @@
       "Description": "A CustomSlide is used for adding text intended for display on a screen.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "body",
@@ -1530,16 +1535,16 @@
         {
           "JsonName": "item",
           "ClrName": "Item",
-          "ClrAttributesType": "Item",
-          "ClrResourceType": "ItemResource",
+          "AttributesClrType": "Item",
+          "ResourceClrType": "ItemResource",
           "IsCollection": false,
           "Description": "Related \u0060Item\u0060 resource."
         },
         {
           "JsonName": "attachment",
           "ClrName": "Attachment",
-          "ClrAttributesType": "Attachment",
-          "ClrResourceType": "AttachmentResource",
+          "AttributesClrType": "Attachment",
+          "ResourceClrType": "AttachmentResource",
           "IsCollection": false,
           "Description": "Related \u0060Attachment\u0060 resource."
         }
@@ -1548,12 +1553,7 @@
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "email",
@@ -1562,6 +1562,11 @@
       "Description": "A persons email",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "address",
@@ -1581,12 +1586,7 @@
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "email_template",
@@ -1595,6 +1595,11 @@
       "Description": "A EmailTemplate Resource",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "created_at",
@@ -1631,8 +1636,8 @@
         {
           "JsonName": "template_owner",
           "ClrName": "TemplateOwner",
-          "ClrAttributesType": "Organization",
-          "ClrResourceType": "OrganizationResource",
+          "AttributesClrType": "Organization",
+          "ResourceClrType": "OrganizationResource",
           "IsCollection": false,
           "Description": "Related \u0060TemplateOwner\u0060 resource."
         }
@@ -1650,12 +1655,7 @@
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "email_template_rendered_response",
@@ -1664,6 +1664,11 @@
       "Description": "A EmailTemplateRenderedResponse Resource",
       "Deprecated": false,
       "CollectionOnly": true,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "body",
@@ -1682,16 +1687,16 @@
         {
           "JsonName": "person",
           "ClrName": "Person",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060Person\u0060 resource."
         },
         {
           "JsonName": "email_template",
           "ClrName": "EmailTemplate",
-          "ClrAttributesType": "EmailTemplate",
-          "ClrResourceType": "EmailTemplateResource",
+          "AttributesClrType": "EmailTemplate",
+          "ResourceClrType": "EmailTemplateResource",
           "IsCollection": false,
           "Description": "Related \u0060EmailTemplate\u0060 resource."
         }
@@ -1700,12 +1705,7 @@
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "folder",
@@ -1714,6 +1714,11 @@
       "Description": "A folder is a container used to organize multiple Service Types or other Folders.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "container",
@@ -1744,24 +1749,24 @@
         {
           "JsonName": "ancestors",
           "ClrName": "Ancestors",
-          "ClrAttributesType": "Folder",
-          "ClrResourceType": "FolderResource",
+          "AttributesClrType": "Folder",
+          "ResourceClrType": "FolderResource",
           "IsCollection": false,
           "Description": "Related \u0060Ancestors\u0060 resource."
         },
         {
           "JsonName": "parent",
           "ClrName": "Parent",
-          "ClrAttributesType": "Folder",
-          "ClrResourceType": "FolderResource",
+          "AttributesClrType": "Folder",
+          "ResourceClrType": "FolderResource",
           "IsCollection": false,
           "Description": "Related \u0060Parent\u0060 resource."
         },
         {
           "JsonName": "campus",
           "ClrName": "Campus",
-          "ClrAttributesType": "Campus",
-          "ClrResourceType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier",
+          "AttributesClrType": "Campus",
+          "ResourceClrType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier",
           "IsCollection": false,
           "Description": "Related \u0060Campus\u0060 resource."
         }
@@ -1771,22 +1776,22 @@
         {
           "JsonName": "folders",
           "ClrName": "Folders",
-          "ClrAttributesType": "Folder",
+          "AttributesClrType": "Folder",
           "Description": "Associated \u0060Folders\u0060.",
           "Slug": "folders",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "service_types",
           "ClrName": "ServiceTypes",
-          "ClrAttributesType": "ServiceType",
+          "AttributesClrType": "ServiceType",
           "Description": "Associated \u0060ServiceTypes\u0060.",
           "Slug": "service_types",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -1812,12 +1817,7 @@
           "Parameter": "where[parent_id]",
           "Description": "Query response items by the \u0060ParentId\u0060 attribute."
         }
-      ],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "folder_path",
@@ -1826,6 +1826,11 @@
       "Description": "The Folder path of a Folder",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "path",
@@ -1839,12 +1844,7 @@
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "item",
@@ -1853,6 +1853,11 @@
       "Description": "An item in a plan.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "created_at",
@@ -1937,48 +1942,48 @@
         {
           "JsonName": "plan",
           "ClrName": "Plan",
-          "ClrAttributesType": "Plan",
-          "ClrResourceType": "PlanResource",
+          "AttributesClrType": "Plan",
+          "ResourceClrType": "PlanResource",
           "IsCollection": false,
           "Description": "Related \u0060Plan\u0060 resource."
         },
         {
           "JsonName": "song",
           "ClrName": "Song",
-          "ClrAttributesType": "Song",
-          "ClrResourceType": "SongResource",
+          "AttributesClrType": "Song",
+          "ResourceClrType": "SongResource",
           "IsCollection": false,
           "Description": "Related \u0060Song\u0060 resource."
         },
         {
           "JsonName": "arrangement",
           "ClrName": "Arrangement",
-          "ClrAttributesType": "Arrangement",
-          "ClrResourceType": "ArrangementResource",
+          "AttributesClrType": "Arrangement",
+          "ResourceClrType": "ArrangementResource",
           "IsCollection": false,
           "Description": "Related \u0060Arrangement\u0060 resource."
         },
         {
           "JsonName": "key",
           "ClrName": "Key",
-          "ClrAttributesType": "Key",
-          "ClrResourceType": "KeyResource",
+          "AttributesClrType": "Key",
+          "ResourceClrType": "KeyResource",
           "IsCollection": false,
           "Description": "Related \u0060Key\u0060 resource."
         },
         {
           "JsonName": "selected_layout",
           "ClrName": "SelectedLayout",
-          "ClrAttributesType": "Layout",
-          "ClrResourceType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier",
+          "AttributesClrType": "Layout",
+          "ResourceClrType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier",
           "IsCollection": false,
           "Description": "Related \u0060SelectedLayout\u0060 resource."
         },
         {
           "JsonName": "selected_background",
           "ClrName": "SelectedBackground",
-          "ClrAttributesType": "Attachment",
-          "ClrResourceType": "AttachmentResource",
+          "AttributesClrType": "Attachment",
+          "ResourceClrType": "AttachmentResource",
           "IsCollection": false,
           "Description": "Related \u0060SelectedBackground\u0060 resource."
         }
@@ -1988,102 +1993,102 @@
         {
           "JsonName": "arrangement",
           "ClrName": "Arrangement",
-          "ClrAttributesType": "Arrangement",
+          "AttributesClrType": "Arrangement",
           "Description": "Associated \u0060Arrangement\u0060.",
           "Slug": "arrangement",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "attachments",
           "ClrName": "Attachments",
-          "ClrAttributesType": "Attachment",
+          "AttributesClrType": "Attachment",
           "Description": "Associated \u0060Attachments\u0060.",
           "Slug": "attachments",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "custom_slides",
           "ClrName": "CustomSlides",
-          "ClrAttributesType": "CustomSlide",
+          "AttributesClrType": "CustomSlide",
           "Description": "Associated \u0060CustomSlides\u0060.",
           "Slug": "custom_slides",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "item_notes",
           "ClrName": "ItemNotes",
-          "ClrAttributesType": "ItemNote",
+          "AttributesClrType": "ItemNote",
           "Description": "Associated \u0060ItemNotes\u0060.",
           "Slug": "item_notes",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "item_times",
           "ClrName": "ItemTimes",
-          "ClrAttributesType": "ItemTime",
+          "AttributesClrType": "ItemTime",
           "Description": "Associated \u0060ItemTimes\u0060.",
           "Slug": "item_times",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "key",
           "ClrName": "Key",
-          "ClrAttributesType": "Key",
+          "AttributesClrType": "Key",
           "Description": "Associated \u0060Key\u0060.",
           "Slug": "key",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "media",
           "ClrName": "Media",
-          "ClrAttributesType": "Media",
+          "AttributesClrType": "Media",
           "Description": "Associated \u0060Media\u0060.",
           "Slug": "media",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "selected_attachment",
           "ClrName": "SelectedAttachment",
-          "ClrAttributesType": "Attachment",
+          "AttributesClrType": "Attachment",
           "Description": "Associated \u0060SelectedAttachment\u0060.",
           "Slug": "selected_attachment",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "selected_background",
           "ClrName": "SelectedBackground",
-          "ClrAttributesType": "Attachment",
+          "AttributesClrType": "Attachment",
           "Description": "Associated \u0060SelectedBackground\u0060.",
           "Slug": "selected_background",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "song",
           "ClrName": "Song",
-          "ClrAttributesType": "Song",
+          "AttributesClrType": "Song",
           "Description": "Associated \u0060Song\u0060.",
           "Slug": "song",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -2138,12 +2143,7 @@
         }
       ],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "item_note",
@@ -2152,6 +2152,11 @@
       "Description": "A plan item note that belongs to a category.\n\nNote: You can only assign the category on create. If you want to change category; delete the current note, and create a new one passing in the \u0060item_note_category_id\u0060 then.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "category_name",
@@ -2182,16 +2187,16 @@
         {
           "JsonName": "item_note_category",
           "ClrName": "ItemNoteCategory",
-          "ClrAttributesType": "ItemNoteCategory",
-          "ClrResourceType": "ItemNoteCategoryResource",
+          "AttributesClrType": "ItemNoteCategory",
+          "ResourceClrType": "ItemNoteCategoryResource",
           "IsCollection": false,
           "Description": "Related \u0060ItemNoteCategory\u0060 resource."
         },
         {
           "JsonName": "item",
           "ClrName": "Item",
-          "ClrAttributesType": "Item",
-          "ClrResourceType": "ItemResource",
+          "AttributesClrType": "Item",
+          "ResourceClrType": "ItemResource",
           "IsCollection": false,
           "Description": "Related \u0060Item\u0060 resource."
         }
@@ -2201,12 +2206,12 @@
         {
           "JsonName": "item_note_category",
           "ClrName": "ItemNoteCategory",
-          "ClrAttributesType": "ItemNoteCategory",
+          "AttributesClrType": "ItemNoteCategory",
           "Description": "Associated \u0060ItemNoteCategory\u0060.",
           "Slug": "item_note_category",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -2219,12 +2224,7 @@
         }
       ],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "item_note_category",
@@ -2233,6 +2233,11 @@
       "Description": "A category of plan item notes for an entire Service Type.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "created_at",
@@ -2275,8 +2280,8 @@
         {
           "JsonName": "service_type",
           "ClrName": "ServiceType",
-          "ClrAttributesType": "ServiceType",
-          "ClrResourceType": "ServiceTypeResource",
+          "AttributesClrType": "ServiceType",
+          "ResourceClrType": "ServiceTypeResource",
           "IsCollection": false,
           "Description": "Related \u0060ServiceType\u0060 resource."
         }
@@ -2285,12 +2290,7 @@
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "item_time",
@@ -2299,6 +2299,11 @@
       "Description": "Planning Center does not provide a description for this resource.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "exclude",
@@ -2335,24 +2340,24 @@
         {
           "JsonName": "item",
           "ClrName": "Item",
-          "ClrAttributesType": "Item",
-          "ClrResourceType": "ItemResource",
+          "AttributesClrType": "Item",
+          "ResourceClrType": "ItemResource",
           "IsCollection": false,
           "Description": "Related \u0060Item\u0060 resource."
         },
         {
           "JsonName": "plan_time",
           "ClrName": "PlanTime",
-          "ClrAttributesType": "PlanTime",
-          "ClrResourceType": "PlanTimeResource",
+          "AttributesClrType": "PlanTime",
+          "ResourceClrType": "PlanTimeResource",
           "IsCollection": false,
           "Description": "Related \u0060PlanTime\u0060 resource."
         },
         {
           "JsonName": "plan",
           "ClrName": "Plan",
-          "ClrAttributesType": "Plan",
-          "ClrResourceType": "PlanResource",
+          "AttributesClrType": "Plan",
+          "ResourceClrType": "PlanResource",
           "IsCollection": false,
           "Description": "Related \u0060Plan\u0060 resource."
         }
@@ -2361,12 +2366,7 @@
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "key",
@@ -2375,6 +2375,11 @@
       "Description": "Each song arrangement can have multiple keys. A key is the pitch center of the song.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "alternate_keys",
@@ -2429,8 +2434,8 @@
         {
           "JsonName": "arrangement",
           "ClrName": "Arrangement",
-          "ClrAttributesType": "Arrangement",
-          "ClrResourceType": "ArrangementResource",
+          "AttributesClrType": "Arrangement",
+          "ResourceClrType": "ArrangementResource",
           "IsCollection": false,
           "Description": "Related \u0060Arrangement\u0060 resource."
         }
@@ -2440,12 +2445,12 @@
         {
           "JsonName": "attachments",
           "ClrName": "Attachments",
-          "ClrAttributesType": "Attachment",
+          "AttributesClrType": "Attachment",
           "Description": "Associated \u0060Attachments\u0060.",
           "Slug": "attachments",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [],
@@ -2461,12 +2466,7 @@
           "Description": "Sort response items by the \u0060UpdatedAt\u0060 attribute."
         }
       ],
-      "CanQueryBy": [],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "live",
@@ -2475,6 +2475,11 @@
       "Description": "Planning Center does not provide a description for this resource.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "can_chat",
@@ -2559,62 +2564,62 @@
         {
           "JsonName": "controller",
           "ClrName": "Controller",
-          "ClrAttributesType": "Person",
+          "AttributesClrType": "Person",
           "Description": "Associated \u0060Controller\u0060.",
           "Slug": "controller",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "current_item_time",
           "ClrName": "CurrentItemTime",
-          "ClrAttributesType": "ItemTime",
+          "AttributesClrType": "ItemTime",
           "Description": "Associated \u0060CurrentItemTime\u0060.",
           "Slug": "current_item_time",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "items",
           "ClrName": "Items",
-          "ClrAttributesType": "Item",
+          "AttributesClrType": "Item",
           "Description": "Associated \u0060Items\u0060.",
           "Slug": "items",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "next_item_time",
           "ClrName": "NextItemTime",
-          "ClrAttributesType": "ItemTime",
+          "AttributesClrType": "ItemTime",
           "Description": "Associated \u0060NextItemTime\u0060.",
           "Slug": "next_item_time",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "service_type",
           "ClrName": "ServiceType",
-          "ClrAttributesType": "ServiceType",
+          "AttributesClrType": "ServiceType",
           "Description": "Associated \u0060ServiceType\u0060.",
           "Slug": "service_type",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "watchable_plans",
           "ClrName": "WatchablePlans",
-          "ClrAttributesType": "Plan",
+          "AttributesClrType": "Plan",
           "Description": "Associated \u0060WatchablePlans\u0060.",
           "Slug": "watchable_plans",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -2655,12 +2660,7 @@
         }
       ],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "live_controller",
@@ -2669,6 +2669,11 @@
       "Description": "A person who can control Services LIVE without the required permissions",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "created_at",
@@ -2699,8 +2704,8 @@
         {
           "JsonName": "person",
           "ClrName": "Person",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060Person\u0060 resource."
         }
@@ -2720,12 +2725,7 @@
           "Description": "Sort response items by the \u0060UpdatedAt\u0060 attribute."
         }
       ],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "media",
@@ -2734,6 +2734,11 @@
       "Description": "A piece of media",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "created_at",
@@ -2857,7 +2862,7 @@
           "ClrMethodName": "ArchiveAsync",
           "Path": "archive",
           "Description": "Archive a Media.",
-          "AdditionalDetails": "Accepts an optional \u0060time\u0060 attribute (ISO 8601) for scheduling archival for a future time.\n\n\u0060\u0060\u0060json\n{\n  \u0022data\u0022: {\n    \u0022type\u0022: \u0022MediaArchive\u0022,\n    \u0022attributes\u0022: {\n      \u0022time\u0022: \u00222026-06-09T00:00:00Z\u0022\n    }\n  }\n}\n\u0060\u0060\u0060\n",
+          "AdditionalDetails": "Accepts an optional \u0060time\u0060 attribute (ISO 8601) for scheduling archival for a future time.\n\n\u0060\u0060\u0060json\n{\n  \u0022data\u0022: {\n    \u0022type\u0022: \u0022MediaArchive\u0022,\n    \u0022attributes\u0022: {\n      \u0022time\u0022: \u00222026-06-10T00:00:00Z\u0022\n    }\n  }\n}\n\u0060\u0060\u0060\n",
           "Deprecated": false
         },
         {
@@ -2880,32 +2885,32 @@
         {
           "JsonName": "attachments",
           "ClrName": "Attachments",
-          "ClrAttributesType": "Attachment",
+          "AttributesClrType": "Attachment",
           "Description": "Associated \u0060Attachments\u0060.",
           "Slug": "attachments",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "media_schedules",
           "ClrName": "MediaSchedules",
-          "ClrAttributesType": "MediaSchedule",
+          "AttributesClrType": "MediaSchedule",
           "Description": "Associated \u0060MediaSchedules\u0060.",
           "Slug": "media_schedules",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "tags",
           "ClrName": "Tags",
-          "ClrAttributesType": "Tag",
+          "AttributesClrType": "Tag",
           "Description": "Associated \u0060Tags\u0060.",
           "Slug": "tags",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -2959,12 +2964,7 @@
           "Parameter": "where[title]",
           "Description": "Query response items by the \u0060Title\u0060 attribute."
         }
-      ],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "media_schedule",
@@ -2973,6 +2973,11 @@
       "Description": "Planning Center does not provide a description for this resource.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "plan_dates",
@@ -3003,16 +3008,16 @@
         {
           "JsonName": "plan",
           "ClrName": "Plan",
-          "ClrAttributesType": "Plan",
-          "ClrResourceType": "PlanResource",
+          "AttributesClrType": "Plan",
+          "ResourceClrType": "PlanResource",
           "IsCollection": false,
           "Description": "Related \u0060Plan\u0060 resource."
         },
         {
           "JsonName": "service_type",
           "ClrName": "ServiceType",
-          "ClrAttributesType": "ServiceType",
-          "ClrResourceType": "ServiceTypeResource",
+          "AttributesClrType": "ServiceType",
+          "ResourceClrType": "ServiceTypeResource",
           "IsCollection": false,
           "Description": "Related \u0060ServiceType\u0060 resource."
         }
@@ -3021,12 +3026,7 @@
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "needed_position",
@@ -3035,6 +3035,11 @@
       "Description": "An amount of unfilled positions needed within a team in a plan.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "quantity",
@@ -3059,32 +3064,32 @@
         {
           "JsonName": "team",
           "ClrName": "Team",
-          "ClrAttributesType": "Team",
-          "ClrResourceType": "TeamResource",
+          "AttributesClrType": "Team",
+          "ResourceClrType": "TeamResource",
           "IsCollection": false,
           "Description": "Related \u0060Team\u0060 resource."
         },
         {
           "JsonName": "plan",
           "ClrName": "Plan",
-          "ClrAttributesType": "Plan",
-          "ClrResourceType": "PlanResource",
+          "AttributesClrType": "Plan",
+          "ResourceClrType": "PlanResource",
           "IsCollection": false,
           "Description": "Related \u0060Plan\u0060 resource."
         },
         {
           "JsonName": "time",
           "ClrName": "Time",
-          "ClrAttributesType": "PlanTime",
-          "ClrResourceType": "PlanTimeResource",
+          "AttributesClrType": "PlanTime",
+          "ResourceClrType": "PlanTimeResource",
           "IsCollection": false,
           "Description": "Related \u0060Time\u0060 resource."
         },
         {
           "JsonName": "time_preference_option",
           "ClrName": "TimePreferenceOption",
-          "ClrAttributesType": "TimePreferenceOption",
-          "ClrResourceType": "TimePreferenceOptionResource",
+          "AttributesClrType": "TimePreferenceOption",
+          "ResourceClrType": "TimePreferenceOptionResource",
           "IsCollection": false,
           "Description": "Related \u0060TimePreferenceOption\u0060 resource."
         }
@@ -3094,22 +3099,22 @@
         {
           "JsonName": "team",
           "ClrName": "Team",
-          "ClrAttributesType": "Team",
+          "AttributesClrType": "Team",
           "Description": "Associated \u0060Team\u0060.",
           "Slug": "team",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "time",
           "ClrName": "Time",
-          "ClrAttributesType": "PlanTime",
+          "AttributesClrType": "PlanTime",
           "Description": "Associated \u0060Time\u0060.",
           "Slug": "time",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -3129,12 +3134,7 @@
         }
       ],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "organization",
@@ -3143,6 +3143,11 @@
       "Description": "The root level of an organization where account-level settings are applied.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "allow_mp3_download",
@@ -3225,13 +3230,13 @@
         {
           "JsonName": "file_storage_size",
           "ClrName": "FileStorageSize",
-          "ClrType": "System.Text.Json.JsonElement",
+          "ClrType": "int",
           "Description": "Planning Center does not provide a description for this attribute."
         },
         {
           "JsonName": "file_storage_size_used",
           "ClrName": "FileStorageSizeUsed",
-          "ClrType": "System.Text.Json.JsonElement",
+          "ClrType": "int",
           "Description": "Planning Center does not provide a description for this attribute."
         },
         {
@@ -3325,49 +3330,51 @@
         {
           "JsonName": "attachment_types",
           "ClrName": "AttachmentTypes",
-          "ClrAttributesType": "AttachmentType",
+          "AttributesClrType": "AttachmentType",
           "Description": "Associated \u0060AttachmentTypes\u0060.",
           "Slug": "attachment_types",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "chat",
           "ClrName": "Chat",
-          "ClrAttributesType": "Chat",
+          "AttributesClrType": "Chat",
           "Description": "Associated \u0060Chat\u0060.",
           "Slug": "chat",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "email_templates",
           "ClrName": "EmailTemplates",
-          "ClrAttributesType": "EmailTemplate",
+          "AttributesClrType": "EmailTemplate",
           "Description": "Associated \u0060EmailTemplates\u0060.",
           "Slug": "email_templates",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "folders",
           "ClrName": "Folders",
-          "ClrAttributesType": "Folder",
+          "AttributesClrType": "Folder",
           "Description": "Associated \u0060Folders\u0060.",
           "Slug": "folders",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "media",
           "ClrName": "Media",
-          "ClrAttributesType": "Media",
+          "AttributesClrType": "Media",
           "Description": "Associated \u0060Media\u0060.",
           "Slug": "media",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByArchived",
@@ -3439,36 +3446,36 @@
               "Value": "video",
               "Description": "Filter results by the \u0060Video\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "people",
           "ClrName": "People",
-          "ClrAttributesType": "Person",
+          "AttributesClrType": "Person",
           "Description": "Associated \u0060People\u0060.",
           "Slug": "people",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "plans",
           "ClrName": "Plans",
-          "ClrAttributesType": "Organization",
+          "AttributesClrType": "Organization",
           "Description": "Associated \u0060Plans\u0060.",
           "Slug": "plans",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "report_templates",
           "ClrName": "ReportTemplates",
-          "ClrAttributesType": "ReportTemplate",
+          "AttributesClrType": "ReportTemplate",
           "Description": "Associated \u0060ReportTemplates\u0060.",
           "Slug": "report_templates",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByMatrix",
@@ -3490,52 +3497,52 @@
               "Value": "without_defaults",
               "Description": "Filter results by the \u0060WithoutDefaults\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "series",
           "ClrName": "Series",
-          "ClrAttributesType": "Series",
+          "AttributesClrType": "Series",
           "Description": "Associated \u0060Series\u0060.",
           "Slug": "series",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "service_types",
           "ClrName": "ServiceTypes",
-          "ClrAttributesType": "ServiceType",
+          "AttributesClrType": "ServiceType",
           "Description": "Associated \u0060ServiceTypes\u0060.",
           "Slug": "service_types",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByNoParent",
               "Value": "no_parent",
               "Description": "Filter results by the \u0060NoParent\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "songs",
           "ClrName": "Songs",
-          "ClrAttributesType": "Song",
+          "AttributesClrType": "Song",
           "Description": "Associated \u0060Songs\u0060.",
           "Slug": "songs",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "tag_groups",
           "ClrName": "TagGroups",
-          "ClrAttributesType": "TagGroup",
+          "AttributesClrType": "TagGroup",
           "Description": "Associated \u0060TagGroups\u0060.",
           "Slug": "tag_groups",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByArrangement",
@@ -3557,16 +3564,16 @@
               "Value": "song",
               "Description": "Filter results by the \u0060Song\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "teams",
           "ClrName": "Teams",
-          "ClrAttributesType": "Team",
+          "AttributesClrType": "Team",
           "Description": "Associated \u0060Teams\u0060.",
           "Slug": "teams",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByEditable",
@@ -3578,19 +3585,12 @@
               "Value": "service_types",
               "Description": "Filter results by the \u0060ServiceTypes\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         }
       ],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "person",
@@ -3599,6 +3599,11 @@
       "Description": "A person added to Planning Center Services.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": true,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "access_media_attachments",
@@ -3887,24 +3892,24 @@
         {
           "JsonName": "created_by",
           "ClrName": "CreatedBy",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060CreatedBy\u0060 resource."
         },
         {
           "JsonName": "updated_by",
           "ClrName": "UpdatedBy",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060UpdatedBy\u0060 resource."
         },
         {
           "JsonName": "current_folder",
           "ClrName": "CurrentFolder",
-          "ClrAttributesType": "Folder",
-          "ClrResourceType": "FolderResource",
+          "AttributesClrType": "Folder",
+          "ResourceClrType": "FolderResource",
           "IsCollection": false,
           "Description": "Related \u0060CurrentFolder\u0060 resource."
         }
@@ -3939,25 +3944,27 @@
         {
           "JsonName": "available_signups",
           "ClrName": "AvailableSignups",
-          "ClrAttributesType": "AvailableSignup",
+          "AttributesClrType": "AvailableSignup",
           "Description": "Associated \u0060AvailableSignups\u0060.",
           "Slug": "available_signups",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByCurrentOrganization",
               "Value": "current_organization",
               "Description": "Filter results by the \u0060CurrentOrganization\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "blockouts",
           "ClrName": "Blockouts",
-          "ClrAttributesType": "Blockout",
+          "AttributesClrType": "Blockout",
           "Description": "Associated \u0060Blockouts\u0060.",
           "Slug": "blockouts",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByFuture",
@@ -3969,26 +3976,26 @@
               "Value": "past",
               "Description": "Filter results by the \u0060Past\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "emails",
           "ClrName": "Emails",
-          "ClrAttributesType": "Email",
+          "AttributesClrType": "Email",
           "Description": "Associated \u0060Emails\u0060.",
           "Slug": "emails",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "person_team_position_assignments",
           "ClrName": "PersonTeamPositionAssignments",
-          "ClrAttributesType": "PersonTeamPositionAssignment",
+          "AttributesClrType": "PersonTeamPositionAssignment",
           "Description": "Associated \u0060PersonTeamPositionAssignments\u0060.",
           "Slug": "person_team_position_assignments",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByNotArchived",
@@ -4000,26 +4007,26 @@
               "Value": "not_deleted",
               "Description": "Filter results by the \u0060NotDeleted\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "plan_people",
           "ClrName": "PlanPeople",
-          "ClrAttributesType": "PlanPerson",
+          "AttributesClrType": "PlanPerson",
           "Description": "Associated \u0060PlanPeople\u0060.",
           "Slug": "plan_people",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "schedules",
           "ClrName": "Schedules",
-          "ClrAttributesType": "Schedule",
+          "AttributesClrType": "Schedule",
           "Description": "Associated \u0060Schedules\u0060.",
           "Slug": "schedules",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByAfter",
@@ -4056,36 +4063,36 @@
               "Value": "with_declined",
               "Description": "Filter results by the \u0060WithDeclined\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "scheduling_preferences",
           "ClrName": "SchedulingPreferences",
-          "ClrAttributesType": "SchedulingPreference",
+          "AttributesClrType": "SchedulingPreference",
           "Description": "Associated \u0060SchedulingPreferences\u0060.",
           "Slug": "scheduling_preferences",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "tags",
           "ClrName": "Tags",
-          "ClrAttributesType": "Tag",
+          "AttributesClrType": "Tag",
           "Description": "Associated \u0060Tags\u0060.",
           "Slug": "tags",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "team_leaders",
           "ClrName": "TeamLeaders",
-          "ClrAttributesType": "TeamLeader",
+          "AttributesClrType": "TeamLeader",
           "Description": "Associated \u0060TeamLeaders\u0060.",
           "Slug": "team_leaders",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByNotArchived",
@@ -4097,19 +4104,17 @@
               "Value": "not_deleted",
               "Description": "Filter results by the \u0060NotDeleted\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "text_settings",
           "ClrName": "TextSettings",
-          "ClrAttributesType": "TextSetting",
+          "AttributesClrType": "TextSetting",
           "Description": "Associated \u0060TextSettings\u0060.",
           "Slug": "text_settings",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -4170,12 +4175,7 @@
           "Parameter": "where[legacy_id]",
           "Description": "Query response items by the \u0060LegacyId\u0060 attribute."
         }
-      ],
-      "Postable": false,
-      "Patchable": true,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "person_team_position_assignment",
@@ -4184,6 +4184,11 @@
       "Description": "A person\u0027s assignment to a position within a team.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "created_at",
@@ -4214,24 +4219,24 @@
         {
           "JsonName": "person",
           "ClrName": "Person",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060Person\u0060 resource."
         },
         {
           "JsonName": "team_position",
           "ClrName": "TeamPosition",
-          "ClrAttributesType": "TeamPosition",
-          "ClrResourceType": "TeamPositionResource",
+          "AttributesClrType": "TeamPosition",
+          "ResourceClrType": "TeamPositionResource",
           "IsCollection": false,
           "Description": "Related \u0060TeamPosition\u0060 resource."
         },
         {
           "JsonName": "time_preference_options",
           "ClrName": "TimePreferenceOptions",
-          "ClrAttributesType": "TimePreferenceOption",
-          "ClrResourceType": "TimePreferenceOptionResource",
+          "AttributesClrType": "TimePreferenceOption",
+          "ResourceClrType": "TimePreferenceOptionResource",
           "IsCollection": true,
           "Description": "Related \u0060TimePreferenceOptions\u0060 resource."
         }
@@ -4241,22 +4246,22 @@
         {
           "JsonName": "person",
           "ClrName": "Person",
-          "ClrAttributesType": "Person",
+          "AttributesClrType": "Person",
           "Description": "Associated \u0060Person\u0060.",
           "Slug": "person",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "team_position",
           "ClrName": "TeamPosition",
-          "ClrAttributesType": "TeamPosition",
+          "AttributesClrType": "TeamPosition",
           "Description": "Associated \u0060TeamPosition\u0060.",
           "Slug": "team_position",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -4287,12 +4292,7 @@
           "Description": "Sort response items by the \u0060LastName\u0060 attribute."
         }
       ],
-      "CanQueryBy": [],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "plan",
@@ -4301,6 +4301,11 @@
       "Description": "A single plan within a Service Type.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "can_view_order",
@@ -4457,64 +4462,64 @@
         {
           "JsonName": "service_type",
           "ClrName": "ServiceType",
-          "ClrAttributesType": "ServiceType",
-          "ClrResourceType": "ServiceTypeResource",
+          "AttributesClrType": "ServiceType",
+          "ResourceClrType": "ServiceTypeResource",
           "IsCollection": false,
           "Description": "Related \u0060ServiceType\u0060 resource."
         },
         {
           "JsonName": "previous_plan",
           "ClrName": "PreviousPlan",
-          "ClrAttributesType": "Plan",
-          "ClrResourceType": "PlanResource",
+          "AttributesClrType": "Plan",
+          "ResourceClrType": "PlanResource",
           "IsCollection": false,
           "Description": "Related \u0060PreviousPlan\u0060 resource."
         },
         {
           "JsonName": "next_plan",
           "ClrName": "NextPlan",
-          "ClrAttributesType": "Plan",
-          "ClrResourceType": "PlanResource",
+          "AttributesClrType": "Plan",
+          "ResourceClrType": "PlanResource",
           "IsCollection": false,
           "Description": "Related \u0060NextPlan\u0060 resource."
         },
         {
           "JsonName": "series",
           "ClrName": "Series",
-          "ClrAttributesType": "Series",
-          "ClrResourceType": "SeriesResource",
+          "AttributesClrType": "Series",
+          "ResourceClrType": "SeriesResource",
           "IsCollection": false,
           "Description": "Related \u0060Series\u0060 resource."
         },
         {
           "JsonName": "created_by",
           "ClrName": "CreatedBy",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060CreatedBy\u0060 resource."
         },
         {
           "JsonName": "updated_by",
           "ClrName": "UpdatedBy",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060UpdatedBy\u0060 resource."
         },
         {
           "JsonName": "linked_publishing_episode",
           "ClrName": "LinkedPublishingEpisode",
-          "ClrAttributesType": "LinkedPublishingEpisode",
-          "ClrResourceType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier",
+          "AttributesClrType": "LinkedPublishingEpisode",
+          "ResourceClrType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier",
           "IsCollection": false,
           "Description": "Related \u0060LinkedPublishingEpisode\u0060 resource."
         },
         {
           "JsonName": "attachment_types",
           "ClrName": "AttachmentTypes",
-          "ClrAttributesType": "AttachmentType",
-          "ClrResourceType": "AttachmentTypeResource",
+          "AttributesClrType": "AttachmentType",
+          "ResourceClrType": "AttachmentTypeResource",
           "IsCollection": true,
           "Description": "Related \u0060AttachmentTypes\u0060 resource."
         }
@@ -4549,9 +4554,11 @@
         {
           "JsonName": "all_attachments",
           "ClrName": "AllAttachments",
-          "ClrAttributesType": "Attachment",
+          "AttributesClrType": "Attachment",
           "Description": "Associated \u0060AllAttachments\u0060.",
           "Slug": "all_attachments",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByAttachableType",
@@ -4563,152 +4570,152 @@
               "Value": "extensions",
               "Description": "filter to attachments with a file extension specified in the \u0060extensions\u0060 parameter.\ne.g. \u0060?filter=extensions\u0026extensions=pdf,txt\u0060\n"
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "attachments",
           "ClrName": "Attachments",
-          "ClrAttributesType": "Attachment",
+          "AttributesClrType": "Attachment",
           "Description": "Associated \u0060Attachments\u0060.",
           "Slug": "attachments",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "attendances",
           "ClrName": "Attendances",
-          "ClrAttributesType": "Attendance",
+          "AttributesClrType": "Attendance",
           "Description": "Associated \u0060Attendances\u0060.",
           "Slug": "attendances",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "contributors",
           "ClrName": "Contributors",
-          "ClrAttributesType": "Contributor",
+          "AttributesClrType": "Contributor",
           "Description": "Associated \u0060Contributors\u0060.",
           "Slug": "contributors",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "items",
           "ClrName": "Items",
-          "ClrAttributesType": "Item",
+          "AttributesClrType": "Item",
           "Description": "Associated \u0060Items\u0060.",
           "Slug": "items",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "live",
           "ClrName": "Live",
-          "ClrAttributesType": "Live",
+          "AttributesClrType": "Live",
           "Description": "Associated \u0060Live\u0060.",
           "Slug": "live",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "my_schedules",
           "ClrName": "MySchedules",
-          "ClrAttributesType": "Schedule",
+          "AttributesClrType": "Schedule",
           "Description": "Associated \u0060MySchedules\u0060.",
           "Slug": "my_schedules",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "needed_positions",
           "ClrName": "NeededPositions",
-          "ClrAttributesType": "NeededPosition",
+          "AttributesClrType": "NeededPosition",
           "Description": "Associated \u0060NeededPositions\u0060.",
           "Slug": "needed_positions",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "next_plan",
           "ClrName": "NextPlan",
-          "ClrAttributesType": "Plan",
+          "AttributesClrType": "Plan",
           "Description": "Associated \u0060NextPlan\u0060.",
           "Slug": "next_plan",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "notes",
           "ClrName": "Notes",
-          "ClrAttributesType": "PlanNote",
+          "AttributesClrType": "PlanNote",
           "Description": "Associated \u0060Notes\u0060.",
           "Slug": "notes",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByTeam",
               "Value": "team",
               "Description": "Filter results by the \u0060Team\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "plan_times",
           "ClrName": "PlanTimes",
-          "ClrAttributesType": "PlanTime",
+          "AttributesClrType": "PlanTime",
           "Description": "Associated \u0060PlanTimes\u0060.",
           "Slug": "plan_times",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "previous_plan",
           "ClrName": "PreviousPlan",
-          "ClrAttributesType": "Plan",
+          "AttributesClrType": "Plan",
           "Description": "Associated \u0060PreviousPlan\u0060.",
           "Slug": "previous_plan",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "series",
           "ClrName": "Series",
-          "ClrAttributesType": "Series",
+          "AttributesClrType": "Series",
           "Description": "Associated \u0060Series\u0060.",
           "Slug": "series",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "signup_teams",
           "ClrName": "SignupTeams",
-          "ClrAttributesType": "Team",
+          "AttributesClrType": "Team",
           "Description": "Associated \u0060SignupTeams\u0060.",
           "Slug": "signup_teams",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "team_members",
           "ClrName": "TeamMembers",
-          "ClrAttributesType": "PlanPerson",
+          "AttributesClrType": "PlanPerson",
           "Description": "Associated \u0060TeamMembers\u0060.",
           "Slug": "team_members",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByConfirmed",
@@ -4730,9 +4737,7 @@
               "Value": "not_deleted",
               "Description": "Filter results by the \u0060NotDeleted\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         }
       ],
       "CanInclude": [
@@ -4818,12 +4823,7 @@
           "Parameter": "where[updated_at]",
           "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
         }
-      ],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "plan_note",
@@ -4832,6 +4832,11 @@
       "Description": "A specific plan note within a single plan.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "category_name",
@@ -4862,24 +4867,24 @@
         {
           "JsonName": "created_by",
           "ClrName": "CreatedBy",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060CreatedBy\u0060 resource."
         },
         {
           "JsonName": "plan_note_category",
           "ClrName": "PlanNoteCategory",
-          "ClrAttributesType": "PlanNoteCategory",
-          "ClrResourceType": "PlanNoteCategoryResource",
+          "AttributesClrType": "PlanNoteCategory",
+          "ResourceClrType": "PlanNoteCategoryResource",
           "IsCollection": false,
           "Description": "Related \u0060PlanNoteCategory\u0060 resource."
         },
         {
           "JsonName": "teams",
           "ClrName": "Teams",
-          "ClrAttributesType": "Team",
-          "ClrResourceType": "TeamResource",
+          "AttributesClrType": "Team",
+          "ResourceClrType": "TeamResource",
           "IsCollection": false,
           "Description": "Related \u0060Teams\u0060 resource."
         }
@@ -4889,12 +4894,12 @@
         {
           "JsonName": "plan_note_category",
           "ClrName": "PlanNoteCategory",
-          "ClrAttributesType": "PlanNoteCategory",
+          "AttributesClrType": "PlanNoteCategory",
           "Description": "Associated \u0060PlanNoteCategory\u0060.",
           "Slug": "plan_note_category",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -4931,12 +4936,7 @@
           "Parameter": "where[updated_at]",
           "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
         }
-      ],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "plan_note_category",
@@ -4945,6 +4945,11 @@
       "Description": "A category of plan notes for an entire Service Type.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "created_at",
@@ -4981,16 +4986,16 @@
         {
           "JsonName": "service_type",
           "ClrName": "ServiceType",
-          "ClrAttributesType": "ServiceType",
-          "ClrResourceType": "ServiceTypeResource",
+          "AttributesClrType": "ServiceType",
+          "ResourceClrType": "ServiceTypeResource",
           "IsCollection": false,
           "Description": "Related \u0060ServiceType\u0060 resource."
         },
         {
           "JsonName": "teams",
           "ClrName": "Teams",
-          "ClrAttributesType": "Team",
-          "ClrResourceType": "TeamResource",
+          "AttributesClrType": "Team",
+          "ResourceClrType": "TeamResource",
           "IsCollection": false,
           "Description": "Related \u0060Teams\u0060 resource."
         }
@@ -4999,12 +5004,7 @@
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "plan_person",
@@ -5013,6 +5013,11 @@
       "Description": "A person scheduled within a specific plan.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "can_accept_partial",
@@ -5133,72 +5138,72 @@
         {
           "JsonName": "person",
           "ClrName": "Person",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060Person\u0060 resource."
         },
         {
           "JsonName": "plan",
           "ClrName": "Plan",
-          "ClrAttributesType": "Plan",
-          "ClrResourceType": "PlanResource",
+          "AttributesClrType": "Plan",
+          "ResourceClrType": "PlanResource",
           "IsCollection": false,
           "Description": "Related \u0060Plan\u0060 resource."
         },
         {
           "JsonName": "scheduled_by",
           "ClrName": "ScheduledBy",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060ScheduledBy\u0060 resource."
         },
         {
           "JsonName": "service_type",
           "ClrName": "ServiceType",
-          "ClrAttributesType": "ServiceType",
-          "ClrResourceType": "ServiceTypeResource",
+          "AttributesClrType": "ServiceType",
+          "ResourceClrType": "ServiceTypeResource",
           "IsCollection": false,
           "Description": "Related \u0060ServiceType\u0060 resource."
         },
         {
           "JsonName": "team",
           "ClrName": "Team",
-          "ClrAttributesType": "Team",
-          "ClrResourceType": "TeamResource",
+          "AttributesClrType": "Team",
+          "ResourceClrType": "TeamResource",
           "IsCollection": false,
           "Description": "Related \u0060Team\u0060 resource."
         },
         {
           "JsonName": "responds_to",
           "ClrName": "RespondsTo",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060RespondsTo\u0060 resource."
         },
         {
           "JsonName": "times",
           "ClrName": "Times",
-          "ClrAttributesType": "PlanTime",
-          "ClrResourceType": "PlanTimeResource",
+          "AttributesClrType": "PlanTime",
+          "ResourceClrType": "PlanTimeResource",
           "IsCollection": true,
           "Description": "Related \u0060Times\u0060 resource."
         },
         {
           "JsonName": "service_times",
           "ClrName": "ServiceTimes",
-          "ClrAttributesType": "PlanTime",
-          "ClrResourceType": "PlanTimeResource",
+          "AttributesClrType": "PlanTime",
+          "ResourceClrType": "PlanTimeResource",
           "IsCollection": true,
           "Description": "Related \u0060ServiceTimes\u0060 resource."
         },
         {
           "JsonName": "time_preference_options",
           "ClrName": "TimePreferenceOptions",
-          "ClrAttributesType": "TimePreferenceOption",
-          "ClrResourceType": "TimePreferenceOptionResource",
+          "AttributesClrType": "TimePreferenceOption",
+          "ResourceClrType": "TimePreferenceOptionResource",
           "IsCollection": true,
           "Description": "Related \u0060TimePreferenceOptions\u0060 resource."
         }
@@ -5208,62 +5213,62 @@
         {
           "JsonName": "declined_plan_times",
           "ClrName": "DeclinedPlanTimes",
-          "ClrAttributesType": "PlanTime",
+          "AttributesClrType": "PlanTime",
           "Description": "Associated \u0060DeclinedPlanTimes\u0060.",
           "Slug": "declined_plan_times",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "person",
           "ClrName": "Person",
-          "ClrAttributesType": "Person",
+          "AttributesClrType": "Person",
           "Description": "Associated \u0060Person\u0060.",
           "Slug": "person",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "plan",
           "ClrName": "Plan",
-          "ClrAttributesType": "Plan",
+          "AttributesClrType": "Plan",
           "Description": "Associated \u0060Plan\u0060.",
           "Slug": "plan",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "plan_person_times",
           "ClrName": "PlanPersonTimes",
-          "ClrAttributesType": "PlanPersonTime",
+          "AttributesClrType": "PlanPersonTime",
           "Description": "Associated \u0060PlanPersonTimes\u0060.",
           "Slug": "plan_person_times",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "plan_times",
           "ClrName": "PlanTimes",
-          "ClrAttributesType": "PlanTime",
+          "AttributesClrType": "PlanTime",
           "Description": "Associated \u0060PlanTimes\u0060.",
           "Slug": "plan_times",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "team",
           "ClrName": "Team",
-          "ClrAttributesType": "Team",
+          "AttributesClrType": "Team",
           "Description": "Associated \u0060Team\u0060.",
           "Slug": "team",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -5304,12 +5309,7 @@
           "Parameter": "where[team_id]",
           "Description": "Query response items by the \u0060TeamId\u0060 attribute."
         }
-      ],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "plan_person_time",
@@ -5318,6 +5318,11 @@
       "Description": "Planning Center does not provide a description for this resource.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "created_at",
@@ -5342,24 +5347,24 @@
         {
           "JsonName": "plan_time",
           "ClrName": "PlanTime",
-          "ClrAttributesType": "PlanTime",
-          "ClrResourceType": "PlanTimeResource",
+          "AttributesClrType": "PlanTime",
+          "ResourceClrType": "PlanTimeResource",
           "IsCollection": false,
           "Description": "Related \u0060PlanTime\u0060 resource."
         },
         {
           "JsonName": "plan",
           "ClrName": "Plan",
-          "ClrAttributesType": "Plan",
-          "ClrResourceType": "PlanResource",
+          "AttributesClrType": "Plan",
+          "ResourceClrType": "PlanResource",
           "IsCollection": false,
           "Description": "Related \u0060Plan\u0060 resource."
         },
         {
           "JsonName": "plan_person",
           "ClrName": "PlanPerson",
-          "ClrAttributesType": "PlanPerson",
-          "ClrResourceType": "PlanPersonResource",
+          "AttributesClrType": "PlanPerson",
+          "ResourceClrType": "PlanPersonResource",
           "IsCollection": false,
           "Description": "Related \u0060PlanPerson\u0060 resource."
         }
@@ -5368,12 +5373,7 @@
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "plan_template",
@@ -5382,6 +5382,11 @@
       "Description": "A PlanTemplate Resource",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "can_view_order",
@@ -5448,24 +5453,24 @@
         {
           "JsonName": "service_type",
           "ClrName": "ServiceType",
-          "ClrAttributesType": "ServiceType",
-          "ClrResourceType": "ServiceTypeResource",
+          "AttributesClrType": "ServiceType",
+          "ResourceClrType": "ServiceTypeResource",
           "IsCollection": false,
           "Description": "Related \u0060ServiceType\u0060 resource."
         },
         {
           "JsonName": "created_by",
           "ClrName": "CreatedBy",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060CreatedBy\u0060 resource."
         },
         {
           "JsonName": "updated_by",
           "ClrName": "UpdatedBy",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060UpdatedBy\u0060 resource."
         }
@@ -5484,29 +5489,31 @@
         {
           "JsonName": "items",
           "ClrName": "Items",
-          "ClrAttributesType": "Item",
+          "AttributesClrType": "Item",
           "Description": "Associated \u0060Items\u0060.",
           "Slug": "items",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "notes",
           "ClrName": "Notes",
-          "ClrAttributesType": "PlanNote",
+          "AttributesClrType": "PlanNote",
           "Description": "Associated \u0060Notes\u0060.",
           "Slug": "notes",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "team_members",
           "ClrName": "TeamMembers",
-          "ClrAttributesType": "PlanPerson",
+          "AttributesClrType": "PlanPerson",
           "Description": "Associated \u0060TeamMembers\u0060.",
           "Slug": "team_members",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByConfirmed",
@@ -5528,9 +5535,7 @@
               "Value": "not_deleted",
               "Description": "Filter results by the \u0060NotDeleted\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         }
       ],
       "CanInclude": [],
@@ -5566,12 +5571,7 @@
           "Description": "Sort response items by the \u0060UpdatedAt\u0060 attribute."
         }
       ],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "plan_time",
@@ -5580,6 +5580,11 @@
       "Description": "A time in a plan.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "created_at",
@@ -5646,16 +5651,16 @@
         {
           "JsonName": "assigned_teams",
           "ClrName": "AssignedTeams",
-          "ClrAttributesType": "Team",
-          "ClrResourceType": "TeamResource",
+          "AttributesClrType": "Team",
+          "ResourceClrType": "TeamResource",
           "IsCollection": true,
           "Description": "Related \u0060AssignedTeams\u0060 resource."
         },
         {
           "JsonName": "assigned_positions",
           "ClrName": "AssignedPositions",
-          "ClrAttributesType": "TeamPosition",
-          "ClrResourceType": "TeamPositionResource",
+          "AttributesClrType": "TeamPosition",
+          "ResourceClrType": "TeamPositionResource",
           "IsCollection": true,
           "Description": "Related \u0060AssignedPositions\u0060 resource."
         }
@@ -5665,12 +5670,12 @@
         {
           "JsonName": "split_team_rehearsal_assignments",
           "ClrName": "SplitTeamRehearsalAssignments",
-          "ClrAttributesType": "SplitTeamRehearsalAssignment",
+          "AttributesClrType": "SplitTeamRehearsalAssignment",
           "Description": "Associated \u0060SplitTeamRehearsalAssignments\u0060.",
           "Slug": "split_team_rehearsal_assignments",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -5696,12 +5701,7 @@
           "Parameter": "where[time_type]",
           "Description": "Query response items by the \u0060TimeType\u0060 attribute."
         }
-      ],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "public_view",
@@ -5710,6 +5710,11 @@
       "Description": "Manage options for a public plan",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "amazon",
@@ -5801,12 +5806,7 @@
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "report_template",
@@ -5815,6 +5815,11 @@
       "Description": "A template for generating reports",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "body",
@@ -5846,12 +5851,7 @@
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "schedule",
@@ -5860,6 +5860,11 @@
       "Description": "An instance of a PlanPerson with included data for displaying in a user\u0027s schedule",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "can_accept_partial",
@@ -5980,64 +5985,64 @@
         {
           "JsonName": "person",
           "ClrName": "Person",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060Person\u0060 resource."
         },
         {
           "JsonName": "service_type",
           "ClrName": "ServiceType",
-          "ClrAttributesType": "ServiceType",
-          "ClrResourceType": "ServiceTypeResource",
+          "AttributesClrType": "ServiceType",
+          "ResourceClrType": "ServiceTypeResource",
           "IsCollection": false,
           "Description": "Related \u0060ServiceType\u0060 resource."
         },
         {
           "JsonName": "organization",
           "ClrName": "Organization",
-          "ClrAttributesType": "Organization",
-          "ClrResourceType": "OrganizationResource",
+          "AttributesClrType": "Organization",
+          "ResourceClrType": "OrganizationResource",
           "IsCollection": false,
           "Description": "Related \u0060Organization\u0060 resource."
         },
         {
           "JsonName": "plan_person",
           "ClrName": "PlanPerson",
-          "ClrAttributesType": "PlanPerson",
-          "ClrResourceType": "PlanPersonResource",
+          "AttributesClrType": "PlanPerson",
+          "ResourceClrType": "PlanPersonResource",
           "IsCollection": false,
           "Description": "Related \u0060PlanPerson\u0060 resource."
         },
         {
           "JsonName": "plan",
           "ClrName": "Plan",
-          "ClrAttributesType": "Plan",
-          "ClrResourceType": "PlanResource",
+          "AttributesClrType": "Plan",
+          "ResourceClrType": "PlanResource",
           "IsCollection": false,
           "Description": "Related \u0060Plan\u0060 resource."
         },
         {
           "JsonName": "team",
           "ClrName": "Team",
-          "ClrAttributesType": "Team",
-          "ClrResourceType": "TeamResource",
+          "AttributesClrType": "Team",
+          "ResourceClrType": "TeamResource",
           "IsCollection": false,
           "Description": "Related \u0060Team\u0060 resource."
         },
         {
           "JsonName": "responds_to_person",
           "ClrName": "RespondsToPerson",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060RespondsToPerson\u0060 resource."
         },
         {
           "JsonName": "times",
           "ClrName": "Times",
-          "ClrAttributesType": "PlanTime",
-          "ClrResourceType": "PlanTimeResource",
+          "AttributesClrType": "PlanTime",
+          "ResourceClrType": "PlanTimeResource",
           "IsCollection": true,
           "Description": "Related \u0060Times\u0060 resource."
         }
@@ -6064,42 +6069,42 @@
         {
           "JsonName": "declined_plan_times",
           "ClrName": "DeclinedPlanTimes",
-          "ClrAttributesType": "PlanTime",
+          "AttributesClrType": "PlanTime",
           "Description": "Associated \u0060DeclinedPlanTimes\u0060.",
           "Slug": "declined_plan_times",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "plan_times",
           "ClrName": "PlanTimes",
-          "ClrAttributesType": "PlanTime",
+          "AttributesClrType": "PlanTime",
           "Description": "Associated \u0060PlanTimes\u0060.",
           "Slug": "plan_times",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "respond_to",
           "ClrName": "RespondTo",
-          "ClrAttributesType": "Person",
+          "AttributesClrType": "Person",
           "Description": "Associated \u0060RespondTo\u0060.",
           "Slug": "respond_to",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "team",
           "ClrName": "Team",
-          "ClrAttributesType": "Team",
+          "AttributesClrType": "Team",
           "Description": "Associated \u0060Team\u0060.",
           "Slug": "team",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -6125,12 +6130,7 @@
           "Parameter": "where[plan_id]",
           "Description": "Query response items by the \u0060PlanId\u0060 attribute."
         }
-      ],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "scheduled_person",
@@ -6139,6 +6139,11 @@
       "Description": "A person already scheduled to a SignupSheet",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "full_name",
@@ -6163,16 +6168,16 @@
         {
           "JsonName": "person",
           "ClrName": "Person",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060Person\u0060 resource."
         },
         {
           "JsonName": "signup_sheet",
           "ClrName": "SignupSheet",
-          "ClrAttributesType": "SignupSheet",
-          "ClrResourceType": "SignupSheetResource",
+          "AttributesClrType": "SignupSheet",
+          "ResourceClrType": "SignupSheetResource",
           "IsCollection": false,
           "Description": "Related \u0060SignupSheet\u0060 resource."
         }
@@ -6181,12 +6186,7 @@
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "scheduling_preference",
@@ -6195,6 +6195,11 @@
       "Description": "Household member scheduling preference",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "preference",
@@ -6207,8 +6212,8 @@
         {
           "JsonName": "household_member",
           "ClrName": "HouseholdMember",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060HouseholdMember\u0060 resource."
         }
@@ -6217,12 +6222,7 @@
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "series",
@@ -6231,6 +6231,11 @@
       "Description": "A Series can be specified for each plan to tie plans with similar messages together, even across Service Types.\n\n*Note*: A series is not created until artwork is added from the plan.  You can use \u0060series_title\u0060 included in \u0060Plan\u0060 attributes to get titles for series without artwork.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "artwork_content_type",
@@ -6305,12 +6310,12 @@
         {
           "JsonName": "plans",
           "ClrName": "Plans",
-          "ClrAttributesType": "Plan",
+          "AttributesClrType": "Plan",
           "Description": "Associated \u0060Plans\u0060.",
           "Slug": "plans",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [],
@@ -6328,12 +6333,7 @@
           "Parameter": "where[title]",
           "Description": "Query response items by the \u0060Title\u0060 attribute."
         }
-      ],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "service_type",
@@ -6342,6 +6342,11 @@
       "Description": "A Service Type is a container for plans.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "archived_at",
@@ -6438,8 +6443,8 @@
         {
           "JsonName": "parent",
           "ClrName": "Parent",
-          "ClrAttributesType": "Folder",
-          "ClrResourceType": "FolderResource",
+          "AttributesClrType": "Folder",
+          "ResourceClrType": "FolderResource",
           "IsCollection": false,
           "Description": "Related \u0060Parent\u0060 resource."
         }
@@ -6458,59 +6463,61 @@
         {
           "JsonName": "attachments",
           "ClrName": "Attachments",
-          "ClrAttributesType": "Attachment",
+          "AttributesClrType": "Attachment",
           "Description": "Associated \u0060Attachments\u0060.",
           "Slug": "attachments",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "item_note_categories",
           "ClrName": "ItemNoteCategories",
-          "ClrAttributesType": "ItemNoteCategory",
+          "AttributesClrType": "ItemNoteCategory",
           "Description": "Associated \u0060ItemNoteCategories\u0060.",
           "Slug": "item_note_categories",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "live_controllers",
           "ClrName": "LiveControllers",
-          "ClrAttributesType": "LiveController",
+          "AttributesClrType": "LiveController",
           "Description": "Associated \u0060LiveControllers\u0060.",
           "Slug": "live_controllers",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "plan_note_categories",
           "ClrName": "PlanNoteCategories",
-          "ClrAttributesType": "PlanNoteCategory",
+          "AttributesClrType": "PlanNoteCategory",
           "Description": "Associated \u0060PlanNoteCategories\u0060.",
           "Slug": "plan_note_categories",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "plan_templates",
           "ClrName": "PlanTemplates",
-          "ClrAttributesType": "PlanTemplate",
+          "AttributesClrType": "PlanTemplate",
           "Description": "Associated \u0060PlanTemplates\u0060.",
           "Slug": "plan_templates",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "plan_times",
           "ClrName": "PlanTimes",
-          "ClrAttributesType": "PlanTime",
+          "AttributesClrType": "PlanTime",
           "Description": "Associated \u0060PlanTimes\u0060.",
           "Slug": "plan_times",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByFuture",
@@ -6532,16 +6539,16 @@
               "Value": "past",
               "Description": "Filter results by the \u0060Past\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "plans",
           "ClrName": "Plans",
-          "ClrAttributesType": "Plan",
+          "AttributesClrType": "Plan",
           "Description": "Associated \u0060Plans\u0060.",
           "Slug": "plans",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByAfter",
@@ -6568,65 +6575,63 @@
               "Value": "past",
               "Description": "Filter results by the \u0060Past\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "public_view",
           "ClrName": "PublicView",
-          "ClrAttributesType": "PublicView",
+          "AttributesClrType": "PublicView",
           "Description": "Associated \u0060PublicView\u0060.",
           "Slug": "public_view",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "team_positions",
           "ClrName": "TeamPositions",
-          "ClrAttributesType": "TeamPosition",
+          "AttributesClrType": "TeamPosition",
           "Description": "Associated \u0060TeamPositions\u0060.",
           "Slug": "team_positions",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "teams",
           "ClrName": "Teams",
-          "ClrAttributesType": "Team",
+          "AttributesClrType": "Team",
           "Description": "Associated \u0060Teams\u0060.",
           "Slug": "teams",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "time_preference_options",
           "ClrName": "TimePreferenceOptions",
-          "ClrAttributesType": "TimePreferenceOption",
+          "AttributesClrType": "TimePreferenceOption",
           "Description": "Associated \u0060TimePreferenceOptions\u0060.",
           "Slug": "time_preference_options",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "unscoped_plans",
           "ClrName": "UnscopedPlans",
-          "ClrAttributesType": "Plan",
+          "AttributesClrType": "Plan",
           "Description": "Associated \u0060UnscopedPlans\u0060.",
           "Slug": "unscoped_plans",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByDeleted",
               "Value": "deleted",
               "Description": "Filter results by the \u0060Deleted\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         }
       ],
       "CanInclude": [
@@ -6669,12 +6674,7 @@
           "Parameter": "where[parent_id]",
           "Description": "Query response items by the \u0060ParentId\u0060 attribute."
         }
-      ],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "service_type_path",
@@ -6683,6 +6683,11 @@
       "Description": "The Folder path of a Service Type",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "path",
@@ -6696,12 +6701,7 @@
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "signup_sheet",
@@ -6710,6 +6710,11 @@
       "Description": "Available positions to sign up for",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "display_times",
@@ -6758,24 +6763,24 @@
         {
           "JsonName": "plan",
           "ClrName": "Plan",
-          "ClrAttributesType": "Plan",
-          "ClrResourceType": "PlanResource",
+          "AttributesClrType": "Plan",
+          "ResourceClrType": "PlanResource",
           "IsCollection": false,
           "Description": "Related \u0060Plan\u0060 resource."
         },
         {
           "JsonName": "team_position",
           "ClrName": "TeamPosition",
-          "ClrAttributesType": "TeamPosition",
-          "ClrResourceType": "TeamPositionResource",
+          "AttributesClrType": "TeamPosition",
+          "ResourceClrType": "TeamPositionResource",
           "IsCollection": false,
           "Description": "Related \u0060TeamPosition\u0060 resource."
         },
         {
           "JsonName": "team",
           "ClrName": "Team",
-          "ClrAttributesType": "Team",
-          "ClrResourceType": "TeamResource",
+          "AttributesClrType": "Team",
+          "ResourceClrType": "TeamResource",
           "IsCollection": false,
           "Description": "Related \u0060Team\u0060 resource."
         }
@@ -6793,22 +6798,22 @@
         {
           "JsonName": "scheduled_people",
           "ClrName": "ScheduledPeople",
-          "ClrAttributesType": "ScheduledPerson",
+          "AttributesClrType": "ScheduledPerson",
           "Description": "Associated \u0060ScheduledPeople\u0060.",
           "Slug": "scheduled_people",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "signup_sheet_metadata",
           "ClrName": "SignupSheetMetadata",
-          "ClrAttributesType": "SignupSheetMetadata",
+          "AttributesClrType": "SignupSheetMetadata",
           "Description": "Associated \u0060SignupSheetMetadata\u0060.",
           "Slug": "signup_sheet_metadata",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -6828,12 +6833,7 @@
         }
       ],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "signup_sheet_metadata",
@@ -6842,6 +6842,11 @@
       "Description": "A SignupSheetMetadata Resource",
       "Deprecated": false,
       "CollectionOnly": true,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "conflicts",
@@ -6878,8 +6883,8 @@
         {
           "JsonName": "plan_time",
           "ClrName": "PlanTime",
-          "ClrAttributesType": "PlanTime",
-          "ClrResourceType": "PlanTimeResource",
+          "AttributesClrType": "PlanTime",
+          "ResourceClrType": "PlanTimeResource",
           "IsCollection": false,
           "Description": "Related \u0060PlanTime\u0060 resource."
         }
@@ -6888,12 +6893,7 @@
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "skipped_attachment",
@@ -6902,6 +6902,11 @@
       "Description": "a skipped attachment",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "skipped",
@@ -6914,16 +6919,16 @@
         {
           "JsonName": "person",
           "ClrName": "Person",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060Person\u0060 resource."
         },
         {
           "JsonName": "attachment",
           "ClrName": "Attachment",
-          "ClrAttributesType": "Attachment",
-          "ClrResourceType": "AttachmentResource",
+          "AttributesClrType": "Attachment",
+          "ResourceClrType": "AttachmentResource",
           "IsCollection": false,
           "Description": "Related \u0060Attachment\u0060 resource."
         }
@@ -6932,12 +6937,7 @@
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "song",
@@ -6946,6 +6946,11 @@
       "Description": "A song",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "admin",
@@ -7035,58 +7040,58 @@
         {
           "JsonName": "arrangements",
           "ClrName": "Arrangements",
-          "ClrAttributesType": "Arrangement",
+          "AttributesClrType": "Arrangement",
           "Description": "Associated \u0060Arrangements\u0060.",
           "Slug": "arrangements",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "attachments",
           "ClrName": "Attachments",
-          "ClrAttributesType": "Attachment",
+          "AttributesClrType": "Attachment",
           "Description": "Associated \u0060Attachments\u0060.",
           "Slug": "attachments",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "last_scheduled_item",
           "ClrName": "LastScheduledItem",
-          "ClrAttributesType": "Item",
+          "AttributesClrType": "Item",
           "Description": "Associated \u0060LastScheduledItem\u0060.",
           "Slug": "last_scheduled_item",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "song_schedules",
           "ClrName": "SongSchedules",
-          "ClrAttributesType": "SongSchedule",
+          "AttributesClrType": "SongSchedule",
           "Description": "Associated \u0060SongSchedules\u0060.",
           "Slug": "song_schedules",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByThreeMostRecent",
               "Value": "three_most_recent",
               "Description": "Filter results by the \u0060ThreeMostRecent\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "tags",
           "ClrName": "Tags",
-          "ClrAttributesType": "Tag",
+          "AttributesClrType": "Tag",
           "Description": "Associated \u0060Tags\u0060.",
           "Slug": "tags",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [],
@@ -7143,12 +7148,7 @@
           "Parameter": "where[title]",
           "Description": "Query response items by the \u0060Title\u0060 attribute."
         }
-      ],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "song_schedule",
@@ -7157,6 +7157,11 @@
       "Description": "A upcoming schedule for a song",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "arrangement_name",
@@ -7199,40 +7204,40 @@
         {
           "JsonName": "arrangement",
           "ClrName": "Arrangement",
-          "ClrAttributesType": "Arrangement",
-          "ClrResourceType": "ArrangementResource",
+          "AttributesClrType": "Arrangement",
+          "ResourceClrType": "ArrangementResource",
           "IsCollection": false,
           "Description": "Related \u0060Arrangement\u0060 resource."
         },
         {
           "JsonName": "key",
           "ClrName": "Key",
-          "ClrAttributesType": "Key",
-          "ClrResourceType": "KeyResource",
+          "AttributesClrType": "Key",
+          "ResourceClrType": "KeyResource",
           "IsCollection": false,
           "Description": "Related \u0060Key\u0060 resource."
         },
         {
           "JsonName": "plan",
           "ClrName": "Plan",
-          "ClrAttributesType": "Plan",
-          "ClrResourceType": "PlanResource",
+          "AttributesClrType": "Plan",
+          "ResourceClrType": "PlanResource",
           "IsCollection": false,
           "Description": "Related \u0060Plan\u0060 resource."
         },
         {
           "JsonName": "service_type",
           "ClrName": "ServiceType",
-          "ClrAttributesType": "ServiceType",
-          "ClrResourceType": "ServiceTypeResource",
+          "AttributesClrType": "ServiceType",
+          "ResourceClrType": "ServiceTypeResource",
           "IsCollection": false,
           "Description": "Related \u0060ServiceType\u0060 resource."
         },
         {
           "JsonName": "item",
           "ClrName": "Item",
-          "ClrAttributesType": "Item",
-          "ClrResourceType": "ItemResource",
+          "AttributesClrType": "Item",
+          "ResourceClrType": "ItemResource",
           "IsCollection": false,
           "Description": "Related \u0060Item\u0060 resource."
         }
@@ -7247,12 +7252,7 @@
           "Description": "Sort response items by the \u0060PlanSortDate\u0060 attribute."
         }
       ],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "songbook_status",
@@ -7261,6 +7261,11 @@
       "Description": "Used to get the status of an in progress songbook action. When FINISHED, will contain the url of the songbook.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "status",
@@ -7292,12 +7297,7 @@
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "split_team_rehearsal_assignment",
@@ -7306,6 +7306,11 @@
       "Description": "For Rehearsal/Other Times, maps a Split Team to selected Time Preference Options. For example, used to assign 8am Ushers to 7:30am call time, and 11am Ushers to 10:30am call time.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "schedule_special_service_times",
@@ -7318,16 +7323,16 @@
         {
           "JsonName": "team",
           "ClrName": "Team",
-          "ClrAttributesType": "Team",
-          "ClrResourceType": "TeamResource",
+          "AttributesClrType": "Team",
+          "ResourceClrType": "TeamResource",
           "IsCollection": false,
           "Description": "Related \u0060Team\u0060 resource."
         },
         {
           "JsonName": "time_preference_options",
           "ClrName": "TimePreferenceOptions",
-          "ClrAttributesType": "TimePreferenceOption",
-          "ClrResourceType": "TimePreferenceOptionResource",
+          "AttributesClrType": "TimePreferenceOption",
+          "ResourceClrType": "TimePreferenceOptionResource",
           "IsCollection": true,
           "Description": "Related \u0060TimePreferenceOptions\u0060 resource."
         }
@@ -7337,22 +7342,17 @@
         {
           "JsonName": "team",
           "ClrName": "Team",
-          "ClrAttributesType": "Team",
+          "AttributesClrType": "Team",
           "Description": "Associated \u0060Team\u0060.",
           "Slug": "team",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "tag",
@@ -7361,6 +7361,11 @@
       "Description": "A tag belonging to a tag group.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "name",
@@ -7373,8 +7378,8 @@
         {
           "JsonName": "tag_group",
           "ClrName": "TagGroup",
-          "ClrAttributesType": "TagGroup",
-          "ClrResourceType": "TagGroupResource",
+          "AttributesClrType": "TagGroup",
+          "ResourceClrType": "TagGroupResource",
           "IsCollection": false,
           "Description": "Related \u0060TagGroup\u0060 resource."
         }
@@ -7383,12 +7388,7 @@
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "tag_group",
@@ -7397,6 +7397,11 @@
       "Description": "A tag group contains tags",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "allow_multiple_selections",
@@ -7435,22 +7440,22 @@
         {
           "JsonName": "folder",
           "ClrName": "Folder",
-          "ClrAttributesType": "Folder",
+          "AttributesClrType": "Folder",
           "Description": "Associated \u0060Folder\u0060.",
           "Slug": "folder",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "tags",
           "ClrName": "Tags",
-          "ClrAttributesType": "Tag",
+          "AttributesClrType": "Tag",
           "Description": "Associated \u0060Tags\u0060.",
           "Slug": "tags",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -7483,12 +7488,7 @@
           "Parameter": "where[tags_for]",
           "Description": "Query response items by the \u0060TagsFor\u0060 attribute."
         }
-      ],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "team",
@@ -7497,6 +7497,11 @@
       "Description": "A Team within a Service Type.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "archived_at",
@@ -7599,24 +7604,24 @@
         {
           "JsonName": "service_type",
           "ClrName": "ServiceType",
-          "ClrAttributesType": "ServiceType",
-          "ClrResourceType": "ServiceTypeResource",
+          "AttributesClrType": "ServiceType",
+          "ResourceClrType": "ServiceTypeResource",
           "IsCollection": false,
           "Description": "Related \u0060ServiceType\u0060 resource."
         },
         {
           "JsonName": "default_responds_to",
           "ClrName": "DefaultRespondsTo",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060DefaultRespondsTo\u0060 resource."
         },
         {
           "JsonName": "service_types",
           "ClrName": "ServiceTypes",
-          "ClrAttributesType": "ServiceType",
-          "ClrResourceType": "ServiceTypeResource",
+          "AttributesClrType": "ServiceType",
+          "ResourceClrType": "ServiceTypeResource",
           "IsCollection": true,
           "Description": "Related \u0060ServiceTypes\u0060 resource."
         }
@@ -7626,52 +7631,52 @@
         {
           "JsonName": "people",
           "ClrName": "People",
-          "ClrAttributesType": "Person",
+          "AttributesClrType": "Person",
           "Description": "Associated \u0060People\u0060.",
           "Slug": "people",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "person_team_position_assignments",
           "ClrName": "PersonTeamPositionAssignments",
-          "ClrAttributesType": "PersonTeamPositionAssignment",
+          "AttributesClrType": "PersonTeamPositionAssignment",
           "Description": "Associated \u0060PersonTeamPositionAssignments\u0060.",
           "Slug": "person_team_position_assignments",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "service_types",
           "ClrName": "ServiceTypes",
-          "ClrAttributesType": "ServiceType",
+          "AttributesClrType": "ServiceType",
           "Description": "Associated \u0060ServiceTypes\u0060.",
           "Slug": "service_types",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "team_leaders",
           "ClrName": "TeamLeaders",
-          "ClrAttributesType": "TeamLeader",
+          "AttributesClrType": "TeamLeader",
           "Description": "Associated \u0060TeamLeaders\u0060.",
           "Slug": "team_leaders",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "team_positions",
           "ClrName": "TeamPositions",
-          "ClrAttributesType": "TeamPosition",
+          "AttributesClrType": "TeamPosition",
           "Description": "Associated \u0060TeamPositions\u0060.",
           "Slug": "team_positions",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -7735,12 +7740,7 @@
           "Parameter": "where[name]",
           "Description": "Query response items by the \u0060Name\u0060 attribute."
         }
-      ],
-      "Postable": true,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "team_leader",
@@ -7749,6 +7749,11 @@
       "Description": "A leader of a specific Team in a Service Type.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "send_responses_for_accepts",
@@ -7773,16 +7778,16 @@
         {
           "JsonName": "person",
           "ClrName": "Person",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060Person\u0060 resource."
         },
         {
           "JsonName": "team",
           "ClrName": "Team",
-          "ClrAttributesType": "Team",
-          "ClrResourceType": "TeamResource",
+          "AttributesClrType": "Team",
+          "ResourceClrType": "TeamResource",
           "IsCollection": false,
           "Description": "Related \u0060Team\u0060 resource."
         }
@@ -7792,22 +7797,22 @@
         {
           "JsonName": "people",
           "ClrName": "People",
-          "ClrAttributesType": "Person",
+          "AttributesClrType": "Person",
           "Description": "Associated \u0060People\u0060.",
           "Slug": "people",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "team",
           "ClrName": "Team",
-          "ClrAttributesType": "Team",
+          "AttributesClrType": "Team",
           "Description": "Associated \u0060Team\u0060.",
           "Slug": "team",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -7838,12 +7843,7 @@
           "Description": "Sort response items by the \u0060LastName\u0060 attribute."
         }
       ],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "team_position",
@@ -7852,6 +7852,11 @@
       "Description": "A position within a team.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "name",
@@ -7888,24 +7893,24 @@
         {
           "JsonName": "team",
           "ClrName": "Team",
-          "ClrAttributesType": "Team",
-          "ClrResourceType": "TeamResource",
+          "AttributesClrType": "Team",
+          "ResourceClrType": "TeamResource",
           "IsCollection": false,
           "Description": "Related \u0060Team\u0060 resource."
         },
         {
           "JsonName": "attachment_types",
           "ClrName": "AttachmentTypes",
-          "ClrAttributesType": "AttachmentType",
-          "ClrResourceType": "AttachmentTypeResource",
+          "AttributesClrType": "AttachmentType",
+          "ResourceClrType": "AttachmentTypeResource",
           "IsCollection": true,
           "Description": "Related \u0060AttachmentTypes\u0060 resource."
         },
         {
           "JsonName": "tags",
           "ClrName": "Tags",
-          "ClrAttributesType": "Tag",
-          "ClrResourceType": "TagResource",
+          "AttributesClrType": "Tag",
+          "ResourceClrType": "TagResource",
           "IsCollection": true,
           "Description": "Related \u0060Tags\u0060 resource."
         }
@@ -7915,38 +7920,38 @@
         {
           "JsonName": "person_team_position_assignments",
           "ClrName": "PersonTeamPositionAssignments",
-          "ClrAttributesType": "PersonTeamPositionAssignment",
+          "AttributesClrType": "PersonTeamPositionAssignment",
           "Description": "Associated \u0060PersonTeamPositionAssignments\u0060.",
           "Slug": "person_team_position_assignments",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByTimePreferenceOptions",
               "Value": "time_preference_options",
               "Description": "pass an additonal array of \u0060time_preference_option_ids\u0060 as a param to filter to people who prefer those times.use id \u0027none\u0027 to filter people who have no preferred times"
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "tags",
           "ClrName": "Tags",
-          "ClrAttributesType": "Tag",
+          "AttributesClrType": "Tag",
           "Description": "Associated \u0060Tags\u0060.",
           "Slug": "tags",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "team",
           "ClrName": "Team",
-          "ClrAttributesType": "Team",
+          "AttributesClrType": "Team",
           "Description": "Associated \u0060Team\u0060.",
           "Slug": "team",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -7972,12 +7977,7 @@
           "Description": "Sort response items by the \u0060Name\u0060 attribute."
         }
       ],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "text_setting",
@@ -7986,6 +7986,11 @@
       "Description": "Planning Center does not provide a description for this resource.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": true,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "carrier",
@@ -8035,12 +8040,7 @@
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": true,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "time_preference_option",
@@ -8049,6 +8049,11 @@
       "Description": "A Service Time a person prefers to be scheduled to.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "created_at",
@@ -8115,12 +8120,7 @@
           "Description": "Sort response items by the \u0060HourOfDay\u0060 attribute."
         }
       ],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "zoom",
@@ -8129,6 +8129,11 @@
       "Description": "Describes a zoom level for an attachment",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "aspect_ratio",
@@ -8159,24 +8164,24 @@
         {
           "JsonName": "person",
           "ClrName": "Person",
-          "ClrAttributesType": "Person",
-          "ClrResourceType": "PersonResource",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
           "IsCollection": false,
           "Description": "Related \u0060Person\u0060 resource."
         },
         {
           "JsonName": "attachable",
           "ClrName": "Attachable",
-          "ClrAttributesType": "Attachment",
-          "ClrResourceType": "AttachmentResource",
+          "AttributesClrType": "Attachment",
+          "ResourceClrType": "AttachmentResource",
           "IsCollection": false,
           "Description": "Related \u0060Attachable\u0060 resource."
         },
         {
           "JsonName": "attachment",
           "ClrName": "Attachment",
-          "ClrAttributesType": "Attachment",
-          "ClrResourceType": "AttachmentResource",
+          "AttributesClrType": "Attachment",
+          "ResourceClrType": "AttachmentResource",
           "IsCollection": false,
           "Description": "Related \u0060Attachment\u0060 resource."
         }
@@ -8185,12 +8190,7 @@
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     }
   ]
 }

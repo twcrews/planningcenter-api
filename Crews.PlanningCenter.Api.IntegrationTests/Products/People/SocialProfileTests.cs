@@ -18,7 +18,7 @@ public class SocialProfileTests(PeopleFixture fixture) : PeopleTestBase(fixture)
 			// -- Create --
 			var createResult = await personSocialProfiles.PostAsync(new SocialProfile
 			{
-				Site = "twitter",
+				Site = "Twitter",
 				Url = $"https://twitter.com/inttest{UniqueId}"
 			});
 			Assert.NotNull(createResult.Data);

@@ -1,75 +1,80 @@
+using Crews.PlanningCenter.Api.Models;
+
 namespace Crews.PlanningCenter.Api.DocParser.Configuration;
 
 public record DocumentationTransforms
 {
-    public IEnumerable<ExcludedVertexEntry> ExcludedVertices { get; init; } = [];
-    public IEnumerable<EdgeTypeOverrideEntry> EdgeTypeOverrides { get; init; } = [];
-    public IEnumerable<CollectionOverrideEntry> CollectionOverrides { get; init; } = [];
-    public IEnumerable<VertexNameOverrideEntry> VertexNameOverrides { get; init; } = [];
-    public IEnumerable<AttributeTypeOverrideEntry> AttributeTypeOverrides { get; init; } = [];
-    public IEnumerable<AttributeJsonConverterEntry> AttributeJsonConverters { get; init; } = [];
-    public IEnumerable<RelationshipTypeOverrideEntry> RelationshipTypeOverrides { get; init; } = [];
+    public IEnumerable<ResourcePropertyOverrideEntry> ResourceOverrides { get; init; } = [];
+    public IEnumerable<AttributePropertyOverrideEntry> AttributeOverrides { get; init; } = [];
+    public IEnumerable<RelationshipPropertyOverrideEntry> RelationshipOverrides { get; init; } = [];
+    public IEnumerable<ResourceChildPropertyOverrideEntry> ResourceChildOverrides { get; init; } = [];
+    public IEnumerable<AdditionalResourceChildEntry> AdditionalResourceChildren { get; init; } = [];
 
-    public record ExcludedVertexEntry
+    public record ResourcePropertyOverrideEntry
     {
         public string? Product { get; init; }
         public string? Version { get; init; }
-        public required string Vertex { get; init; }
-        public bool ShouldGenerateResource { get; init; }
-        public bool ShouldGenerateClients { get; init; }
+        public required string Resource { get; init; }
+        public string? JsonName { get; init; }
+        public string? ResourceClrType { get; init; }
+        public string? AttributesClrType { get; init; }
+        public string? Description { get; init; }
+        public bool? Deprecated { get; init; }
+        public bool? CollectionOnly { get; init; }
+        public bool? Postable { get; init; }
+        public bool? Patchable { get; init; }
+        public bool? Deletable { get; init; }
+        public bool? ShouldGenerateResource { get; init; }
+        public bool? ShouldGenerateClients { get; init; }
     }
 
-    public record EdgeTypeOverrideEntry
+    public record AttributePropertyOverrideEntry
     {
         public string? Product { get; init; }
         public string? Version { get; init; }
-        public string? Vertex { get; init; }
-        public required string Edge { get; init; }
-        public required string ClrType { get; init; }
-    }
-
-    public record CollectionOverrideEntry
-    {
-        public string? Product { get; init; }
-        public string? Version { get; init; }
-        public string? Vertex { get; init; }
-        public required string Edge { get; init; }
-        public bool IsCollection { get; init; }
-    }
-
-    public record VertexNameOverrideEntry
-    {
-        public string? Product { get; init; }
-        public string? Version { get; init; }
-        public required string Vertex { get; init; }
-        public required string ClrModelName { get; init; }
-        public required string ClrResourceName { get; init; }
-    }
-
-    public record AttributeTypeOverrideEntry
-    {
-        public string? Product { get; init; }
-        public string? Version { get; init; }
-        public string? Vertex { get; init; }
+        public string? Resource { get; init; }
         public required string Attribute { get; init; }
-        public required string ClrType { get; init; }
+        public string? JsonName { get; init; }
+        public string? ClrName { get; init; }
+        public string? ClrType { get; init; }
+        public string? Description { get; init; }
+        public string? JsonConverter { get; init; }
     }
 
-    public record AttributeJsonConverterEntry
+    public record RelationshipPropertyOverrideEntry
     {
         public string? Product { get; init; }
         public string? Version { get; init; }
-        public string? Vertex { get; init; }
-        public required string Attribute { get; init; }
-        public required string Converter { get; init; }
-    }
-
-    public record RelationshipTypeOverrideEntry
-    {
-        public string? Product { get; init; }
-        public string? Version { get; init; }
-        public string? Vertex { get; init; }
+        public string? Resource { get; init; }
         public required string Relationship { get; init; }
-        public required string ClrType { get; init; }
+        public string? JsonName { get; init; }
+        public string? ClrName { get; init; }
+        public string? AttributesClrType { get; init; }
+        public string? ResourceClrType { get; init; }
+        public string? IsCollection { get; init; }
+        public string? Description { get; init; }
+    }
+
+    public record ResourceChildPropertyOverrideEntry
+    {
+        public string? Product { get; init; }
+        public string? Version { get; init; }
+        public string? Resource { get; init; }
+        public required string Child { get; init; }
+        public string? JsonName { get; init; }
+        public string? ClrName { get; init; }
+        public string? AttributesClrType { get; init; }
+        public string? Description { get; init; }
+        public string? Slug { get; init; }
+        public bool? IsCollection { get; init; }
+        public bool? Deprecated { get; init; }
+    }
+
+    public record AdditionalResourceChildEntry
+    {
+        public string? Product { get; init; }
+        public string? Version { get; init; }
+        public required string Resource { get; init; }
+        public required ResourceChild Child { get; init; }
     }
 }

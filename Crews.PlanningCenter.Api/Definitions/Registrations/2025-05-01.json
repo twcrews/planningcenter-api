@@ -10,6 +10,11 @@
       "Description": "An \u0060Attendee\u0060 is a person registered for a signup.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "active",
@@ -60,42 +65,42 @@
         {
           "JsonName": "emergency_contact",
           "ClrName": "EmergencyContact",
-          "ClrAttributesType": "EmergencyContact",
+          "AttributesClrType": "EmergencyContact",
           "Description": "Associated \u0060EmergencyContact\u0060.",
           "Slug": "emergency_contact",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "person",
           "ClrName": "Person",
-          "ClrAttributesType": "Person",
+          "AttributesClrType": "Person",
           "Description": "Associated \u0060Person\u0060.",
           "Slug": "person",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "registration",
           "ClrName": "Registration",
-          "ClrAttributesType": "Registration",
+          "AttributesClrType": "Registration",
           "Description": "Associated \u0060Registration\u0060.",
           "Slug": "registration",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "selection_type",
           "ClrName": "SelectionType",
-          "ClrAttributesType": "SelectionType",
+          "AttributesClrType": "SelectionType",
           "Description": "Associated \u0060SelectionType\u0060.",
           "Slug": "selection_type",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -129,12 +134,7 @@
         }
       ],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "campus",
@@ -143,6 +143,11 @@
       "Description": "A \u0060Campus\u0060 is a location belonging to an Organization.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "city",
@@ -204,12 +209,7 @@
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "category",
@@ -218,6 +218,11 @@
       "Description": "A \u0060Category\u0060 is a label used to group together and find signups more easily.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "created_at",
@@ -243,12 +248,7 @@
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "emergency_contact",
@@ -257,6 +257,11 @@
       "Description": "\u0060Emergency_Contact\u0060 is the person assigned as the emergency contact for an attendee.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "name",
@@ -276,12 +281,7 @@
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "organization",
@@ -290,6 +290,11 @@
       "Description": "The root level \u0060Organization\u0060 record which serves as a link to \u0060Signup\u0060s.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "created_at",
@@ -316,29 +321,31 @@
         {
           "JsonName": "campuses",
           "ClrName": "Campuses",
-          "ClrAttributesType": "Campus",
+          "AttributesClrType": "Campus",
           "Description": "Associated \u0060Campuses\u0060.",
           "Slug": "campuses",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "categories",
           "ClrName": "Categories",
-          "ClrAttributesType": "Category",
+          "AttributesClrType": "Category",
           "Description": "Associated \u0060Categories\u0060.",
           "Slug": "categories",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "signups",
           "ClrName": "Signups",
-          "ClrAttributesType": "Signup",
+          "AttributesClrType": "Signup",
           "Description": "Associated \u0060Signups\u0060.",
           "Slug": "signups",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByArchived",
@@ -350,19 +357,12 @@
               "Value": "unarchived",
               "Description": "Filter results by the \u0060Unarchived\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         }
       ],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "person",
@@ -371,6 +371,11 @@
       "Description": "Planning Center does not provide a description for this resource.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "first_name",
@@ -396,12 +401,7 @@
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "registration",
@@ -410,6 +410,11 @@
       "Description": "Planning Center does not provide a description for this resource.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "created_at",
@@ -430,22 +435,22 @@
         {
           "JsonName": "created_by",
           "ClrName": "CreatedBy",
-          "ClrAttributesType": "Person",
+          "AttributesClrType": "Person",
           "Description": "Associated \u0060CreatedBy\u0060.",
           "Slug": "created_by",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "registrant_contact",
           "ClrName": "RegistrantContact",
-          "ClrAttributesType": "Person",
+          "AttributesClrType": "Person",
           "Description": "Associated \u0060RegistrantContact\u0060.",
           "Slug": "registrant_contact",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -465,12 +470,7 @@
         }
       ],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "selection_type",
@@ -479,6 +479,11 @@
       "Description": "\u0060Selection_Types\u0060 are used to present the options people register for in a signup.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "created_at",
@@ -534,12 +539,7 @@
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "signup",
@@ -548,6 +548,11 @@
       "Description": "A \u0060Signup\u0060 is an organization signup that people can register for.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "archived",
@@ -610,9 +615,11 @@
         {
           "JsonName": "attendees",
           "ClrName": "Attendees",
-          "ClrAttributesType": "Attendee",
+          "AttributesClrType": "Attendee",
           "Description": "Associated \u0060Attendees\u0060.",
           "Slug": "attendees",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByActive",
@@ -629,82 +636,82 @@
               "Value": "waitlist",
               "Description": "Filter results by the \u0060Waitlist\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "campuses",
           "ClrName": "Campuses",
-          "ClrAttributesType": "Campus",
+          "AttributesClrType": "Campus",
           "Description": "Associated \u0060Campuses\u0060.",
           "Slug": "campuses",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "categories",
           "ClrName": "Categories",
-          "ClrAttributesType": "Category",
+          "AttributesClrType": "Category",
           "Description": "Associated \u0060Categories\u0060.",
           "Slug": "categories",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "next_signup_time",
           "ClrName": "NextSignupTime",
-          "ClrAttributesType": "SignupTime",
+          "AttributesClrType": "SignupTime",
           "Description": "Associated \u0060NextSignupTime\u0060.",
           "Slug": "next_signup_time",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "registrations",
           "ClrName": "Registrations",
-          "ClrAttributesType": "Registration",
+          "AttributesClrType": "Registration",
           "Description": "Associated \u0060Registrations\u0060.",
           "Slug": "registrations",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "selection_types",
           "ClrName": "SelectionTypes",
-          "ClrAttributesType": "SelectionType",
+          "AttributesClrType": "SelectionType",
           "Description": "Associated \u0060SelectionTypes\u0060.",
           "Slug": "selection_types",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByPubliclyAvailable",
               "Value": "publicly_available",
               "Description": "Filter results by the \u0060PubliclyAvailable\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "signup_location",
           "ClrName": "SignupLocation",
-          "ClrAttributesType": "SignupLocation",
+          "AttributesClrType": "SignupLocation",
           "Description": "Associated \u0060SignupLocation\u0060.",
           "Slug": "signup_location",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "signup_times",
           "ClrName": "SignupTimes",
-          "ClrAttributesType": "SignupTime",
+          "AttributesClrType": "SignupTime",
           "Description": "Associated \u0060SignupTimes\u0060.",
           "Slug": "signup_times",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByFuture",
@@ -716,9 +723,7 @@
               "Value": "past",
               "Description": "Filter results by the \u0060Past\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         }
       ],
       "CanInclude": [
@@ -766,12 +771,7 @@
           "Parameter": "where[id]",
           "Description": "Query response items by the \u0060Id\u0060 attribute."
         }
-      ],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "signup_location",
@@ -780,6 +780,11 @@
       "Description": "\u0060Signup_location\u0060 is the location of a signup.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "address_data",
@@ -853,12 +858,7 @@
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "signup_time",
@@ -867,6 +867,11 @@
       "Description": "\u0060Signup_time\u0060s are associated with a signup, which can have multiple signup times.\n",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "all_day",
@@ -904,12 +909,7 @@
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     }
   ]
 }

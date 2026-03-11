@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Text.Json.Serialization;
 
 namespace Crews.PlanningCenter.Api.Calendar;
@@ -5,6 +6,7 @@ namespace Crews.PlanningCenter.Api.Calendar;
 /// <summary>
 /// Represents the contact data for a Person resource.
 /// </summary>
+[ExcludeFromCodeCoverage(Justification = "This type is a DTO with no logic to test.")]
 public record ContactData
 {
     /// <summary>
@@ -29,6 +31,7 @@ public record ContactData
 /// <summary>
 /// Represents an email address for a Person resource's contact data.
 /// </summary>
+[ExcludeFromCodeCoverage(Justification = "This type is a DTO with no logic to test.")]
 public record EmailAddress
 {
     /// <summary>
@@ -59,6 +62,7 @@ public record EmailAddress
 /// <summary>
 /// Represents a physical address for a Person resource's contact data.
 /// </summary>
+[ExcludeFromCodeCoverage(Justification = "This type is a DTO with no logic to test.")]
 public record Address
 {
     /// <summary>
@@ -119,6 +123,7 @@ public record Address
 /// <summary>
 /// Represents a phone number for a Person resource's contact data.
 /// </summary>
+[ExcludeFromCodeCoverage(Justification = "This type is a DTO with no logic to test.")]
 public record PhoneNumber
 {
     /// <summary>

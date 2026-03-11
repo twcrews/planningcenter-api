@@ -10,6 +10,11 @@
       "Description": "A collection of sermons",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "activate_episode_minutes_before",
@@ -162,39 +167,41 @@
         {
           "JsonName": "channel_default_episode_resources",
           "ClrName": "ChannelDefaultEpisodeResources",
-          "ClrAttributesType": "ChannelDefaultEpisodeResource",
+          "AttributesClrType": "ChannelDefaultEpisodeResource",
           "Description": "Associated \u0060ChannelDefaultEpisodeResources\u0060.",
           "Slug": "channel_default_episode_resources",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "channel_default_times",
           "ClrName": "ChannelDefaultTimes",
-          "ClrAttributesType": "ChannelDefaultTime",
+          "AttributesClrType": "ChannelDefaultTime",
           "Description": "Associated \u0060ChannelDefaultTimes\u0060.",
           "Slug": "channel_default_times",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "current_episode",
           "ClrName": "CurrentEpisode",
-          "ClrAttributesType": "Episode",
+          "AttributesClrType": "Episode",
           "Description": "Associated \u0060CurrentEpisode\u0060.",
           "Slug": "current_episode",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "episodes",
           "ClrName": "Episodes",
-          "ClrAttributesType": "Episode",
+          "AttributesClrType": "Episode",
           "Description": "Associated \u0060Episodes\u0060.",
           "Slug": "episodes",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByConnectedToServices",
@@ -221,39 +228,37 @@
               "Value": "published_to_library",
               "Description": "Filter results by the \u0060PublishedToLibrary\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "next_times",
           "ClrName": "NextTimes",
-          "ClrAttributesType": "ChannelNextTime",
+          "AttributesClrType": "ChannelNextTime",
           "Description": "Associated \u0060NextTimes\u0060.",
           "Slug": "next_times",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "series",
           "ClrName": "Series",
-          "ClrAttributesType": "Series",
+          "AttributesClrType": "Series",
           "Description": "Associated \u0060Series\u0060.",
           "Slug": "series",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "statistics",
           "ClrName": "Statistics",
-          "ClrAttributesType": "EpisodeStatistics",
+          "AttributesClrType": "EpisodeStatistics",
           "Description": "Associated \u0060Statistics\u0060.",
           "Slug": "statistics",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -291,12 +296,7 @@
           "Description": "Sort response items by the \u0060Position\u0060 attribute."
         }
       ],
-      "CanQueryBy": [],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "channel_default_episode_resource",
@@ -305,6 +305,11 @@
       "Description": "The default EpisodeResources for a Channel",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "featured",
@@ -354,12 +359,7 @@
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "channel_default_time",
@@ -368,6 +368,11 @@
       "Description": "The default times for a channel",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "day_of_week",
@@ -411,12 +416,7 @@
           "Description": "Sort response items by the \u0060Position\u0060 attribute."
         }
       ],
-      "CanQueryBy": [],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "channel_next_time",
@@ -425,6 +425,11 @@
       "Description": "The next default time for a channel",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "starts_at",
@@ -438,12 +443,7 @@
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "episode",
@@ -452,6 +452,11 @@
       "Description": "Planning Center does not provide a description for this resource.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "art",
@@ -608,8 +613,8 @@
         {
           "JsonName": "series",
           "ClrName": "Series",
-          "ClrAttributesType": "Series",
-          "ClrResourceType": "SeriesResource",
+          "AttributesClrType": "Series",
+          "ResourceClrType": "SeriesResource",
           "IsCollection": false,
           "Description": "Related \u0060Series\u0060 resource."
         }
@@ -619,62 +624,62 @@
         {
           "JsonName": "channel",
           "ClrName": "Channel",
-          "ClrAttributesType": "Channel",
+          "AttributesClrType": "Channel",
           "Description": "Associated \u0060Channel\u0060.",
           "Slug": "channel",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "episode_resources",
           "ClrName": "EpisodeResources",
-          "ClrAttributesType": "EpisodeResource",
+          "AttributesClrType": "EpisodeResource",
           "Description": "Associated \u0060EpisodeResources\u0060.",
           "Slug": "episode_resources",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "episode_times",
           "ClrName": "EpisodeTimes",
-          "ClrAttributesType": "EpisodeTime",
+          "AttributesClrType": "EpisodeTime",
           "Description": "Associated \u0060EpisodeTimes\u0060.",
           "Slug": "episode_times",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "note_template",
           "ClrName": "NoteTemplate",
-          "ClrAttributesType": "NoteTemplate",
+          "AttributesClrType": "NoteTemplate",
           "Description": "Associated \u0060NoteTemplate\u0060.",
           "Slug": "note_template",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "series",
           "ClrName": "Series",
-          "ClrAttributesType": "Series",
+          "AttributesClrType": "Series",
           "Description": "Associated \u0060Series\u0060.",
           "Slug": "series",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "speakerships",
           "ClrName": "Speakerships",
-          "ClrAttributesType": "Speakership",
+          "AttributesClrType": "Speakership",
           "Description": "Associated \u0060Speakerships\u0060.",
           "Slug": "speakerships",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -755,12 +760,7 @@
           "Parameter": "where[services_service_type_remote_identifier]",
           "Description": "Query response items by the \u0060ServicesServiceTypeRemoteIdentifier\u0060 attribute."
         }
-      ],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "episode_resource",
@@ -769,6 +769,11 @@
       "Description": "Planning Center does not provide a description for this resource.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "featured",
@@ -824,12 +829,7 @@
           "Description": "Sort response items by the \u0060Position\u0060 attribute."
         }
       ],
-      "CanQueryBy": [],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "episode_statistics",
@@ -838,6 +838,11 @@
       "Description": "Viewership statistics for an episode",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "library_watch_count",
@@ -881,12 +886,7 @@
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "episode_time",
@@ -895,6 +895,11 @@
       "Description": "Live schedule times for an Episode",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "caveats",
@@ -956,12 +961,7 @@
           "Description": "Sort response items by the \u0060StartsAt\u0060 attribute."
         }
       ],
-      "CanQueryBy": [],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "note_template",
@@ -970,6 +970,11 @@
       "Description": "Planning Center does not provide a description for this resource.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": true,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "auto_create_free_form_notes",
@@ -1001,12 +1006,7 @@
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": true,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "organization",
@@ -1015,6 +1015,11 @@
       "Description": "Planning Center does not provide a description for this resource.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "downloads_used",
@@ -1041,9 +1046,11 @@
         {
           "JsonName": "channels",
           "ClrName": "Channels",
-          "ClrAttributesType": "Channel",
+          "AttributesClrType": "Channel",
           "Description": "Associated \u0060Channels\u0060.",
           "Slug": "channels",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByPodcastEnabled",
@@ -1055,16 +1062,16 @@
               "Value": "published",
               "Description": "Filter results by the \u0060Published\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "episodes",
           "ClrName": "Episodes",
-          "ClrAttributesType": "Episode",
+          "AttributesClrType": "Episode",
           "Description": "Associated \u0060Episodes\u0060.",
           "Slug": "episodes",
+          "IsCollection": true,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByConnectedToServices",
@@ -1091,16 +1098,16 @@
               "Value": "published_on_church_center",
               "Description": "Filter results by the \u0060PublishedOnChurchCenter\u0060 scope."
             }
-          ],
-          "IsCollection": true,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "series",
           "ClrName": "Series",
-          "ClrAttributesType": "Series",
+          "AttributesClrType": "Series",
           "Description": "Associated \u0060Series\u0060.",
           "Slug": "series",
+          "IsCollection": false,
+          "Deprecated": false,
           "Filters": [
             {
               "ClrMethodName": "FilterByNotPublished",
@@ -1112,29 +1119,22 @@
               "Value": "published",
               "Description": "Filter results by the \u0060Published\u0060 scope."
             }
-          ],
-          "IsCollection": false,
-          "Deprecated": false
+          ]
         },
         {
           "JsonName": "speakers",
           "ClrName": "Speakers",
-          "ClrAttributesType": "Speaker",
+          "AttributesClrType": "Speaker",
           "Description": "Associated \u0060Speakers\u0060.",
           "Slug": "speakers",
-          "Filters": [],
           "IsCollection": true,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "series",
@@ -1143,6 +1143,11 @@
       "Description": "Planning Center does not provide a description for this resource.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "art",
@@ -1211,12 +1216,12 @@
         {
           "JsonName": "channel",
           "ClrName": "Channel",
-          "ClrAttributesType": "Channel",
+          "AttributesClrType": "Channel",
           "Description": "Associated \u0060Channel\u0060.",
           "Slug": "channel",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -1257,12 +1262,7 @@
           "Parameter": "where[id]",
           "Description": "Query response items by the \u0060Id\u0060 attribute."
         }
-      ],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      ]
     },
     {
       "JsonName": "speaker",
@@ -1271,6 +1271,11 @@
       "Description": "Planning Center does not provide a description for this resource.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [
         {
           "JsonName": "avatar_url",
@@ -1332,12 +1337,7 @@
           "Description": "Sort response items by the \u0060FirstName\u0060 attribute."
         }
       ],
-      "CanQueryBy": [],
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     },
     {
       "JsonName": "speakership",
@@ -1346,13 +1346,18 @@
       "Description": "Planning Center does not provide a description for this resource.",
       "Deprecated": false,
       "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
       "Attributes": [],
       "Relationships": [
         {
           "JsonName": "speaker",
           "ClrName": "Speaker",
-          "ClrAttributesType": "Speaker",
-          "ClrResourceType": "SpeakerResource",
+          "AttributesClrType": "Speaker",
+          "ResourceClrType": "SpeakerResource",
           "IsCollection": false,
           "Description": "Related \u0060Speaker\u0060 resource."
         }
@@ -1362,12 +1367,12 @@
         {
           "JsonName": "speaker",
           "ClrName": "Speaker",
-          "ClrAttributesType": "Speaker",
+          "AttributesClrType": "Speaker",
           "Description": "Associated \u0060Speaker\u0060.",
           "Slug": "speaker",
-          "Filters": [],
           "IsCollection": false,
-          "Deprecated": false
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [
@@ -1380,12 +1385,7 @@
         }
       ],
       "CanOrderBy": [],
-      "CanQueryBy": [],
-      "Postable": true,
-      "Patchable": true,
-      "Deletable": true,
-      "ShouldGenerateResource": true,
-      "ShouldGenerateClients": true
+      "CanQueryBy": []
     }
   ]
 }

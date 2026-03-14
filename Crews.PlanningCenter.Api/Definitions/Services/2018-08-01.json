@@ -236,7 +236,7 @@
           "AttributesClrType": "ArrangementSections",
           "Description": "Associated \u0060Sections\u0060.",
           "Slug": "sections",
-          "IsCollection": true,
+          "IsCollection": false,
           "Deprecated": false,
           "Filters": []
         },
@@ -286,7 +286,7 @@
         {
           "JsonName": "sections",
           "ClrName": "Sections",
-          "ClrType": "System.Text.Json.Nodes.JsonArray",
+          "ClrType": "System.Collections.Generic.IEnumerable\u003CCrews.PlanningCenter.Api.Services.ArrangementSection\u003E",
           "Description": "Given an arrangement with the folowing \u0060chord_chart\u0060:\n\n\u0060\u0060\u0060\nVERSE 1\nD          Bm       G          D\nBe thou my vision O Lord of my heart\nA             Bm         G              A\nnaught be all else to me save that Thou art\n\u0060\u0060\u0060\n\nThe value will be:\n\n\u0060\u0060\u0060json\n[\n  {\n    \u0022label\u0022: \u0022Verse\u0022,\n    \u0022lyrics\u0022: \u0022Be thou my vision O Lord of my heart\n\rnaught be all else to me save that Thou art\u0022,\n    \u0022breaks_at\u0022: null\n  }\n]\n\u0060\u0060\u0060\n"
         }
       ],
@@ -657,7 +657,7 @@
         {
           "JsonName": "aliases",
           "ClrName": "Aliases",
-          "ClrType": "string",
+          "ClrType": "System.Collections.Generic.IEnumerable\u003Cstring\u003E",
           "Description": "Planning Center does not provide a description for this attribute."
         },
         {
@@ -681,7 +681,7 @@
         {
           "JsonName": "exclusions",
           "ClrName": "Exclusions",
-          "ClrType": "string",
+          "ClrType": "System.Collections.Generic.IEnumerable\u003Cstring\u003E",
           "Description": "Planning Center does not provide a description for this attribute."
         },
         {
@@ -2862,7 +2862,7 @@
           "ClrMethodName": "ArchiveAsync",
           "Path": "archive",
           "Description": "Archive a Media.",
-          "AdditionalDetails": "Accepts an optional \u0060time\u0060 attribute (ISO 8601) for scheduling archival for a future time.\n\n\u0060\u0060\u0060json\n{\n  \u0022data\u0022: {\n    \u0022type\u0022: \u0022MediaArchive\u0022,\n    \u0022attributes\u0022: {\n      \u0022time\u0022: \u00222026-06-14T00:00:00Z\u0022\n    }\n  }\n}\n\u0060\u0060\u0060\n",
+          "AdditionalDetails": "Accepts an optional \u0060time\u0060 attribute (ISO 8601) for scheduling archival for a future time.\n\n\u0060\u0060\u0060json\n{\n  \u0022data\u0022: {\n    \u0022type\u0022: \u0022MediaArchive\u0022,\n    \u0022attributes\u0022: {\n      \u0022time\u0022: \u00222026-06-12T00:00:00Z\u0022\n    }\n  }\n}\n\u0060\u0060\u0060\n",
           "Deprecated": false
         },
         {

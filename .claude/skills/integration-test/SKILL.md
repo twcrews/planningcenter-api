@@ -1,7 +1,7 @@
 ---
 name: integration-test
 description: Write integration tests for the Planning Center API client library. Use when the user asks to add, write, or create integration tests for any Planning Center product (Calendar, Check-Ins, Giving, Groups, People, Publishing, Registrations, Services) or asks about the integration test patterns.
-disable-model-invocation: true
+disable-model-invocation: false
 ---
 
 # Writing Integration Tests

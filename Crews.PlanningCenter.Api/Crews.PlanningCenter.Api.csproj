@@ -55,6 +55,7 @@
   <ItemGroup>
     <Folder Include="Common/" />
     <Folder Include="Groups/" />
+    <Folder Include="Services/" />
   </ItemGroup>
 
 </Project>

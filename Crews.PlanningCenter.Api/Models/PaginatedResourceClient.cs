@@ -123,6 +123,8 @@ public abstract class PaginatedResourceClient<TModel, TResource, TResponse, TSin
     {
         await EnsureSuccessAsync(response, cancellationToken);
 
+        // TODO: Remove following line after debugging
+        string json = await response.Content.ReadAsStringAsync(cancellationToken);
         JsonApiCollectionDocument<TResource>? document = await response
             .ReadJsonApiCollectionDocumentAsync<TResource>(cancellationToken);
         if (document is null) return new() { ResponseMessage = response };

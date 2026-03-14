@@ -36,6 +36,11 @@
       "Resource": "organization",
       "Child": "series",
       "IsCollection": true
+    },
+    {
+      "Resource": "arrangement",
+      "Child": "sections",
+      "IsCollection": false
     }
   ],
   "AttributeOverrides": [
@@ -144,6 +149,21 @@
       "Resource": "person",
       "Attribute": "contact_data",
       "ClrType": "Crews.PlanningCenter.Api.Calendar.ContactData"
+    },
+    {
+      "Resource": "arrangement_sections",
+      "Attribute": "sections",
+      "ClrType": "System.Collections.Generic.IEnumerable<Crews.PlanningCenter.Api.Services.ArrangementSection>"
+    },
+    {
+      "Resource": "attachment_type",
+      "Attribute": "aliases",
+      "ClrType": "System.Collections.Generic.IEnumerable<string>"
+    },
+    {
+      "Resource": "attachment_type",
+      "Attribute": "exclusions",
+      "ClrType": "System.Collections.Generic.IEnumerable<string>"
     }
   ],
   "RelationshipOverrides": [

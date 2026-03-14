@@ -26,7 +26,7 @@
           "JsonName": "art",
           "ClrName": "Art",
           "ClrType": "System.Text.Json.JsonElement",
-          "Description": "Planning Center does not provide a description for this attribute."
+          "Description": "An image file object. When setting, pass an upload UUID from the Uploads API\n(https://api.planningcenteronline.com/docs/overview/file-uploads)\nor a signed_identifier from an existing File.\n"
         },
         {
           "JsonName": "can_enable_chat",
@@ -110,7 +110,7 @@
           "JsonName": "podcast_art",
           "ClrName": "PodcastArt",
           "ClrType": "System.Text.Json.JsonElement",
-          "Description": "Planning Center does not provide a description for this attribute."
+          "Description": "An image file object. When setting, pass an upload UUID from the Uploads API\n(https://api.planningcenteronline.com/docs/overview/file-uploads)\nor a signed_identifier from an existing File.\n"
         },
         {
           "JsonName": "podcast_feed_url",
@@ -462,7 +462,7 @@
           "JsonName": "art",
           "ClrName": "Art",
           "ClrType": "System.Text.Json.JsonElement",
-          "Description": "Planning Center does not provide a description for this attribute."
+          "Description": "An image file object. When setting, pass an upload UUID from the Uploads API\n(https://api.planningcenteronline.com/docs/overview/file-uploads)\nor a signed_identifier from an existing File.\n"
         },
         {
           "JsonName": "church_center_url",
@@ -552,7 +552,7 @@
           "JsonName": "sermon_audio",
           "ClrName": "SermonAudio",
           "ClrType": "System.Text.Json.JsonElement",
-          "Description": "Planning Center does not provide a description for this attribute."
+          "Description": "An audio file object. When setting, pass an upload UUID from the Uploads API\n(https://api.planningcenteronline.com/docs/overview/file-uploads)\nor a signed_identifier from an existing File.\n"
         },
         {
           "JsonName": "services_plan_remote_identifier",
@@ -1106,7 +1106,7 @@
           "AttributesClrType": "Series",
           "Description": "Associated \u0060Series\u0060.",
           "Slug": "series",
-          "IsCollection": false,
+          "IsCollection": true,
           "Deprecated": false,
           "Filters": [
             {
@@ -1153,7 +1153,7 @@
           "JsonName": "art",
           "ClrName": "Art",
           "ClrType": "System.Text.Json.JsonElement",
-          "Description": "Planning Center does not provide a description for this attribute."
+          "Description": "An image file object. When setting, pass an upload UUID from the Uploads API\n(https://api.planningcenteronline.com/docs/overview/file-uploads)\nor a signed_identifier from an existing File.\n"
         },
         {
           "JsonName": "church_center_url",

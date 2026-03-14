@@ -30,6 +30,12 @@
       "Resource": "organization",
       "Child": "birthday_people",
       "IsCollection": false
+    },
+    {
+      "Product": "publishing",
+      "Resource": "organization",
+      "Child": "series",
+      "IsCollection": true
     }
   ],
   "AttributeOverrides": [

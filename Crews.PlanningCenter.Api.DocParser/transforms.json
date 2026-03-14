@@ -22,8 +22,8 @@
   ],
   "ResourceChildOverrides": [
     {
-      "Resource": "organization",
-      "Child": "stats",
+      "Resource": "arrangement",
+      "Child": "sections",
       "IsCollection": false
     },
     {
@@ -32,14 +32,13 @@
       "IsCollection": false
     },
     {
-      "Product": "publishing",
       "Resource": "organization",
       "Child": "series",
       "IsCollection": true
     },
     {
-      "Resource": "arrangement",
-      "Child": "sections",
+      "Resource": "organization",
+      "Child": "stats",
       "IsCollection": false
     }
   ],

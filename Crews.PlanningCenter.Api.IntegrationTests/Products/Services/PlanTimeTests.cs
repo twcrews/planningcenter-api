@@ -14,13 +14,15 @@ public class PlanTimeTests(ServicesFixture fixture) : ServicesTestBase(fixture)
 		try
 		{
 			var startsAt = DateTime.UtcNow.AddDays(7);
+			var endsAt = startsAt.AddHours(1);
 
 			// -- Create --
 			var createResult = await Org.ServiceTypes.WithId(Fixture.ServiceTypeId)
 				.Plans.WithId(Fixture.PlanId).PlanTimes.PostAsync(new PlanTime
 				{
 					StartsAt = startsAt,
-					TimeType = "service"
+					TimeType = "service",
+					EndsAt = endsAt
 				});
 			Assert.NotNull(createResult.Data);
 			planTimeId = createResult.Data.Id;

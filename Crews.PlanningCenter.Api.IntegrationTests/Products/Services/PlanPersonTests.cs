@@ -15,12 +15,27 @@ public class PlanPersonTests(ServicesFixture fixture) : ServicesTestBase(fixture
 		Assert.NotNull(personId);
 
 		string? planPersonId = null;
+		string? serviceTypeId = null;
+		string? planId = null;
 
 		try
 		{
+			serviceTypeId = await CollectionReadHelper.GetFirstIdAsync(HttpClient, $"services/v2/service_types");
+			var teamId = await CollectionReadHelper.GetFirstIdAsync(HttpClient, $"services/v2/service_types/{serviceTypeId}/teams");
+			planId = await CollectionReadHelper.GetFirstIdAsync(HttpClient, $"services/v2/service_types/{serviceTypeId}/plans");
+
+			// We need to make sure the assignment doesn't already exist.
+			try
+			{
+				var teamMemberId = await CollectionReadHelper.GetFirstIdAsync(HttpClient, $"services/v2/service_types/{serviceTypeId}/plans/{planId}/team_members");
+				await Org.ServiceTypes.WithId(serviceTypeId!).Plans.WithId(planId!).TeamMembers.WithId(teamMemberId!).DeleteAsync();
+			}
+			catch (System.Exception)
+			{ /* best effort */ }
+
 			// -- Create --
-			var createResult = await Org.ServiceTypes.WithId(Fixture.ServiceTypeId)
-				.Plans.WithId(Fixture.PlanId).TeamMembers.PostAsync(
+			var createResult = await Org.ServiceTypes.WithId(serviceTypeId!)
+				.Plans.WithId(planId!).TeamMembers.PostAsync(
 					new JsonApiDocument<PlanPersonResource>
 					{
 						Data = new()
@@ -31,6 +46,10 @@ public class PlanPersonTests(ServicesFixture fixture) : ServicesTestBase(fixture
 								Person = new JsonApiRelationship<PersonResource>
 								{
 									Data = new PersonResource { Id = personId }
+								},
+								Team = new()
+								{
+									Data = new() { Id = teamId }
 								}
 							}
 						}
@@ -40,25 +59,25 @@ public class PlanPersonTests(ServicesFixture fixture) : ServicesTestBase(fixture
 			Assert.NotNull(planPersonId);
 
 			// -- Read --
-			var readResult = await Org.ServiceTypes.WithId(Fixture.ServiceTypeId)
-				.Plans.WithId(Fixture.PlanId).TeamMembers.WithId(planPersonId).GetAsync();
+			var readResult = await Org.ServiceTypes.WithId(serviceTypeId!)
+				.Plans.WithId(planId!).TeamMembers.WithId(planPersonId).GetAsync();
 			Assert.NotNull(readResult.Data);
 			Assert.Equal(planPersonId, readResult.Data.Id);
 
 			// -- Update --
-			var updateResult = await Org.ServiceTypes.WithId(Fixture.ServiceTypeId)
-				.Plans.WithId(Fixture.PlanId).TeamMembers.WithId(planPersonId)
+			var updateResult = await Org.ServiceTypes.WithId(serviceTypeId!)
+				.Plans.WithId(planId!).TeamMembers.WithId(planPersonId)
 				.PatchAsync(new PlanPerson { Notes = $"IntTest-{UniqueId}" });
 			Assert.NotNull(updateResult.Data);
 
 			// -- Verify Update --
-			var verifyResult = await Org.ServiceTypes.WithId(Fixture.ServiceTypeId)
-				.Plans.WithId(Fixture.PlanId).TeamMembers.WithId(planPersonId).GetAsync();
+			var verifyResult = await Org.ServiceTypes.WithId(serviceTypeId!)
+				.Plans.WithId(planId!).TeamMembers.WithId(planPersonId).GetAsync();
 			Assert.Equal($"IntTest-{UniqueId}", verifyResult.Data?.Attributes?.Notes);
 
 			// -- Delete --
-			await Org.ServiceTypes.WithId(Fixture.ServiceTypeId)
-				.Plans.WithId(Fixture.PlanId).TeamMembers.WithId(planPersonId).DeleteAsync();
+			await Org.ServiceTypes.WithId(serviceTypeId!)
+				.Plans.WithId(planId!).TeamMembers.WithId(planPersonId).DeleteAsync();
 			planPersonId = null;
 		}
 		finally
@@ -67,8 +86,8 @@ public class PlanPersonTests(ServicesFixture fixture) : ServicesTestBase(fixture
 			{
 				try
 				{
-					await Org.ServiceTypes.WithId(Fixture.ServiceTypeId)
-						.Plans.WithId(Fixture.PlanId).TeamMembers.WithId(planPersonId).DeleteAsync();
+					await Org.ServiceTypes.WithId(serviceTypeId!)
+						.Plans.WithId(planId!).TeamMembers.WithId(planPersonId).DeleteAsync();
 				}
 				catch { /* best effort */ }
 			}

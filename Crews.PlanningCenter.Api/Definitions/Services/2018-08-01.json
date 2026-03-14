@@ -3505,7 +3505,7 @@
           "AttributesClrType": "Series",
           "Description": "Associated \u0060Series\u0060.",
           "Slug": "series",
-          "IsCollection": false,
+          "IsCollection": true,
           "Deprecated": false,
           "Filters": []
         },

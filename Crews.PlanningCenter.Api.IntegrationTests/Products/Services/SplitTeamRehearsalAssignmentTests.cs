@@ -15,10 +15,12 @@ public class SplitTeamRehearsalAssignmentTests(ServicesFixture fixture) : Servic
 		try
 		{
 			var startsAt = DateTime.UtcNow.AddDays(7);
+			var endsAt = startsAt.AddHours(1);
 			var planTimeResult = await Org.ServiceTypes.WithId(Fixture.ServiceTypeId)
 				.Plans.WithId(Fixture.PlanId).PlanTimes.PostAsync(new PlanTime
 				{
 					StartsAt = startsAt,
+					EndsAt = endsAt,
 					TimeType = "rehearsal"
 				});
 			Assert.NotNull(planTimeResult.Data);

@@ -75,33 +75,43 @@ The source generator runs automatically at compile time:
 
 ## Generated Code Structure
 
-For each API product and version:
+For each API product, the generator creates a root client in the `Crews.PlanningCenter.Api` namespace:
 
-```
-Crews.PlanningCenter.Api.{Product}.V{Version}
-    ├── {Resource}Resource.cs
-    ├── {Resource}Client.cs
-    └── ...
+```csharp
+// Root product client — one per product, exposes versioned OrganizationClient instances
+public class PeopleClient(HttpClient httpClient)
+{
+    public OrganizationClient Latest { get; }       // latest version (sets X-PCO-API-Version header)
+    public OrganizationClient V2025_11_10 { get; }  // specific version
+    // ... other versions
+}
 ```
 
-Example:
+For each product version, resource types are generated in their versioned namespace:
+
 ```
 Crews.PlanningCenter.Api.People.V2025_11_10
-    ├── PersonResource.cs
-    ├── PersonClient.cs
-    ├── HouseholdResource.cs
-    ├── HouseholdClient.cs
+    ├── OrganizationClient       — root entry point for this version
+    ├── Person                   — attributes record
+    ├── PersonResource           — JSON:API resource wrapper
+    ├── PersonClient             — singleton resource client (GET, PATCH, DELETE)
+    ├── PaginatedPersonClient    — collection resource client (GET, POST, WithId, Filter, PerPage, Offset)
+    ├── Address                  — attributes record
+    ├── AddressResource
+    ├── AddressClient
+    ├── PaginatedAddressClient
     └── ...
 ```
+
+The `OrganizationClient` exposes collections (`People`, `Households`, etc.) as `PaginatedXxxClient` instances. Calling `.WithId(id)` on a collection returns the corresponding singleton `XxxClient`.
 
 ## Authentication Flow
 
-The library provides extension methods for configuring HttpClient:
+Consumers own their HttpClient configuration. The library provides authentication value types and OIDC extensions, but does not manage the HttpClient itself:
 
-1. Consumer creates HttpClient instance
-2. `.ConfigureForPlanningCenter()` sets base URL and headers
-3. `.AddPlanningCenterAuth()` adds authentication handler
-4. Consumer passes configured HttpClient to resource clients
+1. Consumer creates and configures `HttpClient` (base address, Accept header, Authorization header)
+2. Consumer sets `Authorization` to a `PlanningCenterPersonalAccessToken` (implicitly converts to a Basic auth header) or uses OIDC via `AddPlanningCenterAuthentication()`
+3. Consumer constructs a root product client (e.g., `new PeopleClient(httpClient)`) and navigates the hierarchy
 
 ## Design Principles
 

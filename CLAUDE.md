@@ -206,7 +206,7 @@ Two authentication approaches are supported:
 - **[Authentication/PlanningCenterAuthenticationDefaults.cs](Crews.PlanningCenter.Api/Authentication/PlanningCenterAuthenticationDefaults.cs)** - Constants for Planning Center OIDC (base URL, endpoints, scheme name)
 - **[Authentication/PlanningCenterPersonalAccessToken.cs](Crews.PlanningCenter.Api/Authentication/PlanningCenterPersonalAccessToken.cs)** - Record struct for Personal Access Token; implicitly converts to `AuthenticationHeaderValue`
 - **[Extensions/AuthenticationBuilderExtensions.cs](Crews.PlanningCenter.Api/Extensions/AuthenticationBuilderExtensions.cs)** - `AddPlanningCenterAuthentication()` extension methods for ASP.NET Core OIDC setup
-- **[Extensions/ConfigurePlanningCenterOpenIdConnectOptions.cs](Crews.PlanningCenter.Api/Extensions/ConfigurePlanningCenterOpenIdConnectOptions.cs)** - Reads OIDC options from the `"PlanningCenter"` configuration section
+- **[Authentication/ConfigurePlanningCenterOpenIdConnectOptions.cs](Crews.PlanningCenter.Api/Authentication/ConfigurePlanningCenterOpenIdConnectOptions.cs)** - Reads OIDC options from the `"PlanningCenter"` configuration section
 
 ### Tests
 

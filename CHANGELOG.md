@@ -5,6 +5,44 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.0.0] - 2026-03-14
+
+### Added
+
+- **Breaking change:** Replace custom OAuth 2.0 implementation with standard ASP.NET Core OpenID Connect (OIDC).
+  - Add `AddPlanningCenterAuthentication()` extension method on `AuthenticationBuilder`, replacing `AddPlanningCenterOAuth()`.
+  - Reads configuration from `appsettings.json` under the `"PlanningCenter"` section (`Authority`, `ClientId`, `ClientSecret`, `Scopes`).
+  - `ClientId` and `ClientSecret` are required; an exception is thrown at startup if they are missing.
+  - Scopes default to `["openid", "people"]`.
+  - Four overloads are provided: parameterless, sign-in scheme only, configure-options only, and both.
+- Add new constants to `PlanningCenterAuthenticationDefaults`:
+  - `AuthorizationEndpoint`, `TokenEndpoint`, `UserInfoEndpoint`, `DiscoveryEndpoint`
+  - `RecommendedPrompt` (`"select_account"`), `LoginPrompt` (`"login"`)
+  - `AccessTokenLifetimeSeconds` (7200), `IdTokenLifetimeSeconds` (3600), `RefreshTokenLifetimeDays` (90)
+- Add strongly-typed, auto-generated resource and client classes for all supported Planning Center products and API versions.
+  - Generated at compile time from JSON definition files via incremental source generators.
+  - Classes are organized by product and version namespace (e.g., `Crews.PlanningCenter.Api.People.V2025_11_10`).
+- Add JSON converters: `BoolFromStringConverter`, `StringFromNumberConverter`, `TimeSpanFromSecondsConverter`.
+- Add `Crews.Web.JsonApiClient` as a dependency (replaces `JsonApiFramework.Client`).
+
+### Changed
+
+- **Breaking change:** Migrate from custom OAuth handler to standard OpenID Connect.
+  - `PlanningCenterOAuthDefaults`, `PlanningCenterOAuthHandler`, `PlanningCenterOAuthOptions`, `PlanningCenterOAuthScope`, and `PlanningCenterClaimsTransformation` have been removed.
+  - Replace calls to `AddPlanningCenterOAuth()` with `AddPlanningCenterAuthentication()`.
+  - Update `appsettings.json`: configuration is now under `"PlanningCenter"` rather than `"Authentication:PlanningCenter:ClaimsTransformation"`.
+- **Breaking change:** Remove `AddPlanningCenterApi()` DI registration, `IPlanningCenterApiService`, `PlanningCenterApiService`, and `PlanningCenterApiOptions`.
+  - Consumers must now configure `HttpClient` directly and instantiate generated client classes as needed. See `README.md` for updated usage examples.
+- **Breaking change:** Remove hand-written root client classes (`CalendarClient`, `CheckInsClient`, `GivingClient`, `GroupsClient`, `PeopleClient`, `PublishingClient`, `ServicesClient`).
+  - These are superseded by the auto-generated clients in each product's versioned namespace.
+- **Breaking change:** Remove `JsonApiError`, `JsonApiMetadata`, and related response model classes.
+  - Responses are now represented by `ResourceResponse<T>` with `Data`, `ResponseBody`, and `ResponseMessage` properties.
+- **Breaking change:** Remove `ConventionsBuilderExtensions.AddSnakeCaseNamingConvention()` and the `SnakeCaseNamingConvention` class.
+- **Breaking change:** Remove `Crews.PlanningCenter.Models` external package dependency; models are now included directly.
+- Update `PlanningCenterAuthenticationDefaults.ConfigurationSection` value to `"Authentication:PlanningCenter"` (was `"Authentication:PlanningCenter:ClaimsTransformation"`).
+- Change license from MIT to MIT (no functional change — license file updated to correct prior omission).
+- Generated resource types are now `record` types.
+
 ## [3.0.0] - 2025-10-09
 
 ### Added
@@ -245,6 +283,7 @@ First official stable release!
 
 Initial release.
 
+[4.0.0]: https://github.com/twcrews/planningcenter-api/compare/2.0.0...4.0.0
 [3.0.0]: https://github.com/twcrews/planningcenter-api/compare/2.0.0...3.0.0
 [2.0.0]: https://github.com/twcrews/planningcenter-api/compare/1.2.0...2.0.0
 [1.2.0]: https://github.com/twcrews/planningcenter-api/compare/1.1.0...1.2.0

@@ -117,38 +117,69 @@ dotnet run
 
 For each resource in a product version, the generator creates:
 
-### Resource Class
+### Attributes Record
+
+A `partial record` for the resource attributes. All attribute properties are nullable and decorated with JSON serialization attributes:
 
 ```csharp
-public record PersonResource
+public partial record Person
 {
-    public string Id { get; init; }
-    public string Type { get; init; }
-    public PersonAttributes Attributes { get; init; }
-    public PersonRelationships? Relationships { get; init; }
-    public ResourceLinks? Links { get; init; }
-}
-```
-
-### Attributes Class
-
-```csharp
-public record PersonAttributes
-{
-    public string? Name { get; init; }
+    [JsonPropertyName("first_name")]
     public string? FirstName { get; init; }
+
+    [JsonPropertyName("last_name")]
     public string? LastName { get; init; }
+
+    [JsonPropertyName("name")]
+    public string? Name { get; init; }
+
     // ... other attributes
 }
 ```
 
-### Client Class
+### Resource Record
+
+A thin JSON:API wrapper around the attributes record:
 
 ```csharp
-public class PersonClient : ResourceClient<PersonResource, PersonAttributes, PersonRelationships>
+public partial record PersonResource : JsonApiResource<Person, PersonRelationships> { }
+```
+
+### Client Classes
+
+Two clients are generated per resource — a singleton client for operations on a known ID, and a paginated client for collection endpoints:
+
+```csharp
+// Singleton — GET, PATCH, DELETE
+public class PersonClient(HttpClient httpClient, Uri uri)
+    : SingletonResourceClient<Person, PersonResource, PersonResponse>(httpClient, uri)
 {
-    public PersonClient(HttpClient httpClient, Uri resourceUri)
-        : base(httpClient, resourceUri) { }
+    public new Task<PersonResponse> GetAsync(CancellationToken cancellationToken = default);
+    public new Task<PersonResponse> PatchAsync(Person resource, ...);
+    public new Task DeleteAsync(CancellationToken cancellationToken = default);
+}
+
+// Collection — GET, POST, WithId, Filter, PerPage, Offset, Sort
+public class PaginatedPersonClient(HttpClient httpClient, Uri uri)
+    : PaginatedResourceClient<Person, PersonResource, PersonCollectionResponse, PersonResponse>(httpClient, uri)
+{
+    public new Task<PersonCollectionResponse> GetAsync(CancellationToken cancellationToken = default);
+    public new Task<PersonResponse> PostAsync(Person resource, ...);
+    public PersonClient WithId(string id);
+    // ... filter and sort methods
+}
+```
+
+### Root Product Client
+
+A root client is generated per product, exposing versioned `OrganizationClient` instances:
+
+```csharp
+public class PeopleClient(HttpClient httpClient)
+{
+    public OrganizationClient Latest { get; }        // latest version
+    public OrganizationClient V2025_11_10 { get; }   // specific version
+    // ... other versions
 }
 ```
 

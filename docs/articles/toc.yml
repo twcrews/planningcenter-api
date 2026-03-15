@@ -14,6 +14,10 @@
       href: usage.md
     - name: Working with Resources
       href: resources.md
+    - name: Pagination
+      href: pagination.md
+    - name: Rate Limiting
+      href: rate-limiting.md
     - name: Error Handling
       href: error-handling.md
 - name: Advanced Topics

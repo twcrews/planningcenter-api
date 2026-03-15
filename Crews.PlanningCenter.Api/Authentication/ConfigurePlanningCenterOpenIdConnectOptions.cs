@@ -1,11 +1,10 @@
-using Crews.PlanningCenter.Api.Authentication;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using System.IdentityModel.Tokens.Jwt;
 
-namespace Crews.PlanningCenter.Api.Extensions;
+namespace Crews.PlanningCenter.Api.Authentication;
 
 /// <summary>
 /// Configures Planning Center OpenID Connect options from configuration.

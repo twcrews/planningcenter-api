@@ -24,9 +24,38 @@ The `.Latest` property automatically sets the `X-PCO-API-Version` header to the 
 
 ## Client Lifetime Management
 
-### ASP.NET Core (Recommended)
+### ASP.NET Core with OIDC (Recommended)
 
-Always use `IHttpClientFactory` for proper HttpClient lifetime management:
+When using OIDC authentication via `AddPlanningCenterAuthentication()`, call `AddPlanningCenterApi()` to register all product clients for dependency injection. It automatically configures an `HttpClient` that forwards the OIDC bearer token from the current HTTP context:
+
+```csharp
+// Program.cs
+builder.Services
+    .AddAuthentication(options =>
+    {
+        options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+        options.DefaultChallengeScheme = PlanningCenterAuthenticationDefaults.AuthenticationScheme;
+        options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    })
+    .AddCookie()
+    .AddPlanningCenterAuthentication();
+
+builder.Services.AddPlanningCenterApi();
+
+// In your service — inject any product client directly
+public class PeopleService(PeopleClient peopleClient)
+{
+    public async Task<PersonResource?> GetPersonAsync(string personId)
+    {
+        var response = await peopleClient.Latest.People.WithId(personId).GetAsync();
+        return response.Data;
+    }
+}
+```
+
+### ASP.NET Core with a Named HttpClient
+
+If you manage your own `HttpClient` (e.g., using a Personal Access Token), register it by name and pass that name to `AddPlanningCenterApi()`:
 
 ```csharp
 // Program.cs
@@ -44,21 +73,14 @@ builder.Services.AddHttpClient("PlanningCenterApi", client =>
 })
 .AddStandardResilienceHandler();
 
-// In your service
-public class PeopleService
+builder.Services.AddPlanningCenterApi("PlanningCenterApi");
+
+// In your service — inject any product client directly
+public class PeopleService(PeopleClient peopleClient)
 {
-    private readonly IHttpClientFactory _httpClientFactory;
-
-    public PeopleService(IHttpClientFactory httpClientFactory)
-    {
-        _httpClientFactory = httpClientFactory;
-    }
-
     public async Task<PersonResource?> GetPersonAsync(string personId)
     {
-        var httpClient = _httpClientFactory.CreateClient("PlanningCenterApi");
-        var org = new PeopleClient(httpClient).Latest;
-        var response = await org.People.WithId(personId).GetAsync();
+        var response = await peopleClient.Latest.People.WithId(personId).GetAsync();
         return response.Data;
     }
 }

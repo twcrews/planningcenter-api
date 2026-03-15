@@ -75,6 +75,21 @@ builder.Services
     });
 ```
 
+## Registering API Clients for Dependency Injection
+
+After configuring authentication, call `AddPlanningCenterApi()` to register all product clients (`PeopleClient`, `CalendarClient`, etc.) with the DI container. When used alongside `AddPlanningCenterAuthentication()`, it automatically forwards the OIDC bearer token from the current HTTP context:
+
+```csharp
+builder.Services
+    .AddAuthentication(...)
+    .AddCookie()
+    .AddPlanningCenterAuthentication();
+
+builder.Services.AddPlanningCenterApi();
+```
+
+Product clients can then be injected directly into your services and controllers. See the [Usage](usage.md) guide for examples.
+
 ## Security Best Practices
 
 - Never commit credentials to source control

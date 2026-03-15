@@ -2,7 +2,7 @@ using System.Net.Http.Headers;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 
-namespace Crews.PlanningCenter.Api.Extensions;
+namespace Crews.PlanningCenter.Api.Authentication;
 
 internal sealed class PlanningCenterTokenHandler(IHttpContextAccessor httpContextAccessor) : DelegatingHandler
 {

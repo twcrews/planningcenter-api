@@ -206,7 +206,9 @@ Two authentication approaches are supported:
 - **[Authentication/PlanningCenterAuthenticationDefaults.cs](Crews.PlanningCenter.Api/Authentication/PlanningCenterAuthenticationDefaults.cs)** - Constants for Planning Center OIDC (base URL, endpoints, scheme name)
 - **[Authentication/PlanningCenterPersonalAccessToken.cs](Crews.PlanningCenter.Api/Authentication/PlanningCenterPersonalAccessToken.cs)** - Record struct for Personal Access Token; implicitly converts to `AuthenticationHeaderValue`
 - **[Extensions/AuthenticationBuilderExtensions.cs](Crews.PlanningCenter.Api/Extensions/AuthenticationBuilderExtensions.cs)** - `AddPlanningCenterAuthentication()` extension methods for ASP.NET Core OIDC setup
+- **[Extensions/ServiceCollectionExtensions.cs](Crews.PlanningCenter.Api/Extensions/ServiceCollectionExtensions.cs)** - `AddPlanningCenterApi()` extension methods that register all product clients for DI
 - **[Authentication/ConfigurePlanningCenterOpenIdConnectOptions.cs](Crews.PlanningCenter.Api/Authentication/ConfigurePlanningCenterOpenIdConnectOptions.cs)** - Reads OIDC options from the `"PlanningCenter"` configuration section
+- **[Authentication/PlanningCenterTokenHandler.cs](Crews.PlanningCenter.Api/Authentication/PlanningCenterTokenHandler.cs)** - Delegating handler that forwards the OIDC bearer token from the current HTTP context
 
 ### Tests
 
@@ -249,14 +251,34 @@ Integration tests require a Planning Center Personal Access Token. Configure via
 
 ### Using the API Client in ASP.NET Core
 
-Consumers configure their own HttpClient with authentication and resilience policies:
+#### With OIDC Authentication (Recommended)
 
-**1. Configure HttpClient in Program.cs:**
+Call `AddPlanningCenterApi()` alongside `AddPlanningCenterAuthentication()`. It registers all product clients for DI and automatically forwards the OIDC bearer token from the current HTTP context:
 
 ```csharp
-using Crews.PlanningCenter.Api.Authentication;
-using System.Net.Http.Headers;
+builder.Services
+    .AddAuthentication(options => { ... })
+    .AddCookie()
+    .AddPlanningCenterAuthentication();
 
+builder.Services.AddPlanningCenterApi();
+```
+
+Inject product clients directly into services:
+
+```csharp
+public class PeopleService(PeopleClient peopleClient)
+{
+    public async Task<PersonResource?> GetPersonAsync(string personId)
+        => (await peopleClient.Latest.People.WithId(personId).GetAsync()).Data;
+}
+```
+
+#### With a Personal Access Token
+
+Register a named `HttpClient` and pass its name to `AddPlanningCenterApi()`:
+
+```csharp
 builder.Services.AddHttpClient("PlanningCenterApi", client =>
 {
     PlanningCenterPersonalAccessToken token = new()
@@ -268,30 +290,9 @@ builder.Services.AddHttpClient("PlanningCenterApi", client =>
     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
     client.DefaultRequestHeaders.Authorization = token;
 })
-.AddStandardResilienceHandler(); // Optional: add .NET 8+ built-in resilience
-```
+.AddStandardResilienceHandler();
 
-**2. Use HttpClient in services:**
-
-```csharp
-public class PeopleService
-{
-    private readonly HttpClient _httpClient;
-
-    public PeopleService(IHttpClientFactory httpClientFactory)
-    {
-        _httpClient = httpClientFactory.CreateClient("PlanningCenterApi");
-    }
-
-    public async Task<PersonResource> GetPersonAsync(string personId)
-    {
-        var client = new PersonClient(_httpClient,
-            new Uri($"/people/v2/people/{personId}", UriKind.Relative));
-
-        var response = await client.GetAsync();
-        return response.Data;
-    }
-}
+builder.Services.AddPlanningCenterApi("PlanningCenterApi");
 ```
 
 ### Standalone Usage (Without Dependency Injection)

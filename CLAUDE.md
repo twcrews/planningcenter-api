@@ -8,7 +8,7 @@ This is a multi-project .NET solution. The primary project in the solution (`Cre
 
 ## Project Structure
 
-The solution contains eight projects:
+The solution contains nine projects:
 
 1. **Crews.PlanningCenter.Api** (.NET 8.0): Main library project - includes authentication helpers and auto-generated API clients
 2. **Crews.PlanningCenter.Api.Models** (.NET Standard 2.0): Shared model definitions used by both the generators and the doc parser
@@ -17,7 +17,8 @@ The solution contains eight projects:
 5. **Crews.PlanningCenter.Api.Tests** (.NET 10.0): Unit tests for the main library
 6. **Crews.PlanningCenter.Api.DocParser.Tests** (.NET 10.0): Unit tests for the doc parser
 7. **Crews.PlanningCenter.Api.Generators.Tests** (.NET 10.0): Unit tests for the source generators
-8. **Crews.PlanningCenter.Api.IntegrationTests** (.NET 10.0): Integration tests that run against the live Planning Center API
+8. **Crews.PlanningCenter.Api.Models.Tests** (.NET 10.0): Unit tests for the shared model definitions
+9. **Crews.PlanningCenter.Api.IntegrationTests** (.NET 10.0): Integration tests that run against the live Planning Center API
 
 The source generators are **complete and fully functional**. Client and resource classes are automatically generated at compile time from the JSON definition files in the `Definitions/` directory.
 
@@ -37,6 +38,7 @@ dotnet test
 dotnet test Crews.PlanningCenter.Api.Tests
 dotnet test Crews.PlanningCenter.Api.DocParser.Tests
 dotnet test Crews.PlanningCenter.Api.Generators.Tests
+dotnet test Crews.PlanningCenter.Api.Models.Tests
 
 # Run integration tests (requires Planning Center credentials — see Integration Tests section)
 dotnet test Crews.PlanningCenter.Api.IntegrationTests
@@ -103,7 +105,7 @@ The DocParser:
 - Fetches API metadata from `https://api.planningcenteronline.com/` for all supported products
 - Transpiles the documentation into a structured JSON format
 - Outputs definition files to `Crews.PlanningCenter.Api/Definitions/{Product}/{Version}.json`
-- Supports all Planning Center products: Calendar, Check-Ins, Giving, Groups, People, Publishing, Registrations, Services
+- Supports all Planning Center products: Api, Calendar, Check-Ins, Current, Giving, Groups, People, Publishing, Registrations, Services, Webhooks
 
 **Configuration:** The DocParser can be configured via `appsettings.json`:
 ```json
@@ -209,6 +211,7 @@ Two authentication approaches are supported:
 - **[Extensions/ServiceCollectionExtensions.cs](Crews.PlanningCenter.Api/Extensions/ServiceCollectionExtensions.cs)** - `AddPlanningCenterApi()` extension methods that register all product clients for DI
 - **[Authentication/ConfigurePlanningCenterOpenIdConnectOptions.cs](Crews.PlanningCenter.Api/Authentication/ConfigurePlanningCenterOpenIdConnectOptions.cs)** - Reads OIDC options from the `"PlanningCenter"` configuration section
 - **[Authentication/PlanningCenterTokenHandler.cs](Crews.PlanningCenter.Api/Authentication/PlanningCenterTokenHandler.cs)** - Delegating handler that forwards the OIDC bearer token from the current HTTP context
+- **[Extensions/HttpHeadersExtensions.cs](Crews.PlanningCenter.Api/Extensions/HttpHeadersExtensions.cs)** - Extension method `SetPlanningCenterVersion()` for setting the `X-PCO-API-Version` request header
 
 ### Tests
 
@@ -220,6 +223,9 @@ Unit tests for the documentation parser console application. Tests the parsing a
 
 #### Generator Tests (`Crews.PlanningCenter.Api.Generators.Tests`)
 Unit tests for the incremental source generator. Tests the code generation logic that creates client and resource classes from JSON definition files.
+
+#### Models Tests (`Crews.PlanningCenter.Api.Models.Tests`)
+Unit tests for the shared model definitions used by both the generators and the doc parser.
 
 #### Integration Tests (`Crews.PlanningCenter.Api.IntegrationTests`)
 Integration tests that run against the live Planning Center API. These tests verify end-to-end behavior including CRUD operations across all supported products.

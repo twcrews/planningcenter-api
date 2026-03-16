@@ -1,4 +1,7 @@
 on:
+  push:
+    branches:
+    - master
   pull_request:
     branches:
     - master
@@ -13,7 +16,11 @@ jobs:
     - name: Build
       run: dotnet build Crews.PlanningCenter.Api --configuration Release
     - name: Test
-      run: dotnet test Crews.PlanningCenter.Api.Tests --configuration Release
+      run: dotnet test Crews.PlanningCenter.Api.Tests --configuration Release --collect:"XPlat Code Coverage"
+    - name: Upload coverage
+      uses: codecov/codecov-action@v4
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
 
   integration:
     name: Run integration tests

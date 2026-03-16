@@ -1,5 +1,8 @@
 # .NET Planning Center API Library
 
+[![Build](https://github.com/twcrews/planningcenter-api/actions/workflows/ci.yml/badge.svg)](https://github.com/twcrews/planningcenter-api/actions/workflows/ci.yml)
+[![Coverage](https://codecov.io/gh/twcrews/planningcenter-api/branch/master/graph/badge.svg)](https://codecov.io/gh/twcrews/planningcenter-api)
+
 A strongly-typed .NET client library for the [Planning Center API](https://developer.planning.center/docs/), featuring automatic code generation and comprehensive authentication support.
 
 ## Installation

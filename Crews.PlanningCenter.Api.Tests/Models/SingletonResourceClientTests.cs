@@ -261,6 +261,22 @@ public class SingletonResourceClientTests
 	}
 
 	[Fact]
+	public async Task GetAsync_WithErrorResponseAndNonJsonBody_ThrowsHttpRequestException()
+	{
+		// Arrange
+		var mockHttp = new MockHttpMessageHandler();
+		mockHttp.When(HttpMethod.Get, "https://example.com/test")
+			.Respond(HttpStatusCode.InternalServerError, "text/plain", "Internal Server Error");
+
+		var httpClient = mockHttp.ToHttpClient();
+		var uri = new Uri("https://example.com/test");
+		var client = new TestResourceClient(httpClient, uri);
+
+		// Act & Assert — deserialization of the body fails, so the original HttpRequestException is rethrown
+		await Assert.ThrowsAsync<HttpRequestException>(() => client.GetAsync());
+	}
+
+	[Fact]
 	public async Task GetAsync_WithCancellationToken_PassesToken()
 	{
 		// Arrange

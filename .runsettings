@@ -22,6 +22,9 @@
                 <Source>.*Crews\.PlanningCenter\.Api\.DocParser\\Configuration\\.*</Source>
                 <Source>.*Crews\.PlanningCenter\.Api\.DocParser\\Models\\.*</Source>
                 <Source>.*Crews\.PlanningCenter\.Api\.DocParser\\Program\.cs$</Source>
+                <Source>.*Crews\.PlanningCenter\.Api\\Api\\V2018_08_01\\Organization\.cs$</Source>
+                <Source>.*Crews\.PlanningCenter\.Api\\Services\\ArrangementSection\.cs$</Source>
+                <Source>.*Crews\.PlanningCenter\.Api\\Authentication\\PlanningCenterTokenHandler\.cs$</Source>
               </Exclude>
             </Sources>
           </CodeCoverage>
@@ -29,7 +32,7 @@
       </DataCollector>
       <DataCollector friendlyName="XPlat Code Coverage">
         <Configuration>
-          <ExcludeByFile>**/*.g.cs,**/Crews.PlanningCenter.Api.DocParser/Configuration/**,**/Crews.PlanningCenter.Api.DocParser/Models/**,**/Crews.PlanningCenter.Api.DocParser/Program.cs</ExcludeByFile>
+          <ExcludeByFile>**/*.g.cs,**/Crews.PlanningCenter.Api.DocParser/Configuration/**,**/Crews.PlanningCenter.Api.DocParser/Models/**,**/Crews.PlanningCenter.Api.DocParser/Program.cs,**/Crews.PlanningCenter.Api/Api/V2018_08_01/Organization.cs,**/Crews.PlanningCenter.Api/Services/ArrangementSection.cs,**/Crews.PlanningCenter.Api/Authentication/PlanningCenterTokenHandler.cs</ExcludeByFile>
           <SkipAutoProps>true</SkipAutoProps>
         </Configuration>
       </DataCollector>

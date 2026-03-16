@@ -352,6 +352,70 @@ public static class SampleVersionData
         };
     }
 
+    /// <summary>
+    /// Returns a version with a resource whose CLR type name contains a dot (e.g. "Address.Street"),
+    /// exercising the '.' branch in ToPascalCase.
+    /// </summary>
+    public static ApiVersion GetVersionWithDottedAttributeType()
+    {
+        return new ApiVersion
+        {
+            Id = "2025-01-01",
+            Beta = false,
+            Details = "Version for dotted-name coverage",
+            Resources =
+            [
+                new ApiResource
+                {
+                    JsonName = "address",
+                    AttributesClrType = "Address.Street",
+                    ResourceClrType = "Address.StreetResource",
+                    Description = "An address resource",
+                    ShouldGenerateResource = true,
+                    ShouldGenerateClients = true,
+                    Attributes = [],
+                    Relationships = [],
+                    Children = [],
+                    CanInclude = [],
+                    CanOrderBy = [],
+                    CanQueryBy = []
+                }
+            ]
+        };
+    }
+
+    /// <summary>
+    /// Returns a version with a resource whose CLR type name has a letter immediately following a digit
+    /// (e.g. "Track1Title"), exercising the digit-to-letter branch in ToPascalCase.
+    /// </summary>
+    public static ApiVersion GetVersionWithDigitToLetterAttributeType()
+    {
+        return new ApiVersion
+        {
+            Id = "2025-01-01",
+            Beta = false,
+            Details = "Version for digit-to-letter coverage",
+            Resources =
+            [
+                new ApiResource
+                {
+                    JsonName = "track",
+                    AttributesClrType = "Track1Title",
+                    ResourceClrType = "Track1TitleResource",
+                    Description = "A track resource",
+                    ShouldGenerateResource = true,
+                    ShouldGenerateClients = true,
+                    Attributes = [],
+                    Relationships = [],
+                    Children = [],
+                    CanInclude = [],
+                    CanOrderBy = [],
+                    CanQueryBy = []
+                }
+            ]
+        };
+    }
+
     public static ApiResource CreateResourceWithNameConflict()
     {
         // Creates a resource where an attribute has the same name as the class

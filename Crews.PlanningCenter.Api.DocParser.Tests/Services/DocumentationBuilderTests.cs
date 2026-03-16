@@ -509,6 +509,74 @@ public class DocumentationBuilderTests
         Assert.Contains(resource.Children, c => c.JsonName == "custom_senders");
     }
 
+    [Fact(DisplayName = "BuildProductAsync converts dotted attribute name to PascalCase with dot preserved")]
+    public async Task BuildProductAsync_MapsAttributeWithDottedName()
+    {
+        // Arrange: attribute name containing a dot (e.g. "address.street") —
+        // exercises the '.' branch in ToPascalCase which keeps the dot and
+        // capitalizes the character that follows it.
+        ProductDefinition productDef = ProductDefinition.People;
+        VersionResource versionRes = TestDataBuilder.CreateVersionResource("2024-01-01");
+        VertexResource personVertex = TestDataBuilder.CreateVertexResource("person", "Person");
+
+        AttributeResource dottedAttr = TestDataBuilder.CreateAttributeResource(
+            "address.street", "string", "Street portion of the address");
+
+        GraphDocument graphDoc = TestDataBuilder.CreateGraphDocument(versions: [versionRes]);
+        GraphVersionDocument versionDoc = TestDataBuilder.CreateGraphVersionDocument(
+            id: "2024-01-01",
+            vertices: [personVertex]);
+        VertexDocument personDoc = TestDataBuilder.CreateVertexDocument(
+            id: "person",
+            name: "Person",
+            attributes: [dottedAttr]);
+
+        _mockClient.GetGraphAsync(productDef).Returns(graphDoc);
+        _mockClient.GetGraphVersionAsync(productDef, "2024-01-01").Returns(versionDoc);
+        _mockClient.GetVertexAsync(productDef, "2024-01-01", "person").Returns(personDoc);
+
+        // Act
+        Product product = await _builder.BuildProductAsync(productDef);
+
+        // Assert: dot is preserved and character after dot is capitalised
+        ResourceAttribute attr = product.Versions.First().Resources.First().Attributes.First();
+        Assert.Equal("Address.Street", attr.ClrName);
+    }
+
+    [Fact(DisplayName = "BuildProductAsync capitalises letter following a digit in attribute name")]
+    public async Task BuildProductAsync_MapsAttributeWithDigitToLetterTransition()
+    {
+        // Arrange: attribute name where a letter immediately follows a digit
+        // (e.g. "track1title") — exercises the digit-to-letter branch in
+        // ToPascalCase which capitalises the letter after a digit.
+        ProductDefinition productDef = ProductDefinition.People;
+        VersionResource versionRes = TestDataBuilder.CreateVersionResource("2024-01-01");
+        VertexResource personVertex = TestDataBuilder.CreateVertexResource("person", "Person");
+
+        AttributeResource digitAttr = TestDataBuilder.CreateAttributeResource(
+            "track1title", "string", "Title of track 1");
+
+        GraphDocument graphDoc = TestDataBuilder.CreateGraphDocument(versions: [versionRes]);
+        GraphVersionDocument versionDoc = TestDataBuilder.CreateGraphVersionDocument(
+            id: "2024-01-01",
+            vertices: [personVertex]);
+        VertexDocument personDoc = TestDataBuilder.CreateVertexDocument(
+            id: "person",
+            name: "Person",
+            attributes: [digitAttr]);
+
+        _mockClient.GetGraphAsync(productDef).Returns(graphDoc);
+        _mockClient.GetGraphVersionAsync(productDef, "2024-01-01").Returns(versionDoc);
+        _mockClient.GetVertexAsync(productDef, "2024-01-01", "person").Returns(personDoc);
+
+        // Act
+        Product product = await _builder.BuildProductAsync(productDef);
+
+        // Assert: the letter following the digit is capitalised
+        ResourceAttribute attr = product.Versions.First().Resources.First().Attributes.First();
+        Assert.Equal("Track1Title", attr.ClrName);
+    }
+
     [Fact(DisplayName = "BuildProductAsync includes additional outbound edges when Product is null")]
     public async Task BuildProductAsync_AdditionalOutboundEdges_NullProductMatchesAll()
     {

@@ -752,6 +752,56 @@ public partial class PlanningCenterResourceClientsGeneratorTests
             "/// <br/>Rate limits apply.");
     }
 
+    [Fact]
+    public void ShouldGenerateResponseClassesForDottedAttributeType()
+    {
+        // Arrange: AttributesClrType contains a dot ("Address.Street") — when the
+        // generator calls ToPascalCase() on it, the '.' branch is exercised (the dot
+        // is preserved in output and the following character is capitalised).
+        var version = SampleVersionData.GetVersionWithDottedAttributeType();
+        var json = System.Text.Json.JsonSerializer.Serialize(version);
+        var (compilation, additionalFiles) = GeneratorTestHelper.CreateCompilation(
+            "namespace Test { }",
+            ("People/2025-01-01.json", json));
+
+        // Act
+        var result = GeneratorTestHelper.RunGenerator(
+            "PlanningCenterResourceClientsGenerator",
+            compilation,
+            additionalFiles);
+
+        // Assert: response class names reflect the dot-preserved PascalCase value
+        var source = GeneratorTestHelper.GetGeneratedSource(result, "People.2025-01-01.Clients.g.cs");
+        GeneratorTestHelper.AssertContains(source,
+            "public class Address.StreetResponse : ResourceResponse<Address.StreetResource> { }",
+            "public class Address.StreetCollectionResponse : ResourceResponse<IEnumerable<Address.StreetResource>> { }");
+    }
+
+    [Fact]
+    public void ShouldGenerateResponseClassesForDigitToLetterAttributeType()
+    {
+        // Arrange: AttributesClrType has a letter immediately following a digit
+        // ("Track1Title") — when the generator calls ToPascalCase() on it, the
+        // digit-to-letter branch is exercised (the letter after the digit is capitalised).
+        var version = SampleVersionData.GetVersionWithDigitToLetterAttributeType();
+        var json = System.Text.Json.JsonSerializer.Serialize(version);
+        var (compilation, additionalFiles) = GeneratorTestHelper.CreateCompilation(
+            "namespace Test { }",
+            ("People/2025-01-01.json", json));
+
+        // Act
+        var result = GeneratorTestHelper.RunGenerator(
+            "PlanningCenterResourceClientsGenerator",
+            compilation,
+            additionalFiles);
+
+        // Assert: response class names reflect the capitalised-after-digit PascalCase value
+        var source = GeneratorTestHelper.GetGeneratedSource(result, "People.2025-01-01.Clients.g.cs");
+        GeneratorTestHelper.AssertContains(source,
+            "public class Track1TitleResponse : ResourceResponse<Track1TitleResource> { }",
+            "public class Track1TitleCollectionResponse : ResourceResponse<IEnumerable<Track1TitleResource>> { }");
+    }
+
     [System.Text.RegularExpressions.GeneratedRegex("public new Task DeleteAsync")]
     private static partial System.Text.RegularExpressions.Regex MyRegex();
 }

@@ -26,6 +26,13 @@ public record DocumentationTransforms
         public bool? Deletable { get; init; }
         public bool? ShouldGenerateResource { get; init; }
         public bool? ShouldGenerateClients { get; init; }
+        public IEnumerable<ResourceAttribute>? Attributes { get; init; }
+        public IEnumerable<ResourceRelationship>? Relationships { get; init; }
+        public IEnumerable<ResourceAction>? Actions { get; init; }
+        public IEnumerable<ResourceChild>? Children { get; init; }
+        public IEnumerable<ResourceIncludable>? CanInclude { get; init; }
+        public IEnumerable<ResourceOrderable>? CanOrderBy { get; init; }
+        public IEnumerable<ResourceQueryable>? CanQueryBy { get; init; }
     }
 
     public record AttributePropertyOverrideEntry

@@ -18,6 +18,42 @@
       "Product": "people",
       "Resource": "list",
       "Patchable": false
+    },
+    {
+      "Product": "api",
+      "Version": "2018-08-01",
+      "Resource": "oauth_application_mau",
+      "Relationships": []
+    },
+    {
+      "Product": "webhooks",
+      "Version": "2022-10-20",
+      "Resource": "event",
+      "Relationships": [
+        {
+          "JsonName": "subscription",
+          "ClrName": "Subscription",
+          "AttributesClrType": "WebhookSubscription",
+          "ResourceClrType": "WebhookSubscriptionResource",
+          "IsCollection": false,
+          "Description": "Related `WebhookSubscription` resource."
+        }
+      ]
+    },
+    {
+      "Product": "webhooks",
+      "Version": "2018-08-01",
+      "Resource": "event",
+      "Relationships": [
+        {
+          "JsonName": "subscription",
+          "ClrName": "Subscription",
+          "AttributesClrType": "Subscription",
+          "ResourceClrType": "SubscriptionResource",
+          "IsCollection": false,
+          "Description": "Related `Subscription` resource."
+        }
+      ]
     }
   ],
   "ResourceChildOverrides": [
@@ -40,6 +76,17 @@
       "Resource": "organization",
       "Child": "stats",
       "IsCollection": false
+    },
+    {
+      "Resource": "oauth_application",
+      "Child": "mau",
+      "IsCollection": true
+    },
+    {
+      "Resource": "organization",
+      "Child": "webhook_subscriptions",
+      "ClrName": "Subscriptions",
+      "Slug": "subscriptions"
     }
   ],
   "AttributeOverrides": [
@@ -163,6 +210,11 @@
       "Resource": "attachment_type",
       "Attribute": "exclusions",
       "ClrType": "System.Collections.Generic.IEnumerable<string>"
+    },
+    {
+      "Resource": "webhook_subscription",
+      "Attribute": "application_id",
+      "JsonConverter": "Crews.PlanningCenter.Api.Converters.StringFromNumberConverter"
     }
   ],
   "RelationshipOverrides": [

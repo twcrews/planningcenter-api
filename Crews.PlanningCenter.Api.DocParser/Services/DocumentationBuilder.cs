@@ -153,25 +153,25 @@ class DocumentationBuilder(
             ShouldGenerateClients = overrideEntry?.ShouldGenerateClients ?? true,
             ShouldGenerateResource = overrideEntry?.ShouldGenerateResource ?? true,
 
-            Attributes = vertex.Relationships?.Attributes.Data
+            Attributes = overrideEntry?.Attributes ?? vertex.Relationships?.Attributes.Data
                 .Where(attr => attr.Attributes.Name != "id")
                 .Select(attr => BuildAttribute(product, versionId, vertexId, attr.Attributes)) ?? [],
-            Relationships = vertex.Relationships?.Relationships.Data
+            Relationships = overrideEntry?.Relationships ?? vertex.Relationships?.Relationships.Data
                 .Select(rel => BuildRelationship(product, versionId, vertexId, rel.Attributes)) ?? [],
-            Actions = vertex.Relationships?.Actions.Data
+            Actions = overrideEntry?.Actions ?? vertex.Relationships?.Actions.Data
                 .Select(act => BuildAction(act.Attributes)) ?? [],
-            CanInclude = vertex.Relationships?.CanInclude.Data
+            Children = overrideEntry?.Children ?? (vertex.Relationships?.OutboundEdges.Data
+                .Select(edge => BuildChild(edge, product, versionId, vertexId)) ?? [])
+                .Concat(GetAdditionalResourceChildren(product, versionId, vertexId)),
+            CanInclude = overrideEntry?.CanInclude ?? vertex.Relationships?.CanInclude.Data
                 .Select(inc => BuildIncludable(inc.Attributes))
                 .DistinctBy(i => i.Value) ?? [],
-            CanOrderBy = vertex.Relationships?.CanOrder.Data
+            CanOrderBy = overrideEntry?.CanOrderBy ?? vertex.Relationships?.CanOrder.Data
                 .Select(ord => BuildOrderable(ord.Attributes))
                 .DistinctBy(o => o.Value) ?? [],
-            CanQueryBy = vertex.Relationships?.CanQuery.Data
+            CanQueryBy = overrideEntry?.CanQueryBy ?? vertex.Relationships?.CanQuery.Data
                 .Select(qry => BuildQueryable(qry.Attributes))
-                .DistinctBy(q => q.Parameter) ?? [],
-            Children = (vertex.Relationships?.OutboundEdges.Data
-                .Select(edge => BuildChild(edge, product, versionId, vertexId)) ?? [])
-                .Concat(GetAdditionalResourceChildren(product, versionId, vertexId))
+                .DistinctBy(q => q.Parameter) ?? []
         };
     }
 

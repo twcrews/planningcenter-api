@@ -115,23 +115,4 @@ public abstract class SingletonResourceClient<TModel, TResource, TResponse>(Http
         return new() { Data = document.Data, ResponseMessage = response, ResponseBody = document };
     }
 
-    private static async Task EnsureSuccessAsync(
-        HttpResponseMessage response,
-        CancellationToken cancellationToken)
-    {
-        string content = await response.Content.ReadAsStringAsync(cancellationToken);
-        await EnsureSuccessAsync(response, content);
-    }
-
-    private static async Task EnsureSuccessAsync(HttpResponseMessage response, string content)
-    {
-        try
-        {
-            response.EnsureSuccessStatusCode();
-        }
-        catch (HttpRequestException ex)
-        {
-            throw new JsonApiException(content, ex);
-        }
-    }
 }

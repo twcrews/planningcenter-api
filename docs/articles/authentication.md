@@ -61,19 +61,24 @@ builder.Services
 
 `ClientId` and `ClientSecret` are required. `Authority` defaults to Planning Center's base URL, and `Scopes` defaults to `["openid", "people"]` if not specified.
 
-### Manual Configuration
+### Login and Logout Endpoints
 
-Configure OIDC options directly instead of using appsettings.json:
+Map the standard ASP.NET Core authentication endpoints in `Program.cs`:
 
 ```csharp
-builder.Services
-    .AddAuthentication()
-    .AddPlanningCenterAuthentication(options =>
-    {
-        options.ClientId = "your-client-id";
-        options.ClientSecret = "your-client-secret";
-    });
+app.MapGet("/login", () => Results.Challenge(
+    new AuthenticationProperties { RedirectUri = "/" },
+    [PlanningCenterAuthenticationDefaults.AuthenticationScheme]))
+    .AllowAnonymous();
+
+app.MapGet("/logout", async (HttpContext context) =>
+{
+    await context.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+    return Results.Redirect("/");
+}).RequireAuthorization();
 ```
+
+The `/login` route triggers the OIDC challenge, redirecting the user to Planning Center's authorization page. After a successful sign-in, Planning Center redirects back to `/signin-oidc` (handled automatically by the OIDC middleware), which then redirects to `RedirectUri`. The `/logout` route clears the local cookie session.
 
 ## Registering API Clients for Dependency Injection
 

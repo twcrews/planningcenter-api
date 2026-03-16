@@ -10,10 +10,10 @@
 
   <PropertyGroup>
     <PackageId>Crews.PlanningCenter.Api</PackageId>
-    <PackageVersion>2.0.0</PackageVersion>
+    <PackageVersion>3.0.0</PackageVersion>
     <Authors>Tommy Crews</Authors>
     <Description>
-      A library containing basic models and services for interacting with the Planning Center API.
+      A comprehensive library for the Planning Center API.
     </Description>
     <PackageProjectUrl>https://github.com/twcrews/planningcenter-api</PackageProjectUrl>
     <PackageIcon>icon.png</PackageIcon>
@@ -53,6 +53,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Api/" />
+    <Folder Include="Api/V2018_08_01/" />
     <Folder Include="Common/" />
     <Folder Include="Groups/" />
     <Folder Include="Services/" />

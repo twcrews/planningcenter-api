@@ -1,4 +1,5 @@
 ﻿using System.Collections.Specialized;
+using System.Text.Json;
 using System.Web;
 using Crews.Web.JsonApiClient;
 
@@ -80,5 +81,29 @@ public abstract class ResourceClient<TModel>(HttpClient httpClient, Uri uri)
         };
         Uri = builder.Uri;
         return this;
+    }
+
+    /// <summary>
+    /// Reads the response content and throws a <see cref="JsonApiException"/> if the response indicates failure.
+    /// </summary>
+    protected static async Task EnsureSuccessAsync(
+        HttpResponseMessage response,
+        CancellationToken cancellationToken)
+    {
+        string content = await response.Content.ReadAsStringAsync(cancellationToken);
+        try
+        {
+            response.EnsureSuccessStatusCode();
+        }
+        catch (HttpRequestException ex)
+        {
+            JsonApiDocument? document = null;
+            try { document = JsonSerializer.Deserialize<JsonApiDocument>(content); }
+            catch (JsonException) { }
+
+            if (document?.Errors?.Any() == true)
+                throw new JsonApiException(content, ex);
+            throw;
+        }
     }
 }

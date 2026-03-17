@@ -1,4 +1,3 @@
-using System;
 using Crews.PlanningCenter.Api.Models;
 using Crews.Web.JsonApiClient;
 

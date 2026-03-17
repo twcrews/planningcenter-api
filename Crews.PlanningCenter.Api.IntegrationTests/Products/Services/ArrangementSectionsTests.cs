@@ -1,5 +1,4 @@
 using Crews.PlanningCenter.Api.Services.V2018_11_01;
-using Crews.PlanningCenter.Api.IntegrationTests.Infrastructure;
 using Crews.PlanningCenter.Api.IntegrationTests.Infrastructure.ProductFixtures;
 using Crews.PlanningCenter.Api.IntegrationTests.Infrastructure.TestBases;
 

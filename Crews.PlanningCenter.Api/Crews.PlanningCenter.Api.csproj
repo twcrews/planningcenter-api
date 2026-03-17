@@ -43,7 +43,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Crews.PlanningCenter.Api.Generators\Crews.PlanningCenter.Api.Generators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
-    <ProjectReference Include="..\Crews.PlanningCenter.Api.Models\Crews.PlanningCenter.Api.Models.csproj" />
     <AdditionalFiles Include="Definitions\**\*.json" />
   </ItemGroup>
 

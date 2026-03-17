@@ -1,8 +1,298 @@
 /* Custom styles for Planning Center API documentation */
 
-/* Constrain logo height */
+/* ── Color palette (matches homepage) ─────────────────────────────────── */
+:root {
+  --pco-primary:   #210f2a;
+  --pco-primary-2: #2f1e3b;
+  --pco-primary-3: #463355;
+  --pco-medium:    #893bf6;
+  --pco-medium-d:  #7725eb;
+  --pco-bright:    #bf06d4;
+  --pco-slate:     #79648b;
+  --pco-bg:        #18131f;
+  --pco-muted:     #77648b;
+  --pco-code-bg:   #1d0f2a;
+
+  --bs-link-color:         var(--pco-medium);
+  --bs-link-hover-color:   var(--pco-bright);
+  --bs-link-color-rgb:     137, 59, 246;
+  --bs-link-hover-color-rgb: 191, 6, 212;
+}
+
+/* ── Dark theme overrides ──────────────────────────────────────────────── */
+[data-bs-theme="dark"] {
+  color-scheme: dark;
+
+  --bs-body-bg:            var(--pco-bg);
+  --bs-body-color:         #e2e8f0;
+  --bs-secondary-bg:       var(--pco-primary-2);
+  --bs-tertiary-bg:        var(--pco-primary);
+  --bs-border-color:       rgba(255, 255, 255, 0.1);
+  --bs-border-color-translucent: rgba(255, 255, 255, 0.1);
+
+  --bs-link-color:         var(--pco-medium);
+  --bs-link-hover-color:   var(--pco-bright);
+  --bs-link-color-rgb:     137, 59, 246;
+  --bs-link-hover-color-rgb: 191, 6, 212;
+
+  --bs-primary:            var(--pco-medium);
+  --bs-primary-rgb:        137, 59, 246;
+
+  --bs-code-color:         #c792ea;
+
+  --bs-heading-color:      #fff;
+
+  --bs-emphasis-color:     #fff;
+  --bs-secondary-color:    rgba(255, 255, 255, 0.6);
+
+  /* Table */
+  --bs-table-bg:           transparent;
+  --bs-table-striped-bg:   rgba(255, 255, 255, 0.03);
+  --bs-table-hover-bg:     rgba(255, 255, 255, 0.06);
+  --bs-table-border-color: rgba(255, 255, 255, 0.1);
+  --bs-table-color:        #e2e8f0;
+}
+
+[data-bs-theme="dark"] body {
+  background-color: var(--pco-bg) !important;
+  color: #e2e8f0 !important;
+}
+
+/* ── Navbar ─────────────────────────────────────────────────────────────── */
+.navbar {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* On mobile, DocFX adds flex-nowrap to the container, which prevents the
+   navbar collapse from wrapping to a new row when expanded. Override it. */
+@media (max-width: 767.98px) {
+  .navbar > .container-xxl {
+    flex-wrap: wrap !important;
+  }
+}
+
+[data-bs-theme="dark"] .navbar {
+  background: rgba(29, 15, 42, 0.95) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.navbar-brand {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+[data-bs-theme="dark"] .navbar-brand,
+[data-bs-theme="dark"] .navbar-brand:hover {
+  color: #fff !important;
+}
+
+[data-bs-theme="dark"] .navbar .nav-link {
+  color: rgba(255, 255, 255, 0.72) !important;
+}
+
+[data-bs-theme="dark"] .navbar .nav-link:hover,
+[data-bs-theme="dark"] .navbar .nav-link:focus {
+  color: #fff !important;
+}
+
+/* ── Constrain logo height ──────────────────────────────────────────────── */
 .navbar-brand img {
-  max-height: 40px;
-  height: 40px;
+  max-height: 36px;
+  height: 36px;
   width: auto;
+}
+
+/* ── Sidebar / toc ──────────────────────────────────────────────────────── */
+[data-bs-theme="dark"] .sidebar,
+[data-bs-theme="dark"] #toc,
+[data-bs-theme="dark"] .toc,
+[data-bs-theme="dark"] .sidetoc,
+[data-bs-theme="dark"] [class*="sidebar"] {
+  background-color: var(--pco-primary) !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+[data-bs-theme="dark"] .toc .nav-link,
+[data-bs-theme="dark"] .sidetoc .nav-link {
+  color: rgba(255, 255, 255, 0.72) !important;
+}
+
+[data-bs-theme="dark"] .toc .nav-link:hover,
+[data-bs-theme="dark"] .toc .nav-link.active,
+[data-bs-theme="dark"] .sidetoc .nav-link:hover,
+[data-bs-theme="dark"] .sidetoc .nav-link.active {
+  color: var(--pco-medium) !important;
+  background: rgba(137, 59, 246, 0.12) !important;
+}
+
+/* ── Main content area ──────────────────────────────────────────────────── */
+[data-bs-theme="dark"] article,
+[data-bs-theme="dark"] .content,
+[data-bs-theme="dark"] main {
+  background-color: var(--pco-bg) !important;
+  color: #e2e8f0 !important;
+}
+
+[data-bs-theme="dark"] h1,
+[data-bs-theme="dark"] h2,
+[data-bs-theme="dark"] h3,
+[data-bs-theme="dark"] h4,
+[data-bs-theme="dark"] h5,
+[data-bs-theme="dark"] h6 {
+  color: #fff !important;
+}
+
+/* ── Headings with anchor links ─────────────────────────────────────────── */
+[data-bs-theme="dark"] h1 .header-anchor,
+[data-bs-theme="dark"] h2 .header-anchor,
+[data-bs-theme="dark"] h3 .header-anchor {
+  color: var(--pco-medium) !important;
+}
+
+/* ── Code blocks ─────────────────────────────────────────────────────────── */
+[data-bs-theme="dark"] pre,
+[data-bs-theme="dark"] pre[class*="language-"] {
+  background: var(--pco-code-bg) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 8px;
+}
+
+[data-bs-theme="dark"] code {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: #c792ea !important;
+  border-radius: 4px;
+}
+
+[data-bs-theme="dark"] pre code {
+  background: transparent !important;
+  color: inherit !important;
+}
+
+/* ── Alerts / callouts ──────────────────────────────────────────────────── */
+[data-bs-theme="dark"] .alert {
+  background: var(--pco-primary-2) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  color: #e2e8f0 !important;
+}
+
+[data-bs-theme="dark"] .alert-info    { border-left: 4px solid #38bdf8 !important; }
+[data-bs-theme="dark"] .alert-warning { border-left: 4px solid #facc15 !important; }
+[data-bs-theme="dark"] .alert-danger  { border-left: 4px solid #f87171 !important; }
+[data-bs-theme="dark"] .alert-success { border-left: 4px solid #4ade80 !important; }
+
+/* ── Tables ─────────────────────────────────────────────────────────────── */
+[data-bs-theme="dark"] .table,
+[data-bs-theme="dark"] table {
+  color: #e2e8f0 !important;
+}
+
+[data-bs-theme="dark"] .table th,
+[data-bs-theme="dark"] .table thead th,
+[data-bs-theme="dark"] table th {
+  background: var(--pco-primary-3) !important;
+  color: #fff !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+[data-bs-theme="dark"] .table td,
+[data-bs-theme="dark"] table td {
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* ── Cards ───────────────────────────────────────────────────────────────── */
+[data-bs-theme="dark"] .card {
+  background: var(--pco-primary-2) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  color: #e2e8f0 !important;
+}
+
+[data-bs-theme="dark"] .card-header {
+  background: var(--pco-primary-3) !important;
+  border-bottom-color: rgba(255, 255, 255, 0.1) !important;
+  color: #fff !important;
+}
+
+/* ── Breadcrumb ─────────────────────────────────────────────────────────── */
+[data-bs-theme="dark"] .breadcrumb {
+  background: transparent !important;
+}
+
+.breadcrumb-item a {
+  color: var(--pco-medium) !important;
+}
+
+[data-bs-theme="dark"] .breadcrumb-item.active {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+/* ── Footer ─────────────────────────────────────────────────────────────── */
+[data-bs-theme="dark"] footer,
+[data-bs-theme="dark"] .footer {
+  background: var(--pco-primary) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.07) !important;
+  color: rgba(255, 255, 255, 0.35) !important;
+}
+
+[data-bs-theme="dark"] footer a,
+[data-bs-theme="dark"] .footer a {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+[data-bs-theme="dark"] footer a:hover,
+[data-bs-theme="dark"] .footer a:hover {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* ── Search ──────────────────────────────────────────────────────────────── */
+[data-bs-theme="dark"] .search-input,
+[data-bs-theme="dark"] #search-query,
+[data-bs-theme="dark"] input[type="search"] {
+  background: var(--pco-primary-2) !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+  color: #e2e8f0 !important;
+}
+
+[data-bs-theme="dark"] .search-input::placeholder,
+[data-bs-theme="dark"] #search-query::placeholder {
+  color: rgba(255, 255, 255, 0.4) !important;
+}
+
+[data-bs-theme="dark"] .search-results,
+[data-bs-theme="dark"] .suggestions {
+  background: var(--pco-primary-2) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+[data-bs-theme="dark"] .search-result-item:hover,
+[data-bs-theme="dark"] .suggestion-item:hover {
+  background: rgba(137, 59, 246, 0.15) !important;
+}
+
+/* ── API member cards ────────────────────────────────────────────────────── */
+[data-bs-theme="dark"] .memberlist .memberInfo,
+[data-bs-theme="dark"] .memberInfo {
+  background: var(--pco-primary-2) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 8px;
+}
+
+/* ── Scrollbar (webkit) ──────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+[data-bs-theme="dark"] ::-webkit-scrollbar-track {
+  background: var(--pco-primary);
+}
+
+[data-bs-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: var(--pco-primary-3);
+  border-radius: 4px;
+}
+
+[data-bs-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+  background: var(--pco-medium);
 }

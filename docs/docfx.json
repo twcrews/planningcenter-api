@@ -8,18 +8,6 @@
           "files": [
             "Crews.PlanningCenter.Api.dll"
           ]
-        },
-        {
-          "src": "../Crews.PlanningCenter.Api.Models/bin/Debug/netstandard2.0",
-          "files": [
-            "Crews.PlanningCenter.Api.Models.dll"
-          ]
-        },
-        {
-          "src": "../Crews.PlanningCenter.Api.DocParser/bin/Debug/net10.0",
-          "files": [
-            "Crews.PlanningCenter.Api.DocParser.dll"
-          ]
         }
       ],
       "dest": "api",
@@ -64,7 +52,7 @@
     "globalMetadata": {
       "_appName": "Planning Center API",
       "_appTitle": "Planning Center API",
-      "_appLogoPath": "images/icon.png",
+      "_appLogoPath": "images/HexColorSmall.png",
       "_enableSearch": true,
       "_appFaviconPath": "images/favicon.svg"
     }

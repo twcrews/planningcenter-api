@@ -106,8 +106,6 @@ public abstract class SingletonResourceClient<TModel, TResource, TResponse>(Http
     {
         await EnsureSuccessAsync(response, cancellationToken);
 
-        // FIXME: Used for debugging; remove after integration tests pass
-        string json = await response.Content.ReadAsStringAsync();
         JsonApiDocument<TResource>? document = await response.ReadJsonApiDocumentAsync<TResource>(cancellationToken);
         if (document is null) return new() { ResponseMessage = response };
         if (document.Data is null) return new() { ResponseMessage = response, ResponseBody = document };

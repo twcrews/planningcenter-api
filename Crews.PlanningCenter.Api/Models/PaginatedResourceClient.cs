@@ -110,7 +110,6 @@ public abstract class PaginatedResourceClient<TModel, TResource, TResponse, TSin
     {
         await EnsureSuccessAsync(response, cancellationToken);
 
-        string json = await response.Content.ReadAsStringAsync();
         JsonApiDocument<TResource>? document = await response.ReadJsonApiDocumentAsync<TResource>(cancellationToken);
         if (document is null) return new() { ResponseMessage = response };
         if (document.Data is null) return new() { ResponseMessage = response, ResponseBody = document };
@@ -123,8 +122,6 @@ public abstract class PaginatedResourceClient<TModel, TResource, TResponse, TSin
     {
         await EnsureSuccessAsync(response, cancellationToken);
 
-        // TODO: Remove following line after debugging
-        string json = await response.Content.ReadAsStringAsync(cancellationToken);
         JsonApiCollectionDocument<TResource>? document = await response
             .ReadJsonApiCollectionDocumentAsync<TResource>(cancellationToken);
         if (document is null) return new() { ResponseMessage = response };

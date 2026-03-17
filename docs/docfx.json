@@ -33,7 +33,8 @@
           "**/*.{md,yml}"
         ],
         "exclude": [
-          "_site/**"
+          "_site/**",
+          "index.md"
         ]
       }
     ],
@@ -46,6 +47,11 @@
       {
         "files": [
           "template/public/**"
+        ]
+      },
+      {
+        "files": [
+          "index.html"
         ]
       }
     ],

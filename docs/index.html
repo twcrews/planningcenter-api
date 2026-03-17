@@ -178,7 +178,7 @@
     /* ── Quick Start ─────────────────────────────────────── */
     .qs-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 480px 1fr;
       gap: 1.5rem;
       align-items: start;
     }
@@ -193,7 +193,7 @@
     .qs-card-header {
       display: flex; align-items: center; justify-content: space-between;
       padding: .75rem 1.1rem;
-      background: var(--primary-2);
+      background: var(--primary-3);
       border-bottom: 1px solid rgba(255,255,255,.07);
     }
     .qs-card-title { color: rgba(255,255,255,.6); font-size: .8rem; font-family: monospace; }
@@ -322,7 +322,11 @@
       border-radius: 999px;
       font-size: .83rem;
       font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
     }
+    .product-pill svg { flex-shrink: 0; opacity: .8; }
 
     /* ── Footer ──────────────────────────────────────────── */
     footer {
@@ -338,6 +342,29 @@
     }
     footer a { color: rgba(255,255,255,.5); text-decoration: none; }
     footer a:hover { color: rgba(255,255,255,.8); }
+
+    /* ── Dark sections ───────────────────────────────────── */
+    #quick-start {
+      background: var(--primary-2);
+    }
+    #quick-start .section-title { color: #fff; }
+    #quick-start .section-sub   { color: rgba(255,255,255,.6); }
+    #quick-start .qs-steps li {
+      border-bottom-color: rgba(255,255,255,.1);
+      color: rgba(255,255,255,.85);
+    }
+
+    #features {
+      background: var(--primary) !important;
+    }
+    #features .section-title { color: #fff; }
+    #features .section-sub   { color: rgba(255,255,255,.6); }
+    #features .feature-card {
+      background: var(--primary-2);
+      border-color: rgba(255,255,255,.1);
+    }
+    #features .feature-card h3 { color: #fff; }
+    #features .feature-card p  { color: rgba(255,255,255,.6); }
 
     /* ── Responsive nav ──────────────────────────────────── */
     @media (max-width: 600px) {
@@ -369,7 +396,6 @@
 
 <!-- Hero -->
 <div class="hero">
-  <div class="hero-badge">.NET 8+ &nbsp;·&nbsp; NuGet Package</div>
   <div>
     <img style="width: 256px;" src="images/HexColorSmall.png"></img>
   </div>
@@ -395,14 +421,38 @@
 <div class="products-strip">
   <p>Covers all Planning Center products</p>
   <div class="products-list">
-    <span class="product-pill">Calendar</span>
-    <span class="product-pill">Check-Ins</span>
-    <span class="product-pill">Giving</span>
-    <span class="product-pill">Groups</span>
-    <span class="product-pill">People</span>
-    <span class="product-pill">Publishing</span>
-    <span class="product-pill">Registrations</span>
-    <span class="product-pill">Services</span>
+    <span class="product-pill">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      Calendar
+    </span>
+    <span class="product-pill">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/><polyline points="9 11 12 14 22 4"/></svg>
+      Check-Ins
+    </span>
+    <span class="product-pill">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 1 0 0 7h5a3.5 3.5 0 1 1 0 7H6"/></svg>
+      Giving
+    </span>
+    <span class="product-pill">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      Groups
+    </span>
+    <span class="product-pill">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      People
+    </span>
+    <span class="product-pill">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m11.31-2.82a10 10 0 0 1 0 14.14m-14.14 0a10 10 0 0 1 0-14.14"/></svg>
+      Publishing
+    </span>
+    <span class="product-pill">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+      Registrations
+    </span>
+    <span class="product-pill">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+      Services
+    </span>
   </div>
 </div>
 
@@ -416,7 +466,7 @@
     <div class="qs-grid">
       <!-- Left: steps -->
       <div>
-        <p style="font-size:.9rem;font-weight:600;color:var(--primary);margin-bottom:.75rem;">1. Install</p>
+        <p style="font-size:.9rem;font-weight:600;color:rgba(255,255,255,.85);margin-bottom:.75rem;">1. Install</p>
         <div class="install-card">
           <span>$&nbsp;<code>dotnet add package Crews.PlanningCenter.Api</code></span>
           <button class="copy-btn" onclick="copyInstall(this)" title="Copy">
@@ -426,8 +476,8 @@
           </button>
         </div>
 
-        <p style="font-size:.9rem;font-weight:600;color:var(--primary);margin:.25rem 0 .75rem;">2. Authenticate &amp; query</p>
-        <p style="font-size:.88rem;color:var(--muted);margin-bottom:1rem;">Create a Personal Access Token in your <a href="https://api.planningcenteronline.com/oauth/applications" style="color:var(--medium);">Planning Center developer account</a>, then:</p>
+        <p style="font-size:.9rem;font-weight:600;color:rgba(255,255,255,.85);margin:.25rem 0 .75rem;">2. Authenticate &amp; query</p>
+        <p style="font-size:.88rem;color:rgba(255,255,255,.6);margin-bottom:1rem;">Create a Personal Access Token in your <a href="https://api.planningcenteronline.com/oauth/applications" style="color:var(--medium);">Planning Center developer account</a>, then:</p>
 
         <ul class="qs-steps">
           <li>
@@ -457,9 +507,6 @@
           <span class="qs-card-title">Program.cs</span>
           <span></span>
         </div>
-        <pre><span class="kw">using</span> Crews.PlanningCenter.Api.<span class="ty">Authentication</span>;
-<span class="kw">using</span> Crews.PlanningCenter.Api.People.<span class="ty">V2025_11_10</span>;
-<span class="kw">using</span> System.Net.Http.<span class="ty">Headers</span>;
 
 <span class="ty">PlanningCenterPersonalAccessToken</span> token = <span class="kw">new</span>()
 {
@@ -469,15 +516,12 @@
 
 <span class="kw">var</span> httpClient = <span class="kw">new</span> <span class="ty">HttpClient</span>
 {
-    BaseAddress = <span class="kw">new</span> <span class="ty">Uri</span>(<span class="ty">PlanningCenterAuthenticationDefaults</span>.<span class="nu">BaseUrl</span>)
+    BaseAddress = <span class="kw">new</span>(<span class="ty">PlanningCenterAuthenticationDefaults</span>.<span class="nu">BaseUrl</span>)
 };
-httpClient.<span class="nu">DefaultRequestHeaders</span>.<span class="nu">Accept</span>.<span class="me">Add</span>(
-    <span class="kw">new</span> <span class="ty">MediaTypeWithQualityHeaderValue</span>(<span class="st">"application/json"</span>));
-httpClient.<span class="nu">DefaultRequestHeaders</span>.<span class="nu">Authorization</span> = token; <span class="co">// implicit</span>
+httpClient.<span class="nu">DefaultRequestHeaders</span>.<span class="nu">Authorization</span> = token;
 
-<span class="co">// Fluent navigation — no URL strings needed</span>
-<span class="kw">var</span> org = <span class="kw">new</span> <span class="ty">PeopleClient</span>(httpClient).<span class="nu">Latest</span>;
-<span class="kw">var</span> response = <span class="kw">await</span> org.<span class="nu">People</span>.<span class="me">WithId</span>(<span class="st">"123"</span>).<span class="me">GetAsync</span>();
+<span class="kw">var</span> peopleClient = <span class="kw">new</span> <span class="ty">PeopleClient</span>(httpClient).<span class="nu">Latest</span>;
+<span class="kw">var</span> response = <span class="kw">await</span> peopleClient.<span class="nu">People</span>.<span class="me">WithId</span>(<span class="st">"123"</span>).<span class="me">GetAsync</span>();
 
 <span class="ty">Console</span>.<span class="me">WriteLine</span>(<span class="st">$"Person: </span>{response.<span class="nu">Data</span>?.<span class="nu">Attributes</span>?.<span class="nu">Name</span>}<span class="st">"</span>);</pre>
       </div>
@@ -486,7 +530,7 @@ httpClient.<span class="nu">DefaultRequestHeaders</span>.<span class="nu">Author
 </section>
 
 <!-- Features -->
-<section id="features" style="background:#fff;">
+<section id="features">
   <div class="section-inner">
     <div class="section-label">Features</div>
     <div class="section-title">Everything you need, nothing you don't</div>
@@ -495,18 +539,18 @@ httpClient.<span class="nu">DefaultRequestHeaders</span>.<span class="nu">Author
     <div class="features-grid">
 
       <div class="feature-card">
-        <div class="feature-icon" style="background:#eff6ff;">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <div class="feature-icon" style="background:rgba(59,130,246,.2);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M3 12h4l3 8 4-16 3 8h4"/>
           </svg>
         </div>
         <h3>Fluent API Navigation</h3>
-        <p>Navigate resources with a clean, chainable interface. No URL construction, no string IDs scattered across your code — just <code style="font-size:.82em;background:#f1f5f9;padding:.1em .35em;border-radius:4px;">org.People.WithId("123").Notes.GetAsync()</code>.</p>
+        <p>Navigate resources with a clean, chainable interface. No URL construction, no string IDs scattered across your code — just <code style="font-size:.82em;background:rgba(255,255,255,.1);padding:.1em .35em;border-radius:4px;color:#e2e8f0;">org.People.WithId("123").Notes.GetAsync()</code>.</p>
       </div>
 
       <div class="feature-card">
-        <div class="feature-icon" style="background:#f0fdf4;">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <div class="feature-icon" style="background:rgba(34,197,94,.2);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
           </svg>
         </div>
@@ -515,8 +559,8 @@ httpClient.<span class="nu">DefaultRequestHeaders</span>.<span class="nu">Author
       </div>
 
       <div class="feature-card">
-        <div class="feature-icon" style="background:#fdf4ff;">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <div class="feature-icon" style="background:rgba(168,85,247,.2);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c084fc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/>
           </svg>
         </div>
@@ -525,8 +569,8 @@ httpClient.<span class="nu">DefaultRequestHeaders</span>.<span class="nu">Author
       </div>
 
       <div class="feature-card">
-        <div class="feature-icon" style="background:#fff7ed;">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <div class="feature-icon" style="background:rgba(249,115,22,.2);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fb923c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
           </svg>
         </div>
@@ -535,18 +579,18 @@ httpClient.<span class="nu">DefaultRequestHeaders</span>.<span class="nu">Author
       </div>
 
       <div class="feature-card">
-        <div class="feature-icon" style="background:#f0f9ff;">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <div class="feature-icon" style="background:rgba(14,165,233,.2);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
           </svg>
         </div>
         <h3>Flexible Authentication</h3>
-        <p>Supports both Personal Access Token and OIDC / OAuth 2.0 flows. ASP.NET Core applications get first-class support with a one-call <code style="font-size:.82em;background:#f1f5f9;padding:.1em .35em;border-radius:4px;">AddPlanningCenterAuthentication()</code> extension and automatic bearer-token forwarding.</p>
+        <p>Supports both Personal Access Token and OIDC / OAuth 2.0 flows. ASP.NET Core applications get first-class support with a one-call <code style="font-size:.82em;background:rgba(255,255,255,.1);padding:.1em .35em;border-radius:4px;color:#e2e8f0;">AddPlanningCenterAuthentication()</code> extension and automatic bearer-token forwarding.</p>
       </div>
 
       <div class="feature-card">
-        <div class="feature-icon" style="background:#fefce8;">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#eab308" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <div class="feature-icon" style="background:rgba(234,179,8,.2);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#facc15" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="3"/><path d="M19.07 4.93A10 10 0 1 0 4.93 19.07 10 10 0 0 0 19.07 4.93z"/>
           </svg>
         </div>
@@ -555,23 +599,23 @@ httpClient.<span class="nu">DefaultRequestHeaders</span>.<span class="nu">Author
       </div>
 
       <div class="feature-card">
-        <div class="feature-icon" style="background:#f0fdf4;">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <div class="feature-icon" style="background:rgba(22,163,74,.2);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
           </svg>
         </div>
         <h3>ASP.NET Core DI Integration</h3>
-        <p>Register all product clients in one line with <code style="font-size:.82em;background:#f1f5f9;padding:.1em .35em;border-radius:4px;">AddPlanningCenterApi()</code>. Works seamlessly with <code style="font-size:.82em;background:#f1f5f9;padding:.1em .35em;border-radius:4px;">IHttpClientFactory</code>, resilience pipelines, and the standard ASP.NET Core DI container.</p>
+        <p>Register all product clients in one line with <code style="font-size:.82em;background:rgba(255,255,255,.1);padding:.1em .35em;border-radius:4px;color:#e2e8f0;">AddPlanningCenterApi()</code>. Works seamlessly with <code style="font-size:.82em;background:rgba(255,255,255,.1);padding:.1em .35em;border-radius:4px;color:#e2e8f0;">IHttpClientFactory</code>, resilience pipelines, and the standard ASP.NET Core DI container.</p>
       </div>
 
       <div class="feature-card">
-        <div class="feature-icon" style="background:#eff6ff;">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <div class="feature-icon" style="background:rgba(59,130,246,.2);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 1 0 0 7h5a3.5 3.5 0 1 1 0 7H6"/>
           </svg>
         </div>
         <h3>Built-in Rate Limit Handling</h3>
-        <p>The integration-test infrastructure ships a <code style="font-size:.82em;background:#f1f5f9;padding:.1em .35em;border-radius:4px;">RateLimitHandler</code> that respects Planning Center's <code style="font-size:.82em;background:#f1f5f9;padding:.1em .35em;border-radius:4px;">X-PCO-API-Request-Rate-*</code> headers and automatically retries on 429 responses — a pattern you can adopt in your own app.</p>
+        <p>The integration-test infrastructure ships a <code style="font-size:.82em;background:rgba(255,255,255,.1);padding:.1em .35em;border-radius:4px;color:#e2e8f0;">RateLimitHandler</code> that respects Planning Center's <code style="font-size:.82em;background:rgba(255,255,255,.1);padding:.1em .35em;border-radius:4px;color:#e2e8f0;">X-PCO-API-Request-Rate-*</code> headers and automatically retries on 429 responses — a pattern you can adopt in your own app.</p>
       </div>
 
     </div>
@@ -579,7 +623,7 @@ httpClient.<span class="nu">DefaultRequestHeaders</span>.<span class="nu">Author
 </section>
 
 <!-- CTA -->
-<section style="background:linear-gradient(135deg,var(--primary) 0%,#1a2a4a 100%);text-align:center;padding:5rem 2rem;">
+<section style="background:linear-gradient(135deg,var(--primary) 0%,#301a4a 100%);text-align:center;padding:5rem 2rem;">
   <div class="section-inner" style="max-width:640px;">
     <div class="section-title" style="color:#fff;margin-bottom:.75rem;">Ready to integrate?</div>
     <p style="color:rgba(255,255,255,.65);font-size:1.05rem;margin-bottom:2.25rem;">Read the full documentation, browse the API reference, or check out the source on GitHub.</p>

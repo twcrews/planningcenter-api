@@ -3,7 +3,7 @@
 [![Build](https://github.com/twcrews/planningcenter-api/actions/workflows/ci.yml/badge.svg)](https://github.com/twcrews/planningcenter-api/actions/workflows/ci.yml)
 [![Coverage](https://codecov.io/gh/twcrews/planningcenter-api/branch/master/graph/badge.svg)](https://codecov.io/gh/twcrews/planningcenter-api)
 
-A strongly-typed .NET client library for the [Planning Center API](https://developer.planning.center/docs/), featuring automatic code generation and comprehensive authentication support.
+A strongly-typed .NET client library for the [Planning Center API](https://developer.planning.center/docs/), featuring a fluent syntax and comprehensive authentication support.
 
 ## Installation
 
@@ -14,10 +14,6 @@ dotnet add package Crews.PlanningCenter.Api
 ## Quick Start
 
 ```csharp
-using Crews.PlanningCenter.Api.Authentication;
-using Crews.PlanningCenter.Api.People.V2025_11_10;
-using System.Net.Http.Headers;
-
 PlanningCenterPersonalAccessToken token = new()
 {
     AppId = "your-app-id",
@@ -28,19 +24,21 @@ var httpClient = new HttpClient
 {
     BaseAddress = new Uri(PlanningCenterAuthenticationDefaults.BaseUrl)
 };
-httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 httpClient.DefaultRequestHeaders.Authorization = token;
 
-var client = new PersonClient(httpClient,
-    new Uri("/people/v2/people/123", UriKind.Relative));
+var client = new PeopleClient(httpClient).Latest;
 
-var response = await client.GetAsync();
+var response = await client
+    .People
+    .WithId("123")
+    .GetAsync();
+
 Console.WriteLine($"Person: {response.Data?.Attributes.Name}");
 ```
 
 ## Documentation
 
-Full documentation — including authentication, usage examples, and API reference — is available at **[twcrews.github.io/planningcenter-api](https://twcrews.github.io/planningcenter-api/)**.
+Full documentation — including authentication, usage examples, and API reference — is available at **[pcapi.crews.dev](https://pcapi.crews.dev)**.
 
 ***
 

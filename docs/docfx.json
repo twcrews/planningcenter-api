@@ -4,7 +4,7 @@
     {
       "src": [
         {
-          "src": "../Crews.PlanningCenter.Api/bin/Debug/net8.0",
+          "src": "../Crews.PlanningCenter.Api/bin/Release/net8.0",
           "files": [
             "Crews.PlanningCenter.Api.dll"
           ]

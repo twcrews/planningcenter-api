@@ -1,0 +1,351 @@
+{
+  "ResourceOverrides": [
+    {
+      "Resource": "episode",
+      "ResourceClrType": "EpisodeApiResource"
+    },
+    {
+      "Resource": "birthday_people",
+      "ShouldGenerateResource": false,
+      "ShouldGenerateClients": true
+    },
+    {
+      "Resource": "organization_statistics",
+      "ShouldGenerateResource": false,
+      "ShouldGenerateClients": true
+    },
+    {
+      "Product": "people",
+      "Resource": "list",
+      "Patchable": false
+    },
+    {
+      "Product": "api",
+      "Version": "2018-08-01",
+      "Resource": "oauth_application_mau",
+      "Relationships": []
+    },
+    {
+      "Product": "webhooks",
+      "Version": "2022-10-20",
+      "Resource": "event",
+      "Relationships": [
+        {
+          "JsonName": "subscription",
+          "ClrName": "Subscription",
+          "AttributesClrType": "WebhookSubscription",
+          "ResourceClrType": "WebhookSubscriptionResource",
+          "IsCollection": false,
+          "Description": "Related `WebhookSubscription` resource."
+        }
+      ]
+    },
+    {
+      "Product": "webhooks",
+      "Version": "2018-08-01",
+      "Resource": "event",
+      "Relationships": [
+        {
+          "JsonName": "subscription",
+          "ClrName": "Subscription",
+          "AttributesClrType": "Subscription",
+          "ResourceClrType": "SubscriptionResource",
+          "IsCollection": false,
+          "Description": "Related `Subscription` resource."
+        }
+      ]
+    }
+  ],
+  "ResourceChildOverrides": [
+    {
+      "Resource": "arrangement",
+      "Child": "sections",
+      "IsCollection": false
+    },
+    {
+      "Resource": "organization",
+      "Child": "birthday_people",
+      "IsCollection": false
+    },
+    {
+      "Resource": "organization",
+      "Child": "series",
+      "IsCollection": true
+    },
+    {
+      "Resource": "organization",
+      "Child": "stats",
+      "IsCollection": false
+    },
+    {
+      "Resource": "oauth_application",
+      "Child": "mau",
+      "IsCollection": true
+    },
+    {
+      "Resource": "organization",
+      "Child": "webhook_subscriptions",
+      "ClrName": "Subscriptions",
+      "Slug": "subscriptions"
+    }
+  ],
+  "AttributeOverrides": [
+    {
+      "Attribute": "created_by_id",
+      "JsonConverter": "Crews.PlanningCenter.Api.Converters.StringFromNumberConverter"
+    },
+    {
+      "Attribute": "date_format",
+      "ClrType": "string"
+    },
+    {
+      "Attribute": "default_church_center_visibility",
+      "ClrType": "System.Text.Json.JsonElement"
+    },
+    {
+      "Attribute": "default_group_settings",
+      "ClrType": "Crews.PlanningCenter.Api.Groups.GroupSettings"
+    },
+    {
+      "Attribute": "diagram",
+      "ClrType": "Crews.PlanningCenter.Api.Common.Image"
+    },
+    {
+      "Attribute": "file",
+      "ClrType": "Crews.PlanningCenter.Api.People.File"
+    },
+    {
+      "Attribute": "file_storage_size",
+      "ClrType": "int"
+    },
+    {
+      "Attribute": "file_storage_size_used",
+      "ClrType": "int"
+    },
+    {
+      "Attribute": "image",
+      "ClrType": "Crews.PlanningCenter.Api.Common.Image"
+    },
+    {
+      "Attribute": "note_category_id",
+      "JsonConverter": "Crews.PlanningCenter.Api.Converters.StringFromNumberConverter"
+    },
+    {
+      "Attribute": "organization_id",
+      "JsonConverter": "Crews.PlanningCenter.Api.Converters.StringFromNumberConverter"
+    },
+    {
+      "Attribute": "person_id",
+      "JsonConverter": "Crews.PlanningCenter.Api.Converters.StringFromNumberConverter"
+    },
+    {
+      "Attribute": "person_to_keep_id",
+      "JsonConverter": "Crews.PlanningCenter.Api.Converters.StringFromNumberConverter"
+    },
+    {
+      "Attribute": "person_to_remove_id",
+      "JsonConverter": "Crews.PlanningCenter.Api.Converters.StringFromNumberConverter"
+    },
+    {
+      "Resource": "condition",
+      "Attribute": "settings",
+      "ClrType": "System.Text.Json.Nodes.JsonObject"
+    },
+    {
+      "Resource": "event_connection",
+      "Attribute": "connected_to_id",
+      "JsonConverter": "Crews.PlanningCenter.Api.Converters.StringFromNumberConverter"
+    },
+    {
+      "Resource": "field_definition",
+      "Attribute": "tab_id",
+      "JsonConverter": "Crews.PlanningCenter.Api.Converters.StringFromNumberConverter"
+    },
+    {
+      "Resource": "form_field",
+      "Attribute": "settings",
+      "ClrType": "System.Text.Json.Nodes.JsonObject"
+    },
+    {
+      "Resource": "location",
+      "Attribute": "questions",
+      "ClrType": "System.Text.Json.Nodes.JsonArray"
+    },
+    {
+      "Resource": "location",
+      "Attribute": "radius",
+      "ClrType": "int"
+    },
+    {
+      "Resource": "note_category",
+      "Attribute": "organization_id",
+      "JsonConverter": "Crews.PlanningCenter.Api.Converters.StringFromNumberConverter"
+    },
+    {
+      "Resource": "payment_method",
+      "Attribute": "expiration",
+      "ClrType": "string"
+    },
+    {
+      "Resource": "people_import",
+      "Attribute": "attribs",
+      "ClrType": "Crews.PlanningCenter.Api.People.ImportAttributes"
+    },
+    {
+      "Resource": "person",
+      "Attribute": "contact_data",
+      "ClrType": "Crews.PlanningCenter.Api.Calendar.ContactData"
+    },
+    {
+      "Resource": "arrangement_sections",
+      "Attribute": "sections",
+      "ClrType": "System.Collections.Generic.IEnumerable<Crews.PlanningCenter.Api.Services.ArrangementSection>"
+    },
+    {
+      "Resource": "attachment_type",
+      "Attribute": "aliases",
+      "ClrType": "System.Collections.Generic.IEnumerable<string>"
+    },
+    {
+      "Resource": "attachment_type",
+      "Attribute": "exclusions",
+      "ClrType": "System.Collections.Generic.IEnumerable<string>"
+    },
+    {
+      "Resource": "webhook_subscription",
+      "Attribute": "application_id",
+      "JsonConverter": "Crews.PlanningCenter.Api.Converters.StringFromNumberConverter"
+    }
+  ],
+  "RelationshipOverrides": [
+    {
+      "Product": "calendar",
+      "Resource": "event",
+      "Relationship": "calendar",
+      "ResourceClrType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier"
+    },
+    {
+      "Product": "check-ins",
+      "Resource": "event",
+      "Relationship": "campuses",
+      "ResourceClrType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier"
+    },
+    {
+      "Product": "check-ins",
+      "Resource": "location",
+      "Relationship": "parent",
+      "ResourceClrType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier"
+    },
+    {
+      "Product": "giving",
+      "Resource": "donation",
+      "Relationship": "labels",
+      "ResourceClrType": "LabelResource"
+    },
+    {
+      "Product": "groups",
+      "Resource": "event",
+      "Relationship": "repeating_event",
+      "ResourceClrType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier"
+    },
+    {
+      "Product": "groups",
+      "Resource": "event_note",
+      "Relationship": "annotatable",
+      "ResourceClrType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier"
+    },
+    {
+      "Resource": "field_datum",
+      "Relationship": "customizable",
+      "ResourceClrType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier"
+    },
+    {
+      "Resource": "form_field",
+      "Relationship": "fieldable",
+      "ResourceClrType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier"
+    },
+    {
+      "Resource": "form_field",
+      "Relationship": "form_field_conditions",
+      "ResourceClrType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier"
+    },
+    {
+      "Resource": "form_field_option",
+      "Relationship": "optionable",
+      "ResourceClrType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier"
+    },
+    {
+      "Product": "people",
+      "Resource": "person",
+      "Relationship": "primary_campus",
+      "ResourceClrType": "CampusResource"
+    },
+    {
+      "Product": "people",
+      "Resource": "person",
+      "Relationship": "gender",
+      "ResourceClrType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier"
+    },
+    {
+      "Resource": "workflow_card",
+      "Relationship": "assignee",
+      "ResourceClrType": "PersonResource"
+    },
+    {
+      "Resource": "workflow_step_assignee_summary",
+      "Relationship": "step",
+      "ResourceClrType": "WorkflowStepResource"
+    },
+    {
+      "Resource": "folder",
+      "Relationship": "campus",
+      "ResourceClrType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier"
+    },
+    {
+      "Resource": "item",
+      "Relationship": "selected_layout",
+      "ResourceClrType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier"
+    },
+    {
+      "Resource": "plan",
+      "Relationship": "linked_publishing_episode",
+      "ResourceClrType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier"
+    },
+    {
+      "Resource": "feed",
+      "Relationship": "default_calendar",
+      "ResourceClrType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier"
+    },
+    {
+      "Resource": "custom_sender",
+      "Relationship": "custom_sender_shares",
+      "ResourceClrType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier"
+    }
+  ],
+  "AdditionalResourceChildren": [
+    {
+      "Product": "people",
+      "Resource": "organization",
+      "Child": {
+        "JsonName": "custom_senders",
+        "ClrName": "CustomSenders",
+        "AttributesClrType": "CustomSender",
+        "Description": "Associated `CustomSenders`.",
+        "Slug": "custom_senders",
+        "IsCollection": true
+      }
+    },
+    {
+      "Product": "people",
+      "Resource": "organization",
+      "Child": {
+        "JsonName": "grades",
+        "ClrName": "Grades",
+        "AttributesClrType": "Grade",
+        "Description": "Associated `Grades`.",
+        "Slug": "grades",
+        "IsCollection": true
+      }
+    }
+  ]
+}

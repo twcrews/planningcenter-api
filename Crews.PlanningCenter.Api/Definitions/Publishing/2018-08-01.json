@@ -1,0 +1,1391 @@
+{
+  "Id": "2018-08-01",
+  "Beta": false,
+  "Details": "The first version of the API. Internal use only.",
+  "Resources": [
+    {
+      "JsonName": "channel",
+      "ResourceClrType": "ChannelResource",
+      "AttributesClrType": "Channel",
+      "Description": "A collection of sermons",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
+      "Attributes": [
+        {
+          "JsonName": "activate_episode_minutes_before",
+          "ClrName": "ActivateEpisodeMinutesBefore",
+          "ClrType": "int",
+          "Description": "The activation time for an episode, expressed in minutes before its start\n"
+        },
+        {
+          "JsonName": "art",
+          "ClrName": "Art",
+          "ClrType": "System.Text.Json.JsonElement",
+          "Description": "An image file object. When setting, pass an upload UUID from the Uploads API\n(https://api.planningcenteronline.com/docs/overview/file-uploads)\nor a signed_identifier from an existing File.\n"
+        },
+        {
+          "JsonName": "can_enable_chat",
+          "ClrName": "CanEnableChat",
+          "ClrType": "bool",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "church_center_url",
+          "ClrName": "ChurchCenterUrl",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "created_at",
+          "ClrName": "CreatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "default_video_duration",
+          "ClrName": "DefaultVideoDuration",
+          "ClrType": "int",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "default_video_embed_code",
+          "ClrName": "DefaultVideoEmbedCode",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "default_video_url",
+          "ClrName": "DefaultVideoUrl",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "description",
+          "ClrName": "Description",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "enable_audio",
+          "ClrName": "EnableAudio",
+          "ClrType": "bool",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "enable_on_demand_video",
+          "ClrName": "EnableOnDemandVideo",
+          "ClrType": "bool",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "enable_watch_live",
+          "ClrName": "EnableWatchLive",
+          "ClrType": "bool",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "general_chat_enabled",
+          "ClrName": "GeneralChatEnabled",
+          "ClrType": "bool",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "group_chat_enabled",
+          "ClrName": "GroupChatEnabled",
+          "ClrType": "bool",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "name",
+          "ClrName": "Name",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "podcast_art",
+          "ClrName": "PodcastArt",
+          "ClrType": "System.Text.Json.JsonElement",
+          "Description": "An image file object. When setting, pass an upload UUID from the Uploads API\n(https://api.planningcenteronline.com/docs/overview/file-uploads)\nor a signed_identifier from an existing File.\n"
+        },
+        {
+          "JsonName": "podcast_feed_url",
+          "ClrName": "PodcastFeedUrl",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "podcast_settings",
+          "ClrName": "PodcastSettings",
+          "ClrType": "System.Text.Json.JsonElement",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "position",
+          "ClrName": "Position",
+          "ClrType": "int",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "published",
+          "ClrName": "Published",
+          "ClrType": "bool",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "sermon_notes_enabled",
+          "ClrName": "SermonNotesEnabled",
+          "ClrType": "bool",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "services_service_type_remote_identifier",
+          "ClrName": "ServicesServiceTypeRemoteIdentifier",
+          "ClrType": "string",
+          "Description": "The id for the associated Services Service Type (https://developer.planning.center/docs/#/apps/services/2018-08-01/vertices/service_type)\n"
+        },
+        {
+          "JsonName": "updated_at",
+          "ClrName": "UpdatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "url",
+          "ClrName": "Url",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        }
+      ],
+      "Relationships": [],
+      "Actions": [],
+      "Children": [
+        {
+          "JsonName": "channel_default_episode_resources",
+          "ClrName": "ChannelDefaultEpisodeResources",
+          "AttributesClrType": "ChannelDefaultEpisodeResource",
+          "Description": "Associated \u0060ChannelDefaultEpisodeResources\u0060.",
+          "Slug": "channel_default_episode_resources",
+          "IsCollection": true,
+          "Deprecated": false,
+          "Filters": []
+        },
+        {
+          "JsonName": "channel_default_times",
+          "ClrName": "ChannelDefaultTimes",
+          "AttributesClrType": "ChannelDefaultTime",
+          "Description": "Associated \u0060ChannelDefaultTimes\u0060.",
+          "Slug": "channel_default_times",
+          "IsCollection": true,
+          "Deprecated": false,
+          "Filters": []
+        },
+        {
+          "JsonName": "current_episode",
+          "ClrName": "CurrentEpisode",
+          "AttributesClrType": "Episode",
+          "Description": "Associated \u0060CurrentEpisode\u0060.",
+          "Slug": "current_episode",
+          "IsCollection": false,
+          "Deprecated": false,
+          "Filters": []
+        },
+        {
+          "JsonName": "episodes",
+          "ClrName": "Episodes",
+          "AttributesClrType": "Episode",
+          "Description": "Associated \u0060Episodes\u0060.",
+          "Slug": "episodes",
+          "IsCollection": true,
+          "Deprecated": false,
+          "Filters": [
+            {
+              "ClrMethodName": "FilterByConnectedToServices",
+              "Value": "connected_to_services",
+              "Description": "Filter results by the \u0060ConnectedToServices\u0060 scope."
+            },
+            {
+              "ClrMethodName": "FilterByNotConnectedToServices",
+              "Value": "not_connected_to_services",
+              "Description": "Filter results by the \u0060NotConnectedToServices\u0060 scope."
+            },
+            {
+              "ClrMethodName": "FilterByNotPublished",
+              "Value": "not_published",
+              "Description": "Filter results by the \u0060NotPublished\u0060 scope."
+            },
+            {
+              "ClrMethodName": "FilterByPublished",
+              "Value": "published",
+              "Description": "Filter results by the \u0060Published\u0060 scope."
+            },
+            {
+              "ClrMethodName": "FilterByPublishedToLibrary",
+              "Value": "published_to_library",
+              "Description": "Filter results by the \u0060PublishedToLibrary\u0060 scope."
+            }
+          ]
+        },
+        {
+          "JsonName": "next_times",
+          "ClrName": "NextTimes",
+          "AttributesClrType": "ChannelNextTime",
+          "Description": "Associated \u0060NextTimes\u0060.",
+          "Slug": "next_times",
+          "IsCollection": true,
+          "Deprecated": false,
+          "Filters": []
+        },
+        {
+          "JsonName": "series",
+          "ClrName": "Series",
+          "AttributesClrType": "Series",
+          "Description": "Associated \u0060Series\u0060.",
+          "Slug": "series",
+          "IsCollection": false,
+          "Deprecated": false,
+          "Filters": []
+        },
+        {
+          "JsonName": "statistics",
+          "ClrName": "Statistics",
+          "AttributesClrType": "EpisodeStatistics",
+          "Description": "Associated \u0060Statistics\u0060.",
+          "Slug": "statistics",
+          "IsCollection": true,
+          "Deprecated": false,
+          "Filters": []
+        }
+      ],
+      "CanInclude": [
+        {
+          "ClrMethodName": "IncludeChannelDefaultEpisodeResources",
+          "Value": "channel_default_episode_resources",
+          "Description": "Include related \u0060ChannelDefaultEpisodeResources\u0060 resources in the response.",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "ClrMethodName": "IncludeChannelDefaultTimes",
+          "Value": "channel_default_times",
+          "Description": "Include related \u0060ChannelDefaultTimes\u0060 resources in the response.",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "ClrMethodName": "IncludeCurrentEpisode",
+          "Value": "current_episode",
+          "Description": "Include related \u0060CurrentEpisode\u0060 resources in the response.",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "ClrMethodName": "OrderByName",
+          "Value": "name",
+          "Description": "Sort response items by the \u0060Name\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "OrderByPosition",
+          "Value": "position",
+          "Description": "Sort response items by the \u0060Position\u0060 attribute."
+        }
+      ],
+      "CanQueryBy": []
+    },
+    {
+      "JsonName": "channel_default_episode_resource",
+      "ResourceClrType": "ChannelDefaultEpisodeResourceResource",
+      "AttributesClrType": "ChannelDefaultEpisodeResource",
+      "Description": "The default EpisodeResources for a Channel",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
+      "Attributes": [
+        {
+          "JsonName": "featured",
+          "ClrName": "Featured",
+          "ClrType": "bool",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "icon",
+          "ClrName": "Icon",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "kind",
+          "ClrName": "Kind",
+          "ClrType": "string",
+          "Description": "Possible values: \u0060giving_fund\u0060, \u0060people_form\u0060, \u0060generic_url\u0060, \u0060services_public_page\u0060\n"
+        },
+        {
+          "JsonName": "position",
+          "ClrName": "Position",
+          "ClrType": "int",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "title",
+          "ClrName": "Title",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "type",
+          "ClrName": "Type",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "url",
+          "ClrName": "Url",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        }
+      ],
+      "Relationships": [],
+      "Actions": [],
+      "Children": [],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "JsonName": "channel_default_time",
+      "ResourceClrType": "ChannelDefaultTimeResource",
+      "AttributesClrType": "ChannelDefaultTime",
+      "Description": "The default times for a channel",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
+      "Attributes": [
+        {
+          "JsonName": "day_of_week",
+          "ClrName": "DayOfWeek",
+          "ClrType": "int",
+          "Description": "The day of the week. 0 is Sunday, 1 is Monday, etc.\n"
+        },
+        {
+          "JsonName": "frequency",
+          "ClrName": "Frequency",
+          "ClrType": "string",
+          "Description": "Possible values: \u0060weekly\u0060\n"
+        },
+        {
+          "JsonName": "hour",
+          "ClrName": "Hour",
+          "ClrType": "int",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "minute",
+          "ClrName": "Minute",
+          "ClrType": "int",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "position",
+          "ClrName": "Position",
+          "ClrType": "int",
+          "Description": "Planning Center does not provide a description for this attribute."
+        }
+      ],
+      "Relationships": [],
+      "Actions": [],
+      "Children": [],
+      "CanInclude": [],
+      "CanOrderBy": [
+        {
+          "ClrMethodName": "OrderByPosition",
+          "Value": "position",
+          "Description": "Sort response items by the \u0060Position\u0060 attribute."
+        }
+      ],
+      "CanQueryBy": []
+    },
+    {
+      "JsonName": "channel_next_time",
+      "ResourceClrType": "ChannelNextTimeResource",
+      "AttributesClrType": "ChannelNextTime",
+      "Description": "The next default time for a channel",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
+      "Attributes": [
+        {
+          "JsonName": "starts_at",
+          "ClrName": "StartsAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
+        }
+      ],
+      "Relationships": [],
+      "Actions": [],
+      "Children": [],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "JsonName": "episode",
+      "ResourceClrType": "EpisodeApiResource",
+      "AttributesClrType": "Episode",
+      "Description": "Planning Center does not provide a description for this resource.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
+      "Attributes": [
+        {
+          "JsonName": "art",
+          "ClrName": "Art",
+          "ClrType": "System.Text.Json.JsonElement",
+          "Description": "An image file object. When setting, pass an upload UUID from the Uploads API\n(https://api.planningcenteronline.com/docs/overview/file-uploads)\nor a signed_identifier from an existing File.\n"
+        },
+        {
+          "JsonName": "church_center_url",
+          "ClrName": "ChurchCenterUrl",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "created_at",
+          "ClrName": "CreatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "description",
+          "ClrName": "Description",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "library_audio_url",
+          "ClrName": "LibraryAudioUrl",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "library_streaming_service",
+          "ClrName": "LibraryStreamingService",
+          "ClrType": "string",
+          "Description": "Possible values: \u0060vimeo\u0060, \u0060youtube\u0060, \u0060livestream_com\u0060, \u0060resi\u0060, \u0060facebook\u0060, or \u0060boxcast\u0060"
+        },
+        {
+          "JsonName": "library_video_embed_code",
+          "ClrName": "LibraryVideoEmbedCode",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "library_video_thumbnail_url",
+          "ClrName": "LibraryVideoThumbnailUrl",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "library_video_url",
+          "ClrName": "LibraryVideoUrl",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "needs_library_audio_or_video_url",
+          "ClrName": "NeedsLibraryAudioOrVideoUrl",
+          "ClrType": "bool",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "needs_notes_template",
+          "ClrName": "NeedsNotesTemplate",
+          "ClrType": "bool",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "needs_video_url",
+          "ClrName": "NeedsVideoUrl",
+          "ClrType": "bool",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "page_actions",
+          "ClrName": "PageActions",
+          "ClrType": "System.Text.Json.Nodes.JsonArray",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "published_live_at",
+          "ClrName": "PublishedLiveAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "published_to_library_at",
+          "ClrName": "PublishedToLibraryAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "sermon_audio",
+          "ClrName": "SermonAudio",
+          "ClrType": "System.Text.Json.JsonElement",
+          "Description": "An audio file object. When setting, pass an upload UUID from the Uploads API\n(https://api.planningcenteronline.com/docs/overview/file-uploads)\nor a signed_identifier from an existing File.\n"
+        },
+        {
+          "JsonName": "services_plan_remote_identifier",
+          "ClrName": "ServicesPlanRemoteIdentifier",
+          "ClrType": "string",
+          "Description": "The id for the associated Services Plan\n(https://developer.planning.center/docs/#/apps/services/2018-08-01/vertices/plan)\n"
+        },
+        {
+          "JsonName": "services_service_type_remote_identifier",
+          "ClrName": "ServicesServiceTypeRemoteIdentifier",
+          "ClrType": "string",
+          "Description": "The id for the associated Services Service Type\n(https://developer.planning.center/docs/#/apps/services/2018-08-01/vertices/service_type)\n"
+        },
+        {
+          "JsonName": "stream_type",
+          "ClrName": "StreamType",
+          "ClrType": "string",
+          "Description": "Possible values: \u0060channel_default_livestream\u0060, \u0060livestream\u0060, or \u0060prerecorded\u0060"
+        },
+        {
+          "JsonName": "streaming_service",
+          "ClrName": "StreamingService",
+          "ClrType": "string",
+          "Description": "Possible values: \u0060vimeo\u0060, \u0060youtube\u0060, \u0060livestream_com\u0060, \u0060resi\u0060, \u0060facebook\u0060, or \u0060boxcast\u0060"
+        },
+        {
+          "JsonName": "title",
+          "ClrName": "Title",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "updated_at",
+          "ClrName": "UpdatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "video_embed_code",
+          "ClrName": "VideoEmbedCode",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "video_thumbnail_url",
+          "ClrName": "VideoThumbnailUrl",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "video_url",
+          "ClrName": "VideoUrl",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        }
+      ],
+      "Relationships": [
+        {
+          "JsonName": "series",
+          "ClrName": "Series",
+          "AttributesClrType": "Series",
+          "ResourceClrType": "SeriesResource",
+          "IsCollection": false,
+          "Description": "Related \u0060Series\u0060 resource."
+        }
+      ],
+      "Actions": [],
+      "Children": [
+        {
+          "JsonName": "channel",
+          "ClrName": "Channel",
+          "AttributesClrType": "Channel",
+          "Description": "Associated \u0060Channel\u0060.",
+          "Slug": "channel",
+          "IsCollection": false,
+          "Deprecated": false,
+          "Filters": []
+        },
+        {
+          "JsonName": "episode_resources",
+          "ClrName": "EpisodeResources",
+          "AttributesClrType": "EpisodeResource",
+          "Description": "Associated \u0060EpisodeResources\u0060.",
+          "Slug": "episode_resources",
+          "IsCollection": true,
+          "Deprecated": false,
+          "Filters": []
+        },
+        {
+          "JsonName": "episode_times",
+          "ClrName": "EpisodeTimes",
+          "AttributesClrType": "EpisodeTime",
+          "Description": "Associated \u0060EpisodeTimes\u0060.",
+          "Slug": "episode_times",
+          "IsCollection": true,
+          "Deprecated": false,
+          "Filters": []
+        },
+        {
+          "JsonName": "note_template",
+          "ClrName": "NoteTemplate",
+          "AttributesClrType": "NoteTemplate",
+          "Description": "Associated \u0060NoteTemplate\u0060.",
+          "Slug": "note_template",
+          "IsCollection": false,
+          "Deprecated": false,
+          "Filters": []
+        },
+        {
+          "JsonName": "series",
+          "ClrName": "Series",
+          "AttributesClrType": "Series",
+          "Description": "Associated \u0060Series\u0060.",
+          "Slug": "series",
+          "IsCollection": false,
+          "Deprecated": false,
+          "Filters": []
+        },
+        {
+          "JsonName": "speakerships",
+          "ClrName": "Speakerships",
+          "AttributesClrType": "Speakership",
+          "Description": "Associated \u0060Speakerships\u0060.",
+          "Slug": "speakerships",
+          "IsCollection": true,
+          "Deprecated": false,
+          "Filters": []
+        }
+      ],
+      "CanInclude": [
+        {
+          "ClrMethodName": "IncludeChannel",
+          "Value": "channel",
+          "Description": "Include related \u0060Channel\u0060 resources in the response.",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "ClrMethodName": "IncludeEpisodeResources",
+          "Value": "episode_resources",
+          "Description": "Include related \u0060EpisodeResources\u0060 resources in the response.",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "ClrMethodName": "IncludeEpisodeTimes",
+          "Value": "episode_times",
+          "Description": "Include related \u0060EpisodeTimes\u0060 resources in the response.",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "ClrMethodName": "IncludeSeries",
+          "Value": "series",
+          "Description": "Include related \u0060Series\u0060 resources in the response.",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "ClrMethodName": "IncludeSpeakerships",
+          "Value": "speakerships",
+          "Description": "Include related \u0060Speakerships\u0060 resources in the response.",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "ClrMethodName": "OrderByPublishedLiveAt",
+          "Value": "published_live_at",
+          "Description": "Sort response items by the \u0060PublishedLiveAt\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "OrderByPublishedToLibraryAt",
+          "Value": "published_to_library_at",
+          "Description": "Sort response items by the \u0060PublishedToLibraryAt\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "OrderByStreamType",
+          "Value": "stream_type",
+          "Description": "Sort response items by the \u0060StreamType\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "OrderByTitle",
+          "Value": "title",
+          "Description": "Sort response items by the \u0060Title\u0060 attribute."
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "ClrMethodName": "WhereSeriesId",
+          "ClrType": "int",
+          "Parameter": "where[series_id]",
+          "Description": "Query response items by the \u0060SeriesId\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "WhereServicesPlanRemoteIdentifier",
+          "ClrType": "string",
+          "Parameter": "where[services_plan_remote_identifier]",
+          "Description": "Query response items by the \u0060ServicesPlanRemoteIdentifier\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "WhereServicesServiceTypeRemoteIdentifier",
+          "ClrType": "string",
+          "Parameter": "where[services_service_type_remote_identifier]",
+          "Description": "Query response items by the \u0060ServicesServiceTypeRemoteIdentifier\u0060 attribute."
+        }
+      ]
+    },
+    {
+      "JsonName": "episode_resource",
+      "ResourceClrType": "EpisodeResourceResource",
+      "AttributesClrType": "EpisodeResource",
+      "Description": "Planning Center does not provide a description for this resource.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
+      "Attributes": [
+        {
+          "JsonName": "featured",
+          "ClrName": "Featured",
+          "ClrType": "bool",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "icon",
+          "ClrName": "Icon",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "kind",
+          "ClrName": "Kind",
+          "ClrType": "string",
+          "Description": "Possible values: \u0060giving_fund\u0060, \u0060people_form\u0060, \u0060generic_url\u0060, \u0060services_public_page\u0060\n"
+        },
+        {
+          "JsonName": "position",
+          "ClrName": "Position",
+          "ClrType": "int",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "title",
+          "ClrName": "Title",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "type",
+          "ClrName": "Type",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "url",
+          "ClrName": "Url",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        }
+      ],
+      "Relationships": [],
+      "Actions": [],
+      "Children": [],
+      "CanInclude": [],
+      "CanOrderBy": [
+        {
+          "ClrMethodName": "OrderByPosition",
+          "Value": "position",
+          "Description": "Sort response items by the \u0060Position\u0060 attribute."
+        }
+      ],
+      "CanQueryBy": []
+    },
+    {
+      "JsonName": "episode_statistics",
+      "ResourceClrType": "EpisodeStatisticsResource",
+      "AttributesClrType": "EpisodeStatistics",
+      "Description": "Viewership statistics for an episode",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
+      "Attributes": [
+        {
+          "JsonName": "library_watch_count",
+          "ClrName": "LibraryWatchCount",
+          "ClrType": "bool",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "live_watch_count",
+          "ClrName": "LiveWatchCount",
+          "ClrType": "bool",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "published_live_at",
+          "ClrName": "PublishedLiveAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "published_to_library_at",
+          "ClrName": "PublishedToLibraryAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "times",
+          "ClrName": "Times",
+          "ClrType": "System.Text.Json.Nodes.JsonArray",
+          "Description": "\u0060watch_count\u0060 per EpisodeTime"
+        },
+        {
+          "JsonName": "title",
+          "ClrName": "Title",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        }
+      ],
+      "Relationships": [],
+      "Actions": [],
+      "Children": [],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "JsonName": "episode_time",
+      "ResourceClrType": "EpisodeTimeResource",
+      "AttributesClrType": "EpisodeTime",
+      "Description": "Live schedule times for an Episode",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
+      "Attributes": [
+        {
+          "JsonName": "caveats",
+          "ClrName": "Caveats",
+          "ClrType": "System.Text.Json.Nodes.JsonArray",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "current_state",
+          "ClrName": "CurrentState",
+          "ClrType": "string",
+          "Description": "Possible values: \u0060upcoming\u0060, \u0060active\u0060, \u0060over\u0060\n"
+        },
+        {
+          "JsonName": "current_timestamp",
+          "ClrName": "CurrentTimestamp",
+          "ClrType": "decimal",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "ends_at",
+          "ClrName": "EndsAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "starts_at",
+          "ClrName": "StartsAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "streaming_service",
+          "ClrName": "StreamingService",
+          "ClrType": "string",
+          "Description": "Possible values: \u0060vimeo\u0060, \u0060youtube\u0060, \u0060livestream_com\u0060, \u0060resi\u0060, \u0060facebook\u0060, \u0060boxcast\u0060\n"
+        },
+        {
+          "JsonName": "video_embed_code",
+          "ClrName": "VideoEmbedCode",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "video_url",
+          "ClrName": "VideoUrl",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        }
+      ],
+      "Relationships": [],
+      "Actions": [],
+      "Children": [],
+      "CanInclude": [],
+      "CanOrderBy": [
+        {
+          "ClrMethodName": "OrderByStartsAt",
+          "Value": "starts_at",
+          "Description": "Sort response items by the \u0060StartsAt\u0060 attribute."
+        }
+      ],
+      "CanQueryBy": []
+    },
+    {
+      "JsonName": "note_template",
+      "ResourceClrType": "NoteTemplateResource",
+      "AttributesClrType": "NoteTemplate",
+      "Description": "Planning Center does not provide a description for this resource.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": true,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
+      "Attributes": [
+        {
+          "JsonName": "auto_create_free_form_notes",
+          "ClrName": "AutoCreateFreeFormNotes",
+          "ClrType": "bool",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "enabled",
+          "ClrName": "Enabled",
+          "ClrType": "bool",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "published_at",
+          "ClrName": "PublishedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "template",
+          "ClrName": "Template",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        }
+      ],
+      "Relationships": [],
+      "Actions": [],
+      "Children": [],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "JsonName": "organization",
+      "ResourceClrType": "OrganizationResource",
+      "AttributesClrType": "Organization",
+      "Description": "Planning Center does not provide a description for this resource.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
+      "Attributes": [
+        {
+          "JsonName": "downloads_used",
+          "ClrName": "DownloadsUsed",
+          "ClrType": "int",
+          "Description": "Only available when requested with the \u0060?fields\u0060 param"
+        },
+        {
+          "JsonName": "name",
+          "ClrName": "Name",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "subdomain",
+          "ClrName": "Subdomain",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        }
+      ],
+      "Relationships": [],
+      "Actions": [],
+      "Children": [
+        {
+          "JsonName": "channels",
+          "ClrName": "Channels",
+          "AttributesClrType": "Channel",
+          "Description": "Associated \u0060Channels\u0060.",
+          "Slug": "channels",
+          "IsCollection": true,
+          "Deprecated": false,
+          "Filters": [
+            {
+              "ClrMethodName": "FilterByPodcastEnabled",
+              "Value": "podcast_enabled",
+              "Description": "Filter results by the \u0060PodcastEnabled\u0060 scope."
+            },
+            {
+              "ClrMethodName": "FilterByPublished",
+              "Value": "published",
+              "Description": "Filter results by the \u0060Published\u0060 scope."
+            }
+          ]
+        },
+        {
+          "JsonName": "episodes",
+          "ClrName": "Episodes",
+          "AttributesClrType": "Episode",
+          "Description": "Associated \u0060Episodes\u0060.",
+          "Slug": "episodes",
+          "IsCollection": true,
+          "Deprecated": false,
+          "Filters": [
+            {
+              "ClrMethodName": "FilterByConnectedToServices",
+              "Value": "connected_to_services",
+              "Description": "Filter results by the \u0060ConnectedToServices\u0060 scope."
+            },
+            {
+              "ClrMethodName": "FilterByNotConnectedToServices",
+              "Value": "not_connected_to_services",
+              "Description": "Filter results by the \u0060NotConnectedToServices\u0060 scope."
+            },
+            {
+              "ClrMethodName": "FilterByNotPublishedLive",
+              "Value": "not_published_live",
+              "Description": "Filter results by the \u0060NotPublishedLive\u0060 scope."
+            },
+            {
+              "ClrMethodName": "FilterByPublishedLive",
+              "Value": "published_live",
+              "Description": "Filter results by the \u0060PublishedLive\u0060 scope."
+            },
+            {
+              "ClrMethodName": "FilterByPublishedOnChurchCenter",
+              "Value": "published_on_church_center",
+              "Description": "Filter results by the \u0060PublishedOnChurchCenter\u0060 scope."
+            }
+          ]
+        },
+        {
+          "JsonName": "series",
+          "ClrName": "Series",
+          "AttributesClrType": "Series",
+          "Description": "Associated \u0060Series\u0060.",
+          "Slug": "series",
+          "IsCollection": true,
+          "Deprecated": false,
+          "Filters": [
+            {
+              "ClrMethodName": "FilterByNotPublished",
+              "Value": "not_published",
+              "Description": "Filter results by the \u0060NotPublished\u0060 scope."
+            },
+            {
+              "ClrMethodName": "FilterByPublished",
+              "Value": "published",
+              "Description": "Filter results by the \u0060Published\u0060 scope."
+            }
+          ]
+        },
+        {
+          "JsonName": "speakers",
+          "ClrName": "Speakers",
+          "AttributesClrType": "Speaker",
+          "Description": "Associated \u0060Speakers\u0060.",
+          "Slug": "speakers",
+          "IsCollection": true,
+          "Deprecated": false,
+          "Filters": []
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "JsonName": "series",
+      "ResourceClrType": "SeriesResource",
+      "AttributesClrType": "Series",
+      "Description": "Planning Center does not provide a description for this resource.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
+      "Attributes": [
+        {
+          "JsonName": "art",
+          "ClrName": "Art",
+          "ClrType": "System.Text.Json.JsonElement",
+          "Description": "An image file object. When setting, pass an upload UUID from the Uploads API\n(https://api.planningcenteronline.com/docs/overview/file-uploads)\nor a signed_identifier from an existing File.\n"
+        },
+        {
+          "JsonName": "church_center_url",
+          "ClrName": "ChurchCenterUrl",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "created_at",
+          "ClrName": "CreatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "description",
+          "ClrName": "Description",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "ended_at",
+          "ClrName": "EndedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "episodes_count",
+          "ClrName": "EpisodesCount",
+          "ClrType": "int",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "published",
+          "ClrName": "Published",
+          "ClrType": "bool",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "started_at",
+          "ClrName": "StartedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "title",
+          "ClrName": "Title",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "updated_at",
+          "ClrName": "UpdatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
+        }
+      ],
+      "Relationships": [],
+      "Actions": [],
+      "Children": [
+        {
+          "JsonName": "channel",
+          "ClrName": "Channel",
+          "AttributesClrType": "Channel",
+          "Description": "Associated \u0060Channel\u0060.",
+          "Slug": "channel",
+          "IsCollection": false,
+          "Deprecated": false,
+          "Filters": []
+        }
+      ],
+      "CanInclude": [
+        {
+          "ClrMethodName": "IncludeChannel",
+          "Value": "channel",
+          "Description": "Include related \u0060Channel\u0060 resources in the response.",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "ClrMethodName": "OrderByEndedAt",
+          "Value": "ended_at",
+          "Description": "Sort response items by the \u0060EndedAt\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "OrderByEpisodesCount",
+          "Value": "episodes_count",
+          "Description": "Sort response items by the \u0060EpisodesCount\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "OrderByStartedAt",
+          "Value": "started_at",
+          "Description": "Sort response items by the \u0060StartedAt\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "OrderByTitle",
+          "Value": "title",
+          "Description": "Sort response items by the \u0060Title\u0060 attribute."
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "ClrMethodName": "WhereId",
+          "ClrType": "string",
+          "Parameter": "where[id]",
+          "Description": "Query response items by the \u0060Id\u0060 attribute."
+        }
+      ]
+    },
+    {
+      "JsonName": "speaker",
+      "ResourceClrType": "SpeakerResource",
+      "AttributesClrType": "Speaker",
+      "Description": "Planning Center does not provide a description for this resource.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
+      "Attributes": [
+        {
+          "JsonName": "avatar_url",
+          "ClrName": "AvatarUrl",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "episodes_count",
+          "ClrName": "EpisodesCount",
+          "ClrType": "int",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "first_name",
+          "ClrName": "FirstName",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "formatted_name",
+          "ClrName": "FormattedName",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "last_name",
+          "ClrName": "LastName",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "name_prefix",
+          "ClrName": "NamePrefix",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "name_suffix",
+          "ClrName": "NameSuffix",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "speaker_type",
+          "ClrName": "SpeakerType",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        }
+      ],
+      "Relationships": [],
+      "Actions": [],
+      "Children": [],
+      "CanInclude": [],
+      "CanOrderBy": [
+        {
+          "ClrMethodName": "OrderByFirstName",
+          "Value": "first_name",
+          "Description": "Sort response items by the \u0060FirstName\u0060 attribute."
+        }
+      ],
+      "CanQueryBy": []
+    },
+    {
+      "JsonName": "speakership",
+      "ResourceClrType": "SpeakershipResource",
+      "AttributesClrType": "Speakership",
+      "Description": "Planning Center does not provide a description for this resource.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
+      "Attributes": [],
+      "Relationships": [
+        {
+          "JsonName": "speaker",
+          "ClrName": "Speaker",
+          "AttributesClrType": "Speaker",
+          "ResourceClrType": "SpeakerResource",
+          "IsCollection": false,
+          "Description": "Related \u0060Speaker\u0060 resource."
+        }
+      ],
+      "Actions": [],
+      "Children": [
+        {
+          "JsonName": "speaker",
+          "ClrName": "Speaker",
+          "AttributesClrType": "Speaker",
+          "Description": "Associated \u0060Speaker\u0060.",
+          "Slug": "speaker",
+          "IsCollection": false,
+          "Deprecated": false,
+          "Filters": []
+        }
+      ],
+      "CanInclude": [
+        {
+          "ClrMethodName": "IncludeSpeaker",
+          "Value": "speaker",
+          "Description": "Include related \u0060Speaker\u0060 resources in the response.",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        }
+      ],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    }
+  ]
+}

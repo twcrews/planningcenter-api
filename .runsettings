@@ -1,0 +1,41 @@
+<RunSettings>
+  <DataCollectionRunSettings>
+    <DataCollectors>
+      <DataCollector
+        friendlyName="Code Coverage"
+        uri="datacollector://Microsoft/CodeCoverage/2.0"
+        assemblyQualifiedName="Microsoft.VisualStudio.Coverage.DynamicCoverageDataCollector, Microsoft.VisualStudio.TraceCollector, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
+      >
+        <Configuration>
+          <CodeCoverage>
+            <ModulePaths>
+              <Include>
+                <ModulePath>.*Crews.PlanningCenter.Api.DocParser.dll</ModulePath>
+                <ModulePath>.*Crews.PlanningCenter.Api.Generators.dll</ModulePath>
+                <ModulePath>.*Crews.PlanningCenter.Api.Models.dll</ModulePath>
+                <ModulePath>.*Crews.PlanningCenter.Api.dll</ModulePath>
+              </Include>
+            </ModulePaths>
+            <Sources>
+              <Exclude>
+                <Source>.*\.g\.cs$</Source>
+                <Source>.*Crews\.PlanningCenter\.Api\.DocParser\\Configuration\\.*</Source>
+                <Source>.*Crews\.PlanningCenter\.Api\.DocParser\\Models\\.*</Source>
+                <Source>.*Crews\.PlanningCenter\.Api\.DocParser\\Program\.cs$</Source>
+                <Source>.*Crews\.PlanningCenter\.Api\\Api\\V2018_08_01\\Organization\.cs$</Source>
+                <Source>.*Crews\.PlanningCenter\.Api\\Services\\ArrangementSection\.cs$</Source>
+                <Source>.*Crews\.PlanningCenter\.Api\\Authentication\\PlanningCenterTokenHandler\.cs$</Source>
+              </Exclude>
+            </Sources>
+          </CodeCoverage>
+        </Configuration>
+      </DataCollector>
+      <DataCollector friendlyName="XPlat Code Coverage">
+        <Configuration>
+          <ExcludeByFile>**/*.g.cs,**/Crews.PlanningCenter.Api.DocParser/Configuration/**,**/Crews.PlanningCenter.Api.DocParser/Models/**,**/Crews.PlanningCenter.Api.DocParser/Program.cs,**/Crews.PlanningCenter.Api/Api/V2018_08_01/Organization.cs,**/Crews.PlanningCenter.Api/Services/ArrangementSection.cs,**/Crews.PlanningCenter.Api/Authentication/PlanningCenterTokenHandler.cs</ExcludeByFile>
+          <SkipAutoProps>true</SkipAutoProps>
+        </Configuration>
+      </DataCollector>
+    </DataCollectors>
+  </DataCollectionRunSettings>
+</RunSettings>

@@ -1,4 +1,3 @@
 {
-	"dotnet.defaultSolution": "Crews.PlanningCenter.Api.sln",
-	"dotnet.unitTests.runSettingsPath": "Crews.PlanningCenter.Api.Tests/.runsettings"
+    "dotnet.unitTests.runSettingsPath": ".runsettings"
 }

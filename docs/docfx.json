@@ -1,0 +1,60 @@
+{
+  "$schema": "https://raw.githubusercontent.com/dotnet/docfx/main/schemas/docfx.schema.json",
+  "metadata": [
+    {
+      "src": [
+        {
+          "src": "../Crews.PlanningCenter.Api/bin/Debug/net8.0",
+          "files": [
+            "Crews.PlanningCenter.Api.dll"
+          ]
+        }
+      ],
+      "dest": "api",
+      "namespaceLayout": "nested"
+    }
+  ],
+  "build": {
+    "content": [
+      {
+        "files": [
+          "**/*.{md,yml}"
+        ],
+        "exclude": [
+          "_site/**",
+          "index.md"
+        ]
+      }
+    ],
+    "resource": [
+      {
+        "files": [
+          "images/**"
+        ]
+      },
+      {
+        "files": [
+          "template/public/**"
+        ]
+      },
+      {
+        "files": [
+          "index.html"
+        ]
+      }
+    ],
+    "output": "_site",
+    "template": [
+      "default",
+      "modern",
+      "template"
+    ],
+    "globalMetadata": {
+      "_appName": "Planning Center API",
+      "_appTitle": "Planning Center API",
+      "_appLogoPath": "images/HexColorSmall.png",
+      "_enableSearch": true,
+      "_appFaviconPath": "images/favicon.svg"
+    }
+  }
+}

@@ -1,0 +1,13 @@
+using Crews.PlanningCenter.Api.IntegrationTests.Infrastructure.ProductFixtures;
+using Crews.PlanningCenter.Api.IntegrationTests.Infrastructure.TestBases;
+
+namespace Crews.PlanningCenter.Api.IntegrationTests.Products.Publishing;
+
+public class ChannelDefaultTimeTests(PublishingFixture fixture) : PublishingTestBase(fixture)
+{
+	[Fact]
+	public async Task ChannelDefaultTime_FullCrudLifecycle()
+	{
+		// FIXME: Channels require a paid subscription.
+	}
+}

@@ -1,0 +1,174 @@
+{
+  "Id": "2018-08-01",
+  "Beta": false,
+  "Details": "Initial release.",
+  "Resources": [
+    {
+      "JsonName": "connected_application",
+      "ResourceClrType": "ConnectedApplicationResource",
+      "AttributesClrType": "ConnectedApplication",
+      "Description": "Planning Center does not provide a description for this resource.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
+      "Attributes": [
+        {
+          "JsonName": "description",
+          "ClrName": "Description",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "name",
+          "ClrName": "Name",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "url",
+          "ClrName": "Url",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        }
+      ],
+      "Relationships": [],
+      "Actions": [],
+      "Children": [
+        {
+          "JsonName": "people",
+          "ClrName": "People",
+          "AttributesClrType": "ConnectedApplicationPerson",
+          "Description": "Associated \u0060People\u0060.",
+          "Slug": "people",
+          "IsCollection": true,
+          "Deprecated": false,
+          "Filters": []
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "JsonName": "connected_application_person",
+      "ResourceClrType": "ConnectedApplicationPersonResource",
+      "AttributesClrType": "ConnectedApplicationPerson",
+      "Description": "Planning Center does not provide a description for this resource.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
+      "Attributes": [
+        {
+          "JsonName": "avatar_url",
+          "ClrName": "AvatarUrl",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "connected_at",
+          "ClrName": "ConnectedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "first_name",
+          "ClrName": "FirstName",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "last_name",
+          "ClrName": "LastName",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        }
+      ],
+      "Relationships": [],
+      "Actions": [],
+      "Children": [],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "JsonName": "oauth_application_mau",
+      "ResourceClrType": "OauthApplicationMauResource",
+      "AttributesClrType": "OauthApplicationMau",
+      "Description": "Monthly Active Users for an Oauth Application.\n\nA \u0022Monthly Active User\u0022 is any person who has been issued an Oauth token during that month.\n\nHistorical data will be kept for 24 months.\n\n_Note:_ There is no historical data before mid-February 2019.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
+      "Attributes": [
+        {
+          "JsonName": "count",
+          "ClrName": "Count",
+          "ClrType": "int",
+          "Description": "The total number of unique active users for the application."
+        },
+        {
+          "JsonName": "month",
+          "ClrName": "Month",
+          "ClrType": "int",
+          "Description": "The month the stat was recorded for."
+        },
+        {
+          "JsonName": "year",
+          "ClrName": "Year",
+          "ClrType": "int",
+          "Description": "The year the stat was recorded for."
+        }
+      ],
+      "Relationships": [],
+      "Actions": [],
+      "Children": [],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "JsonName": "person",
+      "ResourceClrType": "PersonResource",
+      "AttributesClrType": "Person",
+      "Description": "Planning Center does not provide a description for this resource.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
+      "Attributes": [
+        {
+          "JsonName": "first_name",
+          "ClrName": "FirstName",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "last_name",
+          "ClrName": "LastName",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        }
+      ],
+      "Relationships": [],
+      "Actions": [],
+      "Children": [],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    }
+  ]
+}

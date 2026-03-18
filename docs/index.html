@@ -1,0 +1,1211 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#121212" />
+    <meta name="color-scheme" content="dark" />
+		<title>Planning Center API for .NET</title>
+		<meta
+			name="description"
+			content="A strongly-typed .NET client library for the Planning Center API, with automatic code generation, full version coverage, and comprehensive authentication support."
+		/>
+		<link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+		<style>
+			*,
+			*::before,
+			*::after {
+				box-sizing: border-box;
+				margin: 0;
+				padding: 0;
+			}
+
+			:root {
+        color-scheme: dark;
+				--primary: #210f2a;
+				--primary-2: #2f1e3b;
+				--primary-3: #463355;
+				--medium: #893bf6;
+				--medium-d: #7725eb;
+				--bright: #bf06d4;
+				--slate: #79648b;
+				--bg: #18131f;
+				--card: #ffffff;
+				--border: #e2e8f0;
+				--text: #1e293b;
+				--muted: #77648b;
+				--code-bg: #0f172a;
+				--radius: 12px;
+				--shadow: 0 4px 24px rgba(15, 23, 42, 0.1);
+				--shadow-lg: 0 12px 48px rgba(15, 23, 42, 0.18);
+			}
+
+			html {
+				scroll-behavior: smooth;
+			}
+
+			body {
+				font-family:
+					-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+					"Helvetica Neue", Arial, sans-serif;
+				background: var(--bg);
+				color: var(--text);
+				line-height: 1.6;
+				-webkit-font-smoothing: antialiased;
+			}
+
+			/* ── Nav ─────────────────────────────────────────────── */
+			nav {
+				position: sticky;
+				top: 0;
+				z-index: 100;
+				background: rgba(29, 15, 42, 0.92);
+				backdrop-filter: blur(12px);
+				-webkit-backdrop-filter: blur(12px);
+				border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+			}
+			.nav-inner {
+				max-width: 1200px;
+				margin: 0 auto;
+				padding: 0.875rem 2rem;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+			}
+			.nav-brand {
+				display: flex;
+				align-items: center;
+				gap: 0.6rem;
+				text-decoration: none;
+				color: #fff;
+				font-weight: 700;
+				font-size: 1.05rem;
+				letter-spacing: -0.01em;
+			}
+			.nav-brand img {
+				height: 28px;
+			}
+			.nav-links {
+				display: flex;
+				align-items: center;
+				gap: 0.25rem;
+			}
+			.nav-links a {
+				color: rgba(255, 255, 255, 0.72);
+				text-decoration: none;
+				padding: 0.4rem 0.75rem;
+				border-radius: 6px;
+				font-size: 0.9rem;
+				transition:
+					color 0.15s,
+					background 0.15s;
+			}
+			.nav-links a:hover {
+				color: #fff;
+				background: rgba(255, 255, 255, 0.1);
+			}
+			.nav-btn {
+				background: var(--medium) !important;
+				color: #fff !important;
+				font-weight: 500;
+				padding: 0.4rem 0.9rem !important;
+			}
+			.nav-btn:hover {
+				background: var(--medium-d) !important;
+			}
+
+			/* ── Hero ────────────────────────────────────────────── */
+			.hero {
+				background: linear-gradient(
+					135deg,
+					var(--primary) 0%,
+					#260d3c 45%,
+					#341a4a 100%
+				);
+				position: relative;
+				overflow: hidden;
+				padding: 7rem 2rem 6rem;
+				text-align: center;
+			}
+			.hero::before {
+				content: "";
+				position: absolute;
+				inset: 0;
+				background:
+					radial-gradient(
+						ellipse 80% 60% at 50% -10%,
+						rgba(131, 59, 246, 0.22) 0%,
+						transparent 70%
+					),
+					radial-gradient(
+						ellipse 50% 40% at 85% 80%,
+						rgba(126, 6, 212, 0.12) 0%,
+						transparent 60%
+					);
+				pointer-events: none;
+			}
+			.hero h1 {
+				font-size: clamp(2.2rem, 5vw, 3.6rem);
+				font-weight: 800;
+				color: #fff;
+				letter-spacing: -0.03em;
+				line-height: 1.15;
+				margin-bottom: 1.25rem;
+				position: relative;
+			}
+			.hero h1 span {
+				background: linear-gradient(90deg, var(--medium), var(--bright));
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				background-clip: text;
+			}
+			.hero p {
+				font-size: clamp(1rem, 2vw, 1.2rem);
+				color: rgba(255, 255, 255, 0.7);
+				max-width: 600px;
+				margin: 0 auto 2.5rem;
+				position: relative;
+			}
+			.hero-actions {
+				display: flex;
+				gap: 1rem;
+				justify-content: center;
+				flex-wrap: wrap;
+				position: relative;
+			}
+			.btn {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.45rem;
+				padding: 0.7rem 1.6rem;
+				border-radius: 8px;
+				font-size: 0.95rem;
+				font-weight: 600;
+				text-decoration: none;
+				transition:
+					transform 0.15s,
+					box-shadow 0.15s,
+					background 0.15s;
+				cursor: pointer;
+				border: none;
+			}
+			.btn:hover {
+				transform: translateY(-1px);
+			}
+			.btn-primary {
+				background: var(--medium);
+				color: #fff;
+				box-shadow: 0 4px 14px rgba(162, 59, 246, 0.45);
+			}
+			.btn-primary:hover {
+				background: var(--medium-d);
+				box-shadow: 0 6px 20px rgba(131, 59, 246, 0.55);
+			}
+			.btn-outline {
+				background: transparent;
+				color: #fff;
+				border: 1.5px solid rgba(255, 255, 255, 0.3);
+			}
+			.btn-outline:hover {
+				background: rgba(255, 255, 255, 0.1);
+				border-color: rgba(255, 255, 255, 0.55);
+			}
+
+			/* SVG icons */
+			.icon {
+				width: 18px;
+				height: 18px;
+				flex-shrink: 0;
+			}
+
+			/* ── Section wrapper ─────────────────────────────────── */
+			section {
+				padding: 5rem 2rem;
+			}
+			section:nth-child(even) {
+				background: #fff;
+			}
+			.section-inner {
+				max-width: 1100px;
+				margin: 0 auto;
+			}
+			.section-label {
+				font-size: 0.75rem;
+				font-weight: 700;
+				letter-spacing: 0.1em;
+				text-transform: uppercase;
+				color: var(--medium);
+				margin-bottom: 0.6rem;
+			}
+			.section-title {
+				font-size: clamp(1.6rem, 3vw, 2.2rem);
+				font-weight: 800;
+				letter-spacing: -0.02em;
+				color: var(--primary);
+				margin-bottom: 0.75rem;
+			}
+			.section-sub {
+				font-size: 1.05rem;
+				color: var(--muted);
+				max-width: 560px;
+				margin-bottom: 3rem;
+			}
+
+			/* ── Quick Start ─────────────────────────────────────── */
+			.qs-grid {
+				display: grid;
+				grid-template-columns: 3fr 4fr;
+				gap: 1.5rem;
+				align-items: start;
+			}
+			@media (max-width: 780px) {
+				.qs-grid {
+					grid-template-columns: 1fr;
+				}
+			}
+
+			.qs-card {
+				background: var(--primary);
+				border-radius: var(--radius);
+				overflow: hidden;
+				box-shadow: var(--shadow-lg);
+			}
+			.qs-card-header {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				padding: 8px 16px;
+				background: var(--primary-3);
+				border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+			}
+			.qs-card-title {
+				color: rgba(255, 255, 255, 0.6);
+				font-size: 0.8rem;
+				font-family: monospace;
+			}
+			.qs-dots {
+				display: flex;
+				gap: 5px;
+			}
+			.qs-dot {
+				width: 10px;
+				height: 10px;
+				border-radius: 50%;
+			}
+			.qs-dot:nth-child(1) {
+				background: #ff5f57;
+			}
+			.qs-dot:nth-child(2) {
+				background: #febc2e;
+			}
+			.qs-dot:nth-child(3) {
+				background: #28c840;
+			}
+			pre {
+				margin: 0;
+				padding: 1.4rem 1.6rem;
+				overflow-x: auto;
+				font-family:
+					"SF Mono", "Fira Code", "Cascadia Code", Consolas, monospace;
+				font-size: 0.82rem;
+				line-height: 1.7;
+				color: #e2e8f0;
+			}
+			/* Syntax tones */
+			.kw {
+				color: #c792ea;
+			} /* keyword */
+			.ty {
+				color: #82aaff;
+			} /* type */
+			.st {
+				color: #c3e88d;
+			} /* string */
+			.co {
+				color: #546e7a;
+				font-style: italic;
+			} /* comment */
+			.me {
+				color: #89ddff;
+			} /* method */
+			.nu {
+				color: #f78c6c;
+			} /* number/prop */
+			.op {
+				color: #89ddff;
+			} /* operator */
+
+			.install-card {
+				background: var(--primary);
+				border-radius: var(--radius);
+				display: flex;
+				align-items: center;
+				padding: 0.9rem 1.2rem;
+				gap: 0.75rem;
+				box-shadow: var(--shadow);
+				margin-bottom: 1.25rem;
+			}
+			.install-card span {
+				color: #94a3b8;
+				font-size: 0.85rem;
+				font-family: monospace;
+				flex: 1;
+			}
+			.install-card code {
+				color: #d2beff;
+				font-family: monospace;
+				font-size: 0.85rem;
+			}
+			.copy-btn {
+				background: rgba(255, 255, 255, 0.08);
+				border: none;
+				cursor: pointer;
+				padding: 0.35rem 0.6rem;
+				border-radius: 5px;
+				color: rgba(255, 255, 255, 0.6);
+				font-size: 0.75rem;
+				transition:
+					background 0.15s,
+					color 0.15s;
+			}
+			.copy-btn:hover {
+				background: rgba(255, 255, 255, 0.16);
+				color: #fff;
+			}
+			.copy-btn.copied {
+				color: #4ade80;
+			}
+
+			.qs-steps {
+				list-style: none;
+				margin-bottom: 1.5rem;
+			}
+			.qs-steps li {
+				display: flex;
+				gap: 0.75rem;
+				align-items: baseline;
+				padding: 0.55rem 0;
+				border-bottom: 1px solid var(--border);
+				font-size: 0.95rem;
+			}
+			.qs-steps li:last-child {
+				border-bottom: none;
+			}
+			.qs-step-num {
+				background: var(--medium);
+				color: #fff;
+				font-size: 0.7rem;
+				font-weight: 700;
+				width: 20px;
+				height: 20px;
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				flex-shrink: 0;
+				margin-top: 2px;
+			}
+
+			/* ── Features ────────────────────────────────────────── */
+			.features-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+				gap: 1.25rem;
+			}
+			.feature-card {
+				background: var(--card);
+				border: 1px solid var(--border);
+				border-radius: var(--radius);
+				padding: 1.75rem;
+			}
+			.feature-icon {
+				width: 44px;
+				height: 44px;
+				border-radius: 10px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				margin-bottom: 1rem;
+				font-size: 1.25rem;
+			}
+			.feature-card h3 {
+				font-size: 1rem;
+				font-weight: 700;
+				color: var(--primary);
+				margin-bottom: 0.4rem;
+			}
+			.feature-card p {
+				font-size: 0.9rem;
+				color: var(--muted);
+				line-height: 1.6;
+			}
+			.feature-card code {
+				font-size: 0.82em;
+				background: rgba(255, 255, 255, 0.1);
+				padding: 0.1em 0.35em;
+				border-radius: 4px;
+				color: #e2e8f0;
+			}
+      .feature-card pre {
+				font-size: 0.82em;
+				background: rgba(255, 255, 255, 0.1);
+				padding: 0.1em 0.35em;
+				border-radius: 4px;
+				color: #e2e8f0;
+      }
+
+			/* ── Products strip ──────────────────────────────────── */
+			.products-strip {
+				background: var(--primary);
+				padding: 3rem 2rem;
+				text-align: center;
+			}
+			.products-strip p {
+				color: rgba(255, 255, 255, 0.5);
+				font-size: 0.8rem;
+				font-weight: 600;
+				letter-spacing: 0.12em;
+				text-transform: uppercase;
+				margin-bottom: 1.5rem;
+			}
+			.products-list {
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: center;
+				gap: 0.75rem;
+			}
+			.product-pill {
+				background: rgba(255, 255, 255, 0.07);
+				border: 1px solid rgba(255, 255, 255, 0.12);
+				color: rgba(255, 255, 255, 0.75);
+				padding: 0.35rem 0.9rem;
+				border-radius: 999px;
+				font-size: 0.83rem;
+				font-weight: 500;
+				display: inline-flex;
+				align-items: center;
+				gap: 0.4rem;
+			}
+			.product-pill svg {
+				flex-shrink: 0;
+				opacity: 0.8;
+			}
+
+			/* ── Footer ──────────────────────────────────────────── */
+			footer {
+				background: var(--primary);
+				border-top: 1px solid rgba(255, 255, 255, 0.07);
+				padding: 2.5rem 2rem;
+				text-align: center;
+			}
+			footer p {
+				color: rgba(255, 255, 255, 0.35);
+				font-size: 0.82rem;
+				line-height: 1.7;
+			}
+			footer a {
+				color: rgba(255, 255, 255, 0.5);
+				text-decoration: none;
+			}
+			footer a:hover {
+				color: rgba(255, 255, 255, 0.8);
+			}
+
+			/* ── Dark sections ───────────────────────────────────── */
+			#quick-start {
+				background: var(--primary-2);
+			}
+			#quick-start .section-title {
+				color: #fff;
+			}
+			#quick-start .section-sub {
+				color: rgba(255, 255, 255, 0.6);
+			}
+			#quick-start .qs-steps li {
+				border-bottom-color: rgba(255, 255, 255, 0.1);
+				color: rgba(255, 255, 255, 0.85);
+			}
+
+			#features {
+				background: var(--primary) !important;
+			}
+			#features .section-title {
+				color: #fff;
+			}
+			#features .section-sub {
+				color: rgba(255, 255, 255, 0.6);
+			}
+			#features .feature-card {
+				background: var(--primary-2);
+				border-color: rgba(255, 255, 255, 0.1);
+			}
+			#features .feature-card h3 {
+				color: #fff;
+			}
+			#features .feature-card p {
+				color: rgba(255, 255, 255, 0.6);
+			}
+
+			/* ── Responsive nav ──────────────────────────────────── */
+			@media (max-width: 600px) {
+				.nav-links .nav-hide {
+					display: none;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<!-- Navigation -->
+		<nav>
+			<div class="nav-inner">
+				<a href="index.html" class="nav-brand">
+					<img src="images/HexColorSmall.png" alt="Logo" />
+				</a>
+				<div class="nav-links">
+					<a href="articles/index.html" class="nav-hide">Docs</a>
+					<a href="api/index.html" class="nav-hide">API Reference</a>
+					<a
+						href="https://github.com/twcrews/planningcenter-api"
+						class="nav-btn btn"
+					>
+						<svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+							<path
+								d="M12 2C6.477 2 2 6.484 2 12.021c0 4.428 2.865 8.184 6.839 9.504.5.092.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.605-3.369-1.342-3.369-1.342-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482C19.138 20.2 22 16.447 22 12.021 22 6.484 17.522 2 12 2z"
+							/>
+						</svg>
+						GitHub
+					</a>
+				</div>
+			</div>
+		</nav>
+
+		<!-- Hero -->
+		<div class="hero">
+			<div>
+				<img style="width: 256px" src="images/HexColorSmall.png" />
+			</div>
+			<h1>The <span>Planning Center API</span><br />client for .NET</h1>
+			<p>
+				Fluent syntax, strong typing, and comprehensive documentation.
+        Supports <strong>every version</strong> of <strong>every API</strong>, with OIDC built in.
+      </p>
+			<div class="hero-actions">
+				<a href="articles/index.html" class="btn btn-primary">
+					<svg
+						class="icon"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2.5"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+					>
+						<path
+							d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"
+						/>
+						<path
+							d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"
+						/>
+						<path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0" />
+						<path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" />
+					</svg>
+					Get Started
+				</a>
+				<a
+					href="https://github.com/twcrews/planningcenter-api"
+					class="btn btn-outline"
+				>
+					<svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+						<path
+							d="M12 2C6.477 2 2 6.484 2 12.021c0 4.428 2.865 8.184 6.839 9.504.5.092.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.605-3.369-1.342-3.369-1.342-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482C19.138 20.2 22 16.447 22 12.021 22 6.484 17.522 2 12 2z"
+						/>
+					</svg>
+					View on GitHub
+				</a>
+			</div>
+		</div>
+
+		<!-- Products strip -->
+		<div class="products-strip">
+			<p>Covers all Planning Center APIs</p>
+			<div class="products-list">
+				<span class="product-pill">
+					<svg
+						width="13"
+						height="13"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+					>
+						<circle cx="12" cy="12" r="10" />
+						<line x1="2" y1="12" x2="22" y2="12" />
+						<path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+					</svg>
+					API (Metadata)
+				</span>
+				<span class="product-pill">
+					<svg
+						width="13"
+						height="13"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+					>
+						<rect x="3" y="4" width="18" height="18" rx="2" />
+						<line x1="16" y1="2" x2="16" y2="6" />
+						<line x1="8" y1="2" x2="8" y2="6" />
+						<line x1="3" y1="10" x2="21" y2="10" />
+					</svg>
+					Calendar
+				</span>
+				<span class="product-pill">
+					<svg
+						width="13"
+						height="13"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2.5"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+					>
+						<polyline points="20 6 9 17 4 12" />
+					</svg>
+					Check-Ins
+				</span>
+				<span class="product-pill">
+					<svg
+						width="13"
+						height="13"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+					>
+						<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+						<circle cx="12" cy="7" r="4" />
+					</svg>
+					Current
+				</span>
+				<span class="product-pill">
+					<svg
+						width="13"
+						height="13"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+					>
+						<line x1="12" y1="1" x2="12" y2="23" />
+						<path d="M17 5H9.5a3.5 3.5 0 1 0 0 7h5a3.5 3.5 0 1 1 0 7H6" />
+					</svg>
+					Giving
+				</span>
+				<span class="product-pill">
+					<svg
+						width="13"
+						height="13"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+					>
+						<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+						<circle cx="9" cy="7" r="4" />
+						<path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+						<path d="M16 3.13a4 4 0 0 1 0 7.75" />
+					</svg>
+					Groups
+				</span>
+				<span class="product-pill">
+					<svg
+						width="13"
+						height="13"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+					>
+						<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+						<circle cx="12" cy="7" r="4" />
+					</svg>
+					People
+				</span>
+				<span class="product-pill">
+					<svg
+						width="13"
+						height="13"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+					>
+						<circle cx="12" cy="12" r="2" />
+						<path
+							d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m11.31-2.82a10 10 0 0 1 0 14.14m-14.14 0a10 10 0 0 1 0-14.14"
+						/>
+					</svg>
+					Publishing
+				</span>
+				<span class="product-pill">
+					<svg
+						width="13"
+						height="13"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+					>
+						<path
+							d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+						/>
+						<polyline points="14 2 14 8 20 8" />
+						<line x1="16" y1="13" x2="8" y2="13" />
+						<line x1="16" y1="17" x2="8" y2="17" />
+						<polyline points="10 9 9 9 8 9" />
+					</svg>
+					Registrations
+				</span>
+				<span class="product-pill">
+					<svg
+						width="13"
+						height="13"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+					>
+						<path d="M9 18V5l12-2v13" />
+						<circle cx="6" cy="18" r="3" />
+						<circle cx="18" cy="16" r="3" />
+					</svg>
+					Services
+				</span>
+				<span class="product-pill">
+					<span style="font-size:10px;font-weight:700;letter-spacing:-0.5px">&lt;/&gt;</span>
+					Webhooks
+				</span>
+			</div>
+		</div>
+
+		<!-- Quick Start -->
+		<section id="quick-start">
+			<div class="section-inner">
+				<div class="section-label">Quick Start</div>
+				<div class="section-title">Up and running in minutes</div>
+				<p class="section-sub">
+					Install the NuGet package, point it at your credentials, and start
+					querying.
+				</p>
+
+				<div class="qs-grid">
+					<!-- Left: steps -->
+					<div>
+						<p
+							style="
+								font-size: 0.9rem;
+								font-weight: 600;
+								color: rgba(255, 255, 255, 0.85);
+								margin-bottom: 0.75rem;
+							"
+						>
+							1. Install
+						</p>
+						<div class="install-card">
+							<span
+								>$&nbsp;<code
+									>dotnet add package Crews.PlanningCenter.Api</code
+								></span
+							>
+							<button class="copy-btn" onclick="copyInstall(this)" title="Copy">
+								<svg
+									width="14"
+									height="14"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								>
+									<rect x="9" y="9" width="13" height="13" rx="2" />
+									<path
+										d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+									/>
+								</svg>
+							</button>
+						</div>
+
+						<p
+							style="
+								font-size: 0.9rem;
+								font-weight: 600;
+								color: rgba(255, 255, 255, 0.85);
+								margin: 0.25rem 0 0.75rem;
+							"
+						>
+							2. Authenticate &amp; query
+						</p>
+						<p
+							style="
+								font-size: 0.88rem;
+								color: rgba(255, 255, 255, 0.6);
+								margin-bottom: 1rem;
+							"
+						>
+							Create a Personal Access Token in your
+							<a
+								href="https://api.planningcenteronline.com/oauth/applications"
+								style="color: var(--medium)"
+								>Planning Center developer account</a
+							>, then:
+						</p>
+
+						<ul class="qs-steps">
+							<li>
+								<span class="qs-step-num">1</span>
+								<span
+									>Instantiate a
+									<strong>PlanningCenterPersonalAccessToken</strong> with your
+									App ID and Secret</span
+								>
+							</li>
+							<li>
+								<span class="qs-step-num">2</span>
+								<span
+									>Create an <strong>HttpClient</strong> and set the
+									Authorization header via implicit conversion</span
+								>
+							</li>
+							<li>
+								<span class="qs-step-num">3</span>
+								<span
+									>Navigate the fluent API to any resource and call
+									<strong>GetAsync()</strong></span
+								>
+							</li>
+						</ul>
+
+						<a
+							href="articles/authentication.html"
+							class="btn btn-primary"
+							style="font-size: 0.85rem; padding: 0.5rem 1.1rem"
+						>
+							Authentication options
+							<svg
+								width="14"
+								height="14"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2.5"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							>
+								<path d="M5 12h14M12 5l7 7-7 7" />
+							</svg>
+						</a>
+					</div>
+
+					<!-- Right: code -->
+					<div class="qs-card">
+						<div class="qs-card-header">
+							<div class="qs-dots">
+								<div class="qs-dot"></div>
+								<div class="qs-dot"></div>
+								<div class="qs-dot"></div>
+							</div>
+							<span class="qs-card-title">Program.cs</span>
+							<span></span>
+						</div>
+						<pre>
+<span class="ty">PlanningCenterPersonalAccessToken</span> token = <span class="kw">new</span>()
+{
+    AppId  = <span class="st">"your-app-id"</span>,
+    Secret = <span class="st">"your-secret"</span>
+};
+
+<span class="kw">var</span> httpClient = <span class="kw">new</span> <span class="ty">HttpClient</span>
+{
+    BaseAddress = <span class="kw">new</span>(<span class="ty">PlanningCenterAuthenticationDefaults</span>.<span class="nu">BaseUrl</span>)
+};
+httpClient.<span class="nu">DefaultRequestHeaders</span>.<span class="nu">Authorization</span> = token;
+
+<span class="kw">var</span> peopleClient = <span class="kw">new</span> <span class="ty">PeopleClient</span>(httpClient).<span class="nu">Latest</span>;
+<span class="kw">var</span> response = <span class="kw">await</span> peopleClient.<span class="nu">People</span>.<span class="me">WithId</span>(<span class="st">"123"</span>).<span class="me">GetAsync</span>();
+
+<span class="ty">Console</span>.<span class="me">WriteLine</span>(<span class="st">$"Person: </span>{response.<span class="nu">Data</span>?.<span class="nu">Attributes</span>?.<span class="nu">Name</span>}<span class="st">"</span>);</pre>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Features -->
+		<section id="features">
+			<div class="section-inner">
+				<div class="section-label">Features</div>
+				<div class="section-title">Everything you need, nothing you don't</div>
+				<p class="section-sub">
+					Built specifically for Planning Center's API structure, with patterns
+					that feel natural in modern .NET.
+				</p>
+
+				<div class="features-grid">
+					<div class="feature-card">
+						<div
+							class="feature-icon"
+							style="background: rgba(59, 130, 246, 0.2)"
+						>
+							<svg
+								width="22"
+								height="22"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="#60a5fa"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							>
+								<path d="M3 12h4l3 8 4-16 3 8h4" />
+							</svg>
+						</div>
+						<h3>Fluent API</h3>
+						<p>
+							Navigate resources with a clean, chainable interface. No URL
+							construction, and no more variables and <code>await</code>s scattered
+							across your code.
+						</p>
+					</div>
+
+					<div class="feature-card">
+						<div
+							class="feature-icon"
+							style="background: rgba(168, 85, 247, 0.2)"
+						>
+							<svg
+								width="22"
+								height="22"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="#c084fc"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							>
+								<circle cx="12" cy="12" r="10" />
+								<path d="M12 8v4l3 3" />
+							</svg>
+						</div>
+						<h3>Every Product, Every Version</h3>
+						<p>
+							Full coverage of the 8 core product APIs, plus the 3 metadata APIs — including all API versions.
+						</p>
+					</div>
+
+					<div class="feature-card">
+						<div
+							class="feature-icon"
+							style="background: rgba(249, 115, 22, 0.2)"
+						>
+							<svg
+								width="22"
+								height="22"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="#fb923c"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							>
+								<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+							</svg>
+						</div>
+						<h3>100% Unit Test Coverage</h3>
+						<p>
+							Every code path in the library is covered by unit tests.
+							Integration tests run against the live Planning Center API and
+							cover nearly every supported endpoint, giving you confidence in
+							every release.
+						</p>
+					</div>
+
+					<div class="feature-card">
+						<div
+							class="feature-icon"
+							style="background: rgba(14, 165, 233, 0.2)"
+						>
+							<svg
+								width="22"
+								height="22"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="#38bdf8"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							>
+								<rect x="3" y="11" width="18" height="11" rx="2" />
+								<path d="M7 11V7a5 5 0 0 1 10 0v4" />
+							</svg>
+						</div>
+						<h3>Flexible Authentication</h3>
+						<p>
+							Supports both Personal Access Token and OIDC / OAuth 2.0 flows.
+							ASP.NET Core applications get first-class support with a one-call
+							extension method and automatic bearer-token forwarding.
+						</p>
+					</div>
+
+					<div class="feature-card">
+						<div
+							class="feature-icon"
+							style="background: rgba(234, 179, 8, 0.2)"
+						>
+							<svg
+								width="22"
+								height="22"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="#facc15"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							>
+								<circle cx="12" cy="12" r="3" />
+								<path
+									d="M19.07 4.93A10 10 0 1 0 4.93 19.07 10 10 0 0 0 19.07 4.93z"
+								/>
+							</svg>
+						</div>
+						<h3>Strongly Typed Responses</h3>
+						<p>
+							All resource attributes, relationships, and metadata are
+							represented as fully typed C# classes — including correct
+							nullability annotations. Catch API mismatches at compile time, not
+							at runtime.
+						</p>
+					</div>
+
+					<div class="feature-card">
+						<div
+							class="feature-icon"
+							style="background: rgba(22, 163, 74, 0.2)"
+						>
+							<svg
+								width="22"
+								height="22"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="#4ade80"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							>
+								<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+								<polyline points="22 4 12 14.01 9 11.01" />
+							</svg>
+						</div>
+						<h3>Dependency Injection</h3>
+						<p>
+							Register all product clients in one line with
+							<code>AddPlanningCenterApi()</code
+							>. Works seamlessly with
+							<code>IHttpClientFactory</code
+							>, resilience pipelines, and the standard ASP.NET Core DI
+							container.
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- CTA -->
+		<section
+			style="
+				background: linear-gradient(135deg, var(--primary) 0%, #301a4a 100%);
+				text-align: center;
+				padding: 5rem 2rem;
+			"
+		>
+			<div class="section-inner" style="max-width: 640px">
+				<div class="section-title" style="color: #fff; margin-bottom: 0.75rem">
+					Ready to integrate?
+				</div>
+				<p
+					style="
+						color: rgba(255, 255, 255, 0.65);
+						font-size: 1.05rem;
+						margin-bottom: 2.25rem;
+					"
+				>
+					Read the full documentation, browse the API reference, or check out
+					the source on GitHub.
+				</p>
+				<div
+					style="
+						display: flex;
+						gap: 1rem;
+						justify-content: center;
+						flex-wrap: wrap;
+					"
+				>
+					<a href="articles/index.html" class="btn btn-primary"
+						>Browse the Docs</a
+					>
+					<a href="api/index.html" class="btn btn-outline">API Reference</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- Footer -->
+		<footer>
+			<p>
+				<strong style="color: rgba(255, 255, 255, 0.6)"
+					>Planning Center API for .NET</strong
+				>
+				&mdash; open source under the
+				<a
+					href="https://github.com/twcrews/planningcenter-api/blob/master/LICENSE"
+					>MIT License</a
+				>.<br />
+				Not affiliated with or endorsed by Planning Center Online.<br />
+				<em>S.D.G.</em>
+			</p>
+		</footer>
+
+		<script>
+			function copyInstall(btn) {
+				navigator.clipboard
+					.writeText("dotnet add package Crews.PlanningCenter.Api")
+					.then(() => {
+						btn.classList.add("copied");
+						btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
+						setTimeout(() => {
+							btn.classList.remove("copied");
+							btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>`;
+						}, 2000);
+					});
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,382 @@
+{
+  "Id": "2018-08-01",
+  "Beta": false,
+  "Details": "The first available version of the API",
+  "Resources": [
+    {
+      "JsonName": "available_event",
+      "ResourceClrType": "AvailableEventResource",
+      "AttributesClrType": "AvailableEvent",
+      "Description": "An event supported by webhooks",
+      "Deprecated": false,
+      "CollectionOnly": true,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
+      "Attributes": [
+        {
+          "JsonName": "action",
+          "ClrName": "Action",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "app",
+          "ClrName": "App",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "name",
+          "ClrName": "Name",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "resource",
+          "ClrName": "Resource",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "type",
+          "ClrName": "Type",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "version",
+          "ClrName": "Version",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        }
+      ],
+      "Relationships": [],
+      "Actions": [],
+      "Children": [],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "JsonName": "delivery",
+      "ResourceClrType": "DeliveryResource",
+      "AttributesClrType": "Delivery",
+      "Description": "Planning Center does not provide a description for this resource.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
+      "Attributes": [
+        {
+          "JsonName": "created_at",
+          "ClrName": "CreatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "object_url",
+          "ClrName": "ObjectUrl",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "request_body",
+          "ClrName": "RequestBody",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "request_headers",
+          "ClrName": "RequestHeaders",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "response_body",
+          "ClrName": "ResponseBody",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "response_headers",
+          "ClrName": "ResponseHeaders",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "status",
+          "ClrName": "Status",
+          "ClrType": "int",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "timing",
+          "ClrName": "Timing",
+          "ClrType": "decimal",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "updated_at",
+          "ClrName": "UpdatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
+        }
+      ],
+      "Relationships": [
+        {
+          "JsonName": "event",
+          "ClrName": "Event",
+          "AttributesClrType": "Event",
+          "ResourceClrType": "EventResource",
+          "IsCollection": false,
+          "Description": "Related \u0060Event\u0060 resource."
+        }
+      ],
+      "Actions": [],
+      "Children": [],
+      "CanInclude": [],
+      "CanOrderBy": [
+        {
+          "ClrMethodName": "OrderByCreatedAt",
+          "Value": "created_at",
+          "Description": "Sort response items by the \u0060CreatedAt\u0060 attribute."
+        }
+      ],
+      "CanQueryBy": []
+    },
+    {
+      "JsonName": "event",
+      "ResourceClrType": "EventResource",
+      "AttributesClrType": "Event",
+      "Description": "Planning Center does not provide a description for this resource.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
+      "Attributes": [
+        {
+          "JsonName": "created_at",
+          "ClrName": "CreatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "payload",
+          "ClrName": "Payload",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "status",
+          "ClrName": "Status",
+          "ClrType": "string",
+          "Description": "Possible values: \u0060pending\u0060, \u0060delivered\u0060, \u0060failed\u0060, \u0060skipped\u0060, \u0060duplicated\u0060, \u0060ignored_failed\u0060, \u0060ignored_skipped\u0060, or \u0060ignored_duplicated\u0060"
+        },
+        {
+          "JsonName": "updated_at",
+          "ClrName": "UpdatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "uuid",
+          "ClrName": "Uuid",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        }
+      ],
+      "Relationships": [
+        {
+          "JsonName": "subscription",
+          "ClrName": "Subscription",
+          "AttributesClrType": "Subscription",
+          "ResourceClrType": "SubscriptionResource",
+          "IsCollection": false,
+          "Description": "Related \u0060Subscription\u0060 resource."
+        }
+      ],
+      "Actions": [
+        {
+          "JsonName": "redeliver",
+          "ClrMethodName": "RedeliverAsync",
+          "Path": "redeliver",
+          "Description": "Planning Center does not provide a description for this action.",
+          "Deprecated": false
+        }
+      ],
+      "Children": [
+        {
+          "JsonName": "deliveries",
+          "ClrName": "Deliveries",
+          "AttributesClrType": "Delivery",
+          "Description": "Associated \u0060Deliveries\u0060.",
+          "Slug": "deliveries",
+          "IsCollection": true,
+          "Deprecated": false,
+          "Filters": []
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [
+        {
+          "ClrMethodName": "OrderByCreatedAt",
+          "Value": "created_at",
+          "Description": "Sort response items by the \u0060CreatedAt\u0060 attribute."
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "ClrMethodName": "WhereStatus",
+          "ClrType": "string",
+          "Parameter": "where[status]",
+          "Description": "Query response items by the \u0060Status\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "WhereUuid",
+          "ClrType": "string",
+          "Parameter": "where[uuid]",
+          "Description": "Query response items by the \u0060Uuid\u0060 attribute."
+        }
+      ]
+    },
+    {
+      "JsonName": "organization",
+      "ResourceClrType": "OrganizationResource",
+      "AttributesClrType": "Organization",
+      "Description": "Planning Center does not provide a description for this resource.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
+      "Attributes": [],
+      "Relationships": [],
+      "Actions": [],
+      "Children": [
+        {
+          "JsonName": "available_events",
+          "ClrName": "AvailableEvents",
+          "AttributesClrType": "AvailableEvent",
+          "Description": "Associated \u0060AvailableEvents\u0060.",
+          "Slug": "available_events",
+          "IsCollection": true,
+          "Deprecated": false,
+          "Filters": []
+        },
+        {
+          "JsonName": "subscriptions",
+          "ClrName": "Subscriptions",
+          "AttributesClrType": "Subscription",
+          "Description": "Associated \u0060Subscriptions\u0060.",
+          "Slug": "subscriptions",
+          "IsCollection": true,
+          "Deprecated": true,
+          "Filters": []
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "JsonName": "subscription",
+      "ResourceClrType": "SubscriptionResource",
+      "AttributesClrType": "Subscription",
+      "Description": "Planning Center does not provide a description for this resource.",
+      "Deprecated": true,
+      "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
+      "Attributes": [
+        {
+          "JsonName": "active",
+          "ClrName": "Active",
+          "ClrType": "bool",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "application_id",
+          "ClrName": "ApplicationId",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "authenticity_secret",
+          "ClrName": "AuthenticitySecret",
+          "ClrType": "string",
+          "Description": "Every delivery will include a header \u0060X-PCO-Webhooks-Authenticity\u0060.\n\nThis header will be the \u0060HMAC-SHA256\u0060 value of this the \u0060authenticity_secret\u0060 used as the key,\nand the message as the webhook body.\n\n\u0060hmac_sha256(authenticity_secret, webhook_body)\u0060\n"
+        },
+        {
+          "JsonName": "created_at",
+          "ClrName": "CreatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "name",
+          "ClrName": "Name",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "updated_at",
+          "ClrName": "UpdatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "url",
+          "ClrName": "Url",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        }
+      ],
+      "Relationships": [],
+      "Actions": [
+        {
+          "JsonName": "rotate_secret",
+          "ClrMethodName": "RotateSecretAsync",
+          "Path": "rotate_secret",
+          "Description": "Planning Center does not provide a description for this action.",
+          "Deprecated": true
+        }
+      ],
+      "Children": [
+        {
+          "JsonName": "events",
+          "ClrName": "Events",
+          "AttributesClrType": "Event",
+          "Description": "Associated \u0060Events\u0060.",
+          "Slug": "events",
+          "IsCollection": true,
+          "Deprecated": true,
+          "Filters": []
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": [
+        {
+          "ClrMethodName": "WhereApplicationId",
+          "ClrType": "string",
+          "Parameter": "where[application_id]",
+          "Description": "Query response items by the \u0060ApplicationId\u0060 attribute."
+        }
+      ]
+    }
+  ]
+}

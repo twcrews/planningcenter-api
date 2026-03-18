@@ -5,6 +5,38 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.0.0] - 2026-03-16
+
+This version overhauls nearly all of the underlying code for the library. Be prepared to find multiple breaking changes in any projects that depend on it.
+
+### Added
+
+- Add generated clients for three new product APIs: **Api**, **Current**, and **Webhooks**.
+- Add `PlanningCenterTokenHandler` — a delegating handler that automatically forwards the OIDC bearer token from the current HTTP context. Registered automatically when using `AddPlanningCenterApi()` without arguments.
+- Add `AddPlanningCenterApi()` and `AddPlanningCenterApi(string httpClientName)` extension methods on `IServiceCollection` for registering all product clients for dependency injection.
+- Add `JsonApiException` — a structured exception type that exposes `JsonApiError` details from API error responses.
+- Add descending order methods to collection resource clients (e.g. `.OrderByDescending(...)`).
+- Add comprehensive unit and integration tests.
+
+### Removed
+
+- **Breaking change:** Remove `AddPlanningCenterOAuth` extension methods. Use `AddPlanningCenterAuthentication()` instead.
+- **Breaking change:** Remove `PlanningCenterApiOptions` and its associated configuration. `AddPlanningCenterApi()` now takes an optional `string httpClientName` parameter directly.
+- **Breaking change:** Remove `IPlanningCenterClient`, `PlanningCenterClient`, and `PlanningCenterClientOptions`.
+- **Breaking change:** Remove custom OAuth infrastructure: `PlanningCenterClaimsTransformation`, `PlanningCenterOAuthClient`, `PlanningCenterOAuthScope` `PlanningCenterOAuthScopeExtensions`, `PlanningCenterOAuthTokenResponse`, `PlanningCenterOidcOptions`, `PlanningCenterOidcClaims`, and related types.
+
+### Changed
+
+- **Breaking change:** Change underlying serialization layer from `JsonApiFramework.Client` to `Crews.Web.JsonApiClient`.
+  - This addresses a [dependency injection gotcha](https://github.com/scott-mcdonald/JsonApiFramework/issues/67#issuecomment-667263755) when mixing `Newtonsoft.Json` (used by the former dependency) with the modern standard `System.Text.Json`.
+- **Breaking change:** Replace custom OAuth handler with ASP.NET Core's built-in OpenID Connect. Use `AddPlanningCenterAuthentication()` in place of `AddPlanningCenterOAuth()`.
+- **Breaking change:** Move authentication and DI extension methods from the `DependencyInjection` namespace to `Crews.PlanningCenter.Api.Extensions`.
+- **Breaking change:** Base classes and all resource and client types have been replaced with incrementally generated types.
+- **Breaking change:** Replace base `Include`, `OrderBy`, and `Query` methods with resource-specific methods (for example: `Include(PersonIncludable.Households)` is replaced by `IncludeHouseholds()`)
+- **Breaking change:** Rename `GetAllAsync()` methods to `GetAsync()`.
+- **Breaking change:** Change `ID` abbreviations throughout the code to `Id` for deserialization and convention reasons (for example: `WithID()` is replaced by `WithId()`).
+- Change the license from GPL to MIT.
+
 ## [2.0.0] - 2025-09-24
 
 ### Added
@@ -223,6 +255,7 @@ First official stable release!
 
 Initial release.
 
+[3.0.0]: https://github.com/twcrews/planningcenter-api/compare/2.0.0...3.0.0
 [2.0.0]: https://github.com/twcrews/planningcenter-api/compare/1.2.0...2.0.0
 [1.2.0]: https://github.com/twcrews/planningcenter-api/compare/1.1.0...1.2.0
 [1.1.0]: https://github.com/twcrews/planningcenter-api/compare/1.0.2...1.1.0

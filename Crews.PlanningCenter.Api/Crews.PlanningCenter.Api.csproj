@@ -10,10 +10,10 @@
 
   <PropertyGroup>
     <PackageId>Crews.PlanningCenter.Api</PackageId>
-    <PackageVersion>2.0.0</PackageVersion>
+    <PackageVersion>3.0.0</PackageVersion>
     <Authors>Tommy Crews</Authors>
     <Description>
-      A library containing basic models and services for interacting with the Planning Center API.
+      A comprehensive library for the Planning Center API.
     </Description>
     <PackageProjectUrl>https://github.com/twcrews/planningcenter-api</PackageProjectUrl>
     <PackageIcon>icon.png</PackageIcon>
@@ -27,6 +27,11 @@
     <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+    <CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)Generated</CompilerGeneratedFilesOutputPath>
+  </PropertyGroup>
+
   <ItemGroup>
     <None Include="icon.png" Pack="true" PackagePath="\" />
     <None Include="..\README.md" Pack="true" PackagePath="\" />
@@ -37,12 +42,21 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Crews.Extensions.Http" Version="3.0.0" />
-    <PackageReference Include="Crews.PlanningCenter.Models" Version="2.0.0" />
-    <PackageReference Include="JsonApiFramework.Client" Version="2.13.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.1" />
-    <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.1" />
-    <PackageReference Include="Microsoft.Extensions.Options" Version="9.0.1" />
+    <ProjectReference Include="..\Crews.PlanningCenter.Api.Generators\Crews.PlanningCenter.Api.Generators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+    <AdditionalFiles Include="Definitions\**\*.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Crews.Web.JsonApiClient" Version="6.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="8.0.22" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Api/" />
+    <Folder Include="Api/V2018_08_01/" />
+    <Folder Include="Common/" />
+    <Folder Include="Groups/" />
+    <Folder Include="Services/" />
   </ItemGroup>
 
 </Project>

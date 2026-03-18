@@ -1,0 +1,2119 @@
+{
+  "Id": "2023-07-10",
+  "Beta": false,
+  "Details": "Removed attributes from \u0060Membership\u0060 related to separate resources.\n\nMoved enrollment attributes from \u0060Group\u0060 into \u0060Enrollment\u0060 resource.\n",
+  "Resources": [
+    {
+      "JsonName": "attendance",
+      "ResourceClrType": "AttendanceResource",
+      "AttributesClrType": "Attendance",
+      "Description": "Individual event attendance for a person.\n",
+      "Deprecated": false,
+      "CollectionOnly": true,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
+      "Attributes": [
+        {
+          "JsonName": "attended",
+          "ClrName": "Attended",
+          "ClrType": "bool",
+          "Description": "Whether or not the person attended the event.\n"
+        },
+        {
+          "JsonName": "role",
+          "ClrName": "Role",
+          "ClrType": "string",
+          "Description": "The role of the person at the time of event.\n\n\nPossible values: \u0060member\u0060, \u0060leader\u0060, \u0060visitor\u0060, or \u0060applicant\u0060"
+        }
+      ],
+      "Relationships": [
+        {
+          "JsonName": "person",
+          "ClrName": "Person",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
+          "IsCollection": false,
+          "Description": "Related \u0060Person\u0060 resource."
+        },
+        {
+          "JsonName": "event",
+          "ClrName": "Event",
+          "AttributesClrType": "Event",
+          "ResourceClrType": "EventResource",
+          "IsCollection": false,
+          "Description": "Related \u0060Event\u0060 resource."
+        }
+      ],
+      "Actions": [],
+      "Children": [
+        {
+          "JsonName": "person",
+          "ClrName": "Person",
+          "AttributesClrType": "Person",
+          "Description": "Associated \u0060Person\u0060.",
+          "Slug": "person",
+          "IsCollection": false,
+          "Deprecated": false,
+          "Filters": []
+        }
+      ],
+      "CanInclude": [
+        {
+          "ClrMethodName": "IncludePerson",
+          "Value": "person",
+          "Description": "Include related \u0060Person\u0060 resources in the response.",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "ClrMethodName": "OrderByFirstName",
+          "Value": "first_name",
+          "Description": "Sort response items by the \u0060FirstName\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "OrderByLastName",
+          "Value": "last_name",
+          "Description": "Sort response items by the \u0060LastName\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "OrderByRole",
+          "Value": "role",
+          "Description": "Sort response items by the \u0060Role\u0060 attribute."
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "ClrMethodName": "WhereRole",
+          "ClrType": "string",
+          "Parameter": "where[role]",
+          "Description": "Query response items by the \u0060Role\u0060 attribute."
+        }
+      ]
+    },
+    {
+      "JsonName": "campus",
+      "ResourceClrType": "CampusResource",
+      "AttributesClrType": "Campus",
+      "Description": "A campus as defined in Planning Center Accounts\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
+      "Attributes": [
+        {
+          "JsonName": "name",
+          "ClrName": "Name",
+          "ClrType": "string",
+          "Description": "The name of the campus"
+        }
+      ],
+      "Relationships": [],
+      "Actions": [],
+      "Children": [
+        {
+          "JsonName": "groups",
+          "ClrName": "Groups",
+          "AttributesClrType": "Group",
+          "Description": "Associated \u0060Groups\u0060.",
+          "Slug": "groups",
+          "IsCollection": true,
+          "Deprecated": false,
+          "Filters": []
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [
+        {
+          "ClrMethodName": "OrderByName",
+          "Value": "name",
+          "Description": "Sort response items by the \u0060Name\u0060 attribute."
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "ClrMethodName": "WhereId",
+          "ClrType": "string",
+          "Parameter": "where[id]",
+          "Description": "Query response items by the \u0060Id\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "WhereName",
+          "ClrType": "string",
+          "Parameter": "where[name]",
+          "Description": "Query response items by the \u0060Name\u0060 attribute."
+        }
+      ]
+    },
+    {
+      "JsonName": "enrollment",
+      "ResourceClrType": "EnrollmentResource",
+      "AttributesClrType": "Enrollment",
+      "Description": "Details on how and when members can join a \u0060Group\u0060.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
+      "Attributes": [
+        {
+          "JsonName": "auto_closed",
+          "ClrName": "AutoClosed",
+          "ClrType": "bool",
+          "Description": "Whether or not enrollment has been closed automatically due to set limits\n"
+        },
+        {
+          "JsonName": "auto_closed_reason",
+          "ClrName": "AutoClosedReason",
+          "ClrType": "string",
+          "Description": "Brief description as to which limit automatically closed enrollment\n"
+        },
+        {
+          "JsonName": "date_limit",
+          "ClrName": "DateLimit",
+          "ClrType": "string",
+          "Description": "Date when enrollment should automatically close\n"
+        },
+        {
+          "JsonName": "date_limit_reached",
+          "ClrName": "DateLimitReached",
+          "ClrType": "bool",
+          "Description": "Whether or not the \u0060date_limit\u0060 has been reached\n"
+        },
+        {
+          "JsonName": "member_limit",
+          "ClrName": "MemberLimit",
+          "ClrType": "int",
+          "Description": "Total number of members allowed before enrollment should automatically close\n"
+        },
+        {
+          "JsonName": "member_limit_reached",
+          "ClrName": "MemberLimitReached",
+          "ClrType": "bool",
+          "Description": "Whether or not the \u0060member_limit\u0060 has been reached\n"
+        },
+        {
+          "JsonName": "status",
+          "ClrName": "Status",
+          "ClrType": "string",
+          "Description": "Current enrollment status. Possible values:\n* \u0060open\u0060 - strategy is not \u0060closed\u0060 and no limits have been reached\n* \u0060closed\u0060 - strategy is \u0060closed\u0060 _or_ limits have been reached\n* \u0060full\u0060 - member limit has been reached\n* \u0060private\u0060 - group is unlisted\n"
+        },
+        {
+          "JsonName": "strategy",
+          "ClrName": "Strategy",
+          "ClrType": "string",
+          "Description": "Sign up strategy. Possible values: \u0060request_to_join\u0060, \u0060open_signup\u0060, or \u0060closed\u0060\n"
+        }
+      ],
+      "Relationships": [
+        {
+          "JsonName": "group",
+          "ClrName": "Group",
+          "AttributesClrType": "Group",
+          "ResourceClrType": "GroupResource",
+          "IsCollection": false,
+          "Description": "Related \u0060Group\u0060 resource."
+        }
+      ],
+      "Actions": [],
+      "Children": [],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "JsonName": "event",
+      "ResourceClrType": "EventResource",
+      "AttributesClrType": "Event",
+      "Description": "An event is a meeting of a group. It has a start and end time, and can be\neither physical or virtual.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
+      "Attributes": [
+        {
+          "JsonName": "attendance_requests_enabled",
+          "ClrName": "AttendanceRequestsEnabled",
+          "ClrType": "bool",
+          "Description": "This is a group setting that applies to all the events in the group.\nIf selected, an email will be sent to the primary email address of the group leader\n60 minutes before the event start time, asking them to report attendance.\n"
+        },
+        {
+          "JsonName": "automated_reminder_enabled",
+          "ClrName": "AutomatedReminderEnabled",
+          "ClrType": "bool",
+          "Description": "If \u0060true\u0060, we send an event remind some specified time before the event starts\nto all members in the group.\n"
+        },
+        {
+          "JsonName": "canceled",
+          "ClrName": "Canceled",
+          "ClrType": "bool",
+          "Description": "Whether or not the event has been canceled.\n"
+        },
+        {
+          "JsonName": "canceled_at",
+          "ClrName": "CanceledAt",
+          "ClrType": "System.DateTime",
+          "Description": "The date and time the event was canceled.\n"
+        },
+        {
+          "JsonName": "description",
+          "ClrName": "Description",
+          "ClrType": "string",
+          "Description": "A longform description of the event. Can contain HTML markup.\n"
+        },
+        {
+          "JsonName": "ends_at",
+          "ClrName": "EndsAt",
+          "ClrType": "System.DateTime",
+          "Description": "The date and time the event ends.\n"
+        },
+        {
+          "JsonName": "image",
+          "ClrName": "Image",
+          "ClrType": "Crews.PlanningCenter.Api.Common.Image",
+          "Description": "The image for the event.\n"
+        },
+        {
+          "JsonName": "location_type_preference",
+          "ClrName": "LocationTypePreference",
+          "ClrType": "string",
+          "Description": "Either \u0022physical\u0022 or \u0022virtual\u0022.\n"
+        },
+        {
+          "JsonName": "multi_day",
+          "ClrName": "MultiDay",
+          "ClrType": "bool",
+          "Description": "\u0060true\u0060 if the event spans multiple days. Otherwise \u0060false\u0060.\n"
+        },
+        {
+          "JsonName": "name",
+          "ClrName": "Name",
+          "ClrType": "string",
+          "Description": "The name/title of the event.\n"
+        },
+        {
+          "JsonName": "reminders_sent",
+          "ClrName": "RemindersSent",
+          "ClrType": "bool",
+          "Description": "\u0060true\u0060 if reminders have been sent for this event. Otherwise \u0060false\u0060.\n"
+        },
+        {
+          "JsonName": "reminders_sent_at",
+          "ClrName": "RemindersSentAt",
+          "ClrType": "System.DateTime",
+          "Description": "The date and time reminders were sent for this event.\n"
+        },
+        {
+          "JsonName": "repeating",
+          "ClrName": "Repeating",
+          "ClrType": "bool",
+          "Description": "\u0060true\u0060 if the event is a repeating event. Otherwise \u0060false\u0060.\n"
+        },
+        {
+          "JsonName": "starts_at",
+          "ClrName": "StartsAt",
+          "ClrType": "System.DateTime",
+          "Description": "The date and time the event starts.\n"
+        },
+        {
+          "JsonName": "virtual_location_url",
+          "ClrName": "VirtualLocationUrl",
+          "ClrType": "string",
+          "Description": "The URL for the virtual location. Typically we don\u0027t show this URL unless\nunless the location_type_preference is \u0022virtual\u0022.\n"
+        },
+        {
+          "JsonName": "visitors_count",
+          "ClrName": "VisitorsCount",
+          "ClrType": "int",
+          "Description": "The number of visitors who attended the event. These are people who are not\nmembers of the group.\n"
+        }
+      ],
+      "Relationships": [
+        {
+          "JsonName": "attendance_submitter",
+          "ClrName": "AttendanceSubmitter",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
+          "IsCollection": false,
+          "Description": "Related \u0060AttendanceSubmitter\u0060 resource."
+        },
+        {
+          "JsonName": "group",
+          "ClrName": "Group",
+          "AttributesClrType": "Group",
+          "ResourceClrType": "GroupResource",
+          "IsCollection": false,
+          "Description": "Related \u0060Group\u0060 resource."
+        },
+        {
+          "JsonName": "location",
+          "ClrName": "Location",
+          "AttributesClrType": "Location",
+          "ResourceClrType": "LocationResource",
+          "IsCollection": false,
+          "Description": "Related \u0060Location\u0060 resource."
+        },
+        {
+          "JsonName": "repeating_event",
+          "ClrName": "RepeatingEvent",
+          "AttributesClrType": "RepeatingEvent",
+          "ResourceClrType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier",
+          "IsCollection": false,
+          "Description": "Related \u0060RepeatingEvent\u0060 resource."
+        }
+      ],
+      "Actions": [],
+      "Children": [
+        {
+          "JsonName": "attendances",
+          "ClrName": "Attendances",
+          "AttributesClrType": "Attendance",
+          "Description": "Associated \u0060Attendances\u0060.",
+          "Slug": "attendances",
+          "IsCollection": true,
+          "Deprecated": false,
+          "Filters": [
+            {
+              "ClrMethodName": "FilterByAttended",
+              "Value": "attended",
+              "Description": "where \u0060attended\u0060 is \u0060true\u0060\n"
+            }
+          ]
+        },
+        {
+          "JsonName": "group",
+          "ClrName": "Group",
+          "AttributesClrType": "Group",
+          "Description": "Associated \u0060Group\u0060.",
+          "Slug": "group",
+          "IsCollection": false,
+          "Deprecated": false,
+          "Filters": []
+        },
+        {
+          "JsonName": "location",
+          "ClrName": "Location",
+          "AttributesClrType": "Location",
+          "Description": "Associated \u0060Location\u0060.",
+          "Slug": "location",
+          "IsCollection": false,
+          "Deprecated": false,
+          "Filters": []
+        },
+        {
+          "JsonName": "notes",
+          "ClrName": "Notes",
+          "AttributesClrType": "EventNote",
+          "Description": "Associated \u0060Notes\u0060.",
+          "Slug": "notes",
+          "IsCollection": true,
+          "Deprecated": false,
+          "Filters": []
+        },
+        {
+          "JsonName": "rsvps",
+          "ClrName": "Rsvps",
+          "AttributesClrType": "Rsvp",
+          "Description": "Associated \u0060Rsvps\u0060.",
+          "Slug": "rsvps",
+          "IsCollection": true,
+          "Deprecated": false,
+          "Filters": []
+        }
+      ],
+      "CanInclude": [
+        {
+          "ClrMethodName": "IncludeGroup",
+          "Value": "group",
+          "Description": "Include related \u0060Group\u0060 resources in the response.",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "ClrMethodName": "IncludeLocation",
+          "Value": "location",
+          "Description": "Include related \u0060Location\u0060 resources in the response.",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "ClrMethodName": "OrderByEndsAt",
+          "Value": "ends_at",
+          "Description": "Sort response items by the \u0060EndsAt\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "OrderByName",
+          "Value": "name",
+          "Description": "Sort response items by the \u0060Name\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "OrderByStartsAt",
+          "Value": "starts_at",
+          "Description": "Sort response items by the \u0060StartsAt\u0060 attribute."
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "ClrMethodName": "WhereEndsAt",
+          "ClrType": "System.DateTime",
+          "Parameter": "where[ends_at]",
+          "Description": "Query response items by the \u0060EndsAt\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "WhereName",
+          "ClrType": "string",
+          "Parameter": "where[name]",
+          "Description": "Query response items by the \u0060Name\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "WhereStartsAt",
+          "ClrType": "System.DateTime",
+          "Parameter": "where[starts_at]",
+          "Description": "Query response items by the \u0060StartsAt\u0060 attribute."
+        }
+      ]
+    },
+    {
+      "JsonName": "event_note",
+      "ResourceClrType": "EventNoteResource",
+      "AttributesClrType": "EventNote",
+      "Description": "Notes that group leaders can write for an event, generally related to attendance.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
+      "Attributes": [
+        {
+          "JsonName": "body",
+          "ClrName": "Body",
+          "ClrType": "string",
+          "Description": "The body text of the note.\n"
+        }
+      ],
+      "Relationships": [
+        {
+          "JsonName": "annotatable",
+          "ClrName": "Annotatable",
+          "AttributesClrType": "Annotatable",
+          "ResourceClrType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier",
+          "IsCollection": false,
+          "Description": "Related \u0060Annotatable\u0060 resource."
+        },
+        {
+          "JsonName": "owner",
+          "ClrName": "Owner",
+          "AttributesClrType": "Owner",
+          "ResourceClrType": "OwnerResource",
+          "IsCollection": false,
+          "Description": "Related \u0060Owner\u0060 resource."
+        }
+      ],
+      "Actions": [],
+      "Children": [
+        {
+          "JsonName": "owner",
+          "ClrName": "Owner",
+          "AttributesClrType": "Owner",
+          "Description": "Associated \u0060Owner\u0060.",
+          "Slug": "owner",
+          "IsCollection": false,
+          "Deprecated": false,
+          "Filters": []
+        }
+      ],
+      "CanInclude": [
+        {
+          "ClrMethodName": "IncludeOwner",
+          "Value": "owner",
+          "Description": "Include related \u0060Owner\u0060 resources in the response.",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        }
+      ],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "JsonName": "group",
+      "ResourceClrType": "GroupResource",
+      "AttributesClrType": "Group",
+      "Description": "A group of people that meet together regularly.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": true,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
+      "Attributes": [
+        {
+          "JsonName": "archived_at",
+          "ClrName": "ArchivedAt",
+          "ClrType": "System.DateTime",
+          "Description": "The date and time the group was archived.\n"
+        },
+        {
+          "JsonName": "can_create_conversation",
+          "ClrName": "CanCreateConversation",
+          "ClrType": "bool",
+          "Description": "A boolean representing the current user\u0027s authorization to start a new conversation in the group.\n\n\nOnly available when requested with the \u0060?fields\u0060 param"
+        },
+        {
+          "JsonName": "can_create_conversation_reason_code",
+          "ClrName": "CanCreateConversationReasonCode",
+          "ClrType": "string",
+          "Description": "A code representing why the current user can or cannot start a new conversation in the group.\nPossible values: \u0060chat_disabled\u0060, \u0060group_archived\u0060, \u0060non_member\u0060, \u0060leaders_only\u0060.\nNil when the user is permitted to create a conversation.\n\n\nOnly available when requested with the \u0060?fields\u0060 param"
+        },
+        {
+          "JsonName": "chat_enabled",
+          "ClrName": "ChatEnabled",
+          "ClrType": "bool",
+          "Description": "A boolean representing whether or not the group has Chat enabled.\n"
+        },
+        {
+          "JsonName": "contact_email",
+          "ClrName": "ContactEmail",
+          "ClrType": "string",
+          "Description": "If a contact_email is provided, we will display a contact button on the public page\nwhere potential members can ask questions before joining the group.\n"
+        },
+        {
+          "JsonName": "created_at",
+          "ClrName": "CreatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "The date and time the group was created.\n"
+        },
+        {
+          "JsonName": "description",
+          "ClrName": "Description",
+          "ClrType": "string",
+          "Description": "A longform description of the group. Can contain HTML markup.\n"
+        },
+        {
+          "JsonName": "description_as_plain_text",
+          "ClrName": "DescriptionAsPlainText",
+          "ClrType": "string",
+          "Description": "The plain text version of the group description.\n"
+        },
+        {
+          "JsonName": "events_listed",
+          "ClrName": "EventsListed",
+          "ClrType": "bool",
+          "Description": "Whether or not events are visible to the public on Church Center\n"
+        },
+        {
+          "JsonName": "events_visibility",
+          "ClrName": "EventsVisibility",
+          "ClrType": "string",
+          "Description": "The visibility of events for the group.\n\n\nPossible values: \u0060public\u0060 or \u0060members\u0060"
+        },
+        {
+          "JsonName": "header_image",
+          "ClrName": "HeaderImage",
+          "ClrType": "System.Text.Json.JsonElement",
+          "Description": "A hash of header image URLs. The keys are \u0060thumbnail\u0060, \u0060medium\u0060, and \u0060original\u0060.\n\n\u0060\u0060\u0060json\n{\n  \u0022thumbnail\u0022: \u0022https://groups-production.s3.amazonaws.com/uploads/group/header_image/1986065/thumbnail_image-1676676396838.jpg\u0022,\n  \u0022medium\u0022: \u0022https://groups-production.s3.amazonaws.com/uploads/group/header_image/1986065/medium_image-1676676396838.jpg\u0022,\n  \u0022original\u0022: \u0022https://groups-production.s3.amazonaws.com/uploads/group/header_image/1986065/image-1676676396838.jpg\u0022\n}\n\u0060\u0060\u0060\n"
+        },
+        {
+          "JsonName": "leaders_can_search_people_database",
+          "ClrName": "LeadersCanSearchPeopleDatabase",
+          "ClrType": "bool",
+          "Description": "Whether or not group leaders have access to the entire\nchurch database on the admin side of Groups. (Not recommended)\n"
+        },
+        {
+          "JsonName": "listed",
+          "ClrName": "Listed",
+          "ClrType": "bool",
+          "Description": "Whether or not the group is visible on Church Center\n"
+        },
+        {
+          "JsonName": "location_type_preference",
+          "ClrName": "LocationTypePreference",
+          "ClrType": "string",
+          "Description": "The location type preference for the group.\n\n\nPossible values: \u0060physical\u0060 or \u0060virtual\u0060"
+        },
+        {
+          "JsonName": "members_are_confidential",
+          "ClrName": "MembersAreConfidential",
+          "ClrType": "bool",
+          "Description": "Whether or not group members can see other members\u0027 info\n"
+        },
+        {
+          "JsonName": "memberships_count",
+          "ClrName": "MembershipsCount",
+          "ClrType": "int",
+          "Description": "The number of members in the group, includes leaders.\nDoes not include membership requests.\n"
+        },
+        {
+          "JsonName": "name",
+          "ClrName": "Name",
+          "ClrType": "string",
+          "Description": "The name/title of the group.\n"
+        },
+        {
+          "JsonName": "public_church_center_web_url",
+          "ClrName": "PublicChurchCenterWebUrl",
+          "ClrType": "string",
+          "Description": "The public URL for the group on Church Center.\n"
+        },
+        {
+          "JsonName": "schedule",
+          "ClrName": "Schedule",
+          "ClrType": "string",
+          "Description": "A text summary of the group\u0027s typical meeting schedule.\nCan be a string like \u0022Sundays at 9:30am\u0022 or \u0022Every other Tuesday at 7pm\u0022.\n"
+        },
+        {
+          "JsonName": "tag_ids",
+          "ClrName": "TagIds",
+          "ClrType": "int",
+          "Description": "The IDs of the tags associated with the group.\n\n\nOnly available when requested with the \u0060?fields\u0060 param"
+        },
+        {
+          "JsonName": "virtual_location_url",
+          "ClrName": "VirtualLocationUrl",
+          "ClrType": "string",
+          "Description": "The URL for the group\u0027s virtual location. A zoom link, for example.\nThis could be set even if \u0060location_type_preference\u0060 is \u0060physical\u0060.\nThis is useful if you want to display a zoom link even if the group is meeting in person.\n"
+        },
+        {
+          "JsonName": "widget_status",
+          "ClrName": "WidgetStatus",
+          "ClrType": "System.Text.Json.JsonElement",
+          "Description": "DEPRECATED: This is a private attribute used by Home widgets that we plan to remove soon.\n\n\nOnly available when requested with the \u0060?fields\u0060 param"
+        }
+      ],
+      "Relationships": [
+        {
+          "JsonName": "group_type",
+          "ClrName": "GroupType",
+          "AttributesClrType": "GroupType",
+          "ResourceClrType": "GroupTypeResource",
+          "IsCollection": false,
+          "Description": "Related \u0060GroupType\u0060 resource."
+        },
+        {
+          "JsonName": "location",
+          "ClrName": "Location",
+          "AttributesClrType": "Location",
+          "ResourceClrType": "LocationResource",
+          "IsCollection": false,
+          "Description": "Related \u0060Location\u0060 resource."
+        }
+      ],
+      "Actions": [
+        {
+          "JsonName": "assign_campuses",
+          "ClrMethodName": "AssignCampusesAsync",
+          "Path": "assign_campuses",
+          "Requirements": "Must be an administrator, group type manager, or leader.\n",
+          "Description": "Planning Center does not provide a description for this action.",
+          "AdditionalDetails": "This action can be used to assign campuses to a group.\nAll campuses will be replaced so the full data set must be sent.\n",
+          "Deprecated": false
+        },
+        {
+          "JsonName": "disable_chat",
+          "ClrMethodName": "DisableChatAsync",
+          "Path": "disable_chat",
+          "Requirements": "Can be run by administrators or group type managers,\nas well as leaders if allowed by the group type\u0027s settings.\n",
+          "Description": "Planning Center does not provide a description for this action.",
+          "AdditionalDetails": "Disables chat for the given group. This will hide chat from the group.\nYou must confirm your intention with a \u0060confirm\u0060 attribute to allow this action to succeed.\n",
+          "Deprecated": false
+        },
+        {
+          "JsonName": "duplicate",
+          "ClrMethodName": "DuplicateAsync",
+          "Path": "duplicate",
+          "Requirements": "Can be run by administrators or group type managers.\n",
+          "Description": "Planning Center does not provide a description for this action.",
+          "AdditionalDetails": "Starts a background job to duplicate a group along with selected settings.\n\nAccepts an optional \u0060name\u0060 for the new group. If not provided, the name will\ndefault to the original group\u0027s name with \u0022 (Copy)\u0022 appended (e.g., \u0022My Group (Copy)\u0022).\nThe new group name must be unique.\n\nRequires a \u0060fields\u0060 array specifying which aspects of the group to duplicate,\nsuch as members, leaders, and settings.\n\nOptionally accepts a \u0060group_type_id\u0060 to assign a different group type to the\nnew group. If omitted, the original group\u0027s type will be used.\n",
+          "Deprecated": false
+        },
+        {
+          "JsonName": "enable_chat",
+          "ClrMethodName": "EnableChatAsync",
+          "Path": "enable_chat",
+          "Requirements": "Can be run by administrators or group type managers,\nas well as leaders if allowed by the group type\u0027s settings.\n",
+          "Description": "Planning Center does not provide a description for this action.",
+          "AdditionalDetails": "Enables chat for the given group. Enabling chat will make the names of each member visible to\nother group members. Chat cannot be enabled for a group if the member list is confidential.\nYou must confirm your intention with a \u0060confirm\u0060 attribute to allow this action to succeed.\n",
+          "Deprecated": false
+        }
+      ],
+      "Children": [
+        {
+          "JsonName": "applications",
+          "ClrName": "Applications",
+          "AttributesClrType": "GroupApplication",
+          "Description": "Associated \u0060Applications\u0060.",
+          "Slug": "applications",
+          "IsCollection": true,
+          "Deprecated": false,
+          "Filters": []
+        },
+        {
+          "JsonName": "campuses",
+          "ClrName": "Campuses",
+          "AttributesClrType": "Campus",
+          "Description": "Associated \u0060Campuses\u0060.",
+          "Slug": "campuses",
+          "IsCollection": true,
+          "Deprecated": false,
+          "Filters": []
+        },
+        {
+          "JsonName": "enrollment",
+          "ClrName": "Enrollment",
+          "AttributesClrType": "Enrollment",
+          "Description": "Associated \u0060Enrollment\u0060.",
+          "Slug": "enrollment",
+          "IsCollection": false,
+          "Deprecated": false,
+          "Filters": []
+        },
+        {
+          "JsonName": "events",
+          "ClrName": "Events",
+          "AttributesClrType": "Event",
+          "Description": "Associated \u0060Events\u0060.",
+          "Slug": "events",
+          "IsCollection": true,
+          "Deprecated": false,
+          "Filters": [
+            {
+              "ClrMethodName": "FilterByCanceled",
+              "Value": "canceled",
+              "Description": "have a \u0060canceled_at\u0060 date and time\n"
+            },
+            {
+              "ClrMethodName": "FilterByNotCanceled",
+              "Value": "not_canceled",
+              "Description": "do not have a \u0060canceled_at\u0060 date and time\n"
+            }
+          ]
+        },
+        {
+          "JsonName": "group_type",
+          "ClrName": "GroupType",
+          "AttributesClrType": "GroupType",
+          "Description": "Associated \u0060GroupType\u0060.",
+          "Slug": "group_type",
+          "IsCollection": false,
+          "Deprecated": false,
+          "Filters": []
+        },
+        {
+          "JsonName": "location",
+          "ClrName": "Location",
+          "AttributesClrType": "Location",
+          "Description": "Associated \u0060Location\u0060.",
+          "Slug": "location",
+          "IsCollection": false,
+          "Deprecated": false,
+          "Filters": []
+        },
+        {
+          "JsonName": "memberships",
+          "ClrName": "Memberships",
+          "AttributesClrType": "Membership",
+          "Description": "Associated \u0060Memberships\u0060.",
+          "Slug": "memberships",
+          "IsCollection": true,
+          "Deprecated": false,
+          "Filters": []
+        },
+        {
+          "JsonName": "my_membership",
+          "ClrName": "MyMembership",
+          "AttributesClrType": "Membership",
+          "Description": "Associated \u0060MyMembership\u0060.",
+          "Slug": "my_membership",
+          "IsCollection": false,
+          "Deprecated": false,
+          "Filters": []
+        },
+        {
+          "JsonName": "people",
+          "ClrName": "People",
+          "AttributesClrType": "Person",
+          "Description": "Associated \u0060People\u0060.",
+          "Slug": "people",
+          "IsCollection": true,
+          "Deprecated": false,
+          "Filters": []
+        },
+        {
+          "JsonName": "resources",
+          "ClrName": "Resources",
+          "AttributesClrType": "Resource",
+          "Description": "Associated \u0060Resources\u0060.",
+          "Slug": "resources",
+          "IsCollection": true,
+          "Deprecated": false,
+          "Filters": [
+            {
+              "ClrMethodName": "FilterByLeaders",
+              "Value": "leaders",
+              "Description": "only visible to group leaders\n"
+            }
+          ]
+        },
+        {
+          "JsonName": "tags",
+          "ClrName": "Tags",
+          "AttributesClrType": "Tag",
+          "Description": "Associated \u0060Tags\u0060.",
+          "Slug": "tags",
+          "IsCollection": true,
+          "Deprecated": false,
+          "Filters": []
+        }
+      ],
+      "CanInclude": [
+        {
+          "ClrMethodName": "IncludeEnrollment",
+          "Value": "enrollment",
+          "Description": "Include related \u0060Enrollment\u0060 resources in the response.",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
+          "ClrMethodName": "IncludeGroupType",
+          "Value": "group_type",
+          "Description": "Include related \u0060GroupType\u0060 resources in the response.",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "ClrMethodName": "IncludeLocation",
+          "Value": "location",
+          "Description": "Include related \u0060Location\u0060 resources in the response.",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "ClrMethodName": "OrderByChatEnabled",
+          "Value": "chat_enabled",
+          "Description": "Sort response items by the \u0060ChatEnabled\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "OrderByContactEmail",
+          "Value": "contact_email",
+          "Description": "Sort response items by the \u0060ContactEmail\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "OrderByCreatedAt",
+          "Value": "created_at",
+          "Description": "Sort response items by the \u0060CreatedAt\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "OrderByEnrollmentLimit",
+          "Value": "enrollment_limit",
+          "Description": "Sort response items by the \u0060EnrollmentLimit\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "OrderByListed",
+          "Value": "listed",
+          "Description": "Sort response items by the \u0060Listed\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "OrderByMembersAreConfidential",
+          "Value": "members_are_confidential",
+          "Description": "Sort response items by the \u0060MembersAreConfidential\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "OrderByMembershipsCount",
+          "Value": "memberships_count",
+          "Description": "Sort response items by the \u0060MembershipsCount\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "OrderByName",
+          "Value": "name",
+          "Description": "Sort response items by the \u0060Name\u0060 attribute."
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "ClrMethodName": "WhereArchiveStatus",
+          "ClrType": "string",
+          "Parameter": "where[archive_status]",
+          "Description": "Query response items by the \u0060ArchiveStatus\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "WhereName",
+          "ClrType": "string",
+          "Parameter": "where[name]",
+          "Description": "Query response items by the \u0060Name\u0060 attribute."
+        }
+      ]
+    },
+    {
+      "JsonName": "group_application",
+      "ResourceClrType": "GroupApplicationResource",
+      "AttributesClrType": "GroupApplication",
+      "Description": "A group application is a request to join a group which can be approved or rejected.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
+      "Attributes": [
+        {
+          "JsonName": "applied_at",
+          "ClrName": "AppliedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Timestamp when this person applied.\n"
+        },
+        {
+          "JsonName": "message",
+          "ClrName": "Message",
+          "ClrType": "string",
+          "Description": "An optional personal message from the applicant.\n"
+        },
+        {
+          "JsonName": "status",
+          "ClrName": "Status",
+          "ClrType": "string",
+          "Description": "The approval status of the application.\n\nPossible values: \u0060pending\u0060, \u0060approved\u0060, or \u0060rejected\u0060\n"
+        }
+      ],
+      "Relationships": [
+        {
+          "JsonName": "group",
+          "ClrName": "Group",
+          "AttributesClrType": "Group",
+          "ResourceClrType": "GroupResource",
+          "IsCollection": false,
+          "Description": "Related \u0060Group\u0060 resource."
+        },
+        {
+          "JsonName": "person",
+          "ClrName": "Person",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
+          "IsCollection": false,
+          "Description": "Related \u0060Person\u0060 resource."
+        }
+      ],
+      "Actions": [
+        {
+          "JsonName": "approve",
+          "ClrMethodName": "ApproveAsync",
+          "Path": "approve",
+          "Requirements": "Can only be run on a pending application by an administrator, manager, or group leader\n",
+          "Description": "Planning Center does not provide a description for this action.",
+          "AdditionalDetails": "This action can be used to approve a group application and immediately\nadd the person to the group. You can optionally provide a \u0060role\u0060 attribute\nas \u0060member\u0060 (default) or \u0060leader\u0060. Only administrators or managers can\ncreate leaders.\n",
+          "Deprecated": false
+        },
+        {
+          "JsonName": "reject",
+          "ClrMethodName": "RejectAsync",
+          "Path": "reject",
+          "Requirements": "Can only be run on a pending application by an administrator, manager, or group leader\n",
+          "Description": "Planning Center does not provide a description for this action.",
+          "AdditionalDetails": "This action can be used to reject a group application. The person will not\nbe added to the group.\n",
+          "Deprecated": false
+        }
+      ],
+      "Children": [
+        {
+          "JsonName": "group",
+          "ClrName": "Group",
+          "AttributesClrType": "Group",
+          "Description": "Associated \u0060Group\u0060.",
+          "Slug": "group",
+          "IsCollection": false,
+          "Deprecated": false,
+          "Filters": []
+        },
+        {
+          "JsonName": "person",
+          "ClrName": "Person",
+          "AttributesClrType": "Person",
+          "Description": "Associated \u0060Person\u0060.",
+          "Slug": "person",
+          "IsCollection": false,
+          "Deprecated": false,
+          "Filters": []
+        }
+      ],
+      "CanInclude": [
+        {
+          "ClrMethodName": "IncludeGroup",
+          "Value": "group",
+          "Description": "Include related \u0060Group\u0060 resources in the response.",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "ClrMethodName": "IncludePerson",
+          "Value": "person",
+          "Description": "Include related \u0060Person\u0060 resources in the response.",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "ClrMethodName": "OrderByAppliedAt",
+          "Value": "applied_at",
+          "Description": "Sort response items by the \u0060AppliedAt\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "OrderByStatus",
+          "Value": "status",
+          "Description": "Sort response items by the \u0060Status\u0060 attribute."
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "ClrMethodName": "WhereAppliedAt",
+          "ClrType": "System.DateTime",
+          "Parameter": "where[applied_at]",
+          "Description": "Query response items by the \u0060AppliedAt\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "WhereStatus",
+          "ClrType": "string",
+          "Parameter": "where[status]",
+          "Description": "Query response items by the \u0060Status\u0060 attribute."
+        }
+      ]
+    },
+    {
+      "JsonName": "group_type",
+      "ResourceClrType": "GroupTypeResource",
+      "AttributesClrType": "GroupType",
+      "Description": "A group type is a category of groups.\nFor example, a church might have group types for \u0022Small Groups\u0022 and \u0022Classes\u0022.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
+      "Attributes": [
+        {
+          "JsonName": "church_center_map_visible",
+          "ClrName": "ChurchCenterMapVisible",
+          "ClrType": "bool",
+          "Description": "\u0060true\u0060 if the map view is visible on the public groups list page. Otherwise \u0060false\u0060.\n"
+        },
+        {
+          "JsonName": "church_center_visible",
+          "ClrName": "ChurchCenterVisible",
+          "ClrType": "bool",
+          "Description": "\u0060true\u0060 if the group type contains any published groups. Otherwise \u0060false\u0060.\n"
+        },
+        {
+          "JsonName": "color",
+          "ClrName": "Color",
+          "ClrType": "string",
+          "Description": "Hex color value. Color themes are a visual tool for administrators on the admin side of Groups.\nEx: \u0022#4fd2e3\u0022\n"
+        },
+        {
+          "JsonName": "default_group_settings",
+          "ClrName": "DefaultGroupSettings",
+          "ClrType": "Crews.PlanningCenter.Api.Groups.GroupSettings",
+          "Description": "A JSON object of default settings for groups of this type.\n"
+        },
+        {
+          "JsonName": "description",
+          "ClrName": "Description",
+          "ClrType": "string",
+          "Description": "A description of the group type\n"
+        },
+        {
+          "JsonName": "name",
+          "ClrName": "Name",
+          "ClrType": "string",
+          "Description": "The name of the group type\n"
+        },
+        {
+          "JsonName": "position",
+          "ClrName": "Position",
+          "ClrType": "int",
+          "Description": "The position of the group type in relation to other group types.\n"
+        },
+        {
+          "JsonName": "public_church_center_web_url",
+          "ClrName": "PublicChurchCenterWebUrl",
+          "ClrType": "string",
+          "Description": "The public URL for the group on Church Center.\n"
+        }
+      ],
+      "Relationships": [],
+      "Actions": [],
+      "Children": [
+        {
+          "JsonName": "events",
+          "ClrName": "Events",
+          "AttributesClrType": "Event",
+          "Description": "Associated \u0060Events\u0060.",
+          "Slug": "events",
+          "IsCollection": true,
+          "Deprecated": false,
+          "Filters": [
+            {
+              "ClrMethodName": "FilterByCanceled",
+              "Value": "canceled",
+              "Description": "has a \u0060canceled_at\u0060 date and time\n"
+            },
+            {
+              "ClrMethodName": "FilterByNotCanceled",
+              "Value": "not_canceled",
+              "Description": "do not have a \u0060canceled_at\u0060 date and time\n"
+            },
+            {
+              "ClrMethodName": "FilterByUpcoming",
+              "Value": "upcoming",
+              "Description": "future \u0060starts_at\u0060 date and time\n"
+            }
+          ]
+        },
+        {
+          "JsonName": "groups",
+          "ClrName": "Groups",
+          "AttributesClrType": "Group",
+          "Description": "Associated \u0060Groups\u0060.",
+          "Slug": "groups",
+          "IsCollection": true,
+          "Deprecated": false,
+          "Filters": []
+        },
+        {
+          "JsonName": "resources",
+          "ClrName": "Resources",
+          "AttributesClrType": "Resource",
+          "Description": "Associated \u0060Resources\u0060.",
+          "Slug": "resources",
+          "IsCollection": true,
+          "Deprecated": false,
+          "Filters": []
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [
+        {
+          "ClrMethodName": "OrderByName",
+          "Value": "name",
+          "Description": "Sort response items by the \u0060Name\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "OrderByPosition",
+          "Value": "position",
+          "Description": "Sort response items by the \u0060Position\u0060 attribute."
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "ClrMethodName": "WhereId",
+          "ClrType": "string",
+          "Parameter": "where[id]",
+          "Description": "Query response items by the \u0060Id\u0060 attribute."
+        }
+      ]
+    },
+    {
+      "JsonName": "location",
+      "ResourceClrType": "LocationResource",
+      "AttributesClrType": "Location",
+      "Description": "A physical event location\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
+      "Attributes": [
+        {
+          "JsonName": "display_preference",
+          "ClrName": "DisplayPreference",
+          "ClrType": "string",
+          "Description": "This preference controls how the location is displayed to non-members for public groups and events.\n\n\nPossible values: \u0060hidden\u0060, \u0060approximate\u0060, or \u0060exact\u0060"
+        },
+        {
+          "JsonName": "full_formatted_address",
+          "ClrName": "FullFormattedAddress",
+          "ClrType": "string",
+          "Description": "Ex: \u00221313 Disneyland Dr\nAnaheim, CA 92802\u0022 (may be approximate or \u0060null\u0060)\nApproximate address would be \u0022Anaheim, CA 92802\u0022.\nWe obscure Canadian zip codes.\n"
+        },
+        {
+          "JsonName": "latitude",
+          "ClrName": "Latitude",
+          "ClrType": "decimal",
+          "Description": "Ex: \u006033.815396\u0060 (may be approximate or \u0060null\u0060)\n"
+        },
+        {
+          "JsonName": "longitude",
+          "ClrName": "Longitude",
+          "ClrType": "decimal",
+          "Description": "Ex: \u0060-117.926399\u0060 (may be approximate or \u0060null\u0060)\n"
+        },
+        {
+          "JsonName": "name",
+          "ClrName": "Name",
+          "ClrType": "string",
+          "Description": "Ex: \u0022Disneyland\u0022\n"
+        },
+        {
+          "JsonName": "radius",
+          "ClrName": "Radius",
+          "ClrType": "int",
+          "Description": "The number of miles in a location\u0027s approximate address.\nWill be \u00600\u0060 if the strategy is exact, and will be \u0060null\u0060 if the strategy is hidden.\n"
+        },
+        {
+          "JsonName": "strategy",
+          "ClrName": "Strategy",
+          "ClrType": "string",
+          "Description": "The display preference strategy used for the current request, based on user permissions.\nEither \u0060hidden\u0060, \u0060approximate\u0060, or \u0060exact\u0060.\n"
+        }
+      ],
+      "Relationships": [],
+      "Actions": [],
+      "Children": [
+        {
+          "JsonName": "group",
+          "ClrName": "Group",
+          "AttributesClrType": "Group",
+          "Description": "Associated \u0060Group\u0060.",
+          "Slug": "group",
+          "IsCollection": false,
+          "Deprecated": false,
+          "Filters": []
+        }
+      ],
+      "CanInclude": [
+        {
+          "ClrMethodName": "IncludeGroup",
+          "Value": "group",
+          "Description": "Include related \u0060Group\u0060 resources in the response.",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        }
+      ],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "JsonName": "membership",
+      "ResourceClrType": "MembershipResource",
+      "AttributesClrType": "Membership",
+      "Description": "The state of a \u0060Person\u0060 belonging to a \u0060Group\u0060.\n\nA \u0060Person\u0060 can only have one active \u0060Membership\u0060 to a \u0060Group\u0060 at a time.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
+      "Attributes": [
+        {
+          "JsonName": "joined_at",
+          "ClrName": "JoinedAt",
+          "ClrType": "System.DateTime",
+          "Description": "The date and time the person joined the group.\n"
+        },
+        {
+          "JsonName": "role",
+          "ClrName": "Role",
+          "ClrType": "string",
+          "Description": "The role of the person in the group.\nPossible values: \u0060member\u0060 or \u0060leader\u0060\n"
+        }
+      ],
+      "Relationships": [
+        {
+          "JsonName": "group",
+          "ClrName": "Group",
+          "AttributesClrType": "Group",
+          "ResourceClrType": "GroupResource",
+          "IsCollection": false,
+          "Description": "Related \u0060Group\u0060 resource."
+        },
+        {
+          "JsonName": "person",
+          "ClrName": "Person",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
+          "IsCollection": false,
+          "Description": "Related \u0060Person\u0060 resource."
+        }
+      ],
+      "Actions": [],
+      "Children": [
+        {
+          "JsonName": "group",
+          "ClrName": "Group",
+          "AttributesClrType": "Group",
+          "Description": "Associated \u0060Group\u0060.",
+          "Slug": "group",
+          "IsCollection": false,
+          "Deprecated": false,
+          "Filters": []
+        },
+        {
+          "JsonName": "person",
+          "ClrName": "Person",
+          "AttributesClrType": "Person",
+          "Description": "Associated \u0060Person\u0060.",
+          "Slug": "person",
+          "IsCollection": false,
+          "Deprecated": false,
+          "Filters": []
+        }
+      ],
+      "CanInclude": [
+        {
+          "ClrMethodName": "IncludePerson",
+          "Value": "person",
+          "Description": "Include related \u0060Person\u0060 resources in the response.",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "ClrMethodName": "OrderByFirstName",
+          "Value": "first_name",
+          "Description": "Sort response items by the \u0060FirstName\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "OrderByJoinedAt",
+          "Value": "joined_at",
+          "Description": "Sort response items by the \u0060JoinedAt\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "OrderByLastName",
+          "Value": "last_name",
+          "Description": "Sort response items by the \u0060LastName\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "OrderByRole",
+          "Value": "role",
+          "Description": "Sort response items by the \u0060Role\u0060 attribute."
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "ClrMethodName": "WhereRole",
+          "ClrType": "string",
+          "Parameter": "where[role]",
+          "Description": "Query response items by the \u0060Role\u0060 attribute."
+        }
+      ]
+    },
+    {
+      "JsonName": "organization",
+      "ResourceClrType": "OrganizationResource",
+      "AttributesClrType": "Organization",
+      "Description": "The organization represents a single church. Every other resource is scoped to this record.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
+      "Attributes": [
+        {
+          "JsonName": "name",
+          "ClrName": "Name",
+          "ClrType": "string",
+          "Description": "The name of the organization.\n"
+        },
+        {
+          "JsonName": "time_zone",
+          "ClrName": "TimeZone",
+          "ClrType": "string",
+          "Description": "The time zone of the organization.\n"
+        }
+      ],
+      "Relationships": [],
+      "Actions": [],
+      "Children": [
+        {
+          "JsonName": "campuses",
+          "ClrName": "Campuses",
+          "AttributesClrType": "Campus",
+          "Description": "Associated \u0060Campuses\u0060.",
+          "Slug": "campuses",
+          "IsCollection": true,
+          "Deprecated": false,
+          "Filters": []
+        },
+        {
+          "JsonName": "events",
+          "ClrName": "Events",
+          "AttributesClrType": "Event",
+          "Description": "Associated \u0060Events\u0060.",
+          "Slug": "events",
+          "IsCollection": true,
+          "Deprecated": false,
+          "Filters": [
+            {
+              "ClrMethodName": "FilterByCampus",
+              "Value": "campus",
+              "Description": "from specific campuses; provide an additional \u0060campus_id\u0060 param\nas a comma-separated list of IDs, ex: \u0060?filter=campus\u0026campus_id=1,2,3\u0060\n"
+            },
+            {
+              "ClrMethodName": "FilterByCanceled",
+              "Value": "canceled",
+              "Description": "has a \u0060canceled_at\u0060 date and time\n"
+            },
+            {
+              "ClrMethodName": "FilterByGroup",
+              "Value": "group",
+              "Description": "from specific groups; provide an additional \u0060group_id\u0060 param\nas a comma-separated list of IDs, ex: \u0060?filter=group\u0026group_id=1,2,3\u0060\n"
+            },
+            {
+              "ClrMethodName": "FilterByGroupType",
+              "Value": "group_type",
+              "Description": "from specific group types; provide an additional \u0060group_type_id\u0060 param\nas a comma-separated list of IDs, ex: \u0060?filter=group_type\u0026group_type_id=1,2,3\u0060\n"
+            },
+            {
+              "ClrMethodName": "FilterByMyGroups",
+              "Value": "my_groups",
+              "Description": "only group events of which you are a member\n"
+            },
+            {
+              "ClrMethodName": "FilterByNotCanceled",
+              "Value": "not_canceled",
+              "Description": "does not have a \u0060canceled_at\u0060 date and time\n"
+            },
+            {
+              "ClrMethodName": "FilterByUpcoming",
+              "Value": "upcoming",
+              "Description": "future \u0060starts_at\u0060 date and time\n"
+            }
+          ]
+        },
+        {
+          "JsonName": "group_applications",
+          "ClrName": "GroupApplications",
+          "AttributesClrType": "GroupApplication",
+          "Description": "Associated \u0060GroupApplications\u0060.",
+          "Slug": "group_applications",
+          "IsCollection": true,
+          "Deprecated": false,
+          "Filters": []
+        },
+        {
+          "JsonName": "group_types",
+          "ClrName": "GroupTypes",
+          "AttributesClrType": "GroupType",
+          "Description": "Associated \u0060GroupTypes\u0060.",
+          "Slug": "group_types",
+          "IsCollection": true,
+          "Deprecated": false,
+          "Filters": [
+            {
+              "ClrMethodName": "FilterByChurchCenterVisible",
+              "Value": "church_center_visible",
+              "Description": "contains groups which are published to Church Center\n"
+            },
+            {
+              "ClrMethodName": "FilterByNotChurchCenterVisible",
+              "Value": "not_church_center_visible",
+              "Description": "does not contain any groups published to Church Center\n"
+            }
+          ]
+        },
+        {
+          "JsonName": "groups",
+          "ClrName": "Groups",
+          "AttributesClrType": "Group",
+          "Description": "Associated \u0060Groups\u0060.",
+          "Slug": "groups",
+          "IsCollection": true,
+          "Deprecated": false,
+          "Filters": [
+            {
+              "ClrMethodName": "FilterByCampus",
+              "Value": "campus",
+              "Description": "from specific campuses; provide an additional \u0060campus_id\u0060 param\nas a comma-separated list of IDs, ex: \u0060?filter=campus\u0026campus_id=1,2,3\u0060\n"
+            },
+            {
+              "ClrMethodName": "FilterByEnrollment",
+              "Value": "enrollment",
+              "Description": "filter groups with enrollment settings; provide an additional \u0060enrollment\u0060 param\nas a comma-separated list of values, ex: \u0060?filter=enrollment\u0026enrollment=open_signup,request_to_join,closed\u0060\n"
+            },
+            {
+              "ClrMethodName": "FilterByGroup",
+              "Value": "group",
+              "Description": "from specific groups; provide an additional \u0060group_id\u0060 param\nas a comma-separated list of IDs, ex: \u0060?filter=group\u0026group_id=1,2,3\u0060\n"
+            },
+            {
+              "ClrMethodName": "FilterByGroupType",
+              "Value": "group_type",
+              "Description": "from specific group types; provide an additional \u0060group_type_id\u0060 param\nas a comma-separated list of IDs, ex: \u0060?filter=group_type\u0026group_type_id=1,2,3\u0060\n"
+            },
+            {
+              "ClrMethodName": "FilterByHidden",
+              "Value": "hidden",
+              "Description": "filter groups that are not published on Church Center"
+            },
+            {
+              "ClrMethodName": "FilterByMeetingSchedule",
+              "Value": "meeting_schedule",
+              "Description": "filter groups that have a meeting schedule"
+            },
+            {
+              "ClrMethodName": "FilterByMyGroups",
+              "Value": "my_groups",
+              "Description": "only groups of which you are a member\n"
+            },
+            {
+              "ClrMethodName": "FilterByPeopleDatabaseSearchable",
+              "Value": "people_database_searchable",
+              "Description": "based on their setting of allowing leaders to search the entire\nchurch database in Groups; provide an additional\n\u0060people_database_searchable\u0060 param with \u0060only\u0060 or \u0060none\u0060,\nex: \u0060?filter=people_database_searchable\u0026people_database_searchable=only\u0060\n"
+            },
+            {
+              "ClrMethodName": "FilterByPublished",
+              "Value": "published",
+              "Description": "filter groups that are published on Church Center"
+            },
+            {
+              "ClrMethodName": "FilterByTag",
+              "Value": "tag",
+              "Description": "filter groups with tags; provide an additional \u0060tag_id\u0060 param\nas a comma-separated list of IDs, ex: \u0060?filter=tag\u0026tag_id=1,2,3\u0060.\nfiltering by tags within a tag group will expand results,\nand across tag groups will reduce results.\n"
+            }
+          ]
+        },
+        {
+          "JsonName": "people",
+          "ClrName": "People",
+          "AttributesClrType": "Person",
+          "Description": "Associated \u0060People\u0060.",
+          "Slug": "people",
+          "IsCollection": true,
+          "Deprecated": false,
+          "Filters": []
+        },
+        {
+          "JsonName": "tag_groups",
+          "ClrName": "TagGroups",
+          "AttributesClrType": "TagGroup",
+          "Description": "Associated \u0060TagGroups\u0060.",
+          "Slug": "tag_groups",
+          "IsCollection": true,
+          "Deprecated": false,
+          "Filters": [
+            {
+              "ClrMethodName": "FilterByPublic",
+              "Value": "public",
+              "Description": "where \u0060display_publicly\u0060 is enabled\n"
+            }
+          ]
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "JsonName": "owner",
+      "ResourceClrType": "OwnerResource",
+      "AttributesClrType": "Owner",
+      "Description": "The owner/creator of an event note.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
+      "Attributes": [
+        {
+          "JsonName": "avatar_url",
+          "ClrName": "AvatarUrl",
+          "ClrType": "string",
+          "Description": "The URL of the person\u0027s avatar.\n"
+        },
+        {
+          "JsonName": "first_name",
+          "ClrName": "FirstName",
+          "ClrType": "string",
+          "Description": "The person\u0027s first name.\n"
+        },
+        {
+          "JsonName": "last_name",
+          "ClrName": "LastName",
+          "ClrType": "string",
+          "Description": "The person\u0027s last name.\n"
+        }
+      ],
+      "Relationships": [],
+      "Actions": [],
+      "Children": [],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "JsonName": "person",
+      "ResourceClrType": "PersonResource",
+      "AttributesClrType": "Person",
+      "Description": "A person is a user of Planning Center.\nThey can be a member of a group, a leader of a group, or an administrator.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
+      "Attributes": [
+        {
+          "JsonName": "addresses",
+          "ClrName": "Addresses",
+          "ClrType": "System.Text.Json.Nodes.JsonArray",
+          "Description": "Returns all the addresses associated with this person.\n"
+        },
+        {
+          "JsonName": "avatar_url",
+          "ClrName": "AvatarUrl",
+          "ClrType": "string",
+          "Description": "The URL of the person\u0027s avatar.\n"
+        },
+        {
+          "JsonName": "child",
+          "ClrName": "Child",
+          "ClrType": "bool",
+          "Description": "Whether or not the person is under 13 years old.\nThis is false if a birthdate is not set.\n\n\nOnly available when requested with the \u0060?fields\u0060 param"
+        },
+        {
+          "JsonName": "created_at",
+          "ClrName": "CreatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Date and time this person was first created in Planning Center\n"
+        },
+        {
+          "JsonName": "email_addresses",
+          "ClrName": "EmailAddresses",
+          "ClrType": "System.Text.Json.Nodes.JsonArray",
+          "Description": "Returns all the email addresses associated with this person.\n\n\u0060\u0060\u0060json\n[{\n  \u0022address\u0022: \u0022sam@example.com\u0022,\n  \u0022location\u0022: \u0022Home\u0022,\n  \u0022primary\u0022: true\n}]\n\u0060\u0060\u0060\n"
+        },
+        {
+          "JsonName": "first_name",
+          "ClrName": "FirstName",
+          "ClrType": "string",
+          "Description": "The person\u0027s first name.\n"
+        },
+        {
+          "JsonName": "last_name",
+          "ClrName": "LastName",
+          "ClrType": "string",
+          "Description": "The person\u0027s last name.\n"
+        },
+        {
+          "JsonName": "permissions",
+          "ClrName": "Permissions",
+          "ClrType": "string",
+          "Description": "Can be \u0060administrator\u0060, \u0060group_type_manager\u0060, \u0060leader\u0060, \u0060member\u0060, or \u0060no access\u0060.\n"
+        },
+        {
+          "JsonName": "phone_numbers",
+          "ClrName": "PhoneNumbers",
+          "ClrType": "System.Text.Json.Nodes.JsonArray",
+          "Description": "Returns all the phone numbers associated with this person.\n\n\u0060\u0060\u0060json\n[{\n  \u0022number\u0022: \u0022(800) 123-4567\u0022,\n  \u0022carrier\u0022: null,\n  \u0022location\u0022: \u0022Mobile\u0022,\n  \u0022primary\u0022: true\n}]\n\u0060\u0060\u0060\n"
+        }
+      ],
+      "Relationships": [],
+      "Actions": [],
+      "Children": [
+        {
+          "JsonName": "events",
+          "ClrName": "Events",
+          "AttributesClrType": "Event",
+          "Description": "Associated \u0060Events\u0060.",
+          "Slug": "events",
+          "IsCollection": true,
+          "Deprecated": false,
+          "Filters": [
+            {
+              "ClrMethodName": "FilterByCanceled",
+              "Value": "canceled",
+              "Description": "has a \u0060canceled_at\u0060 date and time\n"
+            },
+            {
+              "ClrMethodName": "FilterByNotCanceled",
+              "Value": "not_canceled",
+              "Description": "does not have a \u0060canceled_at\u0060 date and time\n"
+            }
+          ]
+        },
+        {
+          "JsonName": "groups",
+          "ClrName": "Groups",
+          "AttributesClrType": "Group",
+          "Description": "Associated \u0060Groups\u0060.",
+          "Slug": "groups",
+          "IsCollection": true,
+          "Deprecated": false,
+          "Filters": []
+        },
+        {
+          "JsonName": "memberships",
+          "ClrName": "Memberships",
+          "AttributesClrType": "Membership",
+          "Description": "Associated \u0060Memberships\u0060.",
+          "Slug": "memberships",
+          "IsCollection": true,
+          "Deprecated": false,
+          "Filters": []
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [
+        {
+          "ClrMethodName": "OrderByFirstName",
+          "Value": "first_name",
+          "Description": "Sort response items by the \u0060FirstName\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "OrderByLastName",
+          "Value": "last_name",
+          "Description": "Sort response items by the \u0060LastName\u0060 attribute."
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "ClrMethodName": "WhereFirstName",
+          "ClrType": "string",
+          "Parameter": "where[first_name]",
+          "Description": "Query response items by the \u0060FirstName\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "WhereLastName",
+          "ClrType": "string",
+          "Parameter": "where[last_name]",
+          "Description": "Query response items by the \u0060LastName\u0060 attribute."
+        }
+      ]
+    },
+    {
+      "JsonName": "rsvp",
+      "ResourceClrType": "RsvpResource",
+      "AttributesClrType": "Rsvp",
+      "Description": "A person\u0027s RSVP response for a group event.\nRSVPs can be submitted at any point leading up to the event.\nWhen an event reminder is sent, \u0060awaiting_response\u0060 RSVPs are generated for\nany remaining members, or \u0060not_sent\u0060 if they\u0027re missing an email address.\n",
+      "Deprecated": false,
+      "CollectionOnly": true,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
+      "Attributes": [
+        {
+          "JsonName": "response",
+          "ClrName": "Response",
+          "ClrType": "string",
+          "Description": "Possible values: \u0060awaiting_response\u0060, \u0060yes\u0060, \u0060no\u0060, \u0060maybe\u0060, or \u0060not_sent\u0060"
+        }
+      ],
+      "Relationships": [
+        {
+          "JsonName": "event",
+          "ClrName": "Event",
+          "AttributesClrType": "Event",
+          "ResourceClrType": "EventResource",
+          "IsCollection": false,
+          "Description": "Related \u0060Event\u0060 resource."
+        },
+        {
+          "JsonName": "group",
+          "ClrName": "Group",
+          "AttributesClrType": "Group",
+          "ResourceClrType": "GroupResource",
+          "IsCollection": false,
+          "Description": "Related \u0060Group\u0060 resource."
+        },
+        {
+          "JsonName": "person",
+          "ClrName": "Person",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
+          "IsCollection": false,
+          "Description": "Related \u0060Person\u0060 resource."
+        }
+      ],
+      "Actions": [],
+      "Children": [],
+      "CanInclude": [],
+      "CanOrderBy": [
+        {
+          "ClrMethodName": "OrderByResponse",
+          "Value": "response",
+          "Description": "Sort response items by the \u0060Response\u0060 attribute."
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "ClrMethodName": "WhereResponse",
+          "ClrType": "string",
+          "Parameter": "where[response]",
+          "Description": "Query response items by the \u0060Response\u0060 attribute."
+        }
+      ]
+    },
+    {
+      "JsonName": "resource",
+      "ResourceClrType": "ResourceResource",
+      "AttributesClrType": "Resource",
+      "Description": "A file or link resource that can be shared with a group.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
+      "Attributes": [
+        {
+          "JsonName": "description",
+          "ClrName": "Description",
+          "ClrType": "string",
+          "Description": "The description of the resource written by the person who created it.\n"
+        },
+        {
+          "JsonName": "last_updated",
+          "ClrName": "LastUpdated",
+          "ClrType": "System.DateTime",
+          "Description": "The date and time the resource was last updated.\n"
+        },
+        {
+          "JsonName": "name",
+          "ClrName": "Name",
+          "ClrType": "string",
+          "Description": "The name/title of the resource.\n"
+        },
+        {
+          "JsonName": "type",
+          "ClrName": "Type",
+          "ClrType": "string",
+          "Description": "Either \u0060FileResource\u0060 or \u0060LinkResource\u0060\n"
+        },
+        {
+          "JsonName": "visibility",
+          "ClrName": "Visibility",
+          "ClrType": "string",
+          "Description": "Possible values: \u0060leaders\u0060 or \u0060members\u0060"
+        }
+      ],
+      "Relationships": [
+        {
+          "JsonName": "created_by",
+          "ClrName": "CreatedBy",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
+          "IsCollection": false,
+          "Description": "Related \u0060CreatedBy\u0060 resource."
+        }
+      ],
+      "Actions": [],
+      "Children": [
+        {
+          "JsonName": "download",
+          "ClrName": "Download",
+          "AttributesClrType": "Resource",
+          "Description": "Associated \u0060Download\u0060.",
+          "Slug": "download",
+          "IsCollection": false,
+          "Deprecated": false,
+          "Filters": []
+        },
+        {
+          "JsonName": "visit",
+          "ClrName": "Visit",
+          "AttributesClrType": "Resource",
+          "Description": "Associated \u0060Visit\u0060.",
+          "Slug": "visit",
+          "IsCollection": false,
+          "Deprecated": false,
+          "Filters": []
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [
+        {
+          "ClrMethodName": "OrderByLastUpdated",
+          "Value": "last_updated",
+          "Description": "Sort response items by the \u0060LastUpdated\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "OrderByName",
+          "Value": "name",
+          "Description": "Sort response items by the \u0060Name\u0060 attribute."
+        }
+      ],
+      "CanQueryBy": []
+    },
+    {
+      "JsonName": "tag",
+      "ResourceClrType": "TagResource",
+      "AttributesClrType": "Tag",
+      "Description": "Tags are used to filter groups.\nThey can be organized into tag_groups.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
+      "Attributes": [
+        {
+          "JsonName": "name",
+          "ClrName": "Name",
+          "ClrType": "string",
+          "Description": "The name of the tag\n"
+        },
+        {
+          "JsonName": "position",
+          "ClrName": "Position",
+          "ClrType": "int",
+          "Description": "The position of the tag in relation to other tags\n"
+        }
+      ],
+      "Relationships": [
+        {
+          "JsonName": "tag_group",
+          "ClrName": "TagGroup",
+          "AttributesClrType": "TagGroup",
+          "ResourceClrType": "TagGroupResource",
+          "IsCollection": false,
+          "Description": "Related \u0060TagGroup\u0060 resource."
+        }
+      ],
+      "Actions": [],
+      "Children": [
+        {
+          "JsonName": "groups",
+          "ClrName": "Groups",
+          "AttributesClrType": "Group",
+          "Description": "Associated \u0060Groups\u0060.",
+          "Slug": "groups",
+          "IsCollection": true,
+          "Deprecated": false,
+          "Filters": []
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [
+        {
+          "ClrMethodName": "OrderByName",
+          "Value": "name",
+          "Description": "Sort response items by the \u0060Name\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "OrderByPosition",
+          "Value": "position",
+          "Description": "Sort response items by the \u0060Position\u0060 attribute."
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "ClrMethodName": "WhereId",
+          "ClrType": "string",
+          "Parameter": "where[id]",
+          "Description": "Query response items by the \u0060Id\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "WhereName",
+          "ClrType": "string",
+          "Parameter": "where[name]",
+          "Description": "Query response items by the \u0060Name\u0060 attribute."
+        }
+      ]
+    },
+    {
+      "JsonName": "tag_group",
+      "ResourceClrType": "TagGroupResource",
+      "AttributesClrType": "TagGroup",
+      "Description": "A way to group related tags.\nFor example you could have a \u0022Life Stage\u0022 tag group\nwith tags like \u0022Child\u0022, \u0022Teen\u0022, \u0022Adult\u0022, etc.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
+      "Attributes": [
+        {
+          "JsonName": "display_publicly",
+          "ClrName": "DisplayPublicly",
+          "ClrType": "bool",
+          "Description": "Whether or not this tag group is visible to the public on Church Center\n"
+        },
+        {
+          "JsonName": "multiple_options_enabled",
+          "ClrName": "MultipleOptionsEnabled",
+          "ClrType": "bool",
+          "Description": "Whether or not a group can belong to many tags within this tag group\n"
+        },
+        {
+          "JsonName": "name",
+          "ClrName": "Name",
+          "ClrType": "string",
+          "Description": "The name of the tag group\n"
+        },
+        {
+          "JsonName": "position",
+          "ClrName": "Position",
+          "ClrType": "int",
+          "Description": "The position of the tag group in relation to other tag groups\n"
+        }
+      ],
+      "Relationships": [],
+      "Actions": [],
+      "Children": [
+        {
+          "JsonName": "tags",
+          "ClrName": "Tags",
+          "AttributesClrType": "Tag",
+          "Description": "Associated \u0060Tags\u0060.",
+          "Slug": "tags",
+          "IsCollection": true,
+          "Deprecated": false,
+          "Filters": []
+        }
+      ],
+      "CanInclude": [],
+      "CanOrderBy": [
+        {
+          "ClrMethodName": "OrderByName",
+          "Value": "name",
+          "Description": "Sort response items by the \u0060Name\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "OrderByPosition",
+          "Value": "position",
+          "Description": "Sort response items by the \u0060Position\u0060 attribute."
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "ClrMethodName": "WhereName",
+          "ClrType": "string",
+          "Parameter": "where[name]",
+          "Description": "Query response items by the \u0060Name\u0060 attribute."
+        }
+      ]
+    }
+  ]
+}

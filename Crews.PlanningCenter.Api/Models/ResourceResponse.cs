@@ -19,7 +19,7 @@ public abstract class ResourceResponse<T>
     /// <summary>
     /// The deserialized JSON:API document from the response body.
     /// </summary>
-    public JsonApiDocument? ResponseBody { get; init; }
+    public JsonApiDocument? Document { get; init; }
 
     /// <summary>
     /// The original <see cref="HttpResponseMessage"/> instance.

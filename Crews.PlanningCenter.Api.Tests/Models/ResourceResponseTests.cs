@@ -15,13 +15,13 @@ public class ResourceResponseTests
 		var response = new TestResourceResponse
 		{
 			Data = new() { Attributes = model, Type = "Test"},
-			ResponseBody = null,
+			Document = null,
 			ResponseMessage = httpResponse
 		};
 
 		// Assert
 		Assert.Equal(model, response.Data.Attributes);
-		Assert.Null(response.ResponseBody);
+		Assert.Null(response.Document);
 		Assert.Equal(httpResponse, response.ResponseMessage);
 	}
 
@@ -35,7 +35,7 @@ public class ResourceResponseTests
 		var response = new TestResourceResponse
 		{
 			Data = null,
-			ResponseBody = null,
+			Document = null,
 			ResponseMessage = httpResponse
 		};
 
@@ -44,7 +44,7 @@ public class ResourceResponseTests
 	}
 
 	[Fact]
-	public void ResponseBody_CanBeNull()
+	public void Document_CanBeNull()
 	{
 		// Arrange
 		var httpResponse = new HttpResponseMessage();
@@ -53,12 +53,12 @@ public class ResourceResponseTests
 		var response = new TestResourceResponse
 		{
 			Data = null,
-			ResponseBody = null,
+			Document = null,
 			ResponseMessage = httpResponse
 		};
 
 		// Assert
-		Assert.Null(response.ResponseBody);
+		Assert.Null(response.Document);
 	}
 
 	[Fact]

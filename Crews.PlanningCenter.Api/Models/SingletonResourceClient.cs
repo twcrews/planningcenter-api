@@ -108,9 +108,9 @@ public abstract class SingletonResourceClient<TModel, TResource, TResponse>(Http
 
         JsonApiDocument<TResource>? document = await response.ReadJsonApiDocumentAsync<TResource>(cancellationToken);
         if (document is null) return new() { ResponseMessage = response };
-        if (document.Data is null) return new() { ResponseMessage = response, ResponseBody = document };
+        if (document.Data is null) return new() { ResponseMessage = response, Document = document };
 
-        return new() { Data = document.Data, ResponseMessage = response, ResponseBody = document };
+        return new() { Data = document.Data, ResponseMessage = response, Document = document };
     }
 
 }

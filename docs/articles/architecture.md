@@ -120,7 +120,7 @@ Both types inherit from `ResourceResponse<T>`, which exposes three properties:
 public abstract class ResourceResponse<T>
 {
     public T? Data { get; init; }                      // deserialized primary data
-    public JsonApiDocument? ResponseBody { get; init; } // full parsed JSON:API document
+    public JsonApiDocument? Document { get; init; }     // full parsed JSON:API document
     public HttpResponseMessage? ResponseMessage { get; init; } // raw HTTP response
 }
 ```
@@ -134,19 +134,19 @@ var response = await peopleClient.People.WithId("123").GetAsync();
 Console.WriteLine(response.Data?.Attributes?.Name);
 ```
 
-### `ResponseBody`
+### `Document`
 
 The full `JsonApiDocument` from the `Crews.Web.JsonApiClient` library. Use this to access sideloaded resources, pagination links, or metadata that the typed `Data` property does not surface:
 
 ```csharp
 // Access sideloaded resources (requires a prior Include*() call)
-var included = response.ResponseBody?.Included;
+var included = response.Document?.Included;
 
 // Access pagination links
-var nextLink = response.ResponseBody?.Links?["next"];
+var nextLink = response.Document?.Links?["next"];
 
 // Access document-level metadata
-var meta = response.ResponseBody?.Meta;
+var meta = response.Document?.Meta;
 ```
 
 ### `ResponseMessage`

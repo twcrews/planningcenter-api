@@ -112,9 +112,9 @@ public abstract class PaginatedResourceClient<TModel, TResource, TResponse, TSin
 
         JsonApiDocument<TResource>? document = await response.ReadJsonApiDocumentAsync<TResource>(cancellationToken);
         if (document is null) return new() { ResponseMessage = response };
-        if (document.Data is null) return new() { ResponseMessage = response, ResponseBody = document };
+        if (document.Data is null) return new() { ResponseMessage = response, Document = document };
 
-        return new() { Data = document.Data, ResponseMessage = response, ResponseBody = document };
+        return new() { Data = document.Data, ResponseMessage = response, Document = document };
     }
 
     private static async Task<TResponse> DeserializeResponseAsync(
@@ -125,9 +125,9 @@ public abstract class PaginatedResourceClient<TModel, TResource, TResponse, TSin
         JsonApiCollectionDocument<TResource>? document = await response
             .ReadJsonApiCollectionDocumentAsync<TResource>(cancellationToken);
         if (document is null) return new() { ResponseMessage = response };
-        if (document.Data is null) return new() { ResponseMessage = response, ResponseBody = document };
+        if (document.Data is null) return new() { ResponseMessage = response, Document = document };
 
-        return new() { Data = document.Data, ResponseMessage = response, ResponseBody = document };
+        return new() { Data = document.Data, ResponseMessage = response, Document = document };
     }
 
 }

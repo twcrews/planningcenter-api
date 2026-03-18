@@ -171,7 +171,7 @@ var response = await peopleClient.People.WithId("123")
     .GetAsync();
 
 var person = response.Data;
-var addresses = response.ResponseBody?.Included?.OfType<AddressResource>();
+var addresses = response.Document?.Included?.OfType<AddressResource>();
 ```
 
 Multiple `Include*()` calls can be chained on the same request.

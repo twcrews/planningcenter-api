@@ -25,7 +25,7 @@ var response = await peopleClient.People
 
 ## Reading Pagination Metadata
 
-Every collection response exposes pagination metadata via `ResponseBody.Meta`. The Planning Center API includes the following fields:
+Every collection response exposes pagination metadata via `Document.Meta`. The Planning Center API includes the following fields:
 
 | Field | Type | Description |
 |---|---|---|
@@ -37,7 +37,7 @@ Every collection response exposes pagination metadata via `ResponseBody.Meta`. T
 ```csharp
 var response = await peopleClient.People.PerPage(25).GetAsync();
 
-var meta = response.ResponseBody?.Meta;
+var meta = response.Document?.Meta;
 var totalCount = meta?["total_count"]?.GetValue<int>();
 var count = meta?["count"]?.GetValue<int>();
 var nextOffset = meta?["next"]?["offset"]?.GetValue<int>();
@@ -68,7 +68,7 @@ while (true)
     if (response.Data is not null)
         allPeople.AddRange(response.Data);
 
-    var nextOffset = response.ResponseBody?.Meta?["next"]?["offset"]?.GetValue<int>();
+    var nextOffset = response.Document?.Meta?["next"]?["offset"]?.GetValue<int>();
     if (nextOffset is null)
         break;
 
@@ -81,7 +81,7 @@ while (true)
 The `meta` object also describes what query options the endpoint supports:
 
 ```csharp
-var meta = response.ResponseBody?.Meta;
+var meta = response.Document?.Meta;
 
 // Fields that support filtering
 var canFilter = meta?["can_filter"]?.AsArray()

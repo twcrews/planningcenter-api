@@ -1,6 +1,6 @@
 # Architecture
 
-Understanding the design and architecture of the Planning Center API client library.
+This article covers the design and architecture of the library.
 
 ## Overview
 
@@ -13,7 +13,7 @@ The library uses a two-phase code generation approach to create strongly-typed c
 
 ### Main Library (`Crews.PlanningCenter.Api`)
 
-The primary library project that includes:
+The primary library project that includes everything in the NuGet package:
 - Authentication helpers and extensions
 - Auto-generated API client classes
 - Common models and base types
@@ -26,6 +26,7 @@ The primary library project that includes:
 A console application that:
 - Fetches API metadata from Planning Center
 - Transpiles documentation into structured JSON format
+- Applies overrides where necessary (i.e. errors or typos in documentation)
 - Outputs definition files to the main library
 
 **Target Framework:** .NET 10.0
@@ -35,27 +36,26 @@ A console application that:
 Roslyn incremental source generators that:
 - Process JSON definition files at compile time
 - Generate strongly-typed client and resource classes
-- Support all Planning Center products and versions
 
 **Target Framework:** .NET Standard 2.0
 
 ## Code Generation Pipeline
 
 ```
-Planning Center API
+Planning Center API Docs
         ↓
 [DocParser Downloads]
         ↓
-   JSON Definitions
+JSON Definitions
         ↓
 [Source Generator]
         ↓
-  Generated Client Code
+Generated Client Code
 ```
 
 ### Phase 1: Documentation Parsing
 
-The DocParser runs manually when you need to sync with Planning Center API updates:
+The DocParser runs manually when syncrhonization with Planning Center docs is needed:
 
 ```bash
 cd Crews.PlanningCenter.Api.DocParser
@@ -92,18 +92,73 @@ For each product version, resource types are generated in their versioned namesp
 ```
 Crews.PlanningCenter.Api.People.V2025_11_10
     ├── OrganizationClient       — root entry point for this version
-    ├── Person                   — attributes record
-    ├── PersonResource           — JSON:API resource wrapper
-    ├── PersonClient             — singleton resource client (GET, PATCH, DELETE)
-    ├── PaginatedPersonClient    — collection resource client (GET, POST, WithId, Filter, PerPage, Offset)
-    ├── Address                  — attributes record
-    ├── AddressResource
-    ├── AddressClient
-    ├── PaginatedAddressClient
+    ├── Person                   — Core model; contains resource attributes
+    ├── PersonResource           — Resource model; contains ID and type
+    ├── PersonClient             — singleton client (GET, PATCH, DELETE)
+    ├── PaginatedPersonClient    — collection client (GET, POST, WithId, etc.)
+    ├── Address                  — ...
+    ├── AddressResource          - ...
+    ├── AddressClient            - ...
+    ├── PaginatedAddressClient   - ...
     └── ...
 ```
 
 The `OrganizationClient` exposes collections (`People`, `Households`, etc.) as `PaginatedXxxClient` instances. Calling `.WithId(id)` on a collection returns the corresponding singleton `XxxClient`.
+
+## Response Objects
+
+Every client operation returns a strongly-typed response object. The generator produces two response types per resource:
+
+| Type | Returned by | `Data` type |
+|------|-------------|-------------|
+| `PersonResponse` | Singleton `GetAsync`, `PatchAsync`, `PostAsync` | `PersonResource?` |
+| `PersonCollectionResponse` | Paginated `GetAsync` | `IEnumerable<PersonResource>?` |
+
+Both types inherit from `ResourceResponse<T>`, which exposes three properties:
+
+```csharp
+public abstract class ResourceResponse<T>
+{
+    public T? Data { get; init; }                      // deserialized primary data
+    public JsonApiDocument? ResponseBody { get; init; } // full parsed JSON:API document
+    public HttpResponseMessage? ResponseMessage { get; init; } // raw HTTP response
+}
+```
+
+### `Data`
+
+The primary resource data, deserialized to the appropriate `*Resource` type (or `IEnumerable<*Resource>` for collections). This is sufficient for most use cases:
+
+```csharp
+var response = await peopleClient.People.WithId("123").GetAsync();
+Console.WriteLine(response.Data?.Attributes?.Name);
+```
+
+### `ResponseBody`
+
+The full `JsonApiDocument` from the `Crews.Web.JsonApiClient` library. Use this to access sideloaded resources, pagination links, or metadata that the typed `Data` property does not surface:
+
+```csharp
+// Access sideloaded resources (requires a prior Include*() call)
+var included = response.ResponseBody?.Included;
+
+// Access pagination links
+var nextLink = response.ResponseBody?.Links?["next"];
+
+// Access document-level metadata
+var meta = response.ResponseBody?.Meta;
+```
+
+### `ResponseMessage`
+
+The underlying `HttpResponseMessage`. Use this for low-level inspection such as status codes or response headers:
+
+```csharp
+var statusCode = response.ResponseMessage?.StatusCode;
+var rateLimit = response.ResponseMessage?.Headers
+    .GetValues("X-PCO-API-Request-Rate-Limit")
+    .FirstOrDefault();
+```
 
 ## Authentication Flow
 
@@ -124,8 +179,7 @@ Consumers own their HttpClient configuration. The library provides authenticatio
 ## Future Enhancements
 
 Potential areas for future development:
-- Additional helper methods for common operations
-- Enhanced query parameter support
+- Additional helper methods for common operations (i.e. get first ID from a collection response)
 - Built-in caching strategies
 - Webhooks support
-- Real-time API support
+- Rate limit handling

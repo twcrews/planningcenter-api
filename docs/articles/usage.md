@@ -2,22 +2,22 @@
 
 Common patterns and examples for using the Planning Center API client library.
 
-## Client Hierarchy
+## Fluent Syntax
 
-The library uses a hierarchical traversal model rooted at a product client. Each product has a root client (e.g., `PeopleClient`) that provides access to versioned `OrganizationClient` instances. From there, you navigate through related resources:
+The library uses a fluent traversal model beginning at the product level. Each product has a root client (e.g., `PeopleClient`) that provides access to versions of that product's API. From there, you navigate through related resource clients:
 
 ```csharp
-// Root client → versioned organization client → resource collection → specific resource
-var org = new PeopleClient(httpClient).Latest;
+// Root client → versioned client → resource collection client → specific resource client
+var peopleClient = new PeopleClient(httpClient).V2025_11_10;
 
 // Access a collection
-var people = org.People;
+var people = peopleClient.People;
 
 // Access a specific resource by ID
-var personClient = org.People.WithId("123");
+var personClient = peopleClient.People.WithId("123");
 
 // Access nested resources
-var addresses = org.People.WithId("123").Addresses;
+var addresses = peopleClient.People.WithId("123").Addresses;
 ```
 
 The `.Latest` property automatically sets the `X-PCO-API-Version` header to the latest supported version. You can also use a specific version property (e.g., `.V2025_11_10`).
@@ -105,14 +105,14 @@ httpClient.DefaultRequestHeaders.Accept.Add(
 httpClient.DefaultRequestHeaders.Authorization = token;
 
 // Reuse httpClient for multiple requests
-var org = new PeopleClient(httpClient).Latest;
+var peopleClient = new PeopleClient(httpClient).Latest;
 ```
 
 ## Fetching a Single Resource
 
 ```csharp
-var org = new PeopleClient(httpClient).Latest;
-var response = await org.People.WithId("123").GetAsync();
+var peopleClient = new PeopleClient(httpClient).Latest;
+var response = await peopleClient.People.WithId("123").GetAsync();
 
 var person = response.Data;
 Console.WriteLine($"Name: {person?.Attributes?.Name}");
@@ -123,8 +123,8 @@ Console.WriteLine($"Name: {person?.Attributes?.Name}");
 Fetching multiple resources with pagination:
 
 ```csharp
-var org = new PeopleClient(httpClient).Latest;
-var response = await org.People.GetAsync();
+var peopleClient = new PeopleClient(httpClient).Latest;
+var response = await peopleClient.People.GetAsync();
 
 foreach (var person in response.Data ?? [])
 {
@@ -135,7 +135,7 @@ foreach (var person in response.Data ?? [])
 Use pagination parameters to control page size and offset:
 
 ```csharp
-var response = await org.People
+var response = await peopleClient.People
     .PerPage(25)
     .Offset(50)
     .GetAsync();
@@ -146,7 +146,7 @@ var response = await org.People
 Use the `Filter()` method to narrow results. Supported filter values are defined in the Planning Center API documentation for each resource:
 
 ```csharp
-var response = await org.People
+var response = await peopleClient.People
     .Filter("admins")
     .GetAsync();
 ```
@@ -154,9 +154,62 @@ var response = await org.People
 Multiple filters can be chained and are combined additively:
 
 ```csharp
-var response = await org.People
+var response = await peopleClient.People
     .Filter("admins")
-    .Filter("organization_admins")
+    .Filter("peopleClientanization_admins")
+    .GetAsync();
+```
+
+## Including Related Resources
+
+Use `Include*()` methods to sideload related resources in a single request. The included resources are returned alongside the primary data in the response:
+
+```csharp
+var response = await peopleClient.People.WithId("123")
+    .IncludeAddresses()
+    .IncludeEmails()
+    .GetAsync();
+
+var person = response.Data;
+var addresses = response.ResponseBody?.Included?.OfType<AddressResource>();
+```
+
+Multiple `Include*()` calls can be chained on the same request.
+
+## Ordering Results
+
+Use `OrderBy*()` methods to sort collection results by a specific field in ascending order. Each field also has a corresponding `OrderBy*Descending()` method for reverse ordering:
+
+```csharp
+// Ascending
+var response = await peopleClient.People
+    .OrderByLastName()
+    .GetAsync();
+
+// Descending
+var response = await peopleClient.People
+    .OrderByLastNameDescending()
+    .GetAsync();
+```
+
+Only one `OrderBy*()` call takes effect — the last one wins if multiple are chained.
+
+## Filtering by Field Value
+
+Use `Where*()` methods to filter results by an exact field value. The method name and parameter type match the field being filtered:
+
+```csharp
+var response = await peopleClient.People
+    .WhereLastName("Smith")
+    .GetAsync();
+```
+
+Multiple `Where*()` calls can be chained and are combined additively:
+
+```csharp
+var response = await peopleClient.People
+    .WhereLastName("Smith")
+    .WhereGender("M")
     .GetAsync();
 ```
 
@@ -165,7 +218,7 @@ var response = await org.People
 For query parameters not directly surfaced by the client, use `AddCustomParameter`:
 
 ```csharp
-var response = await org.People
+var response = await peopleClient.People
     .AddCustomParameter("where[search_name]", "Smith")
     .GetAsync();
 ```

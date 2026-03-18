@@ -20,9 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="Crews.PlanningCenter.Api.Generators">
-      <HintPath>..\Crews.PlanningCenter.Api.Generators\bin\Debug\netstandard2.0\Crews.PlanningCenter.Api.Generators.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\Crews.PlanningCenter.Api.Generators\Crews.PlanningCenter.Api.Generators.csproj" />
   </ItemGroup>
 
 </Project>

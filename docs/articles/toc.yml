@@ -15,16 +15,14 @@
     - name: Working with Resources
       href: resources.md
     - name: Pagination
-      href: pagination.md
-    - name: Rate Limiting
-      href: rate-limiting.md
+      href: pagination.mdd
     - name: Error Handling
       href: error-handling.md
 - name: Advanced Topics
   items:
     - name: Architecture
       href: architecture.md
-    - name: Code Generation
-      href: code-generation.md
+    - name: Testing Strategy
+      href: testing-strategy.md
     - name: Contributing
       href: contributing.md

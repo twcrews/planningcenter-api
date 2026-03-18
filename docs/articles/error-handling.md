@@ -6,7 +6,7 @@ How to handle errors and exceptions when using the Planning Center API client li
 
 ### JsonApiException
 
-The library throws `JsonApiException` for API-level errors (non-2xx HTTP responses). `JsonApiException` extends `HttpRequestException` and exposes the parsed JSON:API error details:
+The library throws `JsonApiException` for API-level errors. `JsonApiException` extends `HttpRequestException` and exposes the parsed JSON:API error details:
 
 ```csharp
 using Crews.PlanningCenter.Api.Models;
@@ -29,6 +29,9 @@ catch (JsonApiException ex)
 }
 ```
 
+> [!TIP]
+> **Inspect `JsonApiException.Errors`** - this collection contains structured error information from the API response body.
+> 
 ### HttpRequestException
 
 `JsonApiException` is a subclass of `HttpRequestException`, so you can catch it as `HttpRequestException` for network and HTTP-level errors. Catch `JsonApiException` first if you need access to the parsed `Errors` collection:
@@ -99,12 +102,3 @@ builder.Services.AddHttpClient("PlanningCenterApi", client =>
 })
 .AddStandardResilienceHandler();
 ```
-
-## Best Practices
-
-1. **Always handle exceptions** - Don't let unhandled exceptions crash your application
-2. **Catch `JsonApiException` before `HttpRequestException`** - `JsonApiException` is a subclass; catching the base type first swallows API error details
-3. **Use `HttpStatusCode` enum values** - Compare `ex.StatusCode` to `HttpStatusCode.NotFound`, `HttpStatusCode.Unauthorized`, etc.
-4. **Inspect `ex.Errors`** - The `Errors` collection contains structured error information from the API response body
-5. **Implement retry logic** - Use `.AddStandardResilienceHandler()` or Polly for transient errors
-6. **Handle rate limits** - Respect API rate limits and implement appropriate backoff

@@ -12,7 +12,7 @@ Guidelines for contributing to the Planning Center API client library.
    ```
 3. **Create a branch** for your changes:
    ```bash
-   git checkout -b feature/your-feature-name
+   git checkout -b your-feature-name
    ```
 
 ## Development Setup
@@ -72,6 +72,8 @@ dotnet test Crews.PlanningCenter.Api.Generators.Tests
 - Add examples to documentation files
 - Update README.md if needed
 - Regenerate DocFX documentation if API changes
+- Update CHANGELOG.md with your changes
+  - Follow *Keep A Changelog*'s unreleased version format
 
 ## Submitting Changes
 
@@ -91,7 +93,7 @@ Add support for filtering query parameters
 
 1. **Push your branch** to your fork:
    ```bash
-   git push origin feature/your-feature-name
+   git push origin your-feature-name
    ```
 
 2. **Create a pull request** on GitHub
@@ -106,27 +108,7 @@ Add support for filtering query parameters
 
 ## Areas for Contribution
 
-### High Priority
-
-- Additional test coverage
-- Documentation improvements
-- Bug fixes
-- Performance optimizations
-
-### Feature Ideas
-
-- Enhanced query parameter support
-- Caching strategies
-- Retry policies and resilience patterns
-- Additional authentication methods
-- Webhook support
-
-### Code Generation
-
-- Improvements to DocParser logic
-- Source generator enhancements
-- Better error handling in generation
-- Support for new Planning Center API features
+Keep an eye on the GitHub Issues for specific contribution opportunities. That said, feel free to submit a PR with your own ideas or improvements.
 
 ## Reporting Issues
 

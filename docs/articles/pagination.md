@@ -11,10 +11,10 @@ Collection endpoints in the Planning Center API are paginated. Each response inc
 Use `.PerPage()` and `.Offset()` to control which page of results is returned:
 
 ```csharp
-var org = new PeopleClient(httpClient).Latest;
+var peopleClient = new PeopleClient(httpClient).Latest;
 
 // Fetch the second page of 25 people
-var response = await org.People
+var response = await peopleClient.People
     .PerPage(25)
     .Offset(25)
     .GetAsync();
@@ -35,7 +35,7 @@ Every collection response exposes pagination metadata via `ResponseBody.Meta`. T
 | `prev.offset` | `int?` | Offset to pass for the previous page (absent if on the first page) |
 
 ```csharp
-var response = await org.People.PerPage(25).GetAsync();
+var response = await peopleClient.People.PerPage(25).GetAsync();
 
 var meta = response.ResponseBody?.Meta;
 var totalCount = meta?["total_count"]?.GetValue<int>();
@@ -53,14 +53,14 @@ if (nextOffset.HasValue)
 To fetch all records across multiple pages, loop until `next` is absent from the metadata:
 
 ```csharp
-var org = new PeopleClient(httpClient).Latest;
+var peopleClient = new PeopleClient(httpClient).Latest;
 var allPeople = new List<PersonResource>();
 int offset = 0;
 const int pageSize = 100;
 
 while (true)
 {
-    var response = await org.People
+    var response = await peopleClient.People
         .PerPage(pageSize)
         .Offset(offset)
         .GetAsync();

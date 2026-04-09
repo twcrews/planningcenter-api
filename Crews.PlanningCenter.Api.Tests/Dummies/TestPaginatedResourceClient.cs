@@ -26,6 +26,18 @@ public class TestPaginatedResourceClient : PaginatedResourceClient<TestModel, Te
 
 	public new Task<TestResourceResponse> PostAsync(TestModel model, CancellationToken cancellationToken = default) => base.PostAsync(model, cancellationToken);
 
+	public new TestPaginatedResourceClient PerPage(int count) => (TestPaginatedResourceClient)base.PerPage(count);
+
+	public new TestPaginatedResourceClient Offset(int count) => (TestPaginatedResourceClient)base.Offset(count);
+
+	public new TestPaginatedResourceClient Filter(string filter) => (TestPaginatedResourceClient)base.Filter(filter);
+
+	public new TestPaginatedResourceClient AddCustomParameter(string parameter, string value)
+		=> (TestPaginatedResourceClient)base.AddCustomParameter(parameter, value);
+
+	public new TestPaginatedResourceClient ClearParameters()
+		=> (TestPaginatedResourceClient)base.ClearParameters();
+
 	/// <summary>
 	/// Public wrapper for protected AddQueryParameter method.
 	/// </summary>

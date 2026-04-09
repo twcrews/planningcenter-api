@@ -317,6 +317,12 @@
           "Description": "Planning Center does not provide a description for this attribute."
         },
         {
+          "JsonName": "attachable_type",
+          "ClrName": "AttachableType",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
           "JsonName": "content",
           "ClrName": "Content",
           "ClrType": "string",
@@ -584,6 +590,12 @@
           "ClrType": "int",
           "Parameter": "where[administrator_id]",
           "Description": "Query response items by the \u0060AdministratorId\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "WhereAttachableType",
+          "ClrType": "string",
+          "Parameter": "where[attachable_type]",
+          "Description": "Query response items by the \u0060AttachableType\u0060 attribute."
         },
         {
           "ClrMethodName": "WhereLicensesPurchased",
@@ -2021,6 +2033,16 @@
           "Filters": []
         },
         {
+          "JsonName": "item_assignments",
+          "ClrName": "ItemAssignments",
+          "AttributesClrType": "ItemAssignment",
+          "Description": "Associated \u0060ItemAssignments\u0060.",
+          "Slug": "item_assignments",
+          "IsCollection": true,
+          "Deprecated": false,
+          "Filters": []
+        },
+        {
           "JsonName": "item_notes",
           "ClrName": "ItemNotes",
           "AttributesClrType": "ItemNote",
@@ -2100,6 +2122,13 @@
           "CanAssignOnUpdate": true
         },
         {
+          "ClrMethodName": "IncludeItemAssignments",
+          "Value": "item_assignments",
+          "Description": "Include related \u0060ItemAssignments\u0060 resources in the response.",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
           "ClrMethodName": "IncludeItemNotes",
           "Value": "item_notes",
           "Description": "Include related \u0060ItemNotes\u0060 resources in the response.",
@@ -2142,6 +2171,58 @@
           "CanAssignOnUpdate": true
         }
       ],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "JsonName": "item_assignment",
+      "ResourceClrType": "ItemAssignmentResource",
+      "AttributesClrType": "ItemAssignment",
+      "Description": "An assignment of a person or position to a plan item.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
+      "Attributes": [
+        {
+          "JsonName": "assignable_type",
+          "ClrName": "AssignableType",
+          "ClrType": "string",
+          "Description": "Possible values: \u0060Person\u0060 or \u0060TeamPosition\u0060."
+        }
+      ],
+      "Relationships": [
+        {
+          "JsonName": "plan",
+          "ClrName": "Plan",
+          "AttributesClrType": "Plan",
+          "ResourceClrType": "PlanResource",
+          "IsCollection": false,
+          "Description": "Related \u0060Plan\u0060 resource."
+        },
+        {
+          "JsonName": "item",
+          "ClrName": "Item",
+          "AttributesClrType": "Item",
+          "ResourceClrType": "ItemResource",
+          "IsCollection": false,
+          "Description": "Related \u0060Item\u0060 resource."
+        },
+        {
+          "JsonName": "assignable",
+          "ClrName": "Assignable",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
+          "IsCollection": false,
+          "Description": "Related \u0060Assignable\u0060 resource."
+        }
+      ],
+      "Actions": [],
+      "Children": [],
+      "CanInclude": [],
       "CanOrderBy": [],
       "CanQueryBy": []
     },
@@ -2862,7 +2943,7 @@
           "ClrMethodName": "ArchiveAsync",
           "Path": "archive",
           "Description": "Archive a Media.",
-          "AdditionalDetails": "Accepts an optional \u0060time\u0060 attribute (ISO 8601) for scheduling archival for a future time.\n\n\u0060\u0060\u0060json\n{\n  \u0022data\u0022: {\n    \u0022type\u0022: \u0022MediaArchive\u0022,\n    \u0022attributes\u0022: {\n      \u0022time\u0022: \u00222026-06-16T00:00:00Z\u0022\n    }\n  }\n}\n\u0060\u0060\u0060\n",
+          "AdditionalDetails": "Accepts an optional \u0060time\u0060 attribute (ISO 8601) for scheduling archival for a future time.\n\n\u0060\u0060\u0060json\n{\n  \u0022data\u0022: {\n    \u0022type\u0022: \u0022MediaArchive\u0022,\n    \u0022attributes\u0022: {\n      \u0022time\u0022: \u00222026-07-09T00:00:00Z\u0022\n    }\n  }\n}\n\u0060\u0060\u0060\n",
           "Deprecated": false
         },
         {
@@ -4206,7 +4287,7 @@
           "JsonName": "schedule_preference",
           "ClrName": "SchedulePreference",
           "ClrType": "string",
-          "Description": "Possible Values:\n  \u0022Every week\u0022\n  \u0022Every other week\u0022\n  \u0022Every 3rd week\u0022\n  \u0022Every 4th week\u0022\n  \u0022Every 5th week\u0022\n  \u0022Every 6th week\u0022\n  \u0022Once a month\u0022\n  \u0022Twice a month\u0022\n  \u0022Three times a month\u0022\n  \u0022Choose Weeks\u0022\n"
+          "Description": "Possible Values:\n  \u0022Unavailable\u0022\n  \u0022Every week\u0022\n  \u0022Every other week\u0022\n  \u0022Every 3rd week\u0022\n  \u0022Every 4th week\u0022\n  \u0022Every 5th week\u0022\n  \u0022Every 6th week\u0022\n  \u0022Once a quarter\u0022\n  \u0022Once a month\u0022\n  \u0022Twice a month\u0022\n  \u0022Three times a month\u0022\n  \u0022Choose Weeks\u0022\n"
         },
         {
           "JsonName": "updated_at",
@@ -4563,7 +4644,7 @@
             {
               "ClrMethodName": "FilterByAttachableType",
               "Value": "attachable_type",
-              "Description": "filter attachments by their attachable_type as specified in the \u0060attachable_type\u0060 parameter.\nDefault: \u0060[\u0022ServiceType\u0022, \u0022Plan\u0022, \u0022Item\u0022, \u0022Media\u0022, \u0022Song\u0022, \u0022Arrangement\u0022, \u0022Key\u0022]\u0060.\ne.g. \u0060?filter=attachable_type\u0026attachable_type=Plan,ServiceType\u0060\n"
+              "Description": "filter attachments by their \u0060attachable_type\u0060 as specified in the \u0060attachable_type\u0060 parameter.\nDefault: \u0060[\u0022ServiceType\u0022, \u0022Plan\u0022, \u0022Item\u0022, \u0022Media\u0022, \u0022Song\u0022, \u0022Arrangement\u0022, \u0022Key\u0022]\u0060.\ne.g. \u0060?filter=attachable_type\u0026attachable_type=Plan,ServiceType\u0060\n"
             },
             {
               "ClrMethodName": "FilterByExtensions",
@@ -5372,7 +5453,13 @@
       "Actions": [],
       "Children": [],
       "CanInclude": [],
-      "CanOrderBy": [],
+      "CanOrderBy": [
+        {
+          "ClrMethodName": "OrderByUpdatedAt",
+          "Value": "updated_at",
+          "Description": "Sort response items by the \u0060UpdatedAt\u0060 attribute."
+        }
+      ],
       "CanQueryBy": []
     },
     {
@@ -6370,7 +6457,7 @@
           "JsonName": "comment_permissions",
           "ClrName": "CommentPermissions",
           "ClrType": "string",
-          "Description": "Planning Center does not provide a description for this attribute."
+          "Description": "DEPRECATED: this attribute will be removed in the next release and will return the string \u0022DEPRECATED\u0022 in this version"
         },
         {
           "JsonName": "created_at",
@@ -6496,6 +6583,16 @@
           "AttributesClrType": "PlanNoteCategory",
           "Description": "Associated \u0060PlanNoteCategories\u0060.",
           "Slug": "plan_note_categories",
+          "IsCollection": true,
+          "Deprecated": false,
+          "Filters": []
+        },
+        {
+          "JsonName": "plan_person_times",
+          "ClrName": "PlanPersonTimes",
+          "AttributesClrType": "PlanPersonTime",
+          "Description": "Associated \u0060PlanPersonTimes\u0060.",
+          "Slug": "plan_person_times",
           "IsCollection": true,
           "Deprecated": false,
           "Filters": []
@@ -7076,6 +7173,26 @@
           "IsCollection": true,
           "Deprecated": false,
           "Filters": [
+            {
+              "ClrMethodName": "FilterByAfter",
+              "Value": "after",
+              "Description": "Fetch schedules after the included \u0060after\u0060 iso8601 date param. e.g. \u0060?filter=after\u0026after=2020-01-01T00:00:00Z\u0060"
+            },
+            {
+              "ClrMethodName": "FilterByBefore",
+              "Value": "before",
+              "Description": "Fetch schedules before the included \u0060before\u0060 iso8601 date param. e.g. \u0060?filter=before\u0026before=2020-01-01T00:00:00Z\u0060"
+            },
+            {
+              "ClrMethodName": "FilterByMostRecent",
+              "Value": "most_recent",
+              "Description": "Fetch the N most recent schedules by also including an \u0060amount\u0060 param. e.g. \u0060?filter=most_recent\u0026amount=3\u0060"
+            },
+            {
+              "ClrMethodName": "FilterByMostRecentWithUpcoming",
+              "Value": "most_recent_with_upcoming",
+              "Description": "Fetch the N most recent schedules by also including an \u0060amount\u0060 param. Includes upcoming dates. e.g. \u0060?filter=most_recent_with_upcoming\u0026amount=3\u0060"
+            },
             {
               "ClrMethodName": "FilterByThreeMostRecent",
               "Value": "three_most_recent",
@@ -7929,7 +8046,7 @@
             {
               "ClrMethodName": "FilterByTimePreferenceOptions",
               "Value": "time_preference_options",
-              "Description": "pass an additonal array of \u0060time_preference_option_ids\u0060 as a param to filter to people who prefer those times.use id \u0027none\u0027 to filter people who have no preferred times"
+              "Description": "pass an additional array of \u0060time_preference_option_ids\u0060 as a param to filter to people who prefer those times. use id \u0060none\u0060 to filter people who have no preferred times"
             }
           ]
         },

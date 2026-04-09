@@ -67,13 +67,13 @@ public abstract class ResourceClient<TModel>(HttpClient httpClient, Uri uri)
     /// </summary>
     /// <param name="parameter">The name of the query parameter to be added.</param>
     /// <param name="value">The value of the query parameter to be added.</param>
-    public ResourceClient<TModel> AddCustomParameter(string parameter, string value) =>
+    protected ResourceClient<TModel> AddCustomParameter(string parameter, string value) =>
         AddQueryParameter(parameter, value);
 
     /// <summary>
     /// Removes the entire query string from the instance's URI.
     /// </summary>
-    public ResourceClient<TModel> ClearParameters()
+    protected ResourceClient<TModel> ClearParameters()
     {
         UriBuilder builder = new(Uri)
         {

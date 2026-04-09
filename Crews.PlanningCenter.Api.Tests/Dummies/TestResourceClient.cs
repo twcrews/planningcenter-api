@@ -65,6 +65,12 @@ public class TestResourceClient : SingletonResourceClient<TestModel, TestResourc
 	public new Task DeleteAsync(CancellationToken cancellationToken = default)
 		=> base.DeleteAsync(cancellationToken);
 
+	public new TestResourceClient AddCustomParameter(string parameter, string value)
+		=> (TestResourceClient)base.AddCustomParameter(parameter, value);
+
+	public new TestResourceClient ClearParameters()
+		=> (TestResourceClient)base.ClearParameters();
+
 	/// <summary>
 	/// Public wrapper for protected AddQueryParameter method.
 	/// </summary>

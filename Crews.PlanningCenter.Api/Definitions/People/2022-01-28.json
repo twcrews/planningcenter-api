@@ -2911,6 +2911,16 @@
       ],
       "CanOrderBy": [
         {
+          "ClrMethodName": "OrderByAutoRefreshFrequency",
+          "Value": "auto_refresh_frequency",
+          "Description": "Sort response items by the \u0060AutoRefreshFrequency\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "OrderByAutomationsCount",
+          "Value": "automations_count",
+          "Description": "Sort response items by the \u0060AutomationsCount\u0060 attribute."
+        },
+        {
           "ClrMethodName": "OrderByBatchCompletedAt",
           "Value": "batch_completed_at",
           "Description": "Sort response items by the \u0060BatchCompletedAt\u0060 attribute."
@@ -2919,6 +2929,11 @@
           "ClrMethodName": "OrderByCampusId",
           "Value": "campus_id",
           "Description": "Sort response items by the \u0060CampusId\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "OrderByCampusesName",
+          "Value": "campuses.name",
+          "Description": "Sort response items by the \u0060Campuses.Name\u0060 attribute."
         },
         {
           "ClrMethodName": "OrderByCreatedAt",
@@ -2944,6 +2959,21 @@
           "ClrMethodName": "OrderByNameOrDescription",
           "Value": "name_or_description",
           "Description": "Sort response items by the \u0060NameOrDescription\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "OrderByRefreshedAt",
+          "Value": "refreshed_at",
+          "Description": "Sort response items by the \u0060RefreshedAt\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "OrderByStarred",
+          "Value": "starred",
+          "Description": "Sort response items by the \u0060Starred\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "OrderByTotalPeople",
+          "Value": "total_people",
+          "Description": "Sort response items by the \u0060TotalPeople\u0060 attribute."
         },
         {
           "ClrMethodName": "OrderByUpdatedAt",
@@ -3357,6 +3387,51 @@
       "ResourceClrType": "MaritalStatusResource",
       "AttributesClrType": "MaritalStatus",
       "Description": "A martial status represents a member\u0027s current status, e.g. married, single, etc.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
+      "Attributes": [
+        {
+          "JsonName": "value",
+          "ClrName": "Value",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        }
+      ],
+      "Relationships": [],
+      "Actions": [],
+      "Children": [],
+      "CanInclude": [],
+      "CanOrderBy": [
+        {
+          "ClrMethodName": "OrderBySequence",
+          "Value": "sequence",
+          "Description": "Sort response items by the \u0060Sequence\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "OrderByValue",
+          "Value": "value",
+          "Description": "Sort response items by the \u0060Value\u0060 attribute."
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "ClrMethodName": "WhereValue",
+          "ClrType": "string",
+          "Parameter": "where[value]",
+          "Description": "Query response items by the \u0060Value\u0060 attribute."
+        }
+      ]
+    },
+    {
+      "JsonName": "membership_type",
+      "ResourceClrType": "MembershipTypeResource",
+      "AttributesClrType": "MembershipType",
+      "Description": "A profile\u0027s membership type, e.g. Visitor, Regular Attender, Member, etc.",
       "Deprecated": false,
       "CollectionOnly": false,
       "Postable": true,
@@ -4876,6 +4951,16 @@
           "AttributesClrType": "MaritalStatus",
           "Description": "Associated \u0060MaritalStatuses\u0060.",
           "Slug": "marital_statuses",
+          "IsCollection": true,
+          "Deprecated": false,
+          "Filters": []
+        },
+        {
+          "JsonName": "membership_types",
+          "ClrName": "MembershipTypes",
+          "AttributesClrType": "MembershipType",
+          "Description": "Associated \u0060MembershipTypes\u0060.",
+          "Slug": "membership_types",
           "IsCollection": true,
           "Deprecated": false,
           "Filters": []
@@ -7685,6 +7770,11 @@
           "Description": "Sort response items by the \u0060CampusId\u0060 attribute."
         },
         {
+          "ClrMethodName": "OrderByCampusName",
+          "Value": "campus_name",
+          "Description": "Sort response items by the \u0060CampusName\u0060 attribute."
+        },
+        {
           "ClrMethodName": "OrderByCreatedAt",
           "Value": "created_at",
           "Description": "Sort response items by the \u0060CreatedAt\u0060 attribute."
@@ -7695,9 +7785,29 @@
           "Description": "Sort response items by the \u0060DeletedAt\u0060 attribute."
         },
         {
+          "ClrMethodName": "OrderByMyReadyCardCount",
+          "Value": "my_ready_card_count",
+          "Description": "Sort response items by the \u0060MyReadyCardCount\u0060 attribute."
+        },
+        {
           "ClrMethodName": "OrderByName",
           "Value": "name",
           "Description": "Sort response items by the \u0060Name\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "OrderByTotalOverdueCardCount",
+          "Value": "total_overdue_card_count",
+          "Description": "Sort response items by the \u0060TotalOverdueCardCount\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "OrderByTotalReadyCardCount",
+          "Value": "total_ready_card_count",
+          "Description": "Sort response items by the \u0060TotalReadyCardCount\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "OrderByTotalUnassignedCardCount",
+          "Value": "total_unassigned_card_count",
+          "Description": "Sort response items by the \u0060TotalUnassignedCardCount\u0060 attribute."
         },
         {
           "ClrMethodName": "OrderByUpdatedAt",
@@ -7708,6 +7818,11 @@
           "ClrMethodName": "OrderByWorkflowCategoryId",
           "Value": "workflow_category_id",
           "Description": "Sort response items by the \u0060WorkflowCategoryId\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "OrderByWorkflowCategoryName",
+          "Value": "workflow_category_name",
+          "Description": "Sort response items by the \u0060WorkflowCategoryName\u0060 attribute."
         }
       ],
       "CanQueryBy": [

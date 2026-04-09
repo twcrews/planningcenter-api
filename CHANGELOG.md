@@ -5,9 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.1.0] - 2026-04-09
+
+### Fixed
+
+- Fix fluent method chaining on generated client classes. `PerPage`, `Offset`, `Filter`, `AddCustomParameter`, and `ClearParameters` methods on base resource client classes were changed from `public` to `protected` so generated subclasses can return the correct concrete type instead of the base type.
+
+### Changed
+
+- Update API definitions from Planning Center documentation.
+
 ## [3.0.0] - 2026-03-16
 
-This version overhauls nearly all of the underlying code for the library. Be prepared to find multiple breaking changes in any projects that depend on it.
+> [!WARNING]
+> This version overhauls the entire library. Be prepared to find multiple breaking changes when upgrading dependent projects.
 
 ### Added
 
@@ -255,6 +266,7 @@ First official stable release!
 
 Initial release.
 
+[3.1.0]: https://github.com/twcrews/planningcenter-api/compare/3.0.0...3.1.0
 [3.0.0]: https://github.com/twcrews/planningcenter-api/compare/2.0.0...3.0.0
 [2.0.0]: https://github.com/twcrews/planningcenter-api/compare/1.2.0...2.0.0
 [1.2.0]: https://github.com/twcrews/planningcenter-api/compare/1.1.0...1.2.0

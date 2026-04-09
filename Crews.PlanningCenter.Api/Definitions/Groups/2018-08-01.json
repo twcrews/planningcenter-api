@@ -1770,6 +1770,12 @@
           "Description": "The person\u0027s first name.\n"
         },
         {
+          "JsonName": "gender",
+          "ClrName": "Gender",
+          "ClrType": "string",
+          "Description": "The person\u0027s gender (e.g. \u0060Male\u0060, \u0060Female\u0060).\n"
+        },
+        {
           "JsonName": "last_name",
           "ClrName": "LastName",
           "ClrType": "string",

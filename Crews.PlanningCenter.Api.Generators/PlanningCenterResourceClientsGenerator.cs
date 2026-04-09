@@ -75,6 +75,7 @@ class PlanningCenterResourceClientsGenerator : IIncrementalGenerator
         string responseType = modelType + "Response";
         string resourceType = resource.ResourceClrType;
         string clientType = modelType + "Client";
+        string collectionClientType = "Paginated" + clientType;
 
         writer.WriteLine("/// <summary>");
         writer.WriteLine($"/// {summary}");
@@ -120,7 +121,7 @@ class PlanningCenterResourceClientsGenerator : IIncrementalGenerator
             writer.WriteLine("[Obsolete(\"This resource is deprecated and may be removed in a future version.\")]");
         }
 
-        writer.WriteLine($"public class Paginated{clientType}(HttpClient httpClient, Uri uri)");
+        writer.WriteLine($"public class {collectionClientType}(HttpClient httpClient, Uri uri)");
         writer.Indent++;
         writer.WriteLine($": PaginatedResourceClient<{modelType}, {resourceType}, {collectionResponseType}, {responseType}>(httpClient, uri)");
         writer.Indent--;
@@ -134,6 +135,49 @@ class PlanningCenterResourceClientsGenerator : IIncrementalGenerator
         writer.WriteLine($"/// <returns>A task representing the asynchronous operation, containing a paginated list of <see cref=\"{modelType}\"/> resources.</returns>");
         writer.WriteLine("/// <exception cref=\"JsonApiException\">Thrown when the HTTP response indicates a failure status code.</exception>");
         writer.WriteLine($"public new Task<{collectionResponseType}> GetAsync(CancellationToken cancellationToken = default) => base.GetAsync(cancellationToken);");
+        writer.WriteLine();
+
+        writer.WriteLine("/// <summary>");
+        writer.WriteLine($"/// Sets the number of items to be returned per page in the paginated response.");
+        writer.WriteLine("/// </summary>");
+        writer.WriteLine("/// <param name=\"count\">The number of items to be returned per page.</param>");
+        writer.WriteLine($"/// <returns>The current <see cref=\"{collectionClientType}\"/> instance.</returns>");
+        writer.WriteLine($"public new {collectionClientType} PerPage(int count) => ({collectionClientType})base.PerPage(count);");
+        writer.WriteLine();
+
+        writer.WriteLine("/// <summary>");
+        writer.WriteLine($"/// Sets the item offset in the paginated response.");
+        writer.WriteLine("/// </summary>");
+        writer.WriteLine("/// <param name=\"count\">The number of items to skip.</param>");
+        writer.WriteLine($"/// <returns>The current <see cref=\"{collectionClientType}\"/> instance.</returns>");
+        writer.WriteLine($"public new {collectionClientType} Offset(int count) => ({collectionClientType})base.Offset(count);");
+        writer.WriteLine();
+
+        writer.WriteLine("/// <summary>");
+        writer.WriteLine($"/// Adds a filter query parameter to the request.");
+        writer.WriteLine("/// </summary>");
+        writer.WriteLine("/// <remarks>");
+        writer.WriteLine("/// See Planning Center API documentation for details on supported filter values for this resource.");
+        writer.WriteLine("/// </remarks>");
+        writer.WriteLine("/// <param name=\"filter\">The filter criteria.</param>");
+        writer.WriteLine($"/// <returns>The current <see cref=\"{collectionClientType}\"/> instance.</returns>");
+        writer.WriteLine($"public new {collectionClientType} Filter(string filter) => ({collectionClientType})base.Filter(filter);");
+        writer.WriteLine();
+
+        writer.WriteLine("/// <summary>");
+        writer.WriteLine("/// Adds a custom query parameter to the request URI.");
+        writer.WriteLine("/// </summary>");
+        writer.WriteLine("/// <param name=\"parameter\">The name of the query parameter.</param>");
+        writer.WriteLine("/// <param name=\"value\">The value of the query parameter.</param>");
+        writer.WriteLine($"/// <returns>The current <see cref=\"{collectionClientType}\"/> instance.</returns>");
+        writer.WriteLine($"public new {collectionClientType} AddCustomParameter(string parameter, string value) => ({collectionClientType})base.AddCustomParameter(parameter, value);");
+        writer.WriteLine();
+
+        writer.WriteLine("/// <summary>");
+        writer.WriteLine("/// Removes the entire query string from the request URI.");
+        writer.WriteLine("/// </summary>");
+        writer.WriteLine($"/// <returns>The current <see cref=\"{collectionClientType}\"/> instance.</returns>");
+        writer.WriteLine($"public new {collectionClientType} ClearParameters() => ({collectionClientType})base.ClearParameters();");
         writer.WriteLine();
 
         if (resource.Postable)
@@ -288,6 +332,24 @@ class PlanningCenterResourceClientsGenerator : IIncrementalGenerator
         writer.WriteLine($"/// <returns>A task representing the asynchronous operation, containing the <see cref=\"{modelType}\"/> resource.</returns>");
         writer.WriteLine("/// <exception cref=\"JsonApiException\">Thrown when the HTTP response indicates a failure status code.</exception>");
         writer.WriteLine($"public new Task<{responseType}> GetAsync(CancellationToken cancellationToken = default) => base.GetAsync(cancellationToken);");
+        writer.WriteLine();
+
+        string clientType = modelType + "Client";
+
+        writer.WriteLine("/// <summary>");
+        writer.WriteLine("/// Adds a custom query parameter to the request URI.");
+        writer.WriteLine("/// </summary>");
+        writer.WriteLine("/// <param name=\"parameter\">The name of the query parameter.</param>");
+        writer.WriteLine("/// <param name=\"value\">The value of the query parameter.</param>");
+        writer.WriteLine($"/// <returns>The current <see cref=\"{clientType}\"/> instance.</returns>");
+        writer.WriteLine($"public new {clientType} AddCustomParameter(string parameter, string value) => ({clientType})base.AddCustomParameter(parameter, value);");
+        writer.WriteLine();
+
+        writer.WriteLine("/// <summary>");
+        writer.WriteLine("/// Removes the entire query string from the request URI.");
+        writer.WriteLine("/// </summary>");
+        writer.WriteLine($"/// <returns>The current <see cref=\"{clientType}\"/> instance.</returns>");
+        writer.WriteLine($"public new {clientType} ClearParameters() => ({clientType})base.ClearParameters();");
         writer.WriteLine();
 
         if (resource.Patchable)

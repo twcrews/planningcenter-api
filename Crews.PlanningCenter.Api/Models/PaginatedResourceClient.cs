@@ -23,7 +23,7 @@ public abstract class PaginatedResourceClient<TModel, TResource, TResponse, TSin
     /// </summary>
     /// <param name="count">The number of items to be returned per page.</param>
     /// <returns>The current instance of the paginated resource client.</returns>
-    public PaginatedResourceClient<TModel, TResource, TResponse, TSingletonResponse> PerPage(int count)
+    protected PaginatedResourceClient<TModel, TResource, TResponse, TSingletonResponse> PerPage(int count)
     {
         ReplaceQueryParameter("per_page", count.ToString());
         return this;
@@ -34,7 +34,7 @@ public abstract class PaginatedResourceClient<TModel, TResource, TResponse, TSin
     /// </summary>
     /// <param name="count">The number of items to skip.</param>
     /// <returns>The current instance of the paginated resource client.</returns>
-    public PaginatedResourceClient<TModel, TResource, TResponse, TSingletonResponse> Offset(int count)
+    protected PaginatedResourceClient<TModel, TResource, TResponse, TSingletonResponse> Offset(int count)
     {
         ReplaceQueryParameter("offset", count.ToString());
         return this;
@@ -48,7 +48,7 @@ public abstract class PaginatedResourceClient<TModel, TResource, TResponse, TSin
     /// </remarks>
     /// <param name="filter">The filter criteria.</param>
     /// <returns>The current instance of the paginated resource client.</returns>
-    public PaginatedResourceClient<TModel, TResource, TResponse, TSingletonResponse> Filter(string filter)
+    protected PaginatedResourceClient<TModel, TResource, TResponse, TSingletonResponse> Filter(string filter)
     {
         AddQueryParameter("filter", filter);
         return this;

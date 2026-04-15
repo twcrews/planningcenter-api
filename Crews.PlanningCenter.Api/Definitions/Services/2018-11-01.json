@@ -2943,7 +2943,7 @@
           "ClrMethodName": "ArchiveAsync",
           "Path": "archive",
           "Description": "Archive a Media.",
-          "AdditionalDetails": "Accepts an optional \u0060time\u0060 attribute (ISO 8601) for scheduling archival for a future time.\n\n\u0060\u0060\u0060json\n{\n  \u0022data\u0022: {\n    \u0022type\u0022: \u0022MediaArchive\u0022,\n    \u0022attributes\u0022: {\n      \u0022time\u0022: \u00222026-07-09T00:00:00Z\u0022\n    }\n  }\n}\n\u0060\u0060\u0060\n",
+          "AdditionalDetails": "Accepts an optional \u0060time\u0060 attribute (ISO 8601) for scheduling archival for a future time.\n\n\u0060\u0060\u0060json\n{\n  \u0022data\u0022: {\n    \u0022type\u0022: \u0022MediaArchive\u0022,\n    \u0022attributes\u0022: {\n      \u0022time\u0022: \u00222026-07-15T00:00:00Z\u0022\n    }\n  }\n}\n\u0060\u0060\u0060\n",
           "Deprecated": false
         },
         {
@@ -5998,7 +5998,7 @@
         {
           "JsonName": "organization_twenty_four_hour_time",
           "ClrName": "OrganizationTwentyFourHourTime",
-          "ClrType": "string",
+          "ClrType": "bool",
           "Description": "Planning Center does not provide a description for this attribute."
         },
         {

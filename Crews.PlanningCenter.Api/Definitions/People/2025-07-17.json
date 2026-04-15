@@ -369,8 +369,32 @@
           "CanAssignOnUpdate": true
         }
       ],
-      "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanOrderBy": [
+        {
+          "ClrMethodName": "OrderByExpiresOn",
+          "Value": "expires_on",
+          "Description": "Sort response items by the \u0060ExpiresOn\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "OrderByStatusUpdatedAt",
+          "Value": "status_updated_at",
+          "Description": "Sort response items by the \u0060StatusUpdatedAt\u0060 attribute."
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "ClrMethodName": "WhereExpiresOn",
+          "ClrType": "System.DateOnly",
+          "Parameter": "where[expires_on]",
+          "Description": "Query response items by the \u0060ExpiresOn\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "WhereStatusUpdatedAt",
+          "ClrType": "System.DateTime",
+          "Parameter": "where[status_updated_at]",
+          "Description": "Query response items by the \u0060StatusUpdatedAt\u0060 attribute."
+        }
+      ]
     },
     {
       "JsonName": "birthday_people",
@@ -1673,6 +1697,12 @@
           "Description": "Planning Center does not provide a description for this attribute."
         },
         {
+          "JsonName": "can_manage",
+          "ClrName": "CanManage",
+          "ClrType": "bool",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
           "JsonName": "created_at",
           "ClrName": "CreatedAt",
           "ClrType": "System.DateTime",
@@ -1822,6 +1852,16 @@
           "Description": "Sort response items by the \u0060ArchivedAt\u0060 attribute."
         },
         {
+          "ClrMethodName": "OrderByCampus",
+          "Value": "campus",
+          "Description": "Sort response items by the \u0060Campus\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "OrderByCategory",
+          "Value": "category",
+          "Description": "Sort response items by the \u0060Category\u0060 attribute."
+        },
+        {
           "ClrMethodName": "OrderByCreatedAt",
           "Value": "created_at",
           "Description": "Sort response items by the \u0060CreatedAt\u0060 attribute."
@@ -1840,6 +1880,11 @@
           "ClrMethodName": "OrderByName",
           "Value": "name",
           "Description": "Sort response items by the \u0060Name\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "OrderBySubmissionCount",
+          "Value": "submission_count",
+          "Description": "Sort response items by the \u0060SubmissionCount\u0060 attribute."
         },
         {
           "ClrMethodName": "OrderByUpdatedAt",
@@ -2177,6 +2222,12 @@
           "Description": "Only available when requested with the \u0060?fields\u0060 param"
         },
         {
+          "JsonName": "updated_at",
+          "ClrName": "UpdatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
           "JsonName": "verified",
           "ClrName": "Verified",
           "ClrType": "bool",
@@ -2289,9 +2340,27 @@
           "ClrMethodName": "OrderByPersonLastName",
           "Value": "person.last_name",
           "Description": "Sort response items by the \u0060Person.LastName\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "OrderByUpdatedAt",
+          "Value": "updated_at",
+          "Description": "Sort response items by the \u0060UpdatedAt\u0060 attribute."
         }
       ],
-      "CanQueryBy": []
+      "CanQueryBy": [
+        {
+          "ClrMethodName": "WhereCreatedAt",
+          "ClrType": "System.DateTime",
+          "Parameter": "where[created_at]",
+          "Description": "Query response items by the \u0060CreatedAt\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "WhereUpdatedAt",
+          "ClrType": "System.DateTime",
+          "Parameter": "where[updated_at]",
+          "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
+        }
+      ]
     },
     {
       "JsonName": "form_submission_value",
@@ -3308,8 +3377,27 @@
         }
       ],
       "Actions": [],
-      "Children": [],
-      "CanInclude": [],
+      "Children": [
+        {
+          "JsonName": "person",
+          "ClrName": "Person",
+          "AttributesClrType": "Person",
+          "Description": "Associated \u0060Person\u0060.",
+          "Slug": "person",
+          "IsCollection": false,
+          "Deprecated": false,
+          "Filters": []
+        }
+      ],
+      "CanInclude": [
+        {
+          "ClrMethodName": "IncludePerson",
+          "Value": "person",
+          "Description": "Include related \u0060Person\u0060 resources in the response.",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        }
+      ],
       "CanOrderBy": [
         {
           "ClrMethodName": "OrderByCreatedAt",
@@ -3322,7 +3410,14 @@
           "Description": "Sort response items by the \u0060UpdatedAt\u0060 attribute."
         }
       ],
-      "CanQueryBy": []
+      "CanQueryBy": [
+        {
+          "ClrMethodName": "WherePersonId",
+          "ClrType": "int",
+          "Parameter": "where[person_id]",
+          "Description": "Query response items by the \u0060PersonId\u0060 attribute."
+        }
+      ]
     },
     {
       "JsonName": "list_share",
@@ -4906,9 +5001,54 @@
           "Deprecated": false,
           "Filters": [
             {
+              "ClrMethodName": "FilterByAwaitingApplicant",
+              "Value": "awaiting_applicant",
+              "Description": "Filter results by the \u0060AwaitingApplicant\u0060 scope."
+            },
+            {
+              "ClrMethodName": "FilterByCanceled",
+              "Value": "canceled",
+              "Description": "Filter results by the \u0060Canceled\u0060 scope."
+            },
+            {
+              "ClrMethodName": "FilterByCompleteClear",
+              "Value": "complete_clear",
+              "Description": "Filter results by the \u0060CompleteClear\u0060 scope."
+            },
+            {
+              "ClrMethodName": "FilterByCompleteNotClear",
+              "Value": "complete_not_clear",
+              "Description": "Filter results by the \u0060CompleteNotClear\u0060 scope."
+            },
+            {
               "ClrMethodName": "FilterByCurrent",
               "Value": "current",
               "Description": "filter background checks to only those considered \u0022current\u0022"
+            },
+            {
+              "ClrMethodName": "FilterByExpired",
+              "Value": "expired",
+              "Description": "Filter results by the \u0060Expired\u0060 scope."
+            },
+            {
+              "ClrMethodName": "FilterByExpiredInvitation",
+              "Value": "expired_invitation",
+              "Description": "Filter results by the \u0060ExpiredInvitation\u0060 scope."
+            },
+            {
+              "ClrMethodName": "FilterByNeedsReview",
+              "Value": "needs_review",
+              "Description": "Filter results by the \u0060NeedsReview\u0060 scope."
+            },
+            {
+              "ClrMethodName": "FilterByNotExpired",
+              "Value": "not_expired",
+              "Description": "Filter results by the \u0060NotExpired\u0060 scope."
+            },
+            {
+              "ClrMethodName": "FilterByReportProcessing",
+              "Value": "report_processing",
+              "Description": "Filter results by the \u0060ReportProcessing\u0060 scope."
             }
           ]
         },
@@ -5016,6 +5156,11 @@
               "ClrMethodName": "FilterByOpen",
               "Value": "open",
               "Description": "Filter results by the \u0060Open\u0060 scope."
+            },
+            {
+              "ClrMethodName": "FilterByRecentlyDeleted",
+              "Value": "recently_deleted",
+              "Description": "Filter results by the \u0060RecentlyDeleted\u0060 scope."
             },
             {
               "ClrMethodName": "FilterByRecentlyViewed",
@@ -5347,6 +5492,11 @@
               "ClrMethodName": "FilterByOnlyDeleted",
               "Value": "only_deleted",
               "Description": "Filter results by the \u0060OnlyDeleted\u0060 scope."
+            },
+            {
+              "ClrMethodName": "FilterByRecentlyDeleted",
+              "Value": "recently_deleted",
+              "Description": "Filter results by the \u0060RecentlyDeleted\u0060 scope."
             },
             {
               "ClrMethodName": "FilterByRecentlyViewed",
@@ -6044,7 +6194,58 @@
           "Slug": "background_checks",
           "IsCollection": true,
           "Deprecated": false,
-          "Filters": []
+          "Filters": [
+            {
+              "ClrMethodName": "FilterByAwaitingApplicant",
+              "Value": "awaiting_applicant",
+              "Description": "Filter results by the \u0060AwaitingApplicant\u0060 scope."
+            },
+            {
+              "ClrMethodName": "FilterByCanceled",
+              "Value": "canceled",
+              "Description": "Filter results by the \u0060Canceled\u0060 scope."
+            },
+            {
+              "ClrMethodName": "FilterByCompleteClear",
+              "Value": "complete_clear",
+              "Description": "Filter results by the \u0060CompleteClear\u0060 scope."
+            },
+            {
+              "ClrMethodName": "FilterByCompleteNotClear",
+              "Value": "complete_not_clear",
+              "Description": "Filter results by the \u0060CompleteNotClear\u0060 scope."
+            },
+            {
+              "ClrMethodName": "FilterByCurrent",
+              "Value": "current",
+              "Description": "filter background checks to only those considered \u0022current\u0022"
+            },
+            {
+              "ClrMethodName": "FilterByExpired",
+              "Value": "expired",
+              "Description": "Filter results by the \u0060Expired\u0060 scope."
+            },
+            {
+              "ClrMethodName": "FilterByExpiredInvitation",
+              "Value": "expired_invitation",
+              "Description": "Filter results by the \u0060ExpiredInvitation\u0060 scope."
+            },
+            {
+              "ClrMethodName": "FilterByNeedsReview",
+              "Value": "needs_review",
+              "Description": "Filter results by the \u0060NeedsReview\u0060 scope."
+            },
+            {
+              "ClrMethodName": "FilterByNotExpired",
+              "Value": "not_expired",
+              "Description": "Filter results by the \u0060NotExpired\u0060 scope."
+            },
+            {
+              "ClrMethodName": "FilterByReportProcessing",
+              "Value": "report_processing",
+              "Description": "Filter results by the \u0060ReportProcessing\u0060 scope."
+            }
+          ]
         },
         {
           "JsonName": "connected_people",
@@ -8379,6 +8580,18 @@
       "ShouldGenerateResource": true,
       "ShouldGenerateClients": true,
       "Attributes": [
+        {
+          "JsonName": "attachments_meta",
+          "ClrName": "AttachmentsMeta",
+          "ClrType": "System.Text.Json.Nodes.JsonArray",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "attachments_urls",
+          "ClrName": "AttachmentsUrls",
+          "ClrType": "System.Text.Json.Nodes.JsonArray",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
         {
           "JsonName": "automation_url",
           "ClrName": "AutomationUrl",

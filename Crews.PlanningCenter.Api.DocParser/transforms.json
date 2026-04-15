@@ -135,6 +135,10 @@
       "JsonConverter": "Crews.PlanningCenter.Api.Converters.StringFromNumberConverter"
     },
     {
+      "Attribute": "organization_twenty_four_hour_time",
+      "ClrType": "bool"
+    },
+    {
       "Attribute": "person_id",
       "JsonConverter": "Crews.PlanningCenter.Api.Converters.StringFromNumberConverter"
     },

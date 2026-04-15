@@ -2734,6 +2734,12 @@
           "Description": "Query response items by the \u0060CreatedAt\u0060 attribute."
         },
         {
+          "ClrMethodName": "WhereId",
+          "ClrType": "string",
+          "Parameter": "where[id]",
+          "Description": "Query response items by the \u0060Id\u0060 attribute."
+        },
+        {
           "ClrMethodName": "WhereKind",
           "ClrType": "string",
           "Parameter": "where[kind]",

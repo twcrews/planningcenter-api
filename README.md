@@ -1,5 +1,6 @@
 # .NET Planning Center API Library
 
+[![NuGet Version](https://img.shields.io/nuget/v/Crews.PlanningCenter.Api?logo=nuget)](https://www.nuget.org/packages/Crews.PlanningCenter.Api)
 [![Build](https://github.com/twcrews/planningcenter-api/actions/workflows/ci.yml/badge.svg)](https://github.com/twcrews/planningcenter-api/actions/workflows/ci.yml)
 [![Coverage](https://codecov.io/gh/twcrews/planningcenter-api/branch/master/graph/badge.svg)](https://codecov.io/gh/twcrews/planningcenter-api)
 

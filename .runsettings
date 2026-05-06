@@ -33,6 +33,7 @@
       <DataCollector friendlyName="XPlat Code Coverage">
         <Configuration>
           <ExcludeByFile>**/*.g.cs,**/Crews.PlanningCenter.Api.DocParser/Configuration/**,**/Crews.PlanningCenter.Api.DocParser/Models/**,**/Crews.PlanningCenter.Api.DocParser/Program.cs,**/Crews.PlanningCenter.Api/Api/V2018_08_01/Organization.cs,**/Crews.PlanningCenter.Api/Services/ArrangementSection.cs,**/Crews.PlanningCenter.Api/Authentication/PlanningCenterTokenHandler.cs</ExcludeByFile>
+          <ExcludeByAttribute>System.Runtime.CompilerServices.CompilerGeneratedAttribute</ExcludeByAttribute>
           <SkipAutoProps>true</SkipAutoProps>
         </Configuration>
       </DataCollector>

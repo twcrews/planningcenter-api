@@ -112,8 +112,8 @@ public class MyTokenProvider : IPlanningCenterTokenProvider
 ```
 
 ```csharp
-builder.Services.AddSingleton<MyTokenProvider>();
-builder.Services.AddSingleton<IPlanningCenterTokenProvider>(sp =>
+builder.Services.AddScoped<MyTokenProvider>();
+builder.Services.AddScoped<IPlanningCenterTokenProvider>(sp =>
     sp.GetRequiredService<MyTokenProvider>());
 
 builder.Services.AddPlanningCenterApi();

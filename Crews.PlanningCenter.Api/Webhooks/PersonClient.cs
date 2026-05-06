@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using Crews.PlanningCenter.Api.Models;
 
 namespace Crews.PlanningCenter.Api.Webhooks;
@@ -5,6 +6,7 @@ namespace Crews.PlanningCenter.Api.Webhooks;
 /// <summary>
 /// Client for interacting with the Person resource.
 /// </summary>
+[ExcludeFromCodeCoverage(Justification = "This type is a thin wrapper around the base client with no additional logic to test.")]
 public class PersonClient(HttpClient httpClient, Uri uri) 
     : SingletonResourceClient<Person, PersonResource, PersonResponse>(httpClient, uri)
 {    

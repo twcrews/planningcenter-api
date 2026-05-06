@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.4.0] - 2026-05-06
+
+### Added
+
+- Add `IPlanningCenterTokenProvider` — an interface for supplying a bearer token in environments where `IHttpContextAccessor` cannot provide one (e.g. Blazor Interactive Server). Register an implementation in DI and `PlanningCenterTokenHandler` will use it automatically.
+
+### Fixed
+
+- Fix unhandled `JsonException` when a response body cannot be deserialized as a JSON:API document.
+
 ## [3.3.0] - 2026-05-06
 
 ### Added
@@ -286,6 +296,7 @@ First official stable release!
 
 Initial release.
 
+[3.4.0]: https://github.com/twcrews/planningcenter-api/compare/3.3.0...3.4.0
 [3.3.0]: https://github.com/twcrews/planningcenter-api/compare/3.2.0...3.3.0
 [3.2.0]: https://github.com/twcrews/planningcenter-api/compare/3.1.0...3.2.0
 [3.1.0]: https://github.com/twcrews/planningcenter-api/compare/3.0.0...3.1.0

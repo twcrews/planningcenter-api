@@ -2181,9 +2181,9 @@
       "Description": "An assignment of a person or position to a plan item.",
       "Deprecated": false,
       "CollectionOnly": false,
-      "Postable": false,
+      "Postable": true,
       "Patchable": false,
-      "Deletable": false,
+      "Deletable": true,
       "ShouldGenerateResource": true,
       "ShouldGenerateClients": true,
       "Attributes": [
@@ -2943,7 +2943,7 @@
           "ClrMethodName": "ArchiveAsync",
           "Path": "archive",
           "Description": "Archive a Media.",
-          "AdditionalDetails": "Accepts an optional \u0060time\u0060 attribute (ISO 8601) for scheduling archival for a future time.\n\n\u0060\u0060\u0060json\n{\n  \u0022data\u0022: {\n    \u0022type\u0022: \u0022MediaArchive\u0022,\n    \u0022attributes\u0022: {\n      \u0022time\u0022: \u00222026-07-15T00:00:00Z\u0022\n    }\n  }\n}\n\u0060\u0060\u0060\n",
+          "AdditionalDetails": "Accepts an optional \u0060time\u0060 attribute (ISO 8601) for scheduling archival for a future time.\n\n\u0060\u0060\u0060json\n{\n  \u0022data\u0022: {\n    \u0022type\u0022: \u0022MediaArchive\u0022,\n    \u0022attributes\u0022: {\n      \u0022time\u0022: \u00222026-08-05T00:00:00Z\u0022\n    }\n  }\n}\n\u0060\u0060\u0060\n",
           "Deprecated": false
         },
         {
@@ -3667,6 +3667,16 @@
               "Description": "Filter results by the \u0060ServiceTypes\u0060 scope."
             }
           ]
+        },
+        {
+          "JsonName": "me",
+          "ClrName": "Me",
+          "AttributesClrType": "Person",
+          "Description": "The current user.",
+          "Slug": "me",
+          "IsCollection": false,
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [],
@@ -6026,6 +6036,12 @@
           "Description": "Planning Center does not provide a description for this attribute."
         },
         {
+          "JsonName": "reschedule_declines",
+          "ClrName": "RescheduleDeclines",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
           "JsonName": "responds_to_name",
           "ClrName": "RespondsToName",
           "ClrType": "string",
@@ -6140,7 +6156,7 @@
           "ClrMethodName": "AcceptAsync",
           "Path": "accept",
           "Description": "Accept a Schedule",
-          "AdditionalDetails": "If this isn\u0027t a split time schedule, or you want to accept all times, an empty JSON body is accepted.\n\nIf the user wants to decline specific times you\u0027ll need to send the declined time IDs \u0026 a reason.\n\nA POST body should be formated...\n\n\u0060\u0060\u0060json\n{\n\t\u0022data\u0022: {\n\t\t\u0022type\u0022: \u0022ScheduleAccept\u0022,\n\t\t\u0022attributes\u0022: {\n\t\t\t\u0022reason\u0022: \u0022Because reasons\u0022\n\t\t},\n\t\t\u0022relationships\u0022: {\n\t\t\t\u0022declined_plan_times\u0022: {\n\t\t\t\t\u0022data\u0022: [\n          {\n\t\t\t\t\t  \u0022type\u0022: \u0022PlanTime\u0022,\n\t\t\t\t\t  \u0022id\u0022: \u00221\u0022\n\t\t\t\t  }\n        ]\n\t\t\t}\n\t\t}\n\t}\n}\n\u0060\u0060\u0060\n",
+          "AdditionalDetails": "If this isn\u0027t a split time schedule, or you want to accept all times, an empty JSON body is accepted.\n\nIf the user wants to decline specific times you\u0027ll need to send the declined time IDs \u0026 a reason.\n\nA POST body should be formated...\n\n\u0060\u0060\u0060json\n{\n  \u0022data\u0022: {\n    \u0022type\u0022: \u0022ScheduleAccept\u0022,\n    \u0022attributes\u0022: {\n      \u0022reason\u0022: \u0022Because reasons\u0022\n    },\n    \u0022relationships\u0022: {\n      \u0022declined_plan_times\u0022: {\n        \u0022data\u0022: [\n          {\n            \u0022type\u0022: \u0022PlanTime\u0022,\n            \u0022id\u0022: \u00221\u0022\n          }\n        ]\n      }\n    }\n  }\n}\n\u0060\u0060\u0060\n\n### Proposing a replacement\n\nWhen every time is declined the request falls through to the decline flow, and the optional \u0060replacement_id\u0060 and \u0060replacement_confirmed\u0060 attributes may be included. When the team is configured to reschedule declines with a volunteer replacement and \u0060replacement_id\u0060 is present, the decline initiates the replacement workflow (contacting the chosen person). \u0060replacement_confirmed\u0060 indicates whether the replacement has already agreed to fill in \u2014 skipping the confirmation step when true.\n\n\u0060replacement_id\u0060 is the \u0060account_center_id\u0060 of the proposed replacement.\n\n\u0060\u0060\u0060json\n{\n  \u0022data\u0022: {\n    \u0022type\u0022: \u0022ScheduleAccept\u0022,\n    \u0022attributes\u0022: {\n      \u0022reason\u0022: \u0022Because reasons\u0022,\n      \u0022replacement_id\u0022: \u0022123\u0022,\n      \u0022replacement_confirmed\u0022: true\n    },\n    \u0022relationships\u0022: {\n      \u0022declined_plan_times\u0022: {\n        \u0022data\u0022: [\n          {\n            \u0022type\u0022: \u0022PlanTime\u0022,\n            \u0022id\u0022: \u00221\u0022\n          }\n        ]\n      }\n    }\n  }\n}\n\u0060\u0060\u0060\n\nNote: \u0060replacement_id\u0060 is not validated against a list of eligible replacements; any person in the organization may be submitted. The calling UI is responsible for presenting an appropriate list, matching the existing volunteer-chooses-their-own-replacement flow.\n",
           "Deprecated": false
         },
         {
@@ -6148,7 +6164,7 @@
           "ClrMethodName": "DeclineAsync",
           "Path": "decline",
           "Description": "Decline a Schedule",
-          "AdditionalDetails": "If this is a split time request, all times will be declined.\n\nIf you want to decline specific times see ScheduleAcceptAction.\n\nA POST body should be formated...\n\n\u0060\u0060\u0060json\n{\n\t\u0022data\u0022: {\n\t\t\u0022type\u0022: \u0022ScheduleDecline\u0022,\n\t\t\u0022attributes\u0022: {\n\t\t\t\u0022reason\u0022: \u0022A user supplied reason for declining the request or an empty string.\u0022\n\t\t},\n\t\t\u0022relationships\u0022: null\n\t}\n}\n\u0060\u0060\u0060\n",
+          "AdditionalDetails": "If this is a split time request, all times will be declined.\n\nIf you want to decline specific times see ScheduleAcceptAction.\n\nA POST body should be formated...\n\n\u0060\u0060\u0060json\n{\n  \u0022data\u0022: {\n    \u0022type\u0022: \u0022ScheduleDecline\u0022,\n    \u0022attributes\u0022: {\n      \u0022reason\u0022: \u0022A user supplied reason for declining the request or an empty string.\u0022\n    },\n    \u0022relationships\u0022: null\n  }\n}\n\u0060\u0060\u0060\n\n### Proposing a replacement\n\nThe optional \u0060replacement_id\u0060 and \u0060replacement_confirmed\u0060 attributes may be included on a decline. When the team is configured to reschedule declines with a volunteer replacement and \u0060replacement_id\u0060 is present, the decline initiates the replacement workflow (contacting the chosen person). \u0060replacement_confirmed\u0060 indicates whether the replacement has already agreed to fill in \u2014 skipping the confirmation step when true.\n\n\u0060replacement_id\u0060 is the \u0060account_center_id\u0060 of the proposed replacement.\n\n\u0060\u0060\u0060json\n{\n  \u0022data\u0022: {\n    \u0022type\u0022: \u0022ScheduleDecline\u0022,\n    \u0022attributes\u0022: {\n      \u0022reason\u0022: \u0022A user supplied reason for declining the request or an empty string.\u0022,\n      \u0022replacement_id\u0022: \u0022123\u0022,\n      \u0022replacement_confirmed\u0022: true\n    },\n    \u0022relationships\u0022: null\n  }\n}\n\u0060\u0060\u0060\n\nNote: \u0060replacement_id\u0060 is not validated against a list of eligible replacements; any person in the organization may be submitted. The calling UI is responsible for presenting an appropriate list, matching the existing volunteer-chooses-their-own-replacement flow.\n",
           "Deprecated": false
         }
       ],

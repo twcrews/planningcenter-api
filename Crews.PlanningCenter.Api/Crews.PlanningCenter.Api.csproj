@@ -10,7 +10,7 @@
 
   <PropertyGroup>
     <PackageId>Crews.PlanningCenter.Api</PackageId>
-    <PackageVersion>3.2.0</PackageVersion>
+    <PackageVersion>3.3.0</PackageVersion>
     <Authors>Tommy Crews</Authors>
     <Description>
       A comprehensive library for the Planning Center API.
@@ -49,14 +49,6 @@
   <ItemGroup>
     <PackageReference Include="Crews.Web.JsonApiClient" Version="6.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="8.0.22" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Api/" />
-    <Folder Include="Api/V2018_08_01/" />
-    <Folder Include="Common/" />
-    <Folder Include="Groups/" />
-    <Folder Include="Services/" />
   </ItemGroup>
 
 </Project>

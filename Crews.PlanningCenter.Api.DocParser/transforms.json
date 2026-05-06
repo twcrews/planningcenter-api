@@ -350,6 +350,114 @@
         "Slug": "grades",
         "IsCollection": true
       }
+    },
+    {
+      "Product": "calendar",
+      "Resource": "organization",
+      "Child": {
+        "JsonName": "me",
+        "ClrName": "Me",
+        "AttributesClrType": "Person",
+        "Description": "The current user.",
+        "Slug": "me",
+        "IsCollection": false
+      }
+    },
+    {
+      "Product": "check-ins",
+      "Resource": "organization",
+      "Child": {
+        "JsonName": "me",
+        "ClrName": "Me",
+        "AttributesClrType": "Person",
+        "Description": "The current user.",
+        "Slug": "me",
+        "IsCollection": false
+      }
+    },
+    {
+      "Product": "current",
+      "Resource": "organization",
+      "Child": {
+        "JsonName": "me",
+        "ClrName": "Me",
+        "AttributesClrType": "Person",
+        "Description": "The current user.",
+        "Slug": "me",
+        "IsCollection": false
+      }
+    },
+    {
+      "Product": "giving",
+      "Resource": "organization",
+      "Child": {
+        "JsonName": "me",
+        "ClrName": "Me",
+        "AttributesClrType": "Person",
+        "Description": "The current user.",
+        "Slug": "me",
+        "IsCollection": false
+      }
+    },
+    {
+      "Product": "groups",
+      "Resource": "organization",
+      "Child": {
+        "JsonName": "me",
+        "ClrName": "Me",
+        "AttributesClrType": "Person",
+        "Description": "The current user.",
+        "Slug": "me",
+        "IsCollection": false
+      }
+    },
+    {
+      "Product": "people",
+      "Resource": "organization",
+      "Child": {
+        "JsonName": "me",
+        "ClrName": "Me",
+        "AttributesClrType": "Person",
+        "Description": "The current user.",
+        "Slug": "me",
+        "IsCollection": false
+      }
+    },
+    {
+      "Product": "publishing",
+      "Resource": "organization",
+      "Child": {
+        "JsonName": "me",
+        "ClrName": "Me",
+        "AttributesClrType": "Person",
+        "Description": "The current user.",
+        "Slug": "me",
+        "IsCollection": false
+      }
+    },
+    {
+      "Product": "services",
+      "Resource": "organization",
+      "Child": {
+        "JsonName": "me",
+        "ClrName": "Me",
+        "AttributesClrType": "Person",
+        "Description": "The current user.",
+        "Slug": "me",
+        "IsCollection": false
+      }
+    },
+    {
+      "Product": "webhooks",
+      "Resource": "organization",
+      "Child": {
+        "JsonName": "me",
+        "ClrName": "Me",
+        "AttributesClrType": "Person",
+        "Description": "The current user.",
+        "Slug": "me",
+        "IsCollection": false
+      }
     }
   ]
 }

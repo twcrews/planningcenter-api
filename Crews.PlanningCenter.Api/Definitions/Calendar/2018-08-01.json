@@ -2078,6 +2078,16 @@
               "Description": "Filter results by the \u0060Individual\u0060 scope."
             }
           ]
+        },
+        {
+          "JsonName": "me",
+          "ClrName": "Me",
+          "AttributesClrType": "Person",
+          "Description": "The current user.",
+          "Slug": "me",
+          "IsCollection": false,
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [],

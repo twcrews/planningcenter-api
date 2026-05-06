@@ -1621,6 +1621,16 @@
               "Description": "where \u0060display_publicly\u0060 is enabled\n"
             }
           ]
+        },
+        {
+          "JsonName": "me",
+          "ClrName": "Me",
+          "AttributesClrType": "Person",
+          "Description": "The current user.",
+          "Slug": "me",
+          "IsCollection": false,
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [],

@@ -621,7 +621,7 @@
           "JsonName": "enrollment_strategy",
           "ClrName": "EnrollmentStrategy",
           "ClrType": "string",
-          "Description": "The enrollment strategy for the group.\nSee [documentation](https://pcogroups.zendesk.com/hc/en-us/articles/360016079154#Visibility\u0026EnrollmentStatus)\nfor more information about group enrollment settings.\n\n\nPossible values: \u0060closed\u0060, \u0060request_to_join\u0060, or \u0060open_signup\u0060"
+          "Description": "The enrollment strategy for the group.\nSee [documentation](https://help.planningcenter.com/en/138451-manage-group-settings.html)\nfor more information about group enrollment settings.\n\n\nPossible values: \u0060closed\u0060, \u0060request_to_join\u0060, or \u0060open_signup\u0060"
         },
         {
           "JsonName": "events_listed",
@@ -1675,6 +1675,16 @@
               "Description": "where \u0060display_publicly\u0060 is enabled\n"
             }
           ]
+        },
+        {
+          "JsonName": "me",
+          "ClrName": "Me",
+          "AttributesClrType": "Person",
+          "Description": "The current user.",
+          "Slug": "me",
+          "IsCollection": false,
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [],

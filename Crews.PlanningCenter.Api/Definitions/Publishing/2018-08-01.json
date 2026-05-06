@@ -1130,6 +1130,16 @@
           "IsCollection": true,
           "Deprecated": false,
           "Filters": []
+        },
+        {
+          "JsonName": "me",
+          "ClrName": "Me",
+          "AttributesClrType": "Person",
+          "Description": "The current user.",
+          "Slug": "me",
+          "IsCollection": false,
+          "Deprecated": false,
+          "Filters": []
         }
       ],
       "CanInclude": [],

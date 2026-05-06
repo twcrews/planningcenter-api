@@ -42,7 +42,7 @@ public abstract class ResourceClient<TModel>(HttpClient httpClient, Uri uri)
         UriBuilder builder = new(Uri);
         NameValueCollection query = HttpUtility.ParseQueryString(builder.Query);
         query[parameter] = query[parameter] is null ? value : $"{query[parameter]},{value}";
-        builder.Query = query.ToString() ?? string.Empty;
+        builder.Query = query.ToString();
         Uri = builder.Uri;
         return this;
     }
@@ -57,7 +57,7 @@ public abstract class ResourceClient<TModel>(HttpClient httpClient, Uri uri)
         UriBuilder builder = new(Uri);
         NameValueCollection query = HttpUtility.ParseQueryString(builder.Query);
         query[parameter] = value;
-        builder.Query = query.ToString() ?? string.Empty;
+        builder.Query = query.ToString();
         Uri = builder.Uri;
         return this;
     }

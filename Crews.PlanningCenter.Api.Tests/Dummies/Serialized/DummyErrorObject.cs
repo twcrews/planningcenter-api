@@ -8,6 +8,14 @@ static partial class Serialized
 	}
 	""";
 
+	public const string DummyMetaOnlyObject = """
+	{
+		"meta": {
+			"total_count": 0
+		}
+	}
+	""";
+
 	public const string DummyErrorObject = """
 	{
 		"errors": [

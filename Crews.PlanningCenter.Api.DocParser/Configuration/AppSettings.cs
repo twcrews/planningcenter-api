@@ -1,5 +1,8 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace Crews.PlanningCenter.Api.DocParser.Configuration;
 
+[ExcludeFromCodeCoverage(Justification = "This type is a DTO with no logic to test.")]
 public record AppSettings
 {
     public string OutputDirectory { get; init; } = "output";

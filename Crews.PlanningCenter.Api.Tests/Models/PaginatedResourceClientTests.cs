@@ -253,6 +253,48 @@ public class PaginatedResourceClientTests
 	}
 
 	[Fact]
+	public async Task GetAsync_WithEmptyBody_ReturnsResponseWithNullDocument()
+	{
+		// Arrange
+		var mockHttp = new MockHttpMessageHandler();
+		mockHttp.When(HttpMethod.Get, "https://example.com/test")
+			.Respond(HttpStatusCode.OK, "application/json", string.Empty);
+
+		var httpClient = mockHttp.ToHttpClient();
+		var uri = new Uri("https://example.com/test");
+		var client = new TestPaginatedResourceClient(httpClient, uri);
+
+		// Act
+		var response = await client.GetAsync();
+
+		// Assert
+		Assert.Null(response.Document);
+		Assert.Null(response.Data);
+		Assert.NotNull(response.ResponseMessage);
+	}
+
+	[Fact]
+	public async Task GetAsync_WithMetaOnlyResponse_ReturnsDocumentWithNullData()
+	{
+		// Arrange
+		var mockHttp = new MockHttpMessageHandler();
+		mockHttp.When(HttpMethod.Get, "https://example.com/test")
+			.Respond("application/json", Serialized.DummyMetaOnlyObject);
+
+		var httpClient = mockHttp.ToHttpClient();
+		var uri = new Uri("https://example.com/test");
+		var client = new TestPaginatedResourceClient(httpClient, uri);
+
+		// Act
+		var response = await client.GetAsync();
+
+		// Assert
+		Assert.NotNull(response.Document);
+		Assert.Null(response.Data);
+		Assert.NotNull(response.ResponseMessage);
+	}
+
+	[Fact]
 	public async Task GetAsync_WithErrorResponse_ThrowsJsonApiException()
 	{
 		// Arrange
@@ -329,6 +371,48 @@ public class PaginatedResourceClientTests
 
 		// Assert
 		Assert.NotNull(response.Data);
+	}
+
+	[Fact]
+	public async Task PostAsync_WithEmptyBody_ReturnsResponseWithNullDocument()
+	{
+		// Arrange
+		var mockHttp = new MockHttpMessageHandler();
+		mockHttp.When(HttpMethod.Post, "https://example.com/test")
+			.Respond(HttpStatusCode.OK, "application/json", string.Empty);
+
+		var httpClient = mockHttp.ToHttpClient();
+		var uri = new Uri("https://example.com/test");
+		var client = new TestPaginatedResourceClient(httpClient, uri);
+
+		// Act
+		var response = await client.PostAsync(new() { Name = "John", Age = 30 });
+
+		// Assert
+		Assert.Null(response.Document);
+		Assert.Null(response.Data);
+		Assert.NotNull(response.ResponseMessage);
+	}
+
+	[Fact]
+	public async Task PostAsync_WithMetaOnlyResponse_ReturnsDocumentWithNullData()
+	{
+		// Arrange
+		var mockHttp = new MockHttpMessageHandler();
+		mockHttp.When(HttpMethod.Post, "https://example.com/test")
+			.Respond("application/json", Serialized.DummyMetaOnlyObject);
+
+		var httpClient = mockHttp.ToHttpClient();
+		var uri = new Uri("https://example.com/test");
+		var client = new TestPaginatedResourceClient(httpClient, uri);
+
+		// Act
+		var response = await client.PostAsync(new() { Name = "John", Age = 30 });
+
+		// Assert
+		Assert.NotNull(response.Document);
+		Assert.Null(response.Data);
+		Assert.NotNull(response.ResponseMessage);
 	}
 
 	[Fact]

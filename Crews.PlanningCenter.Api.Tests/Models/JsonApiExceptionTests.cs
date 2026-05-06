@@ -73,6 +73,16 @@ public class JsonApiExceptionTests
 	}
 
 	[Fact]
+	public void Constructor_WithNullJson_CreatesEmptyErrors()
+	{
+		// Act
+		var exception = new JsonApiException("null", null);
+
+		// Assert
+		Assert.Empty(exception.Errors);
+	}
+
+	[Fact]
 	public void Errors_WithValidJsonApiErrors_DeserializesCorrectly()
 	{
 		// Arrange

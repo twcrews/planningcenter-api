@@ -24,7 +24,7 @@ public class StringFromNumberConverter : JsonConverter<string>
         }
         else if (reader.TokenType == JsonTokenType.String)
         {
-            return reader.GetString() ?? string.Empty;
+            return reader.GetString()!;
         }
         else
         {

@@ -802,6 +802,24 @@ public partial class PlanningCenterResourceClientsGeneratorTests
             "public class Track1TitleCollectionResponse : ResourceResponse<IEnumerable<Track1TitleResource>> { }");
     }
 
+    [Fact]
+    public void ShouldSkipFileWhenTextIsNull()
+    {
+        // Arrange
+        var (compilation, additionalFiles) = GeneratorTestHelper.CreateCompilationWithNullText(
+            "namespace Test { }",
+            "People/2024-12-01.json");
+
+        // Act
+        var result = GeneratorTestHelper.RunGenerator(
+            "PlanningCenterResourceClientsGenerator",
+            compilation,
+            additionalFiles);
+
+        // Assert
+        Assert.Empty(result.GeneratedTrees);
+    }
+
     [System.Text.RegularExpressions.GeneratedRegex("public new Task DeleteAsync")]
     private static partial System.Text.RegularExpressions.Regex MyRegex();
 }

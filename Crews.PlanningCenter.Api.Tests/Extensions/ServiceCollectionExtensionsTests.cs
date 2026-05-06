@@ -119,4 +119,17 @@ public class ServiceCollectionExtensionsTests
 
 		Assert.Contains(services, d => d.ServiceType == typeof(IHttpClientFactory));
 	}
+
+	[Fact(DisplayName = "AddPlanningCenterApi() configures HttpClient with Planning Center base address")]
+	public void AddPlanningCenterApi_ConfiguresHttpClientBaseAddress()
+	{
+		var services = new ServiceCollection();
+		services.AddPlanningCenterApi();
+		using var provider = services.BuildServiceProvider();
+
+		var factory = provider.GetRequiredService<IHttpClientFactory>();
+		var client = factory.CreateClient("PlanningCenterApi");
+
+		Assert.Equal(new Uri(PlanningCenterAuthenticationDefaults.BaseUrl + "/"), client.BaseAddress);
+	}
 }

@@ -124,8 +124,8 @@ class DocumentationBuilder(
         string vertexId = vertex.Id ?? throw new InvalidOperationException("Vertex is missing an ID.");
         string vertexName = vertex.Attributes?.Name ?? throw new InvalidOperationException("Vertex is missing a name attribute.");
         string vertexDescription = vertex.Attributes.Description ?? "Planning Center does not provide a description for this resource.";
-        bool vertexDeprecated = vertex.Attributes?.Deprecated ?? false;
-        bool vertexCollectionOnly = vertex.Attributes?.CollectionOnly ?? false;
+        bool vertexDeprecated = vertex.Attributes.Deprecated;
+        bool vertexCollectionOnly = vertex.Attributes.CollectionOnly;
 
         DocumentationTransforms.ResourcePropertyOverrideEntry? overrideEntry = overrides.Value.ResourceOverrides
             .FirstOrDefault(e => (e.Product is null || e.Product.Equals(product.ToString(), StringComparison.OrdinalIgnoreCase))

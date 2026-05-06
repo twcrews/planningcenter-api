@@ -95,6 +95,32 @@ builder.Services.AddPlanningCenterApi();
 
 Product clients can then be injected directly into your services and controllers. See the [Usage](usage.md) guide for examples.
 
+## Custom Token Providers (Blazor Interactive Server)
+
+In environments where `IHttpContextAccessor` cannot supply a token — such as Blazor Interactive Server after the SSR prerender pass — implement `IPlanningCenterTokenProvider` and register it with the DI container:
+
+```csharp
+public class MyTokenProvider : IPlanningCenterTokenProvider
+{
+    // Store the token during prerender (e.g. from a cascading parameter or state container)
+    private string? _token;
+
+    public void SetToken(string? token) => _token = token;
+
+    public Task<string?> GetAccessTokenAsync() => Task.FromResult(_token);
+}
+```
+
+```csharp
+builder.Services.AddSingleton<MyTokenProvider>();
+builder.Services.AddSingleton<IPlanningCenterTokenProvider>(sp =>
+    sp.GetRequiredService<MyTokenProvider>());
+
+builder.Services.AddPlanningCenterApi();
+```
+
+When an `IPlanningCenterTokenProvider` is registered, `PlanningCenterTokenHandler` uses it instead of `IHttpContextAccessor`. If neither can supply a token, requests are sent without an `Authorization` header.
+
 ## Security Best Practices
 
 - Never commit credentials to source control

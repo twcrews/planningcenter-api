@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 
 namespace Crews.PlanningCenter.Api.Services;
@@ -5,6 +6,7 @@ namespace Crews.PlanningCenter.Api.Services;
 /// <summary>
 /// Represents one section of an arrangement.
 /// </summary>
+[ExcludeFromCodeCoverage(Justification = "This type is a DTO with no logic to test.")]
 public record ArrangementSection
 {
     /// <summary>

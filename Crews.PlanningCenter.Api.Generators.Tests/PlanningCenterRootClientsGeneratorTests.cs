@@ -308,6 +308,25 @@ public class PlanningCenterRootClientsGeneratorTests
             "public Crews.PlanningCenter.Api.CheckIns.V2024_12_01.OrganizationClient Latest");
     }
 
+    [Fact]
+    public void ShouldNotGenerateOutputWhenJsonDeserializesToNull()
+    {
+        // Arrange: "null" is valid JSON that deserializes to null for reference types,
+        // triggering the ?? throw. Roslyn catches the exception and produces no output.
+        var (compilation, additionalFiles) = GeneratorTestHelper.CreateCompilation(
+            "namespace Test { }",
+            ("People/2024-12-01.json", "null"));
+
+        // Act
+        var result = GeneratorTestHelper.RunGenerator(
+            "PlanningCenterRootClientsGenerator",
+            compilation,
+            additionalFiles);
+
+        // Assert
+        Assert.Empty(result.GeneratedTrees);
+    }
+
     private static Crews.PlanningCenter.Api.Models.Resource CreateMinimalResource()
     {
         return new Crews.PlanningCenter.Api.Models.Resource

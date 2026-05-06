@@ -396,6 +396,66 @@ public class DocumentationBuilderTests
         Assert.True(resource.CollectionOnly);
     }
 
+    [Fact(DisplayName = "BuildProductAsync defaults deprecated flag to false")]
+    public async Task BuildProductAsync_DefaultsDeprecatedToFalse()
+    {
+        // Arrange
+        ProductDefinition productDef = ProductDefinition.Services;
+        VersionResource versionRes = TestDataBuilder.CreateVersionResource("2024-01-01");
+        VertexResource planVertex = TestDataBuilder.CreateVertexResource("plan", "Plan");
+
+        GraphDocument graphDoc = TestDataBuilder.CreateGraphDocument(versions: [versionRes]);
+        GraphVersionDocument versionDoc = TestDataBuilder.CreateGraphVersionDocument(
+            id: "2024-01-01",
+            vertices: [planVertex]);
+
+        VertexDocument planDoc = TestDataBuilder.CreateVertexDocument(
+            id: "plan",
+            name: "Plan",
+            deprecated: false);
+
+        _mockClient.GetGraphAsync(productDef).Returns(graphDoc);
+        _mockClient.GetGraphVersionAsync(productDef, "2024-01-01").Returns(versionDoc);
+        _mockClient.GetVertexAsync(productDef, "2024-01-01", "plan").Returns(planDoc);
+
+        // Act
+        Product product = await _builder.BuildProductAsync(productDef);
+
+        // Assert
+        Resource resource = product.Versions.First().Resources.First();
+        Assert.False(resource.Deprecated);
+    }
+
+    [Fact(DisplayName = "BuildProductAsync defaults collection only flag to false")]
+    public async Task BuildProductAsync_DefaultsCollectionOnlyToFalse()
+    {
+        // Arrange
+        ProductDefinition productDef = ProductDefinition.CheckIns;
+        VersionResource versionRes = TestDataBuilder.CreateVersionResource("2024-01-01");
+        VertexResource eventVertex = TestDataBuilder.CreateVertexResource("event", "Event");
+
+        GraphDocument graphDoc = TestDataBuilder.CreateGraphDocument(versions: [versionRes]);
+        GraphVersionDocument versionDoc = TestDataBuilder.CreateGraphVersionDocument(
+            id: "2024-01-01",
+            vertices: [eventVertex]);
+
+        VertexDocument eventDoc = TestDataBuilder.CreateVertexDocument(
+            id: "event",
+            name: "Event",
+            collectionOnly: false);
+
+        _mockClient.GetGraphAsync(productDef).Returns(graphDoc);
+        _mockClient.GetGraphVersionAsync(productDef, "2024-01-01").Returns(versionDoc);
+        _mockClient.GetVertexAsync(productDef, "2024-01-01", "event").Returns(eventDoc);
+
+        // Act
+        Product product = await _builder.BuildProductAsync(productDef);
+
+        // Assert
+        Resource resource = product.Versions.First().Resources.First();
+        Assert.False(resource.CollectionOnly);
+    }
+
     [Fact(DisplayName = "BuildProductAsync appends additional outbound edges as children")]
     public async Task BuildProductAsync_AppliesToAdditionalOutboundEdges()
     {
@@ -1638,6 +1698,574 @@ public class DocumentationBuilderTests
                 {
                     Resource = "organization", // does not match "person"
                     Child = extraChild
+                }
+            ]
+        };
+
+        DocumentationBuilder builder = new(_mockLogger, _mockClient,
+            Options.Create<AppSettings.DocumentationBuilderOptions>(new() { ConcurrentConnections = 10 }),
+            Options.Create(transforms));
+
+        GraphDocument graphDoc = TestDataBuilder.CreateGraphDocument(versions: [versionRes]);
+        GraphVersionDocument versionDoc = TestDataBuilder.CreateGraphVersionDocument(
+            id: "2024-01-01", vertices: [personVertex]);
+        VertexDocument personDoc = TestDataBuilder.CreateVertexDocument(id: "person", name: "Person");
+
+        _mockClient.GetGraphAsync(productDef).Returns(graphDoc);
+        _mockClient.GetGraphVersionAsync(productDef, "2024-01-01").Returns(versionDoc);
+        _mockClient.GetVertexAsync(productDef, "2024-01-01", "person").Returns(personDoc);
+
+        // Act
+        Product product = await builder.BuildProductAsync(productDef);
+
+        // Assert
+        Assert.Empty(product.Versions.First().Resources.First().Children);
+    }
+
+    [Fact(DisplayName = "BuildProductAsync uses product name when graph title is null")]
+    public async Task BuildProductAsync_NullGraphTitle_UsesFallbackProductName()
+    {
+        // Arrange: exercises the Title ?? product.ToString() null-coalescing branch (line 55)
+        ProductDefinition productDef = ProductDefinition.People;
+        GraphDocument graphDoc = new()
+        {
+            Data = new GraphResource
+            {
+                Id = "people",
+                Type = "graph",
+                Attributes = new Graph { Title = null, Description = "Test" },
+                Relationships = new GraphRelationships
+                {
+                    Versions = new VersionRelationship { Data = [] }
+                }
+            }
+        };
+
+        _mockClient.GetGraphAsync(productDef).Returns(graphDoc);
+
+        // Act
+        Product product = await _builder.BuildProductAsync(productDef);
+
+        // Assert: product.Name is always productDef.ToString(); the null Title branch is exercised
+        Assert.Equal(productDef.ToString(), product.Name);
+    }
+
+    [Fact(DisplayName = "BuildProductAsync throws when version resource Id is null")]
+    public async Task BuildProductAsync_NullVersionResourceId_ThrowsInvalidOperationException()
+    {
+        // Arrange
+        ProductDefinition productDef = ProductDefinition.People;
+        VersionResource nullIdVersion = new()
+        {
+            Id = null,
+            Type = "version",
+            Attributes = new DocParser.Models.Version { Beta = false },
+            Relationships = new VersionRelationships
+            {
+                Entry = new VertexRelationship
+                {
+                    Data = new VertexResource { Id = "org", Type = "vertex", Attributes = new Vertex { Name = "Org" } }
+                },
+                Vertices = new VertexCollectionRelationship { Data = [] }
+            }
+        };
+
+        GraphDocument graphDoc = new()
+        {
+            Data = new GraphResource
+            {
+                Id = "people",
+                Type = "graph",
+                Attributes = new Graph { Title = "People" },
+                Relationships = new GraphRelationships
+                {
+                    Versions = new VersionRelationship { Data = [nullIdVersion] }
+                }
+            }
+        };
+
+        _mockClient.GetGraphAsync(productDef).Returns(graphDoc);
+
+        // Act & Assert
+        await Assert.ThrowsAsync<InvalidOperationException>(() => _builder.BuildProductAsync(productDef));
+    }
+
+    [Fact(DisplayName = "BuildProductAsync throws when version document Id is null")]
+    public async Task BuildProductAsync_NullVersionDocumentId_ThrowsInvalidOperationException()
+    {
+        // Arrange
+        ProductDefinition productDef = ProductDefinition.People;
+        VersionResource versionRes = TestDataBuilder.CreateVersionResource("2024-01-01");
+        GraphDocument graphDoc = TestDataBuilder.CreateGraphDocument(versions: [versionRes]);
+
+        GraphVersionDocument nullIdVersionDoc = new()
+        {
+            Data = new GraphVersionResource
+            {
+                Id = null,
+                Type = "version",
+                Attributes = new GraphVersion { Beta = false, Details = "Test" },
+                Relationships = new GraphVersionRelationships
+                {
+                    PreviousVersion = new(),
+                    NextVersion = new(),
+                    Changes = new VertexChangeCollectionRelationship { Data = [] },
+                    Removed = new DeprecatedEdgeCollectionRelationship { Data = [] },
+                    Vertices = new VertexCollectionRelationship { Data = [] },
+                    Edges = new EdgeCollectionRelationship { Data = [] },
+                    Entry = new VertexRelationship { Data = TestDataBuilder.CreateVertexResource() }
+                }
+            }
+        };
+
+        _mockClient.GetGraphAsync(productDef).Returns(graphDoc);
+        _mockClient.GetGraphVersionAsync(productDef, "2024-01-01").Returns(nullIdVersionDoc);
+
+        // Act & Assert
+        await Assert.ThrowsAsync<InvalidOperationException>(() => _builder.BuildProductAsync(productDef));
+    }
+
+    [Fact(DisplayName = "BuildProductAsync throws when vertex resource Id in version vertices is null")]
+    public async Task BuildProductAsync_NullVersionVertexId_ThrowsInvalidOperationException()
+    {
+        // Arrange
+        ProductDefinition productDef = ProductDefinition.People;
+        VersionResource versionRes = TestDataBuilder.CreateVersionResource("2024-01-01");
+        VertexResource nullIdVertex = new() { Id = null, Type = "vertex", Attributes = new Vertex { Name = "Person" } };
+
+        GraphDocument graphDoc = TestDataBuilder.CreateGraphDocument(versions: [versionRes]);
+        GraphVersionDocument versionDoc = TestDataBuilder.CreateGraphVersionDocument(
+            id: "2024-01-01",
+            vertices: [nullIdVertex]);
+
+        _mockClient.GetGraphAsync(productDef).Returns(graphDoc);
+        _mockClient.GetGraphVersionAsync(productDef, "2024-01-01").Returns(versionDoc);
+
+        // Act & Assert
+        await Assert.ThrowsAsync<InvalidOperationException>(() => _builder.BuildProductAsync(productDef));
+    }
+
+    [Fact(DisplayName = "BuildProductAsync throws when vertex document Id is null")]
+    public async Task BuildProductAsync_NullVertexDocumentId_ThrowsInvalidOperationException()
+    {
+        // Arrange
+        ProductDefinition productDef = ProductDefinition.People;
+        VersionResource versionRes = TestDataBuilder.CreateVersionResource("2024-01-01");
+        VertexResource personVertex = TestDataBuilder.CreateVertexResource("person", "Person");
+
+        GraphDocument graphDoc = TestDataBuilder.CreateGraphDocument(versions: [versionRes]);
+        GraphVersionDocument versionDoc = TestDataBuilder.CreateGraphVersionDocument(
+            id: "2024-01-01", vertices: [personVertex]);
+
+        VertexDocument nullIdDoc = new()
+        {
+            Data = new VertexResource { Id = null, Type = "vertex", Attributes = new Vertex { Name = "Person" } }
+        };
+
+        _mockClient.GetGraphAsync(productDef).Returns(graphDoc);
+        _mockClient.GetGraphVersionAsync(productDef, "2024-01-01").Returns(versionDoc);
+        _mockClient.GetVertexAsync(productDef, "2024-01-01", "person").Returns(nullIdDoc);
+
+        // Act & Assert
+        await Assert.ThrowsAsync<InvalidOperationException>(() => _builder.BuildProductAsync(productDef));
+    }
+
+    [Fact(DisplayName = "BuildProductAsync throws when vertex attributes are null")]
+    public async Task BuildProductAsync_NullVertexAttributes_ThrowsInvalidOperationException()
+    {
+        // Arrange: exercises the vertex.Attributes?.Name ?? throw path on line 125
+        ProductDefinition productDef = ProductDefinition.People;
+        VersionResource versionRes = TestDataBuilder.CreateVersionResource("2024-01-01");
+        VertexResource personVertex = TestDataBuilder.CreateVertexResource("person", "Person");
+
+        GraphDocument graphDoc = TestDataBuilder.CreateGraphDocument(versions: [versionRes]);
+        GraphVersionDocument versionDoc = TestDataBuilder.CreateGraphVersionDocument(
+            id: "2024-01-01", vertices: [personVertex]);
+
+        VertexDocument nullAttributesDoc = new()
+        {
+            Data = new VertexResource { Id = "person", Type = "vertex", Attributes = null }
+        };
+
+        _mockClient.GetGraphAsync(productDef).Returns(graphDoc);
+        _mockClient.GetGraphVersionAsync(productDef, "2024-01-01").Returns(versionDoc);
+        _mockClient.GetVertexAsync(productDef, "2024-01-01", "person").Returns(nullAttributesDoc);
+
+        // Act & Assert
+        await Assert.ThrowsAsync<InvalidOperationException>(() => _builder.BuildProductAsync(productDef));
+    }
+
+    [Fact(DisplayName = "BuildProductAsync uses default resource description when vertex description is null")]
+    public async Task BuildProductAsync_NullVertexDescription_UsesDefaultResourceDescription()
+    {
+        // Arrange
+        ProductDefinition productDef = ProductDefinition.People;
+        VersionResource versionRes = TestDataBuilder.CreateVersionResource("2024-01-01");
+        VertexResource personVertex = TestDataBuilder.CreateVertexResource("person", "Person");
+
+        GraphDocument graphDoc = TestDataBuilder.CreateGraphDocument(versions: [versionRes]);
+        GraphVersionDocument versionDoc = TestDataBuilder.CreateGraphVersionDocument(
+            id: "2024-01-01", vertices: [personVertex]);
+
+        VertexDocument nullDescDoc = new()
+        {
+            Data = new VertexResource
+            {
+                Id = "person",
+                Type = "vertex",
+                Attributes = new Vertex { Name = "Person", Description = null },
+                Relationships = null
+            }
+        };
+
+        _mockClient.GetGraphAsync(productDef).Returns(graphDoc);
+        _mockClient.GetGraphVersionAsync(productDef, "2024-01-01").Returns(versionDoc);
+        _mockClient.GetVertexAsync(productDef, "2024-01-01", "person").Returns(nullDescDoc);
+
+        // Act
+        Product product = await _builder.BuildProductAsync(productDef);
+
+        // Assert
+        Resource resource = product.Versions.First().Resources.First();
+        Assert.Equal("Planning Center does not provide a description for this resource.", resource.Description);
+    }
+
+    [Fact(DisplayName = "BuildProductAsync uses defaults when vertex relationships is null")]
+    public async Task BuildProductAsync_NullVertexRelationships_UsesDefaults()
+    {
+        // Arrange: covers the ?? false and ?? [] null-coalescing branches in BuildResource
+        ProductDefinition productDef = ProductDefinition.People;
+        VersionResource versionRes = TestDataBuilder.CreateVersionResource("2024-01-01");
+        VertexResource personVertex = TestDataBuilder.CreateVertexResource("person", "Person");
+
+        GraphDocument graphDoc = TestDataBuilder.CreateGraphDocument(versions: [versionRes]);
+        GraphVersionDocument versionDoc = TestDataBuilder.CreateGraphVersionDocument(
+            id: "2024-01-01", vertices: [personVertex]);
+
+        VertexDocument nullRelDoc = new()
+        {
+            Data = new VertexResource
+            {
+                Id = "person",
+                Type = "vertex",
+                Attributes = new Vertex { Name = "Person" },
+                Relationships = null
+            }
+        };
+
+        _mockClient.GetGraphAsync(productDef).Returns(graphDoc);
+        _mockClient.GetGraphVersionAsync(productDef, "2024-01-01").Returns(versionDoc);
+        _mockClient.GetVertexAsync(productDef, "2024-01-01", "person").Returns(nullRelDoc);
+
+        // Act
+        Product product = await _builder.BuildProductAsync(productDef);
+
+        // Assert
+        Resource resource = product.Versions.First().Resources.First();
+        Assert.False(resource.Postable);
+        Assert.False(resource.Patchable);
+        Assert.False(resource.Deletable);
+        Assert.Empty(resource.Attributes);
+        Assert.Empty(resource.Relationships);
+        Assert.Empty(resource.Actions);
+        Assert.Empty(resource.Children);
+        Assert.Empty(resource.CanInclude);
+        Assert.Empty(resource.CanOrderBy);
+        Assert.Empty(resource.CanQueryBy);
+    }
+
+    [Fact(DisplayName = "BuildProductAsync uses default attribute description when attribute description is null")]
+    public async Task BuildProductAsync_NullAttributeDescription_UsesDefaultAttributeDescription()
+    {
+        // Arrange: the CreateAttributeResource helper always fills description; create inline to get null
+        ProductDefinition productDef = ProductDefinition.People;
+        VersionResource versionRes = TestDataBuilder.CreateVersionResource("2024-01-01");
+        VertexResource personVertex = TestDataBuilder.CreateVertexResource("person", "Person");
+
+        AttributeResource nullDescAttr = new()
+        {
+            Id = "status",
+            Type = "attribute",
+            Attributes = new DocParser.Models.Attribute
+            {
+                Name = "status",
+                TypeAnnotation = new TypeAnnotation { Name = "string" },
+                Description = null,
+                PermissionLevel = "read"
+            }
+        };
+
+        GraphDocument graphDoc = TestDataBuilder.CreateGraphDocument(versions: [versionRes]);
+        GraphVersionDocument versionDoc = TestDataBuilder.CreateGraphVersionDocument(
+            id: "2024-01-01", vertices: [personVertex]);
+        VertexDocument personDoc = TestDataBuilder.CreateVertexDocument(
+            id: "person", name: "Person", attributes: [nullDescAttr]);
+
+        _mockClient.GetGraphAsync(productDef).Returns(graphDoc);
+        _mockClient.GetGraphVersionAsync(productDef, "2024-01-01").Returns(versionDoc);
+        _mockClient.GetVertexAsync(productDef, "2024-01-01", "person").Returns(personDoc);
+
+        // Act
+        Product product = await _builder.BuildProductAsync(productDef);
+
+        // Assert
+        ResourceAttribute attr = product.Versions.First().Resources.First().Attributes.First();
+        Assert.Equal("Planning Center does not provide a description for this attribute.", attr.Description);
+    }
+
+    [Fact(DisplayName = "BuildProductAsync throws when includable parameter value is null")]
+    public async Task BuildProductAsync_NullIncludableValue_ThrowsInvalidOperationException()
+    {
+        // Arrange: exercises the value ?? throw path in BuildIncludable
+        ProductDefinition productDef = ProductDefinition.People;
+        VersionResource versionRes = TestDataBuilder.CreateVersionResource("2024-01-01");
+        VertexResource personVertex = TestDataBuilder.CreateVertexResource("person", "Person");
+
+        UrlParameterResource nullValueParam = new()
+        {
+            Id = "include_emails",
+            Type = "url_parameter",
+            Attributes = new UrlParameter
+            {
+                Name = "emails",
+                Parameter = "include",
+                Type = "string",
+                Value = null
+            }
+        };
+
+        GraphDocument graphDoc = TestDataBuilder.CreateGraphDocument(versions: [versionRes]);
+        GraphVersionDocument versionDoc = TestDataBuilder.CreateGraphVersionDocument(
+            id: "2024-01-01", vertices: [personVertex]);
+        VertexDocument personDoc = TestDataBuilder.CreateVertexDocument(
+            id: "person", name: "Person", canInclude: [nullValueParam]);
+
+        _mockClient.GetGraphAsync(productDef).Returns(graphDoc);
+        _mockClient.GetGraphVersionAsync(productDef, "2024-01-01").Returns(versionDoc);
+        _mockClient.GetVertexAsync(productDef, "2024-01-01", "person").Returns(personDoc);
+
+        // Act: CanInclude is built lazily; enumerate it to trigger BuildIncludable
+        Product product = await _builder.BuildProductAsync(productDef);
+
+        // Assert
+        Assert.Throws<InvalidOperationException>(() =>
+            product.Versions.First().Resources.First().CanInclude.ToList());
+    }
+
+    [Fact(DisplayName = "BuildProductAsync throws when orderable parameter value is null")]
+    public async Task BuildProductAsync_NullOrderableValue_ThrowsInvalidOperationException()
+    {
+        // Arrange: exercises the value ?? throw path in BuildOrderable
+        ProductDefinition productDef = ProductDefinition.People;
+        VersionResource versionRes = TestDataBuilder.CreateVersionResource("2024-01-01");
+        VertexResource personVertex = TestDataBuilder.CreateVertexResource("person", "Person");
+
+        UrlParameterResource nullValueParam = new()
+        {
+            Id = "order_first_name",
+            Type = "url_parameter",
+            Attributes = new UrlParameter
+            {
+                Name = "first_name",
+                Parameter = "order",
+                Type = "string",
+                Value = null
+            }
+        };
+
+        GraphDocument graphDoc = TestDataBuilder.CreateGraphDocument(versions: [versionRes]);
+        GraphVersionDocument versionDoc = TestDataBuilder.CreateGraphVersionDocument(
+            id: "2024-01-01", vertices: [personVertex]);
+        VertexDocument personDoc = TestDataBuilder.CreateVertexDocument(
+            id: "person", name: "Person", canOrder: [nullValueParam]);
+
+        _mockClient.GetGraphAsync(productDef).Returns(graphDoc);
+        _mockClient.GetGraphVersionAsync(productDef, "2024-01-01").Returns(versionDoc);
+        _mockClient.GetVertexAsync(productDef, "2024-01-01", "person").Returns(personDoc);
+
+        // Act: CanOrderBy is built lazily; enumerate it to trigger BuildOrderable
+        Product product = await _builder.BuildProductAsync(productDef);
+
+        // Assert
+        Assert.Throws<InvalidOperationException>(() =>
+            product.Versions.First().Resources.First().CanOrderBy.ToList());
+    }
+
+    [Fact(DisplayName = "BuildProductAsync applies resource child override when version matches")]
+    public async Task BuildProductAsync_ChildOverride_MatchesNonNullVersion()
+    {
+        // Arrange: exercises the e.Version == versionId branch in ResourceChildOverrides filter
+        ProductDefinition productDef = ProductDefinition.People;
+        VersionResource versionRes = TestDataBuilder.CreateVersionResource("2024-01-01");
+        VertexResource personVertex = TestDataBuilder.CreateVertexResource("person", "Person");
+        EdgeResource emailsEdge = TestDataBuilder.CreateEdgeResource(
+            "emails",
+            "https://api.planningcenteronline.com/people/v2/emails",
+            "email",
+            "Email");
+
+        DocumentationTransforms transforms = new()
+        {
+            ResourceChildOverrides =
+            [
+                new()
+                {
+                    Product = "people",
+                    Version = "2024-01-01",
+                    Resource = "person",
+                    Child = "emails",
+                    ClrName = "EmailAddressesOverridden"
+                }
+            ]
+        };
+
+        DocumentationBuilder builder = new(_mockLogger, _mockClient,
+            Options.Create<AppSettings.DocumentationBuilderOptions>(new() { ConcurrentConnections = 10 }),
+            Options.Create(transforms));
+
+        GraphDocument graphDoc = TestDataBuilder.CreateGraphDocument(versions: [versionRes]);
+        GraphVersionDocument versionDoc = TestDataBuilder.CreateGraphVersionDocument(
+            id: "2024-01-01", vertices: [personVertex]);
+        VertexDocument personDoc = TestDataBuilder.CreateVertexDocument(
+            id: "person", name: "Person", outboundEdges: [emailsEdge]);
+
+        _mockClient.GetGraphAsync(productDef).Returns(graphDoc);
+        _mockClient.GetGraphVersionAsync(productDef, "2024-01-01").Returns(versionDoc);
+        _mockClient.GetVertexAsync(productDef, "2024-01-01", "person").Returns(personDoc);
+
+        // Act
+        Product product = await builder.BuildProductAsync(productDef);
+
+        // Assert
+        ResourceChild child = product.Versions.First().Resources.First().Children.First();
+        Assert.Equal("EmailAddressesOverridden", child.ClrName);
+    }
+
+    [Fact(DisplayName = "BuildProductAsync skips resource child override when version does not match")]
+    public async Task BuildProductAsync_ChildOverride_SkipsWhenVersionDoesNotMatch()
+    {
+        // Arrange
+        ProductDefinition productDef = ProductDefinition.People;
+        VersionResource versionRes = TestDataBuilder.CreateVersionResource("2024-01-01");
+        VertexResource personVertex = TestDataBuilder.CreateVertexResource("person", "Person");
+        EdgeResource emailsEdge = TestDataBuilder.CreateEdgeResource(
+            "emails",
+            "https://api.planningcenteronline.com/people/v2/emails",
+            "email",
+            "Email");
+
+        DocumentationTransforms transforms = new()
+        {
+            ResourceChildOverrides =
+            [
+                new()
+                {
+                    Product = "people",
+                    Version = "2025-01-01", // does not match "2024-01-01"
+                    Resource = "person",
+                    Child = "emails",
+                    ClrName = "EmailAddressesOverridden"
+                }
+            ]
+        };
+
+        DocumentationBuilder builder = new(_mockLogger, _mockClient,
+            Options.Create<AppSettings.DocumentationBuilderOptions>(new() { ConcurrentConnections = 10 }),
+            Options.Create(transforms));
+
+        GraphDocument graphDoc = TestDataBuilder.CreateGraphDocument(versions: [versionRes]);
+        GraphVersionDocument versionDoc = TestDataBuilder.CreateGraphVersionDocument(
+            id: "2024-01-01", vertices: [personVertex]);
+        VertexDocument personDoc = TestDataBuilder.CreateVertexDocument(
+            id: "person", name: "Person", outboundEdges: [emailsEdge]);
+
+        _mockClient.GetGraphAsync(productDef).Returns(graphDoc);
+        _mockClient.GetGraphVersionAsync(productDef, "2024-01-01").Returns(versionDoc);
+        _mockClient.GetVertexAsync(productDef, "2024-01-01", "person").Returns(personDoc);
+
+        // Act
+        Product product = await builder.BuildProductAsync(productDef);
+
+        // Assert: override not applied, ClrName falls back to default
+        ResourceChild child = product.Versions.First().Resources.First().Children.First();
+        Assert.Equal("Emails", child.ClrName);
+    }
+
+    [Fact(DisplayName = "BuildProductAsync throws when edge head vertex attributes are null")]
+    public async Task BuildProductAsync_NullEdgeHeadVertexAttributes_ThrowsInvalidOperationException()
+    {
+        // Arrange: exercises the ?? throw path in BuildChild for missing head vertex name
+        ProductDefinition productDef = ProductDefinition.People;
+        VersionResource versionRes = TestDataBuilder.CreateVersionResource("2024-01-01");
+        VertexResource personVertex = TestDataBuilder.CreateVertexResource("person", "Person");
+
+        EdgeResource nullHeadAttrsEdge = new()
+        {
+            Id = "items-edge",
+            Type = "Edge",
+            Attributes = new Edge
+            {
+                Name = "items",
+                Path = "https://api.planningcenteronline.com/people/v2/items"
+            },
+            Relationships = new EdgeRelationships
+            {
+                Head = new VertexRelationship
+                {
+                    Data = new VertexResource { Id = "item", Type = "vertex", Attributes = null }
+                },
+                Tail = new VertexRelationship
+                {
+                    Data = TestDataBuilder.CreateVertexResource("person", "Person")
+                },
+                RateLimits = new()
+            }
+        };
+
+        GraphDocument graphDoc = TestDataBuilder.CreateGraphDocument(versions: [versionRes]);
+        GraphVersionDocument versionDoc = TestDataBuilder.CreateGraphVersionDocument(
+            id: "2024-01-01", vertices: [personVertex]);
+        VertexDocument personDoc = TestDataBuilder.CreateVertexDocument(
+            id: "person", name: "Person", outboundEdges: [nullHeadAttrsEdge]);
+
+        _mockClient.GetGraphAsync(productDef).Returns(graphDoc);
+        _mockClient.GetGraphVersionAsync(productDef, "2024-01-01").Returns(versionDoc);
+        _mockClient.GetVertexAsync(productDef, "2024-01-01", "person").Returns(personDoc);
+
+        // Act: Children is built lazily; enumerate it to trigger BuildChild
+        Product product = await _builder.BuildProductAsync(productDef);
+
+        // Assert
+        Assert.Throws<InvalidOperationException>(() =>
+            product.Versions.First().Resources.First().Children.ToList());
+    }
+
+    [Fact(DisplayName = "BuildProductAsync skips additional children when version does not match")]
+    public async Task BuildProductAsync_AdditionalResourceChildren_SkipsNonMatchingVersion()
+    {
+        // Arrange: exercises the e.Version == versionId false branch in GetAdditionalResourceChildren
+        ProductDefinition productDef = ProductDefinition.People;
+        VersionResource versionRes = TestDataBuilder.CreateVersionResource("2024-01-01");
+        VertexResource personVertex = TestDataBuilder.CreateVertexResource("person", "Person");
+
+        DocumentationTransforms transforms = new()
+        {
+            AdditionalResourceChildren =
+            [
+                new()
+                {
+                    Product = "people",
+                    Version = "2023-01-01", // does not match "2024-01-01"
+                    Resource = "person",
+                    Child = new()
+                    {
+                        JsonName = "notes",
+                        ClrName = "Notes",
+                        AttributesClrType = "Note",
+                        Description = "Notes.",
+                        Slug = "notes",
+                        IsCollection = true
+                    }
                 }
             ]
         };

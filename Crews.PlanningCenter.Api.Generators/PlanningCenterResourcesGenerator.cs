@@ -23,11 +23,8 @@ class PlanningCenterResourcesGenerator : IIncrementalGenerator
             static (context, tuple) =>
             {
                 StringBuilder sb = new();
-                (ProductDefinition product, Version? version) = tuple;
+                (ProductDefinition product, Version version) = (tuple.Product, tuple.Version!);
                 string productName = product.ToString().ToPascalCase();
-
-                if (version is null) return;
-
                 string fileName = $"{productName}.{version.Id}.Resources";
 
                 using IndentedTextWriter writer = new(new StringWriter(sb), "    ");

@@ -24,8 +24,8 @@ class PlanningCenterRootClientsGenerator : IIncrementalGenerator
         IncrementalValuesProvider<(string Directory, Models.Version Version)> parsedFiles = jsonFiles
             .Select((file, ct) =>
             {
-                string content = file.GetText(ct)?.ToString() ?? string.Empty;
-                Models.Version version = JsonSerializer.Deserialize<Models.Version>(content) 
+                string content = file.GetText(ct)!.ToString();
+                Models.Version version = JsonSerializer.Deserialize<Models.Version>(content)
                     ?? throw new InvalidOperationException($"Failed to deserialize {file.Path}");
                 
                 string directory = Path.GetFileName(Path.GetDirectoryName(file.Path));

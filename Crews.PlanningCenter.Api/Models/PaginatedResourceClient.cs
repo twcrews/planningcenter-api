@@ -1,4 +1,5 @@
 using System.Net.Http.Json;
+using System.Text.Json;
 using Crews.Web.JsonApiClient;
 
 namespace Crews.PlanningCenter.Api.Models;
@@ -110,7 +111,10 @@ public abstract class PaginatedResourceClient<TModel, TResource, TResponse, TSin
     {
         await EnsureSuccessAsync(response, cancellationToken);
 
-        JsonApiDocument<TResource>? document = await response.ReadJsonApiDocumentAsync<TResource>(cancellationToken);
+        JsonApiDocument<TResource>? document = null;
+        try { document = await response.ReadJsonApiDocumentAsync<TResource>(cancellationToken); }
+        catch (JsonException) { }
+
         if (document is null) return new() { ResponseMessage = response };
         if (document.Data is null) return new() { ResponseMessage = response, Document = document };
 
@@ -122,8 +126,10 @@ public abstract class PaginatedResourceClient<TModel, TResource, TResponse, TSin
     {
         await EnsureSuccessAsync(response, cancellationToken);
 
-        JsonApiCollectionDocument<TResource>? document = await response
-            .ReadJsonApiCollectionDocumentAsync<TResource>(cancellationToken);
+        JsonApiCollectionDocument<TResource>? document = null;
+        try { document = await response.ReadJsonApiCollectionDocumentAsync<TResource>(cancellationToken); }
+        catch (JsonException) { }
+
         if (document is null) return new() { ResponseMessage = response };
         if (document.Data is null) return new() { ResponseMessage = response, Document = document };
 

@@ -277,6 +277,62 @@ public class SingletonResourceClientTests
 	}
 
 	[Fact]
+	public async Task GetAsync_WithErrorResponseAndJsonBodyWithoutErrors_ThrowsHttpRequestException()
+	{
+		// Arrange
+		var mockHttp = new MockHttpMessageHandler();
+		mockHttp.When(HttpMethod.Get, "https://example.com/test")
+			.Respond(HttpStatusCode.InternalServerError, "application/json", Serialized.DummyInvalidObject);
+
+		var httpClient = mockHttp.ToHttpClient();
+		var uri = new Uri("https://example.com/test");
+		var client = new TestResourceClient(httpClient, uri);
+
+		// Act & Assert — body is valid JSON but has no errors, so the original HttpRequestException is rethrown
+		await Assert.ThrowsAsync<HttpRequestException>(() => client.GetAsync());
+	}
+
+	[Fact]
+	public async Task GetAsync_WithNullJsonBody_ReturnsResponseWithoutDocument()
+	{
+		// Arrange
+		var mockHttp = new MockHttpMessageHandler();
+		mockHttp.When(HttpMethod.Get, "https://example.com/test")
+			.Respond("application/json", "null");
+
+		var httpClient = mockHttp.ToHttpClient();
+		var uri = new Uri("https://example.com/test");
+		var client = new TestResourceClient(httpClient, uri);
+
+		// Act
+		var response = await client.GetAsync();
+
+		// Assert
+		Assert.Null(response.Document);
+		Assert.Null(response.Data);
+	}
+
+	[Fact]
+	public async Task GetAsync_WithMetaOnlyBody_ReturnsResponseWithDocumentButNoData()
+	{
+		// Arrange
+		var mockHttp = new MockHttpMessageHandler();
+		mockHttp.When(HttpMethod.Get, "https://example.com/test")
+			.Respond("application/json", Serialized.DummyMetaOnlyObject);
+
+		var httpClient = mockHttp.ToHttpClient();
+		var uri = new Uri("https://example.com/test");
+		var client = new TestResourceClient(httpClient, uri);
+
+		// Act
+		var response = await client.GetAsync();
+
+		// Assert
+		Assert.NotNull(response.Document);
+		Assert.Null(response.Data);
+	}
+
+	[Fact]
 	public async Task GetAsync_WithCancellationToken_PassesToken()
 	{
 		// Arrange
@@ -426,6 +482,46 @@ public class SingletonResourceClientTests
 
 		// Act & Assert
 		await Assert.ThrowsAsync<JsonApiException>(() => client.PatchAsync(new() { Name = "John", Age = 30 }));
+	}
+
+	[Fact]
+	public async Task PatchAsync_WithNullJsonBody_ReturnsResponseWithoutDocument()
+	{
+		// Arrange
+		var mockHttp = new MockHttpMessageHandler();
+		mockHttp.When(new HttpMethod("PATCH"), "https://example.com/test")
+			.Respond("application/json", "null");
+
+		var httpClient = mockHttp.ToHttpClient();
+		var uri = new Uri("https://example.com/test");
+		var client = new TestResourceClient(httpClient, uri);
+
+		// Act
+		var response = await client.PatchAsync(new() { Name = "John", Age = 30 });
+
+		// Assert
+		Assert.Null(response.Document);
+		Assert.Null(response.Data);
+	}
+
+	[Fact]
+	public async Task PatchAsync_WithMetaOnlyBody_ReturnsResponseWithDocumentButNoData()
+	{
+		// Arrange
+		var mockHttp = new MockHttpMessageHandler();
+		mockHttp.When(new HttpMethod("PATCH"), "https://example.com/test")
+			.Respond("application/json", Serialized.DummyMetaOnlyObject);
+
+		var httpClient = mockHttp.ToHttpClient();
+		var uri = new Uri("https://example.com/test");
+		var client = new TestResourceClient(httpClient, uri);
+
+		// Act
+		var response = await client.PatchAsync(new() { Name = "John", Age = 30 });
+
+		// Assert
+		Assert.NotNull(response.Document);
+		Assert.Null(response.Data);
 	}
 
 	[Fact]

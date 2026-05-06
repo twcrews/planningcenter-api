@@ -491,4 +491,22 @@ public class PlanningCenterResourcesGeneratorTests
             "public partial record EmailResource",
             "public partial record Email {");
     }
+
+    [Fact]
+    public void ShouldSkipFileWhenTextIsNull()
+    {
+        // Arrange
+        var (compilation, additionalFiles) = GeneratorTestHelper.CreateCompilationWithNullText(
+            "namespace Test { }",
+            "People/2024-12-01.json");
+
+        // Act
+        var result = GeneratorTestHelper.RunGenerator(
+            "PlanningCenterResourcesGenerator",
+            compilation,
+            additionalFiles);
+
+        // Assert
+        Assert.Empty(result.GeneratedTrees);
+    }
 }

@@ -38,6 +38,31 @@ public static class GeneratorTestHelper
     }
 
     /// <summary>
+    /// Creates a compilation with a single additional file whose text cannot be read (returns null).
+    /// </summary>
+    public static (Compilation Compilation, ImmutableArray<AdditionalText> AdditionalFiles) CreateCompilationWithNullText(
+        string source,
+        string fileName)
+    {
+        var syntaxTree = CSharpSyntaxTree.ParseText(source);
+
+        var references = AppDomain.CurrentDomain.GetAssemblies()
+            .Where(assembly => !assembly.IsDynamic && !string.IsNullOrWhiteSpace(assembly.Location))
+            .Select(assembly => MetadataReference.CreateFromFile(assembly.Location))
+            .Cast<MetadataReference>();
+
+        var compilation = CSharpCompilation.Create(
+            "TestAssembly",
+            [syntaxTree],
+            references,
+            new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary));
+
+        var additionalTexts = ImmutableArray.Create<AdditionalText>(new NullTextAdditionalText(fileName));
+
+        return (compilation, additionalTexts);
+    }
+
+    /// <summary>
     /// Runs a source generator and returns the generated sources.
     /// </summary>
     public static GeneratorDriverRunResult RunGenerator(
@@ -128,4 +153,16 @@ internal class TestAdditionalText : AdditionalText
     {
         return SourceText.From(_text);
     }
+}
+
+/// <summary>
+/// Test implementation of AdditionalText that returns null from GetText, simulating an unreadable file.
+/// </summary>
+internal class NullTextAdditionalText : AdditionalText
+{
+    public NullTextAdditionalText(string path) => Path = path;
+
+    public override string Path { get; }
+
+    public override SourceText? GetText(CancellationToken cancellationToken = default) => null;
 }

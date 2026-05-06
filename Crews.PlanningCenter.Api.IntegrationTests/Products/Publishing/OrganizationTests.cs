@@ -14,4 +14,14 @@ public class OrganizationTests(PublishingFixture fixture) : PublishingTestBase(f
 		Assert.NotNull(result.Data);
 		Assert.True(result.ResponseMessage?.IsSuccessStatusCode);
 	}
+
+	[Fact]
+	public async Task Me_GetAsync_ReturnsMe()
+	{
+		var result = await Org.Me.GetAsync();
+
+		Assert.NotNull(result);
+		Assert.NotNull(result.Data);
+		Assert.True(result.ResponseMessage?.IsSuccessStatusCode);
+	}
 }

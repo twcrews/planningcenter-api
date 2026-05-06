@@ -401,6 +401,12 @@
           "ClrName": "AmountCurrency",
           "ClrType": "string",
           "Description": "The currency of \u0060amount_cents\u0060."
+        },
+        {
+          "JsonName": "fee_cents",
+          "ClrName": "FeeCents",
+          "ClrType": "int",
+          "Description": "Planning Center does not provide a description for this attribute."
         }
       ],
       "Relationships": [
@@ -1302,6 +1308,16 @@
           "Description": "Associated \u0060RecurringDonations\u0060.",
           "Slug": "recurring_donations",
           "IsCollection": true,
+          "Deprecated": false,
+          "Filters": []
+        },
+        {
+          "JsonName": "me",
+          "ClrName": "Me",
+          "AttributesClrType": "Person",
+          "Description": "The current user.",
+          "Slug": "me",
+          "IsCollection": false,
           "Deprecated": false,
           "Filters": []
         }

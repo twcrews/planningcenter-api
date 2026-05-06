@@ -567,6 +567,12 @@
           "Description": "UTC time at which regsitration closes.\n"
         },
         {
+          "JsonName": "closed",
+          "ClrName": "Closed",
+          "ClrType": "bool",
+          "Description": "Whether the signup is currently closed to new registrations. A signup is\nclosed when it is archived, has no \u0060open_at\u0060, has an \u0060open_at\u0060 in the\nfuture, or has a \u0060close_at\u0060 in the past.\n"
+        },
+        {
           "JsonName": "created_at",
           "ClrName": "CreatedAt",
           "ClrType": "System.DateTime",
@@ -595,6 +601,12 @@
           "ClrName": "NewRegistrationUrl",
           "ClrType": "string",
           "Description": "URL to allow people to register for signup.\n"
+        },
+        {
+          "JsonName": "open",
+          "ClrName": "Open",
+          "ClrType": "bool",
+          "Description": "Whether the signup is currently open to new registrations. Inverse of\n\u0060closed\u0060.\n"
         },
         {
           "JsonName": "open_at",

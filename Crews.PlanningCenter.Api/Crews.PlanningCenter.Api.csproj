@@ -51,12 +51,4 @@
     <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="8.0.22" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Api/" />
-    <Folder Include="Api/V2018_08_01/" />
-    <Folder Include="Common/" />
-    <Folder Include="Groups/" />
-    <Folder Include="Services/" />
-  </ItemGroup>
-
 </Project>

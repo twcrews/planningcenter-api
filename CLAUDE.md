@@ -210,7 +210,8 @@ Two authentication approaches are supported:
 - **[Extensions/AuthenticationBuilderExtensions.cs](Crews.PlanningCenter.Api/Extensions/AuthenticationBuilderExtensions.cs)** - `AddPlanningCenterAuthentication()` extension methods for ASP.NET Core OIDC setup
 - **[Extensions/ServiceCollectionExtensions.cs](Crews.PlanningCenter.Api/Extensions/ServiceCollectionExtensions.cs)** - `AddPlanningCenterApi()` extension methods that register all product clients for DI
 - **[Authentication/ConfigurePlanningCenterOpenIdConnectOptions.cs](Crews.PlanningCenter.Api/Authentication/ConfigurePlanningCenterOpenIdConnectOptions.cs)** - Reads OIDC options from the `"PlanningCenter"` configuration section
-- **[Authentication/PlanningCenterTokenHandler.cs](Crews.PlanningCenter.Api/Authentication/PlanningCenterTokenHandler.cs)** - Delegating handler that forwards the OIDC bearer token from the current HTTP context
+- **[Authentication/IPlanningCenterTokenProvider.cs](Crews.PlanningCenter.Api/Authentication/IPlanningCenterTokenProvider.cs)** - Interface for supplying a bearer token in environments where `IHttpContextAccessor` is unavailable (e.g. Blazor Interactive Server)
+- **[Authentication/PlanningCenterTokenHandler.cs](Crews.PlanningCenter.Api/Authentication/PlanningCenterTokenHandler.cs)** - Delegating handler that forwards the OIDC bearer token; uses `IPlanningCenterTokenProvider` if registered, otherwise falls back to `IHttpContextAccessor`
 - **[Extensions/HttpHeadersExtensions.cs](Crews.PlanningCenter.Api/Extensions/HttpHeadersExtensions.cs)** - Extension method `SetPlanningCenterVersion()` for setting the `X-PCO-API-Version` request header
 
 ### Tests

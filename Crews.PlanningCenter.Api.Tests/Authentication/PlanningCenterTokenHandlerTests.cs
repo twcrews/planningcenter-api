@@ -35,7 +35,8 @@ public class PlanningCenterTokenHandlerTests
 
     // HttpContext.GetTokenAsync() is an extension that calls IAuthenticationService.AuthenticateAsync,
     // then reads the token from the resulting AuthenticationProperties.
-    private static HttpContext CreateHttpContextWithToken(string? token)
+    private static HttpContext CreateHttpContextWithToken(
+        string? token, IPlanningCenterTokenProvider? scopedProvider = null)
     {
         var authService = Substitute.For<IAuthenticationService>();
 
@@ -49,12 +50,13 @@ public class PlanningCenterTokenHandlerTests
             new AuthenticationTicket(new ClaimsPrincipal(), properties, "Test"));
         authService.AuthenticateAsync(Arg.Any<HttpContext>(), Arg.Any<string?>()).Returns(result);
 
-        return new DefaultHttpContext
+        var services = new ServiceCollection().AddSingleton(authService);
+        if (scopedProvider is not null)
         {
-            RequestServices = new ServiceCollection()
-                .AddSingleton(authService)
-                .BuildServiceProvider()
-        };
+            services.AddSingleton(scopedProvider);
+        }
+
+        return new DefaultHttpContext { RequestServices = services.BuildServiceProvider() };
     }
 
     [Fact(DisplayName = "Token from IPlanningCenterTokenProvider is used as the Bearer token")]
@@ -64,6 +66,7 @@ public class PlanningCenterTokenHandlerTests
         provider.GetAccessTokenAsync().Returns("provider-token");
 
         var accessor = Substitute.For<IHttpContextAccessor>();
+        accessor.HttpContext.Returns((HttpContext?)null);
         var (client, capture) = Build(accessor, provider);
 
         await client.GetAsync("http://example.com/");
@@ -79,6 +82,7 @@ public class PlanningCenterTokenHandlerTests
         provider.GetAccessTokenAsync().Returns((string?)null);
 
         var accessor = Substitute.For<IHttpContextAccessor>();
+        accessor.HttpContext.Returns((HttpContext?)null);
         var (client, capture) = Build(accessor, provider);
 
         await client.GetAsync("http://example.com/");
@@ -86,20 +90,20 @@ public class PlanningCenterTokenHandlerTests
         Assert.Null(capture.LastRequest?.Headers.Authorization);
     }
 
-    [Fact(DisplayName = "IPlanningCenterTokenProvider takes precedence over HttpContext")]
-    public async Task SendAsync_WithTokenProvider_DoesNotConsultHttpContext()
+    [Fact(DisplayName = "Scoped IPlanningCenterTokenProvider takes precedence over HttpContext access token")]
+    public async Task SendAsync_WithScopedTokenProvider_UsesScopedProviderToken()
     {
-        var provider = Substitute.For<IPlanningCenterTokenProvider>();
-        provider.GetAccessTokenAsync().Returns("provider-token");
+        var scopedProvider = Substitute.For<IPlanningCenterTokenProvider>();
+        scopedProvider.GetAccessTokenAsync().Returns("scoped-token");
 
-        HttpContext httpContext = CreateHttpContextWithToken("context-token");
+        HttpContext httpContext = CreateHttpContextWithToken("context-token", scopedProvider);
         var accessor = Substitute.For<IHttpContextAccessor>();
         accessor.HttpContext.Returns(httpContext);
-        var (client, capture) = Build(accessor, provider);
+        var (client, capture) = Build(accessor);
 
         await client.GetAsync("http://example.com/");
 
-        Assert.Equal("provider-token", capture.LastRequest?.Headers.Authorization?.Parameter);
+        Assert.Equal("scoped-token", capture.LastRequest?.Headers.Authorization?.Parameter);
     }
 
     [Fact(DisplayName = "Token from HttpContext is used when no IPlanningCenterTokenProvider is registered")]

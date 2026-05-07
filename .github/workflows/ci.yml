@@ -25,7 +25,7 @@ jobs:
         dotnet test Crews.PlanningCenter.Api.Generators.Tests --configuration Release --settings .runsettings --collect:"XPlat Code Coverage"
         dotnet test Crews.PlanningCenter.Api.Models.Tests --configuration Release --settings .runsettings --collect:"XPlat Code Coverage"
     - name: Upload coverage
-      uses: codecov/codecov-action@v5
+      uses: codecov/codecov-action@v6
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
 

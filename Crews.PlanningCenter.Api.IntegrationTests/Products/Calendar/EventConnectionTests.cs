@@ -19,8 +19,8 @@ public class EventConnectionTests(CalendarFixture fixture) : CalendarTestBase(fi
 				{
 					ConnectedToId = Fixture.EventConnectionResourceId,
 					ConnectedToName = $"IntTest-Connection-{UniqueId}",
-					ConnectedToType = "group",
-					ProductName = "groups"
+					ConnectedToType = "service_type",
+					ProductName = "services"
 				});
 			Assert.NotNull(createResult.Data);
 			connectionId = createResult.Data.Id;

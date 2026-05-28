@@ -22,7 +22,7 @@ public class GroupTests(GroupsFixture fixture) : GroupsTestBase(fixture)
 		var readResult = await Org.Groups.WithId(Fixture.GroupId!).GetAsync();
 		Assert.NotNull(readResult.Data);
 
-		var originalDescription = readResult.Data.Attributes?.Description;
+		var originalName = readResult.Data.Attributes?.Name;
 
 		try
 		{
@@ -41,7 +41,7 @@ public class GroupTests(GroupsFixture fixture) : GroupsTestBase(fixture)
 			{
 				await Org.Groups.WithId(Fixture.GroupId!).PatchAsync(new Group
 				{
-					Description = originalDescription
+					Name = originalName
 				});
 			}
 			catch { /* best effort */ }

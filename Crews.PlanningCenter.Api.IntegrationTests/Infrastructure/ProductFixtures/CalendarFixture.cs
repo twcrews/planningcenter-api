@@ -1,4 +1,6 @@
 using Crews.PlanningCenter.Api.Calendar.V2022_07_07;
+using ServicesClient = Crews.PlanningCenter.Api.ServicesClient;
+using ServicesServiceType = Crews.PlanningCenter.Api.Services.V2018_11_01.ServiceType;
 
 namespace Crews.PlanningCenter.Api.IntegrationTests.Infrastructure.ProductFixtures;
 
@@ -48,9 +50,6 @@ public class CalendarFixture : PlanningCenterFixture
 		var eventId = await CollectionReadHelper.GetFirstIdAsync(HttpClient, "calendar/v2/events");
 		EventId = eventId!;
 
-		var eventConnectionResourceId = await CollectionReadHelper.GetFirstIdAsync(HttpClient, $"groups/v2/groups");
-		EventConnectionResourceId = eventConnectionResourceId!;
-
 		var eventInstanceId = await CollectionReadHelper.GetFirstIdAsync(HttpClient, "calendar/v2/event_instances");
 		EventInstanceId = eventInstanceId!;
 
@@ -59,6 +58,11 @@ public class CalendarFixture : PlanningCenterFixture
 
 		var roomSetupId = await CollectionReadHelper.GetFirstIdAsync(HttpClient, "calendar/v2/room_setups");
 		RoomSetupId = roomSetupId!;
+
+		var servicesOrg = new ServicesClient(HttpClient).Latest;
+		var eventConnectionResourceResult = await servicesOrg.ServiceTypes.PostAsync(
+			new ServicesServiceType { Name = $"Fixture-EventConnection-SvcType-{_fixtureId}" });
+		EventConnectionResourceId = eventConnectionResourceResult.Data!.Id!;
 	}
 
 	public override async Task DisposeAsync()
@@ -67,6 +71,9 @@ public class CalendarFixture : PlanningCenterFixture
 
 		try { await org.Resources.WithId(ResourceId).DeleteAsync(); } catch { }
 		try { await org.TagGroups.WithId(TagGroupId).DeleteAsync(); } catch { }
+
+		var servicesOrg = new ServicesClient(HttpClient).Latest;
+		try { await servicesOrg.ServiceTypes.WithId(EventConnectionResourceId).DeleteAsync(); } catch { }
 
 		await base.DisposeAsync();
 	}

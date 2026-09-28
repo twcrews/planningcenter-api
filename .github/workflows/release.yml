@@ -11,7 +11,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v6
     - name: Setup dotnet
-      uses: actions/setup-dotnet@v5
+      uses: actions/setup-dotnet@v6
       with:
         dotnet-version: 9.0.x
     - name: Verify commit exists in origin/master

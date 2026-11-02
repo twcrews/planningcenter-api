@@ -26,12 +26,23 @@ public class PledgeTests(GivingFixture fixture) : GivingTestBase(fixture)
 		Assert.Equal(pledgeId, readResult.Data.Id);
 
 		var originalCents = readResult.Data.Attributes?.AmountCents;
-		var updateResult = await Pledges.WithId(pledgeId).PatchAsync(
-			new Pledge { AmountCents = originalCents + 1 });
-		Assert.NotNull(updateResult.Data);
-		Assert.Equal(originalCents + 1, updateResult.Data.Attributes?.AmountCents);
+		try
+		{
+			var updateResult = await Pledges.WithId(pledgeId).PatchAsync(
+				new Pledge { AmountCents = originalCents + 1 });
+			Assert.NotNull(updateResult.Data);
+			Assert.Equal(originalCents + 1, updateResult.Data.Attributes?.AmountCents);
 
-		var verifyResult = await Pledges.WithId(pledgeId).GetAsync();
-		Assert.Equal(originalCents + 1, verifyResult.Data?.Attributes?.AmountCents);
+			var verifyResult = await Pledges.WithId(pledgeId).GetAsync();
+			Assert.Equal(originalCents + 1, verifyResult.Data?.Attributes?.AmountCents);
+		}
+		finally
+		{
+			try
+			{
+				await Pledges.WithId(pledgeId).PatchAsync(new Pledge { AmountCents = originalCents });
+			}
+			catch { /* best effort */ }
+		}
 	}
 }

@@ -1,4 +1,5 @@
 using Crews.PlanningCenter.Api.Groups.V2023_07_10;
+using Crews.PlanningCenter.Api.IntegrationTests.Infrastructure;
 using Crews.PlanningCenter.Api.IntegrationTests.Infrastructure.ProductFixtures;
 using Crews.PlanningCenter.Api.IntegrationTests.Infrastructure.TestBases;
 
@@ -22,7 +23,9 @@ public class GroupTests(GroupsFixture fixture) : GroupsTestBase(fixture)
 		var readResult = await Org.Groups.WithId(Fixture.GroupId!).GetAsync();
 		Assert.NotNull(readResult.Data);
 
+		// A run that crashed before restoring the name leaves a test name behind, which must not be treated as original.
 		var originalName = readResult.Data.Attributes?.Name;
+		if (TestData.IsTagged(originalName)) originalName = "Integration Test Group";
 
 		try
 		{

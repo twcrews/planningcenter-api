@@ -236,6 +236,8 @@ Integration tests that run against the live Planning Center API. These tests ver
   - `PlanningCenterFixture` — XUnit async fixture (`IAsyncLifetime`) that configures an authenticated `HttpClient` with `RateLimitHandler`
   - `RateLimitHandler` — Delegating handler that throttles requests based on `X-PCO-API-Request-Rate-Limit` / `X-PCO-API-Request-Rate-Period` headers and retries on 429 responses
   - `CollectionReadHelper` — Static helper for fetching first/last resource IDs from collection endpoints
+  - `TestData` — Naming conventions that identify test records; `NewId()` embeds the creation time in each ID
+  - `TestDataSweeper` — Runs once at the start of each test run and deletes tagged records abandoned by earlier runs that are more than an hour old, so killed runs never need manual cleanup
   - `Infrastructure/Collections/` — Per-product XUnit collection definitions (e.g., `CalendarCollection`, `CheckInsCollection`)
   - `Infrastructure/ProductFixtures/` — Per-product fixture subclasses that pre-fetch shared test data (e.g., `CalendarFixture`, `CheckInsFixture`)
   - `Infrastructure/TestBases/` — Per-product abstract base classes providing `HttpClient`, `Fixture`, and a root `OrganizationClient` to tests

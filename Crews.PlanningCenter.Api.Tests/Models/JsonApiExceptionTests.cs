@@ -44,7 +44,33 @@ public class JsonApiExceptionTests
 
 		// Assert
 		Assert.Equal(innerException, exception.InnerException);
-		Assert.Equal("Original error message", exception.Message);
+		Assert.StartsWith("Original error message", exception.Message);
+	}
+
+	[Fact]
+	public void Message_WithErrors_IncludesErrorDetails()
+	{
+		// Arrange
+		var innerException = new HttpRequestException("Request failed");
+
+		// Act
+		var exception = new JsonApiException(Serialized.DummyErrorObject, innerException);
+
+		// Assert
+		Assert.Equal("Request failed Forbidden: You do not have access to this resource", exception.Message);
+	}
+
+	[Fact]
+	public void Message_WithNoErrors_UsesInnerMessage()
+	{
+		// Arrange
+		var innerException = new HttpRequestException("Request failed");
+
+		// Act
+		var exception = new JsonApiException("""{"data": null}""", innerException);
+
+		// Assert
+		Assert.Equal("Request failed", exception.Message);
 	}
 
 	[Fact]

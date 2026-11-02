@@ -11,5 +11,5 @@ public abstract class CheckInsTestBase(CheckInsFixture fixture)
 	protected HttpClient HttpClient => fixture.HttpClient;
 	protected CheckInsFixture Fixture => fixture;
 	protected OrganizationClient Org => new CheckInsClient(HttpClient).Latest;
-	protected string UniqueId { get; } = Guid.NewGuid().ToString("N")[..8];
+	protected string UniqueId { get; } = TestData.NewId();
 }

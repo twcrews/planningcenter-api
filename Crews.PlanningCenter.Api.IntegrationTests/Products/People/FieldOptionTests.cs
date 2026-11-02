@@ -52,6 +52,13 @@ public class FieldOptionTests(PeopleFixture fixture) : PeopleTestBase(fixture)
 			var verifyResult = await fieldOptions.WithId(fieldOptionId).GetAsync();
 			Assert.Equal($"Option-Updated-{UniqueId}", verifyResult.Data?.Attributes?.Value);
 
+			// The API refuses to delete a field's only option.
+			await fieldOptions.PostAsync(new FieldOption
+			{
+				Value = $"Option-Remaining-{UniqueId}",
+				Sequence = 2
+			});
+
 			// -- Delete --
 			await fieldOptions.WithId(fieldOptionId).DeleteAsync();
 			fieldOptionId = null;

@@ -20,6 +20,7 @@ public class BlockoutDateTests(ServicesFixture fixture) : ServicesTestBase(fixtu
 			var startsAt = DateTime.UtcNow.AddDays(30);
 			var createResult = await Org.People.WithId(personId).Blockouts.PostAsync(new Blockout
 			{
+				Reason = $"IntTest-{UniqueId}",
 				StartsAt = startsAt,
 				EndsAt = startsAt.AddHours(2),
 				RepeatFrequency = "no_repeat"

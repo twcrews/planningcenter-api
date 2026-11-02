@@ -8,7 +8,7 @@ public class PlanningCenterFixture : IAsyncLifetime
 {
 	public HttpClient HttpClient { get; private set; } = null!;
 
-	public virtual Task InitializeAsync()
+	public virtual async Task InitializeAsync()
 	{
 		var configuration = new ConfigurationBuilder()
 			.AddJsonFile("appsettings.json", optional: true)
@@ -37,7 +37,7 @@ public class PlanningCenterFixture : IAsyncLifetime
 			new MediaTypeWithQualityHeaderValue("application/json"));
 		HttpClient.DefaultRequestHeaders.Authorization = token;
 
-		return Task.CompletedTask;
+		await TestDataSweeper.EnsureSweptAsync(HttpClient);
 	}
 
 	public virtual Task DisposeAsync()

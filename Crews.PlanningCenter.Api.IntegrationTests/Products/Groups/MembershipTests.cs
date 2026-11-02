@@ -16,6 +16,12 @@ public class MembershipTests(GroupsFixture fixture) : GroupsTestBase(fixture)
 
 		try
 		{
+			// The group outlives the run, so a membership left by a crashed run would make the create below fail.
+			await TestDataSweeper.DeleteWhereAsync(
+				HttpClient,
+				$"groups/v2/groups/{groupId}/memberships",
+				membership => membership["relationships"]?["person"]?["data"]?["id"]?.GetValue<string>() == Fixture.PersonId);
+
 			// -- Create --
 			var createResult = await Org.Groups.WithId(groupId!).Memberships.PostAsync(
 				new JsonApiDocument<MembershipResource>

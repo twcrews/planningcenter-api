@@ -11,5 +11,5 @@ public abstract class GivingTestBase(GivingFixture fixture)
 	protected HttpClient HttpClient => fixture.HttpClient;
 	protected GivingFixture Fixture => fixture;
 	protected OrganizationClient Org => new GivingClient(HttpClient).Latest;
-	protected string UniqueId { get; } = Guid.NewGuid().ToString("N")[..8];
+	protected string UniqueId { get; } = TestData.NewId();
 }

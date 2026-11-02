@@ -8,6 +8,12 @@ public class StationTests(CheckInsFixture fixture) : CheckInsTestBase(fixture)
 	[Fact]
 	public async Task Station_GetAsync_ReturnsStation()
 	{
+		if (Fixture.StationId is null)
+		{
+			// No stations exist in this organization.
+			return;
+		}
+
 		var result = await Org.Stations.WithId(Fixture.StationId).GetAsync();
 
 		Assert.NotNull(result);

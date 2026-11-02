@@ -22,7 +22,7 @@ public class ServicesFixture : PlanningCenterFixture
 	public override async Task InitializeAsync()
 	{
 		await base.InitializeAsync();
-		_fixtureId = Guid.NewGuid().ToString("N")[..8];
+		_fixtureId = TestData.NewId();
 
 		var org = new ServicesClient(HttpClient).Latest;
 

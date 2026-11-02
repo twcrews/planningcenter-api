@@ -11,5 +11,5 @@ public abstract class CurrentTestBase(CurrentFixture fixture)
 	protected HttpClient HttpClient => fixture.HttpClient;
 	protected CurrentFixture Fixture => fixture;
 	protected OrganizationClient Org => new CurrentClient(HttpClient).Latest;
-	protected string UniqueId { get; } = Guid.NewGuid().ToString("N")[..8];
+	protected string UniqueId { get; } = TestData.NewId();
 }

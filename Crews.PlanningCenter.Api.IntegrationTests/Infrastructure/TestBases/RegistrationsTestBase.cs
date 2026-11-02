@@ -11,5 +11,5 @@ public abstract class RegistrationsTestBase(RegistrationsFixture fixture)
 	protected HttpClient HttpClient => fixture.HttpClient;
 	protected RegistrationsFixture Fixture => fixture;
 	protected OrganizationClient Org => new RegistrationsClient(HttpClient).Latest;
-	protected string UniqueId { get; } = Guid.NewGuid().ToString("N")[..8];
+	protected string UniqueId { get; } = TestData.NewId();
 }

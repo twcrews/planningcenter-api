@@ -1,4 +1,5 @@
 using Crews.PlanningCenter.Api.People.V2025_11_10;
+using Crews.PlanningCenter.Api.IntegrationTests.Infrastructure;
 using Crews.PlanningCenter.Api.IntegrationTests.Infrastructure.ProductFixtures;
 using Crews.PlanningCenter.Api.IntegrationTests.Infrastructure.TestBases;
 using Crews.Web.JsonApiClient;
@@ -16,14 +17,21 @@ public class ListShareTests(PeopleFixture fixture) : PeopleTestBase(fixture)
 		{
 			var listShares = Org.Lists.WithId(Fixture.ListId!).Shares;
 
+			// The list outlives the run, so a share left by a crashed run would make the create below fail.
+			await TestDataSweeper.DeleteWhereAsync(
+				HttpClient,
+				$"people/v2/lists/{Fixture.ListId}/shares",
+				share => share["attributes"]?["group"]?.GetValue<string>() == "Viewer");
+
 			// -- Create --
 			var createResult = await listShares.PostAsync(
 				new JsonApiDocument<ListShareResource>
 				{
 					Data = new()
 					{
-						Attributes = new ListShare { Permission = "view" },
-						Relationships = new() { Person = new() { Data = new() { Type = "Person", Id = Fixture.PersonId } } }
+						// Shares can only target people with People permissions, which the fixture person can't have
+						// because it has no email address. Share with a permission group instead.
+						Attributes = new ListShare { Group = "Viewer", Permission = "view" }
 					}
 				});
 			Assert.NotNull(createResult.Data);

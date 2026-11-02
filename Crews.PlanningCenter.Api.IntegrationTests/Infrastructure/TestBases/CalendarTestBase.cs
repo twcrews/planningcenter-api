@@ -11,5 +11,5 @@ public abstract class CalendarTestBase(CalendarFixture fixture)
 	protected HttpClient HttpClient => fixture.HttpClient;
 	protected CalendarFixture Fixture => fixture;
 	protected OrganizationClient Org => new CalendarClient(HttpClient).Latest;
-	protected string UniqueId { get; } = Guid.NewGuid().ToString("N")[..8];
+	protected string UniqueId { get; } = TestData.NewId();
 }

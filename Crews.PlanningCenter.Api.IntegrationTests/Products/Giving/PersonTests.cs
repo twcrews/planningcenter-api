@@ -23,9 +23,20 @@ public class PersonTests(GivingFixture fixture) : GivingTestBase(fixture)
 		Assert.NotNull(readResult.Data);
 		var originalNumber = readResult.Data.Attributes?.DonorNumber;
 
-		var updateResult = await Org.People.WithId(Fixture.PersonId).PatchAsync(
-			new Person { DonorNumber = readResult.Data.Attributes?.DonorNumber + 1 });
-		Assert.NotNull(updateResult.Data);
-		Assert.Equal(originalNumber + 1, updateResult.Data.Attributes?.DonorNumber);
+		try
+		{
+			var updateResult = await Org.People.WithId(Fixture.PersonId).PatchAsync(
+				new Person { DonorNumber = originalNumber + 1 });
+			Assert.NotNull(updateResult.Data);
+			Assert.Equal(originalNumber + 1, updateResult.Data.Attributes?.DonorNumber);
+		}
+		finally
+		{
+			try
+			{
+				await Org.People.WithId(Fixture.PersonId).PatchAsync(new Person { DonorNumber = originalNumber });
+			}
+			catch { /* best effort */ }
+		}
 	}
 }

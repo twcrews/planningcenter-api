@@ -60,8 +60,8 @@ public class CheckInsFixture : PlanningCenterFixture
 	/// <summary>ID of an existing PersonEvent for tests.</summary>
 	public string PersonEventId { get; private set; } = null!;
 
-	/// <summary>ID of an existing Station for tests.</summary>
-	public string StationId { get; private set; } = null!;
+	/// <summary>ID of an existing Station for tests, or null if none exist.</summary>
+	public string? StationId { get; private set; }
 
 	/// <summary>ID of an existing Theme for tests.</summary>
 	public string ThemeId { get; private set; } = null!;
@@ -80,7 +80,7 @@ public class CheckInsFixture : PlanningCenterFixture
 		OptionId = (await CollectionReadHelper.GetFirstIdAsync(HttpClient, "check-ins/v2/options"))!;
 		PassId = (await CollectionReadHelper.GetFirstIdAsync(HttpClient, "check-ins/v2/passes"))!;
 		PersonId = (await CollectionReadHelper.GetFirstIdAsync(HttpClient, "check-ins/v2/people"))!;
-		StationId = (await CollectionReadHelper.GetFirstIdAsync(HttpClient, "check-ins/v2/stations"))!;
+		StationId = await CollectionReadHelper.GetFirstIdAsync(HttpClient, "check-ins/v2/stations");
 		ThemeId = (await CollectionReadHelper.GetFirstIdAsync(HttpClient, "check-ins/v2/themes"))!;
 
 		// Child collections requiring a parent ID

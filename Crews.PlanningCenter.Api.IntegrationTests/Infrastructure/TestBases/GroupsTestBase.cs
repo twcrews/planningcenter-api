@@ -11,5 +11,5 @@ public abstract class GroupsTestBase(GroupsFixture fixture)
 	protected HttpClient HttpClient => fixture.HttpClient;
 	protected GroupsFixture Fixture => fixture;
 	protected OrganizationClient Org => new GroupsClient(HttpClient).Latest;
-	protected string UniqueId { get; } = Guid.NewGuid().ToString("N")[..8];
+	protected string UniqueId { get; } = TestData.NewId();
 }

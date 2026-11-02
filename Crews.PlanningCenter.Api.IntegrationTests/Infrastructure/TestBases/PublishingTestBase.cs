@@ -11,5 +11,5 @@ public abstract class PublishingTestBase(PublishingFixture fixture)
 	protected HttpClient HttpClient => fixture.HttpClient;
 	protected PublishingFixture Fixture => fixture;
 	protected OrganizationClient Org => new PublishingClient(HttpClient).Latest;
-	protected string UniqueId { get; } = Guid.NewGuid().ToString("N")[..8];
+	protected string UniqueId { get; } = TestData.NewId();
 }

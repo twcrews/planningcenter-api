@@ -11,5 +11,5 @@ public abstract class ApiTestBase(ApiFixture fixture)
 	protected HttpClient HttpClient => fixture.HttpClient;
 	protected ApiFixture Fixture => fixture;
 	protected OrganizationClient Org => new ApiClient(HttpClient).Latest;
-	protected string UniqueId { get; } = Guid.NewGuid().ToString("N")[..8];
+	protected string UniqueId { get; } = TestData.NewId();
 }

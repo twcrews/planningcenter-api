@@ -11,5 +11,5 @@ public abstract class PeopleTestBase(PeopleFixture fixture)
 	protected HttpClient HttpClient => fixture.HttpClient;
 	protected PeopleFixture Fixture => fixture;
 	protected OrganizationClient Org => new PeopleClient(HttpClient).Latest;
-	protected string UniqueId { get; } = Guid.NewGuid().ToString("N")[..8];
+	protected string UniqueId { get; } = TestData.NewId();
 }

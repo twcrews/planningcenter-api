@@ -1,4 +1,5 @@
 using Crews.PlanningCenter.Api.Webhooks.V2022_10_20;
+using Crews.PlanningCenter.Api.IntegrationTests.Infrastructure;
 using Crews.PlanningCenter.Api.IntegrationTests.Infrastructure.ProductFixtures;
 using Crews.PlanningCenter.Api.IntegrationTests.Infrastructure.TestBases;
 
@@ -13,11 +14,16 @@ public class WebhookSubscriptionTests(WebhooksFixture fixture) : WebhooksTestBas
 
 		try
 		{
+			// Subscription names are fixed, so one left by a crashed run must be removed before creating another.
+			await TestDataSweeper.DeleteWhereAsync(HttpClient, "webhooks/v2/subscriptions", subscription =>
+				subscription["attributes"]?["name"]?.GetValue<string>() == "people.v2.events.email.created"
+				&& subscription["attributes"]?["url"]?.GetValue<string>() == TestDataSweeper.WebhookUrl);
+
 			// -- Create --
 			var createResult = await Org.Subscriptions.PostAsync(new WebhookSubscription
 			{
 				Name = $"people.v2.events.email.created",
-				Url = "https://example.com/webhook-test",
+				Url = TestDataSweeper.WebhookUrl,
 				Active = true
 			});
 			Assert.NotNull(createResult.Data);

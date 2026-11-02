@@ -11,5 +11,5 @@ public abstract class ServicesTestBase(ServicesFixture fixture)
 	protected HttpClient HttpClient => fixture.HttpClient;
 	protected ServicesFixture Fixture => fixture;
 	protected OrganizationClient Org => new ServicesClient(HttpClient).Latest;
-	protected string UniqueId { get; } = Guid.NewGuid().ToString("N")[..8];
+	protected string UniqueId { get; } = TestData.NewId();
 }

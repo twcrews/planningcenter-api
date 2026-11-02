@@ -33,6 +33,10 @@ jobs:
     name: Run integration tests
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
+    # All runs share one live account, so only one may run at a time across all pull requests.
+    concurrency:
+      group: integration-tests
+      cancel-in-progress: false
     timeout-minutes: 30
     steps:
     - name: Checkout

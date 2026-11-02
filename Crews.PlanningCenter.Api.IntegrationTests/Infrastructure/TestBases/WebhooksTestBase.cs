@@ -11,5 +11,5 @@ public abstract class WebhooksTestBase(WebhooksFixture fixture)
 	protected HttpClient HttpClient => fixture.HttpClient;
 	protected WebhooksFixture Fixture => fixture;
 	protected OrganizationClient Org => new WebhooksClient(HttpClient).Latest;
-	protected string UniqueId { get; } = Guid.NewGuid().ToString("N")[..8];
+	protected string UniqueId { get; } = TestData.NewId();
 }

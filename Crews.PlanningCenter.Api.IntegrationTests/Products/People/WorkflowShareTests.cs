@@ -22,14 +22,9 @@ public class WorkflowShareTests(PeopleFixture fixture) : PeopleTestBase(fixture)
 				{
 					Data = new()
 					{
-						Attributes = new WorkflowShare { Permission = "view" },
-						Relationships = new()
-						{
-							Person = new()
-							{
-								Data = new() { Type = "Person", Id = Fixture.PersonId }
-							}
-						}
+						// Shares can only target people with People permissions, which the fixture person can't have
+						// because it has no email address. Share with a permission group instead.
+						Attributes = new WorkflowShare { Group = "Viewer", Permission = "view" }
 					}
 				});
 			Assert.NotNull(createResult.Data);

@@ -23,6 +23,7 @@ public class BlockoutTests(ServicesFixture fixture) : ServicesTestBase(fixture)
 			// -- Create --
 			var createResult = await Org.People.WithId(personId).Blockouts.PostAsync(new Blockout
 			{
+				Reason = $"IntTest-{UniqueId}",
 				StartsAt = startsAt,
 				EndsAt = endsAt,
 				RepeatFrequency = "no_repeat"
@@ -41,14 +42,14 @@ public class BlockoutTests(ServicesFixture fixture) : ServicesTestBase(fixture)
 			var updateResult = await Org.People.WithId(personId).Blockouts
 				.WithId(blockoutId).PatchAsync(new Blockout
 				{
-					Reason = "Some reason"
+					Reason = $"IntTest-Updated-{UniqueId}"
 				});
 			Assert.NotNull(updateResult.Data);
 
 			// -- Verify Update --
 			var verifyResult = await Org.People.WithId(personId).Blockouts
 				.WithId(blockoutId).GetAsync();
-			Assert.Equal($"Some reason",
+			Assert.Equal($"IntTest-Updated-{UniqueId}",
 				verifyResult.Data?.Attributes?.Reason);
 
 			// -- Delete --

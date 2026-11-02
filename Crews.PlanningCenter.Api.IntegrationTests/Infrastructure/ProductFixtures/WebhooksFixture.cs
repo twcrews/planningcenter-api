@@ -28,7 +28,7 @@ public class WebhooksFixture : PlanningCenterFixture
 	public override async Task InitializeAsync()
 	{
 		await base.InitializeAsync();
-		_fixtureId = Guid.NewGuid().ToString("N")[..8];
+		_fixtureId = TestData.NewId();
 
 		// Discover existing events before creating the fixture subscription so that
 		// the fixture subscription doesn't pollute the first-item search.
@@ -48,10 +48,17 @@ public class WebhooksFixture : PlanningCenterFixture
 
 		var org = new WebhooksClient(HttpClient).Latest;
 
+		const string subscriptionName = "people.v2.events.address.created";
+
+		// Subscription names are fixed, so one left by a crashed run must be removed before creating another.
+		await TestDataSweeper.DeleteWhereAsync(HttpClient, "webhooks/v2/subscriptions", subscription =>
+			subscription["attributes"]?["name"]?.GetValue<string>() == subscriptionName
+			&& subscription["attributes"]?["url"]?.GetValue<string>() == TestDataSweeper.WebhookUrl);
+
 		var result = await org.Subscriptions.PostAsync(new WebhookSubscription
 		{
-			Name = $"people.v2.events.address.created",
-			Url = "https://example.com/webhook-test"
+			Name = subscriptionName,
+			Url = TestDataSweeper.WebhookUrl
 		});
 		SubscriptionId = result.Data!.Id!;
 	}

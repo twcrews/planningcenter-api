@@ -5,6 +5,30 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.0.0] - 2026-11-02
+
+### Added
+
+- Add new API versions: Api `2026-09-24`, Calendar `2026-06-22` and `2026-10-19`, and People `2026-06-04` and `2026-10-05`.
+- Add new resources from Planning Center documentation: Calendar `calendar`, Giving `donor_summary`, People `form_field_condition`, Publishing `announcement`, `announcement_category`, `announcements_announcement_category`, and `announcements_campus`, and Services `plan_import_metadata`.
+
+### Changed
+
+- **Breaking change:** Target .NET 10. Projects on earlier versions of .NET can no longer consume this package.
+- **Breaking change:** Update `Crews.Web.JsonApiClient` to 7.0.0.
+- **Breaking change:** `Latest` on `ApiClient`, `CalendarClient`, and `PeopleClient` now targets the new API versions. In People, this removes `avatar_url` from `campus` and replaces `resource_permission_flags` with `selective_access` on `person`.
+- **Breaking change:** Change `birthdate` and `anniversary` on Services `person` from `DateTime` to `DateOnly`.
+- **Breaking change:** Change `name` and its `WhereName` query on Calendar `event_time` from `DateTime` to `string`.
+- Update `Microsoft.AspNetCore.Authentication.OpenIdConnect` to 10.0.14.
+- Update API definitions from Planning Center documentation. This includes allowing `POST` on People `form_submission` and `POST`, `PATCH`, and `DELETE` on Services `plan_template`.
+- Planning Center now redacts event data on Calendar booking and conflict endpoints for users without access to the event, in all API versions. These endpoints may return `BookedEvent`, `BookedEventInstance`, and `BookedEventTime` stubs in place of the full resources.
+
+### Removed
+
+- **Breaking change:** Remove the `event_instance` child and include from Calendar `resource_booking`.
+- **Breaking change:** Remove the `import_template` action from Services `plan`.
+- **Breaking change:** Remove `POST` from Publishing `speakership`.
+
 ## [3.4.1] - 2026-05-07
 
 ### Fixed
@@ -302,6 +326,7 @@ First official stable release!
 
 Initial release.
 
+[4.0.0]: https://github.com/twcrews/planningcenter-api/compare/3.4.1...4.0.0
 [3.4.1]: https://github.com/twcrews/planningcenter-api/compare/3.4.0...3.4.1
 [3.4.0]: https://github.com/twcrews/planningcenter-api/compare/3.3.0...3.4.0
 [3.3.0]: https://github.com/twcrews/planningcenter-api/compare/3.2.0...3.3.0

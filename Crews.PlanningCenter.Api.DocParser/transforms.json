@@ -324,6 +324,12 @@
       "Resource": "custom_sender",
       "Relationship": "custom_sender_shares",
       "ResourceClrType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier"
+    },
+    {
+      "Product": "publishing",
+      "Resource": "announcements_campus",
+      "Relationship": "campus",
+      "ResourceClrType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier"
     }
   ],
   "AdditionalResourceChildren": [

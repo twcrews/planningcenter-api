@@ -1,4 +1,4 @@
-using Crews.PlanningCenter.Api.Calendar.V2022_07_07;
+using Crews.PlanningCenter.Api.Calendar.V2026_10_19;
 using Crews.PlanningCenter.Api.IntegrationTests.Infrastructure.ProductFixtures;
 using Crews.PlanningCenter.Api.IntegrationTests.Infrastructure.TestBases;
 

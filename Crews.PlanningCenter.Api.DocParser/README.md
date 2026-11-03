@@ -19,33 +19,37 @@ The following custom configuration sections are supported in `appsettings.json`:
 
 - `AppSettings:DocumentationBuilder:ConcurrentConnections`: the maximum number of concurrent requests allowed to the Planning Center API. **Please be respectful of Planning Center's servers when modifying this value.**
 
-## Documentation Overrides
+## Documentation Transforms
 
-Overrides for correcting inaccuracies in the Planning Center API documentation are configured in a separate `overrides.json` file. This separates static data corrections from runtime application settings.
+Transforms for correcting inaccuracies in the Planning Center API documentation are configured in a separate `transforms.json` file. This separates static data corrections from runtime application settings.
 
-### Excluding Resources from Generation
+Every entry can be limited with these optional properties:
 
-- `ExcludedVertices`: a list of vertices (resources) to exclude from documentation generation. This value is an array of objects with the structure `{ Product: string?, Version: string?, Vertex: string, GenerateResource: bool, GenerateClients: bool }`.
-  - If `Product` is null, the specified vertex will be excluded across all products, dependent on version.
-  - If `Version` is null, the specified vertex will be excluded across all versions, dependent on product.
-  - If both `Product` and `Version` are null, the specified vertex will be excluded across all products and versions.
+- `Product`: the product name as it appears in the API path (e.g., `check-ins`). If null, the entry applies across all products.
+- `Version`: the API version (e.g., `2025-11-10`). If null, the entry applies across all versions.
 
-### Name Overrides
+Entries are matched in file order, and only the first matching override is applied to each item. List narrowly scoped entries before broader ones.
 
-- `NameOverrides`: a list of overrides for generated model and resource class names. This value is an array of objects with the structure `{ Product: string?, Version: string?, Vertex: string?, ModelName: string, ResourceName: string }`.
+See [DocumentationTransforms.cs](Configuration/DocumentationTransforms.cs) for every property that each entry supports. Any property left out of an override keeps the value from the documentation.
 
-### Edge Type Overrides
+### Resource Overrides
 
-- `EdgeTypeOverrides`: a list of overrides for outbound edge (associated resource) type names. This is necessary because in some instances, Planning Center's documentation does not accurately reflect the types of associated resources. This value is an array of objects with the structure `{ Product: string?, Version: string?, Vertex: string?, Edge: string, Type: string }`.
-  - If `Product` is null, the specified edge override will be applied across all products, dependent on version and vertex.
-  - If `Version` is null, the specified edge override will be applied across all versions, dependent on product and vertex.
-  - If `Vertex` is null, the specified edge override will be applied across all vertices, dependent on product and version.
-  - If `Product`, `Version`, and `Vertex` are all null, the specified edge override will be applied across all products, versions, and vertices.
+- `ResourceOverrides`: a list of overrides for resource properties, such as class names, permissions, and whether to generate the resource or its clients. `Resource` is required.
 
-### Collection Overrides
+### Resource Child Overrides
 
-- `CollectionOverrides`: a list of overrides for whether an edge represents a collection or a singular resource. This value is an array of objects with the structure `{ Product: string?, Version: string?, Vertex: string?, Edge: string, IsCollection: bool }`.
+- `ResourceChildOverrides`: a list of overrides for a resource's child endpoints, such as whether a child is a collection or which URL slug it uses. `Child` is required. If `Resource` is null, the override applies across all resources.
 
-### Attribute Type Overrides
+### Attribute Overrides
 
-- `AttributeTypeOverrides`: a list of overrides for resource attribute types. This value is an array of objects with the structure `{ Product: string?, Version: string?, Vertex: string?, Attribute: string, Type: string }`.
+- `AttributeOverrides`: a list of overrides for resource attributes, such as the CLR type or JSON converter. `Attribute` is required. If `Resource` is null, the override applies across all resources.
+
+### Relationship Overrides
+
+- `RelationshipOverrides`: a list of overrides for resource relationships. This is necessary because in some instances, Planning Center's documentation does not accurately reflect the types of related resources. `Relationship` is required. If `Resource` is null, the override applies across all resources.
+
+If a relationship's type is not defined in the same product and version, the generated code will not compile. To fix this, set `ResourceClrType` to `Crews.Web.JsonApiClient.JsonApiResourceIdentifier`.
+
+### Additional Resource Children
+
+- `AdditionalResourceChildren`: a list of child endpoints to add to a resource when they are missing from the documentation. `Resource` and `Child` are required.

@@ -1,4 +1,4 @@
-using Crews.PlanningCenter.Api.Calendar.V2022_07_07;
+using Crews.PlanningCenter.Api.Calendar.V2026_10_19;
 using ServicesClient = Crews.PlanningCenter.Api.ServicesClient;
 using ServicesServiceType = Crews.PlanningCenter.Api.Services.V2018_11_01.ServiceType;
 

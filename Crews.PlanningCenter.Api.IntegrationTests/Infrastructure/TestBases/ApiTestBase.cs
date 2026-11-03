@@ -1,4 +1,4 @@
-using Crews.PlanningCenter.Api.Api.V2025_09_30;
+using Crews.PlanningCenter.Api.Api.V2026_09_24;
 using Crews.PlanningCenter.Api.IntegrationTests.Infrastructure.Collections;
 using Crews.PlanningCenter.Api.IntegrationTests.Infrastructure.ProductFixtures;
 

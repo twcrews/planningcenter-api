@@ -19,7 +19,7 @@ The primary library project that includes everything in the NuGet package:
 - Common models and base types
 - JSON definition files
 
-**Target Framework:** .NET 8.0
+**Target Framework:** .NET 10.0
 
 ### Documentation Parser (`Crews.PlanningCenter.Api.DocParser`)
 

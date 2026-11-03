@@ -612,6 +612,12 @@
           "Description": "The plain text version of the group description.\n"
         },
         {
+          "JsonName": "direct_messages_enabled",
+          "ClrName": "DirectMessagesEnabled",
+          "ClrType": "bool",
+          "Description": "A boolean representing whether or not direct messages are enabled for the group.\n"
+        },
+        {
           "JsonName": "enrollment_open",
           "ClrName": "EnrollmentOpen",
           "ClrType": "bool",
@@ -760,7 +766,7 @@
           "Path": "enable_chat",
           "Requirements": "Can be run by administrators or group type managers,\nas well as leaders if allowed by the group type\u0027s settings.\n",
           "Description": "Planning Center does not provide a description for this action.",
-          "AdditionalDetails": "Enables chat for the given group. Enabling chat will make the names of each member visible to\nother group members. Chat cannot be enabled for a group if the member list is confidential.\nYou must confirm your intention with a \u0060confirm\u0060 attribute to allow this action to succeed.\n",
+          "AdditionalDetails": "Enables chat for the given group. Enabling chat will make the names, profile photos, and genders\nof members visible to other group members. Chat cannot be enabled for a group if the member list\nis confidential. You must confirm your intention with a \u0060confirm\u0060 attribute for this action to\nsucceed.\n",
           "Deprecated": false
         }
       ],
@@ -1217,7 +1223,13 @@
           "Slug": "resources",
           "IsCollection": true,
           "Deprecated": false,
-          "Filters": []
+          "Filters": [
+            {
+              "ClrMethodName": "FilterByLeaders",
+              "Value": "leaders",
+              "Description": "only visible to group leaders\n"
+            }
+          ]
         }
       ],
       "CanInclude": [],
@@ -1513,6 +1525,16 @@
           "Filters": []
         },
         {
+          "JsonName": "event_notes",
+          "ClrName": "EventNotes",
+          "AttributesClrType": "EventNote",
+          "Description": "Associated \u0060EventNotes\u0060.",
+          "Slug": "event_notes",
+          "IsCollection": true,
+          "Deprecated": false,
+          "Filters": []
+        },
+        {
           "JsonName": "events",
           "ClrName": "Events",
           "AttributesClrType": "Event",
@@ -1647,6 +1669,27 @@
               "ClrMethodName": "FilterByTag",
               "Value": "tag",
               "Description": "filter groups with tags; provide an additional \u0060tag_id\u0060 param\nas a comma-separated list of IDs, ex: \u0060?filter=tag\u0026tag_id=1,2,3\u0060.\nfiltering by tags within a tag group will expand results,\nand across tag groups will reduce results.\n"
+            }
+          ]
+        },
+        {
+          "JsonName": "memberships",
+          "ClrName": "Memberships",
+          "AttributesClrType": "Membership",
+          "Description": "Associated \u0060Memberships\u0060.",
+          "Slug": "memberships",
+          "IsCollection": true,
+          "Deprecated": false,
+          "Filters": [
+            {
+              "ClrMethodName": "FilterByGroup",
+              "Value": "group",
+              "Description": "filter memberships from specific groups; provide an additional \u0060group_id\u0060 param\nas a comma-separated list of IDs, ex: \u0060?filter=group\u0026group_id=1,2,3\u0060\n"
+            },
+            {
+              "ClrMethodName": "FilterByLeader",
+              "Value": "leader",
+              "Description": "filter memberships with the leader role"
             }
           ]
         },
@@ -1891,6 +1934,12 @@
       "ShouldGenerateClients": true,
       "Attributes": [
         {
+          "JsonName": "guest_count",
+          "ClrName": "GuestCount",
+          "ClrType": "int",
+          "Description": "The number of guests the person is bringing. Always \u00600\u0060 unless the response is \u0060yes\u0060 or \u0060maybe\u0060.\n"
+        },
+        {
           "JsonName": "response",
           "ClrName": "Response",
           "ClrType": "string",
@@ -2030,6 +2079,11 @@
           "ClrMethodName": "OrderByName",
           "Value": "name",
           "Description": "Sort response items by the \u0060Name\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "OrderByPinned",
+          "Value": "pinned",
+          "Description": "Sort response items by the \u0060Pinned\u0060 attribute."
         }
       ],
       "CanQueryBy": []

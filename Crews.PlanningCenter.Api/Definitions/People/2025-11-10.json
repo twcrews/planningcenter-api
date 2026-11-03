@@ -1125,6 +1125,12 @@
           "ClrName": "UpdatedAt",
           "ClrType": "System.DateTime",
           "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "verified",
+          "ClrName": "Verified",
+          "ClrType": "bool",
+          "Description": "Planning Center does not provide a description for this attribute."
         }
       ],
       "Relationships": [
@@ -1231,6 +1237,12 @@
       "ShouldGenerateClients": true,
       "Attributes": [
         {
+          "JsonName": "created_at",
+          "ClrName": "CreatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
           "JsonName": "file",
           "ClrName": "File",
           "ClrType": "Crews.PlanningCenter.Api.People.File",
@@ -1252,6 +1264,12 @@
           "JsonName": "file_size",
           "ClrName": "FileSize",
           "ClrType": "int",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "updated_at",
+          "ClrName": "UpdatedAt",
+          "ClrType": "System.DateTime",
           "Description": "Planning Center does not provide a description for this attribute."
         },
         {
@@ -1347,6 +1365,11 @@
       ],
       "CanOrderBy": [
         {
+          "ClrMethodName": "OrderByCreatedAt",
+          "Value": "created_at",
+          "Description": "Sort response items by the \u0060CreatedAt\u0060 attribute."
+        },
+        {
           "ClrMethodName": "OrderByFile",
           "Value": "file",
           "Description": "Sort response items by the \u0060File\u0060 attribute."
@@ -1367,12 +1390,23 @@
           "Description": "Sort response items by the \u0060FileSize\u0060 attribute."
         },
         {
+          "ClrMethodName": "OrderByUpdatedAt",
+          "Value": "updated_at",
+          "Description": "Sort response items by the \u0060UpdatedAt\u0060 attribute."
+        },
+        {
           "ClrMethodName": "OrderByValue",
           "Value": "value",
           "Description": "Sort response items by the \u0060Value\u0060 attribute."
         }
       ],
       "CanQueryBy": [
+        {
+          "ClrMethodName": "WhereCreatedAt",
+          "ClrType": "System.DateTime",
+          "Parameter": "where[created_at]",
+          "Description": "Query response items by the \u0060CreatedAt\u0060 attribute."
+        },
         {
           "ClrMethodName": "WhereFieldDefinitionId",
           "ClrType": "int",
@@ -1402,6 +1436,12 @@
           "ClrType": "int",
           "Parameter": "where[file_size]",
           "Description": "Query response items by the \u0060FileSize\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "WhereUpdatedAt",
+          "ClrType": "System.DateTime",
+          "Parameter": "where[updated_at]",
+          "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
         },
         {
           "ClrMethodName": "WhereValue",
@@ -1685,6 +1725,12 @@
           "Description": "Planning Center does not provide a description for this attribute."
         },
         {
+          "JsonName": "allow_submitting_for_household_members",
+          "ClrName": "AllowSubmittingForHouseholdMembers",
+          "ClrType": "bool",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
           "JsonName": "archived",
           "ClrName": "Archived",
           "ClrType": "bool",
@@ -1880,6 +1926,11 @@
           "ClrMethodName": "OrderByName",
           "Value": "name",
           "Description": "Sort response items by the \u0060Name\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "OrderByRecentlyViewed",
+          "Value": "recently_viewed",
+          "Description": "Sort response items by the \u0060RecentlyViewed\u0060 attribute."
         },
         {
           "ClrMethodName": "OrderBySubmissionCount",
@@ -2080,6 +2131,16 @@
       "Actions": [],
       "Children": [
         {
+          "JsonName": "form_field_conditions",
+          "ClrName": "FormFieldConditions",
+          "AttributesClrType": "FormFieldCondition",
+          "Description": "Associated \u0060FormFieldConditions\u0060.",
+          "Slug": "form_field_conditions",
+          "IsCollection": true,
+          "Deprecated": false,
+          "Filters": []
+        },
+        {
           "JsonName": "options",
           "ClrName": "Options",
           "AttributesClrType": "FormFieldOption",
@@ -2091,6 +2152,13 @@
         }
       ],
       "CanInclude": [
+        {
+          "ClrMethodName": "IncludeFormFieldConditions",
+          "Value": "form_field_conditions",
+          "Description": "Include related \u0060FormFieldConditions\u0060 resources in the response.",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
         {
           "ClrMethodName": "IncludeOptions",
           "Value": "options",
@@ -2117,6 +2185,94 @@
         }
       ],
       "CanQueryBy": []
+    },
+    {
+      "JsonName": "form_field_condition",
+      "ResourceClrType": "FormFieldConditionResource",
+      "AttributesClrType": "FormFieldCondition",
+      "Description": "A rule that conditionally shows a form field based on the answer given to another (trigger) field.\n\nA condition belongs to the \u0060form_field\u0060 it shows, and points at a \u0060trigger_form_field\u0060 whose answer determines whether that field is displayed. A form field can have at most one condition. The trigger is matched in one of two ways:\n\n- \u0060trigger_form_field_option\u0060 \u2014 the condition is met when the answer to the trigger field is this option (used for option-based fields such as dropdowns, gender, campus, etc.).\n- \u0060trigger_form_field_option_value\u0060 \u2014 the condition is met when the answer to the trigger field equals this string (used for boolean custom fields).\n\nWhen neither is set, the condition is met whenever the trigger field has any answer.\n\nConditions are created, updated, and destroyed under the form field they belong to (\u0060POST\u0060/\u0060PATCH\u0060/\u0060DELETE .../fields/{id}/form_field_conditions\u0060). The \u0060form_field\u0060 and \u0060trigger_form_field\u0060 must both belong to the same form, and the \u0060trigger_form_field_option\u0060 must belong to the \u0060trigger_form_field\u0060. Writing requires permission to manage the form.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
+      "Attributes": [
+        {
+          "JsonName": "created_at",
+          "ClrName": "CreatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "trigger_form_field_option_value",
+          "ClrName": "TriggerFormFieldOptionValue",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "updated_at",
+          "ClrName": "UpdatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
+        }
+      ],
+      "Relationships": [
+        {
+          "JsonName": "form_field",
+          "ClrName": "FormField",
+          "AttributesClrType": "FormField",
+          "ResourceClrType": "FormFieldResource",
+          "IsCollection": false,
+          "Description": "Related \u0060FormField\u0060 resource."
+        },
+        {
+          "JsonName": "trigger_form_field",
+          "ClrName": "TriggerFormField",
+          "AttributesClrType": "FormField",
+          "ResourceClrType": "FormFieldResource",
+          "IsCollection": false,
+          "Description": "Related \u0060TriggerFormField\u0060 resource."
+        },
+        {
+          "JsonName": "trigger_form_field_option",
+          "ClrName": "TriggerFormFieldOption",
+          "AttributesClrType": "FormFieldOption",
+          "ResourceClrType": "FormFieldOptionResource",
+          "IsCollection": false,
+          "Description": "Related \u0060TriggerFormFieldOption\u0060 resource."
+        }
+      ],
+      "Actions": [],
+      "Children": [],
+      "CanInclude": [],
+      "CanOrderBy": [
+        {
+          "ClrMethodName": "OrderByCreatedAt",
+          "Value": "created_at",
+          "Description": "Sort response items by the \u0060CreatedAt\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "OrderByUpdatedAt",
+          "Value": "updated_at",
+          "Description": "Sort response items by the \u0060UpdatedAt\u0060 attribute."
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "ClrMethodName": "WhereCreatedAt",
+          "ClrType": "System.DateTime",
+          "Parameter": "where[created_at]",
+          "Description": "Query response items by the \u0060CreatedAt\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "WhereUpdatedAt",
+          "ClrType": "System.DateTime",
+          "Parameter": "where[updated_at]",
+          "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
+        }
+      ]
     },
     {
       "JsonName": "form_field_option",
@@ -2200,10 +2356,10 @@
       "JsonName": "form_submission",
       "ResourceClrType": "FormSubmissionResource",
       "AttributesClrType": "FormSubmission",
-      "Description": "A form submission.",
+      "Description": "A form submission represents a single completed entry submitted through a Planning Center form.\n\n### Creating submissions\n\n\u0060POST\u0060 is supported so external integrations can record submissions captured outside of Church Center \u2014 for example, paper forms run through OCR. Creating a submission requires the access token to belong to a user who (1) has overall People permissions of Editor or above and (2) can manage the target form (a Manager, or a user with a \u0060manage\u0060 \u0060FormShare\u0060).\n\n### Identifying the submitter\n\nProvide either \u0060person_id\u0060 (an existing person in your organization) or \u0060person_attributes\u0060. When \u0060person_attributes\u0060 is supplied, the API matches against existing profiles by first name (or given name or nickname) \u002B last name \u002B email address. If no match is found, a new person is created automatically.\n\n\u0060person_attributes\u0060 accepts \u0060first_name\u0060, \u0060last_name\u0060, and \u0060emails_attributes\u0060 (an array with at least one \u0060{ \u0022location\u0022: \u0022...\u0022, \u0022address\u0022: \u0022...\u0022 }\u0060 hash).\n\n### Form values\n\nPass each answer as an \u0060included\u0060 resource of type \u0060FormSubmissionValue\u0060, with \u0060form_field_id\u0060 referencing a field on the form. The shape of \u0060value\u0060 depends on the field\u0027s \u0060field_type\u0060: plain fields take a string, phone and address fields take an object, and file fields take an array of uploaded file references. See the \u0060FormSubmissionValue\u0060 vertex for the full list of shapes and for how to upload files.\n\n\u0060\u0060\u0060\n{\n  \u0022data\u0022: { \u0022attributes\u0022: { \u0022person_id\u0022: \u00221\u0022 } },\n  \u0022included\u0022: [\n    { \u0022type\u0022: \u0022FormSubmissionValue\u0022, \u0022attributes\u0022: { \u0022form_field_id\u0022: \u002210\u0022, \u0022value\u0022: \u0022Blue\u0022 } },\n    { \u0022type\u0022: \u0022FormSubmissionValue\u0022, \u0022attributes\u0022: { \u0022form_field_id\u0022: \u002211\u0022, \u0022value\u0022: { \u0022number\u0022: \u0022555-555-1234\u0022, \u0022location\u0022: \u0022Mobile\u0022 } } },\n    { \u0022type\u0022: \u0022FormSubmissionValue\u0022, \u0022attributes\u0022: { \u0022form_field_id\u0022: \u002212\u0022, \u0022value\u0022: { \u0022location\u0022: \u0022Home\u0022, \u0022street\u0022: \u0022123 Main St\u0022, \u0022city\u0022: \u0022Carlsbad\u0022, \u0022state\u0022: \u0022CA\u0022, \u0022zip\u0022: \u002292008\u0022, \u0022country_code\u0022: \u0022US\u0022 } } },\n    { \u0022type\u0022: \u0022FormSubmissionValue\u0022, \u0022attributes\u0022: { \u0022form_field_id\u0022: \u002213\u0022, \u0022value\u0022: [{ \u0022fileID\u0022: \u0022us4-2b1f6c0e-5d3a-4f7e-9c21-8a6d0e4b7f10\u0022, \u0022fileName\u0022: \u0022waiver.pdf\u0022 }] } }\n  ]\n}\n\u0060\u0060\u0060\n\nOne important note: if the form field has options (for example, a checkboxes or dropdown field), the submitted \u0060value\u0060 should be the ID of the selected option, not the option\u0027s text.\n\n### Side effects\n\nA submission triggers the same side effects as a Church Center submission: notification emails to the form\u0027s subscribers, a confirmation email to the submitter (if the form is configured to send one), workflow card creation for workflow answer fields, and profile updates for contact info, birthdate, gender, household, custom fields, and other profile data.\n\nThe access token\u0027s user is recorded as the submitter, unless they are the person the submission is for. Profile updates from the submission are attributed to that user in the person\u0027s history.\n\nWhen the resolved person is brand new (created by this submission), profile updates happen immediately and the submission is auto-verified. When the resolved person already exists and the form contains verification-required fields, a verification email is sent first; profile updates apply only after the submitter clicks the verification link \u2014 matching the behavior of an unauthenticated Church Center submission.\n",
       "Deprecated": false,
       "CollectionOnly": false,
-      "Postable": false,
+      "Postable": true,
       "Patchable": false,
       "Deletable": false,
       "ShouldGenerateResource": true,
@@ -2219,6 +2375,12 @@
           "JsonName": "requires_verification",
           "ClrName": "RequiresVerification",
           "ClrType": "bool",
+          "Description": "Only available when requested with the \u0060?fields\u0060 param"
+        },
+        {
+          "JsonName": "selected_options_by_field",
+          "ClrName": "SelectedOptionsByField",
+          "ClrType": "System.Text.Json.Nodes.JsonObject",
           "Description": "Only available when requested with the \u0060?fields\u0060 param"
         },
         {
@@ -2314,8 +2476,8 @@
           "ClrMethodName": "IncludeFormSubmissionValues",
           "Value": "form_submission_values",
           "Description": "Include related \u0060FormSubmissionValues\u0060 resources in the response.",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
         },
         {
           "ClrMethodName": "IncludePerson",
@@ -2366,7 +2528,7 @@
       "JsonName": "form_submission_value",
       "ResourceClrType": "FormSubmissionValueResource",
       "AttributesClrType": "FormSubmissionValue",
-      "Description": "A form submission value.",
+      "Description": "A single answer to a single field within a form submission.\n\nWhen creating a \u0060FormSubmission\u0060, supply one \u0060FormSubmissionValue\u0060 per answered field as a JSON:API \u0060included\u0060 resource. Each must reference a \u0060form_field_id\u0060 belonging to the parent form; values referencing fields on other forms are silently discarded. Blank values are also discarded.\n\n\u0060value\u0060 is write-only. It is accepted when creating a submission but is never returned when reading one. Read answers back through \u0060display_value\u0060 and, for file fields, \u0060attachments\u0060.\n\n### Uploading files\n\nFile answers reference files that have already been uploaded to the Planning Center upload service. Upload each file first with a multipart \u0060POST\u0060 to \u0060https://upload.planningcenteronline.com/v2/files\u0060, one file per request. The request authenticates like any other Planning Center API request: a personal access token as HTTP Basic, or an OAuth access token as a \u0060Bearer\u0060 token. It does not have to be the same credential that later creates the submission.\n\n\u0060\u0060\u0060\ncurl -X POST https://upload.planningcenteronline.com/v2/files   -u \u003Capplication id\u003E:\u003Csecret\u003E   -F \u0022file=@waiver.pdf\u0022\n\u0060\u0060\u0060\n\nThe response lists the uploaded file under \u0060data\u0060. Use \u0060data[0].id\u0060 as \u0060fileID\u0060 and \u0060data[0].attributes.name\u0060 as \u0060fileName\u0060. \u0060fileID\u0060 must be sent exactly as returned, including its datacenter prefix (such as \u0060us4-\u0060).\n\nUploads are temporary. \u0060data[0].attributes.expires_at\u0060 is 60 minutes after the upload, so create the submission soon after uploading. People copies the file into its own storage when the submission is created, and that copy is unaffected by the upload expiring.\n\nA file answer that is malformed, lacks the prefix, or points at an expired or unknown upload fails the request with a \u0060422\u0060 validation error on \u0060value\u0060 that says which.\n\n\u0060\u0060\u0060\n{\n  \u0022data\u0022: { \u0022attributes\u0022: { \u0022person_id\u0022: \u00221\u0022 } },\n  \u0022included\u0022: [\n    {\n      \u0022type\u0022: \u0022FormSubmissionValue\u0022,\n      \u0022attributes\u0022: {\n        \u0022form_field_id\u0022: \u002242\u0022,\n        \u0022value\u0022: [{ \u0022fileID\u0022: \u0022us4-2b1f6c0e-5d3a-4f7e-9c21-8a6d0e4b7f10\u0022, \u0022fileName\u0022: \u0022waiver.pdf\u0022 }]\n      }\n    }\n  ]\n}\n\u0060\u0060\u0060\n",
       "Deprecated": false,
       "CollectionOnly": false,
       "Postable": false,
@@ -2386,6 +2548,12 @@
           "ClrName": "DisplayValue",
           "ClrType": "string",
           "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "value",
+          "ClrName": "Value",
+          "ClrType": "string",
+          "Description": "Write-only. Accepted when creating a submission and never returned.\n\nThe submitted answer. The shape depends on the parent \u0060FormField\u0060\u0027s \u0060field_type\u0060:\n\n- **string, text, number, note, medical**: the literal value as a string\n- **date, birthday, anniversary**: an ISO 8601 date as a string\n- **boolean**: \u0060\u0022true\u0022\u0060 or \u0060\u0022false\u0022\u0060\n- **gender, marital_status, school, primary_campus**: the option\u0027s id as a string (look up via \u0060/people/v2/genders\u0060, \u0060/people/v2/marital_statuses\u0060, \u0060/people/v2/school_options\u0060, \u0060/people/v2/campuses\u0060)\n- **grade**: the grade number as a string, such as \u0060\u00223\u0022\u0060\n- **checkboxes, dropdown, workflow_checkbox, workflow_checkboxes, workflow_dropdown**: the \u0060FormFieldOption\u0060 id as a string, not the option\u0027s text. A \u0060checkboxes\u0060 or \u0060workflow_checkboxes\u0060 field takes one \u0060included\u0060 \u0060FormSubmissionValue\u0060 per selected option. To answer the field\u0027s Other option, send \u0060{ \u0022other\u0022: \u0022\u2026\u0022 }\u0060 instead. For the \u0060workflow_*\u0060 types, submitting the answer creates a \u0060WorkflowCard\u0060 in the linked workflow.\n- **phone_number**: an object like \u0060{ \u0022number\u0022: \u0022555-555-1234\u0022, \u0022location\u0022: \u0022Mobile\u0022 }\u0060. \u0060location\u0060 defaults to \u0060\u0022Mobile\u0022\u0060 when omitted.\n- **address**: an object like \u0060{ \u0022location\u0022: \u0022Home\u0022, \u0022street\u0022: \u0022123 Main St\u0022, \u0022city\u0022: \u0022Carlsbad\u0022, \u0022state\u0022: \u0022CA\u0022, \u0022zip\u0022: \u002292008\u0022, \u0022country_code\u0022: \u0022US\u0022 }\u0060. \u0060location\u0060 defaults to \u0060\u0022Home\u0022\u0060 when omitted. \u0060street\u0060 is a single string, not the \u0060street_line_1\u0060/\u0060street_line_2\u0060 pair the \u0060Address\u0060 resource uses; put \u0060\\n\u0060 before a second line. \u0060country_code\u0060 is an uppercase ISO 3166-1 alpha-2 code. When the field is required, every property except \u0060location\u0060 must be filled in.\n- **file**: an array of \u0060{ \u0022fileID\u0022: \u0022us4-\u2026\u0022, \u0022fileName\u0022: \u0022waiver.pdf\u0022 }\u0060 objects. Each object must have exactly those two keys and no others. \u0060fileID\u0060 is the full id returned by the upload service, including its datacenter prefix (see \u0022Uploading files\u0022 above). Single-file fields accept one object; fields whose \u0060settings.multiple_files\u0060 is true accept up to 5. Each file may be at most 10 MB, and common executable and script file types are rejected. The \u0060fileName\u0060 key is required, but its value is ignored: the stored file keeps the name it was uploaded with.\n- **custom_field**: follows the linked \u0060FieldDefinition\u0060\u0027s \u0060data_type\u0060 \u2014 usually a string, or the file array above when \u0060data_type\u0060 is \u0060file\u0060.\n"
         }
       ],
       "Relationships": [
@@ -4551,6 +4719,12 @@
       ],
       "CanQueryBy": [
         {
+          "ClrMethodName": "WhereCreatedAt",
+          "ClrType": "System.DateTime",
+          "Parameter": "where[created_at]",
+          "Description": "Query response items by the \u0060CreatedAt\u0060 attribute."
+        },
+        {
           "ClrMethodName": "WhereNote",
           "ClrType": "string",
           "Parameter": "where[note]",
@@ -4561,6 +4735,12 @@
           "ClrType": "string",
           "Parameter": "where[note_category_id]",
           "Description": "Query response items by the \u0060NoteCategoryId\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "WhereUpdatedAt",
+          "ClrType": "System.DateTime",
+          "Parameter": "where[updated_at]",
+          "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
         }
       ]
     },
@@ -6187,6 +6367,12 @@
           "Description": "Planning Center does not provide a description for this attribute."
         },
         {
+          "JsonName": "stripe_account_identifier",
+          "ClrName": "StripeAccountIdentifier",
+          "ClrType": "string",
+          "Description": "Only available when requested with the \u0060?fields\u0060 param"
+        },
+        {
           "JsonName": "stripe_customer_identifier",
           "ClrName": "StripeCustomerIdentifier",
           "ClrType": "string",
@@ -7163,6 +7349,12 @@
           "JsonName": "updated_at",
           "ClrName": "UpdatedAt",
           "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "verified",
+          "ClrName": "Verified",
+          "ClrType": "bool",
           "Description": "Planning Center does not provide a description for this attribute."
         }
       ],
@@ -8214,6 +8406,11 @@
           "Description": "Sort response items by the \u0060Name\u0060 attribute."
         },
         {
+          "ClrMethodName": "OrderByRecentlyViewed",
+          "Value": "recently_viewed",
+          "Description": "Sort response items by the \u0060RecentlyViewed\u0060 attribute."
+        },
+        {
           "ClrMethodName": "OrderByTotalOverdueCardCount",
           "Value": "total_overdue_card_count",
           "Description": "Sort response items by the \u0060TotalOverdueCardCount\u0060 attribute."
@@ -8471,6 +8668,18 @@
       "ShouldGenerateClients": true,
       "Attributes": [
         {
+          "JsonName": "awaiting_automation",
+          "ClrName": "AwaitingAutomation",
+          "ClrType": "bool",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "calculated_due_at",
+          "ClrName": "CalculatedDueAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
           "JsonName": "calculated_due_at_in_days_ago",
           "ClrName": "CalculatedDueAtInDaysAgo",
           "ClrType": "int",
@@ -8503,6 +8712,12 @@
         {
           "JsonName": "overdue",
           "ClrName": "Overdue",
+          "ClrType": "bool",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "pending_skip_evaluation",
+          "ClrName": "PendingSkipEvaluation",
           "ClrType": "bool",
           "Description": "Planning Center does not provide a description for this attribute."
         },
@@ -8888,9 +9103,31 @@
           "ClrName": "Type",
           "ClrType": "string",
           "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "updated_at",
+          "ClrName": "UpdatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         }
       ],
       "Relationships": [
+        {
+          "JsonName": "person",
+          "ClrName": "Person",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
+          "IsCollection": false,
+          "Description": "Related \u0060Person\u0060 resource."
+        },
+        {
+          "JsonName": "reassigned_to",
+          "ClrName": "ReassignedTo",
+          "AttributesClrType": "Person",
+          "ResourceClrType": "PersonResource",
+          "IsCollection": false,
+          "Description": "Related \u0060ReassignedTo\u0060 resource."
+        },
         {
           "JsonName": "workflow_card",
           "ClrName": "WorkflowCard",
@@ -8913,12 +9150,35 @@
       "CanInclude": [],
       "CanOrderBy": [
         {
+          "ClrMethodName": "OrderByCreatedAt",
+          "Value": "created_at",
+          "Description": "Sort response items by the \u0060CreatedAt\u0060 attribute."
+        },
+        {
           "ClrMethodName": "OrderById",
           "Value": "id",
           "Description": "Sort response items by the \u0060Id\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "OrderByUpdatedAt",
+          "Value": "updated_at",
+          "Description": "Sort response items by the \u0060UpdatedAt\u0060 attribute."
         }
       ],
-      "CanQueryBy": []
+      "CanQueryBy": [
+        {
+          "ClrMethodName": "WhereCreatedAt",
+          "ClrType": "System.DateTime",
+          "Parameter": "where[created_at]",
+          "Description": "Query response items by the \u0060CreatedAt\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "WhereUpdatedAt",
+          "ClrType": "System.DateTime",
+          "Parameter": "where[updated_at]",
+          "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
+        }
+      ]
     },
     {
       "JsonName": "workflow_card_note",
@@ -8944,6 +9204,12 @@
           "ClrName": "Note",
           "ClrType": "string",
           "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "updated_at",
+          "ClrName": "UpdatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
         }
       ],
       "Relationships": [],
@@ -8955,9 +9221,27 @@
           "ClrMethodName": "OrderByCreatedAt",
           "Value": "created_at",
           "Description": "Sort response items by the \u0060CreatedAt\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "OrderByUpdatedAt",
+          "Value": "updated_at",
+          "Description": "Sort response items by the \u0060UpdatedAt\u0060 attribute."
         }
       ],
-      "CanQueryBy": []
+      "CanQueryBy": [
+        {
+          "ClrMethodName": "WhereCreatedAt",
+          "ClrType": "System.DateTime",
+          "Parameter": "where[created_at]",
+          "Description": "Query response items by the \u0060CreatedAt\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "WhereUpdatedAt",
+          "ClrType": "System.DateTime",
+          "Parameter": "where[updated_at]",
+          "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
+        }
+      ]
     },
     {
       "JsonName": "workflow_category",
@@ -9130,22 +9414,40 @@
       "ShouldGenerateClients": true,
       "Attributes": [
         {
+          "JsonName": "action_type",
+          "ClrName": "ActionType",
+          "ClrType": "string",
+          "Description": "Possible values: \u0060assign\u0060 or \u0060automate\u0060"
+        },
+        {
           "JsonName": "auto_snooze_days",
           "ClrName": "AutoSnoozeDays",
           "ClrType": "int",
           "Description": "Planning Center does not provide a description for this attribute."
         },
         {
+          "JsonName": "auto_snooze_entry_hour",
+          "ClrName": "AutoSnoozeEntryHour",
+          "ClrType": "int",
+          "Description": "Valid values are 17-23. When set, only cards arriving after this hour are snoozed. Requires \u0060auto_snooze_value\u0060, \u0060auto_snooze_interval\u0060, and \u0060auto_snooze_wake_hour\u0060 (which must be before it)."
+        },
+        {
           "JsonName": "auto_snooze_interval",
           "ClrName": "AutoSnoozeInterval",
           "ClrType": "string",
-          "Description": "Valid values are \u0060day\u0060, \u0060week\u0060, or \u0060month\u0060\n\nPossible values: \u0060day\u0060, \u0060week\u0060, or \u0060month\u0060"
+          "Description": "Valid values are \u0060day\u0060, \u0060week\u0060, or \u0060month\u0060. When auto_snooze_entry_hour is set, this is not the snooze length. The card wakes at auto_snooze_wake_hour, and this duration adds only whole days beyond that.\n\nPossible values: \u0060day\u0060, \u0060week\u0060, or \u0060month\u0060"
         },
         {
           "JsonName": "auto_snooze_value",
           "ClrName": "AutoSnoozeValue",
           "ClrType": "int",
-          "Description": "Must be a positive number"
+          "Description": "Must be a positive number. When auto_snooze_entry_hour is set, this is not the snooze length. The card wakes at auto_snooze_wake_hour, and this duration adds only whole days beyond that."
+        },
+        {
+          "JsonName": "auto_snooze_wake_hour",
+          "ClrName": "AutoSnoozeWakeHour",
+          "ClrType": "int",
+          "Description": "Valid values are 7-19, defaulting to 7 when not set. The hour of day cards snooze until. Only present when auto-snooze is enabled (\u0060auto_snooze_value\u0060 and \u0060auto_snooze_interval\u0060 are set)."
         },
         {
           "JsonName": "created_at",
@@ -9187,6 +9489,12 @@
           "JsonName": "sequence",
           "ClrName": "Sequence",
           "ClrType": "int",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "skip_conditions_enabled",
+          "ClrName": "SkipConditionsEnabled",
+          "ClrType": "bool",
           "Description": "Planning Center does not provide a description for this attribute."
         },
         {

@@ -19,8 +19,7 @@ Guidelines for contributing to the Planning Center API client library.
 
 ### Prerequisites
 
-- .NET 8.0 SDK or later (for the main library)
-- .NET 10.0 SDK (for DocParser and tests)
+- .NET 10.0 SDK
 - A code editor (Visual Studio, VS Code, or Rider)
 - Git
 

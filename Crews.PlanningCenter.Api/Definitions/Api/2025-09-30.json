@@ -89,6 +89,18 @@
           "ClrName": "LastName",
           "ClrType": "string",
           "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "scopes",
+          "ClrName": "Scopes",
+          "ClrType": "System.Text.Json.Nodes.JsonArray",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "site_administrator",
+          "ClrName": "SiteAdministrator",
+          "ClrType": "bool",
+          "Description": "Planning Center does not provide a description for this attribute."
         }
       ],
       "Relationships": [],
@@ -96,7 +108,14 @@
       "Children": [],
       "CanInclude": [],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [
+        {
+          "ClrMethodName": "WhereSiteAdministrator",
+          "ClrType": "bool",
+          "Parameter": "where[site_administrator]",
+          "Description": "Query response items by the \u0060SiteAdministrator\u0060 attribute."
+        }
+      ]
     },
     {
       "JsonName": "oauth_application",
@@ -260,6 +279,12 @@
       "ShouldGenerateResource": true,
       "ShouldGenerateClients": true,
       "Attributes": [
+        {
+          "JsonName": "avatar_url",
+          "ClrName": "AvatarUrl",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
         {
           "JsonName": "first_name",
           "ClrName": "FirstName",

@@ -1,4 +1,4 @@
-using Crews.PlanningCenter.Api.People.V2025_11_10;
+using Crews.PlanningCenter.Api.People.V2026_10_05;
 using Crews.Web.JsonApiClient;
 
 namespace Crews.PlanningCenter.Api.IntegrationTests.Infrastructure.ProductFixtures;

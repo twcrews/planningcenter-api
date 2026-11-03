@@ -4,6 +4,290 @@
   "Details": "The first version of the API. Internal use only.",
   "Resources": [
     {
+      "JsonName": "announcement",
+      "ResourceClrType": "AnnouncementResource",
+      "AttributesClrType": "Announcement",
+      "Description": "Planning Center does not provide a description for this resource.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
+      "Attributes": [
+        {
+          "JsonName": "archived",
+          "ClrName": "Archived",
+          "ClrType": "bool",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "attach_linked_resource_image_job_id",
+          "ClrName": "AttachLinkedResourceImageJobId",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "church_center_url",
+          "ClrName": "ChurchCenterUrl",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "featured",
+          "ClrName": "Featured",
+          "ClrType": "bool",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "hide_at",
+          "ClrName": "HideAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "image",
+          "ClrName": "Image",
+          "ClrType": "Crews.PlanningCenter.Api.Common.Image",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "link",
+          "ClrName": "Link",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "link_resource_id",
+          "ClrName": "LinkResourceId",
+          "ClrType": "int",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "link_type",
+          "ClrName": "LinkType",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "position",
+          "ClrName": "Position",
+          "ClrType": "int",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "show_at",
+          "ClrName": "ShowAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "status",
+          "ClrName": "Status",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "summary",
+          "ClrName": "Summary",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "title",
+          "ClrName": "Title",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        }
+      ],
+      "Relationships": [],
+      "Actions": [],
+      "Children": [
+        {
+          "JsonName": "announcements_announcement_categories",
+          "ClrName": "AnnouncementsAnnouncementCategories",
+          "AttributesClrType": "AnnouncementsAnnouncementCategory",
+          "Description": "Associated \u0060AnnouncementsAnnouncementCategories\u0060.",
+          "Slug": "announcements_announcement_categories",
+          "IsCollection": true,
+          "Deprecated": false,
+          "Filters": []
+        },
+        {
+          "JsonName": "announcements_campuses",
+          "ClrName": "AnnouncementsCampuses",
+          "AttributesClrType": "AnnouncementsCampus",
+          "Description": "Associated \u0060AnnouncementsCampuses\u0060.",
+          "Slug": "announcements_campuses",
+          "IsCollection": true,
+          "Deprecated": false,
+          "Filters": []
+        }
+      ],
+      "CanInclude": [
+        {
+          "ClrMethodName": "IncludeAnnouncementsAnnouncementCategories",
+          "Value": "announcements_announcement_categories",
+          "Description": "Include related \u0060AnnouncementsAnnouncementCategories\u0060 resources in the response.",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
+          "ClrMethodName": "IncludeAnnouncementsCampuses",
+          "Value": "announcements_campuses",
+          "Description": "Include related \u0060AnnouncementsCampuses\u0060 resources in the response.",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "ClrMethodName": "OrderByFeatured",
+          "Value": "featured",
+          "Description": "Sort response items by the \u0060Featured\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "OrderByPosition",
+          "Value": "position",
+          "Description": "Sort response items by the \u0060Position\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "OrderByShowAt",
+          "Value": "show_at",
+          "Description": "Sort response items by the \u0060ShowAt\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "OrderByStatus",
+          "Value": "status",
+          "Description": "Sort response items by the \u0060Status\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "OrderByTitle",
+          "Value": "title",
+          "Description": "Sort response items by the \u0060Title\u0060 attribute."
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "ClrMethodName": "WhereTitle",
+          "ClrType": "string",
+          "Parameter": "where[title]",
+          "Description": "Query response items by the \u0060Title\u0060 attribute."
+        }
+      ]
+    },
+    {
+      "JsonName": "announcement_category",
+      "ResourceClrType": "AnnouncementCategoryResource",
+      "AttributesClrType": "AnnouncementCategory",
+      "Description": "Planning Center does not provide a description for this resource.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
+      "Attributes": [
+        {
+          "JsonName": "name",
+          "ClrName": "Name",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        }
+      ],
+      "Relationships": [],
+      "Actions": [],
+      "Children": [],
+      "CanInclude": [],
+      "CanOrderBy": [
+        {
+          "ClrMethodName": "OrderByName",
+          "Value": "name",
+          "Description": "Sort response items by the \u0060Name\u0060 attribute."
+        }
+      ],
+      "CanQueryBy": []
+    },
+    {
+      "JsonName": "announcements_announcement_category",
+      "ResourceClrType": "AnnouncementsAnnouncementCategoryResource",
+      "AttributesClrType": "AnnouncementsAnnouncementCategory",
+      "Description": "Planning Center does not provide a description for this resource.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
+      "Attributes": [],
+      "Relationships": [
+        {
+          "JsonName": "announcement_category",
+          "ClrName": "AnnouncementCategory",
+          "AttributesClrType": "AnnouncementCategory",
+          "ResourceClrType": "AnnouncementCategoryResource",
+          "IsCollection": false,
+          "Description": "Related \u0060AnnouncementCategory\u0060 resource."
+        }
+      ],
+      "Actions": [],
+      "Children": [
+        {
+          "JsonName": "announcement_category",
+          "ClrName": "AnnouncementCategory",
+          "AttributesClrType": "AnnouncementCategory",
+          "Description": "Associated \u0060AnnouncementCategory\u0060.",
+          "Slug": "announcement_category",
+          "IsCollection": false,
+          "Deprecated": false,
+          "Filters": []
+        }
+      ],
+      "CanInclude": [
+        {
+          "ClrMethodName": "IncludeAnnouncementCategory",
+          "Value": "announcement_category",
+          "Description": "Include related \u0060AnnouncementCategory\u0060 resources in the response.",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        }
+      ],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
+      "JsonName": "announcements_campus",
+      "ResourceClrType": "AnnouncementsCampusResource",
+      "AttributesClrType": "AnnouncementsCampus",
+      "Description": "Planning Center does not provide a description for this resource.",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
+      "Attributes": [],
+      "Relationships": [
+        {
+          "JsonName": "campus",
+          "ClrName": "Campus",
+          "AttributesClrType": "Campus",
+          "ResourceClrType": "Crews.Web.JsonApiClient.JsonApiResourceIdentifier",
+          "IsCollection": false,
+          "Description": "Related \u0060Campus\u0060 resource."
+        }
+      ],
+      "Actions": [],
+      "Children": [],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
+    },
+    {
       "JsonName": "channel",
       "ResourceClrType": "ChannelResource",
       "AttributesClrType": "Channel",
@@ -21,6 +305,12 @@
           "ClrName": "ActivateEpisodeMinutesBefore",
           "ClrType": "int",
           "Description": "The activation time for an episode, expressed in minutes before its start\n"
+        },
+        {
+          "JsonName": "archived",
+          "ClrName": "Archived",
+          "ClrType": "bool",
+          "Description": "Planning Center does not provide a description for this attribute."
         },
         {
           "JsonName": "art",
@@ -579,6 +869,12 @@
           "Description": "Possible values: \u0060vimeo\u0060, \u0060youtube\u0060, \u0060livestream_com\u0060, \u0060resi\u0060, \u0060facebook\u0060, or \u0060boxcast\u0060"
         },
         {
+          "JsonName": "summary",
+          "ClrName": "Summary",
+          "ClrType": "string",
+          "Description": "The description as HTML, limited to paragraphs, line breaks, bold, and italics.\nSetting it also replaces description with its plain text.\n"
+        },
+        {
           "JsonName": "title",
           "ClrName": "Title",
           "ClrType": "string",
@@ -619,7 +915,15 @@
           "Description": "Related \u0060Series\u0060 resource."
         }
       ],
-      "Actions": [],
+      "Actions": [
+        {
+          "JsonName": "generate_download_url",
+          "ClrMethodName": "GenerateDownloadUrlAsync",
+          "Path": "generate_download_url",
+          "Description": "Generate a signed download URL for an episode\u0027s sermon audio file.\n\nIt expects an empty \u0060POST\u0060 body.\n",
+          "Deprecated": false
+        }
+      ],
       "Children": [
         {
           "JsonName": "channel",
@@ -1044,6 +1348,47 @@
       "Actions": [],
       "Children": [
         {
+          "JsonName": "announcement_categories",
+          "ClrName": "AnnouncementCategories",
+          "AttributesClrType": "AnnouncementCategory",
+          "Description": "Associated \u0060AnnouncementCategories\u0060.",
+          "Slug": "announcement_categories",
+          "IsCollection": true,
+          "Deprecated": false,
+          "Filters": []
+        },
+        {
+          "JsonName": "announcements",
+          "ClrName": "Announcements",
+          "AttributesClrType": "Announcement",
+          "Description": "Associated \u0060Announcements\u0060.",
+          "Slug": "announcements",
+          "IsCollection": true,
+          "Deprecated": false,
+          "Filters": [
+            {
+              "ClrMethodName": "FilterByActive",
+              "Value": "active",
+              "Description": "Filter results by the \u0060Active\u0060 scope."
+            },
+            {
+              "ClrMethodName": "FilterByActiveAndScheduled",
+              "Value": "active_and_scheduled",
+              "Description": "Filter results by the \u0060ActiveAndScheduled\u0060 scope."
+            },
+            {
+              "ClrMethodName": "FilterByArchived",
+              "Value": "archived",
+              "Description": "Filter results by the \u0060Archived\u0060 scope."
+            },
+            {
+              "ClrMethodName": "FilterByInactive",
+              "Value": "inactive",
+              "Description": "Filter results by the \u0060Inactive\u0060 scope."
+            }
+          ]
+        },
+        {
           "JsonName": "channels",
           "ClrName": "Channels",
           "AttributesClrType": "Channel",
@@ -1052,6 +1397,16 @@
           "IsCollection": true,
           "Deprecated": false,
           "Filters": [
+            {
+              "ClrMethodName": "FilterByArchived",
+              "Value": "archived",
+              "Description": "Filter results by the \u0060Archived\u0060 scope."
+            },
+            {
+              "ClrMethodName": "FilterByNotArchived",
+              "Value": "not_archived",
+              "Description": "Filter results by the \u0060NotArchived\u0060 scope."
+            },
             {
               "ClrMethodName": "FilterByPodcastEnabled",
               "Value": "podcast_enabled",
@@ -1118,6 +1473,11 @@
               "ClrMethodName": "FilterByPublished",
               "Value": "published",
               "Description": "Filter results by the \u0060Published\u0060 scope."
+            },
+            {
+              "ClrMethodName": "FilterByPublishedOnChurchCenter",
+              "Value": "published_on_church_center",
+              "Description": "Filter results by the \u0060PublishedOnChurchCenter\u0060 scope."
             }
           ]
         },
@@ -1356,7 +1716,7 @@
       "Description": "Planning Center does not provide a description for this resource.",
       "Deprecated": false,
       "CollectionOnly": false,
-      "Postable": true,
+      "Postable": false,
       "Patchable": true,
       "Deletable": true,
       "ShouldGenerateResource": true,

@@ -41,6 +41,12 @@
           "Description": "Planning Center does not provide a description for this attribute."
         },
         {
+          "JsonName": "name",
+          "ClrName": "Name",
+          "ClrType": "string",
+          "Description": "The attendee\u0027s name. Derived from the associated person record.\n\n\nOnly available when requested with the \u0060?fields\u0060 param"
+        },
+        {
           "JsonName": "updated_at",
           "ClrName": "UpdatedAt",
           "ClrType": "System.DateTime",
@@ -133,7 +139,13 @@
           "CanAssignOnUpdate": false
         }
       ],
-      "CanOrderBy": [],
+      "CanOrderBy": [
+        {
+          "ClrMethodName": "OrderByCreatedAt",
+          "Value": "created_at",
+          "Description": "Sort response items by the \u0060CreatedAt\u0060 attribute."
+        }
+      ],
       "CanQueryBy": []
     },
     {
@@ -319,6 +331,16 @@
       "Actions": [],
       "Children": [
         {
+          "JsonName": "attendees",
+          "ClrName": "Attendees",
+          "AttributesClrType": "Attendee",
+          "Description": "Associated \u0060Attendees\u0060.",
+          "Slug": "attendees",
+          "IsCollection": true,
+          "Deprecated": false,
+          "Filters": []
+        },
+        {
           "JsonName": "campuses",
           "ClrName": "Campuses",
           "AttributesClrType": "Campus",
@@ -334,6 +356,26 @@
           "AttributesClrType": "Category",
           "Description": "Associated \u0060Categories\u0060.",
           "Slug": "categories",
+          "IsCollection": true,
+          "Deprecated": false,
+          "Filters": []
+        },
+        {
+          "JsonName": "people",
+          "ClrName": "People",
+          "AttributesClrType": "Person",
+          "Description": "Associated \u0060People\u0060.",
+          "Slug": "people",
+          "IsCollection": true,
+          "Deprecated": false,
+          "Filters": []
+        },
+        {
+          "JsonName": "registrations",
+          "ClrName": "Registrations",
+          "AttributesClrType": "Registration",
+          "Description": "Associated \u0060Registrations\u0060.",
+          "Slug": "registrations",
           "IsCollection": true,
           "Deprecated": false,
           "Filters": []
@@ -378,6 +420,12 @@
       "ShouldGenerateClients": true,
       "Attributes": [
         {
+          "JsonName": "can_search",
+          "ClrName": "CanSearch",
+          "ClrType": "bool",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
           "JsonName": "first_name",
           "ClrName": "FirstName",
           "ClrType": "string",
@@ -421,6 +469,42 @@
           "ClrName": "CreatedAt",
           "ClrType": "System.DateTime",
           "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "total_cost",
+          "ClrName": "TotalCost",
+          "ClrType": "string",
+          "Description": "The registration\u0027s total cost after discounts, formatted with the signup\u0027s\ncurrency symbol (for example \u0060\u0022$120.00\u0022\u0060). \u0060null\u0060 for a free registration.\nAccounts for discounts and every attendee on the registration.\n"
+        },
+        {
+          "JsonName": "total_cost_cents",
+          "ClrName": "TotalCostCents",
+          "ClrType": "int",
+          "Description": "The registration\u0027s total cost after discounts, in cents. \u00600\u0060 for a free\nregistration. Accounts for discounts and every attendee on the registration.\n"
+        },
+        {
+          "JsonName": "total_due",
+          "ClrName": "TotalDue",
+          "ClrType": "string",
+          "Description": "The registration\u0027s outstanding balance, formatted with the signup\u0027s currency\nsymbol (for example \u0060\u0022$120.00\u0022\u0060). Accounts for discounts and every attendee\non the registration.\n"
+        },
+        {
+          "JsonName": "total_due_cents",
+          "ClrName": "TotalDueCents",
+          "ClrType": "int",
+          "Description": "The registration\u0027s outstanding balance in cents. Accounts for discounts and\nevery attendee on the registration.\n"
+        },
+        {
+          "JsonName": "total_paid",
+          "ClrName": "TotalPaid",
+          "ClrType": "string",
+          "Description": "The total amount paid toward the registration, formatted with the signup\u0027s\ncurrency symbol (for example \u0060\u0022$120.00\u0022\u0060).\n"
+        },
+        {
+          "JsonName": "total_paid_cents",
+          "ClrName": "TotalPaidCents",
+          "ClrType": "int",
+          "Description": "The total amount paid toward the registration, in cents.\n"
         },
         {
           "JsonName": "updated_at",
@@ -469,7 +553,18 @@
           "CanAssignOnUpdate": false
         }
       ],
-      "CanOrderBy": [],
+      "CanOrderBy": [
+        {
+          "ClrMethodName": "OrderByCreatedAt",
+          "Value": "created_at",
+          "Description": "Sort response items by the \u0060CreatedAt\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "OrderByUpdatedAt",
+          "Value": "updated_at",
+          "Description": "Sort response items by the \u0060UpdatedAt\u0060 attribute."
+        }
+      ],
       "CanQueryBy": []
     },
     {
@@ -486,10 +581,28 @@
       "ShouldGenerateClients": true,
       "Attributes": [
         {
+          "JsonName": "at_maximum_capacity",
+          "ClrName": "AtMaximumCapacity",
+          "ClrType": "bool",
+          "Description": "Whether the selection type has reached its maximum capacity.\n\n\nOnly available when requested with the \u0060?fields\u0060 param"
+        },
+        {
+          "JsonName": "available_capacity",
+          "ClrName": "AvailableCapacity",
+          "ClrType": "int",
+          "Description": "Remaining spots for this selection type (\u0060maximum_capacity\u0060 minus active\nregistrations). \u0060null\u0060 when there is no capacity limit.\n\n\nOnly available when requested with the \u0060?fields\u0060 param"
+        },
+        {
           "JsonName": "created_at",
           "ClrName": "CreatedAt",
           "ClrType": "System.DateTime",
           "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "maximum_capacity",
+          "ClrName": "MaximumCapacity",
+          "ClrType": "int",
+          "Description": "Maximum number of attendees this selection type can hold. \u0060null\u0060 when there\nis no capacity limit.\n"
         },
         {
           "JsonName": "name",
@@ -532,6 +645,12 @@
           "ClrName": "UpdatedAt",
           "ClrType": "System.DateTime",
           "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "waitlist",
+          "ClrName": "Waitlist",
+          "ClrType": "bool",
+          "Description": "Whether the selection type offers a waitlist once it is full.\n"
         }
       ],
       "Relationships": [],
@@ -559,6 +678,12 @@
           "ClrName": "Archived",
           "ClrType": "bool",
           "Description": "Whether the signup is archived or not.\n"
+        },
+        {
+          "JsonName": "at_maximum_capacity",
+          "ClrName": "AtMaximumCapacity",
+          "ClrType": "bool",
+          "Description": "Whether the signup has reached its signup-level maximum capacity.\n\n\nOnly available when requested with the \u0060?fields\u0060 param"
         },
         {
           "JsonName": "close_at",
@@ -589,6 +714,12 @@
           "ClrName": "LogoUrl",
           "ClrType": "string",
           "Description": "URL for the image used for the signup.\n"
+        },
+        {
+          "JsonName": "maximum_capacity",
+          "ClrName": "MaximumCapacity",
+          "ClrType": "int",
+          "Description": "Maximum number of attendees this signup can hold across all selection types.\n\u0060null\u0060 when there is no signup-level capacity limit.\n"
         },
         {
           "JsonName": "name",
@@ -761,6 +892,13 @@
           "CanAssignOnUpdate": false
         },
         {
+          "ClrMethodName": "IncludeSelectionTypes",
+          "Value": "selection_types",
+          "Description": "Include related \u0060SelectionTypes\u0060 resources in the response.",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
+        {
           "ClrMethodName": "IncludeSignupLocation",
           "Value": "signup_location",
           "Description": "Include related \u0060SignupLocation\u0060 resources in the response.",
@@ -775,13 +913,30 @@
           "CanAssignOnUpdate": false
         }
       ],
-      "CanOrderBy": [],
+      "CanOrderBy": [
+        {
+          "ClrMethodName": "OrderByCreatedAt",
+          "Value": "created_at",
+          "Description": "Sort response items by the \u0060CreatedAt\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "OrderByUpdatedAt",
+          "Value": "updated_at",
+          "Description": "Sort response items by the \u0060UpdatedAt\u0060 attribute."
+        }
+      ],
       "CanQueryBy": [
         {
           "ClrMethodName": "WhereId",
           "ClrType": "string",
           "Parameter": "where[id]",
           "Description": "Query response items by the \u0060Id\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "WhereName",
+          "ClrType": "string",
+          "Parameter": "where[name]",
+          "Description": "Query response items by the \u0060Name\u0060 attribute."
         }
       ]
     },

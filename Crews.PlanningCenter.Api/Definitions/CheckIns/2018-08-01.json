@@ -955,6 +955,30 @@
           "Description": "Planning Center does not provide a description for this attribute."
         },
         {
+          "JsonName": "unique_guest_count",
+          "ClrName": "UniqueGuestCount",
+          "ClrType": "int",
+          "Description": "Deduplicated people with a Guest check-in.\n\nOnly available when requested with the \u0060?fields\u0060 param"
+        },
+        {
+          "JsonName": "unique_regular_count",
+          "ClrName": "UniqueRegularCount",
+          "ClrType": "int",
+          "Description": "Deduplicated people with a Regular check-in.\n\nOnly available when requested with the \u0060?fields\u0060 param"
+        },
+        {
+          "JsonName": "unique_total_count",
+          "ClrName": "UniqueTotalCount",
+          "ClrType": "int",
+          "Description": "Deduplicated people with any check-in.\n\nOnly available when requested with the \u0060?fields\u0060 param"
+        },
+        {
+          "JsonName": "unique_volunteer_count",
+          "ClrName": "UniqueVolunteerCount",
+          "ClrType": "int",
+          "Description": "Deduplicated people with a Volunteer check-in.\n\nOnly available when requested with the \u0060?fields\u0060 param"
+        },
+        {
           "JsonName": "updated_at",
           "ClrName": "UpdatedAt",
           "ClrType": "System.DateTime",
@@ -1230,13 +1254,7 @@
           "Slug": "available_locations",
           "IsCollection": true,
           "Deprecated": false,
-          "Filters": [
-            {
-              "ClrMethodName": "FilterByForCurrentStation",
-              "Value": "for_current_station",
-              "Description": "Filter results by the \u0060ForCurrentStation\u0060 scope."
-            }
-          ]
+          "Filters": []
         },
         {
           "JsonName": "check_ins",
@@ -3267,6 +3285,12 @@
           "Description": "Planning Center does not provide a description for this attribute."
         },
         {
+          "JsonName": "ignore_filters",
+          "ClrName": "IgnoreFilters",
+          "ClrType": "bool",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
           "JsonName": "last_name",
           "ClrName": "LastName",
           "ClrType": "string",
@@ -3363,6 +3387,18 @@
           "JsonName": "open_for_check_in",
           "ClrName": "OpenForCheckIn",
           "ClrType": "bool",
+          "Description": "Only available when requested with the \u0060?fields\u0060 param"
+        },
+        {
+          "JsonName": "seconds_until_closes_at",
+          "ClrName": "SecondsUntilClosesAt",
+          "ClrType": "int",
+          "Description": "Only available when requested with the \u0060?fields\u0060 param"
+        },
+        {
+          "JsonName": "seconds_until_next_shows_at",
+          "ClrName": "SecondsUntilNextShowsAt",
+          "ClrType": "int",
           "Description": "Only available when requested with the \u0060?fields\u0060 param"
         },
         {

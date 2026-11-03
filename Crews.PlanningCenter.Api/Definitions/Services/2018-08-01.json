@@ -201,11 +201,25 @@
       ],
       "Actions": [
         {
+          "JsonName": "archive",
+          "ClrMethodName": "ArchiveAsync",
+          "Path": "archive",
+          "Description": "Planning Center does not provide a description for this action.",
+          "Deprecated": false
+        },
+        {
           "JsonName": "assign_tags",
           "ClrMethodName": "AssignTagsAsync",
           "Path": "assign_tags",
           "Description": "Used to assign tags to an arrangement.",
           "AdditionalDetails": "All tags will be replaced so the full data set must be sent.\n\nIt expects a body that looks like:\n\n\u0060\u0060\u0060json\n{\n\t\u0022data\u0022: {\n\t\t\u0022type\u0022: \u0022TagAssignment\u0022,\n\t\t\u0022attributes\u0022: {},\n\t\t\u0022relationships\u0022: {\n\t\t\t\u0022tags\u0022: {\n\t\t\t\t\u0022data\u0022: [\n\t\t\t\t\t{\n\t\t\t\t\t\t\u0022type\u0022: \u0022Tag\u0022,\n\t\t\t\t\t\t\u0022id\u0022: \u00225\u0022\n\t\t\t\t\t}\n\t\t\t\t]\n\t\t\t}\n\t\t}\n\t}\n}\n\u0060\u0060\u0060\n\nOn success you will get back a \u0060204 No Content\u0060.\n",
+          "Deprecated": false
+        },
+        {
+          "JsonName": "unarchive",
+          "ClrMethodName": "UnarchiveAsync",
+          "Path": "unarchive",
+          "Description": "Restore an archived Arrangement. Must use the unscoped_arrangements endpoint.",
           "Deprecated": false
         }
       ],
@@ -267,7 +281,13 @@
           "CanAssignOnUpdate": false
         }
       ],
-      "CanOrderBy": [],
+      "CanOrderBy": [
+        {
+          "ClrMethodName": "OrderByName",
+          "Value": "name",
+          "Description": "Sort response items by the \u0060Name\u0060 attribute."
+        }
+      ],
       "CanQueryBy": []
     },
     {
@@ -2943,7 +2963,7 @@
           "ClrMethodName": "ArchiveAsync",
           "Path": "archive",
           "Description": "Archive a Media.",
-          "AdditionalDetails": "Accepts an optional \u0060time\u0060 attribute (ISO 8601) for scheduling archival for a future time.\n\n\u0060\u0060\u0060json\n{\n  \u0022data\u0022: {\n    \u0022type\u0022: \u0022MediaArchive\u0022,\n    \u0022attributes\u0022: {\n      \u0022time\u0022: \u00222026-08-05T00:00:00Z\u0022\n    }\n  }\n}\n\u0060\u0060\u0060\n",
+          "AdditionalDetails": "Accepts an optional \u0060time\u0060 attribute (ISO 8601) for scheduling archival for a future time.\n\n\u0060\u0060\u0060json\n{\n  \u0022data\u0022: {\n    \u0022type\u0022: \u0022MediaArchive\u0022,\n    \u0022attributes\u0022: {\n      \u0022time\u0022: \u00222027-02-02T00:00:00Z\u0022\n    }\n  }\n}\n\u0060\u0060\u0060\n",
           "Deprecated": false
         },
         {
@@ -3717,7 +3737,7 @@
         {
           "JsonName": "anniversary",
           "ClrName": "Anniversary",
-          "ClrType": "System.DateTime",
+          "ClrType": "System.DateOnly",
           "Description": "Planning Center does not provide a description for this attribute."
         },
         {
@@ -3741,12 +3761,18 @@
         {
           "JsonName": "birthdate",
           "ClrName": "Birthdate",
-          "ClrType": "System.DateTime",
+          "ClrType": "System.DateOnly",
           "Description": "Planning Center does not provide a description for this attribute."
         },
         {
           "JsonName": "can_edit_all_people",
           "ClrName": "CanEditAllPeople",
+          "ClrType": "bool",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "can_search",
+          "ClrName": "CanSearch",
           "ClrType": "bool",
           "Description": "Planning Center does not provide a description for this attribute."
         },
@@ -3832,7 +3858,7 @@
           "JsonName": "media_permissions",
           "ClrName": "MediaPermissions",
           "ClrType": "string",
-          "Description": "Planning Center does not provide a description for this attribute."
+          "Description": "The person\u0027s access to media, as a label: Scheduled Viewer, Viewer, Editor, or Administrator."
         },
         {
           "JsonName": "media_tab",
@@ -3892,7 +3918,13 @@
           "JsonName": "permissions",
           "ClrName": "Permissions",
           "ClrType": "string",
-          "Description": "Planning Center does not provide a description for this attribute."
+          "Description": "DEPRECATED: use \u0060plan_permissions\u0060 instead. Both name the same value; this one is ambiguous about which permission scale it refers to."
+        },
+        {
+          "JsonName": "person_permissions",
+          "ClrName": "PersonPermissions",
+          "ClrType": "string",
+          "Description": "Reserved for future use.\n\nOnly available when requested with the \u0060?fields\u0060 param"
         },
         {
           "JsonName": "photo_thumbnail_url",
@@ -3905,6 +3937,12 @@
           "ClrName": "PhotoUrl",
           "ClrType": "string",
           "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "plan_permissions",
+          "ClrName": "PlanPermissions",
+          "ClrType": "string",
+          "Description": "The person\u0027s organization-wide plan permission, as a label: Archived, Scheduled Viewer, Viewer, Scheduler, Editor, or Administrator."
         },
         {
           "JsonName": "plans_tab",
@@ -3958,7 +3996,7 @@
           "JsonName": "song_permissions",
           "ClrName": "SongPermissions",
           "ClrType": "string",
-          "Description": "Planning Center does not provide a description for this attribute."
+          "Description": "The person\u0027s access to songs and arrangements, as a label: Scheduled Viewer, Viewer, Editor, or Administrator."
         },
         {
           "JsonName": "songs_tab",
@@ -4489,6 +4527,12 @@
           "Description": "True if Public Access has been enabled."
         },
         {
+          "JsonName": "public_by_schedule",
+          "ClrName": "PublicBySchedule",
+          "ClrType": "bool",
+          "Description": "True if the plan is currently auto-published because the Service Type has scheduled publish enabled and the plan\u0027s service date has arrived in the organization\u0027s timezone."
+        },
+        {
           "JsonName": "rehearsable",
           "ClrName": "Rehearsable",
           "ClrType": "bool",
@@ -4625,11 +4669,11 @@
           "Deprecated": false
         },
         {
-          "JsonName": "import_template",
-          "ClrMethodName": "ImportTemplateAsync",
-          "Path": "import_template",
-          "Description": "Import template to plan",
-          "AdditionalDetails": "This action allows the importing of a template into a plan.\n\nAccepted attributes:\n- \u0060plan_id\u0060 (Integer) ID of template to copying from\n\n- \u0060copy_items\u0060 (Boolean) Copy Items from another plan. (default false)\n\n- \u0060copy_people\u0060 (Boolean) Copy People from another plan. (default false)\n\n- \u0060copy_notes\u0060 (Boolean) Copy Notes from another plan. (default false)\n",
+          "JsonName": "import",
+          "ClrMethodName": "ImportAsync",
+          "Path": "import",
+          "Description": "Apply a Plan or PlanTemplate to this Plan",
+          "AdditionalDetails": "This action copies the team members, needed positions, items, and notes from a\nsource Plan or PlanTemplate into this (already existing) Plan.\n\nAccepted attributes:\n- \u0060source_id\u0060 (Integer) ID of the PlanTemplate or Plan to copy from.\n\n- \u0060additional_target_ids\u0060 (Array[Integer]) IDs of other Plans to apply the source to. These are imported asynchronously. (default nil)\n\n- \u0060copy_items\u0060 (Boolean) Copy Items from the source. Requires editor permissions. (default false)\n\n- \u0060copy_people\u0060 (Boolean) Copy team members and needed positions from the source. (default false)\n\n- \u0060copy_notes\u0060 (Boolean) Copy Notes from the source. Requires editor permissions. (default false)\n\n- \u0060team_ids\u0060 (Array[Integer]) IDs of teams to copy people from when \u0060copy_people\u0060 is set to true. If nil, \u0060copy_people\u0060 copies from all teams. (default nil)\n\nPermissions: requires scheduler on the target plan\u0027s service type (and on every\n\u0060additional_target_ids\u0060 plan\u0027s service type). Using a Plan as the source requires\nviewer on its service type; using a PlanTemplate as the source requires scheduler\non its service type. Schedulers may only copy people for teams they lead;\n\u0060copy_items\u0060 and \u0060copy_notes\u0060 require editor permissions.\n\nReturns a \u0060PlanImportMetadata\u0060 resource describing the outcome (e.g. whether any\ncopied people were missing required background checks).\n",
           "Deprecated": false
         },
         {
@@ -4915,6 +4959,33 @@
           "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
         }
       ]
+    },
+    {
+      "JsonName": "plan_import_metadata",
+      "ResourceClrType": "PlanImportMetadataResource",
+      "AttributesClrType": "PlanImportMetadata",
+      "Description": "Metadata about a Plan or Template import",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
+      "Attributes": [
+        {
+          "JsonName": "any_plan_people_missing_background_check",
+          "ClrName": "AnyPlanPeopleMissingBackgroundCheck",
+          "ClrType": "bool",
+          "Description": "Planning Center does not provide a description for this attribute."
+        }
+      ],
+      "Relationships": [],
+      "Actions": [],
+      "Children": [],
+      "CanInclude": [],
+      "CanOrderBy": [],
+      "CanQueryBy": []
     },
     {
       "JsonName": "plan_note",
@@ -5479,9 +5550,9 @@
       "Description": "A PlanTemplate Resource",
       "Deprecated": false,
       "CollectionOnly": false,
-      "Postable": false,
-      "Patchable": false,
-      "Deletable": false,
+      "Postable": true,
+      "Patchable": true,
+      "Deletable": true,
       "ShouldGenerateResource": true,
       "ShouldGenerateClients": true,
       "Attributes": [
@@ -5573,6 +5644,14 @@
         }
       ],
       "Actions": [
+        {
+          "JsonName": "import",
+          "ClrMethodName": "ImportAsync",
+          "Path": "import",
+          "Description": "Apply a Plan or PlanTemplate to this PlanTemplate",
+          "AdditionalDetails": "This action copies the team members, needed positions, items, and notes from a\nsource Plan or PlanTemplate into this (already existing) PlanTemplate.\n\nAccepted attributes:\n- \u0060source_id\u0060 (Integer) ID of the PlanTemplate or Plan to copy from.\n\n- \u0060copy_items\u0060 (Boolean) Copy Items from the source. Requires editor permissions. (default false)\n\n- \u0060copy_people\u0060 (Boolean) Copy team members and needed positions from the source. (default false)\n\n- \u0060copy_notes\u0060 (Boolean) Copy Notes from the source. Requires editor permissions. (default false)\n\n- \u0060team_ids\u0060 (Array[Integer]) IDs of teams to copy people from when \u0060copy_people\u0060 is set to true. If nil, \u0060copy_people\u0060 copies from all teams. (default nil)\n\nPermissions: requires scheduler on the target template\u0027s service type. Schedulers\nmay only copy people for teams they lead; \u0060copy_items\u0060 and \u0060copy_notes\u0060 require\neditor permissions.\n\nReturns a \u0060PlanImportMetadata\u0060 resource describing the outcome (e.g. whether any\ncopied people were missing required background checks).\n",
+          "Deprecated": false
+        },
         {
           "JsonName": "item_reorder",
           "ClrMethodName": "ItemReorderAsync",
@@ -5718,6 +5797,12 @@
           "ClrName": "Recorded",
           "ClrType": "bool",
           "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "scheduled_team_ids",
+          "ClrName": "ScheduledTeamIds",
+          "ClrType": "System.Text.Json.Nodes.JsonArray",
+          "Description": "Only available when requested with the \u0060?fields\u0060 param"
         },
         {
           "JsonName": "starts_at",
@@ -6842,6 +6927,12 @@
           "Description": "Planning Center does not provide a description for this attribute."
         },
         {
+          "JsonName": "plan_title",
+          "ClrName": "PlanTitle",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
           "JsonName": "position_name",
           "ClrName": "PositionName",
           "ClrType": "string",
@@ -7222,6 +7313,16 @@
           "AttributesClrType": "Tag",
           "Description": "Associated \u0060Tags\u0060.",
           "Slug": "tags",
+          "IsCollection": true,
+          "Deprecated": false,
+          "Filters": []
+        },
+        {
+          "JsonName": "unscoped_arrangements",
+          "ClrName": "UnscopedArrangements",
+          "AttributesClrType": "Arrangement",
+          "Description": "Associated \u0060UnscopedArrangements\u0060.",
+          "Slug": "unscoped_arrangements",
           "IsCollection": true,
           "Deprecated": false,
           "Filters": []
@@ -7673,6 +7774,12 @@
           "Description": "Planning Center does not provide a description for this attribute."
         },
         {
+          "JsonName": "direct_messages_enabled",
+          "ClrName": "DirectMessagesEnabled",
+          "ClrType": "bool",
+          "Description": "Whether direct messages are enabled for this team in Chat."
+        },
+        {
           "JsonName": "last_plan_from",
           "ClrName": "LastPlanFrom",
           "ClrType": "string",
@@ -7867,6 +7974,12 @@
         }
       ],
       "CanQueryBy": [
+        {
+          "ClrMethodName": "WhereId",
+          "ClrType": "string",
+          "Parameter": "where[id]",
+          "Description": "Query response items by the \u0060Id\u0060 attribute."
+        },
         {
           "ClrMethodName": "WhereName",
           "ClrType": "string",

@@ -27,6 +27,12 @@
           "ClrName": "Subdomain",
           "ClrType": "string",
           "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "time_zone",
+          "ClrName": "TimeZone",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
         }
       ],
       "Relationships": [],

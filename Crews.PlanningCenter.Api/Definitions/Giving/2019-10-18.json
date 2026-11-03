@@ -135,12 +135,23 @@
       ],
       "CanOrderBy": [
         {
+          "ClrMethodName": "OrderByCommittedAt",
+          "Value": "committed_at",
+          "Description": "Sort response items by the \u0060CommittedAt\u0060 attribute."
+        },
+        {
           "ClrMethodName": "OrderByUpdatedAt",
           "Value": "updated_at",
           "Description": "Sort response items by the \u0060UpdatedAt\u0060 attribute."
         }
       ],
       "CanQueryBy": [
+        {
+          "ClrMethodName": "WhereCommittedAt",
+          "ClrType": "System.DateTime",
+          "Parameter": "where[committed_at]",
+          "Description": "Query response items by the \u0060CommittedAt\u0060 attribute."
+        },
         {
           "ClrMethodName": "WhereUpdatedAt",
           "ClrType": "System.DateTime",
@@ -184,7 +195,7 @@
           "JsonName": "status",
           "ClrName": "Status",
           "ClrType": "string",
-          "Description": "One of \u0060in_progress\u0060, \u0060updating\u0060, or \u0060committed\u0060. The \u0060updating\u0060 state is temporary and describes a BatchGroup that is currently being changed in some way (e.g. moving from \u0060in_progress\u0060 to \u0060committed\u0060). Certain changes to BatchGroups in this state (or their Batches or Donations) will be restricted until the BatchGroup has finished updating."
+          "Description": "One of \u0060uncommitted\u0060, \u0060updating\u0060, or \u0060committed\u0060. The \u0060updating\u0060 state is temporary and describes a BatchGroup that is currently being changed in some way (e.g. moving from \u0060uncommitted\u0060 to \u0060committed\u0060). Certain changes to BatchGroups in this state (or their Batches or Donations) will be restricted until the BatchGroup has finished updating."
         },
         {
           "JsonName": "total_cents",
@@ -266,6 +277,12 @@
         }
       ],
       "CanQueryBy": [
+        {
+          "ClrMethodName": "WhereDescription",
+          "ClrType": "string",
+          "Parameter": "where[description]",
+          "Description": "Query response items by the \u0060Description\u0060 attribute."
+        },
         {
           "ClrMethodName": "WhereUpdatedAt",
           "ClrType": "System.DateTime",
@@ -373,7 +390,15 @@
           "Filters": []
         }
       ],
-      "CanInclude": [],
+      "CanInclude": [
+        {
+          "ClrMethodName": "IncludeFund",
+          "Value": "fund",
+          "Description": "Include related \u0060Fund\u0060 resources in the response.",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        }
+      ],
       "CanOrderBy": [],
       "CanQueryBy": []
     },
@@ -417,6 +442,14 @@
           "ResourceClrType": "DesignationResource",
           "IsCollection": false,
           "Description": "Related \u0060Designation\u0060 resource."
+        },
+        {
+          "JsonName": "fund",
+          "ClrName": "Fund",
+          "AttributesClrType": "Fund",
+          "ResourceClrType": "FundResource",
+          "IsCollection": false,
+          "Description": "Related \u0060Fund\u0060 resource."
         }
       ],
       "Actions": [],
@@ -448,7 +481,7 @@
       "JsonName": "donation",
       "ResourceClrType": "DonationResource",
       "AttributesClrType": "Donation",
-      "Description": "A \u0060Donation\u0060 record corresponds to a gift given to an \u0060Organization\u0060 at a particular point in time.\n\n\u0060Donation\u0060s are added by first associating them to a \u0060Batch\u0060 of donations, and then committing the \u0060Batch\u0060. When adding a \u0060Donation\u0060 to an already-committed \u0060Batch\u0060, the \u0060Donation\u0060 will automatically be committed as well, and immediately added to the donor\u0027s online history.\n",
+      "Description": "A \u0060Donation\u0060 record corresponds to a gift given to an \u0060Organization\u0060 at a particular point in time.\n\n\u0060Donation\u0060s are added by first associating them to a \u0060Batch\u0060 of donations, and then committing the \u0060Batch\u0060. When adding a \u0060Donation\u0060 to an already-committed \u0060Batch\u0060, the \u0060Donation\u0060 will automatically be committed as well, and immediately added to the donor\u0027s online history.\n\n#### Totals\n\nOn donation collection endpoints, pass \u0060?with_totals=true\u0060 to add the received total to the response \u0060meta\u0060. It respects any \u0060where[...]\u0060 filters and is unaffected by pagination. Totals are not available when filtering by \u0060fund_id\u0060.\n\n- \u0060received_total_amount_cents\u0060: the total received, excluding refunded and failed donations.\n- \u0060currency\u0060: the currency of the totals above, based on the organization\u0027s currency.\n",
       "Deprecated": false,
       "CollectionOnly": false,
       "Postable": true,
@@ -636,6 +669,14 @@
           "Description": "Used to refund a batch donation",
           "AdditionalDetails": "This action refunds a batch donation.\nIt will respond with \u0060unprocessable_entity\u0060 if the donation cannot be refunded, or if the donation is not part of a batch.\n\n\u0060refunded_at\u0060 is optional, but recommended for data accuracy.\n\n\u0060\u0060\u0060json\n{\n  \u0022data\u0022: {\n    \u0022attributes\u0022: {\n      \u0022refunded_at\u0022: \u00221959-02-03\u0022\n    }\n  }\n}\n\u0060\u0060\u0060\n",
           "Deprecated": false
+        },
+        {
+          "JsonName": "mark_failed",
+          "ClrMethodName": "MarkFailedAsync",
+          "Path": "mark_failed",
+          "Description": "Used to mark a donation as failed",
+          "AdditionalDetails": "This action marks a donation as failed. For example, when an imported\ndonation ultimately failed or was reversed by the originating provider. A\nfailed donation stays in the donor\u0027s history but is excluded from donor\nstatements and giving totals.\n\nIt will respond with \u0060unprocessable_entity\u0060 if the donation can\u0027t be marked\nas failed (for example, if it has already failed, has been refunded, or was\ngiven online through Stripe).\n\nA \u0060reason\u0060 is required and is recorded on the donation\u0027s audit trail.\n\n\u0060\u0060\u0060json\n{\n  \u0022data\u0022: {\n    \u0022attributes\u0022: {\n      \u0022reason\u0022: \u0022Returned by bank (NSF)\u0022\n    }\n  }\n}\n\u0060\u0060\u0060\n",
+          "Deprecated": false
         }
       ],
       "Children": [
@@ -776,6 +817,122 @@
       ]
     },
     {
+      "JsonName": "donor_summary",
+      "ResourceClrType": "DonorSummaryResource",
+      "AttributesClrType": "DonorSummary",
+      "Description": "A donor and their aggregate giving to an \u0060Organization\u0060 (name, donor number, total received, donation count, and first gift date), summed over a requested date range, defaulting to the last 30 days.\n",
+      "Deprecated": false,
+      "CollectionOnly": true,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
+      "Attributes": [
+        {
+          "JsonName": "donation_count",
+          "ClrName": "DonationCount",
+          "ClrType": "int",
+          "Description": "The number of donations this donor made over the requested date range, including refunded and failed donations."
+        },
+        {
+          "JsonName": "donor_number",
+          "ClrName": "DonorNumber",
+          "ClrType": "string",
+          "Description": "The donor number for the person, if donor numbers are visible for this organization."
+        },
+        {
+          "JsonName": "first_donated",
+          "ClrName": "FirstDonated",
+          "ClrType": "System.DateTime",
+          "Description": "Timestamp of the donor\u0027s first donation ever (lifetime, not scoped to the requested date range)."
+        },
+        {
+          "JsonName": "name",
+          "ClrName": "Name",
+          "ClrType": "string",
+          "Description": "The donor\u0027s full name."
+        },
+        {
+          "JsonName": "total_received_donation_amount_cents",
+          "ClrName": "TotalReceivedDonationAmountCents",
+          "ClrType": "int",
+          "Description": "The total received donation amount (in the currency\u0027s smallest unit) for this donor over the requested date range."
+        },
+        {
+          "JsonName": "total_received_donation_amount_currency",
+          "ClrName": "TotalReceivedDonationAmountCurrency",
+          "ClrType": "string",
+          "Description": "The ISO currency code for the total (the organization\u0027s currency)."
+        }
+      ],
+      "Relationships": [],
+      "Actions": [],
+      "Children": [
+        {
+          "JsonName": "joint_giver",
+          "ClrName": "JointGiver",
+          "AttributesClrType": "Person",
+          "Description": "Associated \u0060JointGiver\u0060.",
+          "Slug": "joint_giver",
+          "IsCollection": false,
+          "Deprecated": false,
+          "Filters": []
+        }
+      ],
+      "CanInclude": [
+        {
+          "ClrMethodName": "IncludeJointGiver",
+          "Value": "joint_giver",
+          "Description": "Include related \u0060JointGiver\u0060 resources in the response.",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "ClrMethodName": "OrderByDonationCount",
+          "Value": "donation_count",
+          "Description": "Sort response items by the \u0060DonationCount\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "OrderByFirstDonated",
+          "Value": "first_donated",
+          "Description": "Sort response items by the \u0060FirstDonated\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "OrderByName",
+          "Value": "name",
+          "Description": "Sort response items by the \u0060Name\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "OrderByTotalReceivedDonationAmountCents",
+          "Value": "total_received_donation_amount_cents",
+          "Description": "Sort response items by the \u0060TotalReceivedDonationAmountCents\u0060 attribute."
+        }
+      ],
+      "CanQueryBy": [
+        {
+          "ClrMethodName": "WhereCampusId",
+          "ClrType": "string",
+          "Parameter": "where[campus_id]",
+          "Description": "Query response items by the \u0060CampusId\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "WherePersonId",
+          "ClrType": "string",
+          "Parameter": "where[person_id]",
+          "Description": "Query response items by the \u0060PersonId\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "WhereReceivedAt",
+          "ClrType": "System.DateTime",
+          "Parameter": "where[received_at]",
+          "Description": "Query response items by the \u0060ReceivedAt\u0060 attribute."
+        }
+      ]
+    },
+    {
       "JsonName": "fund",
       "ResourceClrType": "FundResource",
       "AttributesClrType": "Fund",
@@ -804,13 +961,13 @@
           "JsonName": "default",
           "ClrName": "Default",
           "ClrType": "bool",
-          "Description": "This attribute is set to \u0060true\u0060 if a fund is the associated organization\u0027s default fund, or \u0060false\u0060 if it isn\u0027t. More information on default funds can be found in our product documentation: https://pcogiving.zendesk.com/hc/en-us/articles/205197070-Funds"
+          "Description": "This attribute is set to \u0060true\u0060 if a fund is the associated organization\u0027s default fund, or \u0060false\u0060 if it isn\u0027t. More information on default funds can be found in our product documentation: https://help.planningcenter.com/en/138385-create-and-manage-funds.html"
         },
         {
           "JsonName": "deletable",
           "ClrName": "Deletable",
           "ClrType": "bool",
-          "Description": "Boolean that tells if you if the fund can be deleted or not. Read more in our product documentation: https://pcogiving.zendesk.com/hc/en-us/articles/205197070-Managing-Funds#DeleteaFund"
+          "Description": "Boolean that tells if you if the fund can be deleted or not. Read more in our product documentation: https://help.planningcenter.com/en/138385-create-and-manage-funds.html"
         },
         {
           "JsonName": "description",
@@ -885,7 +1042,7 @@
       "JsonName": "in_kind_donation",
       "ResourceClrType": "InKindDonationResource",
       "AttributesClrType": "InKindDonation",
-      "Description": "An \u0060InKindDonation\u0060 record represents a non-cash gift given to an \u0060Organization\u0060 at a specific time.\n\nThese include items like furniture, vehicles, services, or stocks. \u0060InKindDonations\u0060 do not trigger\nacknowledgment letter emails via the API \u2014 these must be sent from the Giving Admin UI.\n\n[More info](https://pcogiving.zendesk.com/hc/en-us/articles/360040772154-In-kind-donations#enter-an-in-kind-donation-0)\n",
+      "Description": "An \u0060InKindDonation\u0060 record represents a non-cash gift given to an \u0060Organization\u0060 at a specific time.\n\nThese include items like furniture, vehicles, services, or stocks. \u0060InKindDonations\u0060 do not trigger\nacknowledgment letter emails via the API \u2014 these must be sent from the Giving Admin UI.\n\n[More info](https://help.planningcenter.com/en/138390-in-kind-donations.html)\n",
       "Deprecated": false,
       "CollectionOnly": false,
       "Postable": true,
@@ -1119,7 +1276,7 @@
       "JsonName": "note",
       "ResourceClrType": "NoteResource",
       "AttributesClrType": "Note",
-      "Description": "A \u0060Note\u0060 is a way for Giving Admins and Bookkeepers to communicate internally about a donation.\nNotes are only visible in the Giving admin interface, not shown to donors. Each \u0060Donation\u0060 can only\nhave a single note associated with it.\n\nTo record notes from donors, consider using the [Memo Line feature](https://pcogiving.zendesk.com/hc/en-us/articles/44484564313883-Manage-your-online-donation-form) instead.\n",
+      "Description": "A \u0060Note\u0060 is a way for Giving Admins and Bookkeepers to communicate internally about a donation.\nNotes are only visible in the Giving admin interface, not shown to donors. Each \u0060Donation\u0060 can only\nhave a single note associated with it.\n\nTo record notes from donors, consider using the [memo line feature](https://help.planningcenter.com/en/143011-manage-your-online-donation-form.html#UUID-0949cfc8-d262-e23a-0635-fa100ae331ba_section-id235309330415896-how-do-memo-lines-work-) instead.\n",
       "Deprecated": false,
       "CollectionOnly": false,
       "Postable": true,
@@ -1246,6 +1403,22 @@
           ]
         },
         {
+          "JsonName": "donor_summaries",
+          "ClrName": "DonorSummaries",
+          "AttributesClrType": "DonorSummary",
+          "Description": "Associated \u0060DonorSummaries\u0060.",
+          "Slug": "donor_summaries",
+          "IsCollection": true,
+          "Deprecated": false,
+          "Filters": [
+            {
+              "ClrMethodName": "FilterByHasJointGiver",
+              "Value": "has_joint_giver",
+              "Description": "filter to donors who are part of a joint giving unit"
+            }
+          ]
+        },
+        {
           "JsonName": "funds",
           "ClrName": "Funds",
           "AttributesClrType": "Fund",
@@ -1300,6 +1473,16 @@
               "Description": "filter to people with at least one associated donation"
             }
           ]
+        },
+        {
+          "JsonName": "pledge_campaigns",
+          "ClrName": "PledgeCampaigns",
+          "AttributesClrType": "PledgeCampaign",
+          "Description": "Associated \u0060PledgeCampaigns\u0060.",
+          "Slug": "pledge_campaigns",
+          "IsCollection": true,
+          "Deprecated": false,
+          "Filters": []
         },
         {
           "JsonName": "recurring_donations",
@@ -1485,7 +1668,7 @@
           "JsonName": "donor_number",
           "ClrName": "DonorNumber",
           "ClrType": "int",
-          "Description": "The donor number for a person, if applicable. See our product documentation for more information on [donor numbers](https://pcogiving.zendesk.com/hc/en-us/articles/360012298634-donor-numbers)."
+          "Description": "The donor number for a person, if applicable. See our product documentation for more information on [donor numbers](https://help.planningcenter.com/en/138370-donor-numbers.html#138370-donor-numbers)."
         },
         {
           "JsonName": "email_addresses",
@@ -1515,7 +1698,7 @@
           "JsonName": "permissions",
           "ClrName": "Permissions",
           "ClrType": "string",
-          "Description": "The level of Giving access granted to a person. See our product documentation for more information on [permissions in Giving](https://pcogiving.zendesk.com/hc/en-us/articles/206541708-Permissions-in-Giving).\n\nPossible values: \u0060administrator\u0060, \u0060reviewer\u0060, \u0060counter\u0060, or \u0060bookkeeper\u0060"
+          "Description": "The level of Giving access granted to a person. See our product documentation for more information on [permissions in Giving](https://help.planningcenter.com/en/140716-permissions-in-giving.html).\n\nPossible values: \u0060administrator\u0060, \u0060reviewer\u0060, \u0060counter\u0060, or \u0060bookkeeper\u0060"
         },
         {
           "JsonName": "phone_numbers",
@@ -2062,7 +2245,20 @@
         }
       ],
       "CanOrderBy": [],
-      "CanQueryBy": []
+      "CanQueryBy": [
+        {
+          "ClrMethodName": "WhereFundId",
+          "ClrType": "string",
+          "Parameter": "where[fund_id]",
+          "Description": "Query response items by the \u0060FundId\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "WhereStatus",
+          "ClrType": "string",
+          "Parameter": "where[status]",
+          "Description": "Query response items by the \u0060Status\u0060 attribute."
+        }
+      ]
     },
     {
       "JsonName": "recurring_donation_designation",
@@ -2090,7 +2286,16 @@
           "Description": "The currency of \u0060amount_cents\u0060. Set to the currency of the associated organization."
         }
       ],
-      "Relationships": [],
+      "Relationships": [
+        {
+          "JsonName": "fund",
+          "ClrName": "Fund",
+          "AttributesClrType": "Fund",
+          "ResourceClrType": "FundResource",
+          "IsCollection": false,
+          "Description": "Related \u0060Fund\u0060 resource."
+        }
+      ],
       "Actions": [],
       "Children": [
         {
@@ -2109,8 +2314,8 @@
           "ClrMethodName": "IncludeFund",
           "Value": "fund",
           "Description": "Include related \u0060Fund\u0060 resources in the response.",
-          "CanAssignOnCreate": false,
-          "CanAssignOnUpdate": false
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
         }
       ],
       "CanOrderBy": [],

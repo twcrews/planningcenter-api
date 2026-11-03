@@ -7,7 +7,7 @@
       "JsonName": "attachment",
       "ResourceClrType": "AttachmentResource",
       "AttributesClrType": "Attachment",
-      "Description": "An uploaded file attached to an event.\n",
+      "Description": "A file or external link attached to an event.\n",
       "Deprecated": false,
       "CollectionOnly": false,
       "Postable": false,
@@ -20,7 +20,7 @@
           "JsonName": "content_type",
           "ClrName": "ContentType",
           "ClrType": "string",
-          "Description": "MIME type of the attachment"
+          "Description": "MIME type of the attachment. Null for external links."
         },
         {
           "JsonName": "created_at",
@@ -38,7 +38,13 @@
           "JsonName": "file_size",
           "ClrName": "FileSize",
           "ClrType": "int",
-          "Description": "File size in bytes"
+          "Description": "File size in bytes. Null for external links."
+        },
+        {
+          "JsonName": "kind",
+          "ClrName": "Kind",
+          "ClrType": "string",
+          "Description": "Possible values: file_upload, external_link\n\nPossible values: \u0060file_upload\u0060 or \u0060external_link\u0060"
         },
         {
           "JsonName": "name",
@@ -56,7 +62,7 @@
           "JsonName": "url",
           "ClrName": "Url",
           "ClrType": "string",
-          "Description": "Path to where the attachment is stored"
+          "Description": "Path to where the attachment is stored, or the external link URL for external_link attachments"
         }
       ],
       "Relationships": [
@@ -113,6 +119,11 @@
           "Description": "Sort response items by the \u0060FileSize\u0060 attribute."
         },
         {
+          "ClrMethodName": "OrderByKind",
+          "Value": "kind",
+          "Description": "Sort response items by the \u0060Kind\u0060 attribute."
+        },
+        {
           "ClrMethodName": "OrderByName",
           "Value": "name",
           "Description": "Sort response items by the \u0060Name\u0060 attribute."
@@ -149,6 +160,12 @@
           "Description": "Query response items by the \u0060FileSize\u0060 attribute."
         },
         {
+          "ClrMethodName": "WhereKind",
+          "ClrType": "string",
+          "Parameter": "where[kind]",
+          "Description": "Query response items by the \u0060Kind\u0060 attribute."
+        },
+        {
           "ClrMethodName": "WhereName",
           "ClrType": "string",
           "Parameter": "where[name]",
@@ -161,6 +178,122 @@
           "Description": "Query response items by the \u0060UpdatedAt\u0060 attribute."
         }
       ]
+    },
+    {
+      "JsonName": "calendar",
+      "ResourceClrType": "CalendarResource",
+      "AttributesClrType": "Calendar",
+      "Description": "Calendars associated with an Organization.\n",
+      "Deprecated": false,
+      "CollectionOnly": false,
+      "Postable": false,
+      "Patchable": false,
+      "Deletable": false,
+      "ShouldGenerateResource": true,
+      "ShouldGenerateClients": true,
+      "Attributes": [
+        {
+          "JsonName": "access",
+          "ClrName": "Access",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "access_restricted",
+          "ClrName": "AccessRestricted",
+          "ClrType": "bool",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "color",
+          "ClrName": "Color",
+          "ClrType": "string",
+          "Description": "Possible values: \u0060blue\u0060, \u0060aqua\u0060, \u0060teal\u0060, \u0060green\u0060, \u0060yellow\u0060, \u0060orange\u0060, \u0060pink\u0060, \u0060purple\u0060, \u0060magenta\u0060, \u0060indigo\u0060, \u0060aqua_bold\u0060, \u0060teal_bold\u0060, \u0060orange_bold\u0060, \u0060magenta_bold\u0060, \u0060blue_bold\u0060, \u0060green_bold\u0060, \u0060yellow_bold\u0060, \u0060pink_bold\u0060, \u0060purple_bold\u0060, or \u0060indigo_bold\u0060"
+        },
+        {
+          "JsonName": "confirmable_event_count",
+          "ClrName": "ConfirmableEventCount",
+          "ClrType": "int",
+          "Description": "The number of pending events that would confirm if the calendar stopped requiring approval\n\nOnly available when requested with the \u0060?fields\u0060 param"
+        },
+        {
+          "JsonName": "created_at",
+          "ClrName": "CreatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "default",
+          "ClrName": "Default",
+          "ClrType": "bool",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "description",
+          "ClrName": "Description",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "name",
+          "ClrName": "Name",
+          "ClrType": "string",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "requires_approval",
+          "ClrName": "RequiresApproval",
+          "ClrType": "bool",
+          "Description": "Planning Center does not provide a description for this attribute."
+        },
+        {
+          "JsonName": "updated_at",
+          "ClrName": "UpdatedAt",
+          "ClrType": "System.DateTime",
+          "Description": "Planning Center does not provide a description for this attribute."
+        }
+      ],
+      "Relationships": [],
+      "Actions": [],
+      "Children": [
+        {
+          "JsonName": "approval_groups",
+          "ClrName": "ApprovalGroups",
+          "AttributesClrType": "ResourceApprovalGroup",
+          "Description": "Associated \u0060ApprovalGroups\u0060.",
+          "Slug": "approval_groups",
+          "IsCollection": true,
+          "Deprecated": false,
+          "Filters": []
+        },
+        {
+          "JsonName": "events",
+          "ClrName": "Events",
+          "AttributesClrType": "Event",
+          "Description": "Associated \u0060Events\u0060.",
+          "Slug": "events",
+          "IsCollection": true,
+          "Deprecated": false,
+          "Filters": []
+        }
+      ],
+      "CanInclude": [
+        {
+          "ClrMethodName": "IncludeApprovalGroups",
+          "Value": "approval_groups",
+          "Description": "Include related \u0060ApprovalGroups\u0060 resources in the response.",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        }
+      ],
+      "CanOrderBy": [
+        {
+          "ClrMethodName": "OrderByName",
+          "Value": "name",
+          "Description": "Sort response items by the \u0060Name\u0060 attribute."
+        }
+      ],
+      "CanQueryBy": []
     },
     {
       "JsonName": "conflict",
@@ -355,6 +488,12 @@
           "Description": "Path to where the event image is stored"
         },
         {
+          "JsonName": "link_only",
+          "ClrName": "LinkOnly",
+          "ClrType": "bool",
+          "Description": "- \u0060true\u0060 indicates the event is published to Church Center through the link only\n- \u0060false\u0060 indicates the event is published to Church Center normally\n"
+        },
+        {
           "JsonName": "name",
           "ClrName": "Name",
           "ClrType": "string",
@@ -412,6 +551,16 @@
           "Description": "Associated \u0060Attachments\u0060.",
           "Slug": "attachments",
           "IsCollection": true,
+          "Deprecated": false,
+          "Filters": []
+        },
+        {
+          "JsonName": "calendar",
+          "ClrName": "Calendar",
+          "AttributesClrType": "Calendar",
+          "Description": "Associated \u0060Calendar\u0060.",
+          "Slug": "calendar",
+          "IsCollection": false,
           "Deprecated": false,
           "Filters": []
         },
@@ -517,6 +666,13 @@
           "CanAssignOnUpdate": false
         },
         {
+          "ClrMethodName": "IncludeCalendar",
+          "Value": "calendar",
+          "Description": "Include related \u0060Calendar\u0060 resources in the response.",
+          "CanAssignOnCreate": true,
+          "CanAssignOnUpdate": true
+        },
+        {
           "ClrMethodName": "IncludeFeed",
           "Value": "feed",
           "Description": "Include related \u0060Feed\u0060 resources in the response.",
@@ -551,6 +707,12 @@
           "ClrType": "System.DateTime",
           "Parameter": "where[created_at]",
           "Description": "Query response items by the \u0060CreatedAt\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "WhereLinkOnly",
+          "ClrType": "bool",
+          "Parameter": "where[link_only]",
+          "Description": "Query response items by the \u0060LinkOnly\u0060 attribute."
         },
         {
           "ClrMethodName": "WhereName",
@@ -1171,9 +1333,19 @@
               "Description": "Filter results by the \u0060Approved\u0060 scope."
             },
             {
+              "ClrMethodName": "FilterByApprovedConflict",
+              "Value": "approved_conflict",
+              "Description": "Filter results by the \u0060ApprovedConflict\u0060 scope."
+            },
+            {
               "ClrMethodName": "FilterByApprovedPending",
               "Value": "approved_pending",
               "Description": "Filter results by the \u0060ApprovedPending\u0060 scope."
+            },
+            {
+              "ClrMethodName": "FilterByApprovedPendingConflict",
+              "Value": "approved_pending_conflict",
+              "Description": "Filter results by the \u0060ApprovedPendingConflict\u0060 scope."
             },
             {
               "ClrMethodName": "FilterByApprovedPendingRejected",
@@ -1181,9 +1353,24 @@
               "Description": "Filter results by the \u0060ApprovedPendingRejected\u0060 scope."
             },
             {
+              "ClrMethodName": "FilterByApprovedPendingRejectedConflict",
+              "Value": "approved_pending_rejected_conflict",
+              "Description": "Filter results by the \u0060ApprovedPendingRejectedConflict\u0060 scope."
+            },
+            {
               "ClrMethodName": "FilterByApprovedRejected",
               "Value": "approved_rejected",
               "Description": "Filter results by the \u0060ApprovedRejected\u0060 scope."
+            },
+            {
+              "ClrMethodName": "FilterByApprovedRejectedConflict",
+              "Value": "approved_rejected_conflict",
+              "Description": "Filter results by the \u0060ApprovedRejectedConflict\u0060 scope."
+            },
+            {
+              "ClrMethodName": "FilterByConflict",
+              "Value": "conflict",
+              "Description": "Filter results by the \u0060Conflict\u0060 scope."
             },
             {
               "ClrMethodName": "FilterByFuture",
@@ -1196,14 +1383,29 @@
               "Description": "Filter results by the \u0060Pending\u0060 scope."
             },
             {
+              "ClrMethodName": "FilterByPendingConflict",
+              "Value": "pending_conflict",
+              "Description": "Filter results by the \u0060PendingConflict\u0060 scope."
+            },
+            {
               "ClrMethodName": "FilterByPendingRejected",
               "Value": "pending_rejected",
               "Description": "Filter results by the \u0060PendingRejected\u0060 scope."
             },
             {
+              "ClrMethodName": "FilterByPendingRejectedConflict",
+              "Value": "pending_rejected_conflict",
+              "Description": "Filter results by the \u0060PendingRejectedConflict\u0060 scope."
+            },
+            {
               "ClrMethodName": "FilterByRejected",
               "Value": "rejected",
               "Description": "Filter results by the \u0060Rejected\u0060 scope."
+            },
+            {
+              "ClrMethodName": "FilterByRejectedConflict",
+              "Value": "rejected_conflict",
+              "Description": "Filter results by the \u0060RejectedConflict\u0060 scope."
             }
           ]
         },
@@ -1325,7 +1527,7 @@
         {
           "JsonName": "name",
           "ClrName": "Name",
-          "ClrType": "System.DateTime",
+          "ClrType": "string",
           "Description": "Name of the event time"
         },
         {
@@ -1400,7 +1602,7 @@
         },
         {
           "ClrMethodName": "WhereName",
-          "ClrType": "System.DateTime",
+          "ClrType": "string",
           "Parameter": "where[name]",
           "Description": "Query response items by the \u0060Name\u0060 attribute."
         },
@@ -1650,6 +1852,16 @@
           "Filters": []
         },
         {
+          "JsonName": "calendars",
+          "ClrName": "Calendars",
+          "AttributesClrType": "Calendar",
+          "Description": "Associated \u0060Calendars\u0060.",
+          "Slug": "calendars",
+          "IsCollection": true,
+          "Deprecated": false,
+          "Filters": []
+        },
+        {
           "JsonName": "conflicts",
           "ClrName": "Conflicts",
           "AttributesClrType": "Conflict",
@@ -1692,7 +1904,12 @@
             {
               "ClrMethodName": "FilterByApproved",
               "Value": "approved",
-              "Description": "filter to instances that are approved; can\u0027t be combined with any other \u0060approved\u0060 scopes"
+              "Description": "filter to instances whose rooms and resources are approved; can\u0027t be combined with any other \u0060approved\u0060 scopes"
+            },
+            {
+              "ClrMethodName": "FilterByApprovedConflict",
+              "Value": "approved_conflict",
+              "Description": "Filter results by the \u0060ApprovedConflict\u0060 scope."
             },
             {
               "ClrMethodName": "FilterByApprovedPending",
@@ -1700,14 +1917,29 @@
               "Description": "Filter results by the \u0060ApprovedPending\u0060 scope."
             },
             {
+              "ClrMethodName": "FilterByApprovedPendingConflict",
+              "Value": "approved_pending_conflict",
+              "Description": "Filter results by the \u0060ApprovedPendingConflict\u0060 scope."
+            },
+            {
               "ClrMethodName": "FilterByApprovedPendingRejected",
               "Value": "approved_pending_rejected",
               "Description": "Filter results by the \u0060ApprovedPendingRejected\u0060 scope."
             },
             {
+              "ClrMethodName": "FilterByApprovedPendingRejectedConflict",
+              "Value": "approved_pending_rejected_conflict",
+              "Description": "Filter results by the \u0060ApprovedPendingRejectedConflict\u0060 scope."
+            },
+            {
               "ClrMethodName": "FilterByApprovedRejected",
               "Value": "approved_rejected",
               "Description": "Filter results by the \u0060ApprovedRejected\u0060 scope."
+            },
+            {
+              "ClrMethodName": "FilterByApprovedRejectedConflict",
+              "Value": "approved_rejected_conflict",
+              "Description": "Filter results by the \u0060ApprovedRejectedConflict\u0060 scope."
             },
             {
               "ClrMethodName": "FilterByApprover",
@@ -1718,6 +1950,46 @@
               "ClrMethodName": "FilterByApproverSubscriber",
               "Value": "approver_subscriber",
               "Description": "Filter results by the \u0060ApproverSubscriber\u0060 scope."
+            },
+            {
+              "ClrMethodName": "FilterByConflict",
+              "Value": "conflict",
+              "Description": "Filter results by the \u0060Conflict\u0060 scope."
+            },
+            {
+              "ClrMethodName": "FilterByEventRequestApproved",
+              "Value": "event_request_approved",
+              "Description": "filter to instances whose event is approved; combine statuses with \u0060event_request_approved_pending\u0060 rather than passing multiple \u0060event_request_\u0060 scopes"
+            },
+            {
+              "ClrMethodName": "FilterByEventRequestApprovedPending",
+              "Value": "event_request_approved_pending",
+              "Description": "filter to instances whose event is approved or pending"
+            },
+            {
+              "ClrMethodName": "FilterByEventRequestApprovedPendingRejected",
+              "Value": "event_request_approved_pending_rejected",
+              "Description": "filter to instances whose event is approved, pending, or rejected"
+            },
+            {
+              "ClrMethodName": "FilterByEventRequestApprovedRejected",
+              "Value": "event_request_approved_rejected",
+              "Description": "filter to instances whose event is approved or rejected"
+            },
+            {
+              "ClrMethodName": "FilterByEventRequestPending",
+              "Value": "event_request_pending",
+              "Description": "filter to instances whose event is pending; combine statuses with \u0060event_request_approved_pending\u0060 rather than passing multiple \u0060event_request_\u0060 scopes"
+            },
+            {
+              "ClrMethodName": "FilterByEventRequestPendingRejected",
+              "Value": "event_request_pending_rejected",
+              "Description": "filter to instances whose event is pending or rejected"
+            },
+            {
+              "ClrMethodName": "FilterByEventRequestRejected",
+              "Value": "event_request_rejected",
+              "Description": "filter to instances whose event is rejected; combine statuses with \u0060event_request_approved_rejected\u0060 rather than passing multiple \u0060event_request_\u0060 scopes"
             },
             {
               "ClrMethodName": "FilterByFuture",
@@ -1802,7 +2074,12 @@
             {
               "ClrMethodName": "FilterByPending",
               "Value": "pending",
-              "Description": "filter to instances that are pending; can\u0027t be combined with any other \u0060pending\u0060 scopes"
+              "Description": "filter to instances whose rooms and resources are pending; can\u0027t be combined with any other \u0060pending\u0060 scopes"
+            },
+            {
+              "ClrMethodName": "FilterByPendingConflict",
+              "Value": "pending_conflict",
+              "Description": "Filter results by the \u0060PendingConflict\u0060 scope."
             },
             {
               "ClrMethodName": "FilterByPendingRejected",
@@ -1810,9 +2087,19 @@
               "Description": "Filter results by the \u0060PendingRejected\u0060 scope."
             },
             {
+              "ClrMethodName": "FilterByPendingRejectedConflict",
+              "Value": "pending_rejected_conflict",
+              "Description": "Filter results by the \u0060PendingRejectedConflict\u0060 scope."
+            },
+            {
               "ClrMethodName": "FilterByRejected",
               "Value": "rejected",
-              "Description": "filter to instances that are rejected; can\u0027t be combined with any other \u0060rejected\u0060 scopes"
+              "Description": "filter to instances whose rooms and resources are rejected; can\u0027t be combined with any other \u0060rejected\u0060 scopes"
+            },
+            {
+              "ClrMethodName": "FilterByRejectedConflict",
+              "Value": "rejected_conflict",
+              "Description": "Filter results by the \u0060RejectedConflict\u0060 scope."
             },
             {
               "ClrMethodName": "FilterByShared",
@@ -1933,9 +2220,19 @@
               "Description": "Filter results by the \u0060Approved\u0060 scope."
             },
             {
+              "ClrMethodName": "FilterByApprovedConflict",
+              "Value": "approved_conflict",
+              "Description": "Filter results by the \u0060ApprovedConflict\u0060 scope."
+            },
+            {
               "ClrMethodName": "FilterByApprovedPending",
               "Value": "approved_pending",
               "Description": "Filter results by the \u0060ApprovedPending\u0060 scope."
+            },
+            {
+              "ClrMethodName": "FilterByApprovedPendingConflict",
+              "Value": "approved_pending_conflict",
+              "Description": "Filter results by the \u0060ApprovedPendingConflict\u0060 scope."
             },
             {
               "ClrMethodName": "FilterByApprovedPendingRejected",
@@ -1943,9 +2240,24 @@
               "Description": "Filter results by the \u0060ApprovedPendingRejected\u0060 scope."
             },
             {
+              "ClrMethodName": "FilterByApprovedPendingRejectedConflict",
+              "Value": "approved_pending_rejected_conflict",
+              "Description": "Filter results by the \u0060ApprovedPendingRejectedConflict\u0060 scope."
+            },
+            {
               "ClrMethodName": "FilterByApprovedRejected",
               "Value": "approved_rejected",
               "Description": "Filter results by the \u0060ApprovedRejected\u0060 scope."
+            },
+            {
+              "ClrMethodName": "FilterByApprovedRejectedConflict",
+              "Value": "approved_rejected_conflict",
+              "Description": "Filter results by the \u0060ApprovedRejectedConflict\u0060 scope."
+            },
+            {
+              "ClrMethodName": "FilterByConflict",
+              "Value": "conflict",
+              "Description": "Filter results by the \u0060Conflict\u0060 scope."
             },
             {
               "ClrMethodName": "FilterByFuture",
@@ -1958,14 +2270,29 @@
               "Description": "Filter results by the \u0060Pending\u0060 scope."
             },
             {
+              "ClrMethodName": "FilterByPendingConflict",
+              "Value": "pending_conflict",
+              "Description": "Filter results by the \u0060PendingConflict\u0060 scope."
+            },
+            {
               "ClrMethodName": "FilterByPendingRejected",
               "Value": "pending_rejected",
               "Description": "Filter results by the \u0060PendingRejected\u0060 scope."
             },
             {
+              "ClrMethodName": "FilterByPendingRejectedConflict",
+              "Value": "pending_rejected_conflict",
+              "Description": "Filter results by the \u0060PendingRejectedConflict\u0060 scope."
+            },
+            {
               "ClrMethodName": "FilterByRejected",
               "Value": "rejected",
               "Description": "Filter results by the \u0060Rejected\u0060 scope."
+            },
+            {
+              "ClrMethodName": "FilterByRejectedConflict",
+              "Value": "rejected_conflict",
+              "Description": "Filter results by the \u0060RejectedConflict\u0060 scope."
             },
             {
               "ClrMethodName": "FilterByResources",
@@ -2150,6 +2477,12 @@
           "Description": "UTC time at which the person was created"
         },
         {
+          "JsonName": "event_administrator",
+          "ClrName": "EventAdministrator",
+          "ClrType": "bool",
+          "Description": "Indicates whether the person is an Event Administrator, and therefore has access to every calendar\n\n\nOnly available when requested with the \u0060?fields\u0060 param"
+        },
+        {
           "JsonName": "event_permissions_type",
           "ClrName": "EventPermissionsType",
           "ClrType": "string",
@@ -2172,6 +2505,12 @@
           "ClrName": "HasAccess",
           "ClrType": "bool",
           "Description": "Indicates whether the person has access to Calendar"
+        },
+        {
+          "JsonName": "has_full_access_to_any_calendar",
+          "ClrName": "HasFullAccessToAnyCalendar",
+          "ClrType": "bool",
+          "Description": "Indicates whether the person has full (not limited, event-level-only) access to at least one calendar\n\n\nOnly available when requested with the \u0060?fields\u0060 param"
         },
         {
           "JsonName": "last_name",
@@ -2620,9 +2959,19 @@
               "Description": "Filter results by the \u0060Approved\u0060 scope."
             },
             {
+              "ClrMethodName": "FilterByApprovedConflict",
+              "Value": "approved_conflict",
+              "Description": "Filter results by the \u0060ApprovedConflict\u0060 scope."
+            },
+            {
               "ClrMethodName": "FilterByApprovedPending",
               "Value": "approved_pending",
               "Description": "Filter results by the \u0060ApprovedPending\u0060 scope."
+            },
+            {
+              "ClrMethodName": "FilterByApprovedPendingConflict",
+              "Value": "approved_pending_conflict",
+              "Description": "Filter results by the \u0060ApprovedPendingConflict\u0060 scope."
             },
             {
               "ClrMethodName": "FilterByApprovedPendingRejected",
@@ -2630,9 +2979,24 @@
               "Description": "Filter results by the \u0060ApprovedPendingRejected\u0060 scope."
             },
             {
+              "ClrMethodName": "FilterByApprovedPendingRejectedConflict",
+              "Value": "approved_pending_rejected_conflict",
+              "Description": "Filter results by the \u0060ApprovedPendingRejectedConflict\u0060 scope."
+            },
+            {
               "ClrMethodName": "FilterByApprovedRejected",
               "Value": "approved_rejected",
               "Description": "Filter results by the \u0060ApprovedRejected\u0060 scope."
+            },
+            {
+              "ClrMethodName": "FilterByApprovedRejectedConflict",
+              "Value": "approved_rejected_conflict",
+              "Description": "Filter results by the \u0060ApprovedRejectedConflict\u0060 scope."
+            },
+            {
+              "ClrMethodName": "FilterByConflict",
+              "Value": "conflict",
+              "Description": "Filter results by the \u0060Conflict\u0060 scope."
             },
             {
               "ClrMethodName": "FilterByFuture",
@@ -2645,14 +3009,29 @@
               "Description": "Filter results by the \u0060Pending\u0060 scope."
             },
             {
+              "ClrMethodName": "FilterByPendingConflict",
+              "Value": "pending_conflict",
+              "Description": "Filter results by the \u0060PendingConflict\u0060 scope."
+            },
+            {
               "ClrMethodName": "FilterByPendingRejected",
               "Value": "pending_rejected",
               "Description": "Filter results by the \u0060PendingRejected\u0060 scope."
             },
             {
+              "ClrMethodName": "FilterByPendingRejectedConflict",
+              "Value": "pending_rejected_conflict",
+              "Description": "Filter results by the \u0060PendingRejectedConflict\u0060 scope."
+            },
+            {
               "ClrMethodName": "FilterByRejected",
               "Value": "rejected",
               "Description": "Filter results by the \u0060Rejected\u0060 scope."
+            },
+            {
+              "ClrMethodName": "FilterByRejectedConflict",
+              "Value": "rejected_conflict",
+              "Description": "Filter results by the \u0060RejectedConflict\u0060 scope."
             }
           ]
         },
@@ -2812,6 +3191,12 @@
       "ShouldGenerateClients": true,
       "Attributes": [
         {
+          "JsonName": "calendar_count",
+          "ClrName": "CalendarCount",
+          "ClrType": "int",
+          "Description": "The number of calendars that require approval from the group\n\nOnly available when requested with the \u0060?fields\u0060 param"
+        },
+        {
           "JsonName": "created_at",
           "ClrName": "CreatedAt",
           "ClrType": "System.DateTime",
@@ -2828,6 +3213,12 @@
           "ClrName": "Name",
           "ClrType": "string",
           "Description": "Name of the approval group"
+        },
+        {
+          "JsonName": "person_count",
+          "ClrName": "PersonCount",
+          "ClrType": "int",
+          "Description": "The number of people in the approval group\n\nOnly available when requested with the \u0060?fields\u0060 param"
         },
         {
           "JsonName": "resource_count",
@@ -2851,6 +3242,16 @@
       "Relationships": [],
       "Actions": [],
       "Children": [
+        {
+          "JsonName": "calendars",
+          "ClrName": "Calendars",
+          "AttributesClrType": "Calendar",
+          "Description": "Associated \u0060Calendars\u0060.",
+          "Slug": "calendars",
+          "IsCollection": true,
+          "Deprecated": false,
+          "Filters": []
+        },
         {
           "JsonName": "event_resource_requests",
           "ClrName": "EventResourceRequests",
@@ -2941,6 +3342,13 @@
         }
       ],
       "CanInclude": [
+        {
+          "ClrMethodName": "IncludeCalendars",
+          "Value": "calendars",
+          "Description": "Include related \u0060Calendars\u0060 resources in the response.",
+          "CanAssignOnCreate": false,
+          "CanAssignOnUpdate": false
+        },
         {
           "ClrMethodName": "IncludePeople",
           "Value": "people",
@@ -3073,16 +3481,6 @@
       "Actions": [],
       "Children": [
         {
-          "JsonName": "event_instance",
-          "ClrName": "EventInstance",
-          "AttributesClrType": "EventInstance",
-          "Description": "Associated \u0060EventInstance\u0060.",
-          "Slug": "event_instance",
-          "IsCollection": false,
-          "Deprecated": false,
-          "Filters": []
-        },
-        {
           "JsonName": "event_resource_request",
           "ClrName": "EventResourceRequest",
           "AttributesClrType": "EventResourceRequest",
@@ -3104,13 +3502,6 @@
         }
       ],
       "CanInclude": [
-        {
-          "ClrMethodName": "IncludeEventInstance",
-          "Value": "event_instance",
-          "Description": "Include related \u0060EventInstance\u0060 resources in the response.",
-          "CanAssignOnCreate": true,
-          "CanAssignOnUpdate": true
-        },
         {
           "ClrMethodName": "IncludeEventResourceRequest",
           "Value": "event_resource_request",
@@ -3807,6 +4198,12 @@
           "ClrType": "decimal",
           "Parameter": "where[position]",
           "Description": "Query response items by the \u0060Position\u0060 attribute."
+        },
+        {
+          "ClrMethodName": "WhereTagGroupId",
+          "ClrType": "int",
+          "Parameter": "where[tag_group_id]",
+          "Description": "Query response items by the \u0060TagGroupId\u0060 attribute."
         },
         {
           "ClrMethodName": "WhereUpdatedAt",

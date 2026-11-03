@@ -1,4 +1,4 @@
-using Crews.PlanningCenter.Api.People.V2025_11_10;
+using Crews.PlanningCenter.Api.People.V2026_10_05;
 using Crews.PlanningCenter.Api.IntegrationTests.Infrastructure.ProductFixtures;
 using Crews.PlanningCenter.Api.IntegrationTests.Infrastructure.TestBases;
 using Crews.Web.JsonApiClient;

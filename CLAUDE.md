@@ -44,7 +44,7 @@ dotnet test Crews.PlanningCenter.Api.Models.Tests
 dotnet test Crews.PlanningCenter.Api.IntegrationTests
 
 # Run tests with code coverage (uses .runsettings configuration)
-dotnet test --settings Crews.PlanningCenter.Api.Tests/.runsettings --collect:"XPlat Code Coverage"
+dotnet test --settings .runsettings --collect:"XPlat Code Coverage"
 
 # Run a specific test
 dotnet test --filter "FullyQualifiedName~TestClassName.TestMethodName"
@@ -111,15 +111,20 @@ The DocParser:
 ```json
 {
   "AppSettings": {
-    "OutputDirectory": "../../../../Crews.PlanningCenter.Api/Definitions",
+    "OutputDirectory": "../Crews.PlanningCenter.Api/Definitions",
     "PlanningCenterClient": {
       "BaseAddress": "https://api.planningcenteronline.com/"
+    },
+    "DocumentationBuilder": {
+      "ConcurrentConnections": 10
     }
   }
 }
 ```
 
-**Documentation Overrides:** Corrections for inaccuracies in the Planning Center API documentation are configured separately in `overrides.json`. This includes name overrides, excluded vertices, edge type overrides, collection overrides, and attribute type overrides. See the [DocParser README](Crews.PlanningCenter.Api.DocParser/README.md) for detailed documentation.
+**Documentation Transforms:** Corrections for inaccuracies in the Planning Center API documentation are configured separately in [transforms.json](Crews.PlanningCenter.Api.DocParser/transforms.json). This includes resource overrides, resource child overrides, attribute overrides, relationship overrides, and additional resource children. See [DocumentationTransforms.cs](Crews.PlanningCenter.Api.DocParser/Configuration/DocumentationTransforms.cs) for the supported properties.
+
+A relationship whose type is not defined in the same product and version causes a `CS0246` build error in the generated code. To fix this, add a `RelationshipOverrides` entry that sets `ResourceClrType` to `Crews.Web.JsonApiClient.JsonApiResourceIdentifier`, then run the DocParser again.
 
 #### Phase 2: Incremental Source Generation (`Crews.PlanningCenter.Api.Generators`)
 Contains utilities and services for generating strongly-typed client code from the JSON definition files. The generator uses [incremental source generation](https://github.com/dotnet/roslyn/blob/main/docs/features/incremental-generators.md#syntaxvalueprovider) to efficiently process the definition files at compile time.
@@ -343,7 +348,7 @@ See the [README.md](README.md) for complete usage examples and patterns.
 
 ### Adding New API Products
 When Planning Center adds a new product API:
-1. Add the new product to `ProductDefinition.All` in [ProductDefinition.cs](Crews.PlanningCenter.Api.DocParser/Models/ProductDefinition.cs)
+1. Add the new product to `ProductDefinition.All` in [ProductDefinition.cs](Crews.PlanningCenter.Api.Models/ProductDefinition.cs)
 2. Run the DocParser to download the new product's API definitions:
    ```bash
    cd Crews.PlanningCenter.Api.DocParser
@@ -359,7 +364,7 @@ When Planning Center releases new API versions:
    dotnet run
    ```
 2. New definition files will be added to `Crews.PlanningCenter.Api/Definitions/{Product}/`
-3. Update the `LatestVersion` property in the affected client classes to point to the new version
-4. Rebuild the solution to trigger incremental source generation
+3. Rebuild the solution to trigger incremental source generation. Each root client's `Latest` property is generated from the newest definition file, so it moves to the new version automatically
+4. Update the version namespaces imported by `Crews.PlanningCenter.Api.IntegrationTests` to match, since the tests use `Latest` with types from a specific version
 
 API versions use underscored date format (e.g., `V2025_11_10`).

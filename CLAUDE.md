@@ -10,7 +10,7 @@ This is a multi-project .NET solution. The primary project in the solution (`Cre
 
 The solution contains nine projects:
 
-1. **Crews.PlanningCenter.Api** (.NET 8.0): Main library project - includes authentication helpers and auto-generated API clients
+1. **Crews.PlanningCenter.Api** (.NET 10.0): Main library project - includes authentication helpers and auto-generated API clients
 2. **Crews.PlanningCenter.Api.Models** (.NET Standard 2.0): Shared model definitions used by both the generators and the doc parser
 3. **Crews.PlanningCenter.Api.DocParser** (.NET 10.0): Console application for downloading and parsing API documentation
 4. **Crews.PlanningCenter.Api.Generators** (.NET Standard 2.0): Roslyn incremental source generator for code generation

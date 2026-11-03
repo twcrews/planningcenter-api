@@ -16,7 +16,7 @@ Install-Package Crews.PlanningCenter.Api
 
 ## Requirements
 
-- .NET 8.0 or later
+- .NET 10.0 or later
 - A Planning Center account with API access
 - API credentials (Personal Access Token or OAuth)
 

@@ -6,7 +6,9 @@ on:
       - master  # Deploy on push to master
     paths:
       - 'docs/**'
-      - 'Crews.PlanningCenter.Api/**/*.cs'
+      - 'Crews.PlanningCenter.Api/**'
+      - 'Crews.PlanningCenter.Api.Generators/**'
+      - 'Crews.PlanningCenter.Api.Models/**'
       - '.github/workflows/docs.yml'
   workflow_dispatch:  # Allow manual trigger
 
@@ -22,6 +24,8 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.fingerprint.outputs.changed }}
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -33,24 +37,49 @@ jobs:
             8.0.x
             10.0.x
 
-      - name: Restore dependencies
-        run: dotnet restore
-
-      - name: Build solution
-        run: dotnet build --configuration Release --no-restore
+      - name: Build library
+        run: dotnet build Crews.PlanningCenter.Api --configuration Release
 
       - name: Setup DocFX
-        run: dotnet tool install -g docfx
+        run: dotnet tool install -g docfx --version 2.81.0
+
+      - name: Generate API metadata
+        run: docfx metadata docs/docfx.json
+
+      # The page build is the slow part, and most of what triggers this workflow leaves the site
+      # unchanged. Hashing the generated metadata alongside the hand-written docs ignores changes
+      # that never reach the site, such as private members. The hash is published with the site so
+      # it always describes what is live. Manual runs always rebuild.
+      - name: Compare with deployed fingerprint
+        id: fingerprint
+        run: |
+          fingerprint=$( { docfx --version; find docs -type f -not -path 'docs/_site/*' -not -path 'docs/obj/*' -print0 \
+            | LC_ALL=C sort -z | xargs -0 sha256sum; } | sha256sum | cut -d' ' -f1 )
+          deployed=$(curl -fsS "https://pcapi.crews.dev/docs-fingerprint.txt?run=$GITHUB_RUN_ID" || true)
+          echo "Current: $fingerprint, deployed: ${deployed:-none}"
+          echo "value=$fingerprint" >> "$GITHUB_OUTPUT"
+          if [ "$fingerprint" = "$deployed" ] && [ "$GITHUB_EVENT_NAME" != "workflow_dispatch" ]; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
 
       - name: Build documentation
-        run: docfx docs/docfx.json
+        if: steps.fingerprint.outputs.changed == 'true'
+        env:
+          FINGERPRINT: ${{ steps.fingerprint.outputs.value }}
+        run: |
+          docfx build docs/docfx.json
+          echo "$FINGERPRINT" > docs/_site/docs-fingerprint.txt
 
       - name: Upload artifact
+        if: steps.fingerprint.outputs.changed == 'true'
         uses: actions/upload-pages-artifact@v5
         with:
           path: docs/_site
 
   deploy:
+    if: needs.build.outputs.changed == 'true'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

@@ -26,7 +26,10 @@ jobs:
       run: dotnet test Crews.PlanningCenter.Api.Tests --configuration Release /p:Version=${VERSION}
     - name: Pack
       run: dotnet pack Crews.PlanningCenter.Api --configuration Release /p:Version=${VERSION} --no-build --output .
+    - name: NuGet login
+      uses: NuGet/login@v1
+      id: login
+      with:
+        user: ${{ secrets.NUGET_USER }}
     - name: Push
-      run: dotnet nuget push Crews.PlanningCenter.Api.${VERSION}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${NUGET_APIKEY}
-      env:
-        NUGET_APIKEY: ${{ secrets.NUGET_APIKEY }}
+      run: dotnet nuget push Crews.PlanningCenter.Api.${VERSION}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{steps.login.outputs.NUGET_API_KEY}}

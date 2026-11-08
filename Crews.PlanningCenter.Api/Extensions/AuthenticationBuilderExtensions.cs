@@ -14,19 +14,21 @@ public static class AuthenticationBuilderExtensions
 {
     /// <summary>
     /// Adds Planning Center OIDC authentication with configuration from appsettings.json.
-    /// Reads from the "PlanningCenter" configuration section.
+    /// Reads from the "Authentication:PlanningCenter" configuration section.
     /// </summary>
     /// <param name="builder">The authentication builder.</param>
     /// <returns>The authentication builder for chaining.</returns>
     /// <remarks>
-    /// <para>Configuration is read from appsettings.json under the "PlanningCenter" section:</para>
+    /// <para>Configuration is read from appsettings.json under the "Authentication:PlanningCenter" section:</para>
     /// <code>
     /// {
-    ///   "PlanningCenter": {
-    ///     "Authority": "https://api.planningcenteronline.com",
-    ///     "ClientId": "your-client-id",
-    ///     "ClientSecret": "your-client-secret",
-    ///     "Scopes": ["openid", "people"]  // Optional, defaults to ["openid", "people"]
+    ///   "Authentication": {
+    ///     "PlanningCenter": {
+    ///       "Authority": "https://api.planningcenteronline.com",
+    ///       "ClientId": "your-client-id",
+    ///       "ClientSecret": "your-client-secret",
+    ///       "Scopes": ["openid", "people"]  // Optional, defaults to ["openid", "people"]
+    ///     }
     ///   }
     /// }
     /// </code>

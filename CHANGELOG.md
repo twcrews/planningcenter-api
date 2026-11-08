@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.0.1] - 2026-11-08
+
+### Fixed
+
+- Fix XML documentation for `AddPlanningCenterAuthentication()`, which named the configuration section as `PlanningCenter` instead of `Authentication:PlanningCenter`.
+
 ## [4.0.0] - 2026-11-02
 
 ### Added
@@ -326,6 +332,7 @@ First official stable release!
 
 Initial release.
 
+[4.0.1]: https://github.com/twcrews/planningcenter-api/compare/4.0.0...4.0.1
 [4.0.0]: https://github.com/twcrews/planningcenter-api/compare/3.4.1...4.0.0
 [3.4.1]: https://github.com/twcrews/planningcenter-api/compare/3.4.0...3.4.1
 [3.4.0]: https://github.com/twcrews/planningcenter-api/compare/3.3.0...3.4.0

@@ -10,7 +10,7 @@
 
   <PropertyGroup>
     <PackageId>Crews.PlanningCenter.Api</PackageId>
-    <PackageVersion>4.0.0</PackageVersion>
+    <PackageVersion>4.0.1</PackageVersion>
     <Authors>Tommy Crews</Authors>
     <Description>
       A comprehensive library for the Planning Center API.
